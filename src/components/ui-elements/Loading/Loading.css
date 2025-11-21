@@ -1,0 +1,214 @@
+/* =====================================
+   FILE: src/components/ui-elements/Loading/Loading.css
+   Simplified Loading Styles - 2 Variants Only
+   ===================================== */
+
+/* =====================================
+   SHARED SPINNER
+   ===================================== */
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(249, 115, 22, 0.2);
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+/* =====================================
+   ANIMATIONS - MOVED TO TOP FOR PRIORITY
+   ===================================== */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =====================================
+   1. FULL PAGE LOADING
+   ===================================== */
+
+.full-page-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.full-page-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 48px 40px;
+  background: rgba(30, 35, 45, 0.98);
+  border-radius: 16px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(249, 115, 22, 0.1),
+    0 4px 24px rgba(249, 115, 22, 0.2);
+  min-width: 280px;
+  animation: zoomIn 0.3s ease-out;
+}
+
+.loading-text {
+  color: rgba(255, 255, 255, 0.95);
+  font-family: var(--font-primary), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* =====================================
+   2. SECTION/COMPONENT LOADING
+   ===================================== */
+
+.section-loading-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: rgba(30, 35, 45, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =====================================
+   ANIMATIONS
+   ===================================== */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =====================================
+   RESPONSIVE - MOBILE
+   ===================================== */
+
+@media (max-width: 480px) {
+  .full-page-loading-content {
+    padding: 32px 28px;
+    min-width: 240px;
+  }
+
+  .loading-text {
+    font-size: 14px;
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+  }
+
+  .section-loading-container {
+    padding: 32px 16px;
+  }
+
+  .section-loading-container .loading-spinner {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* =====================================
+   DESKTOP
+   ===================================== */
+
+@media (min-width: 768px) {
+  .full-page-loading-content {
+    padding: 56px 48px;
+    min-width: 320px;
+  }
+
+  .loading-text {
+    font-size: 18px;
+  }
+
+  .loading-spinner {
+    width: 56px;
+    height: 56px;
+    border-width: 5px;
+  }
+}
+
+/* =====================================
+   PERFORMANCE OPTIMIZATIONS
+   ===================================== */
+
+.loading-spinner {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation-duration: 1.5s;
+  }
+
+  .full-page-loading-overlay,
+  .full-page-loading-content {
+    animation: none;
+  }
+}

@@ -1,0 +1,346 @@
+/* src/styles/toastify-custom.css */
+/* MoonBet Casino - Glassmorphism Toast Notifications */
+
+/* Import base Toastify styles */
+@import "react-toastify/dist/ReactToastify.css";
+
+/* Toast Container Positioning */
+.Toastify__toast-container {
+  z-index: 99999;
+  top: 64px !important; /* 64px from top as requested */
+  right: 20px;
+}
+
+/* Base Toast - Glassmorphism Design */
+.Toastify__toast {
+  font-family: inherit;
+  border-radius: 16px;
+  min-height: 70px;
+  margin-bottom: 12px;
+
+  /* Glassmorphism effect */
+  background: rgba(26, 29, 36, 0.75) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(240, 119, 48, 0.2);
+
+  /* MoonBet theme shadows */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(240, 119, 48, 0.1),
+    inset 0 0 20px rgba(240, 119, 48, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+  position: relative;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.Toastify__toast:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 100px rgba(240, 119, 48, 0.15),
+    inset 0 0 30px rgba(240, 119, 48, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Success Toast - Green with MoonBet accent */
+.Toastify__toast--success {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.2) 0%,
+    rgba(26, 29, 36, 0.8) 100%
+  ) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.Toastify__toast--success::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #10b981, #059669);
+  border-radius: 16px 0 0 16px;
+}
+
+/* Error Toast - Red with glass effect */
+.Toastify__toast--error {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.2) 0%,
+    rgba(26, 29, 36, 0.8) 100%
+  ) !important;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.Toastify__toast--error::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #ef4444, #dc2626);
+  border-radius: 16px 0 0 16px;
+}
+
+/* Info Toast - MoonBet Orange Theme */
+.Toastify__toast--info {
+  background: linear-gradient(
+    135deg,
+    rgba(240, 119, 48, 0.2) 0%,
+    rgba(26, 29, 36, 0.8) 100%
+  ) !important;
+  border: 1px solid rgba(240, 119, 48, 0.3);
+}
+
+.Toastify__toast--info::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #f07730, #efd28e);
+  border-radius: 16px 0 0 16px;
+}
+
+/* Warning Toast - Yellow/Orange */
+.Toastify__toast--warning {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.2) 0%,
+    rgba(26, 29, 36, 0.8) 100%
+  ) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.Toastify__toast--warning::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #f59e0b, #d97706);
+  border-radius: 16px 0 0 16px;
+}
+
+/* Icon container */
+.Toastify__toast::after {
+  font-size: 20px;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* .Toastify__toast--error::after {
+  content: "✕";
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.Toastify__toast--info::after {
+  content: "ℹ";
+  color: #f07730;
+  background: rgba(240, 119, 48, 0.1);
+  border-color: rgba(240, 119, 48, 0.2);
+} */
+
+.Toastify__toast--warning::after {
+  content: "⚠";
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+/* Toast Body */
+.Toastify__toast-body {
+  padding: 16px;
+  padding-left: 60px;
+  padding-right: 48px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+}
+
+/* Close Button - Glass style */
+.Toastify__close-button {
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 1;
+  align-self: center;
+  margin-right: 12px;
+  transition: all 0.2s ease;
+}
+
+.Toastify__close-button:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+
+.Toastify__close-button > svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Progress Bar - MoonBet Theme */
+.Toastify__progress-bar-container {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.Toastify__progress-bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(240, 119, 48, 0.6),
+    rgba(239, 210, 142, 0.8),
+    rgba(240, 119, 48, 0.6),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+.Toastify__progress-bar--success {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 185, 129, 0.8),
+    rgba(52, 211, 153, 1),
+    rgba(16, 185, 129, 0.8),
+    transparent
+  );
+  background-size: 200% 100%;
+}
+
+.Toastify__progress-bar--error {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(239, 68, 68, 0.8),
+    rgba(248, 113, 113, 1),
+    rgba(239, 68, 68, 0.8),
+    transparent
+  );
+  background-size: 200% 100%;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Entry animation */
+@keyframes toastSlideIn {
+  from {
+    transform: translate3d(110%, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.Toastify__toast--top-right {
+  animation: toastSlideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+  .Toastify__toast-container {
+    width: calc(100vw - 16px);
+    padding: 0 8px;
+    left: 8px;
+    right: 8px;
+    top: 64px !important; /* Maintain 64px from top on mobile */
+  }
+
+  .Toastify__toast {
+    margin-bottom: 8px;
+    border-radius: 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    width: 100vw;
+    padding: 0 12px;
+    left: 0;
+    right: 0;
+    top: 56px !important; /* Slightly less on small mobile */
+  }
+
+  .Toastify__toast {
+    border-radius: 12px;
+    min-height: 60px;
+  }
+
+  .Toastify__toast-body {
+    padding: 12px;
+    padding-left: 52px;
+    padding-right: 40px;
+    font-size: 13px;
+  }
+
+  .Toastify__toast::after {
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+  }
+}
+
+/* Dark theme override */
+.Toastify__toast-theme--dark {
+  background: transparent;
+}
+
+/* Remove default Toastify colors */
+.Toastify__toast-theme--dark.Toastify__toast--default,
+.Toastify__toast-theme--dark.Toastify__toast--info,
+.Toastify__toast-theme--dark.Toastify__toast--success,
+.Toastify__toast-theme--dark.Toastify__toast--warning,
+.Toastify__toast-theme--dark.Toastify__toast--error {
+  background: transparent;
+  color: white;
+}
+
+/* Special animation for error toasts */
+.Toastify__toast--error {
+  animation: toastSlideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    errorPulse 2s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(239, 68, 68, 0.1),
+      inset 0 0 20px rgba(239, 68, 68, 0.05);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 100px rgba(239, 68, 68, 0.2),
+      inset 0 0 30px rgba(239, 68, 68, 0.1);
+  }
+}

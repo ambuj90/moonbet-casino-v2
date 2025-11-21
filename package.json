@@ -1,0 +1,50 @@
+{
+  "name": "casino-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-oauth/google": "^0.12.2",
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.3.0",
+    "@solana/web3.js": "^1.98.4",
+    "axios": "^1.12.2",
+    "bs58": "^6.0.0",
+    "cryptocurrency-icons": "^0.18.1",
+    "framer-motion": "^12.23.23",
+    "jwt-decode": "^4.0.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.6.0",
+    "react-router-dom": "^7.9.4",
+    "react-toastify": "^11.0.5",
+    "socket.io-client": "^4.8.1",
+    "three": "^0.180.0",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@tailwindcss/vite": "^4.1.15",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.4",
+    "@vitejs/plugin-react-swc": "^4.1.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "globals": "^16.4.0",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
+    "tailwindcss": "^4.1.14",
+    "vite": "^7.1.7"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/wallet-service/:path*",
+      "destination": "https://api.moonbet.games/wallet-service/:path*"
+    },
+    {
+      "source": "/auth-service/:path*",
+      "destination": "https://api.moonbet.games/auth-service/:path*"
+    },
+    {
+      "source": "/referral-service/:path*",
+      "destination": "https://api.moonbet.games/referral-service/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

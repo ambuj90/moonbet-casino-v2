@@ -1,0 +1,393 @@
+.svg-wrapper {
+  position: relative;
+  width: min(110vw, 110vh, 1200px);
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  cursor: grab;
+  user-select: none;
+  touch-action: none; /* Important for touch gestures */
+}
+
+/* 🟣 Mask layer to show only top 180° */
+.wheel-mask {
+  position: relative;
+  width: min(110vw, 110vh, 1200px);
+  aspect-ratio: 1/1;
+  overflow: hidden;
+
+  /* Show only top 180° */
+  mask-image: linear-gradient(to bottom, black 50%, transparent 50%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 50%);
+
+  /* 🟢 NEW: Limit visual height */
+  height: 50%; /* shows only top half height of wheel */
+  margin-bottom: -10%; /* pulls next section up nicely (tweak 5–15%) */
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.svg-wrapper:active {
+  cursor: grabbing;
+}
+
+/* Main SVG should be 100% of wrapper */
+.svg-wrapper > svg:first-child {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Segment paths hover effect */
+.segment-path {
+  transition: filter 0.3s ease, transform 0.3s ease;
+  transform-origin: center;
+}
+
+.segment-path:hover {
+  filter: brightness(1.3) !important;
+}
+
+.segment-path:active {
+  filter: brightness(1.4) !important;
+}
+
+.svg2 {
+  position: absolute;
+  width: 55%;
+  height: 55%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Don't interfere with segment clicks */
+}
+
+/* Center content */
+.center-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-family: Neuropolitical;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 115.385% */
+}
+
+.center-title {
+  font-size: clamp(20px, 4vw, 28px);
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+/* SEGMENT LABELS & ICONS ON INNER RING - DESKTOP */
+.segment-container-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  color: #999;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.segment-container-inner.highlighted {
+  color: #fff;
+}
+
+/* Icon styling for inner ring */
+.segment-icon-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.segment-icon-inner svg {
+  width: 24px;
+  height: 12px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.1));
+}
+
+.segment-container-inner.highlighted .segment-icon-inner svg {
+  width: 28px;
+  height: 14px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+/* Text styling for inner ring */
+.segment-number-inner {
+  font-size: clamp(9px, 1.2vw, 11px);
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
+.segment-container-inner.highlighted .segment-number-inner {
+  font-size: clamp(10px, 1.4vw, 12px);
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.focus-overlay {
+  position: absolute;
+  top: 2%; /* adjust slightly if not aligned with top segment */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34%; /* controls the size of the highlight overlay */
+  pointer-events: none; /* avoids interfering with wheel interactions */
+  z-index: 9999; /* ensures it stays on top of all layers */
+  transition: opacity 0.3s ease; /* smooth fade in/out */
+}
+
+/* Instructions */
+.instructions {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #999;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  pointer-events: none;
+  animation: fadeIn 1s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.instructions p {
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* MOBILE RESPONSIVE STYLES */
+@media (max-width: 768px) {
+  .svg-wrapper {
+    width: min(95vw, 95vh);
+  }
+
+  /* Adjust inner ring size on mobile */
+  .svg2 {
+    width: 52%;
+    height: 52%;
+  }
+
+  /* CRITICAL MOBILE FIX: Adjust icon positioning */
+  .segment-icon-inner svg {
+    width: 18px;
+    height: 9px;
+  }
+
+  .segment-container-inner.highlighted .segment-icon-inner svg {
+    width: 20px;
+    height: 10px;
+  }
+
+  /* CRITICAL MOBILE FIX: Smaller text for mobile */
+  .segment-number-inner {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .segment-container-inner.highlighted .segment-number-inner {
+    font-size: 9px;
+  }
+
+  .instructions {
+    font-size: 11px;
+    bottom: 20px;
+    padding: 8px 16px;
+  }
+
+  .center-title {
+    font-size: clamp(14px, 3vw, 20px);
+    letter-spacing: 2px;
+  }
+}
+
+/* SMALL MOBILE (iPhone SE, etc.) */
+@media (max-width: 480px) {
+  .svg-wrapper {
+    width: min(100vw, 100vh);
+  }
+
+  /* Even smaller positioning for tiny screens */
+  .svg2 {
+    width: 50%;
+    height: 50%;
+  }
+
+  .segment-icon-inner svg {
+    width: 16px;
+    height: 8px;
+  }
+
+  .segment-container-inner.highlighted .segment-icon-inner svg {
+    width: 18px;
+    height: 9px;
+  }
+
+  .segment-number-inner {
+    font-size: 7px;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+  }
+
+  .segment-container-inner.highlighted .segment-number-inner {
+    font-size: 8px;
+    font-weight: 600;
+  }
+
+  .center-title {
+    font-size: clamp(12px, 2.8vw, 18px);
+    letter-spacing: 1.5px;
+  }
+
+  .instructions {
+    font-size: 10px;
+    padding: 6px 12px;
+    bottom: 15px;
+  }
+}
+
+/* VERY SMALL SCREENS */
+@media (max-width: 380px) {
+  .segment-icon-inner svg {
+    width: 14px;
+    height: 7px;
+  }
+
+  .segment-container-inner.highlighted .segment-icon-inner svg {
+    width: 16px;
+    height: 8px;
+  }
+
+  .segment-number-inner {
+    font-size: 6px;
+    letter-spacing: 0.2px;
+  }
+
+  .segment-container-inner.highlighted .segment-number-inner {
+    font-size: 7px;
+  }
+
+  .center-title {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Loading animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Add glow effect for active segments */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(220, 31, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(220, 31, 255, 0.8);
+  }
+}
+
+/* Disable body scroll when interacting with wheel */
+body:has(.svg-wrapper:active) {
+  overflow: hidden;
+}
+
+/* Performance optimizations */
+.svg-wrapper * {
+  will-change: auto;
+}
+
+.svg-wrapper:active * {
+  will-change: transform;
+}
+
+/* Add visual feedback for keyboard navigation */
+.svg-wrapper:focus-visible {
+  outline: 2px solid rgba(220, 31, 255, 0.5);
+  outline-offset: 10px;
+  border-radius: 50%;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+/* Enhanced inner ring label positioning for better visibility */
+.segment-container-inner {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make highlighted segment more prominent */
+.segment-container-inner.highlighted {
+  transform-origin: center;
+  z-index: 10;
+}
+
+/* Add subtle animation to highlighted segment */
+@keyframes highlightPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.segment-container-inner.highlighted .segment-number-inner {
+  animation: highlightPulse 2s ease-in-out infinite;
+}
+
+/* Hide overflow text on very small screens */
+@media (max-width: 380px) {
+  .segment-number-inner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 40px;
+  }
+}

@@ -1,0 +1,392 @@
+/* theme/moonbet-theme.css */
+/* 
+ * MOONBET CASINO - Universal Theme CSS
+ * Import this file in your index.css after Tailwind
+ */
+
+/* ============================================
+   ROOT CSS VARIABLES
+   ============================================ */
+:root {
+  /* Brand Colors */
+  --color-brand-primary: #f07730;
+  --color-brand-secondary: #efd28e;
+  --color-brand-accent: #00d4ff;
+  --color-brand-highlight: #ff006e;
+
+  /* Background Colors */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #0a0b0d;
+  --color-bg-tertiary: #13151a;
+  --color-bg-card: #1a1d24;
+  --color-bg-elevated: #242831;
+  --color-bg-overlay: rgba(0, 0, 0, 0.85);
+
+  /* Glass Effects */
+  --glass-white-5: rgba(255, 255, 255, 0.05);
+  --glass-white-10: rgba(255, 255, 255, 0.1);
+  --glass-white-15: rgba(255, 255, 255, 0.15);
+  --glass-white-20: rgba(255, 255, 255, 0.2);
+  --glass-white-30: rgba(255, 255, 255, 0.3);
+  --glass-black-30: rgba(0, 0, 0, 0.3);
+  --glass-black-50: rgba(0, 0, 0, 0.5);
+  --glass-black-70: rgba(0, 0, 0, 0.7);
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b8bcc8;
+  --color-text-tertiary: #6b7280;
+  --color-text-muted: #4b5563;
+
+  /* Game Category Colors */
+  --color-game-slots: #f07730;
+  --color-game-casino: #b24bf3;
+  --color-game-live: #00c896;
+  --color-game-dice: #00a6fb;
+  --color-game-hilo: #4b7bf5;
+  --color-game-wheel: #8b5cf6;
+  --color-game-blackjack: #ec4899;
+  --color-game-roulette: #ff6b6b;
+
+  /* Border Colors */
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.12);
+  --border-medium: rgba(255, 255, 255, 0.2);
+  --border-strong: rgba(255, 255, 255, 0.3);
+  --border-brand: rgba(240, 119, 48, 0.5);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Z-Index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Space/Moon background effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 50%,
+      var(--color-bg-tertiary) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      var(--color-bg-secondary) 0%,
+      transparent 50%
+    ),
+    radial-gradient(circle at 40% 20%, #1a1d24 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   GLASS MORPHISM UTILITIES
+   ============================================ */
+.glass-dark {
+  background: var(--glass-black-50);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-default);
+}
+
+.glass-light {
+  background: var(--glass-white-10);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+}
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    var(--glass-white-10),
+    var(--glass-white-5)
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   GRADIENT UTILITIES
+   ============================================ */
+.gradient-brand {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-primary) 0%,
+    var(--color-brand-secondary) 100%
+  );
+}
+
+.gradient-neon {
+  background: linear-gradient(135deg, #f07730, #ff9a00, #efd28e);
+}
+
+.gradient-space {
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-primary) 0%,
+    var(--color-bg-secondary) 50%,
+    var(--color-bg-tertiary) 100%
+  );
+}
+
+.gradient-text-brand {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-primary) 0%,
+    var(--color-brand-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   NEON EFFECTS
+   ============================================ */
+.neon-orange {
+  color: var(--color-brand-primary);
+  text-shadow: 0 0 10px var(--color-brand-primary),
+    0 0 20px var(--color-brand-primary), 0 0 30px var(--color-brand-primary);
+}
+
+.neon-cyan {
+  color: var(--color-brand-accent);
+  text-shadow: 0 0 10px var(--color-brand-accent),
+    0 0 20px var(--color-brand-accent), 0 0 30px var(--color-brand-accent);
+}
+
+.neon-glow-orange {
+  box-shadow: 0 0 20px rgba(240, 119, 48, 0.5), 0 0 40px rgba(240, 119, 48, 0.3),
+    inset 0 0 20px rgba(240, 119, 48, 0.1);
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3),
+    inset 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+/* ============================================
+   GAME CARD STYLES
+   ============================================ */
+.game-card {
+  background: linear-gradient(
+    180deg,
+    var(--glass-white-10),
+    var(--glass-white-5)
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.game-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-brand-primary),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-brand);
+  box-shadow: 0 20px 40px rgba(240, 119, 48, 0.2),
+    0 0 60px rgba(240, 119, 48, 0.1);
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn-moonbet {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-primary),
+    var(--color-brand-secondary)
+  );
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-moonbet::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-moonbet:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-moonbet:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(240, 119, 48, 0.6);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-neon {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(240, 119, 48, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(240, 119, 48, 0.7),
+      0 0 50px rgba(240, 119, 48, 0.4);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Utility classes for animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-pulse-neon {
+  animation: pulse-neon 2s ease-in-out infinite;
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--color-brand-primary),
+    var(--color-brand-secondary)
+  );
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-primary);
+}
+
+/* ============================================
+   SELECTION STYLING
+   ============================================ */
+::selection {
+  background: var(--color-brand-primary);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--color-brand-primary);
+  color: white;
+}
