@@ -33,7 +33,7 @@ const CasinoWheel = () => {
   };
 
   return (
-    <section className="relative w-full py-20 bg-[#080808] overflow-hidden">
+    <section className="relative w-full py-20   overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-cyan-900/10 via-black to-black" />
 

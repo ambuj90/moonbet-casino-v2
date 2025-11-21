@@ -47,7 +47,7 @@ const Casino = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://moonbet.games/casino" />
       </Helmet>
-      <div className="min-h-screen bg-[#080808]">
+      <div className="min-h-screen  ">
         <HomeRewardsSection />
         <HeroSection />
 

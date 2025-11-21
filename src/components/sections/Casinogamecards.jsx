@@ -74,7 +74,7 @@ const CasinoGameCards = () => {
         background: card.bg,
       }}
     >
-      <div className="absolute inset-0 bg-[#080808]/30 backdrop-blur-sm" />
+      <div className="absolute inset-0  /30 backdrop-blur-sm" />
 
       <div className="flex flex-col justify-between p-4 sm:p-6 z-10 w-1/2 space-y-3">
         {/* Title with Icon */}

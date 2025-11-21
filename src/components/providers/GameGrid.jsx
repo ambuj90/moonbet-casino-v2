@@ -76,7 +76,7 @@ const GameGrid = ({
   };
 
   return (
-    <section className="w-full bg-[#080808] py-10">
+    <section className="w-full   py-10">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-[#CED5E3] font-['Neuropolitical'] text-xl mb-6 uppercase">
           {`${provider}`.toUpperCase()} GAMES
@@ -142,7 +142,7 @@ const GameGrid = ({
                       alt={game.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-[#080808]/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+                    <div className="absolute inset-0  /50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
                       <motion.button
                         onClick={() => handlePlayNow(game.name)}
                         className="px-4 py-2 rounded-full text-white font-semibold text-sm"

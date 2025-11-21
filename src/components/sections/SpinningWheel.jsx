@@ -42,7 +42,7 @@ const SpinningWheel = () => {
   const segmentAngle = 180 / segments.length; // Each segment angle for semi-circle
 
   return (
-    <div className="relative w-full py-12 flex flex-col items-center justify-end bg-[#080808] overflow-hidden min-h-screen">
+    <div className="relative w-full py-12 flex flex-col items-center justify-end   overflow-hidden min-h-screen">
       {/* Stars background */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(50)].map((_, i) => (
@@ -242,7 +242,7 @@ const SpinningWheel = () => {
 
           {/* Bottom cover to hide lower half */}
           <div
-            className="absolute bottom-0 left-0 right-0 bg-[#080808] z-10"
+            className="absolute bottom-0 left-0 right-0   z-10"
             style={{
               height: "200px",
               marginBottom: "-100px",

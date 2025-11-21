@@ -171,7 +171,7 @@ const ProvidersSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.05 }}
-                className="trust_btn flex-shrink-0 w-[25%] sm:w-[140px] sm:h-[60px] h-[50px] bg-[#080808]/20 rounded-lg flex items-center justify-center cursor-pointer hover:bg-white/5 transition-all duration-300"
+                className="trust_btn flex-shrink-0 w-[25%] sm:w-[140px] sm:h-[60px] h-[50px]  /20 rounded-lg flex items-center justify-center cursor-pointer hover:bg-white/5 transition-all duration-300"
               >
                 <img
                   src={provider.logo}

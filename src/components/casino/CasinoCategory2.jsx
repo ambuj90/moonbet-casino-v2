@@ -529,7 +529,7 @@ const CasinoCategoryNav = ({
   }, []);
 
   return (
-    <section className="relative w-full bg-[#080808]/95 backdrop-blur-xl border-t border-white/5 shadow-[0_-4px_10px_rgba(0,0,0,0.3)] z-40">
+    <section className="relative w-full  /95 backdrop-blur-xl border-t border-white/5 shadow-[0_-4px_10px_rgba(0,0,0,0.3)] z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-5">
         {/* --- Categories Row --- */}
         <div className="relative flex items-center w-full">

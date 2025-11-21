@@ -193,7 +193,7 @@ const HomeFAQSection = () => {
   );
 
   return (
-    <section className="w-full py-10 bg-[#000]">
+    <section className="w-full py-10">
       <div className="container max-w-4xl mx-auto px-4">
         {/* Title */}
         <motion.div

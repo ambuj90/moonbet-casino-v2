@@ -531,7 +531,7 @@ const CareersPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white relative overflow-hidden">
+    <div className="min-h-screen   text-white relative overflow-hidden">
       {/* 3D Background */}
       <Background3D />
 

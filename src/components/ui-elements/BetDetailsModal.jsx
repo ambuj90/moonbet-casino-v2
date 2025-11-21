@@ -59,7 +59,7 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
           onClick={handleBackdropClick}
         >
           {/* Backdrop with blur */}
-          <div className="absolute inset-0 bg-[#080808]/60 backdrop-blur-sm" />
+          <div className="absolute inset-0  /60 backdrop-blur-sm" />
 
           {/* Modal Content */}
           <motion.div

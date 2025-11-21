@@ -168,7 +168,7 @@ const BettingRules = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen  ">
       {/* Hero Section */}
       <section className="relative py-16 px-4 border-b border-white/10">
         <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />

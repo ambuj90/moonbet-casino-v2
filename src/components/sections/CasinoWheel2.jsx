@@ -21,7 +21,7 @@ const CasinoWheel2 = () => {
   };
 
   return (
-    <section className="relative w-full py-16 md:py-24 bg-[#080808] overflow-hidden">
+    <section className="relative w-full py-16 md:py-24   overflow-hidden">
       {/* Starry Background */}
       <div className="absolute inset-0">
         {[...Array(40)].map((_, i) => (

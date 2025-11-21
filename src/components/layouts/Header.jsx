@@ -620,7 +620,7 @@ const Header = ({
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed top-0 left-0 right-0 h-16 bg-[rgba(20,20,20,0.80)] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]border-b border-white/10 z-50"
+        className="fixed top-0 left-0 right-0 h-16 bg-[#1C1D49] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] border-b border-white/10 z-50"
       >
         <div className="h-full px-4 lg:px-4 flex items-center justify-between">
           {/* Left Section - Logo & Hamburger */}
@@ -778,7 +778,7 @@ const Header = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-[#080808]/50 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0  /50 backdrop-blur-sm z-40 lg:hidden"
             onClick={closeSidebar}
           />
         )}
@@ -791,8 +791,7 @@ const Header = ({
             x: 0,
           }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className={`fixed left-0 top-16 bottom-0 bg-[rgba(20,20,20,0.80) shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]border-r border-white/10 z-[99999] px-2 
-`}
+          className={`fixed left-0 top-16 bottom-0 bg-[#1C1D49] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]border-r border-white/10 z-[99999] px-2 `}
         >
           <div className="h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-[#3a3a3a] scrollbar-track-transparent pr-1">
             {/* Main Menu */}
@@ -1577,7 +1576,7 @@ const Header = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-[#080808]/50 backdrop-blur-sm z-40"
+              className="fixed inset-0  /50 backdrop-blur-sm z-40"
               onClick={closeMobileSidebar}
             />
           )}
@@ -1676,7 +1675,7 @@ const Header = ({
                                 exit={{ opacity: 0, height: 0 }}
                                 className="ml-4 mr-0 mt-1 overflow-hidden"
                               >
-                                <div className="p-2 space-y-1 bg-[#080808]/40 backdrop-blur-md rounded-xl">
+                                <div className="p-2 space-y-1  /40 backdrop-blur-md rounded-xl">
                                   {item.submenu.map((subItem) => (
                                     <Link
                                       key={subItem.path}

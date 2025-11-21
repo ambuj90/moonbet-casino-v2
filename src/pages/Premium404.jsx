@@ -14,8 +14,7 @@ const Premium404 = () => {
   const floatingCoins = ["₿", "Ξ", "◎", "🪙", "Ξ", "₿"];
 
   return (
-    <div className="min-h-screen w-full bg-[#080808] overflow-hidden flex flex-col items-center justify-center relative">
-
+    <div className="min-h-screen w-full   overflow-hidden flex flex-col items-center justify-center relative">
       {/* ===== STARFIELD ===== */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 55 }).map((_, i) => (
@@ -27,7 +26,9 @@ const Premium404 = () => {
               height: Math.random() * 3 + 2,
               top: Math.random() * 100 + "%",
               left: Math.random() * 100 + "%",
-              animation: `twinkle ${2 + Math.random() * 4}s infinite ease-in-out`,
+              animation: `twinkle ${
+                2 + Math.random() * 4
+              }s infinite ease-in-out`,
             }}
           />
         ))}
@@ -64,7 +65,8 @@ const Premium404 = () => {
       ))}
 
       {/* ===== SOFT MOON GLOW BEHIND 404 ===== */}
-      <div className="absolute top-1/3 w-[450px] h-[450px] rounded-full opacity-20 blur-3xl"
+      <div
+        className="absolute top-1/3 w-[450px] h-[450px] rounded-full opacity-20 blur-3xl"
         style={{
           background:
             "radial-gradient(circle, rgba(239,210,142,0.4), transparent 60%)",

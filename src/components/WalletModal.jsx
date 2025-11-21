@@ -355,7 +355,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 bg-[#080808]/70 backdrop-blur-sm z-[102]"
+            className="fixed inset-0  /70 backdrop-blur-sm z-[102]"
             onClick={() => setShowDepositModal(false)}
           />
           <motion.div
@@ -660,7 +660,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 bg-[#080808]/70 backdrop-blur-sm z-[102]"
+            className="fixed inset-0  /70 backdrop-blur-sm z-[102]"
             onClick={() => setShowWithdrawModal(false)}
           />
           <motion.div
@@ -897,7 +897,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 bg-[#080808]/70 backdrop-blur-sm z-[100]"
+            className="fixed inset-0  /70 backdrop-blur-sm z-[100]"
             onClick={onClose}
           />
 
@@ -1033,7 +1033,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                         border: "1px solid rgba(255, 255, 255, 0.1)",
                       }}
                     >
-                      <div className="flex items-center justify-between gap-4 bg-[#080808]/30 px-4 py-3 rounded-xl border border-white/10">
+                      <div className="flex items-center justify-between gap-4  /30 px-4 py-3 rounded-xl border border-white/10">
                         {/* Left side: Label and Balance */}
                         <div className="flex flex-col">
                           <h3 className="text-sm text-gray-400 font-medium tracking-wide">

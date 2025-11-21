@@ -261,7 +261,7 @@ const AffiliateLandingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen  ">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 px-4">
         <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />

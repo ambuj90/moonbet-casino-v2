@@ -25,7 +25,7 @@ import CasinoGameCards from "../components/sections/Casinogamecards";
 
 const Homepage = () => {
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-[#0D0E36] ">
       <HomeRewardsSection />
       <HeroSection />
       {/* <CasinoCategorySection /> */}

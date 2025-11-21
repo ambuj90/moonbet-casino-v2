@@ -84,7 +84,7 @@ const MobileBottomNav = ({ onHamburgerClick }) => {
   return (
     <>
       {/* Mobile Bottom Navigation - Only visible on mobile */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#080808] border-t border-white/10">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40   border-t border-white/10">
         <div className="flex items-center justify-around px-2 py-2">
           {menuItems.map((item) => {
             const IconComponent = item.icon;

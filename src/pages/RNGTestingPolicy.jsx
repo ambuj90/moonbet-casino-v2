@@ -66,7 +66,7 @@ const RNGTestingPolicy = () => {
   ];
 
   return (
-    <section className="w-full min-h-screen bg-[#080808] py-12 md:py-16 lg:py-20">
+    <section className="w-full min-h-screen   py-12 md:py-16 lg:py-20">
       <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Header */}
         <motion.div

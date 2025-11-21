@@ -238,7 +238,7 @@ const Leaderboard = () => {
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header Tabs */}
         <div className="flex justify-center mb-16">
-          <div className="inline-flex gap-1 p-1 rounded-full bg-[#080808]/50 backdrop-blur-sm border border-white/10">
+          <div className="inline-flex gap-1 p-1 rounded-full  /50 backdrop-blur-sm border border-white/10">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -277,10 +277,10 @@ const Leaderboard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="max-w-7xl mx-auto rounded-2xl overflow-hidden bg-[#080808]/30 backdrop-blur-sm border border-white/10"
+          className="max-w-7xl mx-auto rounded-2xl overflow-hidden  /30 backdrop-blur-sm border border-white/10"
         >
           {/* Table Header */}
-          <div className="grid grid-cols-3 px-8 py-4 border-b border-white/10 bg-[#080808]/50">
+          <div className="grid grid-cols-3 px-8 py-4 border-b border-white/10  /50">
             <div className="text-gray-500 text-sm font-medium">Rank</div>
             <div className="text-gray-500 text-sm font-medium">User name</div>
             <div className="text-gray-500 text-sm font-medium text-right">

@@ -38,7 +38,6 @@ const ProvidersPage = () => {
   return (
     <section className="w-full py-10">
       <div className="container max-w-7xl mx-auto px-4">
-        
         {/* Header */}
         {!providerName && (
           <motion.h3
@@ -61,7 +60,7 @@ const ProvidersPage = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.05 }}
                 onClick={() => handleProviderClick(p.name)}
-                className="cursor-pointer bg-[#080808]/20 flex items-center justify-center p-1 hover:bg-white/5 transition-all duration-300"
+                className="cursor-pointer  /20 flex items-center justify-center p-1 hover:bg-white/5 transition-all duration-300"
               >
                 <img
                   src={p.logo}
@@ -76,24 +75,24 @@ const ProvidersPage = () => {
         {/* =============== SHOW GAME GRID WHEN SLUG EXISTS =============== */}
         {providerName && (
           <div className="mt-10">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-6">
-            {providers.map((p, i) => (
-              <motion.div
-                key={p.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.05 }}
-                onClick={() => handleProviderClick(p.name)}
-                className="view_btn cursor-pointer bg-[#080808]/20 flex items-center justify-center p-1 hover:bg-white/5 transition-all duration-300"
-              >
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  className="max-w-[100px] max-h-[50px] object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
-                />
-              </motion.div>
-            ))}
-          </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-6">
+              {providers.map((p, i) => (
+                <motion.div
+                  key={p.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.05 }}
+                  onClick={() => handleProviderClick(p.name)}
+                  className="view_btn cursor-pointer  /20 flex items-center justify-center p-1 hover:bg-white/5 transition-all duration-300"
+                >
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    className="max-w-[100px] max-h-[50px] object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+                  />
+                </motion.div>
+              ))}
+            </div>
 
             {/* Games */}
             <GameGrid provider={providerName} />

@@ -194,7 +194,7 @@ const TrandingSection = () => {
 
   return (
     <motion.section
-      className="w-full relative bg-[#080808] py-10"
+      className="w-full relative   py-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -370,7 +370,7 @@ const TrandingSection = () => {
                       }}
                     >
                       {/* Increased image size but kept 16:9 proportion */}
-                      <div className="relative w-full aspect-[18/12] bg-[#080808] flex items-center justify-center overflow-hidden rounded-xl">
+                      <div className="relative w-full aspect-[18/12]   flex items-center justify-center overflow-hidden rounded-xl">
                         <motion.img
                           src={game.image}
                           alt={game.name}
@@ -384,14 +384,14 @@ const TrandingSection = () => {
                         <div className="absolute top-2 left-2 bg-[#6A4DF4] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           NEW
                         </div>
-                        <div className="absolute top-2 right-2 bg-[#080808]/70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
+                        <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           99% RTP
                         </div>
                       </div>
 
                       {/* Overlay with Play Button */}
                       <motion.div
-                        className="absolute inset-0 bg-[#080808]/70 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
+                        className="absolute inset-0  /70 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
                         variants={overlayVariants}
                         initial="idle"
                         animate="idle"

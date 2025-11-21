@@ -199,7 +199,7 @@ const EmailVerificationPopup = ({
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-0 bg-[#080808]/80 backdrop-blur-md"
+          className="fixed inset-0  /80 backdrop-blur-md"
           style={{ zIndex: 9998 }}
           onClick={handleClose}
         />

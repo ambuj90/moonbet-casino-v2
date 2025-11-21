@@ -30,7 +30,7 @@ const Layout = () => {
   // No localStorage loading - ensures consistent collapsed state on every page load
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#080808]">
+    <div className="min-h-screen flex flex-col bg-[#0D0E36]">
       {/* Main Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Header with sidebar state management */}
@@ -58,7 +58,7 @@ const Layout = () => {
           className="flex-1 pb-0 md:pb-16 lg:pb-0"
         >
           {/* Glass morphism container for content */}
-          <div className="bg-[#080808]">
+          <div className=" ">
             <AnimatePresence mode="wait">
               <motion.div
                 key={location.pathname}

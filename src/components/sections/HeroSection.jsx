@@ -443,7 +443,7 @@ const HeroSection = () => {
             multiplier: "—",
             payout: item.amount,
             originalCurrency: item.amount,
-            isLive: false
+            isLive: false,
           }));
           setRecentWinsData(mapped);
         }
@@ -457,87 +457,93 @@ const HeroSection = () => {
 
   // Real-time recent wins via socket
   useEffect(() => {
-  if (!socket) return;
+    if (!socket) return;
 
-  const getCurrencySymbol = (currency) => {
-    switch (currency?.toUpperCase()) {
-      case "USD": return "$";
-      case "EUR": return "€";
-      case "GBP": return "£";
-      case "INR": return "₹";
-      case "JPY": return "¥";
-      case "BTC": return "₿";
-      case "ETH": return "Ξ";
-      case "SOL": return "◎";
-      default: return "";
-    }
-  };
+    const getCurrencySymbol = (currency) => {
+      switch (currency?.toUpperCase()) {
+        case "USD":
+          return "$";
+        case "EUR":
+          return "€";
+        case "GBP":
+          return "£";
+        case "INR":
+          return "₹";
+        case "JPY":
+          return "¥";
+        case "BTC":
+          return "₿";
+        case "ETH":
+          return "Ξ";
+        case "SOL":
+          return "◎";
+        default:
+          return "";
+      }
+    };
 
-  const parseAmount = (amountStr) => {
-    if (!amountStr) return "$0.00";
-    const parts = amountStr.split(" ");
-    const amount = parseFloat(parts[0] || 0);
-    const currency = parts[1] || "USD";
-    return `${getCurrencySymbol(currency)}${amount.toFixed(2)}`;
-  };
+    const parseAmount = (amountStr) => {
+      if (!amountStr) return "$0.00";
+      const parts = amountStr.split(" ");
+      const amount = parseFloat(parts[0] || 0);
+      const currency = parts[1] || "USD";
+      return `${getCurrencySymbol(currency)}${amount.toFixed(2)}`;
+    };
 
-  // ✅ When backend sends full recentWins array
-  socket.on("recentWins", (data) => {
-    const formatted = data.map((item, index) => ({
-    id: `${item.user}-${index}`,
-    gameImage: `/slots/img${(index % 9) + 1}.svg`,
-    amount: parseAmount(item.amount),
-    username: item.user || "Player***XXX",
-    icon: `/moon/moon${(index % 3) + 1}.svg`,
-    timeAgo: item.timeAgo,
+    // ✅ When backend sends full recentWins array
+    socket.on("recentWins", (data) => {
+      const formatted = data.map((item, index) => ({
+        id: `${item.user}-${index}`,
+        gameImage: `/slots/img${(index % 9) + 1}.svg`,
+        amount: parseAmount(item.amount),
+        username: item.user || "Player***XXX",
+        icon: `/moon/moon${(index % 3) + 1}.svg`,
+        timeAgo: item.timeAgo,
 
-    gameName: item.game || "Unknown Game",
-    provider: "Moonbet Games",
-    betId: `socket-${Date.now()}-${index}`,
-    date: new Date().toLocaleDateString(),
-    time: new Date().toLocaleTimeString(),
-    multiplier: "—",
-    payout: parseAmount(item.amount),
-    originalCurrency: item.amount,
-    isLive: true
-}));
+        gameName: item.game || "Unknown Game",
+        provider: "Moonbet Games",
+        betId: `socket-${Date.now()}-${index}`,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+        multiplier: "—",
+        payout: parseAmount(item.amount),
+        originalCurrency: item.amount,
+        isLive: true,
+      }));
 
-    setRecentWinsData(formatted);
-  });
+      setRecentWinsData(formatted);
+    });
 
-  // ✅ When backend sends NEW SINGLE WIN
-  socket.on("recentWins:new", (item) => {
-    const index = Math.floor(Math.random() * 9); // pick random image
+    // ✅ When backend sends NEW SINGLE WIN
+    socket.on("recentWins:new", (item) => {
+      const index = Math.floor(Math.random() * 9); // pick random image
 
-    const formattedSingle = {
-    id: `${item.user}-${Date.now()}`,
-    gameImage: `/slots/img${(index % 9) + 1}.svg`,
-    icon: `/moon/moon${(index % 3) + 1}.svg`,
-    amount: parseAmount(item.amount),
-    username: item.user,
+      const formattedSingle = {
+        id: `${item.user}-${Date.now()}`,
+        gameImage: `/slots/img${(index % 9) + 1}.svg`,
+        icon: `/moon/moon${(index % 3) + 1}.svg`,
+        amount: parseAmount(item.amount),
+        username: item.user,
 
-    gameName: item.game || "Unknown Game",
-    provider: "Moonbet Games",
-    betId: `single-${Date.now()}`,
-    date: new Date().toLocaleDateString(),
-    time: new Date().toLocaleTimeString(),
-    multiplier: "—",
-    payout: parseAmount(item.amount),
-    originalCurrency: item.amount,
-    isLive: true
-};
+        gameName: item.game || "Unknown Game",
+        provider: "Moonbet Games",
+        betId: `single-${Date.now()}`,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+        multiplier: "—",
+        payout: parseAmount(item.amount),
+        originalCurrency: item.amount,
+        isLive: true,
+      };
 
-    setRecentWinsData((prev) => [
-      formattedSingle,
-      ...prev.slice(0, 19),
-    ]);
-  });
+      setRecentWinsData((prev) => [formattedSingle, ...prev.slice(0, 19)]);
+    });
 
-  return () => {
-    socket.off("recentWins");
-    socket.off("recentWins:new");
-  };
-}, [socket]);
+    return () => {
+      socket.off("recentWins");
+      socket.off("recentWins:new");
+    };
+  }, [socket]);
 
   // Mobile data (first 7)
   const mobileWinsData = recentWinsData.slice(0, 7);
@@ -562,7 +568,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="w-full relative md:h-[200] bg-[#080808]">
+    <section className="w-full relative md:h-[200]  ">
       {/* Recent Wins Section - Dark background strip */}
       <div className="absolute top-0 left-0 right-0 z-20 flex justify-center">
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-4 py-2 sm:py-3 rounded-[12px]">

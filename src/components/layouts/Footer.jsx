@@ -143,7 +143,7 @@ const Footer = () => {
   return (
     <>
       <footer
-        className="customborder-footer relative w-full bg-[#080808] overflow-hidden"
+        className="customborder-footer relative w-full   overflow-hidden"
         style={{
           paddingTop: "clamp(30px, 8vw, 100px)",
         }}

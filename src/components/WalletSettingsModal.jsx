@@ -82,7 +82,7 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#080808]/70 backdrop-blur-sm z-[100] transition-opacity duration-300"
+        className="fixed inset-0  /70 backdrop-blur-sm z-[100] transition-opacity duration-300"
         onClick={onClose}
       />
 

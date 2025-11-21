@@ -37,15 +37,15 @@
   :root {
     --color-casino-primary: #f07730;
     --color-casino-light: #efd28e;
-    --color-casino-dark: #0a0e1b;
-    --color-casino-darker: #050714;
+    --color-casino-dark: #0d0e36;
+    --color-casino-darker: #1c1d49;
   }
 
   body {
     @apply bg-casino-dark text-white;
     margin: 0;
     padding: 0;
-    background: #080808;
+    background: #0d0e36;
     min-height: 100vh;
     font-family: "Neue Plak", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -1263,16 +1263,8 @@
   inset: 0;
   padding: 2px;
   border-radius: 8px;
-  background: linear-gradient(
-    172deg,
-    rgb(255 255 255 / 35%) 0%,
-    rgb(255 255 255 / 0%) 50%,
-    rgb(30 30 30 / 96%) 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  background: url("/rewards/bg-reward.png") center/cover no-repeat;
+
   z-index: 1;
 }
 .glass-card {

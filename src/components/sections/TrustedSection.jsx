@@ -60,7 +60,7 @@ const TruestedSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.07, duration: 0.4 }}
               className="trust_btn
-                bg-[#080808]/20 
+                 /20 
                 rounded-[14px] 
                 flex items-center justify-center
                 w-full
@@ -68,7 +68,7 @@ const TruestedSection = () => {
                 h-[80px]
                 sm:h-[85px]
                 md:h-[70px]
-                hover:bg-[#080808]/10
+                hover: /10
                 transition-all 
                 duration-300
               "

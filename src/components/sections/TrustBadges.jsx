@@ -85,7 +85,7 @@ const TrustBadgesFinal = () => {
   ];
 
   return (
-    <section className="relative w-full py-3 sm:py-5 md:py-6 lg:py-8 bg-[#080808]">
+    <section className="relative w-full py-3 sm:py-5 md:py-6 lg:py-8  ">
       <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
         {/* Perfect 2x2 grid on mobile, 1x4 on desktop */}
         <div

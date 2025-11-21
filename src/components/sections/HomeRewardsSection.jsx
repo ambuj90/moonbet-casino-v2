@@ -18,6 +18,7 @@ const HomeRewardsSection = () => {
         description1: "Elite Status, Stellar",
         description2: "Awards",
         img: "/rewards/rewards7.png",
+        bg: "/rewards/bg-reward.png",
       },
       {
         id: 2,
@@ -103,7 +104,7 @@ const HomeRewardsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-16 md:py-10 relative overflow-hidden"
+      className="w-full py-16 md:py-12 relative overflow-hidden"
     >
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6">
         {/* Cards Container */}
@@ -149,20 +150,20 @@ const HomeRewardsSection = () => {
                 >
                   {/* Content - Left Side */}
                   <div
-                    className="absolute left-0 top-0 bottom-0 z-10 flex flex-col justify-between p-6"
+                    className="absolute left-0 top-0 bottom-0 z-10 flex flex-col justify-start gap-5 p-6"
                     style={{ width: "50%" }}
                   >
                     {/* Badge */}
                     <span
-                      className="inline-block w-fit px-3 py-1 bg-white rounded-full"
+                      className="inline-block w-fit px-3 py-0 rounded-full"
                       style={{
-                        color: "#070707",
+                        background: "var(--color-bg-elevated)",
                         fontFamily: "Neue Plak, sans-serif",
                         fontSize: "14px",
                         fontWeight: 600,
                         lineHeight: "24px",
                         borderRadius: "4px",
-                        padding: "1px 12px",
+                        padding: "0px 12px",
                       }}
                     >
                       {reward.badge}
@@ -184,20 +185,6 @@ const HomeRewardsSection = () => {
                         <br />
                         {reward.titleLine2}
                       </h3>
-
-                      <p
-                        style={{
-                          color: "#E5EAF2",
-                          fontFamily: "Neue Plak, sans-serif",
-                          fontSize: "12px",
-                          fontWeight: 400,
-                          lineHeight: "18px",
-                        }}
-                      >
-                        {reward.description1}
-                        <br />
-                        {reward.description2}
-                      </p>
                     </div>
                   </div>
 

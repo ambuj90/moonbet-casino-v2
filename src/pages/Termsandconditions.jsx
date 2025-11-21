@@ -199,7 +199,7 @@ const TermsAndConditions = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen  ">
       {/* Hero Section */}
       <section className="relative py-12 px-4 border-b border-white/10">
         <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />
@@ -229,7 +229,7 @@ const TermsAndConditions = () => {
       </section>
 
       {/* Quick Navigation Pills */}
-      <div className="sticky top-0 z-40 bg-[#080808]/95 backdrop-blur-md border-b border-white/10">
+      <div className="sticky top-0 z-40  /95 backdrop-blur-md border-b border-white/10">
         <div className="container max-w-7xl mx-auto px-4 py-3">
           <div className="flex gap-2 overflow-x-auto scrollbar-hide">
             {sections.slice(0, 10).map((section) => (

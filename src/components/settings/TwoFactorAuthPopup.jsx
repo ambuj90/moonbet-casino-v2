@@ -125,7 +125,7 @@ const TwoFactorAuthPopup = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-[#080808]/80 backdrop-blur-sm z-[9998]"
+        className="fixed inset-0  /80 backdrop-blur-sm z-[9998]"
         onClick={handleClose}
       />
 

@@ -64,7 +64,7 @@ const WithdrawalConfirmationPopup = ({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 bg-[#080808]/80 backdrop-blur-md z-[200]"
+            className="fixed inset-0  /80 backdrop-blur-md z-[200]"
             onClick={handleClose}
           />
 

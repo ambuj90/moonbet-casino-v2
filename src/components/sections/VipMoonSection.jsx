@@ -48,7 +48,7 @@ const VipMoonSection = () => {
               {/* Glass / Glow Card Container */}
               <div
                 className="relative rounded-2xl overflow-hidden backdrop-blur-lg border border-white/20
-                  bg-[#080808]/40 shadow-2xl transition-all duration-500
+                   /40 shadow-2xl transition-all duration-500
                   group-hover:shadow-amber-500/40 group-hover:border-amber-400/40"
               >
                 {/* Neon Glow Overlay */}

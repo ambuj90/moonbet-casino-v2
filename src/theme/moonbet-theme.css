@@ -15,11 +15,11 @@
   --color-brand-highlight: #ff006e;
 
   /* Background Colors */
-  --color-bg-primary: #000000;
+  --color-bg-primary: #0d0e36;
   --color-bg-secondary: #0a0b0d;
   --color-bg-tertiary: #13151a;
   --color-bg-card: #1a1d24;
-  --color-bg-elevated: #242831;
+  --color-bg-elevated: #c8c8e1;
   --color-bg-overlay: rgba(0, 0, 0, 0.85);
 
   /* Glass Effects */
@@ -33,9 +33,9 @@
   --glass-black-70: rgba(0, 0, 0, 0.7);
 
   /* Text Colors */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #b8bcc8;
-  --color-text-tertiary: #6b7280;
+  --color-text-primary: #16192d;
+  --color-text-secondary: #e1e1e1;
+  --color-text-tertiary: #9292d2;
   --color-text-muted: #4b5563;
 
   /* Game Category Colors */

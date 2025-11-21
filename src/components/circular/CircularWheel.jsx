@@ -259,7 +259,7 @@ const CircularWheel = () => {
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center bg-[#080808] overflow-hidden -mb-40 md:-mb-60 ">
+    <div className="relative w-full flex items-center justify-center   overflow-hidden -mb-40 md:-mb-60 ">
       {/* 🟣 NEW MASK CONTAINER */}
       <div className="wheel-mask">
         {/* Focus overlay on active top segment */}

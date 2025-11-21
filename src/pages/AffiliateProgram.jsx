@@ -215,7 +215,7 @@ const AffiliateProgram = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] ">
+    <div className="min-h-screen   ">
       {/* Background gradient effect */}
       <div className="fixed inset-0 bg-gradient-to-br from-[#13151A]/30 via-transparent to-[#1A1D24]/30 pointer-events-none" />
       {loading && (
@@ -721,9 +721,7 @@ const AffiliateProgram = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: idx * 0.05 }}
                           className={`text-gray-200 hover:bg-white/5 ${
-                            idx % 2 === 0
-                              ? "bg-[#080808]/30"
-                              : "bg-[#080808]/20"
+                            idx % 2 === 0 ? " /30" : " /20"
                           }`}
                         >
                           <td className="px-4 py-3 text-left border-b border-white/10">

@@ -272,7 +272,7 @@ const GamePage = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-[#080808] text-white text-xl">
+      <div className="flex flex-col items-center justify-center h-screen   text-white text-xl">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: [0.4, 1, 0.4] }}
@@ -306,7 +306,7 @@ const GamePage = () => {
 
   return (
     <>
-      <div className="h-full bg-[#080808] flex flex-col">
+      <div className="h-full   flex flex-col">
         <div
           className="iframe-wrapper"
           style={{
@@ -468,7 +468,7 @@ const GamePage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#080808]">
+      <div className=" ">
         <GamesYouLike
           provider={gameData?.provider}
           excludeGame={gameData?.name}

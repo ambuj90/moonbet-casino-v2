@@ -177,7 +177,7 @@ const HomeGamesSection = () => {
           {canScrollLeft && (
             <button
               onClick={() => scroll("left")}
-              className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#080808]/80 border border-white/10 rounded-full items-center justify-center text-white hover:bg-white/10 transition-colors"
+              className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12  /80 border border-white/10 rounded-full items-center justify-center text-white hover:bg-white/10 transition-colors"
             >
               ←
             </button>
@@ -186,7 +186,7 @@ const HomeGamesSection = () => {
           {canScrollRight && (
             <button
               onClick={() => scroll("right")}
-              className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#080808]/80 border border-white/10 rounded-full items-center justify-center text-white hover:bg-white/10 transition-colors"
+              className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12  /80 border border-white/10 rounded-full items-center justify-center text-white hover:bg-white/10 transition-colors"
             >
               →
             </button>

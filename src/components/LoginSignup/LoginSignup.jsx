@@ -161,7 +161,7 @@ const LoginSignup = ({
 
     return (
       <div
-        className="fixed inset-0 bg-[#080808]/70 backdrop-blur-sm flex justify-center items-center z-[999999]"
+        className="fixed inset-0  /70 backdrop-blur-sm flex justify-center items-center z-[999999]"
         onClick={onClose}
       >
         <div

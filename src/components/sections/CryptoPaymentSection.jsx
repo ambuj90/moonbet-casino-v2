@@ -57,7 +57,7 @@ const CryptoPaymentSection = () => {
           {cryptos.map((icon, i) => (
             <div
               key={i}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#080808]/30 flex items-center justify-center"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full  /30 flex items-center justify-center"
             >
               <img
                 src={icon}

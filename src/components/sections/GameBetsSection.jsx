@@ -148,7 +148,7 @@ const GameBetsSection = () => {
           className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden px-5"
         >
           {/* Header */}
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-2 lg:gap-4 p-3 lg:p-4 border-b border-white/10 bg-[#080808]/3">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-2 lg:gap-4 p-3 lg:p-4 border-b border-white/10  /3">
             {["Game", "User", "Bet Amount", "Multiplier", "Payout", "Time"].map(
               (h) => (
                 <div

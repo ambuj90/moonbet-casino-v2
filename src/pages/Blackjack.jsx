@@ -467,7 +467,7 @@ const Blackjack = () => {
           type="video/mp4"
         />
       </video>
-      <div className="absolute inset-0 bg-[#080808]/50 backdrop-blur-[1.5px]" />
+      <div className="absolute inset-0  /50 backdrop-blur-[1.5px]" />
 
       {/* ==================== TABLE ==================== */}
       <div className="relative w-full max-w-[1366px] h-[500px] sm:h-[501px] rounded-[24px] border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex flex-col p-4 md:p-6 bg-transparent mt-5 overflow-visible">
@@ -567,9 +567,9 @@ const Blackjack = () => {
             const active =
               action === "double"
                 ? "border-[#27b35f] bg-[rgba(30,60,30,0.6)] text-[#baf6d3]"
-                : "border-white/10 bg-[#080808]/40 text-[#d2d8e8] hover:bg-white/10";
+                : "border-white/10  /40 text-[#d2d8e8] hover:bg-white/10";
             const disabled =
-              "border-white/5 bg-[#080808]/30 text-[#555] cursor-not-allowed opacity-50";
+              "border-white/5  /30 text-[#555] cursor-not-allowed opacity-50";
             const onClick = () => {
               if (!enabled) return;
               if (action === "hit") hit();
