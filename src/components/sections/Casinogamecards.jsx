@@ -1,226 +1,161 @@
 import React from "react";
 import { motion } from "framer-motion";
+import "../../styles/gameShapes.css";
 
 const CasinoGameCards = () => {
-  const gameCards = [
+  const cards = [
     {
       id: 1,
+      class: "clip-casino",
+      w: "47%",
+      h: "160px",
+      title: "Casino",
       icon: "/icons/casino.svg",
-      href: "/casino",
-      title: "CASINO",
-      description: "Dive into our in-house games, live casino and slots",
       img: "/category/img8.png",
-      bg: "linear-gradient(95deg, rgba(220,31,255,0.10) 0%, rgba(220,31,255,0.30) 100%)",
-      w: "590px",
-      h: "180px",
+      desc: "Dive into our in-house games, live casino and slots",
+      background: "rgba(132, 67, 160, 0.50)",
+      hoverBg: "#8443A0",
     },
     {
       id: 2,
-      icon: "/icons/slots.svg",
-      href: "/slots",
-      title: "SLOTS",
-      img: "/category/img10.png",
-      bg: "linear-gradient(107deg, rgba(10,43,188,0.10) 0%, rgba(10,43,188,0.30) 100%)",
-      w: "322px",
-      h: "180px",
+      class: "clip-gameshows",
+      w: "27%",
+      h: "160px",
+      title: "Game Shows",
+      icon: "/icons/game-shows.svg",
+      img: "/category/img3.png",
+      desc: "How about live game shows?",
+      background: "rgba(90, 55, 153, 0.50)",
+      hoverBg: "#5A3799",
     },
     {
       id: 3,
-      icon: "/icons/game-shows.svg",
-      href: "/casino/gameshows",
-      title: "GAME SHOWS",
-      img: "/category/img3.png",
-      bg: "linear-gradient(107deg, rgba(240,119,48,0.10) 0%, rgba(240,119,48,0.30) 100%)",
-      w: "321px",
-      h: "180px",
+      class: "clip-slots",
+      w: "26%",
+      h: "160px",
+      title: "Slots",
+      icon: "/icons/slots.svg",
+      img: "/category/img10.png",
+      desc: "How about live game shows?",
+      background: "rgba(85, 81, 169, 0.50)",
+      hoverBg: "#5A3799",
     },
     {
       id: 4,
+      class: "clip-blackjack",
+      w: "50%",
+      h: "160px",
+      title: "Blackjack",
       icon: "/icons/blackjack.svg",
-      href: "/blackjack",
-      title: "BLACKJACK",
-      description: "Dive into our in-house games, live casino and slots",
       img: "/category/img11.png",
-      bg: "linear-gradient(97deg, rgba(240,119,48,0.10) 0%, rgba(240,119,48,0.30) 100%)",
-      w: "625px",
-      h: "180px",
+      desc: "Dive into our in-house games, live casino and slots",
+      background: "rgba(85, 81, 169, 0.50)",
+      hoverBg: "#5551A9",
     },
     {
       id: 5,
-      icon: "/icons/bacarrat-menu.svg",
-      href: "/baccarat",
-      title: "BACCARAT",
-      description: "Dive into our in-house games, live casino and slots",
+      class: "clip-baccarat",
+      w: "50%",
+      h: "160px",
+      title: "Roulette",
+      icon: "/icons/roulette.svg",
       img: "/category/img6.png",
-      bg: "linear-gradient(157deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%)",
-      w: "625px",
-      h: "180px",
+      desc: "Dive into our in-house games, live casino and slots",
+      background: "rgba(132, 67, 160, 0.50)",
+      hoverBg: "#8443A0",
     },
   ];
 
-  const GameCard = ({ card, className, responsive = false }) => (
+  const Card = ({ c, responsive = false }) => (
     <motion.div
-      className={` relative flex overflow-hidden group ${className || ""}`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.4 }}
-      style={{
-        width: responsive ? "100%" : card.w,
-        height: responsive ? "auto" : card.h,
-        minHeight: responsive ? "180px" : card.h,
-        background: card.bg,
-      }}
+      transition={{ duration: 0.35 }}
+      className={`relative group ${responsive ? "w-full" : ""}`}
+      style={!responsive ? { width: c.w } : {}}
     >
-      <div className="absolute inset-0  /30 backdrop-blur-sm" />
-
-      <div className="flex flex-col justify-between p-4 sm:p-6 z-10 w-1/2 space-y-3">
-        {/* Title with Icon */}
-        <div className="flex items-start gap-2">
-          {/* Animated Icon */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            whileHover={{ rotate: 360 }}
-            className="flex-shrink-0"
-          >
-            <motion.img
-              src={card.icon}
-              alt=""
-              style={{
-                width: "18px",
-                height: "20px",
-              }}
-              className="object-contain md:mt-[0.2rem]"
-              whileHover={{ scale: 1.2 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            />
-          </motion.div>
-
-          {/* Title */}
-          <motion.h3
-            className="uppercase"
-            style={{
-              fontFamily: "Neue Plak",
-              color: "#E5EAF2",
-              fontSize: "clamp(16px, 2.5vw, 20px)",
-              fontWeight: "500",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            {card.title}
-          </motion.h3>
-        </div>
-
-        {/* Description */}
-        {card.description && (
-          <motion.p
-            className="text-gray-300 text-xs sm:text-sm leading-relaxed"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            {card.description}
-          </motion.p>
-        )}
+      {/* Floating Label */}
+      <div className="absolute top-2 left-2 z-30 flex items-center gap-2 px-3 py-[3px] rounded-lg text-white/60 text-xs sm:text-sm">
+        <img src={c.icon} className="w-4 h-4" alt="" />
+        {c.title}
       </div>
 
-      {/* Main Image */}
+      {/* Outer Frame */}
       <motion.div
-        className="flex items-center justify-center w-full z-10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        whileHover={{ scale: 1.05 }}
+        className="p-[6px] sm:p-[8px] rounded-xl transition-all"
+        style={{ background: c.background }}
+        whileHover={{ backgroundColor: c.hoverBg }}
       >
-        <img
-          src={card.img}
-          alt={card.title}
-          className="max-w-full max-h-full object-contain"
+        {/* Clip Path Shape */}
+        <div
+          className={`relative overflow-hidden bg-[#0D0E36] ${c.class}`}
           style={{
-            width: responsive ? "auto" : card.imgW,
-            height: responsive ? "auto" : card.imgH,
-            maxWidth: responsive ? "100%" : card.imgW,
-            maxHeight: responsive ? "180px" : card.imgH,
+            width: "100%",
+            height: responsive ? "140px" : c.h,
+            borderRadius: "20px",
+            padding: "18px 20px",
           }}
-        />
-      </motion.div>
+        >
+          {/* LEFT TEXT */}
+          <div className="w-[50%] sm:w-[40%] flex flex-col justify-end h-full">
+            <p
+              className="mb-2"
+              style={{
+                color: "rgba(225, 225, 225, 0.35)",
+                fontFamily: "Neue Plak",
+                fontSize: "14px",
+                fontWeight: "400",
+                lineHeight: "18px",
+              }}
+            >
+              {c.desc}
+            </p>
+          </div>
 
-      {/* Hover Glow Effect */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none"
-        initial={{ x: "-100%" }}
-        whileHover={{ x: "100%" }}
-        transition={{ duration: 0.8 }}
-      />
+          {/* RIGHT IMAGE */}
+          <img
+            src={c.img}
+            alt={c.title}
+            className="absolute bottom-0 right-0 h-full max-h-full object-contain z-10 pointer-events-none"
+          />
+
+          {/* Hover Sweep */}
+          <motion.div
+            className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 pointer-events-none"
+            initial={{ x: "-100%" }}
+            whileHover={{ x: "100%" }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+          />
+        </div>
+      </motion.div>
     </motion.div>
   );
 
   return (
-    <section className="w-full">
-      <div
-        className="max-w-7xl mx-auto p-6 md:p-2"
-        style={{
-          marginTop: "50px",
-        }}
-      >
-        {/* DESKTOP - 1280px and above */}
-        <div className="hidden xl:grid gap-4 grid-cols-[584px_320px_311px] auto-rows-[180px]">
-          {/* ROW 1 */}
-          <GameCard card={gameCards[0]} />
-          <GameCard card={gameCards[1]} />
-          <GameCard card={gameCards[2]} />
-
-          {/* ROW 2 */}
-          <GameCard card={gameCards[3]} className="row-start-2 col-start-1" />
-          <GameCard
-            card={gameCards[4]}
-            className="row-start-2 col-start-2 col-span-2 ml-0 xl:ml-[34px]"
-          />
+    <section className="w-full py-12">
+      <div className="max-w-7xl mx-auto space-y-6 px-3">
+        {/* Desktop */}
+        <div className="hidden xl:flex gap-3">
+          <Card c={cards[0]} />
+          <Card c={cards[2]} />
+          <Card c={cards[1]} />
         </div>
 
-        {/* LARGE TABLET - 1024px to 1279px */}
-        <div className="hidden lg:grid xl:hidden grid-cols-3 gap-4">
-          {/* ROW 1 */}
-          <GameCard card={gameCards[0]} className="col-span-2" responsive />
-          <GameCard card={gameCards[1]} responsive />
-
-          {/* ROW 2 */}
-          <GameCard card={gameCards[2]} responsive />
-          <GameCard card={gameCards[3]} className="col-span-2" responsive />
-
-          {/* ROW 3 */}
-          <GameCard card={gameCards[4]} className="col-span-3" responsive />
+        <div className="hidden xl:flex gap-3">
+          <Card c={cards[3]} />
+          <Card c={cards[4]} />
         </div>
 
-        {/* MEDIUM TABLET - 768px to 1023px */}
-        <div className="hidden md:grid lg:hidden grid-cols-2 gap-4">
-          <GameCard card={gameCards[0]} className="col-span-2" responsive />
-          <GameCard card={gameCards[1]} responsive />
-          <GameCard card={gameCards[2]} responsive />
-          <GameCard card={gameCards[3]} className="col-span-2" responsive />
-          <GameCard card={gameCards[4]} className="col-span-2" responsive />
-        </div>
-
-        {/* SMALL TABLET - 640px to 767px */}
-        <div className="hidden sm:grid md:hidden grid-cols-2 gap-4">
-          {gameCards.map((card, index) => (
-            <GameCard
-              key={card.id}
-              card={card}
-              className={index === 0 || index >= 3 ? "col-span-2" : ""}
-              responsive
-            />
+        {/* Tablet */}
+        <div className="hidden md:grid xl:hidden gap-3 grid-cols-2">
+          {cards.map((c) => (
+            <Card key={c.id} c={c} responsive />
           ))}
         </div>
 
-        {/* MOBILE - below 640px */}
-        <div className="grid sm:hidden grid-cols-1 gap-4">
-          {gameCards.map((card) => (
-            <GameCard key={card.id} card={card} responsive />
+        {/* Mobile */}
+        <div className="grid md:hidden gap-3">
+          {cards.map((c) => (
+            <Card key={c.id} c={c} responsive />
           ))}
         </div>
       </div>

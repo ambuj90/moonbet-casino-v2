@@ -19,6 +19,8 @@ const WalletDropdownCenter = ({
   const [searchQuery, setSearchQuery] = useState("");
   const walletDropdownRef = useRef(null);
 
+  const [hoverWallet, setHoverWallet] = useState(false);
+
   // ⭐ Replace icons based on EXACT CDN URLs
   const imageFix = (url) => {
     if (!url) return url;
@@ -72,7 +74,7 @@ const WalletDropdownCenter = ({
         {/* Wallet Button */}
         <button
           onClick={() => setWalletDropdownOpen(!walletDropdownOpen)}
-          className="wallet-btn relative flex items-center gap-2 px-3 sm:px-4 py-2 -mt-2 sm:py-2.5 rounded-[8px] border-[rgba(255,255,255,0.4)] text-white transition-all duration-300 max-w-[150px] sm:max-w-none"
+          className="wallet-btn relative flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-[8px] text-[#E1E1E1] transition-all duration-300 max-w-[150px] sm:max-w-none"
         >
           {/* Coin logo */}
           <img
@@ -248,112 +250,233 @@ const WalletDropdownCenter = ({
       {/* Coins/Chips Display - Wallet Button */}
       <button
         onClick={() => setWalletModalOpen(true)}
-        className="relative flex items-center gap-2  transition-all hover:scale-[1.02] "
+        onMouseEnter={() => setHoverWallet(true)}
+        onMouseLeave={() => setHoverWallet(false)}
+        className="relative flex items-center gap-2 transition-all hover:scale-[1.02]"
       >
         <span className="text-xl">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
-            viewBox="0 0 35 35"
-            fill="none"
-          >
-            <rect
-              x="0.5"
-              y="0.5"
-              width="34"
-              height="34"
-              rx="7.5"
-              fill="url(#paint0_linear_9018_5932)"
-            />
-            <rect
-              x="0.5"
-              y="0.5"
-              width="34"
-              height="34"
-              rx="7.5"
-              stroke="url(#paint1_linear_9018_5932)"
-            />
-            <g filter="url(#filter0_d_9018_5932)">
-              <path
-                d="M23.4646 10C23.9974 10.0001 24.4286 10.43 24.4287 10.9598C24.4287 11.4897 23.9974 11.9195 23.4646 11.9196H11.5713C11.2172 11.9197 10.9283 12.2066 10.9282 12.5598C10.9282 12.9131 11.2171 13.1999 11.5713 13.2H25.3928C26.2787 13.2 27 13.9174 27 14.8V16.4H23.7856C22.0134 16.4001 20.5713 17.8356 20.5713 19.6C20.5714 21.3643 22.0134 22.7999 23.7856 22.8H27V24.4C26.9999 25.2825 26.2786 26 25.3928 26H11.5713C10.1533 25.9999 9.00019 24.8518 9 23.4402C9 23.4402 9 12.5694 9 12.5598C9.00005 11.1481 10.1532 10.0001 11.5713 10H23.4646Z"
-                fill="white"
+          {/* NORMAL STATE SVG */}
+          {!hoverWallet && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              viewBox="0 0 35 35"
+              fill="none"
+            >
+              <rect
+                x="0.5"
+                y="0.5"
+                width="34"
+                height="34"
+                rx="7.5"
+                fill="url(#paint0_linear_9018_5922)"
               />
-              <path
-                d="M27 21.5196H23.7856C22.7206 21.5195 21.8575 20.6603 21.8574 19.6C21.8574 18.5396 22.7205 17.6796 23.7856 17.6795H27V21.5196Z"
-                fill="white"
+              <rect
+                x="0.5"
+                y="0.5"
+                width="34"
+                height="34"
+                rx="7.5"
+                stroke="url(#paint1_linear_9018_5922)"
               />
-            </g>
-            <defs>
-              <filter
-                id="filter0_d_9018_5932"
-                x="6"
-                y="7"
-                width="24"
-                height="22"
-                filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
-              >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feColorMatrix
-                  in="SourceAlpha"
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                  result="hardAlpha"
+              <g filter="url(#filter0_d_9018_5922)">
+                <path
+                  d="M23.4646 10C23.9974 10.0001 24.4286 10.43 24.4287 10.9598C24.4287 11.4897 23.9974 11.9195 23.4646 11.9196H11.5713C11.2172 11.9197 10.9283 12.2066 10.9282 12.5598C10.9282 12.9131 11.2171 13.1999 11.5713 13.2H25.3928C26.2787 13.2 27 13.9174 27 14.8V16.4H23.7856C22.0134 16.4001 20.5713 17.8356 20.5713 19.6C20.5714 21.3643 22.0134 22.7999 23.7856 22.8H27V24.4C26.9999 25.2825 26.2786 26 25.3928 26H11.5713C10.1533 25.9999 9.00019 24.8518 9 23.4402C9 23.4402 9 12.5694 9 12.5598C9.00005 11.1481 10.1532 10.0001 11.5713 10H23.4646Z"
+                  fill="white"
                 />
-                <feOffset />
-                <feGaussianBlur stdDeviation="1.5" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix
-                  type="matrix"
-                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+                <path
+                  d="M27 21.5196H23.7856C22.7206 21.5195 21.8575 20.6603 21.8574 19.6C21.8574 18.5396 22.7205 17.6796 23.7856 17.6795H27V21.5196Z"
+                  fill="white"
                 />
-                <feBlend
-                  mode="normal"
-                  in2="BackgroundImageFix"
-                  result="effect1_dropShadow_9018_5932"
+              </g>
+              <defs>
+                <filter
+                  id="filter0_d_9018_5922"
+                  x="6"
+                  y="7"
+                  width="24"
+                  height="22"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="1.5" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_9018_5922"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_9018_5922"
+                    result="shape"
+                  />
+                </filter>
+                <linearGradient
+                  id="paint0_linear_9018_5922"
+                  x1="17.5"
+                  y1="0"
+                  x2="17.5"
+                  y2="35"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#AAF23F" />
+                  <stop offset="1" stop-color="#28C203" />
+                </linearGradient>
+                <linearGradient
+                  id="paint1_linear_9018_5922"
+                  x1="2.45192"
+                  y1="-7.76018e-06"
+                  x2="19.1272"
+                  y2="38.3892"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="white" stop-opacity="0.4" />
+                  <stop
+                    offset="0.405687"
+                    stop-color="white"
+                    stop-opacity="0.01"
+                  />
+                  <stop
+                    offset="0.574372"
+                    stop-color="white"
+                    stop-opacity="0.01"
+                  />
+                  <stop offset="1" stop-color="white" stop-opacity="0.1" />
+                </linearGradient>
+              </defs>
+            </svg>
+          )}
+
+          {/* HOVER STATE SVG */}
+          {hoverWallet && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              viewBox="0 0 35 35"
+              fill="none"
+            >
+              <rect
+                x="0.5"
+                y="0.5"
+                width="34"
+                height="34"
+                rx="7.5"
+                fill="url(#paint0_linear_9018_5924)"
+              />
+              <rect
+                x="0.5"
+                y="0.5"
+                width="34"
+                height="34"
+                rx="7.5"
+                fill="black"
+                fill-opacity="0.25"
+              />
+              <rect
+                x="0.5"
+                y="0.5"
+                width="34"
+                height="34"
+                rx="7.5"
+                stroke="url(#paint1_linear_9018_5924)"
+              />
+              <g filter="url(#filter0_d_9018_5924)">
+                <path
+                  d="M23.4646 10C23.9974 10.0001 24.4286 10.43 24.4287 10.9598C24.4287 11.4897 23.9974 11.9195 23.4646 11.9196H11.5713C11.2172 11.9197 10.9283 12.2066 10.9282 12.5598C10.9282 12.9131 11.2171 13.1999 11.5713 13.2H25.3928C26.2787 13.2 27 13.9174 27 14.8V16.4H23.7856C22.0134 16.4001 20.5713 17.8356 20.5713 19.6C20.5714 21.3643 22.0134 22.7999 23.7856 22.8H27V24.4C26.9999 25.2825 26.2786 26 25.3928 26H11.5713C10.1533 25.9999 9.00019 24.8518 9 23.4402C9 23.4402 9 12.5694 9 12.5598C9.00005 11.1481 10.1532 10.0001 11.5713 10H23.4646Z"
+                  fill="white"
                 />
-                <feBlend
-                  mode="normal"
-                  in="SourceGraphic"
-                  in2="effect1_dropShadow_9018_5932"
-                  result="shape"
+                <path
+                  d="M27 21.5196H23.7856C22.7206 21.5195 21.8575 20.6603 21.8574 19.6C21.8574 18.5396 22.7205 17.6796 23.7856 17.6795H27V21.5196Z"
+                  fill="white"
                 />
-              </filter>
-              <linearGradient
-                id="paint0_linear_9018_5932"
-                x1="17.5"
-                y1="0"
-                x2="17.5"
-                y2="35"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="#AAF23F" />
-                <stop offset="1" stop-color="#28C203" />
-              </linearGradient>
-              <linearGradient
-                id="paint1_linear_9018_5932"
-                x1="2.45192"
-                y1="-7.76018e-06"
-                x2="19.1272"
-                y2="38.3892"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stop-color="white" stop-opacity="0.4" />
-                <stop
-                  offset="0.405687"
-                  stop-color="white"
-                  stop-opacity="0.01"
-                />
-                <stop
-                  offset="0.574372"
-                  stop-color="white"
-                  stop-opacity="0.01"
-                />
-                <stop offset="1" stop-color="white" stop-opacity="0.1" />
-              </linearGradient>
-            </defs>
-          </svg>
+              </g>
+              <defs>
+                <filter
+                  id="filter0_d_9018_5924"
+                  x="6"
+                  y="7"
+                  width="24"
+                  height="22"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="1.5" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_9018_5924"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_9018_5924"
+                    result="shape"
+                  />
+                </filter>
+                <linearGradient
+                  id="paint0_linear_9018_5924"
+                  x1="17.5"
+                  y1="0"
+                  x2="17.5"
+                  y2="35"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#AAF23F" />
+                  <stop offset="1" stop-color="#28C203" />
+                </linearGradient>
+                <linearGradient
+                  id="paint1_linear_9018_5924"
+                  x1="2.45192"
+                  y1="-7.76018e-06"
+                  x2="19.1272"
+                  y2="38.3892"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="white" stop-opacity="0.4" />
+                  <stop
+                    offset="0.405687"
+                    stop-color="white"
+                    stop-opacity="0.01"
+                  />
+                  <stop
+                    offset="0.574372"
+                    stop-color="white"
+                    stop-opacity="0.01"
+                  />
+                  <stop offset="1" stop-color="white" stop-opacity="0.1" />
+                </linearGradient>
+              </defs>
+            </svg>
+          )}
         </span>
       </button>
 

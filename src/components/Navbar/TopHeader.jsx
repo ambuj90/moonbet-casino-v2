@@ -45,16 +45,23 @@ const TopHeader = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleDesktopSidebar}
-            className="hidden md:flex view_btn items-center justify-center w-10 h-10 rounded-lg from-[rgba(30,30,30,0.15)] to-[rgba(75,75,75,0.15)] shadow-[1px_2px_1px_0_rgba(0,0,0,0.40)] backdrop-blur-[1.5px] hover:from-[rgba(40,40,40,0.20)] hover:to-[rgba(85,85,85,0.20)] transition-all duration-300 group"
+            className="hidden md:flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300 group"
           >
             <motion.div
               animate={{ rotate: sidebarCollapsed ? 0 : 180 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col gap-1"
+              className="flex flex-col gap-1 w-5"
             >
-              <span className="hidden md:block w-5 h-0.5 bg-[#9292D2]" />
-              <span className="hidden md:block w-3 h-0.5 bg-[#9292D2]" />
-              <span className="hidden md:block w-5 h-0.5 bg-[#9292D2]" />
+              {/* Top bar */}
+              <span className="hidden md:block w-5 h-[2px] bg-[#9292D2]" />
+
+              {/* Middle bar aligned RIGHT */}
+              <div className="flex justify-end">
+                <span className="hidden md:block w-4 h-[3px] bg-[#9292D2]" />
+              </div>
+
+              {/* Bottom bar */}
+              <span className="hidden md:block w-5 h-[2px] bg-[#9292D2]" />
             </motion.div>
           </motion.button>
 

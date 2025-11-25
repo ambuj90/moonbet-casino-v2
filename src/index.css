@@ -1359,3 +1359,32 @@
   pointer-events: none;
   z-index: 1;
 }
+
+/* NORMAL ICON COLOR */
+.icon-normal {
+  filter: brightness(0) saturate(100%) invert(70%) sepia(8%) saturate(900%)
+    hue-rotate(200deg) brightness(90%);
+  /* approx color: #9292D2 */
+  opacity: 0.7;
+}
+
+/* HOVER ICON COLOR */
+.group:hover .icon-hover {
+  filter: brightness(0) saturate(100%) invert(89%) sepia(6%) saturate(300%)
+    hue-rotate(200deg) brightness(105%);
+  /* approx color: #C8C8E1 */
+  opacity: 1;
+}
+
+/* ACTIVE ICON COLOR */
+.icon-active {
+  filter: brightness(0) invert(1);
+  /* pure white */
+  opacity: 1;
+}
+
+.trust_btn.view_moon_btn {
+  background: linear-gradient(0deg, #5a3799 0%, #dc1fff 100%);
+  box-shadow: inset 0 3px 3px rgba(255, 255, 255, 0.25),
+    0 3px 6px rgba(0, 0, 0, 0.35);
+}
