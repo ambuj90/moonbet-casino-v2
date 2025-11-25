@@ -3,14 +3,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import LoginTrigger from "../LoginSignup/LoginTrigger";
+import WalletDropdownCenter from "./WalletDropdownCenter";
 
 const TopHeader = ({
   onDesktopSidebarToggle,
-  sidebarCollapsed,
-  hasToken,
-  userName,
-  handleLogout,
-  children, // This will be the WalletDropdownCenter component
+  sidebarCollapsed = false,
+  hasToken = false,
+  userName = "",
+  userId,
+  walletBalance,
+  setWalletBalance,
+  currencies,
+  setCurrencies,
+  selectedCurrency,
+  setSelectedCurrency,
+  setWalletModalOpen,
+  setWalletSettingsOpen,
+  handleCurrencySelect,
+  walletDropdownOpen,
+  setWalletDropdownOpen,
 }) => {
   // Toggle desktop sidebar collapse
   const toggleDesktopSidebar = () => {
@@ -24,7 +35,7 @@ const TopHeader = ({
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 h-16 bg-[rgba(20,20,20,0.80)] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] border-b border-white/10 z-50"
+      className="fixed top-0 left-0 right-0 h-16 bg-[#1C1D49] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] border-b border-white/10 z-50"
     >
       <div className="h-full px-4 lg:px-4 flex items-center justify-between">
         {/* Left Section - Logo & Hamburger */}
@@ -41,17 +52,17 @@ const TopHeader = ({
               transition={{ duration: 0.3 }}
               className="flex flex-col gap-1"
             >
-              <span className="hidden md:block w-5 h-0.5 bg-[#7D7D7D]" />
-              <span className="hidden md:block w-3 h-0.5 bg-[#7D7D7D]" />
-              <span className="hidden md:block w-5 h-0.5 bg-[#7D7D7D]" />
+              <span className="hidden md:block w-5 h-0.5 bg-[#9292D2]" />
+              <span className="hidden md:block w-3 h-0.5 bg-[#9292D2]" />
+              <span className="hidden md:block w-5 h-0.5 bg-[#9292D2]" />
             </motion.div>
           </motion.button>
 
-          {/* Logo */}
+          {/* Logo with 3D Coin */}
           <Link to="/" className="flex items-center gap-2">
             <span className="flex items-center gap-2 text-xl font-bold text-white tracking-wider">
               <img
-                src="/icons/logo.svg"
+                src="/logo/logo.svg"
                 alt="Moonbet Logo"
                 className="w-30 h-30 object-contain hidden md:block md:mx-4"
               />
@@ -64,12 +75,24 @@ const TopHeader = ({
           </Link>
         </div>
 
-        {/* Center Section - Wallet Dropdown (passed as children) */}
-        {children}
+        {/* Center Section - Balance and Coins */}
+        <WalletDropdownCenter
+          hasToken={hasToken}
+          userId={userId}
+          walletBalance={walletBalance}
+          setWalletBalance={setWalletBalance}
+          currencies={currencies}
+          setCurrencies={setCurrencies}
+          selectedCurrency={selectedCurrency}
+          setSelectedCurrency={setSelectedCurrency}
+          setWalletModalOpen={setWalletModalOpen}
+          setWalletSettingsOpen={setWalletSettingsOpen}
+          handleCurrencySelect={handleCurrencySelect}
+        />
 
         {/* Right Section - Profile and Actions */}
         <div className="flex items-center gap-2">
-          {/* Show Login & Register only when NOT logged in */}
+          {/* ✅ Show Login & Register only when NOT logged in */}
           {!hasToken && (
             <>
               <LoginTrigger
@@ -84,7 +107,7 @@ const TopHeader = ({
                       rounded-lg shadow-md 
                       transition-all duration-300
                       hover:from-[#F07730]/90 hover:to-[#EFD28E]/90
-                      r"
+                      flex items-center justify-center"
                   >
                     LOGIN
                   </motion.button>
@@ -117,7 +140,7 @@ const TopHeader = ({
             </>
           )}
 
-          {/* Profile shown only when logged in */}
+          {/* ✅ Profile & Wallet shown only when logged in */}
           {hasToken && (
             <LoginTrigger
               buttonText={
