@@ -12,7 +12,7 @@
   --color-brand-primary: #f07730;
   --color-brand-secondary: #efd28e;
   --color-brand-accent: #00d4ff;
-  --color-brand-highlight: #ff006e;
+  --color-brand-highlight: #555594;
 
   /* Background Colors */
   --color-bg-primary: #0d0e36;
@@ -99,17 +99,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-      circle at 20% 50%,
-      var(--color-bg-tertiary) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      var(--color-bg-secondary) 0%,
-      transparent 50%
-    ),
-    radial-gradient(circle at 40% 20%, #1a1d24 0%, transparent 50%);
+  background: #0d0e36;
   pointer-events: none;
   z-index: 0;
 }

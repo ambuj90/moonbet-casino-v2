@@ -66,7 +66,6 @@ const GameBetsSection = () => {
             multiplier: b.multiplier || "-",
             payout: b.payout,
             color: b.type === "win" || b.type === "refund" ? "green" : "red",
-            time: new Date(b.createdAt).toLocaleTimeString(),
           }));
           setBets(formatted);
         } else {
@@ -106,28 +105,22 @@ const GameBetsSection = () => {
         </motion.div> */}
 
         {/* Tabs */}
-        <div
-          class="bet_btn flex gap-2 mb-4 sm:mb-6 p-1 rounded-[8px] overflow-x-auto scrollbar-hide w-fit"
-          style={{
-            background:
-              "linear-gradient(0deg, rgba(30, 30, 30, 0.15) 0%, rgba(75, 75, 75, 0.15) 100%)",
-          }}
-        >
+        <div class="bet_btn flex gap-2 mb-4 p-1 sm:mb-6 overflow-x-auto rounded-[50px] scrollbar-hide w-fit">
           {["all", "my"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`relative px-4 sm:px-6 py-2 sm:py-3 font-semibold text-sm sm:text-base rounded-[8px] transition-all duration-200 ${
+              className={`relative px-4 sm:px-8 py-2 sm:py-3 font-semibold text-sm sm:text-base rounded-[50px] transition-all duration-200 ${
                 activeTab === tab
-                  ? "text-black" // Active text color
-                  : "text-gray-300 hover:text-white"
+                  ? "text-white" // Active text color
+                  : "text-[#9292D2] hover:text-white"
               }`}
             >
               {/* Active tab gradient background */}
               {activeTab === tab && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 rounded-[8px] bg-gradient-to-tr from-[#7F0577] to-[#F474FB]"
+                  className="custom-btn absolute inset-0 rounded-[50px]"
                   transition={{ type: "spring", duration: 0.4 }}
                 />
               )}
@@ -145,24 +138,22 @@ const GameBetsSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden px-5"
+          className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden px-5 pb-5"
         >
           {/* Header */}
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-2 lg:gap-4 p-3 lg:p-4 border-b border-white/10  /3">
-            {["Game", "User", "Bet Amount", "Multiplier", "Payout", "Time"].map(
-              (h) => (
-                <div
-                  key={h}
-                  className={`text-gray-400 text-xs lg:text-sm font-medium ${
-                    ["User", "Bet Amount", "Multiplier", "Time"].includes(h)
-                      ? "hidden md:block"
-                      : ""
-                  }`}
-                >
-                  {h}
-                </div>
-              )
-            )}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-2 lg:gap-4 p-3 lg:p-4 border-white/10  /3">
+            {["Game", "User", "Bet Amount", "Multiplier", "Payout"].map((h) => (
+              <div
+                key={h}
+                className={`text-[#555594] text-xs lg:text-sm font-medium ${
+                  ["User", "Bet Amount", "Multiplier"].includes(h)
+                    ? "hidden md:block"
+                    : ""
+                }`}
+              >
+                {h}
+              </div>
+            ))}
           </div>
 
           {/* Body */}
@@ -188,10 +179,8 @@ const GameBetsSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
-                    className={`grid md:grid-cols-6 grid-cols-2 gap-2 lg:gap-4 p-3 lg:p-4 rounded-lg ${
-                      index % 2 === 0
-                        ? "[background:rgba(255,255,255,0.15)]"
-                        : "bg-gradient-to-r from-[#0A0A0A] via-[#161616] to-[#0A0A0A]"
+                    className={`grid md:grid-cols-5 grid-cols-2 gap-2 lg:gap-4 p-3 lg:p-4 rounded-lg ${
+                      index % 2 === 0 ? "bg-[#282753]" : ""
                     }`}
                   >
                     <div className="text-white text-xs lg:text-sm font-medium">
@@ -210,13 +199,10 @@ const GameBetsSection = () => {
                       className={`text-xs lg:text-sm font-semibold ${
                         bet.color === "green"
                           ? "text-green-400"
-                          : "text-red-400"
+                          : "text-[#555594]"
                       }`}
                     >
                       {bet.payout}
-                    </div>
-                    <div className="hidden md:block text-gray-500 text-xs lg:text-sm">
-                      {bet.time}
                     </div>
                   </motion.div>
                 ))

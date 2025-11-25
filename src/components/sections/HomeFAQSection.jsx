@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const HomeFAQSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   const faqData = [
     {
@@ -137,17 +138,14 @@ const HomeFAQSection = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  // ⭐ Unified Rendering System
   const renderAnswer = (faq) => (
     <div className="text-[#E5EAF2] space-y-6 leading-relaxed">
-      {/* Paragraphs */}
       {faq.paragraphs?.map((p, i) => (
         <p key={i} className="text-[16px] md:text-[18px] opacity-90">
           {p}
         </p>
       ))}
 
-      {/* Bullets */}
       {faq.bullets && (
         <ul className="list-disc list-inside space-y-2 pl-4 text-[16px] md:text-[18px] opacity-90">
           {faq.bullets.map((b, i) => (
@@ -156,7 +154,6 @@ const HomeFAQSection = () => {
         </ul>
       )}
 
-      {/* Providers (same style as list but with dots) */}
       {faq.providers && (
         <ul className="list-none space-y-2 pl-6 text-[16px] md:text-[18px] opacity-90">
           {faq.providers.map((p, i) => (
@@ -167,91 +164,96 @@ const HomeFAQSection = () => {
         </ul>
       )}
 
-      {/* Times list */}
-      {faq.times && (
-        <ul className="list-none space-y-2 pl-6 text-[16px] md:text-[18px] opacity-90">
-          {faq.times.map((t, i) => (
-            <li key={i} className="before:content-['•'] before:mr-3">
-              {t}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* Ending paragraphs */}
       {faq.endParagraphs?.map((p, i) => (
         <p key={i} className="text-[16px] md:text-[18px] opacity-90">
           {p}
         </p>
       ))}
-
-      {/* Fallback answer */}
-      {faq.answer && (
-        <p className="text-[16px] md:text-[18px] opacity-90">{faq.answer}</p>
-      )}
     </div>
   );
 
-  return (
-    <section className="w-full py-10">
-      <div className="container max-w-4xl mx-auto px-4">
-        {/* Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-center text-[#E5EAF2] text-[26px] font-[400] leading-[34px] uppercase">
-            FREQUENTLY ASKED QUESTIONS
-          </h2>
-        </motion.div>
+  const visibleFaqs = showAll ? faqData : faqData.slice(0, 5);
 
-        {/* FAQ */}
-        <div className="space-y-4">
-          {faqData.map((faq, index) => (
-            <motion.div
-              key={index}
+  return (
+    <section className="w-full py-20 relative">
+      <div className="container mx-auto max-w-5xl px-4 relative z-10">
+        <div className="flex flex-col lg:flex-row">
+          {/* Left Fixed Image */}
+          <div className="hidden lg:block w-[28%] relative z-30 md:-right-[15px] md:-top-[1px]">
+            <img
+              src="/home-assets/faq.png"
+              alt="FAQ Astro"
+              className="w-full h-auto object-contain pointer-events-none select-none"
+            />
+          </div>
+
+          {/* FAQ List */}
+          <div className="flex-1 space-y-4">
+            {/* Title */}
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative rounded-lg p-[1px] bg-[linear-gradient(106deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.10)_35%,rgba(255,255,255,0.05)_70%,rgba(255,255,255,0)_100%)]"
+              transition={{ duration: 0.6 }}
+              className="text-[#E5EAF2] text-[28px] font-[400] mb-10 uppercase tracking-wide"
             >
-              <div className="rounded-lg bg-[#0A0B0D]/80 backdrop-blur-sm">
-                {/* Question */}
+              FREQUENTLY ASKED QUESTIONS
+            </motion.h2>
+            {visibleFaqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="faq_btn rounded-lg overflow-hidden bg-[#1C1D49]/80 backdrop-blur-md"
+              >
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full px-6 py-2 text-left flex justify-between items-center"
+                  className="w-full px-6 py-3 flex justify-between items-center text-left"
                 >
-                  <p className="text-base md:text-lg font-[400] text-[#CED5E3] pr-4">
+                  <p className="text-base md:text-lg text-[#CED5E3]">
                     {index + 1}. {faq.question}
                   </p>
                   <motion.span
                     animate={{ rotate: activeIndex === index ? 45 : 0 }}
-                    transition={{ duration: 0.3 }}
                     className="text-2xl text-[#CED5E3]"
                   >
                     +
                   </motion.span>
                 </button>
 
-                {/* Answer */}
                 <AnimatePresence>
                   {activeIndex === index && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden px-6 pb-6"
+                      className="px-6 pb-6 overflow-hidden"
                     >
                       {renderAnswer(faq)}
                     </motion.div>
                   )}
                 </AnimatePresence>
+              </motion.div>
+            ))}
+
+            {/* VIEW MORE BUTTON */}
+            {!showAll && (
+              <div className="flex justify-center pt-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => setShowAll(true)}
+                  className="px-8 py-3 text-white rounded-full text-sm font-semibold"
+                  style={{
+                    background:
+                      "linear-gradient(0deg, #5A3799 0%, #DC1FFF 100%)",
+                    boxShadow:
+                      "inset 0 3px 3px rgba(255,255,255,0.25), 0 3px 3px rgba(0,0,0,0.25)",
+                  }}
+                >
+                  View More
+                </motion.button>
               </div>
-            </motion.div>
-          ))}
+            )}
+          </div>
         </div>
       </div>
     </section>
