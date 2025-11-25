@@ -60,9 +60,7 @@ const CasinoGameCards = () => {
 
   const GameCard = ({ card, className, responsive = false }) => (
     <motion.div
-      className={`reward_btn relative flex overflow-hidden group ${
-        className || ""
-      }`}
+      className={` relative flex overflow-hidden group ${className || ""}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02 }}

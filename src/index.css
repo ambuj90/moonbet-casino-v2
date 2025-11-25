@@ -644,13 +644,29 @@
   }
 }
 /* Neon gradient border using ::before */
+
+.wallet-btn {
+  position: relative;
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    rgba(53, 50, 107, 0.3) 0%,
+    rgba(113, 113, 180, 0.3) 100%
+  );
+}
+
 .wallet-btn::before {
   content: "";
   position: absolute;
   inset: 0;
   padding: 1px; /* border thickness */
-  border-radius: 12px;
-  background: linear-gradient(60deg, #7f0577 0%, #f474fb08 100%);
+  border-radius: 8px;
+
+  background: linear-gradient(
+    0deg,
+    rgba(53, 50, 107, 0.3) 0%,
+    rgba(113, 113, 180, 0.3) 100%
+  );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

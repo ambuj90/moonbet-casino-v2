@@ -637,9 +637,9 @@ const Header = ({
                 transition={{ duration: 0.3 }}
                 className="flex flex-col gap-1"
               >
-                <span className="hidden md:block w-5 h-0.5 bg-[#7D7D7D]" />
-                <span className="hidden md:block w-3 h-0.5 bg-[#7D7D7D]" />
-                <span className="hidden md:block w-5 h-0.5 bg-[#7D7D7D]" />
+                <span className="hidden md:block w-5 h-0.5 bg-[#9292D2]" />
+                <span className="hidden md:block w-3 h-0.5 bg-[#9292D2]" />
+                <span className="hidden md:block w-5 h-0.5 bg-[#9292D2]" />
               </motion.div>
             </motion.button>
 
@@ -647,7 +647,7 @@ const Header = ({
             <Link to="/" className="flex items-center gap-2">
               <span className="flex items-center gap-2 text-xl font-bold text-white tracking-wider">
                 <img
-                  src="/icons/logo.svg"
+                  src="/logo/logo.svg"
                   alt="Moonbet Logo"
                   className="w-30 h-30 object-contain hidden md:block md:mx-4"
                 />
