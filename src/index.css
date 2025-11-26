@@ -158,7 +158,11 @@
 @layer utilities {
   /* Gradient Text Effects */
   .gradient-text {
-    background: linear-gradient(0deg, #f07730 7.69%, #efd28e 93.27%);
+    background: linear-gradient(
+      0deg,
+      #282753 7.69%,
+      rgba(40, 39, 83, 1) 93.27%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1384,7 +1388,34 @@
 }
 
 .trust_btn.view_moon_btn {
-  background: linear-gradient(0deg, #5a3799 0%, #dc1fff 100%);
-  box-shadow: inset 0 3px 3px rgba(255, 255, 255, 0.25),
-    0 3px 6px rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  background: linear-gradient(
+    0deg,
+    rgba(220, 31, 255, 0.8) 0%,
+    rgba(220, 31, 255, 0) 100%
+  );
+  box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.4);
+}
+/* ============================
+   SIDEBAR EXPANDED STATE COLORS
+   ============================ */
+
+/* Hover state – expanded */
+.sb-hover-expanded {
+  background: linear-gradient(0deg, #35326b 0%, rgba(53, 50, 107, 0) 100%);
+}
+
+/* Active state – expanded */
+.sb-active-expanded {
+  border-radius: 8px;
+  border: 1px solid var(--new-glass, rgba(255, 255, 255, 0.4));
+  background: var(
+    --click-state,
+    linear-gradient(
+      0deg,
+      rgba(220, 31, 255, 0.8) 0%,
+      rgba(220, 31, 255, 0) 100%
+    )
+  );
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.4);
 }

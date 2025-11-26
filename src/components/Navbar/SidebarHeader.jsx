@@ -54,12 +54,12 @@ const SidebarHeader = ({
     const isActive = currentPath === item.path || isSubmenuActive;
 
     if (isActive) {
-      return "trust_btn view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px]  transition-all  text-white";
+      return "trust_btn view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px] transition-all text-white";
     } else {
       if (isCollapsed) {
         return "justify-center text-[#000] hover:text-white/90 hover:bg-white/5";
       } else {
-        return " gap-3 rounded-lg text-[#A8A8A8] hover:text-white/90 hover:bg-white/5";
+        return "gap-3 rounded-lg text-[#A8A8A8] hover:text-white/90 hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
       }
     }
   };
@@ -236,8 +236,8 @@ const SidebarHeader = ({
             } px-3 py-2 rounded-lg transition-all duration-200 group relative
               ${
                 activeSubmenu === item.id || isActive
-                  ? "bg-gradient-to-b from-white/30 via-white/5 backdrop-blur-[2px]"
-                  : "hover:bg-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)]"
+                  ? "sb-active-expanded"
+                  : "sb-hover-expanded"
               }`}
           >
             <div
@@ -262,7 +262,7 @@ const SidebarHeader = ({
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="text-base font-normal leading-24"
+                    className="text-[#e1e1e1] font-normal leading-24"
                     style={{ textShadow: "0 0 10px rgba(255, 255, 255, 0.25)" }}
                   >
                     {item.label}
@@ -370,7 +370,7 @@ const SidebarHeader = ({
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="text-base font-normal font-['Neue_Plak'] leading-6"
+                  className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6"
                   style={{ textShadow: "0 0 10px rgba(255, 255, 255, 0.25)" }}
                 >
                   {item.label}
@@ -436,8 +436,8 @@ const SidebarHeader = ({
                           } px-3 py-2 rounded-lg transition-all duration-200 group relative
                               ${
                                 activeSubmenu === item.id || isActive
-                                  ? "bg-gradient-to-b from-white/30 via-white/5 backdrop-blur-[2px]"
-                                  : "hover:bg-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)]"
+                                  ? "sb-active-expanded"
+                                  : "sb-hover-expanded"
                               }`}
                         >
                           <div
@@ -472,7 +472,7 @@ const SidebarHeader = ({
                                   initial={{ opacity: 0, x: -20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   exit={{ opacity: 0, x: -20 }}
-                                  className="text-base font-normal leading-24"
+                                  className="text-[#e1e1e1] font-normal leading-24"
                                   style={{
                                     textShadow:
                                       "0 0 10px rgba(255, 255, 255, 0.25)",
@@ -597,7 +597,7 @@ const SidebarHeader = ({
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="text-base font-normal font-['Neue_Plak'] leading-6"
+                                className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6"
                                 style={{
                                   textShadow:
                                     "0 0 10px rgba(255, 255, 255, 0.25)",
@@ -697,7 +697,7 @@ const SidebarHeader = ({
                                   initial={{ opacity: 0, x: -20 }}
                                   animate={{ opacity: 1, x: 0 }}
                                   exit={{ opacity: 0, x: -20 }}
-                                  className={`text-base font-normal font-['Neue_Plak'] leading-6 ${
+                                  className={`text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6 ${
                                     isActive
                                       ? "text-white"
                                       : "text-[#A8A8A8] group-hover:text-white"
@@ -750,7 +750,12 @@ const SidebarHeader = ({
                               animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
                               transition={{ duration: 0.2 }}
-                              className="mt-2.5 overflow-hidden"
+                              className="mt-0 overflow-hidden"
+                              style={{
+                                background: "#282753",
+                                borderEndEndRadius: "6px",
+                                borderEndStartRadius: "6px",
+                              }}
                             >
                               <div className="space-y-1.5">
                                 {item.submenu.map((subItem) => (
@@ -849,7 +854,7 @@ const SidebarHeader = ({
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="text-base font-normal font-['Neue_Plak'] leading-6"
+                                className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6"
                                 style={{
                                   textShadow:
                                     "0 0 10px rgba(255, 255, 255, 0.25)",
@@ -938,7 +943,7 @@ const SidebarHeader = ({
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -20 }}
-                              className="text-base font-normal font-['Neue_Plak'] leading-6 text-white"
+                              className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6 text-white"
                               style={{
                                 textShadow: "0 0 10px rgba(255,255,255,0.25)",
                               }}
@@ -992,7 +997,7 @@ const SidebarHeader = ({
                             >
                               {/* Label */}
                               <span
-                                className="text-base font-normal font-['Neue_Plak'] leading-6 text-white"
+                                className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6 text-white"
                                 style={{
                                   textShadow: "0 0 10px rgba(255,255,255,0.25)",
                                 }}
@@ -1051,7 +1056,7 @@ const SidebarHeader = ({
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        className="text-base font-normal font-['Neue_Plak'] leading-6"
+                        className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6"
                         style={{
                           textShadow: "0 0 10px rgba(255, 255, 255, 0.25)",
                         }}

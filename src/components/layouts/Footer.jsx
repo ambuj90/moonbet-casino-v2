@@ -162,7 +162,7 @@ const Footer = () => {
             <div className="flex items-center justify-center md:justify-between w-full mb-6">
               {/* Logo */}
               <img
-                src="/icons/logo.svg"
+                src="/logo/logo.svg"
                 alt="MoonBet Logo"
                 className="w-40 sm:w-48 md:w-52 lg:w-56 object-contain"
               />
