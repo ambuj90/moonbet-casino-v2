@@ -110,7 +110,7 @@ const SidebarHeader = ({
         {
           path: "/casino/bacarrat",
           label: "Baccarat",
-          icon: "/icons/bacarrat-menu.svg",
+          icon: "/icons/bacarrat.svg",
         },
         {
           path: "/casino/game-shows",
@@ -152,7 +152,7 @@ const SidebarHeader = ({
         {
           path: "#",
           label: "Baccarat",
-          icon: "/icons/bacarrat-menu.svg",
+          icon: "/icons/bacarrat.svg",
           comingSoon: true,
         },
         {
@@ -329,7 +329,13 @@ const SidebarHeader = ({
                         {subItem.label}
                       </span>
                       {item.id === "originals" && subItem.comingSoon && (
-                        <span className="text-[8px] font-semibold px-2 py-0.5 rounded-full bg-[#f7f7f7]/20 text-[#C1C1C1] border border-[#ccc]/30 whitespace-nowrap tracking-wide">
+                        <span
+                          className="ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
+                          style={{
+                            background:
+                              "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
+                          }}
+                        >
                           coming soon
                         </span>
                       )}
@@ -766,7 +772,7 @@ const SidebarHeader = ({
                                         ${
                                           location.pathname === subItem.path
                                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                                            : "text-[#A8A8A8] hover:text-white/90 hover:bg-white/5"
+                                            : "text-[#E1E1E1] hover:text-white/90 hover:bg-white/5"
                                         }`}
                                     onClick={closeSidebar}
                                   >
@@ -786,7 +792,7 @@ const SidebarHeader = ({
                                       className={`text-sm font-['Neue_Plak'] ${
                                         location.pathname === subItem.path
                                           ? "text-white"
-                                          : "text-[#A8A8A8] group-hover:text-white"
+                                          : "text-[#E1E1E1] group-hover:text-white"
                                       }`}
                                       style={{
                                         textShadow:
@@ -798,7 +804,13 @@ const SidebarHeader = ({
                                     {/* ⭐ coming soon BADGE (Only for Originals submenu) */}
                                     {item.id === "originals" &&
                                       subItem.comingSoon && (
-                                        <span className="ml-auto text-[8px] font-semibold px-2 py-0.5 rounded-full  bg-[#f7f7f7]/20 text-[#C1C1C1] border border-[#ccc]/30 whitespace-nowrap tracking-wide">
+                                        <span
+                                          className="ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
+                                          style={{
+                                            background:
+                                              "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
+                                          }}
+                                        >
                                           coming soon
                                         </span>
                                       )}
@@ -1007,7 +1019,13 @@ const SidebarHeader = ({
 
                               {/* ⭐ coming soon Badge */}
                               {item.comingSoon && (
-                                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full  bg-[#f7f7f7]/20 text-[#C1C1C1] border border-[#ccc]/30 whitespace-nowrap tracking-wide ">
+                                <span
+                                  className="ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
+                                  style={{
+                                    background:
+                                      "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
+                                  }}
+                                >
                                   coming soon
                                 </span>
                               )}
@@ -1090,7 +1108,10 @@ const SidebarHeader = ({
                   {/* User Profile */}
                   <div className="flex flex-col items-center justify-center gap-2 p-4 mb-3">
                     {/* Profile Icon */}
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[linear-gradient(180deg,#1B1B1B_0%,#0F172A_100%)] shadow-[0px_2px_4px_rgba(0,0,0,0.25)] flex items-center justify-center">
+                    <div
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center"
+                      style={{ background: "var(--cta-gradient)" }}
+                    >
                       <span className="text-lg sm:text-xl text-white font-semibold">
                         {userName ? userName.charAt(0).toUpperCase() : ""}
                       </span>
@@ -1098,62 +1119,93 @@ const SidebarHeader = ({
 
                     {/* Username */}
                     <p
-                      className="text-[#C3C3C3] text-center font-[400] text-[16px] 
+                      className="text-center font-[400] text-[16px] 
                leading-[24px] tracking-[0.3px] 
-               font-['Neue_Plack',sans-serif] not-italic"
+               font-['Neue_Plack',sans-serif] capitalize not-italic"
                     >
                       {userName}
                     </p>
                   </div>
 
-                  {/* Language Selector */}
-                  {/* <button className="w-full flex items-center gap-3 px-2 py-2 text-[#A8A8A8] hover:text-white/90 hover:bg-white/5 rounded-lg transition-all duration-200 mb-3">
-                          <span className="text-lg">🌐</span>
-                          <span
-                            className="text-sm font-['Neue_Plak']"
-                            style={{ textShadow: "0 0 10px rgba(255, 255, 255, 0.25)" }}
-                          >
-                            Language: English
-                          </span>
-                        </button> */}
-
                   {/* Social Links */}
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center ">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2 px-3 py-3 bg-white/5 border border-gray-800 rounded-lg hover:bg-white/10 transition-all duration-200"
+                      className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
                       onClick={() =>
                         window.open("https://x.com/moonbetgames", "_blank")
                       }
                     >
-                      <img
-                        src="/icons/twitter.svg"
-                        alt="Twitter"
-                        className="w-4 h-4 object-contain"
-                      />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="36"
+                        height="36"
+                        viewBox="0 0 36 36"
+                        fill="none"
+                      >
+                        <rect
+                          x="1"
+                          y="1"
+                          width="34"
+                          height="34"
+                          rx="12"
+                          fill="#282753"
+                        />
+                        <rect
+                          x="1"
+                          y="1"
+                          width="34"
+                          height="34"
+                          rx="12"
+                          stroke="url(#paint0_linear_9185_1053)"
+                          stroke-width="2"
+                        />
+                        <path
+                          d="M26.9543 14.2921C26.9121 13.3357 26.7574 12.6781 26.5358 12.1084C26.3072 11.5036 25.9555 10.9621 25.4947 10.512C25.0445 10.0549 24.4994 9.69969 23.9015 9.4747C23.3283 9.25315 22.6741 9.09848 21.7175 9.05632C20.7538 9.01058 20.4478 9 18.0035 9C15.5592 9 15.2532 9.01058 14.2931 9.05274C13.3365 9.09491 12.6788 9.24971 12.1091 9.47113C11.5041 9.69969 10.9625 10.0513 10.5123 10.512C10.0551 10.9621 9.69996 11.5072 9.47479 12.1049C9.2532 12.6781 9.0985 13.3321 9.05633 14.2885C9.01058 15.252 9 15.5579 9 18.0018C9 20.4456 9.01058 20.7515 9.05275 21.7115C9.09493 22.6679 9.24976 23.3254 9.47136 23.8952C9.69996 24.5 10.0551 25.0414 10.5123 25.4916C10.9625 25.9487 11.5076 26.3039 12.1055 26.5289C12.6788 26.7504 13.3329 26.9051 14.2896 26.9473C15.2497 26.9896 15.5558 27 18.0001 27C20.4444 27 20.7503 26.9896 21.7105 26.9473C22.6671 26.9051 23.3247 26.7504 23.8945 26.5289C25.1044 26.0612 26.061 25.1048 26.5288 23.8952C26.7502 23.322 26.9051 22.6679 26.9472 21.7115C26.9894 20.7515 27 20.4456 27 18.0018C27 15.5579 26.9964 15.252 26.9543 14.2921ZM25.333 21.6412C25.2943 22.5203 25.1466 22.995 25.0235 23.3114C24.721 24.0956 24.0985 24.718 23.3142 25.0204C22.9976 25.1435 22.5194 25.2911 21.6436 25.3297C20.694 25.3721 20.4092 25.3825 18.0071 25.3825C15.6049 25.3825 15.3166 25.3721 14.3704 25.3297C13.4912 25.2911 13.0164 25.1435 12.6998 25.0204C12.3095 24.8762 11.9543 24.6476 11.6659 24.3487C11.367 24.0569 11.1384 23.7052 10.9941 23.315C10.871 22.9985 10.7233 22.5203 10.6847 21.6448C10.6424 20.6953 10.632 20.4105 10.632 18.0088C10.632 15.6071 10.6424 15.3188 10.6847 14.373C10.7233 13.4939 10.871 13.0192 10.9941 12.7027C11.1384 12.3123 11.367 11.9573 11.6695 11.6688C11.9613 11.3699 12.313 11.1414 12.7034 10.9973C13.02 10.8742 13.4983 10.7266 14.374 10.6878C15.3236 10.6457 15.6085 10.6351 18.0105 10.6351C20.4162 10.6351 20.701 10.6457 21.6472 10.6878C22.5264 10.7266 23.0012 10.8742 23.3177 10.9973C23.708 11.1414 24.0633 11.3699 24.3517 11.6688C24.6506 11.9607 24.8792 12.3123 25.0235 12.7027C25.1466 13.0192 25.2943 13.4973 25.333 14.373C25.3752 15.3224 25.3858 15.6071 25.3858 18.0088C25.3858 20.4105 25.3752 20.6918 25.333 21.6412Z"
+                          fill="#9292D2"
+                        />
+                        <path
+                          d="M18.0035 13.3778C15.4502 13.3778 13.3787 15.4489 13.3787 18.0018C13.3787 20.5547 15.4502 22.6258 18.0035 22.6258C20.5569 22.6258 22.6284 20.5547 22.6284 18.0018C22.6284 15.4489 20.5569 13.3778 18.0035 13.3778ZM18.0035 21.0012C16.3471 21.0012 15.0035 19.658 15.0035 18.0018C15.0035 16.3455 16.3471 15.0023 18.0035 15.0023C19.6601 15.0023 21.0035 16.3455 21.0035 18.0018C21.0035 19.658 19.6601 21.0012 18.0035 21.0012Z"
+                          fill="#9292D2"
+                        />
+                        <path
+                          d="M23.891 13.195C23.891 13.7911 23.4076 14.2745 22.8112 14.2745C22.215 14.2745 21.7315 13.7911 21.7315 13.195C21.7315 12.5987 22.215 12.1155 22.8112 12.1155C23.4076 12.1155 23.891 12.5987 23.891 13.195Z"
+                          fill="#9292D2"
+                        />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_9185_1053"
+                            x1="3.38187"
+                            y1="0.999992"
+                            x2="19.5807"
+                            y2="38.2923"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="white" stop-opacity="0.4" />
+                            <stop
+                              offset="0.405687"
+                              stop-color="white"
+                              stop-opacity="0.01"
+                            />
+                            <stop
+                              offset="0.574372"
+                              stop-color="white"
+                              stop-opacity="0.01"
+                            />
+                            <stop
+                              offset="1"
+                              stop-color="white"
+                              stop-opacity="0.1"
+                            />
+                          </linearGradient>
+                        </defs>
+                      </svg>
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2 px-3 py-3 bg-white/5 border border-gray-800 rounded-lg hover:bg-white/10 transition-all duration-200"
-                      onClick={() =>
-                        window.open(
-                          "https://www.telegram.com/moonbet.games/",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <img
-                        src="/icons/telegram.svg"
-                        alt="Telegram"
-                        className="w-4 h-4 object-contain"
-                      />
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2 px-3 py-3 bg-white/5 border border-gray-800 rounded-lg hover:bg-white/10 transition-all duration-200"
+                      className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
                       onClick={() =>
                         window.open(
                           "https://www.instagram.com/moonbet.games/",
@@ -1163,23 +1215,127 @@ const SidebarHeader = ({
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="17"
-                        height="17"
-                        viewBox="0 0 17 17"
+                        width="36"
+                        height="36"
+                        viewBox="0 0 36 36"
                         fill="none"
                       >
-                        <path
-                          d="M16.9568 4.99806C16.917 4.09478 16.7709 3.47379 16.5616 2.93569C16.3457 2.36451 16.0135 1.85313 15.5783 1.42802C15.1531 0.996291 14.6383 0.660821 14.0736 0.448331C13.5323 0.239084 12.9144 0.0930131 12.011 0.0531874C11.1008 0.00998885 10.8118 0 8.50331 0C6.19479 0 5.90584 0.00998885 4.99902 0.0498146C4.09556 0.0896403 3.47445 0.235841 2.93638 0.444958C2.36496 0.660821 1.85348 0.992919 1.42829 1.42802C0.996481 1.85313 0.661077 2.36788 0.448417 2.93244C0.23913 3.47379 0.0930309 4.09141 0.0531976 4.99469C0.00999076 5.90471 0 6.19361 0 8.50169C0 10.8098 0.00999076 11.0987 0.0498241 12.0053C0.0896574 12.9086 0.235886 13.5296 0.445173 14.0677C0.661077 14.6389 0.996481 15.1502 1.42829 15.5754C1.85348 16.0071 2.36833 16.3426 2.933 16.555C3.47445 16.7643 4.09219 16.9104 4.99577 16.9502C5.90247 16.9901 6.19155 17 8.50006 17C10.8086 17 11.0975 16.9901 12.0044 16.9502C12.9078 16.9104 13.5289 16.7643 14.067 16.555C15.2097 16.1133 16.1132 15.21 16.555 14.0677C16.7641 13.5263 16.9103 12.9086 16.9502 12.0053C16.99 11.0987 17 10.8098 17 8.50169C17 6.19361 16.9966 5.90471 16.9568 4.99806ZM15.4256 11.9389C15.389 12.7691 15.2495 13.2175 15.1333 13.5164C14.8476 14.257 14.2597 14.8447 13.5189 15.1304C13.22 15.2466 12.7683 15.3861 11.9412 15.4225C11.0443 15.4625 10.7754 15.4724 8.50668 15.4724C6.238 15.4724 5.96565 15.4625 5.07206 15.4225C4.24166 15.3861 3.79325 15.2466 3.4943 15.1304C3.12568 14.9942 2.79015 14.7783 2.5178 14.496C2.23547 14.2204 2.01956 13.8883 1.88332 13.5197C1.76707 13.2208 1.62759 12.7691 1.59113 11.9423C1.55116 11.0456 1.5413 10.7766 1.5413 8.5083C1.5413 6.24005 1.55116 5.96776 1.59113 5.07447C1.62759 4.24423 1.76707 3.7959 1.88332 3.49701C2.01956 3.12833 2.23547 2.79299 2.52118 2.52057C2.79677 2.23828 3.12893 2.02242 3.49768 1.88634C3.79662 1.7701 4.24841 1.63065 5.07544 1.59407C5.97227 1.55424 6.24137 1.54425 8.50993 1.54425C10.782 1.54425 11.051 1.55424 11.9445 1.59407C12.7749 1.63065 13.2234 1.7701 13.5223 1.88634C13.8909 2.02242 14.2265 2.23828 14.4988 2.52057C14.7811 2.79623 14.997 3.12833 15.1333 3.49701C15.2495 3.7959 15.389 4.24747 15.4256 5.07447C15.4654 5.97113 15.4754 6.24005 15.4754 8.5083C15.4754 10.7766 15.4654 11.0422 15.4256 11.9389Z"
-                          fill="#A7A7A7"
+                        <rect
+                          x="1"
+                          y="1"
+                          width="34"
+                          height="34"
+                          rx="12"
+                          fill="#282753"
+                        />
+                        <rect
+                          x="1"
+                          y="1"
+                          width="34"
+                          height="34"
+                          rx="12"
+                          stroke="url(#paint0_linear_9185_1056)"
+                          stroke-width="2"
                         />
                         <path
-                          d="M8.50331 4.13461C6.0919 4.13461 4.1354 6.09061 4.1354 8.50169C4.1354 10.9128 6.0919 12.8688 8.50331 12.8688C10.9148 12.8688 12.8712 10.9128 12.8712 8.50169C12.8712 6.09061 10.9148 4.13461 8.50331 4.13461ZM8.50331 11.3345C6.93891 11.3345 5.66995 10.0659 5.66995 8.50169C5.66995 6.93746 6.93891 5.66887 8.50331 5.66887C10.0678 5.66887 11.3367 6.93746 11.3367 8.50169C11.3367 10.0659 10.0678 11.3345 8.50331 11.3345Z"
-                          fill="#A7A7A7"
+                          d="M19.7124 16.6218L26.4133 9H24.8254L19.0071 15.6179L14.3599 9H9L16.0274 19.0074L9 27H10.588L16.7324 20.0113L21.6401 27H27L19.7124 16.6218ZM11.1602 10.1697H13.5992L24.8262 25.8835H22.3871L11.1602 10.1697Z"
+                          fill="#9292D2"
+                        />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_9185_1056"
+                            x1="3.38187"
+                            y1="0.999992"
+                            x2="19.5807"
+                            y2="38.2923"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="white" stop-opacity="0.4" />
+                            <stop
+                              offset="0.405687"
+                              stop-color="white"
+                              stop-opacity="0.01"
+                            />
+                            <stop
+                              offset="0.574372"
+                              stop-color="white"
+                              stop-opacity="0.01"
+                            />
+                            <stop
+                              offset="1"
+                              stop-color="white"
+                              stop-opacity="0.1"
+                            />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex-1 flex items-center justify-center gap-2 py-3 transition-all duration-200"
+                      onClick={() =>
+                        window.open(
+                          "https://www.telegram.com/moonbet.games/",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="36"
+                        height="36"
+                        viewBox="0 0 36 36"
+                        fill="none"
+                      >
+                        <rect
+                          x="1"
+                          y="1"
+                          width="34"
+                          height="34"
+                          rx="12"
+                          fill="#282753"
+                        />
+                        <rect
+                          x="1"
+                          y="1"
+                          width="34"
+                          height="34"
+                          rx="12"
+                          stroke="url(#paint0_linear_9185_1059)"
+                          stroke-width="2"
                         />
                         <path
-                          d="M14.0638 3.96194C14.0638 4.52495 13.6072 4.98146 13.0439 4.98146C12.4808 4.98146 12.0242 4.52495 12.0242 3.96194C12.0242 3.39881 12.4808 2.94243 13.0439 2.94243C13.6072 2.94243 14.0638 3.39881 14.0638 3.96194Z"
-                          fill="#A7A7A7"
+                          d="M16.0631 21.2041L15.7653 25.9505C16.1913 25.9505 16.3758 25.7431 16.5971 25.4941L18.5944 23.3308L22.733 26.7657C23.492 27.2451 24.0267 26.9926 24.2315 25.9743L26.9481 11.5482L26.9488 11.5473C27.1896 10.2757 26.5431 9.7785 25.8035 10.0904L9.83565 17.0188C8.74588 17.4982 8.76238 18.1867 9.6504 18.4986L13.7327 19.9376L23.2152 13.2133C23.6615 12.8784 24.0672 13.0637 23.7335 13.3986L16.0631 21.2041Z"
+                          fill="#9292D2"
                         />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_9185_1059"
+                            x1="3.38187"
+                            y1="0.999992"
+                            x2="19.5807"
+                            y2="38.2923"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="white" stop-opacity="0.4" />
+                            <stop
+                              offset="0.405687"
+                              stop-color="white"
+                              stop-opacity="0.01"
+                            />
+                            <stop
+                              offset="0.574372"
+                              stop-color="white"
+                              stop-opacity="0.01"
+                            />
+                            <stop
+                              offset="1"
+                              stop-color="white"
+                              stop-opacity="0.1"
+                            />
+                          </linearGradient>
+                        </defs>
                       </svg>
                     </motion.button>
                   </div>

@@ -252,7 +252,7 @@ const LiveCasino = () => {
               </svg>
             </motion.span>
             <motion.h3
-              className="text-[#CED5E3] font-[400]  text-[16px] md:text-[18px] leading-[44px] 
+              className="font-[400]  text-[16px] md:text-[18px] leading-[44px] 
                      font-['Neuropolitical'] not-italic uppercase"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}

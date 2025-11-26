@@ -7,29 +7,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Font Declarations */
+/* Neue Plak Regular */
 @font-face {
   font-family: "Neue Plak";
-  src: url("/fonts/Neue-Plak-Regular.woff") format("woff");
-  font-style: normal;
-  font-display: swap;
+  src: url("/fonts/Neue Plak Regular.ttf") format("truetype"),
+    url("/fonts/Neue-Plak-Regular.woff") format("woff");
   font-weight: 400;
-}
-
-@font-face {
-  font-family: "Neue Plak";
-  src: url("/fonts/Neue-Plak-Bold.woff") format("woff");
   font-style: normal;
   font-display: swap;
-  font-weight: 700;
 }
 
+/* Neue Plak Medium */
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/Neue Plak Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neue Plak SemiBold */
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/Neue Plak SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neue Plak Bold */
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/Neue Plak Bold.ttf") format("truetype"),
+    url("/fonts/Neue-Plak-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neue Plak Black */
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/Neue Plak Black.ttf") format("truetype"),
+    url("/fonts/Neue-Plak-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neuropolitical */
 @font-face {
   font-family: "Neuropolitical";
   src: url("/fonts/neuropolitical.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
-  font-weight: 400;
 }
 
 /* Base Layer */
@@ -50,6 +82,7 @@
     font-family: "Neue Plak", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: "Neue Plak";
   }
 
   h1,
@@ -1418,4 +1451,45 @@
     )
   );
   box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* CATEGORY BUTTON — NORMAL */
+.cat-normal {
+  border-radius: 8px;
+
+  background: #282753;
+  transition: all 0.2s ease-in-out;
+}
+.cat-normal svg path {
+  fill: #9292d2;
+}
+.cat-normal span {
+  color: #9292d2;
+}
+
+/* CATEGORY BUTTON — HOVER */
+.cat-normal:hover {
+  background: #35326b;
+}
+.cat-normal:hover svg path {
+  fill: #c8c8e1;
+}
+.cat-normal:hover span {
+  color: #c8c8e1;
+}
+
+/* CATEGORY BUTTON — ACTIVE */
+.cat-active {
+  border-radius: 8px;
+  background: var(--CTA-HOVER, linear-gradient(0deg, #5a3799 0%, #dc1fff 100%));
+  box-shadow: inset 0 3px 3px rgba(255, 255, 255, 0.25),
+    0 3px 3px rgba(0, 0, 0, 0.25);
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+.cat-active svg path {
+  fill: #e1e1e1;
+}
+.cat-active span {
+  color: #e1e1e1;
 }
