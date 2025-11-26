@@ -410,7 +410,7 @@ const LiveCasino = () => {
 
                       {/* Overlay with Play Button */}
                       <motion.div
-                        className="absolute inset-0  /70 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
+                        className="absolute inset-0  bg-[#080808]/70 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
                         variants={overlayVariants}
                         initial="idle"
                         animate="idle"

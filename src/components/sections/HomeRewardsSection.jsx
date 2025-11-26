@@ -143,7 +143,6 @@ const HomeRewardsSection = () => {
                   style={{
                     width: "100%",
                     height: "195px",
-                    background: "#2A2A2A",
                     boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
                     backdropFilter: "blur(2px)",
                   }}
