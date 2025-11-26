@@ -1264,12 +1264,12 @@
 }
 
 .cryptp-para {
-  color: #7d7d7d;
+  color: #7171b4;
   text-align: center;
   font-family: "Neue Plak";
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 20px; /* 142.857% */
   letter-spacing: var(--Letter-Spacing, 0);
 }
@@ -1492,4 +1492,169 @@
 }
 .cat-active span {
   color: #e1e1e1;
+}
+
+/* FILTER BUTTON — NORMAL */
+.filter-normal {
+  background: #0d0e36;
+  border-radius: 60px;
+  transition: all 0.2s ease-in-out;
+}
+.filter-normal svg path {
+  fill: #555594;
+}
+.filter-normal span {
+  color: #555594;
+}
+
+/* FILTER BUTTON — HOVER */
+.filter-normal:hover {
+  background: #282753;
+}
+.filter-normal:hover svg path {
+  fill: #9292d2;
+}
+.filter-normal:hover span {
+  color: #9292d2;
+}
+
+/* FILTER BUTTON — ACTIVE (your existing one, corrected) */
+.cat-active2 {
+  background: #35326b;
+  border-radius: 60px;
+  transition: all 0.2s ease-in-out;
+}
+.cat-active2 svg path {
+  fill: #c8c8e1;
+}
+.cat-active2 span {
+  color: #c8c8e1;
+}
+
+/* ============================================================
+   GLOBAL FIX: When sidebar is collapsed NO background must show
+============================================================ */
+
+.sidebar-collapsed .sb-item-normal,
+.sidebar-collapsed .sb-item-active,
+.sidebar-collapsed .game-normal,
+.sidebar-collapsed .game-active {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.sidebar-collapsed .sb-item-normal:hover,
+.sidebar-collapsed .game-normal:hover {
+  background: transparent !important;
+}
+
+.sidebar-collapsed img,
+.sidebar-collapsed svg path {
+  filter: brightness(0) invert(1) !important; /* white icon when collapsed */
+}
+
+.sidebar-collapsed span {
+  color: #9292d2 !important;
+}
+
+/* ============================================================
+   GAME MENU — NORMAL STATE
+============================================================ */
+.game-normal {
+  background: #282753;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+.game-normal span,
+.game-normal .menu-icon {
+  color: #e1e1e1;
+}
+.game-normal img,
+.game-normal svg path {
+  filter: brightness(0) saturate(100%) invert(70%) sepia(8%) saturate(900%)
+    hue-rotate(200deg) brightness(90%);
+}
+
+/* GAME MENU — HOVER STATE */
+.game-normal:hover {
+  background: linear-gradient(0deg, #35326b 0%, rgba(53, 50, 107, 0) 100%);
+}
+.game-normal:hover span,
+.game-normal:hover .menu-icon {
+  color: #ffffff;
+}
+.game-normal:hover img,
+.game-normal:hover svg path {
+  filter: brightness(0) invert(1);
+}
+
+/* GAME MENU — ACTIVE STATE */
+.game-active {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(
+    0deg,
+    rgba(220, 31, 255, 0.8) 0%,
+    rgba(220, 31, 255, 0) 100%
+  );
+  box-shadow: inset 0 3px 3px rgba(255, 255, 255, 0.25),
+    0 3px 3px rgba(0, 0, 0, 0.25);
+}
+.game-active span,
+.game-active .menu-icon {
+  color: #ffffff;
+}
+.game-active img,
+.game-active svg path {
+  filter: brightness(0) invert(1);
+}
+
+/* ============================================================
+   SIDEBAR MENU — NORMAL STATE
+============================================================ */
+.sb-item-normal {
+  background: #282753;
+  border-radius: 8px;
+  transition: all 0.25s ease-in-out;
+}
+.sb-item-normal span {
+  color: #e1e1e1;
+}
+.sb-item-normal img,
+.sb-item-normal svg path {
+  filter: brightness(0) saturate(100%) invert(70%) sepia(8%) saturate(900%)
+    hue-rotate(200deg) brightness(90%);
+}
+
+/* SIDEBAR MENU — HOVER STATE */
+.sb-item-normal:hover {
+  background: linear-gradient(0deg, #35326b 0%, rgba(53, 50, 107, 0) 100%);
+}
+.sb-item-normal:hover span {
+  color: #ffffff;
+}
+.sb-item-normal:hover img,
+.sb-item-normal:hover svg path {
+  filter: brightness(0) invert(1);
+}
+
+/* SIDEBAR MENU — ACTIVE STATE */
+.sb-item-active {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(
+    0deg,
+    rgba(220, 31, 255, 0.8) 0%,
+    rgba(220, 31, 255, 0) 100%
+  );
+  box-shadow: inset 0 3px 3px rgba(255, 255, 255, 0.25),
+    0 3px 3px rgba(0, 0, 0, 0.25);
+}
+.sb-item-active span {
+  color: #ffffff;
+}
+.sb-item-active img,
+.sb-item-active svg path {
+  filter: brightness(0) invert(1);
 }

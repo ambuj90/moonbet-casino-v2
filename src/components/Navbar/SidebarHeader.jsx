@@ -660,7 +660,7 @@ const SidebarHeader = ({
                           className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] hover:text-white/90 ${
                             sidebarCollapsed
                               ? "justify-center"
-                              : "justify-between bg-white/10 shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)]"
+                              : "justify-between bg-[#282753] shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)]"
                           } px-3 py-2 transition-all duration-200 group relative 
                               ${getMenuLinkClass(
                                 item,

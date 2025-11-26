@@ -68,8 +68,6 @@ const Casino = () => {
         />
         <ProvidersSection />
         <HomeFAQSection />
-        <CryptoPaymentSection />
-        <TrustBadgesFinal />
       </div>
     </>
   );
