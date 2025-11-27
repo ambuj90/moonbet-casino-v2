@@ -7,14 +7,14 @@ const BrandSection = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   const providers = [
-    { id: 9, name: "3oaks", logo: "/brands/img9.webp" },
-    { id: 3, name: "BGaming", logo: "/brands/img3.webp" },
-    { id: 2, name: "Evolution", logo: "/brands/img2.webp" },
-    { id: 1, name: "Pragmatic Play", logo: "/brands/img1.webp" },
-    { id: 7, name: "Spribe", logo: "/brands/img7.webp" },
-    { id: 8, name: "Endorphina", logo: "/brands/img8.webp" },
-    { id: 4, name: "Hacksaw Gaming", logo: "/brands/img4.webp" },
-    { id: 5, name: "Thunderkick", logo: "/brands/img5.webp" },
+    { id: 1, name: "Pragmatic Play", logo: "/brands/img1.svg" },
+    { id: 2, name: "Evolution", logo: "/brands/img2.svg" },
+    { id: 3, name: "BGaming", logo: "/brands/img3.svg" },
+    { id: 4, name: "Hacksaw Gaming", logo: "/brands/img4.svg" },
+    { id: 5, name: "Thunderkick", logo: "/brands/img5.svg" },
+    { id: 6, name: "Thunderkick", logo: "/brands/img6.svg" },
+    { id: 7, name: "Spribe", logo: "/brands/img7.svg" },
+    { id: 8, name: "Endorphina", logo: "/brands/img8.svg" },
   ];
 
   const checkScrollPosition = () => {
@@ -93,14 +93,12 @@ const BrandSection = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.05 }}
                 className="trust_btn
-                 /20 
-                rounded-[14px] 
                 flex items-center justify-center
                 w-full
                 max-w-[230px]
                 h-[80px]
                 sm:h-[85px]
-                md:h-[70px]
+                md:h-[60px]
                 hover: /10
                 transition-all 
                 duration-300

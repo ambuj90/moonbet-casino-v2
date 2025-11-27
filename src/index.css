@@ -866,7 +866,7 @@
 .customborder-footer:before {
   content: "";
   position: absolute;
-  top: 10% !important;
+  top: 5% !important;
   inset: 0;
   border-radius: inherit;
   padding: 1px;
@@ -1662,10 +1662,10 @@
 .customborder-footer-right::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 15px;
   right: 0; /* move border to the right side */
   width: 2px; /* thin vertical line */
-  height: 100%; /* full height */
+  height: 60%; /* full height */
   border-radius: inherit;
   background: radial-gradient(
     circle at center,

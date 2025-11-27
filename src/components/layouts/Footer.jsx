@@ -145,7 +145,7 @@ const Footer = () => {
       <footer
         className="customborder-footer relative w-full overflow-hidden"
         style={{
-          paddingTop: "clamp(30px, 8vw, 100px)",
+          paddingTop: "clamp(30px, 4vw, 100px)",
         }}
       >
         <CryptoPaymentSection />
