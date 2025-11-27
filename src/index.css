@@ -1658,3 +1658,29 @@
 .sb-item-active svg path {
   filter: brightness(0) invert(1);
 }
+
+.customborder-footer-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0; /* move border to the right side */
+  width: 2px; /* thin vertical line */
+  height: 100%; /* full height */
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0.05) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  /* mask logic */
+  -webkit-mask: linear-gradient(#ffffff08 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+  transition: background 0.3s ease;
+}

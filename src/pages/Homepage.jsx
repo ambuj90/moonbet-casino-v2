@@ -39,10 +39,12 @@ const Homepage = () => {
       <LiveCasino />
       {/* <CircularWheel /> */}
       <ProvidersSection />
-      <BrandSection />
+
       <GameBetsSection />
       <HomeFAQSection />
       {/* <AwardSection /> */}
+      <TruestedSection />
+      <BrandSection />
     </div>
   );
 };

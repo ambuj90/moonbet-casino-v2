@@ -7,7 +7,6 @@ const BrandSection = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   const providers = [
-    { id: 10, name: "Nolimit", logo: "/brands/img10.webp" },
     { id: 9, name: "3oaks", logo: "/brands/img9.webp" },
     { id: 3, name: "BGaming", logo: "/brands/img3.webp" },
     { id: 2, name: "Evolution", logo: "/brands/img2.webp" },
@@ -67,7 +66,7 @@ const BrandSection = () => {
   };
 
   return (
-    <section className="w-full py-8 relative">
+    <section className="w-full py-4 relative">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -93,7 +92,19 @@ const BrandSection = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.05 }}
-                className="flex-shrink-0 w-[25%] sm:w-[140px] sm:h-[60px] h-[50px]  /20 rounded-lg flex items-center justify-center cursor-pointer hover:bg-white/5 transition-all duration-300"
+                className="trust_btn
+                 /20 
+                rounded-[14px] 
+                flex items-center justify-center
+                w-full
+                max-w-[230px]
+                h-[80px]
+                sm:h-[85px]
+                md:h-[70px]
+                hover: /10
+                transition-all 
+                duration-300
+              "
               >
                 <img
                   src={provider.logo}

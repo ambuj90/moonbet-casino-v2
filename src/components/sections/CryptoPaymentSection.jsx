@@ -25,7 +25,7 @@ const CryptoPaymentSection = () => {
   ];
 
   return (
-    <section className="w-full py-10 px-4 flex justify-center items-center">
+    <section className="w-full py-2 px-4 flex justify-center items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

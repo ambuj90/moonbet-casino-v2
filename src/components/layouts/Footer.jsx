@@ -148,7 +148,6 @@ const Footer = () => {
           paddingTop: "clamp(30px, 8vw, 100px)",
         }}
       >
-        <TruestedSection />
         <CryptoPaymentSection />
         {/* Footer Content */}
         <motion.div
