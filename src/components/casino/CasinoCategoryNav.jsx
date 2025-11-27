@@ -1203,9 +1203,10 @@ const CasinoCategoryNav = ({
 
         {/* --- Filters Row --- */}
 
-        <div className="flex flex-wrap sm:flex-nowrap items-start sm:items-center gap-3 w-full">
+        <div className="flex flex-wrap sm:flex-nowrap items-start sm:items-center gap-3  w-full">
           {/* Search + Static Filters */}
-          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 flex-shrink-0 w-full sm:w-auto">
+          {/* --- Filters Row --- */}
+          <div className="md:flex flex-wrap sm:flex-nowrap items-center gap-3 flex-shrink-0 w-full hidden sm:w-auto">
             {/* Search Bar */}
             <div className="crypto_btn relative w-full sm:w-64 lg:w-72">
               <input
@@ -1213,8 +1214,8 @@ const CasinoCategoryNav = ({
                 placeholder="Search for a casino game"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2.5 pl-10 text-sm text-[#7171B4] placeholder-gray-500 focus:border-[#F07730]/50 focus:bg-white/10 focus:outline-none transition-all
-                  rounded-[60px] bg-[#0D0E36]"
+                className="w-full px-4 py-2.5 pl-10 text-sm text-[#7171B4] placeholder-[#7171B4] focus:border-[#F07730]/50 focus:bg-white/10 focus:outline-none transition-all
+        rounded-[60px] bg-[#0D0E36]"
               />
               <svg
                 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"
@@ -1231,20 +1232,59 @@ const CasinoCategoryNav = ({
               </svg>
             </div>
 
-            {/* Studios */}
-            <button
-              className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto
-                 rounded-[60px] bg-[#0D0E36]"
-            >
+            {/* Studios - Hide on mobile */}
+            <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36] sm:flex">
               <span className="text-sm cryptp-para">Studios</span>
               <ChevronRight className="w-4 h-4 rotate-90 text-[#7171B4]" />
             </button>
 
-            {/* Filters */}
-            <button
-              className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto
-                rounded-[60px] bg-[#0D0E36]"
-            >
+            {/* Filters - Hide on mobile */}
+            <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36]  sm:flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+              >
+                <path
+                  d="M13 3.25C13 2.80499 13.132 2.36998 13.3792 1.99997C13.6264 1.62996 13.9778 1.34157 14.389 1.17127C14.8001 1.00097 15.2525 0.956417 15.689 1.04323C16.1254 1.13005 16.5263 1.34434 16.841 1.65901C17.1557 1.97368 17.37 2.37459 17.4568 2.81105C17.5436 3.24751 17.499 3.6999 17.3287 4.11104C17.1584 4.52217 16.87 4.87357 16.5 5.12081C16.13 5.36804 15.695 5.5 15.25 5.5C14.6533 5.5 14.081 5.26295 13.659 4.84099C13.2371 4.41903 13 3.84674 13 3.25ZM1.75 4H10.75C10.9489 4 11.1397 3.92098 11.2803 3.78033C11.421 3.63968 11.5 3.44891 11.5 3.25C11.5 3.05109 11.421 2.86032 11.2803 2.71967C11.1397 2.57902 10.9489 2.5 10.75 2.5H1.75C1.55109 2.5 1.36032 2.57902 1.21967 2.71967C1.07902 2.86032 1 3.05109 1 3.25C1 3.44891 1.07902 3.63968 1.21967 3.78033C1.36032 3.92098 1.55109 4 1.75 4ZM6.25 6.25C5.78579 6.25131 5.33335 6.39616 4.9547 6.6647C4.57605 6.93325 4.28973 7.31234 4.135 7.75H1.75C1.55109 7.75 1.36032 7.82902 1.21967 7.96967C1.07902 8.11032 1 8.30109 1 8.5C1 8.69891 1.07902 8.88968 1.21967 9.03033C1.36032 9.17098 1.55109 9.25 1.75 9.25H4.135C4.27259 9.63916 4.51458 9.98297 4.83448 10.2438C5.15439 10.5046 5.53988 10.6725 5.94877 10.7289C6.35766 10.7853 6.77419 10.7281 7.15278 10.5637C7.53137 10.3992 7.85742 10.1338 8.09526 9.79645C8.33309 9.45909 8.47355 9.06281 8.50125 8.65098C8.52894 8.23914 8.44282 7.82762 8.2523 7.46146C8.06178 7.09529 7.7742 6.78859 7.42105 6.57492C7.06789 6.36125 6.66276 6.24884 6.25 6.25ZM16.75 7.75H10.75C10.5511 7.75 10.3603 7.82902 10.2197 7.96967C10.079 8.11032 10 8.30109 10 8.5C10 8.69891 10.079 8.88968 10.2197 9.03033C10.3603 9.17098 10.5511 9.25 10.75 9.25H16.75C16.9489 9.25 17.1397 9.17098 17.2803 9.03033C17.421 8.88968 17.5 8.69891 17.5 8.5C17.5 8.30109 17.421 8.11032 17.2803 7.96967C17.1397 7.82902 16.9489 7.75 16.75 7.75ZM7.75 13H1.75C1.55109 13 1.36032 13.079 1.21967 13.2197C1.07902 13.3603 1 13.5511 1 13.75C1 13.9489 1.07902 14.1397 1.21967 14.2803C1.36032 14.421 1.55109 14.5 1.75 14.5H7.75C7.94891 14.5 8.13968 14.421 8.28033 14.2803C8.42098 14.1397 8.5 13.9489 8.5 13.75C8.5 13.5511 8.42098 13.3603 8.28033 13.2197C8.13968 13.079 7.94891 13 7.75 13ZM16.75 13H14.365C14.1881 12.4996 13.8399 12.0778 13.3821 11.8093C12.9243 11.5407 12.3863 11.4427 11.8632 11.5324C11.3401 11.6222 10.8655 11.894 10.5234 12.2998C10.1813 12.7056 9.99368 13.2192 9.99368 13.75C9.99368 14.2808 10.1813 14.7944 10.5234 15.2002C10.8655 15.606 11.3401 15.8778 11.8632 15.9676C12.3863 16.0574 12.9243 15.9593 13.3821 15.6907C13.8399 15.4222 14.1881 15.0004 14.365 14.5H16.75C16.9489 14.5 17.1397 14.421 17.2803 14.2803C17.421 14.1397 17.5 13.9489 17.5 13.75C17.5 13.5511 17.421 13.3603 17.2803 13.2197C17.1397 13.079 16.9489 13 16.75 13Z"
+                  fill="#7171B4"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Make it responsive to the image size on mobile */}
+          <div className="flex flex-wrap items-center justify-between sm:hidden w-full">
+            <div className="flex gap-3 crypto_btn">
+              {/* Search bar on mobile */}
+              <input
+                type="text"
+                placeholder="Search for a casino game"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-2.5 pl-10 text-sm text-[#7171B4] placeholder-[#7171B4] focus:border-[#F07730]/50 focus:bg-white/10 focus:outline-none transition-all
+        rounded-[60px] bg-[#0D0E36]"
+              />
+              <svg
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 bg-[#0D0E36] text-sm text-[#7171B4] rounded-[60px]">
+              Studios
+            </button>
+            <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 bg-[#0D0E36] text-sm text-[#7171B4] rounded-[60px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
