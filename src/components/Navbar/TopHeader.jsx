@@ -107,16 +107,15 @@ const TopHeader = ({
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-[150px] h-[36px] 
-                      bg-gradient-to-r from-[#F07730] to-[#EFD28E]
-                      text-black font-[600] text-[16px] 
-                      font-['Neue_Plack',sans-serif]
-                      rounded-lg shadow-md 
-                      transition-all duration-300
-                      hover:from-[#F07730]/90 hover:to-[#EFD28E]/90
-                      flex items-center justify-center"
+                    className="px-8 py-3 text-white text-sm font-semibold rounded-xl font-[600] text-[16px] font-['Neue_Plack',sans-serif] shadow-md transition-all duration-300 hover:from-[#5A3799]/90 hover:to-[#DC1FFF]/90 flex items-center justify-center"
+                    style={{
+                      background:
+                        "linear-gradient(0deg, #5A3799 0%, #DC1FFF 100%)",
+                      boxShadow:
+                        "inset 0 3px 3px rgba(255,255,255,0.25), 0 3px 3px rgba(0,0,0,0.25)",
+                    }}
                   >
-                    LOGIN
+                    Login
                   </motion.button>
                 }
                 className="p-2 hover:bg-white/10 rounded-lg transition-colors"
