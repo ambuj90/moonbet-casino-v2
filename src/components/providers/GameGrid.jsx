@@ -221,7 +221,10 @@ const GameGrid = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleLoadMore}
-                  className="px-6 py-2 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-full text-white font-semibold text-sm shadow-md"
+                  className="px-6 py-2 rounded-full text-white font-semibold text-sm shadow-md"
+                  style={{
+                    background: "var(--cta-pink-gradient )",
+                  }}
                 >
                   LOAD MORE
                 </motion.button>

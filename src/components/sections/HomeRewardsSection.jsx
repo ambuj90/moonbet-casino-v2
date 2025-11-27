@@ -154,15 +154,14 @@ const HomeRewardsSection = () => {
                   >
                     {/* Badge */}
                     <span
-                      className="inline-block w-fit px-3 py-0 rounded-full"
+                      className="inline-block w-fit px-3 py-0 rounded-full text-bold"
                       style={{
-                        background: "var(--color-bg-elevated)",
-                        fontFamily: "Neue Plak, sans-serif",
-                        fontSize: "14px",
-                        fontWeight: 600,
-                        lineHeight: "24px",
+                        color: "var(--text-charcoal",
+                        fontStyle: "normal",
+                        fontWeight: 700,
+                        lineHeight: "24px" /* 171.429% */,
                         borderRadius: "4px",
-                        padding: "0px 12px",
+                        background: "#C8C8E1",
                       }}
                     >
                       {reward.badge}

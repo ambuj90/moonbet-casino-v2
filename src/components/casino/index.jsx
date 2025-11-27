@@ -18,20 +18,17 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
         const userId = user.id || "690b0290cb255ca66b14a529";
         let apiUrl = "";
 
-        // 🔥 1. Recent Games
+        // 1. Recent Games
         if (type === "recent") {
           apiUrl = `/wallet-service/api/games?sortBy=recent&userId=${userId}`;
         }
 
-        // 🔥 2. Favourite Games
+        // 2. Favourite Games
         else if (type === "favorites") {
           apiUrl = `/wallet-service/api/games?sortBy=favourite&userId=${userId}`;
-          // 🔥 2. live casino Games
-        } else if (type === "live-casino") {
-          apiUrl = `/wallet-service/api/games?name=casino`;
         }
 
-        // 🔥 3. All other categories
+        // 3. All other categories
         else {
           const params = new URLSearchParams();
 
@@ -43,15 +40,13 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
           apiUrl = `/wallet-service/api/games${query}`;
         }
 
-        console.log("🔗 FINAL GameGrid API:", apiUrl);
-
         const { data } = await axios.get(apiUrl);
 
         if (data?.success) setGames(data.data || []);
         else if (Array.isArray(data?.data)) setGames(data.data);
         else setGames([]);
       } catch (err) {
-        console.error("❌ Error fetching games:", err);
+        console.error("Error fetching games:", err);
         setGames([]);
       } finally {
         setLoading(false);
@@ -78,9 +73,9 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
   };
 
   return (
-    <section className="w-full   py-10">
+    <section className="w-full py-10">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="  font-['Neuropolitical'] text-xl mb-6 uppercase">
+        <h2 className="font-['Neuropolitical'] text-xl mb-6 uppercase">
           {type === "all" ? "ALL" : type.toUpperCase()} GAMES
         </h2>
 
@@ -100,12 +95,10 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                   key={game.uuid || i}
                   variants={cardVariants}
                   custom={i}
-                  className="relative rounded-xl overflow-hidden border border-white/10  cursor-pointer group transition-all"
-                  style={{
+                  className="relative overflow-hidden cursor-pointer group transition-all"
+                  whileHover={{
+                    borderColor: "rgba(240, 119, 48, 0.5)",
                     boxShadow: "0 10px 30px rgba(240, 119, 48, 0.2)",
-                    borderRadius: "12px",
-                    background: "rgba(8, 8, 8, 0.30)",
-                    backdropFilter: "blur(2px)",
                   }}
                 >
                   {/* Favorite Icon (Top Right) */}
@@ -117,10 +110,10 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                         [game.uuid]: !prev[game.uuid],
                       }));
                     }}
-                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px]   transition-all duration-300 z-50 ${
+                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-50 ${
                       favorite?.[game.uuid]
                         ? ""
-                        : " hover:bg-[rgba(240,119,48,0.10)]"
+                        : "hover:bg-[rgba(240,119,48,0.10)]"
                     }`}
                   >
                     <svg
@@ -128,23 +121,91 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                       width="18"
                       height="16"
                       viewBox="0 0 18 16"
-                      fill={
-                        favorite?.[game.uuid]
-                          ? "rgba(209, 51, 51, 1)"
-                          : "#7D7D7D"
-                      }
-                      className="transition-all duration-300"
+                      fill="none"
                     >
-                      <path d="M12.5107 0C13.9776 7.87092e-05 15.3563 0.572114 16.3936 1.60938C18.5348 3.75068 18.5349 7.23458 16.3936 9.37598L10.3721 15.3984C10.0067 15.7637 9.51929 15.9648 9 15.9648C8.48071 15.9648 7.99326 15.7636 7.62793 15.3984L1.60547 9.37598C-0.53553 7.23467 -0.535317 3.75066 1.60547 1.60938C2.64272 0.572084 4.02233 4.57993e-05 5.48926 0C6.78661 0 8.01573 0.44767 9 1.26855C9.98434 0.44767 11.2133 0 12.5107 0Z" />
+                      <defs>
+                        {/* Define the gradient used for the favorite state */}
+                        <linearGradient
+                          id="favoriteGradient"
+                          x1="0%"
+                          y1="0%"
+                          x2="100%"
+                          y2="0%"
+                        >
+                          <stop offset="0%" stopColor="#5A3799" />
+                          <stop offset="100%" stopColor="#DC1FFF" />
+                        </linearGradient>
+                      </defs>
+
+                      <g filter="url(#filter0_i_9169_775)">
+                        <path
+                          d="M12.5109 0C13.9778 8.11794e-05 15.3565 0.572116 16.3938 1.60938C18.535 3.75069 18.5351 7.23458 16.3938 9.37598L10.3723 15.3984C10.007 15.7637 9.51949 15.9648 9.00021 15.9648C8.48092 15.9648 7.99347 15.7636 7.62813 15.3984L1.60567 9.37598C-0.535331 7.23467 -0.535118 3.75066 1.60567 1.60938C2.64293 0.572082 4.02253 4.3329e-05 5.48946 0C6.78681 0 8.01594 0.44767 9.00021 1.26855C9.98454 0.44767 11.2135 0 12.5109 0Z"
+                          fill={
+                            favorite?.[game.uuid]
+                              ? "url(#favoriteGradient)" // Gradient for favorite games
+                              : "#16192DB2" // Solid color for non-favorite games
+                          }
+                          fillOpacity="0.7"
+                        />
+                      </g>
+
+                      <defs>
+                        <filter
+                          id="filter0_i_9169_775"
+                          x="0"
+                          y="0"
+                          width="18.9997"
+                          height="16.9648"
+                          filterUnits="userSpaceOnUse"
+                          colorInterpolationFilters="sRGB"
+                        >
+                          <feFlood
+                            floodOpacity="0"
+                            result="BackgroundImageFix"
+                          />
+                          <feBlend
+                            mode="normal"
+                            in="SourceGraphic"
+                            in2="BackgroundImageFix"
+                            result="shape"
+                          />
+                          <feColorMatrix
+                            in="SourceAlpha"
+                            type="matrix"
+                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                            result="hardAlpha"
+                          />
+                          <feOffset dx="1" dy="1" />
+                          <feGaussianBlur stdDeviation="1" />
+                          <feComposite
+                            in2="hardAlpha"
+                            operator="arithmetic"
+                            k2="-1"
+                            k3="1"
+                          />
+                          <feColorMatrix
+                            type="matrix"
+                            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0"
+                          />
+                          <feBlend
+                            mode="normal"
+                            in2="shape"
+                            result="effect1_innerShadow_9169_775"
+                          />
+                        </filter>
+                      </defs>
                     </svg>
                   </button>
+
                   <div className="relative aspect-[18/12] overflow-hidden rounded-xl">
                     <motion.img
                       src={game.image}
                       alt={game.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0  /50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+
+                    {/* Overlay with Play Now Button */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
                       <motion.button
                         onClick={() => handlePlayNow(game.name)}
                         className="px-4 py-2 rounded-full text-white font-semibold text-sm"
@@ -207,6 +268,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                       </motion.button>
                     </div>
                   </div>
+
                   <div className="mt-2">
                     <div className="text-sm font-semibold text-white truncate">
                       {game.name}
@@ -223,7 +285,10 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleLoadMore}
-                  className="px-6 py-2 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-full text-white font-semibold text-sm shadow-md"
+                  className="px-6 py-2 rounded-full text-white font-semibold text-sm shadow-md"
+                  style={{
+                    background: "var(--cta-pink-gradient )",
+                  }}
                 >
                   LOAD MORE
                 </motion.button>

@@ -35,7 +35,7 @@ const TopHeader = ({
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 h-16 bg-[#1C1D49] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] border-b border-white/10 z-50"
+      className="fixed top-0 left-0 right-0 h-16 bg-[#1C1D49] z-50"
     >
       <div className="h-full px-4 lg:px-4 flex items-center justify-between">
         {/* Left Section - Logo & Hamburger */}
