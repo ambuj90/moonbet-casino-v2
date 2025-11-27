@@ -35,22 +35,13 @@ const CryptoPaymentSection = () => {
         {/* LEFT — Desktop left, Mobile center */}
         <div className="flex sm:justify-start justify-center">
           <p className=" text-white text-2xl sm:text-2xl">
-            <span className="text-[#00FF7F]">250%</span>{" "}
-            <span className="text-white/70">Deposit Bonus</span>
+            <span className="text-[#28C203] font-bold">250%</span>{" "}
+            <span className="text-[#7171B4]">Deposit Bonus</span>
           </p>
         </div>
 
         {/* CENTER — Always centered */}
-        <div className="flex justify-center items-center flex-wrap gap-4 sm:gap-2">
-          {payments.map((icon, i) => (
-            <img
-              key={i}
-              src={icon}
-              className="h-6 sm:h-7 object-contain opacity-90 hover:opacity-100 transition"
-              alt=""
-            />
-          ))}
-        </div>
+        <div className="flex justify-center items-center flex-wrap gap-4 sm:gap-2"></div>
 
         {/* RIGHT — Desktop right, Mobile center */}
         <div className="flex sm:justify-end justify-center gap-2 -sm:gap-2 -space-x-3">

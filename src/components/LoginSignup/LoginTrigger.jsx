@@ -187,12 +187,11 @@ export const LoginTrigger = ({
         {/* DROPDOWN MENU */}
         {dropdownOpen && (
           <div
-            className="absolute right-0 mt-3 w-44 rounded-[24px] py-2 z-[9999] shadow-2xl"
+            className="custom-header absolute right-0 mt-3 w-44 rounded-[24px] py-2 z-[9999] shadow-2xl"
             style={{
               background: "linear-gradient(180deg,#50545B 0%,#3C4046 100%)",
               backdropFilter: "blur(70px)",
               WebkitBackdropFilter: "blur(70px)",
-              border: "2px solid rgba(255,255,255,0.05)",
             }}
           >
             {/* PROFILE */}

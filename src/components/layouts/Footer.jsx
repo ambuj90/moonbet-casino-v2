@@ -149,6 +149,7 @@ const Footer = () => {
         }}
       >
         <TruestedSection />
+        <CryptoPaymentSection />
         {/* Footer Content */}
         <motion.div
           className="relative z-10 py-6 md:py-8 flex flex-col"
@@ -333,7 +334,7 @@ const Footer = () => {
                 </motion.div>
               </div>
             </div>
-            <CryptoPaymentSection />
+
             <TrustBadgesFinal />
             <div className="text-xs sm:text-sm text-white/60 text-center">
               © MoonBet {new Date().getFullYear()}
