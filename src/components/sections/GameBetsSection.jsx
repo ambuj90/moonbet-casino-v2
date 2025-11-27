@@ -4,12 +4,60 @@ import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useAuthStore } from "../../store/useAuthStore";
 
+// Card icon SVG component
+const CardIcon = () => (
+  <svg
+    className="w-4 h-4 mr-2 flex-shrink-0 text-gray-400"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="3"
+      y="4"
+      width="14"
+      height="18"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      fill="none"
+    />
+    <rect
+      x="7"
+      y="2"
+      width="14"
+      height="18"
+      rx="2"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      fill="none"
+    />
+  </svg>
+);
+
+// User icon SVG component
+const UserIcon = () => (
+  <svg
+    className="w-3.5 h-3.5 mr-1.5 flex-shrink-0 text-gray-400"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+    <path
+      d="M4 20c0-4 4-6 8-6s8 2 8 6"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 const GameBetsSection = () => {
   const { isLoggedIn, token } = useAuthStore();
   const [activeTab, setActiveTab] = useState("all");
   const [bets, setBets] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showAll, setShowAll] = useState(false);
   const intervalRef = useRef(null);
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -20,69 +68,93 @@ const GameBetsSection = () => {
 
     if (intervalRef.current) clearInterval(intervalRef.current);
 
-    intervalRef.current = setInterval(() => loadBets(true), 2000);
+    if (activeTab === "my" && isLoggedIn) {
+      intervalRef.current = setInterval(() => loadBets(true), 2000);
+    } else if (activeTab === "all") {
+      intervalRef.current = setInterval(() => loadBets(true), 2000);
+    }
 
     return () => clearInterval(intervalRef.current);
   }, [activeTab, isLoggedIn]);
 
   const loadBets = async (silent = false) => {
     if (!silent) setIsLoading(true);
-    const endpoint =
-      activeTab === "my"
-        ? `/wallet-service/api/games/bets/${userId}`
-        : "/wallet-service/api/games/bets";
 
     try {
-      const res = await axios.get(endpoint, {
-        headers:
-          activeTab === "my" ? { Authorization: `Bearer ${token}` } : undefined,
-      });
+      if (activeTab === "all") {
+        const res = await axios.get("/wallet-service/api/games/bets");
+        if (res.data?.success && Array.isArray(res.data.data)) {
+          setBets(res.data.data);
+        } else {
+          setBets([]);
+        }
+      } else if (activeTab === "my") {
+        if (!token || !isLoggedIn) {
+          setBets([]);
+          return;
+        }
 
-      if (res.data?.success && Array.isArray(res.data.data)) {
-        const formatted =
-          activeTab === "my"
-            ? res.data.data.map((b) => ({
-                game: b.game || "unknown",
-                user: "You",
-                betAmount: b.amount,
-                multiplier: b.multiplier || "-",
-                payout: b.payout,
-                color:
-                  b.type === "win" || b.type === "refund" ? "green" : "red",
-              }))
-            : res.data.data;
+        const res = await axios.get(
+          `/wallet-service/api/games/bets/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        setBets(formatted);
-      } else {
-        setBets([]);
+        if (res.data?.success && Array.isArray(res.data.data)) {
+          const formatted = res.data.data.map((b) => ({
+            game: b.game || "unknown",
+            user: "You",
+            betAmount: b.amount,
+            multiplier: b.multiplier || "-",
+            payout: b.payout,
+            color: b.type === "win" || b.type === "refund" ? "green" : "red",
+            time: new Date(b.createdAt).toLocaleTimeString(),
+          }));
+          setBets(formatted);
+        } else {
+          setBets([]);
+        }
       }
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching bets:", err);
       setBets([]);
     } finally {
       if (!silent) setIsLoading(false);
     }
   };
 
-  const displayedBets = showAll ? bets : bets.slice(0, 15);
-
   return (
     <section className="w-full py-12 sm:py-16 md:py-20">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Tabs */}
-        <div className="bet_btn flex gap-2 mb-6 p-1 overflow-x-auto rounded-[50px] scrollbar-hide w-fit">
+        <div
+          className="bet_btn flex gap-1 mb-4 sm:mb-6 p-1 rounded-full overflow-x-auto scrollbar-hide w-fit"
+          style={{
+            background: "#282753",
+          }}
+        >
           {["all", "my"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`relative px-6 py-2 rounded-[50px] font-semibold ${
-                activeTab === tab ? "text-white" : "text-[#9292D2]"
+              className={`relative px-5 sm:px-6 py-2 font-medium text-sm rounded-full transition-all duration-200 ${
+                activeTab === tab
+                  ? "text-white"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
               {activeTab === tab && (
                 <motion.div
                   layoutId="activeTab"
-                  className="custom-btn absolute inset-0 rounded-[50px]"
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background:
+                      "linear-gradient(0deg, #5A3799 0%, #DC1FFF 100%)",
+                  }}
+                  transition={{ type: "spring", duration: 0.4 }}
                 />
               )}
               <span className="relative z-10">
@@ -92,56 +164,107 @@ const GameBetsSection = () => {
           ))}
         </div>
 
-        {/* Table */}
+        {/* Bets Table */}
         <motion.div
-          className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl
-          rounded-2xl border border-white/10 overflow-hidden px-5 pb-5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-xl overflow-hidden"
+          style={{
+            background: "#1C1D49",
+          }}
         >
-          {/* HEADER (Always 5 columns, unified spacing) */}
-          <div className="grid grid-cols-5 px-5 py-3 text-xs lg:text-sm font-medium text-[#555594]">
-            <div>Game</div>
-            <div>User</div>
-            <div className="text-center">Bet Amount</div>
-            <div className="text-center">Multiplier</div>
-            <div className="text-right">Payout</div>
+          {/* Header - Desktop: 5 columns, Mobile: 2 columns */}
+          <div className="grid grid-cols-2 md:grid-cols-5 px-4 md:px-6 py-3 ">
+            <div className="text-[#555594] text-xs font-medium uppercase tracking-wider">
+              Game
+            </div>
+            <div className="hidden md:block text-[#555594] text-xs font-medium uppercase tracking-wider">
+              User
+            </div>
+            <div className="hidden md:block text-[#555594] text-xs font-medium uppercase tracking-wider text-center">
+              Bet Amount
+            </div>
+            <div className="hidden md:block text-[#555594] text-xs font-medium uppercase tracking-wider text-center">
+              Multiplier
+            </div>
+            <div className="text-[#555594] text-xs font-medium uppercase tracking-wider text-right">
+              Payout
+            </div>
           </div>
 
-          {/* BODY */}
-          <div className="divide-y divide-transparent">
-            <AnimatePresence>
+          {/* Body */}
+          <div>
+            <AnimatePresence mode="popLayout">
               {isLoading ? (
-                <div className="p-8 text-center text-gray-400">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F07730] mx-auto"></div>
-                </div>
-              ) : displayedBets.length === 0 ? (
-                <div className="p-8 text-center text-gray-400">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="p-8 text-center text-gray-400"
+                >
+                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+                </motion.div>
+              ) : !isLoggedIn && activeTab === "my" ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="p-8 text-center text-gray-400"
+                >
+                  Please log in to see your bets.
+                </motion.div>
+              ) : bets.length === 0 ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="p-8 text-center text-gray-400"
+                >
                   No bets to display.
-                </div>
+                </motion.div>
               ) : (
-                displayedBets.map((bet, index) => (
+                bets.map((bet, index) => (
                   <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
+                    key={`${bet.game}-${index}-${bet.time || Date.now()}`}
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className={`grid grid-cols-5 px-5 py-3 text-xs lg:text-sm rounded-lg ${
-                      index % 2 === 0 ? "bg-[#282753]" : ""
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25, delay: index * 0.015 }}
+                    className={`grid grid-cols-2 md:grid-cols-5 px-4 md:px-6 py-3 items-center mx-4 ${
+                      index % 2 === 0
+                        ? "bg-[#282753] rounded-xl "
+                        : "bg-transparent"
                     }`}
                   >
-                    <div className="text-white">{bet.game}</div>
-                    <div className="text-gray-300">{bet.user}</div>
-                    <div className="text-center text-white">
+                    {/* Game Column */}
+                    <div className="flex items-center text-white text-sm font-medium">
+                      <CardIcon />
+                      <span className="capitalize">{bet.game}</span>
+                    </div>
+
+                    {/* User Column - Desktop only */}
+                    <div className="hidden md:flex items-center text-gray-300 text-sm">
+                      <UserIcon />
+                      <span className="truncate max-w-[80px]">{bet.user}</span>
+                    </div>
+
+                    {/* Bet Amount Column - Desktop only */}
+                    <div className="hidden md:block text-white text-sm text-center">
                       {bet.betAmount}
                     </div>
-                    <div className="text-center text-gray-400">
-                      {bet.multiplier || "-"}
+
+                    {/* Multiplier Column - Desktop only */}
+                    <div className="hidden md:block text-gray-400 text-sm text-center">
+                      {bet.multiplier || "0.30x"}
                     </div>
+
+                    {/* Payout Column */}
                     <div
-                      className={`text-right font-semibold ${
+                      className={`text-sm font-semibold text-right ${
                         bet.color === "green"
                           ? "text-green-400"
-                          : "text-[#555594]"
+                          : "text-green-400"
                       }`}
                     >
                       {bet.payout}

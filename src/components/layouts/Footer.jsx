@@ -159,7 +159,7 @@ const Footer = () => {
         >
           <div className="max-w-[1366px] mx-auto px-4 sm:px-10 w-full flex flex-col h-full pt-6">
             {/* ================= TOP LOGO ROW ================= */}
-            <div className="flex items-center justify-center md:justify-between w-full mb-6 relative">
+            <div className="flex items-center justify-center md:justify-between w-full relative">
               {/* Logo */}
               <img
                 src="/logo/logo.svg"
@@ -604,7 +604,7 @@ const Footer = () => {
                       <li key={index}>
                         <Link
                           to={link.path}
-                          className="text-xs sm:text-sm text-white/70 hover:text-orange-500 transition-all duration-300 inline-block hover:translate-x-1"
+                          className="text-xs sm:text-sm text-white/70 hover:text-[#9292D2] transition-all duration-300 inline-block hover:translate-x-1"
                         >
                           {link.label}
                         </Link>
@@ -626,7 +626,7 @@ const Footer = () => {
                       <li key={index}>
                         <Link
                           to={link.path}
-                          className="text-xs sm:text-sm text-white/70 hover:text-orange-500 transition-all duration-300 inline-block hover:translate-x-1"
+                          className="text-xs sm:text-sm text-white/70 hover:text-[#9292D2] transition-all duration-300 inline-block hover:translate-x-1"
                         >
                           {link.label}
                         </Link>
