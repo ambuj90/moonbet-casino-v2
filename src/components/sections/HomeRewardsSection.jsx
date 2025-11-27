@@ -104,15 +104,16 @@ const HomeRewardsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-16 md:py-12 relative overflow-hidden"
+      className="w-full py-8 md:py-12 relative overflow-hidden"
     >
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6">
         {/* Cards Container */}
         <div
-          className="rewards-scroll-container overflow-x-auto lg:overflow-visible scrollbar-hide"
+          className="rewards-scroll-container overflow-x-auto lg:overflow-visible scrollbar-hide w-full"
           style={{
             scrollSnapType: "x mandatory",
             WebkitOverflowScrolling: "touch",
+            scrollBehavior: "smooth",
           }}
         >
           <motion.div
@@ -131,15 +132,15 @@ const HomeRewardsSection = () => {
                   transition: { duration: 0.2 },
                 }}
                 className="flex-shrink-0 lg:flex-shrink w-full lg:w-auto snap-center"
-                style={{
-                  minWidth:
-                    window.innerWidth < 1024 ? "calc(100vw - 32px)" : "auto",
-                  maxWidth:
-                    window.innerWidth < 1024 ? "calc(100vw - 32px)" : "100%",
-                }}
+                // style={{
+                //   minWidth:
+                //     window.innerWidth < 1024 ? "calc(100vw - 32px)" : "auto",
+                //   maxWidth:
+                //     window.innerWidth < 1024 ? "calc(100vw - 32px)" : "100%",
+                // }}
               >
                 <div
-                  className="reward_btn relative rounded-[15px] group cursor-pointer will-change-transform overflow-visible"
+                  className="reward_btn relative rounded-[15px] group cursor-pointer will-change-transform overflow-visible mt-8 md-mt-0"
                   style={{
                     width: "100%",
                     height: "195px",
@@ -154,7 +155,7 @@ const HomeRewardsSection = () => {
                   >
                     {/* Badge */}
                     <span
-                      className="inline-block w-fit px-3 py-0 rounded-full text-bold"
+                      className="inline-block w-fit px-0 md:px-3 py-0 rounded-full"
                       style={{
                         color: "var(--text-charcoal",
                         fontStyle: "normal",

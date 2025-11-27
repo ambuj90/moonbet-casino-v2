@@ -117,11 +117,11 @@ const WalletDropdownCenter = ({
           <div
             className="custom-header wallet-dropdown-card absolute left-[80%] sm:left-1/2 md:left-[65%] 
     -translate-x-1/2 mt-10 w-[267px] rounded-[24px] z-[99999] 
-    shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden "
+    shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden fdsfsdf"
             style={{
               padding: "0 12px",
               background:
-                "linear-gradient(rgb(80, 84, 91) 0%, rgb(60, 64, 70) 100%)",
+                "rgb(40 39 83",
               backdropFilter: "blur(67.5px)",
               WebkitBackdropFilter: "blur(67.5px)",
               boxShadow: "rgba(0, 0, 0, 0.25) 0px 4px 10px",
@@ -222,7 +222,7 @@ const WalletDropdownCenter = ({
                 setWalletDropdownOpen(false);
                 setWalletSettingsOpen(true);
               }}
-              className="wallet-settings h-[52px] bg-white/10 border-t border-white/10 rounded-t-2xl flex items-center justify-center gap-1.5 mb-1.5 cursor-pointer transition-all duration-200 hover:bg-white/[0.18] -mx-3"
+              className="wallet-settings h-[52px] bg-white/10 border- border-white/10 rounded-t-none flex items-center justify-center gap-1.5 cursor-pointer transition-all duration-200 hover:bg-white/[0.18] -mx-3"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
