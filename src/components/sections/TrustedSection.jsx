@@ -35,7 +35,7 @@ const TruestedSection = () => {
   ];
 
   return (
-    <section className="w-full pt-12 relative customborder-footer">
+    <section className="w-full pt-12 relative customborder-footer-brand">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Header */}
 

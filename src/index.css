@@ -887,6 +887,29 @@
   pointer-events: none;
   z-index: 1;
 }
+.customborder-footer-brand:before {
+  content: "";
+  position: absolute;
+  top: 5% !important;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0.05) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: background 0.3s ease;
+  border-radius: 8px;
+
+  height: 1px;
+}
 .customborder-footer:before {
   content: "";
   position: absolute;

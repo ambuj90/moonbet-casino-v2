@@ -105,15 +105,7 @@ const TrustBadgesFinal = () => {
               }}
               className="w-full"
             >
-              <button
-                className="provider_btn w-full h-full group relative overflow-hidden transition-all duration-300 rounded-lg sm:rounded-xl hover:transform hover:scale-[1.02] active:scale-[0.98]"
-                style={{
-                  background:
-                    "linear-gradient(0deg, rgba(30, 30, 30, 0.15) 0%, rgba(75, 75, 75, 0.15) 100%)",
-                  boxShadow: "0 2px 4px 1px rgba(0, 0, 0, 0.25)",
-                  minHeight: "70px",
-                }}
-              >
+              <button className="trust_btn w-full h-full group relative overflow-hidden transition-all duration-300 rounded-lg sm:rounded-xl hover:transform hover:scale-[1.02] active:scale-[0.98]">
                 {/* Inner content wrapper */}
                 <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-1.5 sm:gap-2 md:gap-3 p-3 sm:p-3.5 md:p-4 lg:px-6 h-full">
                   {/* Icon with responsive sizing */}
@@ -124,20 +116,17 @@ const TrustBadgesFinal = () => {
                   </div>
 
                   {/* Text with better responsive sizing */}
-                  <span
-                    className="text-center md:text-left font-normal capitalize transition-colors duration-300 group-hover:text-white leading-tight"
-                    style={{
-                      color: "#CED5E3",
-                      fontFamily: '"Neue Plak", sans-serif',
-                    }}
-                  >
+                  <span className="text-center md:text-left font-normal capitalize transition-colors duration-300 group-hover:text-white leading-tight">
                     {/* Mobile: Smaller text, full words when possible */}
                     <span className="block md:hidden text-[11px] sm:text-xs whitespace-nowrap">
                       {badge.mobileTitle}
                     </span>
 
                     {/* Desktop: Full text */}
-                    <span className="hidden md:block text-sm lg:text-base">
+                    <span
+                      className="hidden md:block"
+                      style={{ color: "var(--text-lavender-2)" }}
+                    >
                       {badge.title}
                     </span>
                   </span>
@@ -147,13 +136,7 @@ const TrustBadgesFinal = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
                 {/* Glow effect on hover */}
-                <div
-                  className="absolute inset-0 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 60%)",
-                  }}
-                />
+                <div className="absolute inset-0 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </button>
             </motion.div>
           ))}

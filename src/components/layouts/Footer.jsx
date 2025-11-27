@@ -159,7 +159,7 @@ const Footer = () => {
         >
           <div className="max-w-[1366px] mx-auto px-4 sm:px-10 w-full flex flex-col h-full pt-6">
             {/* ================= TOP LOGO ROW ================= */}
-            <div className="flex items-center justify-center md:justify-between w-full mb-6">
+            <div className="flex items-center justify-center md:justify-between w-full mb-6 relative">
               {/* Logo */}
               <img
                 src="/logo/logo.svg"
@@ -169,28 +169,139 @@ const Footer = () => {
 
               {/* Back to top button */}
               <motion.button
-                className="flex items-center gap-2  text-xs sm:text-sm md:text-base font-medium hover:text-orange-400 transition-all duration-300 
-                    absolute right-10 sm:static"
+                className="flex items-center gap-2 text-xs sm:text-sm md:text-base font-medium  transition-all duration-300 absolute right-10 sm:static"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 <span className="hidden sm:inline">Back to top</span>
-                <motion.span
-                  className="p-1 flex items-center justify-center rounded-md bg-white/10 border border-white/20"
-                  whileHover={{ boxShadow: "0 0 12px rgba(255, 107, 0, 0.5)" }}
-                >
+                <motion.span className="p-1 flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 25 25"
+                    width="39"
+                    height="40"
+                    viewBox="0 0 39 40"
                     fill="none"
                   >
+                    <foreignObject x="-3" y="-3" width="43" height="43">
+                      <div
+                        xmlns="http://www.w3.org/1999/xhtml"
+                        style={{
+                          backdropFilter: "blur(1.5px)",
+                          clipPath: "url(#bgblur_0_9018_6149_clip_path)",
+                          height: "100%",
+                          width: "100%",
+                        }}
+                      ></div>
+                    </foreignObject>
+                    <g
+                      filter="url(#filter0_d_9018_6149)"
+                      data-figma-bg-blur-radius="3"
+                    >
+                      <rect
+                        width="35"
+                        height="35"
+                        rx="8"
+                        transform="matrix(-1 0 0 1 36 1)"
+                        fill="url(#paint0_linear_9018_6149)"
+                        fillOpacity="0.15"
+                        shapeRendering="crispEdges"
+                      />
+                      <rect
+                        width="35"
+                        height="35"
+                        rx="8"
+                        transform="matrix(-1 0 0 1 36 1)"
+                        stroke="url(#paint1_linear_9018_6149)"
+                        strokeWidth="2"
+                        shapeRendering="crispEdges"
+                      />
+                    </g>
                     <path
-                      d="M13.7071 1.29289C13.3166 0.902369 12.6834 0.902369 12.2929 1.29289L5.92893 7.65685C5.53841 8.04738 5.53841 8.68054 5.92893 9.07107C6.31946 9.46159 6.95262 9.46159 7.34315 9.07107L13 3.41421L18.6569 9.07107C19.0474 9.46159 19.6805 9.46159 20.0711 9.07107C20.4616 8.68054 20.4616 8.04738 20.0711 7.65685L13.7071 1.29289ZM13 24L14 24L14 2L13 2L12 2L12 24L13 24Z"
-                      fill="white"
+                      d="M18 26C18 26.5523 18.4477 27 19 27C19.5523 27 20 26.5523 20 26L19 26L18 26ZM19.7071 11.2929C19.3166 10.9024 18.6834 10.9024 18.2929 11.2929L11.9289 17.6568C11.5384 18.0474 11.5384 18.6805 11.9289 19.0711C12.3195 19.4616 12.9526 19.4616 13.3432 19.0711L19 13.4142L24.6569 19.0711C25.0474 19.4616 25.6805 19.4616 26.0711 19.0711C26.4616 18.6805 26.4616 18.0474 26.0711 17.6569L19.7071 11.2929ZM19 26L20 26L20 12L19 12L18 12L18 26L19 26Z"
+                      fill="#E1E1E1"
+                      fillOpacity="0.5"
                     />
+                    <defs>
+                      <filter
+                        id="filter0_d_9018_6149"
+                        x="-3"
+                        y="-3"
+                        width="43"
+                        height="43"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                      >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix
+                          in="SourceAlpha"
+                          type="matrix"
+                          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                          result="hardAlpha"
+                        />
+                        <feOffset dx="1" dy="2" />
+                        <feGaussianBlur stdDeviation="0.5" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix
+                          type="matrix"
+                          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in2="BackgroundImageFix"
+                          result="effect1_dropShadow_9018_6149"
+                        />
+                        <feBlend
+                          mode="normal"
+                          in="SourceGraphic"
+                          in2="effect1_dropShadow_9018_6149"
+                          result="shape"
+                        />
+                      </filter>
+                      <clipPath
+                        id="bgblur_0_9018_6149_clip_path"
+                        transform="translate(3 3)"
+                      >
+                        <rect
+                          width="35"
+                          height="35"
+                          rx="8"
+                          transform="matrix(-1 0 0 1 36 1)"
+                        />
+                      </clipPath>
+                      <linearGradient
+                        id="paint0_linear_9018_6149"
+                        x1="17.5"
+                        y1="0"
+                        x2="17.5"
+                        y2="35"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#4B4B4B" stopOpacity="0.2" />
+                        <stop offset="1" stopColor="#4B4B4B" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_9018_6149"
+                        x1="2.45192"
+                        y1="-7.76018e-06"
+                        x2="19.1272"
+                        y2="38.3892"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="white" stopOpacity="0.4" />
+                        <stop
+                          offset="0.405687"
+                          stopColor="white"
+                          stopOpacity="0.01"
+                        />
+                        <stop
+                          offset="0.574372"
+                          stopColor="white"
+                          stopOpacity="0.01"
+                        />
+                        <stop offset="1" stopColor="white" stopOpacity="0.1" />
+                      </linearGradient>
+                    </defs>
                   </svg>
                 </motion.span>
               </motion.button>
@@ -208,19 +319,18 @@ const Footer = () => {
                   Moonbet operates as a decentralized crypto casino on the
                   Solana blockchain. Built by crypto natives for players 18+.
                 </p>
-
                 {/* Email */}
                 <motion.div
                   className="flex items-center gap-2"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-orange-500 transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(255,107,0,0.5)]">
+                  <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#282753] backdrop-blur-sm border border-white/10 text-[#9292D2] transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(240,119,48,0.5)]">
                     ✉
                   </span>
 
                   <a
                     href="mailto:support@moonbet.games"
-                    className="text-xs sm:text-sm text-white/80 hover:text-orange-500 transition-colors duration-300"
+                    className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
                   >
                     support@moonbet.games
                   </a>
@@ -231,36 +341,229 @@ const Footer = () => {
                   className="flex items-center gap-2"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-orange-500 transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(255,107,0,0.5)]">
+                  <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#282753] backdrop-blur-sm border border-white/10 text-[#9292D2] transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(240,119,48,0.5)]">
                     ✉
                   </span>
 
                   <a
                     href="mailto:feedback@moonbet.games"
-                    className="text-xs sm:text-sm text-white/80 hover:text-orange-500 transition-colors duration-300"
+                    className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
                   >
                     feedback@moonbet.games
                   </a>
                 </motion.div>
 
                 {/* Social Links */}
-                <div className="flex gap-3 sm:gap-4 mt-3">
-                  {socialIcons.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 text-white/70 transition-all duration-300 hover:text-white"
-                      variants={glowVariants}
-                      initial="initial"
-                      whileHover="hover"
-                      whileTap={{ scale: 0.95 }}
-                      aria-label={social.name}
+                <div className="flex items-center gap-4">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
+                    onClick={() =>
+                      window.open("https://x.com/moonbetgames", "_blank")
+                    }
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="36"
+                      height="36"
+                      viewBox="0 0 36 36"
+                      fill="none"
                     >
-                      <div className="scale-75 sm:scale-100">{social.icon}</div>
-                    </motion.a>
-                  ))}
+                      <rect
+                        x="1"
+                        y="1"
+                        width="34"
+                        height="34"
+                        rx="12"
+                        fill="#282753"
+                      />
+                      <rect
+                        x="1"
+                        y="1"
+                        width="34"
+                        height="34"
+                        rx="12"
+                        stroke="url(#paint0_linear_9185_1053)"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M26.9543 14.2921C26.9121 13.3357 26.7574 12.6781 26.5358 12.1084C26.3072 11.5036 25.9555 10.9621 25.4947 10.512C25.0445 10.0549 24.4994 9.69969 23.9015 9.4747C23.3283 9.25315 22.6741 9.09848 21.7175 9.05632C20.7538 9.01058 20.4478 9 18.0035 9C15.5592 9 15.2532 9.01058 14.2931 9.05274C13.3365 9.09491 12.6788 9.24971 12.1091 9.47113C11.5041 9.69969 10.9625 10.0513 10.5123 10.512C10.0551 10.9621 9.69996 11.5072 9.47479 12.1049C9.2532 12.6781 9.0985 13.3321 9.05633 14.2885C9.01058 15.252 9 15.5579 9 18.0018C9 20.4456 9.01058 20.7515 9.05275 21.7115C9.09493 22.6679 9.24976 23.3254 9.47136 23.8952C9.69996 24.5 10.0551 25.0414 10.5123 25.4916C10.9625 25.9487 11.5076 26.3039 12.1055 26.5289C12.6788 26.7504 13.3329 26.9051 14.2896 26.9473C15.2497 26.9896 15.5558 27 18.0001 27C20.4444 27 20.7503 26.9896 21.7105 26.9473C22.6671 26.9051 23.3247 26.7504 23.8945 26.5289C25.1044 26.0612 26.061 25.1048 26.5288 23.8952C26.7502 23.322 26.9051 22.6679 26.9472 21.7115C26.9894 20.7515 27 20.4456 27 18.0018C27 15.5579 26.9964 15.252 26.9543 14.2921ZM25.333 21.6412C25.2943 22.5203 25.1466 22.995 25.0235 23.3114C24.721 24.0956 24.0985 24.718 23.3142 25.0204C22.9976 25.1435 22.5194 25.2911 21.6436 25.3297C20.694 25.3721 20.4092 25.3825 18.0071 25.3825C15.6049 25.3825 15.3166 25.3721 14.3704 25.3297C13.4912 25.2911 13.0164 25.1435 12.6998 25.0204C12.3095 24.8762 11.9543 24.6476 11.6659 24.3487C11.367 24.0569 11.1384 23.7052 10.9941 23.315C10.871 22.9985 10.7233 22.5203 10.6847 21.6448C10.6424 20.6953 10.632 20.4105 10.632 18.0088C10.632 15.6071 10.6424 15.3188 10.6847 14.373C10.7233 13.4939 10.871 13.0192 10.9941 12.7027C11.1384 12.3123 11.367 11.9573 11.6695 11.6688C11.9613 11.3699 12.313 11.1414 12.7034 10.9973C13.02 10.8742 13.4983 10.7266 14.374 10.6878C15.3236 10.6457 15.6085 10.6351 18.0105 10.6351C20.4162 10.6351 20.701 10.6457 21.6472 10.6878C22.5264 10.7266 23.0012 10.8742 23.3177 10.9973C23.708 11.1414 24.0633 11.3699 24.3517 11.6688C24.6506 11.9607 24.8792 12.3123 25.0235 12.7027C25.1466 13.0192 25.2943 13.4973 25.333 14.373C25.3752 15.3224 25.3858 15.6071 25.3858 18.0088C25.3858 20.4105 25.3752 20.6918 25.333 21.6412Z"
+                        fill="#9292D2"
+                      />
+                      <path
+                        d="M18.0035 13.3778C15.4502 13.3778 13.3787 15.4489 13.3787 18.0018C13.3787 20.5547 15.4502 22.6258 18.0035 22.6258C20.5569 22.6258 22.6284 20.5547 22.6284 18.0018C22.6284 15.4489 20.5569 13.3778 18.0035 13.3778ZM18.0035 21.0012C16.3471 21.0012 15.0035 19.658 15.0035 18.0018C15.0035 16.3455 16.3471 15.0023 18.0035 15.0023C19.6601 15.0023 21.0035 16.3455 21.0035 18.0018C21.0035 19.658 19.6601 21.0012 18.0035 21.0012Z"
+                        fill="#9292D2"
+                      />
+                      <path
+                        d="M23.891 13.195C23.891 13.7911 23.4076 14.2745 22.8112 14.2745C22.215 14.2745 21.7315 13.7911 21.7315 13.195C21.7315 12.5987 22.215 12.1155 22.8112 12.1155C23.4076 12.1155 23.891 12.5987 23.891 13.195Z"
+                        fill="#9292D2"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_9185_1053"
+                          x1="3.38187"
+                          y1="0.999992"
+                          x2="19.5807"
+                          y2="38.2923"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="white" stop-opacity="0.4" />
+                          <stop
+                            offset="0.405687"
+                            stop-color="white"
+                            stop-opacity="0.01"
+                          />
+                          <stop
+                            offset="0.574372"
+                            stop-color="white"
+                            stop-opacity="0.01"
+                          />
+                          <stop
+                            offset="1"
+                            stop-color="white"
+                            stop-opacity="0.1"
+                          />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
+                    onClick={() =>
+                      window.open(
+                        "https://www.instagram.com/moonbet.games/",
+                        "_blank"
+                      )
+                    }
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="36"
+                      height="36"
+                      viewBox="0 0 36 36"
+                      fill="none"
+                    >
+                      <rect
+                        x="1"
+                        y="1"
+                        width="34"
+                        height="34"
+                        rx="12"
+                        fill="#282753"
+                      />
+                      <rect
+                        x="1"
+                        y="1"
+                        width="34"
+                        height="34"
+                        rx="12"
+                        stroke="url(#paint0_linear_9185_1056)"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M19.7124 16.6218L26.4133 9H24.8254L19.0071 15.6179L14.3599 9H9L16.0274 19.0074L9 27H10.588L16.7324 20.0113L21.6401 27H27L19.7124 16.6218ZM11.1602 10.1697H13.5992L24.8262 25.8835H22.3871L11.1602 10.1697Z"
+                        fill="#9292D2"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_9185_1056"
+                          x1="3.38187"
+                          y1="0.999992"
+                          x2="19.5807"
+                          y2="38.2923"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="white" stop-opacity="0.4" />
+                          <stop
+                            offset="0.405687"
+                            stop-color="white"
+                            stop-opacity="0.01"
+                          />
+                          <stop
+                            offset="0.574372"
+                            stop-color="white"
+                            stop-opacity="0.01"
+                          />
+                          <stop
+                            offset="1"
+                            stop-color="white"
+                            stop-opacity="0.1"
+                          />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 transition-all duration-200"
+                    onClick={() =>
+                      window.open(
+                        "https://www.telegram.com/moonbet.games/",
+                        "_blank"
+                      )
+                    }
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="36"
+                      height="36"
+                      viewBox="0 0 36 36"
+                      fill="none"
+                    >
+                      <rect
+                        x="1"
+                        y="1"
+                        width="34"
+                        height="34"
+                        rx="12"
+                        fill="#282753"
+                      />
+                      <rect
+                        x="1"
+                        y="1"
+                        width="34"
+                        height="34"
+                        rx="12"
+                        stroke="url(#paint0_linear_9185_1059)"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M16.0631 21.2041L15.7653 25.9505C16.1913 25.9505 16.3758 25.7431 16.5971 25.4941L18.5944 23.3308L22.733 26.7657C23.492 27.2451 24.0267 26.9926 24.2315 25.9743L26.9481 11.5482L26.9488 11.5473C27.1896 10.2757 26.5431 9.7785 25.8035 10.0904L9.83565 17.0188C8.74588 17.4982 8.76238 18.1867 9.6504 18.4986L13.7327 19.9376L23.2152 13.2133C23.6615 12.8784 24.0672 13.0637 23.7335 13.3986L16.0631 21.2041Z"
+                        fill="#9292D2"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_9185_1059"
+                          x1="3.38187"
+                          y1="0.999992"
+                          x2="19.5807"
+                          y2="38.2923"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="white" stop-opacity="0.4" />
+                          <stop
+                            offset="0.405687"
+                            stop-color="white"
+                            stop-opacity="0.01"
+                          />
+                          <stop
+                            offset="0.574372"
+                            stop-color="white"
+                            stop-opacity="0.01"
+                          />
+                          <stop
+                            offset="1"
+                            stop-color="white"
+                            stop-opacity="0.1"
+                          />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </motion.button>
                 </div>
               </motion.div>
 
@@ -271,7 +574,7 @@ const Footer = () => {
                   className="flex flex-col gap-3 md:gap-3 text-left"
                   variants={itemVariants}
                 >
-                  <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent uppercase text-[#E2E2E2]">
+                  <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-clip-text text-transparent uppercase text-[rgba(225, 225, 225, 0.50)]">
                     About Us
                   </p>
                   <ul className="flex flex-col gap-2 md:gap-3">
@@ -279,7 +582,7 @@ const Footer = () => {
                       <li key={index}>
                         <Link
                           to={link.path}
-                          className="text-xs sm:text-sm text-white/70 hover:text-orange-500 transition-all duration-300 inline-block hover:translate-x-1"
+                          className="text-xs sm:text-sm text-white/70 hover:text-[#9292D2] transition-all duration-300 inline-block hover:translate-x-1"
                         >
                           {link.label}
                         </Link>
