@@ -146,7 +146,7 @@ const HomeGamesSection = () => {
               </svg>
             </span>
             <h3
-              className="text-[#CED5E3] font-[400] text-[16px] md:text-[18px] leading-[44px]
+              className="  font-[400] text-[16px] md:text-[18px] leading-[44px]
              font-['Neuropolitical'] not-italic uppercase"
             >
               RECOMMENDED
@@ -238,7 +238,7 @@ const HomeGamesSection = () => {
                       <span className="text-5xl md:text-6xl mb-3 group-hover:scale-110 transition-transform">
                         {game.icon}
                       </span>
-                      <h3 className="text-[#CED5E3] font-[400] text-[14px] leading-[24px] mb-2">
+                      <h3 className="  font-[400] text-[14px] leading-[24px] mb-2">
                         {game.title}
                       </h3>
                       {/* <p className="text-white/70 text-sm">

@@ -245,7 +245,7 @@ const RecommendedSection = () => {
               </svg>
             </motion.span>
             <motion.h3
-              className="text-[#CED5E3] font-[400]  text-[14px] md:text-[18px] leading-[44px] 
+              className="  font-[400]  text-[14px] md:text-[18px] leading-[44px] 
                      font-['Neuropolitical'] not-italic uppercase"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -477,7 +477,7 @@ const RecommendedSection = () => {
                     </motion.div>
 
                     {/* Game title + provider */}
-                    <div className="mt-2 text-sm text-white/90 font-semibold truncate">
+                    <div className="mt-2 text-sm  font-semibold truncate">
                       {game.name || "Game"}
                     </div>
                     <div className="text-xs text-white/50 truncate">

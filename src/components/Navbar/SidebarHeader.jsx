@@ -57,9 +57,9 @@ const SidebarHeader = ({
       return "trust_btn view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px] transition-all text-white";
     } else {
       if (isCollapsed) {
-        return "justify-center text-[#000] hover:text-white/90 hover:bg-white/5";
+        return "justify-center text-[#000] hover: hover:bg-white/5";
       } else {
-        return "gap-3 rounded-lg text-[#A8A8A8] hover:text-white/90 hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
+        return "gap-3 rounded-lg text-[#A8A8A8] hover: hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
       }
     }
   };
@@ -315,7 +315,7 @@ const SidebarHeader = ({
                         ${
                           location.pathname === subItem.path
                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                            : "text-[#A8A8A8] hover:text-white/90 hover:bg-white/5"
+                            : "text-[#A8A8A8] hover: hover:bg-white/5"
                         }`}
                       onClick={closeSidebar}
                     >
@@ -536,7 +536,7 @@ const SidebarHeader = ({
                                         ${
                                           location.pathname === subItem.path
                                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                                            : "text-[#A8A8A8] hover:text-white/90 hover:bg-white/5"
+                                            : "text-[#A8A8A8] hover: hover:bg-white/5"
                                         }`}
                                     onClick={closeSidebar}
                                   >
@@ -657,7 +657,7 @@ const SidebarHeader = ({
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
                           onClick={() => toggleSubmenu(item.id)}
-                          className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] hover:text-white/90 ${
+                          className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] hover: ${
                             sidebarCollapsed
                               ? "justify-center"
                               : "justify-between bg-[#282753] shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)]"
@@ -772,7 +772,7 @@ const SidebarHeader = ({
                                         ${
                                           location.pathname === subItem.path
                                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                                            : "text-[#E1E1E1] hover:text-white/90 hover:bg-white/5"
+                                            : "text-[#E1E1E1] hover: hover:bg-white/5"
                                         }`}
                                     onClick={closeSidebar}
                                   >

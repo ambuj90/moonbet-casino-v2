@@ -299,9 +299,9 @@ const Header = ({
     } else {
       // Inactive state - exactly like your sample HTML
       if (isCollapsed) {
-        return "justify-center text-[##000] hover:text-white/90 hover:bg-white/5";
+        return "justify-center text-[##000] hover: hover:bg-white/5";
       } else {
-        return "gap-3 rounded-lg text-[#A8A8A8] hover:text-white/90 hover:bg-white/5"; // Simple like your sample
+        return "gap-3 rounded-lg text-[#A8A8A8] hover: hover:bg-white/5"; // Simple like your sample
       }
     }
   };

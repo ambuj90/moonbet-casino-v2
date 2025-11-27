@@ -78,7 +78,7 @@ const GameGrid = ({
   return (
     <section className="w-full   py-10">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-[#CED5E3] font-['Neuropolitical'] text-xl mb-6 uppercase">
+        <h2 className="  font-['Neuropolitical'] text-xl mb-6 uppercase">
           {`${provider}`.toUpperCase()} GAMES
         </h2>
 

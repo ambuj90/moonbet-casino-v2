@@ -88,7 +88,7 @@ const AwardSection = () => {
                 fill="#CED5E3"
               />
             </svg>
-            <h3 className="text-[#CED5E3] font-[400] text-[16px] md:text-[18px] uppercase">
+            <h3 className="  font-[400] text-[16px] md:text-[18px] uppercase">
               Awards
             </h3>
           </div>

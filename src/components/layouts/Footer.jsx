@@ -169,7 +169,7 @@ const Footer = () => {
 
               {/* Back to top button */}
               <motion.button
-                className="flex items-center gap-2 text-white/90 text-xs sm:text-sm md:text-base font-medium hover:text-orange-400 transition-all duration-300 
+                className="flex items-center gap-2  text-xs sm:text-sm md:text-base font-medium hover:text-orange-400 transition-all duration-300 
                     absolute right-10 sm:static"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}

@@ -807,7 +807,7 @@ const AffiliateLandingPage = () => {
         bg-[linear-gradient(106deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.10)_35%,rgba(255,255,255,0.05)_70%,rgba(255,255,255,0)_100%)]
         transition-all duration-300"
                 >
-                  <span className="text-base md:text-lg font-[400] text-[#CED5E3] pr-4">
+                  <span className="text-base md:text-lg font-[400]   pr-4">
                     {faq.question}
                   </span>
                   {openFAQ === index ? (

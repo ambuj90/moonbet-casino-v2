@@ -209,12 +209,12 @@ const HomeFAQSection = () => {
                   onClick={() => toggleAccordion(index)}
                   className="w-full px-6 py-3 flex justify-between items-center text-left"
                 >
-                  <p className="text-base md:text-lg text-[#CED5E3]">
+                  <p className="text-base md:text-lg  ">
                     {index + 1}. {faq.question}
                   </p>
                   <motion.span
                     animate={{ rotate: activeIndex === index ? 45 : 0 }}
-                    className="text-2xl text-[#CED5E3]"
+                    className="text-2xl  "
                   >
                     +
                   </motion.span>

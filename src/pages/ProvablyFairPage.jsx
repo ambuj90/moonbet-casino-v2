@@ -67,7 +67,7 @@ const ProvablyFairPage = () => {
         >
           <div className="flex items-center gap-4">
             <FairIcon />
-            <h1 className="font-bold text-[#CED5E3] uppercase text-2xl md:text-4xl lg:text-4xl">
+            <h1 className="font-bold   uppercase text-2xl md:text-4xl lg:text-4xl">
               Provably Fair Gaming
             </h1>
           </div>
@@ -537,13 +537,13 @@ const ProvablyFairPage = () => {
                       onClick={() => toggleAccordion(index)}
                       className="w-full px-6 py-4 text-left flex justify-between items-center"
                     >
-                      <p className="text-base md:text-lg font-[400] text-[#CED5E3] pr-4">
+                      <p className="text-base md:text-lg font-[400]   pr-4">
                         Q: {faq.question}
                       </p>
                       <motion.span
                         animate={{ rotate: activeIndex === index ? 45 : 0 }}
                         transition={{ duration: 0.3 }}
-                        className="text-2xl text-[#CED5E3] flex-shrink-0"
+                        className="text-2xl   flex-shrink-0"
                       >
                         +
                       </motion.span>

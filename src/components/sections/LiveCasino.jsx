@@ -481,7 +481,7 @@ const LiveCasino = () => {
                     </motion.div>
 
                     {/* Game title + provider */}
-                    <div className="mt-2 text-sm text-white/90 font-semibold">
+                    <div className="mt-2 text-sm  font-semibold">
                       {game.name || "game"}
                     </div>
                     <div className="text-xs text-white/50">

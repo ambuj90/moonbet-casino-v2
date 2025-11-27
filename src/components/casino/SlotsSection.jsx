@@ -124,7 +124,7 @@ const SlotsSection = () => {
             </motion.span>
 
             <motion.h3
-              className="text-[#CED5E3] text-[18px] font-['Neuropolitical'] uppercase"
+              className="  text-[18px] font-['Neuropolitical'] uppercase"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6 }}
@@ -248,7 +248,7 @@ const SlotsSection = () => {
                     </motion.div>
 
                     {/* Game Title */}
-                    <div className="mt-2 text-sm text-white/90 font-semibold truncate">
+                    <div className="mt-2 text-sm  font-semibold truncate">
                       {game.name || "Game"}
                     </div>
                     <div className="text-xs text-white/50">

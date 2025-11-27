@@ -76,7 +76,7 @@ const RNGTestingPolicy = () => {
           className="wallet-btn3 rounded-2xl pb-6 text-center"
         >
           <div className="flex items-start gap-4">
-            <h1 className="font-bold text-[#CED5E3] text-left uppercase text-2xl md:text-4xl lg:text-4xl">
+            <h1 className="font-bold   text-left uppercase text-2xl md:text-4xl lg:text-4xl">
               MOONBET FAIRNESS & RNG TESTING POLICY
             </h1>
           </div>
@@ -1243,13 +1243,13 @@ const RNGTestingPolicy = () => {
                       onClick={() => toggleAccordion(index)}
                       className="w-full px-6 py-4 text-left flex justify-between items-center"
                     >
-                      <p className="text-base md:text-lg font-[400] text-[#CED5E3] pr-4">
+                      <p className="text-base md:text-lg font-[400]   pr-4">
                         {faq.question}
                       </p>
                       <motion.span
                         animate={{ rotate: activeIndex === index ? 45 : 0 }}
                         transition={{ duration: 0.3 }}
-                        className="text-2xl text-[#CED5E3]"
+                        className="text-2xl  "
                       >
                         +
                       </motion.span>

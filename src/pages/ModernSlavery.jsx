@@ -37,7 +37,7 @@ const ModernSlavery = () => {
         >
           <div className="flex items-center gap-4 ">
             <PolicyIcon />
-            <h1 className="font-bold text-[#CED5E3] uppercase text-xl md:text-4xl lg:text-4xl">
+            <h1 className="font-bold   uppercase text-xl md:text-4xl lg:text-4xl">
               MODERN SLAVERY STATEMENT
             </h1>
           </div>

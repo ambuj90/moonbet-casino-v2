@@ -627,7 +627,7 @@ const Blackjack = () => {
           </div>
 
           <div className="flex items-center justify-center gap-2 sm:gap-3 rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-[linear-gradient(0deg,rgba(30,30,30,0.15)_0%,rgba(75,75,75,0.15)_100%)] px-2 sm:px-3 py-2 backdrop-blur-[2px] shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-            <div className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-md border border-[rgba(255,255,255,0.1)] text-white/90">
+            <div className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-md border border-[rgba(255,255,255,0.1)] ">
               <img src="/chips/icon.svg" className="w-4 sm:w-5" alt="∞" />
               <span className="text-xs sm:text-sm font-semibold text-white">
                 ${betAmount}

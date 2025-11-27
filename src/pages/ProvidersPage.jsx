@@ -44,7 +44,7 @@ const ProvidersPage = () => {
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-[#CED5E3] text-[18px] font-[400] uppercase mb-8"
+            className="  text-[18px] font-[400] uppercase mb-8"
           >
             Providers
           </motion.h3>

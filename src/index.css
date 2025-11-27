@@ -16,6 +16,30 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/Neue Plak Regular.ttf") format("truetype"),
+    url("/fonts/Neue-Plak-Regular.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/Neue Plak Regular.ttf") format("truetype"),
+    url("/fonts/Neue-Plak-Regular.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Plak";
+  src: url("/fonts/Neue Plak Regular.ttf") format("truetype"),
+    url("/fonts/Neue-Plak-Regular.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Neue Plak Medium */
 @font-face {
@@ -867,6 +891,29 @@
   content: "";
   position: absolute;
   top: 5% !important;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.1) 35%,
+    rgba(255, 255, 255, 0.05) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: background 0.3s ease;
+  border-radius: 8px;
+
+  height: 1px;
+}
+.customborder-footer:after {
+  content: "";
+  position: absolute;
+  top: 20% !important;
   inset: 0;
   border-radius: inherit;
   padding: 1px;

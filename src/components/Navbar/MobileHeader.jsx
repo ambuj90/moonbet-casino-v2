@@ -38,7 +38,7 @@ const MobileHeader = ({
     if (isActive) {
       return "wallet-btn2 view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px] border border-[rgba(255,255,255,0.40)] transition-all shadow-[1px_2px_1px_rgba(0,0,0,0.40)] bg-[linear-gradient(0deg,rgba(240,119,48,0.6)_0%,rgba(240,119,48,0)_100%)] text-white";
     } else {
-      return "gap-3 rounded-lg text-[#A8A8A8] hover:text-white/90 hover:bg-white/5";
+      return "gap-3 rounded-lg text-[#A8A8A8] hover: hover:bg-white/5";
     }
   };
 
