@@ -84,7 +84,7 @@ const GameBetsSection = () => {
       if (activeTab === "all") {
         const res = await axios.get("/wallet-service/api/games/bets");
         if (res.data?.success && Array.isArray(res.data.data)) {
-          setBets(res.data.data);
+          setBets(res.data.data.slice(0, 10));
         } else {
           setBets([]);
         }
@@ -113,7 +113,7 @@ const GameBetsSection = () => {
             color: b.type === "win" || b.type === "refund" ? "green" : "red",
             time: new Date(b.createdAt).toLocaleTimeString(),
           }));
-          setBets(formatted);
+          setBets(formatted.slice(0, 10));
         } else {
           setBets([]);
         }
