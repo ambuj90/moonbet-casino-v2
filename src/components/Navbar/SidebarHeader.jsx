@@ -168,7 +168,7 @@ const SidebarHeader = ({
       label: "Leaderboard",
       icon: "/icons/leaderboard.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
-      path: "/leaderboard",
+      path: "/leaderboard2",
     },
   ];
 
