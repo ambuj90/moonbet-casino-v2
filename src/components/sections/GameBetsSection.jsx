@@ -127,8 +127,8 @@ const GameBetsSection = () => {
   };
 
   return (
-    <section className="w-full py-12 sm:py-16 md:py-20">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-12 sm:py-16 md:py-10">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
         {/* Tabs */}
         <div
           className="bet_btn flex gap-1 mb-4 sm:mb-6 p-1 rounded-full overflow-x-auto scrollbar-hide w-fit"
