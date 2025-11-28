@@ -134,9 +134,8 @@ const CasinoGameCards = () => {
             alt={c.title}
             className="absolute bottom-0 right-0 h-full max-h-full object-contain z-10 pointer-events-none"
             style={{
-              objectPosition: responsive && c.id === 2 ? "bottom" : 
-                   responsive && (c.id === 2 || c.id === 4) ? "center" : 
-                   responsive && (c.id === 1 || c.id === 2) ? "bottom" : ""
+              objectPosition: responsive && (c.id === 1 || c.id === 3 || c.id === 4) ? "bottom" :
+                 responsive && c.id === 2 ? "bottom" : ""
             }}
           />
 
