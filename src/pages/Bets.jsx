@@ -282,7 +282,7 @@ const Bets = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0A0B0D] pt-20 md:pt-24 pb-8 px-4 lg:px-8">
+      <div className="min-h-screen py-6 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse space-y-6">
             {/* Header Skeleton */}
@@ -310,7 +310,7 @@ const Bets = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0B0D] pt-20 md:pt-24 pb-8 px-4 lg:px-8">
+    <div className="min-h-screen md:py-8 px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -324,36 +324,6 @@ const Bets = () => {
           <p className="text-gray-400">View your betting history and results</p>
         </motion.div>
 
-        {/* Tabs */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="flex gap-2 mb-6"
-        >
-          <button
-            onClick={() => setActiveTab("casino")}
-            className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-              activeTab === "casino"
-                ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-white"
-                : "bg-white/5 text-gray-400 hover:bg-white/10"
-            }`}
-          >
-            Casino
-          </button>
-          <button
-            onClick={() => setActiveTab("sports")}
-            className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-              activeTab === "sports"
-                ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-white"
-                : "bg-white/5 text-gray-400 hover:bg-white/10"
-            }`}
-          >
-            Sports
-          </button>
-        </motion.div> */}
-
-        {/* Search */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -615,11 +585,19 @@ const Bets = () => {
                         <button
                           key={page}
                           onClick={() => setCurrentPage(page)}
-                          className={`w-8 h-8 rounded-lg font-semibold transition-all ${
+                          className={`w-8 h-8 rounded-lg font-semibold transition-all flex items-center justify-center ${
                             currentPage === page
-                              ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-white"
+                              ? ""
                               : "bg-white/5 text-gray-400 hover:bg-white/10"
                           }`}
+                          style={
+                            currentPage === page
+                              ? {
+                                  background:
+                                    "linear-gradient(0deg, #5A3799 0%, #DC1FFF 100%)",
+                                }
+                              : {}
+                          }
                         >
                           {page}
                         </button>

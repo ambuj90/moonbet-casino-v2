@@ -113,7 +113,7 @@ const Settings = () => {
   // Loading skeleton
   if (isLoading) {
     return (
-      <div className="min-h-screen pt-20 md:pt-24 pb-8 px-4 lg:px-8">
+      <div className="min-h-screen py-6 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             {/* Header Skeleton */}
@@ -162,7 +162,7 @@ const Settings = () => {
   // }
 
   return (
-    <div className="min-h-screen bg-[#0A0B0D] pt-20 md:pt-24 pb-8 px-4 lg:px-8">
+    <div className="min-h-screen py-6 px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div

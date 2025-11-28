@@ -36,7 +36,10 @@ const Transactions = () => {
             },
           }
         );
-        console.log("Fetching:", `https://api.moonbet.games/wallet-service/api/wallet/${userId}/transactions`);
+        console.log(
+          "Fetching:",
+          `https://api.moonbet.games/wallet-service/api/wallet/${userId}/transactions`
+        );
 
         if (Array.isArray(data.transactions)) {
           // ✅ Format transactions for frontend
@@ -79,17 +82,15 @@ const Transactions = () => {
     fetchTransactions();
   }, []);
 
-
   // Filter transactions
   const filteredTransactions = transactions.filter((tx) => {
-  const matchesSearch =
-    tx.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tx.type.toLowerCase().includes(searchQuery.toLowerCase());
-  const matchesFilter =
-    filterType === "all" || tx.type.toLowerCase().includes(filterType);
-  return matchesSearch && matchesFilter;
-});
-
+    const matchesSearch =
+      tx.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tx.type.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter =
+      filterType === "all" || tx.type.toLowerCase().includes(filterType);
+    return matchesSearch && matchesFilter;
+  });
 
   // Pagination
   const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
@@ -167,7 +168,7 @@ const Transactions = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0A0B0D] pt-20 md:pt-24 pb-8 px-4 lg:px-8">
+      <div className="min-h-screen md:py-6 px-4 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse space-y-6">
             {/* Header Skeleton */}
@@ -193,7 +194,7 @@ const Transactions = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0B0D] pt-20 md:pt-24 pb-8 px-4 lg:px-8">
+    <div className="min-h-screen py-6  px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -201,9 +202,9 @@ const Transactions = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-3xl lg:text-4xl font-bold text-white mb-2">
+          <p className="text-3xl lg:text-4xl font-bold text-white mb-2">
             Transactions
-          </h1>
+          </p>
           <p className="text-gray-400">
             View your transaction history and activity
           </p>
@@ -228,7 +229,7 @@ const Transactions = () => {
                   }}
                   className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
                     filterType === filter
-                      ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-white"
+                      ? "bg-gradient-to-r from-[#5A3799] to-[#DC1FFF] text-white"
                       : "bg-white/5 text-gray-400 hover:bg-white/10"
                   }`}
                 >
@@ -313,7 +314,7 @@ const Transactions = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-[#F07730]">
+                          <span className="text-[#DC1FFF]">
                             {getTypeIcon(tx.type)}
                           </span>
                           <span className="text-white font-medium">
@@ -471,7 +472,7 @@ const Transactions = () => {
                           onClick={() => setCurrentPage(page)}
                           className={`w-8 h-8 rounded-lg font-semibold transition-all ${
                             currentPage === page
-                              ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-white"
+                              ? "bg-gradient-to-r from-[#DC1FFF] to-[#5a3799] text-white"
                               : "bg-white/5 text-gray-400 hover:bg-white/10"
                           }`}
                         >

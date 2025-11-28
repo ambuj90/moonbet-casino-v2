@@ -568,7 +568,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="w-full relative md:py-4">
+    <section className="w-full relative md:py-2">
       {/* Recent Wins Section - Dark background strip */}
       <div className="flex justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-4 sm:py-3 rounded-[12px]">

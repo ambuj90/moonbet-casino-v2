@@ -15,7 +15,7 @@ const CasinoGameCards = () => {
       desc: "Dive into our in-house games, live casino and slots",
       background: "rgba(132, 67, 160, 0.50)",
       hoverBg: "#8443A0",
-      mobileClipPath: "large" // For large mobile cards
+      mobileClipPath: "large", // For large mobile cards
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ const CasinoGameCards = () => {
       desc: "How about live game shows?",
       background: "rgba(90, 55, 153, 0.50)",
       hoverBg: "#5A3799",
-      mobileClipPath: "special" // Special clip-path for mobile
+      mobileClipPath: "special", // Special clip-path for mobile
     },
     {
       id: 3,
@@ -41,7 +41,7 @@ const CasinoGameCards = () => {
       desc: "How about live game shows?",
       background: "rgba(85, 81, 169, 0.50)",
       hoverBg: "#5A3799",
-      mobileClipPath: "small" // For small mobile cards
+      mobileClipPath: "small", // For small mobile cards
     },
     {
       id: 4,
@@ -54,7 +54,7 @@ const CasinoGameCards = () => {
       desc: "Dive into our in-house games, live casino and slots",
       background: "rgba(85, 81, 169, 0.50)",
       hoverBg: "#5551A9",
-      mobileClipPath: "large" // For large mobile cards
+      mobileClipPath: "large", // For large mobile cards
     },
     {
       id: 5,
@@ -67,16 +67,18 @@ const CasinoGameCards = () => {
       desc: "Dive into our in-house games, live casino and slots",
       background: "rgba(132, 67, 160, 0.50)",
       hoverBg: "#8443A0",
-      mobileClipPath: "small" // For small mobile cards
+      mobileClipPath: "small", // For small mobile cards
     },
   ];
 
   // Mobile clip-path definitions
   const mobileClipPaths = {
-    large: 'path("M0 0H200V150H0V28.2805C0 25.8558 1.96559 23.8903 4.39026 23.8903H77.8903C86.8903 22.3903 87.3903 9.89026 91.3903 2.89026C91.5255 2.70364 92.3621 1.45409 92.5244 1.29121C93.3193 0.493583 94.4191 0 95.6342 0Z")',
-    small: 'path("M200 0C202.425 0 204.39 1.96595 204.39 4.39062L204.39 150C204.39 152.425 202.425 154.391 200 154.391L4.39024 154.39C1.96558 154.39 0 152.425 0 150L0 28.2805C0 25.8558 1.96559 23.8903 4.39026 23.8903H78.5C87.5 22.3903 88 9.89025 92 2.89025C92.1353 2.70363 92.9718 1.45409 93.1341 1.29121C93.929 0.493577 95.0288 0 96.2439 0L200 0Z")',
+    large:
+      'path("M0 0H200V150H0V28.2805C0 25.8558 1.96559 23.8903 4.39026 23.8903H77.8903C86.8903 22.3903 87.3903 9.89026 91.3903 2.89026C91.5255 2.70364 92.3621 1.45409 92.5244 1.29121C93.3193 0.493583 94.4191 0 95.6342 0Z")',
+    small:
+      'path("M200 0C202.425 0 204.39 1.96595 204.39 4.39062L204.39 150C204.39 152.425 202.425 154.391 200 154.391L4.39024 154.39C1.96558 154.39 0 152.425 0 150L0 28.2805C0 25.8558 1.96559 23.8903 4.39026 23.8903H78.5C87.5 22.3903 88 9.89025 92 2.89025C92.1353 2.70363 92.9718 1.45409 93.1341 1.29121C93.929 0.493577 95.0288 0 96.2439 0L200 0Z")',
     special: "polygon(94% 20%, 100% 0, 100% 100%, 0 99%, 0 20%)", // Special clip-path for cards[1] on mobile
-    card2: "polygon(81% 16%, 100% 0, 100% 100%, 0 99%, 0 17%)" // New clip-path for card 2
+    card2: "polygon(81% 16%, 100% 0, 100% 100%, 0 99%, 0 17%)", // New clip-path for card 2
   };
 
   const Card = ({ c, responsive = false, isMobile = false }) => (
@@ -107,9 +109,10 @@ const CasinoGameCards = () => {
             borderRadius: responsive ? "5px" : "20px",
             padding: "18px 20px",
             // Apply mobile clip-path based on card type
-            clipPath: responsive && c.mobileClipPath 
-              ? mobileClipPaths[c.mobileClipPath]
-              : undefined
+            clipPath:
+              responsive && c.mobileClipPath
+                ? mobileClipPaths[c.mobileClipPath]
+                : undefined,
           }}
         >
           {/* LEFT TEXT */}
@@ -134,8 +137,12 @@ const CasinoGameCards = () => {
             alt={c.title}
             className="absolute bottom-0 right-0 h-full max-h-full object-contain z-10 pointer-events-none"
             style={{
-              objectPosition: responsive && (c.id === 1 || c.id === 3 || c.id === 4) ? "bottom" :
-                 responsive && c.id === 2 ? "bottom" : ""
+              objectPosition:
+                responsive && (c.id === 1 || c.id === 3 || c.id === 4)
+                  ? "bottom"
+                  : responsive && c.id === 2
+                  ? "bottom"
+                  : "",
             }}
           />
 
@@ -152,7 +159,7 @@ const CasinoGameCards = () => {
   );
 
   return (
-    <section className="w-full py-12">
+    <section className="w-full md:py-2 py-6">
       <div className="max-w-7xl mx-auto space-y-6 px-3">
         {/* Desktop */}
         <div className="hidden xl:flex gap-3">
@@ -181,20 +188,20 @@ const CasinoGameCards = () => {
           </div>
 
           <div className="grid xl:flex gap-3 grid-cols-3">
-            <Card 
+            <Card
               c={{
                 ...cards[2],
-                mobileClipPath: "card2" // Use the new clip-path for card 2
-              }} 
-              responsive 
+                mobileClipPath: "card2", // Use the new clip-path for card 2
+              }}
+              responsive
             />
             {/* Apply special clip-path only for cards[1] on mobile */}
-            <Card 
+            <Card
               c={{
                 ...cards[1],
-                mobileClipPath: "special" // Override to use special clip-path
-              }} 
-              responsive 
+                mobileClipPath: "special", // Override to use special clip-path
+              }}
+              responsive
             />
             <Card c={cards[4]} responsive />
           </div>

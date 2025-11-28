@@ -125,7 +125,7 @@ const TwoFactorAuthPopup = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0  /80 backdrop-blur-sm z-[9998]"
+        className="fixed inset-0 backdrop-blur-lg z-[9998]"
         onClick={handleClose}
       />
 
@@ -138,9 +138,9 @@ const TwoFactorAuthPopup = ({
           transition={{ duration: 0.2 }}
           className="w-full max-w-lg pointer-events-auto"
         >
-          <div className="bg-[#1A1D29] rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
+          <div className="rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
             {/* Header */}
-            <div className="relative bg-gradient-to-r from-[#1A1D29] to-[#252837] px-6 pt-6 pb-4 border-b border-white/10">
+            <div className="relative bg-gradient-to-r px-6 pt-6 pb-4 border-b border-white/10">
               <button
                 onClick={handleClose}
                 className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-lg transition"
@@ -159,9 +159,7 @@ const TwoFactorAuthPopup = ({
                   />
                 </svg>
               </button>
-              <h2 className="text-2xl font-bold text-white">
-                Two-Factor Authentication
-              </h2>
+              <p className="text-2xl text-white">Two-Factor Authentication</p>
             </div>
 
             {/* Body */}
@@ -209,7 +207,11 @@ const TwoFactorAuthPopup = ({
                       type="text"
                       value={secretKey}
                       readOnly
-                      className="w-full bg-[#252837] text-white font-mono text-base px-4 py-3 pr-12 rounded-lg border border-white/10 focus:outline-none"
+                      className="w-full font-mono text-base px-4 py-3 pr-12 rounded-lg focus:outline-none"
+                      style={{
+                        background:
+                          "linear-gradient(109deg, rgba(255,255,255,0.50) 1.57%, rgba(255,255,255,0.10) 100%)",
+                      }}
                     />
                     <button
                       onClick={copyToClipboard}
@@ -263,7 +265,11 @@ const TwoFactorAuthPopup = ({
                     )
                   }
                   placeholder="000000"
-                  className="w-full bg-[#252837] text-white text-lg font-mono px-4 py-3 rounded-lg border border-white/10 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500/50 placeholder-gray-600"
+                  className="w-full text-lg font-mono px-4 py-3 rounded-lg focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500/50 placeholder-gray-600"
+                  style={{
+                    background:
+                      "linear-gradient(109deg, rgba(255,255,255,0.50) 1.57%, rgba(255,255,255,0.10) 100%)",
+                  }}
                 />
               </div>
 
@@ -273,7 +279,10 @@ const TwoFactorAuthPopup = ({
                 whileTap={{ scale: 0.98 }}
                 onClick={handleCompleteSetup}
                 disabled={isLoading || !verificationCode}
-                className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="w-full hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                style={{
+                  background: "var(--cta-gradient)",
+                }}
               >
                 {isLoading ? "Verifying..." : "Complete Setup"}
               </motion.button>

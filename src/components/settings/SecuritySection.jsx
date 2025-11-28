@@ -148,27 +148,6 @@ const SecuritySection = ({
         }, 1000);
       });
 
-      // Uncomment and modify this when you have your actual API endpoint:
-      /*
-      const response = await fetch(
-        "http://localhost:4000/api/auth/verify-email",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({
-            otp: otp,
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Invalid OTP");
-      }
-      */
-
       toast.success("Email verified successfully!");
       // Update the parent component or reload as needed
       window.location.reload();
@@ -348,18 +327,17 @@ const SecuritySection = ({
       className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all duration-300"
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center">
           <svg
-            className="w-5 h-5 text-red-400"
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
             fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              d="M27.9857 17.6528C27.655 17.6051 27.3394 17.4838 27.0625 17.298C26.7855 17.1123 26.5543 16.8668 26.386 16.5798C26.2177 16.2929 26.1167 15.972 26.0905 15.6409C26.0643 15.3098 26.1136 14.9771 26.2347 14.6675C26.3117 14.4651 26.323 14.2439 26.2671 14.0348C26.2112 13.8257 26.0909 13.6392 25.923 13.5015C25.1818 12.8829 24.3382 12.3969 23.4297 12.0652C23.2228 11.9888 22.9969 11.9793 22.7843 12.0379C22.5716 12.0966 22.383 12.2205 22.2453 12.3919C22.0381 12.6553 21.7732 12.8684 21.4708 13.0149C21.1684 13.1614 20.8364 13.2376 20.5 13.2376C20.1636 13.2376 19.8316 13.1614 19.5292 13.0149C19.2268 12.8684 18.9619 12.6553 18.7547 12.3919C18.617 12.2205 18.4284 12.0966 18.2157 12.0379C18.0031 11.9793 17.7772 11.9888 17.5703 12.0652C16.7315 12.3714 15.9472 12.8088 15.247 13.3607C15.0705 13.4996 14.9434 13.691 14.8843 13.9069C14.8251 14.1228 14.8371 14.3518 14.9183 14.5605C15.0491 14.8782 15.1031 15.222 15.0761 15.5642C15.049 15.9065 14.9417 16.2376 14.7626 16.5312C14.5836 16.8247 14.3378 17.0725 14.045 17.2545C13.7522 17.4366 13.4206 17.5479 13.0767 17.5796C12.8534 17.6033 12.6437 17.6977 12.4785 17.8488C12.3132 17.9998 12.2011 18.1997 12.1587 18.4189C12.0532 18.938 12 19.4663 12 19.996C11.9992 20.4394 12.0352 20.8821 12.1077 21.3197C12.1437 21.5459 12.2537 21.754 12.4207 21.9118C12.5877 22.0696 12.8023 22.1683 13.0313 22.1927C13.3828 22.2255 13.7212 22.3415 14.0183 22.531C14.3154 22.7205 14.5625 22.9779 14.739 23.2818C14.9154 23.5857 15.016 23.9272 15.0325 24.2777C15.0489 24.6282 14.9806 24.9775 14.8333 25.2963C14.737 25.5037 14.7131 25.7372 14.7654 25.9597C14.8178 26.1821 14.9434 26.3809 15.1223 26.5242C15.8591 27.1317 16.6946 27.6098 17.593 27.938C17.7079 27.9776 17.8284 27.9985 17.95 28C18.1167 27.9996 18.2809 27.9596 18.4288 27.8831C18.5767 27.8067 18.704 27.6961 18.8 27.5607C19.002 27.2682 19.2727 27.0291 19.5887 26.8642C19.9047 26.6993 20.2564 26.6135 20.6133 26.6144C20.9591 26.6148 21.3001 26.6955 21.609 26.85C21.9179 27.0045 22.1862 27.2286 22.3927 27.5043C22.53 27.6878 22.7245 27.821 22.9459 27.8831C23.1672 27.9453 23.4031 27.9329 23.6167 27.8479C24.4382 27.5193 25.2029 27.0651 25.8833 26.5017C26.0543 26.3613 26.176 26.1705 26.2309 25.957C26.2859 25.7434 26.2714 25.518 26.1893 25.3132C26.0561 24.9996 25.9979 24.6594 26.0196 24.3197C26.0412 23.9799 26.142 23.6497 26.314 23.3553C26.486 23.0609 26.7245 22.8102 27.0107 22.6231C27.2969 22.436 27.6229 22.3176 27.963 22.2772C28.1835 22.2469 28.3886 22.1476 28.5486 21.9937C28.7086 21.8397 28.8151 21.6392 28.8527 21.4211C28.9437 20.9512 28.993 20.4744 29 19.996C29.0001 19.4914 28.9527 18.9879 28.8583 18.4921C28.8201 18.2788 28.7152 18.0829 28.5585 17.9322C28.4018 17.7815 28.2014 17.6838 27.9857 17.6528ZM23.3333 19.996C23.3333 20.553 23.1672 21.0975 22.8558 21.5607C22.5445 22.0238 22.102 22.3848 21.5843 22.5979C21.0666 22.8111 20.4969 22.8669 19.9473 22.7582C19.3976 22.6495 18.8928 22.3813 18.4965 21.9874C18.1003 21.5936 17.8304 21.0918 17.7211 20.5454C17.6118 19.9991 17.6679 19.4329 17.8823 18.9182C18.0968 18.4036 18.46 17.9638 18.9259 17.6543C19.3918 17.3448 19.9396 17.1797 20.5 17.1797C21.2515 17.1797 21.9721 17.4764 22.5035 18.0046C23.0348 18.5327 23.3333 19.2491 23.3333 19.996Z"
+              fill="#C8C8E1"
             />
           </svg>
         </div>
@@ -471,9 +449,14 @@ const SecuritySection = ({
                     value={passwordData.currentPassword}
                     onChange={handlePasswordChange}
                     autoComplete="current-password"
-                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#F07730] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
                     placeholder="Current Password"
+                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
+                    style={{
+                      background:
+                        "linear-gradient(109deg, rgba(255,255,255,0.50) 1.57%, rgba(255,255,255,0.10) 100%)",
+                    }}
                   />
+
                   <button
                     type="button"
                     onClick={() => setShowCurrentPassword((prev) => !prev)}
@@ -496,8 +479,12 @@ const SecuritySection = ({
                     value={passwordData.newPassword}
                     onChange={handlePasswordChange}
                     autoComplete="new-password"
-                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#F07730] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
+                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
                     placeholder="New Password"
+                    style={{
+                      background:
+                        "linear-gradient(109deg, rgba(255,255,255,0.50) 1.57%, rgba(255,255,255,0.10) 100%)",
+                    }}
                   />
                   <button
                     type="button"
@@ -521,8 +508,12 @@ const SecuritySection = ({
                     value={passwordData.confirmPassword}
                     onChange={handlePasswordChange}
                     autoComplete="new-password"
-                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#F07730] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
+                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
                     placeholder="Confirm Password"
+                    style={{
+                      background:
+                        "linear-gradient(109deg, rgba(255,255,255,0.50) 1.57%, rgba(255,255,255,0.10) 100%)",
+                    }}
                   />
                   <button
                     type="button"
@@ -537,7 +528,16 @@ const SecuritySection = ({
               <button
                 type="submit"
                 disabled={isUpdatingPassword}
-                className="w-full py-3 bg-gradient-to-r from-green-500 to-green-600 rounded-lg text-white font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-green-500/30"
+                className="
+    w-full py-3 
+    rounded-lg text-white font-semibold 
+    transition-all flex items-center justify-center gap-2 
+    disabled:opacity-50 disabled:cursor-not-allowed
+    hover:shadow-lg hover:shadow-[#DC1FFF]/30
+  "
+                style={{
+                  background: "var(--cta-gradient)",
+                }}
               >
                 {isUpdatingPassword ? "Updating..." : "Save Changes"}
               </button>

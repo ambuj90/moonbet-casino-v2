@@ -39,20 +39,8 @@ const AccountSection = ({ userData, onUpdate }) => {
     >
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-[#F07730]/20 to-[#EFD28E]/20 rounded-lg flex items-center justify-center">
-            <svg
-              className="w-5 h-5 text-[#F07730]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
+          <div className="w-10 h-10 bg-gradient-to-br from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center">
+            <img src="/icons/profile.png" />
           </div>
           <p className="text-xl font-bold text-white">Account Information</p>
         </div>
@@ -80,7 +68,7 @@ const AccountSection = ({ userData, onUpdate }) => {
           <div className="flex gap-2">
             <button
               onClick={handleSave}
-              className="px-3 py-1.5 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-lg text-white text-sm font-semibold hover:scale-105 transition-transform"
+              className="px-3 py-1.5 bg-gradient-to-r from-[#5A3799] to-[#DC1FFF] rounded-lg text-white text-sm font-semibold hover:scale-105 transition-transform"
             >
               Save
             </button>
@@ -108,7 +96,7 @@ const AccountSection = ({ userData, onUpdate }) => {
               }
               readOnly={!isEditing}
               className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none transition-all pr-12 ${
-                isEditing ? "focus:border-[#F07730]/50" : "cursor-not-allowed"
+                isEditing ? "focus:border-[#5A3799]/50" : "cursor-not-allowed"
               }`}
             />
             {!isEditing && (
@@ -157,7 +145,7 @@ const AccountSection = ({ userData, onUpdate }) => {
               }
               readOnly={!isEditing}
               className={`w-full bg-white/5 border border-white/10 rounded-lg pl-11 pr-4 py-3 text-white focus:outline-none transition-all ${
-                isEditing ? "focus:border-[#F07730]/50" : "cursor-not-allowed"
+                isEditing ? "focus:border-[#5A3799]/50" : "cursor-not-allowed"
               }`}
             />
           </div>

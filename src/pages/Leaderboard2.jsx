@@ -25,7 +25,7 @@ function getPeriodEndDate(period) {
   if (period === "weekly") {
     const end = new Date(now);
     const day = end.getDay();
-    const daysToNextMonday = ((8 - day) % 7) || 7;
+    const daysToNextMonday = (8 - day) % 7 || 7;
     end.setDate(end.getDate() + daysToNextMonday);
     end.setHours(0, 0, 0, 0);
     return end;
@@ -83,7 +83,9 @@ const Leaderboard2 = () => {
     try {
       setLoading(true);
       const [lbRes, prizeRes] = await Promise.all([
-        axios.get(`${API_BASE}/leaderboard/${activeTab}?metric=wager&limit=100`),
+        axios.get(
+          `${API_BASE}/leaderboard/${activeTab}?metric=wager&limit=100`
+        ),
         axios.get(`${API_BASE}/leaderboard/${activeTab}/prizepool`),
       ]);
 
@@ -142,9 +144,8 @@ const Leaderboard2 = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#0A0B0D] pt-20 md:pt-24 pb-8 px-4 lg:px-8 text-white">
+    <div className="min-h-screen py-6 px-4 lg:px-8 text-white">
       <div className="max-w-7xl mx-auto">
-        
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -152,7 +153,9 @@ const Leaderboard2 = () => {
           className="mb-8"
         >
           <h1 className="text-3xl lg:text-4xl font-bold">Leaderboards</h1>
-          <p className="text-gray-400">Track top players & prize distributions</p>
+          <p className="text-gray-400">
+            Track top players & prize distributions
+          </p>
         </motion.div>
 
         {/* TABS */}
@@ -203,7 +206,9 @@ const Leaderboard2 = () => {
 
             {activeTab !== "all-time" && (
               <div className="text-right">
-                <div className="text-gray-400 text-xs uppercase mb-1">Ends in</div>
+                <div className="text-gray-400 text-xs uppercase mb-1">
+                  Ends in
+                </div>
                 <div className="font-semibold text-lg">{endsIn}</div>
               </div>
             )}
@@ -235,13 +240,17 @@ const Leaderboard2 = () => {
                 <div
                   key={i}
                   className={`grid grid-cols-[1fr,3fr,2fr,2fr] px-8 py-4 items-center border-t border-white/5 ${
-                    isTop3
-                      ? "bg-white/10"
-                      : "hover:bg-white/5 transition-all"
+                    isTop3 ? "bg-white/10" : "hover:bg-white/5 transition-all"
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    {user.rank === 1 ? "🥇" : user.rank === 2 ? "🥈" : user.rank === 3 ? "🥉" : ""}
+                    {user.rank === 1
+                      ? "🥇"
+                      : user.rank === 2
+                      ? "🥈"
+                      : user.rank === 3
+                      ? "🥉"
+                      : ""}
                     {String(user.rank).padStart(2, "0")}
                   </div>
 
@@ -253,7 +262,9 @@ const Leaderboard2 = () => {
                     {user.username}
                   </div>
 
-                  <div className="text-right">{user.points.toLocaleString()}</div>
+                  <div className="text-right">
+                    {user.points.toLocaleString()}
+                  </div>
 
                   <div className="text-right">{user.prize}</div>
                 </div>
