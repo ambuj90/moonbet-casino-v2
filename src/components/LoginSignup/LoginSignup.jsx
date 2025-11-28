@@ -259,11 +259,11 @@ if (!pass.isValid) {
 
       // ❌ INCORRECT PASSWORD OR FAILED LOGIN
       setLoginLoading(false);
-      toast.error(data.message || "Incorrect password");
+      toast.error(data.message || "Incorrect password. Please try again.");
       return;
     } catch (err) {
       setLoginLoading(false); // 🔥 turn off loader
-      toast.error(err.response?.data?.message || "Incorrect password", {
+      toast.error(err.response?.data?.message || "Incorrect password. Please try again.", {
         position: "top-right",
         autoClose: 3000,
       });
@@ -332,9 +332,10 @@ if (!pass.isValid) {
         if (onSignupSuccess) onSignupSuccess(data);
       }, 500);
     } catch (err) {
+      setSignupLoading(false);
       console.error("Signup error:", err);
       toast.error(
-        err.response?.data?.message || "Signup failed. Please try again.",
+        err.response?.data?.message || "This email is already registered. Please log in or use a different email.",
         {
           position: "top-right",
           autoClose: 3000,
@@ -922,7 +923,7 @@ if (!pass.isValid) {
                         <span className="text-xs text-[#E1E1E1]">
                           I agree to the{" "}
                           <a
-                            href="#"
+                            href="/terms-and-condition"
                             className="text-[#E1E1E1] hover:underline"
                           >
                             Terms
