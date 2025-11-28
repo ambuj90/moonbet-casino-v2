@@ -9,6 +9,42 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import bs58 from "bs58";
 
+const validateUsername = (username = "") => {
+  const uname = String(username).trim();
+
+  // 1️⃣ Must start with a letter
+  if (!/^[A-Za-z]/.test(uname)) {
+    return "Username must start with a letter.";
+  }
+
+  // 2️⃣ Allowed characters + length 3–15
+  if (!/^[A-Za-z][A-Za-z0-9._-]{2,14}$/.test(uname)) {
+    return "Username must be 3–15 characters and may include letters, numbers, underscores, dots, or hyphens.";
+  }
+
+  // 3️⃣ No double special chars
+  if (/(\.\.|__|--)/.test(uname)) {
+    return "Username cannot contain repeating special characters like '..', '__', '--'.";
+  }
+
+  // 4️⃣ Cannot end with special character
+  if (/[\._-]$/.test(uname)) {
+    return "Username cannot end with a special character.";
+  }
+
+  // 5️⃣ Cannot be only numbers
+  if (/^\d+$/.test(uname)) {
+    return "Username cannot be only numbers.";
+  }
+
+  // 6️⃣ No emojis (UTF-16 range)
+  if (/[\u{1F600}-\u{1F6FF}]/u.test(uname)) {
+    return "Username cannot contain emojis.";
+  }
+
+  return null; // VALID
+};
+
 const validatePassword = (password) => {
   const lengthCheck = password.length >= 12 && password.length <= 15;
   const upperCheck = /[A-Z]/.test(password);
@@ -325,8 +361,9 @@ const LoginSignup = ({
       return;
     }
 
-    if (!username.trim()) {
-      toast.error("Username is required.", {
+    const usernameError = validateUsername(username);
+    if (usernameError) {
+      toast.error(usernameError, {
         position: "top-right",
         autoClose: 3000,
       });
