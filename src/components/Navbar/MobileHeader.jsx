@@ -13,34 +13,51 @@ const MobileHeader = ({
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const location = useLocation();
 
+  /* -------------------------------
+      ICON + ACTIVE CLASS MATCHING
+     ------------------------------- */
+
   const getMenuIcon = (item, currentPath, isSubmenuActive = false) => {
     const isActive = currentPath === item.path || isSubmenuActive;
-    if (isActive && item.activeIcon) {
-      return item.activeIcon;
-    }
-    return item.icon;
+    return isActive && item.activeIcon ? item.activeIcon : item.icon;
   };
 
   const getMenuIconClass = (item, currentPath, isSubmenuActive = false) => {
     const isActive = currentPath === item.path || isSubmenuActive;
-    const baseClass = "w-5 h-5 object-contain transition-all duration-300";
+    const base = "w-5 h-5 transition-all duration-300";
 
-    if (isActive) {
-      return `${baseClass} opacity-100 filter-none`;
-    } else {
-      return `${baseClass} opacity-70 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert`;
-    }
+    return isActive
+      ? `${base} icon-active`
+      : `${base} icon-normal group-hover:icon-hover`;
   };
 
-  const getMenuLinkClass = (item, currentPath) => {
+  const getMainMenuClass = (item, currentPath) => {
     const isActive = currentPath === item.path;
 
-    if (isActive) {
-      return "wallet-btn2 view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px] border border-[rgba(255,255,255,0.40)] transition-all shadow-[1px_2px_1px_rgba(0,0,0,0.40)] bg-[linear-gradient(0deg,rgba(240,119,48,0.6)_0%,rgba(240,119,48,0)_100%)] text-white";
-    } else {
-      return "gap-3 rounded-lg text-[#A8A8A8] hover: hover:bg-white/5";
-    }
+    return isActive
+      ? "trust_btn view_moon_btn relative flex items-center gap-3 px-3 py-2 rounded-[8px] transition-all text-white"
+      : "flex items-center gap-3 px-3 py-2 rounded-[8px] text-[#A8A8A8] hover:text-white hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
   };
+
+  const getGamesMenuClass = (item, currentPath, submenuActive) => {
+    const isActive = currentPath === item.path || submenuActive;
+
+    return isActive
+      ? "rounded-[8px] text-white border border-[rgba(255,255,255,0.40)] bg-[var(--click-state,linear-gradient(0deg,rgba(220,31,255,0.80)0%,rgba(220,31,255,0)100%))] shadow-[0_3px_3px_rgba(255,255,255,0.25)_inset,0_3px_3px_rgba(0,0,0,0.25)] px-3 py-2 flex items-center justify-between"
+      : "rounded-[8px] px-3 py-2 flex items-center justify-between text-[#E1E1E1] bg-[#282753] hover:text-white hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]";
+  };
+
+  const getAccountMenuClass = (item, currentPath) => {
+    const isActive = currentPath === item.path;
+
+    return isActive
+      ? "trust_btn view_moon_btn relative flex items-center gap-3 px-3 py-2 rounded-[8px] transition-all text-white"
+      : "flex items-center gap-3 px-3 py-2 rounded-[8px] text-[#A8A8A8] hover:text-white hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
+  };
+
+  /* -------------------------------
+      MENU STRUCTURE
+     ------------------------------- */
 
   const menuItems = [
     {
@@ -87,7 +104,7 @@ const MobileHeader = ({
         {
           path: "/casino/bacarrat",
           label: "Baccarat",
-          icon: "/icons/bacarrat-menu.svg",
+          icon: "/icons/bacarrat.svg",
         },
         {
           path: "/casino/game-shows",
@@ -129,7 +146,7 @@ const MobileHeader = ({
         {
           path: "#",
           label: "Baccarat",
-          icon: "/icons/bacarrat-menu.svg",
+          icon: "/icons/bacarrat.svg",
           comingSoon: true,
         },
         {
@@ -181,497 +198,213 @@ const MobileHeader = ({
     },
   ];
 
-  const toggleSubmenu = (menuId) => {
-    setActiveSubmenu(activeSubmenu === menuId ? null : menuId);
-  };
+  /* -------------------------------
+      COMPONENT RENDER
+     ------------------------------- */
 
   return (
     <div className="lg:hidden">
-      {/* Mobile Backdrop */}
       <AnimatePresence>
         {isMobileSidebarOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0  /50 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
             onClick={closeMobileSidebar}
           />
         )}
       </AnimatePresence>
 
-      {/* Mobile Sidebar */}
       <motion.div
         initial={{ x: "-100%" }}
         animate={{ x: isMobileSidebarOpen ? 0 : "-100%" }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="fixed left-0 top-16 bottom-0 w-64 bg-gradient-to-b from-[#0A0B0D]/95 to-[#141519]/95 backdrop-blur-xl border-r border-white/10 z-50"
+        className="fixed left-0 top-16 bottom-0 w-64 bg-[#1C1D49] border-r border-white/10 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] z-50"
       >
-        <div className="overflow-y-auto h-full custom-scrollbar pb-20">
-          {/* Main Menu */}
-          {/* Mobile Main Menu */}
-          <div className="p-4">
-            <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-3 px-3">
+        <div className="overflow-y-auto h-full pt-4 pb-20">
+          {/* ------------------- MAIN MENU ------------------- */}
+          <div className="px-4">
+            <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-3 px-1">
               Main Menu
             </h3>
+
             <div className="space-y-1">
               {menuItems.map((item) => {
                 const isActive = location.pathname === item.path;
 
                 return (
-                  <div key={item.id}>
-                    {item.submenu ? (
-                      <>
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          onClick={() => toggleSubmenu(item.id)}
-                          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-[8px] transition-all duration-300 group relative
-                              ${getMenuLinkClass(
-                                item,
-                                location.pathname,
-                                false
-                              )}`}
-                        >
-                          <div className="flex items-center gap-3 relative z-10">
-                            <span className="text-lg flex items-center justify-center">
-                              {typeof item.icon === "string" &&
-                              item.icon.startsWith("/") ? (
-                                <img
-                                  src={getMenuIcon(
-                                    item,
-                                    location.pathname,
-                                    false
-                                  )}
-                                  alt={item.label}
-                                  className={getMenuIconClass(
-                                    item,
-                                    location.pathname,
-                                    false
-                                  )}
-                                  key={`mobile-${item.id}-${isActive}`}
-                                />
-                              ) : (
-                                item.icon
-                              )}
-                            </span>
-                            <span
-                              className={`font-medium relative z-10 transition-colors duration-300 ${
-                                isActive
-                                  ? "text-white"
-                                  : "text-[#A8A8A8] group-hover:text-white"
-                              }`}
-                            >
-                              {item.label}
-                            </span>
-                          </div>
-                          <motion.svg
-                            animate={{
-                              rotate: activeSubmenu === item.id ? 180 : 0,
-                            }}
-                            className={`w-4 h-4 ${
-                              isActive ? "text-white" : "text-gray-400"
-                            } relative z-10`}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </motion.svg>
-                        </motion.button>
-
-                        {/* Mobile Submenu */}
-                        <AnimatePresence>
-                          {activeSubmenu === item.id && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="ml-4 mr-0 mt-1 overflow-hidden"
-                            >
-                              <div className="p-2 space-y-1  /40 backdrop-blur-md rounded-xl">
-                                {item.submenu.map((subItem) => (
-                                  <Link
-                                    key={subItem.path}
-                                    to={subItem.path}
-                                    className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all hover:bg-white/10 ${
-                                      location.pathname === subItem.path
-                                        ? "bg-white/10 border-l-2 border-purple-500"
-                                        : ""
-                                    }`}
-                                    onClick={closeMobileSidebar}
-                                  >
-                                    <span className="text-lg opacity-70">
-                                      {subItem.icon}
-                                    </span>
-                                    <span className="text-gray-300 text-sm">
-                                      {subItem.label}
-                                    </span>
-                                  </Link>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <motion.div
-                        whileHover={{ scale: 1.01 }}
-                        className="relative group"
-                      >
-                        <Link
-                          to={item.path}
-                          className={`flex items-center gap-3 px-3 py-2.5 rounded-[8px] transition-all duration-300 
-                              ${getMenuLinkClass(
-                                item,
-                                location.pathname,
-                                false
-                              )}`}
-                          onClick={closeMobileSidebar}
-                        >
-                          <span className="text-lg flex items-center justify-center">
-                            {typeof item.icon === "string" &&
-                            item.icon.startsWith("/") ? (
-                              <img
-                                src={getMenuIcon(
-                                  item,
-                                  location.pathname,
-                                  false
-                                )}
-                                alt={item.label}
-                                className={getMenuIconClass(
-                                  item,
-                                  location.pathname,
-                                  false
-                                )}
-                                key={`mobile-${item.id}-${isActive}`}
-                              />
-                            ) : (
-                              <span
-                                className={
-                                  isActive
-                                    ? "brightness-0 invert"
-                                    : "group-hover:brightness-0 group-hover:invert"
-                                }
-                              >
-                                {item.icon}
-                              </span>
-                            )}
-                          </span>
-
-                          <span
-                            className={`font-normal font-['Neue_Plak'] font-medium relative z-10 transition-colors duration-300 ${
-                              isActive
-                                ? "text-white"
-                                : "text-[#A8A8A8] group-hover:text-white"
-                            }`}
-                          >
-                            {item.label}
-                          </span>
-
-                          {/* Active indicator bar */}
-                          {isActive && (
-                            <motion.div
-                              layoutId="activeIndicatorMobile"
-                              className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6  rounded-r"
-                            />
-                          )}
-                        </Link>
-                      </motion.div>
-                    )}
-                  </div>
+                  <motion.div key={item.id} whileHover={{ scale: 1.01 }}>
+                    <Link
+                      to={item.path}
+                      onClick={closeMobileSidebar}
+                      className={getMainMenuClass(item, location.pathname)}
+                    >
+                      <img
+                        src={getMenuIcon(item, location.pathname)}
+                        className={getMenuIconClass(item, location.pathname)}
+                        alt={item.label}
+                      />
+                      <span className="font-medium">{item.label}</span>
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
           </div>
 
-          {/* Mobile Games Menu */}
-          <div className="p-4 relative customborder mobile-game">
-            <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-3 px-3">
+          {/* ------------------- GAMES MENU ------------------- */}
+          <div className="px-4 mt-6 relative customborder">
+            <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-3 px-1">
               Games
             </h3>
+
             <div className="space-y-1">
               {gamesItems.map((item) => {
-                const isSubmenuActive = item.submenu?.some(
-                  (subItem) => location.pathname === subItem.path
+                const submenuActive = item.submenu?.some(
+                  (sub) => location.pathname === sub.path
                 );
                 const isActive =
-                  location.pathname === item.path || isSubmenuActive;
+                  location.pathname === item.path || submenuActive;
 
                 return (
                   <div key={item.id}>
-                    {item.submenu ? (
-                      <>
-                        <motion.button
-                          whileHover={{ scale: 1.01 }}
-                          onClick={() => {
-                            setActiveSubmenu(
-                              activeSubmenu === item.id ? null : item.id
-                            );
-                          }}
-                          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-[8px] bg-white/10 shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)] backdrop-blur-[2px] transition-all duration-300 hover:bg-white/10 relative overflow-hidden group
-                              ${
-                                isActive
-                                  ? "bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] text-white"
-                                  : "text-[rgb(168,168,168)] hover:text-white"
-                              }`}
-                        >
-                          <div className="flex items-center gap-3 relative z-10">
-                            <span className="text-lg flex items-center justify-center">
-                              {typeof item.icon === "string" &&
-                              item.icon.startsWith("/") ? (
-                                <img
-                                  src={getMenuIcon(
-                                    item,
-                                    location.pathname,
-                                    false,
-                                    isSubmenuActive
-                                  )}
-                                  alt={item.label}
-                                  className={getMenuIconClass(
-                                    item,
-                                    location.pathname,
-                                    false,
-                                    isSubmenuActive
-                                  )}
-                                  key={`mobile-games-${item.id}-${isActive}`} // Force re-render
-                                />
-                              ) : (
-                                <span
-                                  className={
-                                    isActive
-                                      ? "brightness-0 invert"
-                                      : "group-hover:brightness-0 group-hover:invert"
-                                  }
-                                >
-                                  {item.icon}
-                                </span>
-                              )}
-                            </span>
-                            <span
-                              className={`font-medium relative z-10 transition-colors duration-300 ${
-                                isActive
-                                  ? "text-white"
-                                  : "text-[rgb(168,168,168)] group-hover:text-white"
-                              }`}
-                            >
-                              {item.label}
-                            </span>
-                          </div>
-
-                          <motion.svg
-                            animate={{
-                              rotate: activeSubmenu === item.id ? 180 : 0,
-                            }}
-                            className={`w-4 h-4 ${
-                              isActive ? "text-white" : "text-current"
-                            }`}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </motion.svg>
-                        </motion.button>
-
-                        {/* Submenu for Mobile */}
-                        <AnimatePresence>
-                          {activeSubmenu === item.id && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="mt-2 overflow-hidden"
-                            >
-                              <div className="space-y-1.5">
-                                {item.submenu.map((subItem) => {
-                                  const isSubItemActive =
-                                    location.pathname === subItem.path;
-
-                                  return (
-                                    <Link
-                                      key={subItem.path}
-                                      to={subItem.path}
-                                      className={`group flex items-center gap-4 px-3 py-2 rounded-[8px] bg-white/10 shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)] backdrop-blur-[2px] transition-all duration-300 hover:bg-white/10 relative overflow-hidden
-                                          ${
-                                            isSubItemActive
-                                              ? "bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] text-white"
-                                              : "text-[rgb(168,168,168)] hover:text-white"
-                                          }`}
-                                      onClick={closeMobileSidebar}
-                                    >
-                                      <span className="text-lg flex items-center justify-center">
-                                        {typeof subItem.icon === "string" &&
-                                        subItem.icon.startsWith("/") ? (
-                                          <img
-                                            src={subItem.icon}
-                                            alt={subItem.label}
-                                            className="w-5 h-5 object-contain opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert"
-                                          />
-                                        ) : (
-                                          subItem.icon
-                                        )}
-                                      </span>
-                                      <span
-                                        className={`font-medium transition-colors duration-300 ${
-                                          isSubItemActive
-                                            ? "text-white"
-                                            : "text-[rgb(168,168,168)] group-hover:text-white"
-                                        }`}
-                                      >
-                                        {subItem.label}
-                                      </span>
-                                    </Link>
-                                  );
-                                })}
-                              </div>
-                            </motion.div>
+                    {/* PARENT BUTTON */}
+                    <motion.button
+                      whileHover={{ scale: 1.01 }}
+                      onClick={() =>
+                        setActiveSubmenu(
+                          activeSubmenu === item.id ? null : item.id
+                        )
+                      }
+                      className={getGamesMenuClass(
+                        item,
+                        location.pathname,
+                        submenuActive
+                      )}
+                    >
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={getMenuIcon(
+                            item,
+                            location.pathname,
+                            submenuActive
                           )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <motion.div
-                        whileHover={{ scale: 1.01 }}
-                        className="relative group"
+                          className={getMenuIconClass(
+                            item,
+                            location.pathname,
+                            submenuActive
+                          )}
+                          alt={item.label}
+                        />
+                        <span>{item.label}</span>
+                      </div>
+
+                      <motion.svg
+                        animate={{
+                          rotate: activeSubmenu === item.id ? 180 : 0,
+                        }}
+                        className="w-4 h-4 text-[#A8A8A8]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        <Link
-                          to={item.path}
-                          className={`flex items-center gap-3 px-3 py-2.5 rounded-[8px] bg-white/10 shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)] backdrop-blur-[2px] transition-all duration-300 hover:bg-white/10 relative overflow-hidden group ${
-                            isActive
-                              ? "bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] text-white"
-                              : "text-[rgb(168,168,168)]"
-                          }`}
-                          onClick={closeMobileSidebar}
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </motion.svg>
+                    </motion.button>
+
+                    {/* SUBMENU */}
+                    <AnimatePresence>
+                      {activeSubmenu === item.id && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="mt-1 ml-2 space-y-1"
                         >
-                          <span className="text-lg flex items-center justify-center">
-                            {typeof item.icon === "string" &&
-                            item.icon.startsWith("/") ? (
-                              <img
-                                src={getMenuIcon(
-                                  item,
-                                  location.pathname,
-                                  false
-                                )}
-                                alt={item.label}
-                                className={getMenuIconClass(
-                                  item,
-                                  location.pathname,
-                                  false
-                                )}
-                                key={`mobile-games-${item.id}-${isActive}`} // Force re-render
-                              />
-                            ) : (
-                              <span
-                                className={
-                                  isActive
-                                    ? "brightness-0 invert"
-                                    : "group-hover:brightness-0 group-hover:invert"
-                                }
+                          {item.submenu.map((subItem) => {
+                            const subActive =
+                              location.pathname === subItem.path;
+
+                            return (
+                              <Link
+                                key={subItem.path}
+                                to={subItem.path}
+                                onClick={closeMobileSidebar}
+                                className={`flex items-center gap-3 px-3 py-2 rounded-[8px] transition-all ${
+                                  subActive
+                                    ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)]"
+                                    : "text-[#E1E1E1] hover:bg-white/5"
+                                }`}
                               >
-                                {item.icon}
-                              </span>
-                            )}
-                          </span>
+                                <img
+                                  src={subItem.icon}
+                                  className="w-5 h-5 opacity-70 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert"
+                                  alt={subItem.label}
+                                />
+                                <span>{subItem.label}</span>
 
-                          <span
-                            className={`font-medium relative z-10 transition-colors duration-300 ${
-                              isActive
-                                ? "text-white"
-                                : "text-[rgb(168,168,168)] group-hover:text-white"
-                            }`}
-                          >
-                            {item.label}
-                          </span>
-
-                          {/* Active indicator bar */}
-                          {isActive && (
-                            <motion.div
-                              layoutId="activeIndicatorMobile"
-                              className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6  rounded-r"
-                            />
-                          )}
-                        </Link>
-                      </motion.div>
-                    )}
+                                {subItem.comingSoon && (
+                                  <span
+                                    className="ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-[4px]"
+                                    style={{
+                                      background:
+                                        "linear-gradient(180deg, rgba(40,194,3,0) 0%, rgba(40,194,3,0.40) 100%)",
+                                    }}
+                                  >
+                                    coming soon
+                                  </span>
+                                )}
+                              </Link>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Mobile Account Menu */}
-          <div className="p-4 relative customborder">
-            <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-3 px-3">
+          {/* ------------------- ACCOUNT MENU ------------------- */}
+          <div className="px-4 mt-6 customborder">
+            <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-3 px-1">
               Account
             </h3>
+
             <div className="space-y-1">
               {accountItems.map((item) => {
                 const isActive = location.pathname === item.path;
 
                 return (
-                  <motion.div
-                    key={item.path}
-                    whileHover={{ scale: 1.01 }}
-                    className="relative group"
-                  >
+                  <motion.div key={item.path} whileHover={{ scale: 1.01 }}>
                     <Link
                       to={item.path}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-[8px] transition-all duration-300 
-                          ${getMenuLinkClass(item, location.pathname, false)}`}
                       onClick={closeMobileSidebar}
+                      className={getAccountMenuClass(item, location.pathname)}
                     >
-                      <span className="text-lg flex items-center justify-center">
-                        {typeof item.icon === "string" &&
-                        item.icon.startsWith("/") ? (
-                          <img
-                            src={getMenuIcon(item, location.pathname, false)}
-                            alt={item.label}
-                            className={getMenuIconClass(
-                              item,
-                              location.pathname,
-                              false
-                            )}
-                            key={`mobile-account-${item.path}-${isActive}`}
-                          />
-                        ) : (
-                          <span
-                            className={
-                              isActive
-                                ? "brightness-0 invert"
-                                : "group-hover:brightness-0 group-hover:invert"
-                            }
-                          >
-                            {item.icon}
-                          </span>
-                        )}
-                      </span>
-
-                      <span
-                        className={`font-medium relative z-10 transition-colors duration-300 ${
-                          isActive
-                            ? "text-white"
-                            : "text-[#A8A8A8] group-hover:text-white"
-                        }`}
-                      >
-                        {item.label}
-                      </span>
-
-                      {/* Active indicator bar */}
-                      {isActive && (
-                        <motion.div
-                          layoutId="activeIndicatorMobile"
-                          className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6  rounded-r"
-                        />
+                      <img
+                        src={getMenuIcon(item, location.pathname)}
+                        className={getMenuIconClass(item, location.pathname)}
+                        alt={item.label}
+                      />
+                      <span>{item.label}</span>
+                      {item.comingSoon && (
+                        <span
+                          className="ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-[4px]"
+                          style={{
+                            background:
+                              "linear-gradient(180deg, rgba(40,194,3,0) 0%, rgba(40,194,3,0.40) 100%)",
+                          }}
+                        >
+                          coming soon
+                        </span>
                       )}
                     </Link>
                   </motion.div>
@@ -680,17 +413,16 @@ const MobileHeader = ({
 
               {hasToken && (
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-[8px] bg-white/10 text-[#A8A8A8] hover:text-red-400 hover:bg-red-500/10 transition-all duration-300 group shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleLogout}
+                  className="flex items-center gap-3 px-3 py-2 rounded-[8px] text-[#A8A8A8] hover:text-red-400 hover:bg-red-500/10 transition-all"
                 >
                   <img
                     src="/icons/logout.svg"
-                    alt="Logout"
-                    className="w-5 h-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                    className="w-6 h-6 opacity-70 group-hover:opacity-100"
                   />
-                  <span className="font-medium">Logout</span>
+                  Logout
                 </motion.button>
               )}
             </div>
