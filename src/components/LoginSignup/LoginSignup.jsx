@@ -56,6 +56,7 @@ const LoginSignup = ({
   const [loginLoading, setLoginLoading] = useState(false);
   const [signupLoading, setSignupLoading] = useState(false);
   const [walletLoading, setWalletLoading] = useState(false);
+  const [alreadySubmitted, setAlreadySubmitted] = useState(false);
 
   // Form state
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -231,23 +232,16 @@ const LoginSignup = ({
   const handleLoginSubmit = async () => {
     const { email, password } = loginData;
 
-    // ✅ Validate email
     if (!validateEmail(email)) {
-      toast.error("Please enter a valid email address.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      toast.error("Please enter a valid email.");
       return;
     }
 
-    // ✅ Validate password length
     if (password.length < 12 || password.length > 15) {
-      toast.error("Password must be between 12 and 15 characters.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      toast.error("Password must be between 12 and 15 characters.");
       return;
     }
+
     setLoginLoading(true);
 
     try {
@@ -257,41 +251,24 @@ const LoginSignup = ({
       );
 
       if (data?.token) {
+        // success...
+        setLoginLoading(false);
         localStorage.setItem("token", data.token);
-        window.dispatchEvent(new Event("tokenChanged"));
-
-        if (data.user) {
-          const { id, username, email, kycStatus } = data.user;
-          localStorage.setItem(
-            "user",
-            JSON.stringify({ id, username, email, kycStatus })
-          );
-        }
-
-        toast.success("You have logged in successfully", {
-          position: "top-right",
-          autoClose: 3000,
-        });
-
-        setTimeout(() => {
-          setLoginLoading(false);
-          if (onLoginSuccess) onLoginSuccess(data);
-        }, 500);
-      } else {
-        toast.error(data.message || "Login failed", {
-          position: "top-right",
-          autoClose: 3000,
-        });
+        toast.success("You have logged in successfully!");
+        if (onLoginSuccess) onLoginSuccess(data);
+        return;
       }
+
+      // ❌ INCORRECT PASSWORD OR FAILED LOGIN
+      setLoginLoading(false);
+      toast.error(data.message || "Incorrect password");
+      return;
     } catch (err) {
-      console.error("Login error:", err);
-      toast.error(
-        err.response?.data?.message || "Invalid credentials. Please try again.",
-        {
-          position: "top-right",
-          autoClose: 3000,
-        }
-      );
+      setLoginLoading(false); // 🔥 turn off loader
+      toast.error(err.response?.data?.message || "Incorrect password", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -584,6 +561,7 @@ const LoginSignup = ({
         WebkitBackdropFilter: "blur(10px)",
       }}
       onClick={() => {
+        e.stopPropagation();
         if (!walletLoading && !loginLoading && !signupLoading) {
           onClose();
         }
@@ -844,7 +822,6 @@ const LoginSignup = ({
                             }
                           }}
                           onError={() => toast.error("Google Sign-In failed")}
-                          useOneTap
                           theme="filled_black"
                           width="100%"
                         />
@@ -1008,7 +985,6 @@ const LoginSignup = ({
                             }
                           }}
                           onError={() => toast.error("Google Sign-In failed")}
-                          useOneTap
                           theme="filled_black"
                           width="100%"
                         />

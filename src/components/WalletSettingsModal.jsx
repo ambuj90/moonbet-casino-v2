@@ -103,11 +103,16 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+              <div 
+                className="w-10 h-10 rounded-lg flex items-center justify-center"
+                style={{
+                  background: 'var(--cta-pink-gradient)'
+                }}
+              >
                 <svg
-                  className="w-5 h-5 text-gray-400"
+                  className="w-5 h-5"
                   fill="none"
-                  stroke="currentColor"
+                  stroke="#fff"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -144,12 +149,12 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
           <div className="p-6">
             {/* Currency Section */}
             <div className="mb-8">
-              <h3 className="text-gray-400 text-sm font-medium mb-4">
+              <h3 className="text-[#E1E1E1] text-sm font-medium mb-4">
                 Currency
               </h3>
 
               {loading ? (
-                <p className="text-gray-400 text-sm">Loading currencies...</p>
+                <p className="text-[#E1E1E1] text-sm">Loading currencies...</p>
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {currencies.map((currency) => (
@@ -162,7 +167,7 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
                         transition-all duration-200
                         ${
                           selectedCurrency === currency.code
-                            ? "bg-white/10 border-2 border-[#F07730]"
+                            ? "bg-white/10 border-2 border-[#5A3799]"
                             : "bg-white/5 border-2 border-transparent hover:bg-white/10"
                         }
                         ${saving ? "opacity-60 cursor-not-allowed" : ""}
@@ -173,13 +178,13 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
                         <div
                           className={`w-5 h-5 rounded-full border-2 ${
                             selectedCurrency === currency.code
-                              ? "border-blue-500"
+                              ? "border-[#fff]"
                               : "border-gray-500"
                           }`}
                         >
                           {selectedCurrency === currency.code && (
                             <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+                              <div className="w-2.5 h-2.5 rounded-full bg-[#fff]"></div>
                             </div>
                           )}
                         </div>
@@ -203,12 +208,21 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Info Box */}
-            <div className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-500/30 rounded-xl p-4">
+            <div className="rounded-xl p-4"
+              style={{
+                background: 'linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)',
+                
+              }}>
               <div className="flex gap-3">
-                <div className="flex-shrink-0 w-8 h-8 bg-orange-500/30 rounded-full flex items-center justify-center">
+                <div 
+                  className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+                  style={{
+                    background: 'var(--cta-pink-gradient)'
+                  }}
+                >
                   <svg
-                    className="w-4 h-4 text-orange-400"
-                    fill="currentColor"
+                    className="w-4 h-4"
+                    fill="#fff"
                     viewBox="0 0 20 20"
                   >
                     <path
@@ -218,7 +232,7 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
                     />
                   </svg>
                 </div>
-                <p className="text-orange-200 text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   By switching currencies, your balance will be fully converted
                   to the selected currency using current exchange rates.
                 </p>
@@ -239,12 +253,12 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
                 onClick={handleSave}
                 disabled={saving}
                 className="w-[176px] h-[44px] 
-                 bg-gradient-to-r from-[#F07730] to-[#EFD28E]
-                 text-[#000] font-[600] text-[16px] 
+                 text-white custom-btn
+                 text-[#fff] font-[600] text-[16px] 
                  font-['Neue_Plack',sans-serif]
                  rounded-lg shadow-md 
                  transition-all duration-300
-                 hover:from-[#F07730]/90 hover:to-[#EFD28E]/90
+                 hover:opacity-90
                  flex items-center justify-center"
               >
                 {saving ? "Saving..." : "Save Changes"}

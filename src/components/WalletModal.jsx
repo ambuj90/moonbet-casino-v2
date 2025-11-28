@@ -440,18 +440,25 @@ const WalletModal = ({ isOpen, onClose }) => {
 
               <div className="px-6 pb-6">
                 <div className="mb-4 mt-4 relative">
-                  <label className="text-gray-400 text-sm mb-2 block">
+                  <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Currency
                   </label>
 
                   <div
                     onClick={() => setShowDepositDropdown(!showDepositDropdown)}
-                    className="bg-[#0F1116] rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all border border-white/10"
+                    className=" rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                      backdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(255, 255, 255, 0.18)',
+                      boxShadow: 'rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(240, 119, 48, 0.1) 0px 0px 100px',
+                      borderRadius: '6px'
+                    }}
                   >
                     <div className="flex items-center gap-3">
                       {selectedDepositCoin ? (
                         <>
-                          <div className="w-10 h-10 bg-gradient-to-br from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-black font-bold">
+                          <div className="w-10 h-10 bg-gradient-to-br from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-[#fff] font-bold">
                             {selectedDepositCoin.symbol.charAt(0)}
                           </div>
                           <div>
@@ -464,7 +471,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                           </div>
                         </>
                       ) : (
-                        <div className="text-gray-400 text-sm">
+                        <div className="text-[#E1E1E1] text-sm">
                           Select Currency
                         </div>
                       )}
@@ -493,7 +500,10 @@ const WalletModal = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute left-0 right-0 mt-2 bg-[#0F1116] border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
+                        className="absolute left-0 right-0 mt-2 border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
+                        style={{
+                          background: 'rgb(40, 39, 83)'
+                        }}
                       >
                         {depositCoinList.map((coin) => (
                           <div
@@ -505,7 +515,12 @@ const WalletModal = ({ isOpen, onClose }) => {
                             className="flex items-center justify-between px-4 py-3 hover:bg-white/5 cursor-pointer transition-all"
                           >
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-gradient-to-br from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-black font-bold">
+                              <div 
+                                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                                  style={{
+                                    background: 'var(--cta-pink-gradient)'
+                                  }}
+                                >
                                 {coin.symbol.charAt(0)}
                               </div>
                               <div>
@@ -528,10 +543,13 @@ const WalletModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="mb-6">
-                  <label className="text-gray-400 text-sm mb-2 block">
+                  <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Address
                   </label>
-                  <div className="bg-[#0F1116] rounded-lg p-2 flex items-center gap-3 border border-white/10">
+                  <div className="rounded-lg p-2 flex items-center gap-3 border border-white/10"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
+                    }}>
                     <span className="text-white text-sm font-mono flex-1 truncate">
                       {depositAddress || "Please select currency..."}
                     </span>
@@ -541,7 +559,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                       className={`p-2 rounded-lg transition-all ${
                         copied
                           ? "bg-green-500/20 text-green-400"
-                          : "hover:bg-white/5 text-gray-400"
+                          : "hover:bg-white/5 text-white"
                       }`}
                     >
                       {copied ? (
@@ -595,23 +613,33 @@ const WalletModal = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
-                <div className="text-center text-gray-400 mb-4">Or</div>
+                <div className="text-center text-white mb-4">Or</div>
 
-                <button className="w-full bg-[#0F1116] hover:bg-white/5 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-3 transition-all border border-white/10">
+                <button 
+                  className="w-full hover:bg-white/5 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-3 transition-all border border-white/10"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
+                  }}
+                >
                   <span>Deposit Directly From Your Wallet</span>
                   <div className="flex gap-2">
                     <span className="text-xl">🦊</span>
                     <span className="text-xl">👻</span>
                     <span className="text-xl">🔵</span>
                     <span className="text-xl">◎</span>
-                    <span className="text-sm bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-black px-2 py-1 rounded font-bold">
+                    <span 
+                      className="text-sm text-white px-2 py-1 rounded font-bold"
+                      style={{
+                        background: 'var(--cta-pink-gradient)'
+                      }}
+                    >
                       +300
                     </span>
                   </div>
                 </button>
 
                 <div className="mt-4 flex justify-between text-sm">
-                  <span className="text-gray-400">Credited</span>
+                  <span className="text-white">Credited</span>
                   <span className="text-white">2 Confirmations</span>
                 </div>
               </div>
@@ -699,7 +727,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                     />
                   </svg>
                 </button>
-                <h2 className="text-xl font-bold text-white">Withdraw</h2>
+                <h2 className="text-xl font-bold text-white test">Withdraw</h2>
                 <button
                   onClick={() => setShowWithdrawModal(false)}
                   className="ml-auto p-2 hover:bg-white/5 rounded-lg transition-colors"
@@ -722,17 +750,24 @@ const WalletModal = ({ isOpen, onClose }) => {
 
               <div className="px-6 pb-6 pt-6">
                 <div className="mb-4 relative">
-                  <label className="text-gray-400 text-sm mb-2 block">
+                  <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Currency
                   </label>
                   <div
                     onClick={() =>
                       setShowWithdrawDropdown(!showWithdrawDropdown)
                     }
-                    className="bg-[#0F1116] rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all border border-white/10"
+                    className=" rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all border border-white/10"
+                     style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                    }}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-black font-bold">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
+                        style={{
+                          background: "var(--cta-pink-gradient)"
+                        }}
+                      >
                         {selectedWithdrawCoin?.symbol?.charAt(0) || "◎"}
                       </div>
                       <div>
@@ -767,7 +802,10 @@ const WalletModal = ({ isOpen, onClose }) => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute left-0 right-0 mt-2 bg-[#0F1116] border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
+                        className="absolute left-0 right-0 mt-2 border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
+                        style={{
+                          background: 'rgb(40, 39, 83) '
+                        }}
                       >
                         {withdrawCoinList.map((coin) => (
                           <div
@@ -779,7 +817,10 @@ const WalletModal = ({ isOpen, onClose }) => {
                             className="flex items-center justify-between px-4 py-3 hover:bg-white/5 cursor-pointer transition-all"
                           >
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-gradient-to-br from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-black font-bold">
+                              <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                              style={{
+                                background: 'var(--cta-pink-gradient)'
+                              }}>
                                 {coin.symbol.charAt(0)}
                               </div>
                               <div>
@@ -802,20 +843,23 @@ const WalletModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="mb-4">
-                  <label className="text-gray-400 text-sm mb-2 block">
+                  <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Withdrawal Address
                   </label>
-                  <input
-                    type="text"
-                    value={withdrawAddress}
-                    onChange={(e) => setWithdrawAddress(e.target.value)}
-                    placeholder="Enter wallet address"
-                    className="w-full bg-[#0F1116] rounded-lg p-4 text-white font-mono text-sm border border-white/10 focus:border-[#F07730] focus:outline-none transition-all"
-                  />
+                    <input
+                      type="text"
+                      value={withdrawAddress}
+                      onChange={(e) => setWithdrawAddress(e.target.value)}
+                      placeholder="Enter wallet address"
+                      className="w-full rounded-lg p-4 text-white font-mono text-sm border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
+                      }}
+                    />
                 </div>
 
                 <div className="mb-6">
-                  <label className="text-gray-400 text-sm mb-2 block">
+                  <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Amount
                   </label>
                   <div className="relative">
@@ -824,15 +868,18 @@ const WalletModal = ({ isOpen, onClose }) => {
                       value={withdrawAmount}
                       onChange={(e) => setWithdrawAmount(e.target.value)}
                       placeholder="0.00"
-                      className="w-full bg-[#0F1116] rounded-lg p-4 pr-20 text-white text-lg font-bold border border-white/10 focus:border-[#F07730] focus:outline-none transition-all"
+                      className="w-full rounded-lg p-4 pr-20 text-white text-lg font-bold border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
+                      }}
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">
                       {selectedWithdrawCoin?.symbol || "SOL"}
                     </div>
                   </div>
                   <div className="mt-2 flex justify-between text-sm">
-                    <span className="text-gray-400">Available Balance:</span>
-                    <span className="text-white font-bold">
+                    <span className="text-[#E1E1E1]">Available Balance:</span>
+                    <span className="text-[#E1E1E1] font-bold">
                       {walletBalance?.balances
                         ?.find(
                           (b) =>
@@ -844,20 +891,33 @@ const WalletModal = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
-                <div className="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4 mb-6">
+                {/* Info Box */}
+                <div 
+                  className="rounded-lg p-4 mb-6"
+                  style={{
+                    background: 'linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)',
+                  }}
+                >
                   <div className="flex gap-3">
-                    <svg
-                      className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                    <div 
+                      className="w-5 h-5 flex-shrink-0 mt-0.5 rounded-full flex items-center justify-center"
+                      style={{
+                        background: 'var(--cta-pink-gradient)'
+                      }}
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <p className="text-orange-200 text-sm">
+                      <svg
+                        className="w-3 h-3"
+                        fill="#fff"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-[#fff] text-sm">
                       Please double-check the withdrawal address. Transactions
                       cannot be reversed once confirmed.
                     </p>
@@ -869,12 +929,12 @@ const WalletModal = ({ isOpen, onClose }) => {
                   onClick={!isWithdrawDisabled ? handleWithdrawClick : null}
                   disabled={isWithdrawDisabled}
                   className={`w-full py-4 px-6 rounded-lg font-bold transition-all
-    ${
-      isWithdrawDisabled
-        ? "bg-gray-500 text-gray-300 cursor-not-allowed opacity-50"
-        : "bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 text-black"
-    }
-  `}
+                  ${
+                    isWithdrawDisabled
+                      ? "bg-gray-500 text-gray-300 cursor-not-allowed opacity-50"
+                      : "bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 text-black"
+                  }
+                `}
                 >
                   {isWithdrawDisabled
                     ? dynamicInsufficientMessage
@@ -912,9 +972,11 @@ const WalletModal = ({ isOpen, onClose }) => {
               className=" rounded-2xl w-full max-w-2xl shadow-2xl transform transition-all duration-300 scale-100"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)",
-                backdropFilter: "blur(30px)",
-                WebkitBackdropFilter: "blur(30px)",
+              "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(255, 255, 255, 0.18)",
+            boxShadow:
+              "rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(240, 119, 48, 0.1) 0px 0px 100px",
                 borderRadius: "6px",
               }}
             >
@@ -928,11 +990,16 @@ const WalletModal = ({ isOpen, onClose }) => {
                 }}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-lg flex items-center justify-center shadow-lg shadow-[#F07730]/30">
+                  <div 
+                    className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg shadow-[#F07730]/30"
+                    style={{
+                      background: 'var(--cta-pink-gradient)'
+                    }}
+                  >
                     <svg
-                      className="wallet-btn2 w-5 h-5 text-black"
+                      className="wallet-btn2 w-5 h-5"
                       fill="none"
-                      stroke="currentColor"
+                      stroke="#fff"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -972,8 +1039,8 @@ const WalletModal = ({ isOpen, onClose }) => {
                 className="flex gap-4 p-4 border-b border-white/10"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(15, 17, 22, 0.8) 0%, rgba(15, 17, 22, 0.4) 100%)",
-                  backdropFilter: "blur(15px)",
+                    "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
+                  backdropFilter: "blur(30px)",
                 }}
               >
                 {/* {["overview", "buycrypto", "settings"].map((tab) => ( */}
@@ -985,7 +1052,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                     onClick={() => setActiveTab(tab)}
                     className={`px-4 py-2 rounded-full font-medium transition-all ${
                       activeTab === tab
-                        ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-black shadow-lg shadow-[#F07730]/30"
+                        ? "text-white custom-btn shadow-lg shadow-[#F07730]/30"
                         : ""
                     }`}
                     style={
@@ -1045,7 +1112,12 @@ const WalletModal = ({ isOpen, onClose }) => {
                         </div>
 
                         {/* Right side: Gradient Icon */}
-                        <div className="w-10 h-10 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-black font-extrabold text-lg shadow-[0_0_12px_rgba(240,119,48,0.4)]">
+                        <div 
+                          className="w-10 h-10 rounded-full flex items-center justify-center text-white font-extrabold text-lg shadow-[0_0_12px_rgba(240,119,48,0.4)]"
+                          style={{
+                            background: 'var(--cta-pink-gradient)'
+                          }}
+                        >
                           $
                         </div>
                       </div>
@@ -1072,31 +1144,36 @@ const WalletModal = ({ isOpen, onClose }) => {
                             transition={{ delay: index * 0.1 }}
                             className="flex items-center justify-between py-2 px-3 mb-2 rounded-lg transition-all"
                             style={{
-                              background: "rgba(255, 255, 255, 0.03)",
-                              backdropFilter: "blur(10px)",
+                              background: "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
+                              backdropFilter: "blur(30px)",
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.background =
-                                "rgba(255, 255, 255, 0.06)";
+                                "linear-gradient(109deg, rgba(255, 255, 255, 0.60) 1.57%, rgba(255, 255, 255, 0.20) 100%)";
                               e.currentTarget.style.border =
                                 "1px solid rgba(255, 255, 255, 0.1)";
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.background =
-                                "rgba(255, 255, 255, 0.03)";
+                                "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)";
                               e.currentTarget.style.border =
                                 "1px solid rgba(255, 255, 255, 0.05)";
                             }}
                           >
                             <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-black font-bold shadow-lg shadow-[#F07730]/20">
+                              <div 
+                                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg shadow-[#F07730]/20"
+                                style={{
+                                  background: 'var(--cta-pink-gradient)'
+                                }}
+                              >
                                 {coin.currency.charAt(0)}
                               </div>
                               <div>
                                 <div className="text-white font-bold">
                                   {coin.currency}
                                 </div>
-                                <div className="text-gray-400 text-sm">
+                                <div className="text-[#E1E1E1] text-sm">
                                   Crypto Asset
                                 </div>
                               </div>
@@ -1150,14 +1227,14 @@ const WalletModal = ({ isOpen, onClose }) => {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setShowDepositModal(true)}
-                        className="bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 text-black py-4 px-6 rounded-lg font-bold transition-all shadow-lg shadow-[#F07730]/30"
+                        className="text-white custom-btn hover:from-[#F07730]/90 hover:to-[#EFD28E]/90  py-4 px-6 rounded-lg font-bold transition-all shadow-lg shadow-[#F07730]/30"
                       >
                         Deposit
                       </motion.button>
                     </div>
 
                     {/* 2FA Card with enhanced glass */}
-                    <div
+                    {/* <div
                       className="rounded-lg p-4"
                       style={{
                         background:
@@ -1174,7 +1251,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                       <button className="w-full bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 text-black py-3 px-4 rounded-lg font-medium transition-all shadow-lg shadow-[#F07730]/30">
                         Enable 2FA
                       </button>
-                    </div>
+                    </div> */}
                   </motion.div>
                 )}
 
@@ -1186,7 +1263,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                   >
                     {/* Coin Selector with glass effect */}
                     <div className="mb-4 relative">
-                      <label className="text-gray-400 text-sm mb-2 block">
+                      <label className="text-[#E1E1E1] text-sm mb-2 block">
                         Buy
                       </label>
 
