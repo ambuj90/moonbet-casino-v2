@@ -107,7 +107,7 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed h-screen inset-0 flex items-center justify-center p-4 sm:p-6 md:p-8"
+          className="fixed h-screen inset-0 backdrop-blur-lg flex items-center justify-center p-4 sm:p-6 md:p-8"
           onClick={onClose}
         >
           {/* Backdrop */}
@@ -115,7 +115,7 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0  /80 backdrop-blur-sm"
+            className="absolute"
           />
 
           {/* Modal Container - Responsive */}
@@ -130,19 +130,14 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
           >
             {/* Glassmorphism Card */}
             <div
-              className="relative bg-gradient-to-br from-[#1a1d24]/95 to-[#13161F]/95 backdrop-blur-2xl rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
+              className="relative bg-gradient-to-br rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
               style={{
                 background: "rgba(255,255,255,0.15)",
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
                 borderRadius: "20px",
                 border: "1px solid rgba(255,255,255,0.3)",
-                boxShadow: `
-      0 8px 32px rgba(0,0,0,0.20),
-      inset 0 1px 0 rgba(255,255,255,0.5),
-      inset 0 -1px 0 rgba(255,255,255,0.1),
-      inset 0 0 20px 6px rgba(255,255,255,0.15)
-    `,
+                boxShadow: `0 8px 32px rgba(0,0,0,0.20),inset 0 1px 0 rgba(255,255,255,0.5),inset 0 -1px 0 rgba(255,255,255,0.1),inset 0 0 20px 6px rgba(255,255,255,0.15)`,
               }}
             >
               {/* Glow Effects */}
@@ -152,9 +147,7 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
               {/* Header */}
               <div className="relative p-4 sm:p-5 md:p-6 border-b border-white/10">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
-                    Profile
-                  </h2>
+                  <h2 className="text-xl sm:text-xl text-white">Profile</h2>
                   <button
                     onClick={onClose}
                     className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-all"
@@ -212,7 +205,7 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
                   {/* Avatar + Profile Overlay */}
                   {/* Avatar + Level Overlay */}
-                  <div className="relative w-24 h-24 sm:w-22 sm:h-22 md:w-20 md:h-20 flex items-center justify-center mx-auto sm:mx-0 -mt-2">
+                  <div className="relative w-24 h-24 sm:w-22 sm:h-22 md:w-24 md:h-24 flex items-center justify-center mx-auto sm:mx-0 -mt-2">
                     {/* Astronaut Image with fixed responsive sizing */}
                     <img
                       src="/leaderboard-assets/astro-profile1.svg"
@@ -251,7 +244,15 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
                     <span className="text-[#F07730] font-semibold text-sm sm:text-base">
                       {profileData.rank}
                     </span>
-                    <span className="text-white font-semibold text-sm sm:text-base">
+                    <span
+                      className="font-bold text-[18px]"
+                      style={{
+                        background: "var(--cta3-green-gradient)",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
                       ${profileData.remainingToNextRank.toFixed(2)} remaining
                     </span>
                   </div>
@@ -262,7 +263,13 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
                       initial={{ width: 0 }}
                       animate={{ width: `${progressPercentage}%` }}
                       transition={{ duration: 1, ease: "easeOut" }}
-                      className="absolute h-full bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-full"
+                      className="absolute h-full"
+                      style={{
+                        background: "var(--CTA-HOVER)",
+                        borderRadius: "7px 0 0 7px",
+                        boxShadow:
+                          "0 3px 3px rgba(0,0,0,0.25), inset 0 3px 3px rgba(255,255,255,0.25)",
+                      }}
                     />
                   </div>
 
@@ -272,7 +279,7 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
                     </span>
                     <div className="flex items-center gap-1">
                       <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-orange-600 to-orange-400 rounded transform rotate-45" />
-                      <span className="text-orange-400 text-xs sm:text-sm font-semibold">
+                      <span className="text-white text-xs sm:text-sm font-semibold">
                         {profileData.nextRank}
                       </span>
                     </div>
@@ -287,7 +294,11 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
                       onClose?.();
                       navigate("/settings");
                     }}
-                    className="flex-1 py-2.5 sm:py-3 bg-gradient-to-br from-[#F07730] to-[#EFD28E]  hover:bg-white/20 rounded-lg sm:rounded-xl text-white font-bold text-sm sm:text-base transition-all border border-white/10"
+                    className="flex-1 py-2.5 sm:py-3 text-white font-bold text-sm sm:text-base transition-all"
+                    style={{
+                      borderRadius: "8px",
+                      background: "var(--CTA-HOVER)",
+                    }}
                   >
                     Edit Profile
                   </button>

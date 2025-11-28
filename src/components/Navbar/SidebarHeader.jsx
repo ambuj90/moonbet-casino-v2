@@ -417,7 +417,7 @@ const SidebarHeader = ({
           x: 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`fixed left-0 top-16 bottom-0 bg-[#1C1D49] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]border-r border-white/10 z-[99999] px-2 `}
+        className={`fixed left-0 top-16 bottom-0 bg-[#1C1D49] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] border-r border-white/10 px-2 `}
       >
         <div className="h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-[#3a3a3a] scrollbar-track-transparent pr-1">
           {/* Main Menu */}

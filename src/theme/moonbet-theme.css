@@ -50,6 +50,7 @@
     rgba(40, 194, 3, 0.4) 100%
   );
 
+  --cta3-green-gradient: linear-gradient(180deg, #aaf23f 0%, #28c203 100%);
   /* ===========================
      MOON BADGES (VIP Tiers)
   ============================ */
