@@ -154,7 +154,7 @@ const TopHeader = ({
             <div className="flex items-center gap-2">
               {/* ⭐ Leaderboard Button */}
               <button
-                onClick={() => navigate("/leaderboard")}
+                onClick={() => navigate("/leaderboard2")}
                 className="w-10 h-10 md:flex hidden items-center justify-center rounded-full hover:bg-white/10 transition-all"
               >
                 <img

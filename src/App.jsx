@@ -50,6 +50,7 @@ import DisclaimerPage from "./pages/DisclaimerPage.jsx";
 import CookiePolicy from "./pages/PrivacyPolicyPage";
 import AmlPolicy from "./pages/AmlPolicy.jsx";
 import EditorialPolicy from "./pages/EditorialPolicy.jsx";
+import Leaderboard2 from "./pages/Leaderboard2.jsx";
 
 // Temporary pages
 const SimplePage = ({ title }) => (
@@ -165,6 +166,7 @@ function App() {
             <Route path="providers/:slug" element={<ProvidersPage />} />
 
             <Route path="product-data" element={<ProductShowcase />} />
+            <Route path="leaderboard2" element={<Leaderboard2 />} />
           </Route>
 
           {/* ---------------- PUBLIC ROUTES OUTSIDE LAYOUT ---------------- */}
