@@ -11,18 +11,19 @@ import bs58 from "bs58";
 
 const validatePassword = (password) => {
   const lengthCheck = password.length >= 12 && password.length <= 15;
-  const upperCheck  = /[A-Z]/.test(password);
-  const lowerCheck  = /[a-z]/.test(password);
+  const upperCheck = /[A-Z]/.test(password);
+  const lowerCheck = /[a-z]/.test(password);
   const numberCheck = /[0-9]/.test(password);
   const symbolCheck = /[^A-Za-z0-9]/.test(password);
 
   return {
-    isValid: lengthCheck && upperCheck && lowerCheck && numberCheck && symbolCheck,
+    isValid:
+      lengthCheck && upperCheck && lowerCheck && numberCheck && symbolCheck,
     lengthCheck,
     upperCheck,
     lowerCheck,
     numberCheck,
-    symbolCheck
+    symbolCheck,
   };
 };
 
@@ -226,19 +227,34 @@ const LoginSignup = ({
   const handleLoginSubmit = async () => {
     const { email, password } = loginData;
 
-    if (!validateEmail(email)) {
-      toast.error("Please enter a valid email.");
+    // 1️⃣ Empty fields
+    if (!email && !password) {
+      toast.error("Please enter email and password.");
+      return;
+    }
+    if (!email) {
+      toast.error("Please enter your email.");
+      return;
+    }
+    if (!password) {
+      toast.error("Please enter your password.");
       return;
     }
 
-    const pass = validatePassword(password);
+    // 2️⃣ Invalid email format
+    if (!validateEmail(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
 
-if (!pass.isValid) {
-  toast.error(
-    "Password must be 10-18 characters and include uppercase, lowercase, number and special character."
-  );
-  return;
-}
+    // 3️⃣ Password format validation BEFORE request
+    const pass = validatePassword(password);
+    if (!pass.isValid) {
+      toast.error(
+        "Password must be 12–15 characters and include uppercase, lowercase, number and special character."
+      );
+      return;
+    }
 
     setLoginLoading(true);
 
@@ -249,7 +265,6 @@ if (!pass.isValid) {
       );
 
       if (data?.token) {
-        // success...
         setLoginLoading(false);
         localStorage.setItem("token", data.token);
         toast.success("You have logged in successfully!");
@@ -257,16 +272,44 @@ if (!pass.isValid) {
         return;
       }
 
-      // ❌ INCORRECT PASSWORD OR FAILED LOGIN
+      // 4️⃣ Backend returned error but with no token
       setLoginLoading(false);
-      toast.error(data.message || "Incorrect password. Please try again.");
-      return;
+      toast.error(data.message || "Unable to log in. Please try again.");
     } catch (err) {
-      setLoginLoading(false); // 🔥 turn off loader
-      toast.error(err.response?.data?.message || "Incorrect password. Please try again.", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      setLoginLoading(false);
+
+      // FIX: check both message AND error fields
+      const message = (
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        ""
+      ).toLowerCase();
+
+      console.log("LOGIN ERROR RECEIVED:", message);
+
+      // Email not registered
+      if (message.includes("user not found")) {
+        toast.error("This email is not registered.");
+        return;
+      }
+
+      // Password incorrect
+      if (
+        message.includes("invalid password") ||
+        message.includes("incorrect password")
+      ) {
+        toast.error("Incorrect password.");
+        return;
+      }
+
+      // Generic invalid credentials
+      if (message.includes("invalid credentials")) {
+        toast.error("Invalid email or password.");
+        return;
+      }
+
+      // Fallback
+      toast.error("Unable to log in. Please try again.");
     }
   };
 
@@ -292,12 +335,12 @@ if (!pass.isValid) {
 
     const pass = validatePassword(password);
 
-  if (!pass.isValid) {
-    toast.error(
-      "Password must be 10-18 characters and include uppercase, lowercase, number and special character."
-    );
-    return;
-  }
+    if (!pass.isValid) {
+      toast.error(
+        "Password must be 10-18 characters and include uppercase, lowercase, number and special character."
+      );
+      return;
+    }
 
     if (password !== confirmPassword) {
       toast.error("Passwords do not match.", {
@@ -335,7 +378,8 @@ if (!pass.isValid) {
       setSignupLoading(false);
       console.error("Signup error:", err);
       toast.error(
-        err.response?.data?.message || "This email is already registered. Please log in or use a different email.",
+        err.response?.data?.message ||
+          "This email is already registered. Please log in or use a different email.",
         {
           position: "top-right",
           autoClose: 3000,
@@ -643,7 +687,8 @@ if (!pass.isValid) {
             className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-center relative overflow-hidden"
             style={{
               // borderRadius: "0 12px 12px 0",
-              background: "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
+              background:
+                "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
               backdropFilter: "blur(30px)",
               WebkitBackdropFilter: "blur(30px)",
               border: "1px solid rgba(255, 255, 255, 0.3)",
@@ -743,9 +788,10 @@ if (!pass.isValid) {
                         onChange={handleLoginChange}
                         className="w-full px-4 py-3 rounded-md text-white placeholder-white/80 focus:outline-none focus:border-[#5A3799] transition-all"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
-                          backdropFilter: 'blur(20px)',
-                          border: '1px solid rgba(255, 255, 255, 0.18)'
+                          background:
+                            "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                          backdropFilter: "blur(20px)",
+                          border: "1px solid rgba(255, 255, 255, 0.18)",
                         }}
                       />
                     </div>
@@ -756,17 +802,18 @@ if (!pass.isValid) {
                         Password
                       </label>
                       <input
-  type="password"
-  name="password"
-  placeholder="Password"
-  value={loginData.password}
-  onChange={handleLoginChange}
-  className="w-full px-4 py-3 rounded-md border border-[#fff] text-white placeholder-gray-500 focus:outline-none focus:border-[#5A3799] transition-all"
-  style={{
-    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
-    backdropFilter: 'blur(20px)'
-  }}
-/>
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={loginData.password}
+                        onChange={handleLoginChange}
+                        className="w-full px-4 py-3 rounded-md border border-[#fff] text-white placeholder-gray-500 focus:outline-none focus:border-[#5A3799] transition-all"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                          backdropFilter: "blur(20px)",
+                        }}
+                      />
                     </div>
 
                     {/* Forgot Password Link */}
@@ -792,12 +839,12 @@ if (!pass.isValid) {
                       <div className="flex items-center">
                         {/* Left Border */}
                         <div className="flex-grow border-t border-[rgba(255, 255, 255, 0.20)]"></div>
-                        
+
                         {/* OR Text */}
                         <span className="px-3 text-xs uppercase text-white bg-transparent tracking-wider">
                           OR
                         </span>
-                        
+
                         {/* Right Border */}
                         <div className="flex-grow border-t border-[rgba(255, 255, 255, 0.20)]"></div>
                       </div>
