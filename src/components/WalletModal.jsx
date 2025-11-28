@@ -448,11 +448,13 @@ const WalletModal = ({ isOpen, onClose }) => {
                     onClick={() => setShowDepositDropdown(!showDepositDropdown)}
                     className=" rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all"
                     style={{
-                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
-                      backdropFilter: 'blur(20px)',
-                      border: '1px solid rgba(255, 255, 255, 0.18)',
-                      boxShadow: 'rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(240, 119, 48, 0.1) 0px 0px 100px',
-                      borderRadius: '6px'
+                      background:
+                        "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                      backdropFilter: "blur(20px)",
+                      border: "1px solid rgba(255, 255, 255, 0.18)",
+                      boxShadow:
+                        "rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(240, 119, 48, 0.1) 0px 0px 100px",
+                      borderRadius: "6px",
                     }}
                   >
                     <div className="flex items-center gap-3">
@@ -502,7 +504,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                         transition={{ duration: 0.2 }}
                         className="absolute left-0 right-0 mt-2 border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
                         style={{
-                          background: 'rgb(40, 39, 83)'
+                          background: "rgb(40, 39, 83)",
                         }}
                       >
                         {depositCoinList.map((coin) => (
@@ -515,12 +517,12 @@ const WalletModal = ({ isOpen, onClose }) => {
                             className="flex items-center justify-between px-4 py-3 hover:bg-white/5 cursor-pointer transition-all"
                           >
                             <div className="flex items-center gap-3">
-                              <div 
-                                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                                  style={{
-                                    background: 'var(--cta-pink-gradient)'
-                                  }}
-                                >
+                              <div
+                                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                                style={{
+                                  background: "var(--cta-pink-gradient)",
+                                }}
+                              >
                                 {coin.symbol.charAt(0)}
                               </div>
                               <div>
@@ -546,10 +548,13 @@ const WalletModal = ({ isOpen, onClose }) => {
                   <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Address
                   </label>
-                  <div className="rounded-lg p-2 flex items-center gap-3 border border-white/10"
+                  <div
+                    className="rounded-lg p-2 flex items-center gap-3 border border-white/10"
                     style={{
-                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
-                    }}>
+                      background:
+                        "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                    }}
+                  >
                     <span className="text-white text-sm font-mono flex-1 truncate">
                       {depositAddress || "Please select currency..."}
                     </span>
@@ -615,10 +620,11 @@ const WalletModal = ({ isOpen, onClose }) => {
 
                 <div className="text-center text-white mb-4">Or</div>
 
-                <button 
+                <button
                   className="w-full hover:bg-white/5 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-3 transition-all border border-white/10"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
+                    background:
+                      "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
                   }}
                 >
                   <span>Deposit Directly From Your Wallet</span>
@@ -627,10 +633,10 @@ const WalletModal = ({ isOpen, onClose }) => {
                     <span className="text-xl">👻</span>
                     <span className="text-xl">🔵</span>
                     <span className="text-xl">◎</span>
-                    <span 
+                    <span
                       className="text-sm text-white px-2 py-1 rounded font-bold"
                       style={{
-                        background: 'var(--cta-pink-gradient)'
+                        background: "var(--cta-pink-gradient)",
                       }}
                     >
                       +300
@@ -758,14 +764,15 @@ const WalletModal = ({ isOpen, onClose }) => {
                       setShowWithdrawDropdown(!showWithdrawDropdown)
                     }
                     className=" rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all border border-white/10"
-                     style={{
+                    style={{
                       background: "rgba(255, 255, 255, 0.05)",
                     }}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
                         style={{
-                          background: "var(--cta-pink-gradient)"
+                          background: "var(--cta-pink-gradient)",
                         }}
                       >
                         {selectedWithdrawCoin?.symbol?.charAt(0) || "◎"}
@@ -804,7 +811,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                         exit={{ opacity: 0, y: -10 }}
                         className="absolute left-0 right-0 mt-2 border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
                         style={{
-                          background: 'rgb(40, 39, 83) '
+                          background: "rgb(40, 39, 83) ",
                         }}
                       >
                         {withdrawCoinList.map((coin) => (
@@ -817,10 +824,12 @@ const WalletModal = ({ isOpen, onClose }) => {
                             className="flex items-center justify-between px-4 py-3 hover:bg-white/5 cursor-pointer transition-all"
                           >
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                              style={{
-                                background: 'var(--cta-pink-gradient)'
-                              }}>
+                              <div
+                                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                                style={{
+                                  background: "var(--cta-pink-gradient)",
+                                }}
+                              >
                                 {coin.symbol.charAt(0)}
                               </div>
                               <div>
@@ -846,16 +855,17 @@ const WalletModal = ({ isOpen, onClose }) => {
                   <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Withdrawal Address
                   </label>
-                    <input
-                      type="text"
-                      value={withdrawAddress}
-                      onChange={(e) => setWithdrawAddress(e.target.value)}
-                      placeholder="Enter wallet address"
-                      className="w-full rounded-lg p-4 text-white font-mono text-sm border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
-                      style={{
-                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
-                      }}
-                    />
+                  <input
+                    type="text"
+                    value={withdrawAddress}
+                    onChange={(e) => setWithdrawAddress(e.target.value)}
+                    placeholder="Enter wallet address"
+                    className="w-full rounded-lg p-4 text-white font-mono text-sm border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                    }}
+                  />
                 </div>
 
                 <div className="mb-6">
@@ -870,7 +880,8 @@ const WalletModal = ({ isOpen, onClose }) => {
                       placeholder="0.00"
                       className="w-full rounded-lg p-4 pr-20 text-white text-lg font-bold border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
                       style={{
-                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)'
+                        background:
+                          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
                       }}
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">
@@ -892,24 +903,21 @@ const WalletModal = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Info Box */}
-                <div 
+                <div
                   className="rounded-lg p-4 mb-6"
                   style={{
-                    background: 'linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)',
+                    background:
+                      "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
                   }}
                 >
                   <div className="flex gap-3">
-                    <div 
+                    <div
                       className="w-5 h-5 flex-shrink-0 mt-0.5 rounded-full flex items-center justify-center"
                       style={{
-                        background: 'var(--cta-pink-gradient)'
+                        background: "var(--cta-pink-gradient)",
                       }}
                     >
-                      <svg
-                        className="w-3 h-3"
-                        fill="#fff"
-                        viewBox="0 0 20 20"
-                      >
+                      <svg className="w-3 h-3" fill="#fff" viewBox="0 0 20 20">
                         <path
                           fillRule="evenodd"
                           d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
@@ -972,12 +980,11 @@ const WalletModal = ({ isOpen, onClose }) => {
               className=" rounded-2xl w-full max-w-2xl shadow-2xl transform transition-all duration-300 scale-100"
               style={{
                 background:
-              "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-            backdropFilter: "blur(20px)",
-            border: "1px solid rgba(255, 255, 255, 0.18)",
-            boxShadow:
-              "rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(240, 119, 48, 0.1) 0px 0px 100px",
-                borderRadius: "6px",
+                  "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                backdropFilter: "blur(20px)",
+                boxShadow:
+                  "rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(240, 119, 48, 0.1) 0px 0px 100px",
+                borderRadius: "8px",
               }}
             >
               {/* Header with enhanced glass effect */}
@@ -990,10 +997,10 @@ const WalletModal = ({ isOpen, onClose }) => {
                 }}
               >
                 <div className="flex items-center gap-3">
-                  <div 
+                  <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg shadow-[#F07730]/30"
                     style={{
-                      background: 'var(--cta-pink-gradient)'
+                      background: "var(--cta-pink-gradient)",
                     }}
                   >
                     <svg
@@ -1035,14 +1042,7 @@ const WalletModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Tab Navigation with glass effect */}
-              <div
-                className="flex gap-4 p-4 border-b border-white/10"
-                style={{
-                  background:
-                    "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
-                  backdropFilter: "blur(30px)",
-                }}
-              >
+              <div className="flex gap-4 px-4 py-2 border-b border-white/10">
                 {/* {["overview", "buycrypto", "settings"].map((tab) => ( */}
                 {["overview"].map((tab) => (
                   <motion.button
@@ -1076,14 +1076,7 @@ const WalletModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Content Area with glass overlay */}
-              <div
-                className="overflow-y-auto"
-                style={{
-                  maxHeight: "calc(90vh - 200px)",
-                  background:
-                    "linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%)",
-                }}
-              >
+              <div className="overflow-y-auto">
                 {activeTab === "overview" && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -1091,31 +1084,23 @@ const WalletModal = ({ isOpen, onClose }) => {
                     className="p-4"
                   >
                     {/* Balance Section with glass card */}
-                    <div
-                      className="mb-6 p-4 rounded-xl"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
-                        backdropFilter: "blur(15px)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
-                      }}
-                    >
+                    <div className="mb-6 rounded-xl">
                       <div className="flex items-center justify-between gap-4  /30 px-4 py-3 rounded-xl border border-white/10">
                         {/* Left side: Label and Balance */}
                         <div className="flex flex-col">
                           <h3 className="text-sm text-gray-400 font-medium tracking-wide">
                             Balance
                           </h3>
-                          <span className="text-4xl font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">
+                          <span className="text-2xl font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">
                             ${walletBalance?.totalUsd?.toFixed(2) || "0.00"}
                           </span>
                         </div>
 
                         {/* Right side: Gradient Icon */}
-                        <div 
+                        <div
                           className="w-10 h-10 rounded-full flex items-center justify-center text-white font-extrabold text-lg shadow-[0_0_12px_rgba(240,119,48,0.4)]"
                           style={{
-                            background: 'var(--cta-pink-gradient)'
+                            background: "var(--cta-pink-gradient)",
                           }}
                         >
                           $
@@ -1126,7 +1111,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                     {/* Currency List with glass cards */}
                     <div className="mb-6">
                       <div
-                        className="flex justify-between text-gray-400 text-sm mb-4 pb-2 border-b border-white/10"
+                        className="flex justify-between text-gray-400 text-sm mb-4 pb-2"
                         style={{
                           textShadow: "0 2px 4px rgba(0,0,0,0.5)",
                         }}
@@ -1142,29 +1127,28 @@ const WalletModal = ({ isOpen, onClose }) => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            className="flex items-center justify-between py-2 px-3 mb-2 rounded-lg transition-all"
+                            className="flex items-center justify-between py-1 px-3 mb-2 rounded-lg transition-all"
                             style={{
-                              background: "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
+                              background:
+                                "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
                               backdropFilter: "blur(30px)",
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.background =
                                 "linear-gradient(109deg, rgba(255, 255, 255, 0.60) 1.57%, rgba(255, 255, 255, 0.20) 100%)";
-                              e.currentTarget.style.border =
-                                "1px solid rgba(255, 255, 255, 0.1)";
+                              e.currentTarget.style.border = "";
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.background =
                                 "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)";
-                              e.currentTarget.style.border =
-                                "1px solid rgba(255, 255, 255, 0.05)";
+                              e.currentTarget.style.border = "";
                             }}
                           >
                             <div className="flex items-center gap-3">
-                              <div 
+                              <div
                                 className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-lg shadow-[#F07730]/20"
                                 style={{
-                                  background: 'var(--cta-pink-gradient)'
+                                  background: "var(--cta-pink-gradient)",
                                 }}
                               >
                                 {coin.currency.charAt(0)}
@@ -1201,24 +1185,21 @@ const WalletModal = ({ isOpen, onClose }) => {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setShowWithdrawModal(true)}
-                        className="text-white py-4 px-6 rounded-lg font-bold transition-all"
+                        className="text-white py-2 px-6 rounded-lg font-bold transition-all"
                         style={{
                           background: "rgba(255, 255, 255, 0.05)",
                           backdropFilter: "blur(10px)",
-                          border: "1px solid rgba(255, 255, 255, 0.1)",
                           boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background =
                             "rgba(255, 255, 255, 0.08)";
-                          e.currentTarget.style.border =
-                            "1px solid rgba(255, 255, 255, 0.2)";
+                          e.currentTarget.style.border = "";
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.background =
                             "rgba(255, 255, 255, 0.05)";
-                          e.currentTarget.style.border =
-                            "1px solid rgba(255, 255, 255, 0.1)";
+                          e.currentTarget.style.border = "";
                         }}
                       >
                         Withdraw
