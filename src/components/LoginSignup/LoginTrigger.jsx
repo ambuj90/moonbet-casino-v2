@@ -22,6 +22,22 @@ export const LoginTrigger = ({
 
   const dropdownRef = useRef(null);
 
+  // 🔥 PRELOAD ICONS - always at top level
+useEffect(() => {
+  const icons = [
+    "/icons/profile.png",
+    "/icons/bets.png",
+    "/icons/transactions.png",
+    "/icons/settings.png",
+    "/icons/logout.png",
+  ];
+
+  icons.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+}, []);
+
   /* ------------------------------- CHECK LOGIN ------------------------------ */
   useEffect(() => {
     if (forceOpen) setIsModalOpen(true);
