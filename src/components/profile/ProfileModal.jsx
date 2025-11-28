@@ -215,7 +215,7 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
 
                     {/* LEVEL TEXT INSIDE THE HELMET */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <span className="text-white font-bold text-sm sm:text-base md:text-lg drop-shadow-[0_0_6px_rgba(0,0,0,0.6)]">
+                      <span className="text-white font-bold -mt-5 text-sm sm:text-base md:text-lg drop-shadow-[0_0_6px_rgba(0,0,0,0.6)]">
                         {profileData.avatarLevel}
                       </span>
                     </div>
@@ -226,34 +226,41 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
                     <p className="text-lg sm:text-xl font-bold text-white uppercase mb-1">
                       {profileData.username}
                     </p>
-                    <p className="text-gray-400 text-xs sm:text-sm">
+                    <p className="text-[#E86A60]  text-xs sm:text-sm">
                       {profileData.emailVerified
                         ? "✅ Verified"
-                        : "❌ Not Verified"}
+                        : " Not Verified"}
                     </p>
 
-                    <p className="text-gray-400 text-xs sm:text-sm">
+                    <p className="text-gray-400 text-xs sm:text-sm pt-2">
                       Member since: {profileData.memberSince}
                     </p>
                   </div>
                 </div>
 
                 {/* Rank Progress Section */}
-                <div className="mb-4 sm:mb-6">
-                  <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 mb-2">
-                    <span className="text-[#F07730] font-semibold text-sm sm:text-base">
-                      {profileData.rank}
-                    </span>
+                <div className="rank">
+                  <div className="flex xs:flex-row items-start xs:items-center justify-between gap-2 mb-2">
+                    {/* Gradient Amount */}
                     <span
                       className="font-bold text-[18px]"
                       style={{
-                        background: "var(--cta3-green-gradient)",
-                        backgroundClip: "text",
+                        background:
+                          "linear-gradient(180deg, #AAF23F 0%, #28C203 100%)",
                         WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                       }}
                     >
-                      ${profileData.remainingToNextRank.toFixed(2)} remaining
+                      ${profileData.remainingToNextRank.toFixed(2)}
+                    </span>
+
+                    {/* Normal “remaining” text */}
+                    <span
+                      className="text-xs px-2 notranslate"
+                      style={{ color: "rgba(255, 255, 255, 0.5)" }}
+                    >
+                      remaining
                     </span>
                   </div>
 
@@ -278,7 +285,12 @@ const ProfileModal = ({ isOpen, onClose, userData }) => {
                       {profileData.rank}
                     </span>
                     <div className="flex items-center gap-1">
-                      <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-orange-600 to-orange-400 rounded transform rotate-45" />
+                      <img
+                        src={`/icons/moon.svg`}
+                        alt="icon"
+                        className="w-3 h-3"
+                      />
+
                       <span className="text-white text-xs sm:text-sm font-semibold">
                         {profileData.nextRank}
                       </span>
