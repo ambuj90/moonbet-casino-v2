@@ -150,44 +150,39 @@ const TopHeader = ({
 
           {/* ✅ Profile & Wallet shown only when logged in */}
           {/* ✅ Profile, Leaderboard and Wallet shown only when logged in */}
-{hasToken && (
-  <div className="flex items-center gap-2">
+          {hasToken && (
+            <div className="flex items-center gap-2">
+              {/* ⭐ Leaderboard Button */}
+              <button
+                onClick={() => navigate("/leaderboard")}
+                className="w-10 h-10 md:flex hidden items-center justify-center rounded-full hover:bg-white/10 transition-all"
+              >
+                <img
+                  src="/icons/leaderboard.svg"
+                  alt="Leaderboard"
+                  className="w-10 h-10 object-contain"
+                />
+              </button>
 
-    {/* ⭐ Leaderboard Button */}
-    <button
-      onClick={() => navigate("/leaderboard")}
-      className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-all"
-    >
-      <img
-        src="/icons/leaderboard.svg"
-        alt="Leaderboard"
-        className="w-6 h-6 object-contain"
-      />
-    </button>
-
-    {/* ⭐ Profile Button (already existing LoginTrigger) */}
-    <LoginTrigger
-      buttonText={
-        <div className="view_btn w-10 h-10 flex items-center justify-center rounded-full overflow-hidden hover:opacity-80 transition-all">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-          >
-            <path
-              d="M20.1612 1.52601C20.2324..."
-              fill="#CED5E3"
-            />
-          </svg>
-        </div>
-      }
-      className="p-2 rounded-lg hover:opacity-80 transition-colors"
-    />
-
-  </div>
-)}
+              {/* ⭐ Profile Button (already existing LoginTrigger) */}
+              <LoginTrigger
+                buttonText={
+                  <div className="view_btn w-10 h-10 flex items-center justify-center rounded-full overflow-hidden hover:opacity-80 transition-all">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="21"
+                      height="21"
+                      viewBox="0 0 21 21"
+                      fill="none"
+                    >
+                      <path d="M20.1612 1.52601C20.2324..." fill="#CED5E3" />
+                    </svg>
+                  </div>
+                }
+                className="p-2 rounded-lg hover:opacity-80 transition-colors"
+              />
+            </div>
+          )}
         </div>
       </div>
     </motion.header>
