@@ -8,6 +8,7 @@ import api from "../../api/axios";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import bs58 from "bs58";
+import GlobalLoader from "../GlobalLoader";
 
 // Icon Components
 const GoogleIcon = () => (
@@ -52,6 +53,9 @@ const LoginSignup = ({
   const [showReferralCode, setShowReferralCode] = useState(false);
   const [recoverySent, setRecoverySent] = useState(false);
   const [walletModalOpen, setWalletModalOpen] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [signupLoading, setSignupLoading] = useState(false);
+  const [walletLoading, setWalletLoading] = useState(false);
 
   // Form state
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -162,7 +166,9 @@ const LoginSignup = ({
     return (
       <div
         className="fixed inset-0  /70 backdrop-blur-sm flex justify-center items-center z-[999999]"
-        onClick={onClose}
+        onClick={() => {
+          if (!walletLoading) onClose();
+        }}
       >
         <div
           className="bg-[#1a1a1a] p-6 rounded-xl w-[340px] shadow-lg"
@@ -242,6 +248,7 @@ const LoginSignup = ({
       });
       return;
     }
+    setLoginLoading(true);
 
     try {
       const { data } = await axios.post(
@@ -267,6 +274,7 @@ const LoginSignup = ({
         });
 
         setTimeout(() => {
+          setLoginLoading(false);
           if (onLoginSuccess) onLoginSuccess(data);
         }, 500);
       } else {
@@ -330,6 +338,7 @@ const LoginSignup = ({
       });
       return;
     }
+    setSignupLoading(true);
 
     try {
       const { data } = await axios.post(
@@ -343,6 +352,7 @@ const LoginSignup = ({
       });
 
       setTimeout(() => {
+        setSignupLoading(false);
         if (onSignupSuccess) onSignupSuccess(data);
       }, 500);
     } catch (err) {
@@ -398,74 +408,137 @@ const LoginSignup = ({
   };
 
   const handleWalletLogin = async (provider) => {
+    setWalletLoading(true);
     try {
       if (!provider) {
-        toast.error("No Solana wallet detected.");
+        toast.error("No Solana wallet detected.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         return;
       }
 
-      // Connect wallet
-      const resp = await provider.connect();
+      // 1️⃣ CONNECT WALLET
+      let resp;
+      try {
+        resp = await provider.connect();
+      } catch (err) {
+        console.error("❌ Wallet connection error:", err);
+
+        if (err?.message?.includes("User rejected")) {
+          toast.error("Wallet connection rejected by user.");
+        } else {
+          toast.error("Unable to connect to wallet.");
+        }
+        return;
+      }
+
       const walletAddress = getWalletAddress(provider);
+      if (!walletAddress) {
+        toast.error("Unable to read wallet address.");
+        return;
+      }
+
       console.log("🔌 Wallet connected:", walletAddress);
 
-      // 1️⃣ Get nonce
-      const { data: nonceRes } = await axios.post(
-        "/auth-service/api/auth/wallet/nonce",
-        { walletAddress }
-      );
-
-      if (!nonceRes.success) {
-        toast.error("Failed to get nonce");
+      // 2️⃣ GET NONCE
+      let nonceRes;
+      try {
+        nonceRes = await axios.post("/auth-service/api/auth/wallet/nonce", {
+          walletAddress,
+        });
+        setWalletLoading(true);
+      } catch (err) {
+        console.error("Nonce error:", err);
+        toast.error("Failed to get login nonce. Try again.");
         return;
       }
 
-      const message = nonceRes.message;
+      if (!nonceRes.data?.success) {
+        toast.error(nonceRes.data?.error || "Nonce generation failed.");
+        return;
+      }
 
-      // 2️⃣ Sign message (Phantom / Backpack / Solflare)
-      const signature = await signMessageUnified(provider, message);
+      const message = nonceRes.data.message;
 
-      // 3️⃣ Verify in backend
-      const { data: verifyRes } = await axios.post(
-        "/auth-service/api/auth/wallet/verify",
-        {
+      // 3️⃣ SIGN MESSAGE
+      let signature;
+      try {
+        signature = await signMessageUnified(provider, message);
+        setWalletLoading(true);
+      } catch (err) {
+        console.error("❌ Signature Error:", err);
+
+        if (err.message.includes("User rejected")) {
+          toast.error("Message signing cancelled.");
+        } else {
+          toast.error("Failed to sign message.");
+        }
+        return;
+      }
+
+      // 4️⃣ VERIFY WITH BACKEND
+      let verifyRes;
+      try {
+        verifyRes = await axios.post("/auth-service/api/auth/wallet/verify", {
           walletAddress,
           signature,
           message,
           walletType: "solana",
-        }
-      );
-
-      if (!verifyRes.success) {
-        toast.error(verifyRes.message || "Wallet verification failed");
+        });
+        setWalletLoading(true);
+      } catch (err) {
+        console.error("Verify error:", err);
+        toast.error(
+          err.response?.data?.error ||
+            err.response?.data?.message ||
+            "Wallet verification failed."
+        );
         return;
       }
 
-      // 4️⃣ Save user
-      const { user, token } = verifyRes.data;
+      if (!verifyRes.data?.success) {
+        toast.error(verifyRes.data?.error || "Authentication failed.");
+        return;
+      }
+
+      // 5️⃣ SAVE USER DATA
+      const user = verifyRes.data?.user || verifyRes.data?.data?.user;
+      const token = verifyRes.data?.token || verifyRes.data?.data?.token;
+
+      if (!user || !token) {
+        toast.error("Invalid response from wallet server.");
+        console.error("Wallet verify response:", verifyRes.data);
+        return;
+      }
 
       localStorage.setItem("token", token);
       window.dispatchEvent(new Event("tokenChanged"));
 
-      const id = user._id;
-
       localStorage.setItem(
         "user",
         JSON.stringify({
-          id,
+          id: user._id,
           username: user.username,
           email: user.email,
           kycStatus: user.kycStatus,
         })
       );
 
-      toast.success("Wallet connected successfully!");
+      toast.success("Wallet logged in successfully!", {
+        position: "top-right",
+      });
+      setWalletLoading(true);
       onClose();
       if (onLoginSuccess) onLoginSuccess(verifyRes.data);
     } catch (err) {
-      console.error("Wallet login error:", err);
+      console.error("Wallet login catch error:", err);
+
       toast.error(
-        err?.response?.data?.message || err.message || "Wallet login failed."
+        err?.response?.data?.error ||
+          err?.response?.data?.message ||
+          err.message ||
+          "Wallet login failed."
       );
     }
   };
@@ -479,8 +552,21 @@ const LoginSignup = ({
     if (walletId === "backpack") provider = window.backpack?.solana;
     if (walletId === "solflare") provider = window.solflare;
 
+    // ❌ Wallet not installed
     if (!provider) {
-      toast.error("Wallet not installed.");
+      toast.error(`Please install ${walletId} wallet first.`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      return;
+    }
+
+    // ❌ Prevents crashing in case wallet is locked or blocked
+    if (provider.isConnected === false && provider.connect == null) {
+      toast.error(`${walletId} wallet cannot connect. Please try again.`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
       return;
     }
 
@@ -497,7 +583,11 @@ const LoginSignup = ({
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
       }}
-      onClick={onClose}
+      onClick={() => {
+        if (!walletLoading && !loginLoading && !signupLoading) {
+          onClose();
+        }
+      }}
     >
       {/* Main Container - Responsive */}
       <div
@@ -513,7 +603,10 @@ const LoginSignup = ({
       >
         {/* Close Button */}
         <button
-          onClick={onClose}
+          disabled={walletLoading || loginLoading || signupLoading}
+          onClick={() => {
+            if (!walletLoading && !loginLoading && !signupLoading) onClose();
+          }}
           className="absolute top-2 right-2  z-50 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-all"
         >
           <svg
@@ -1093,6 +1186,21 @@ const LoginSignup = ({
                 </motion.div>
               )}
             </AnimatePresence>
+            {(loginLoading || signupLoading) && (
+              <div className="absolute inset-0 z-[99999] bg-black/60 backdrop-blur-md flex flex-col items-center justify-center pointer-events-auto">
+                {/* Animated Loader */}
+                <img
+                  src="/icons/moonlogo.gif"
+                  className="w-28 h-28 animate-pulse"
+                  alt="Loading"
+                />
+
+                {/* Dynamic Text */}
+                <p className="mt-4 text-white text-lg font-medium animate-pulse">
+                  {loginLoading ? "Signing In..." : "Creating Account..."}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -1103,6 +1211,21 @@ const LoginSignup = ({
         onClose={() => setWalletModalOpen(false)}
         onSelect={handleWalletProviderSelect}
       />
+      {walletLoading && (
+        <div className="absolute inset-0 z-[99999] bg-black/60 backdrop-blur-md flex flex-col items-center justify-center pointer-events-auto">
+          {/* Animated Loader */}
+          <img
+            src="/icons/moonlogo.gif"
+            className="w-28 h-28 animate-pulse"
+            alt="Loading"
+          />
+
+          {/* Connecting text */}
+          <p className="mt-4 text-white text-lg font-medium animate-pulse">
+            Connecting to Wallet…
+          </p>
+        </div>
+      )}
     </div>
   );
 };
