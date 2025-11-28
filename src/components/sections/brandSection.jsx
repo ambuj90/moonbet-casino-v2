@@ -66,7 +66,7 @@ const BrandSection = () => {
   };
 
   return (
-    <section className="w-full py-4 relative">
+    <section className="w-full py-2 relative">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Header */}
         <motion.div

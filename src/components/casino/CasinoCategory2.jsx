@@ -149,7 +149,7 @@ const CasinoCategoryNav = () => {
   );
 
   return (
-    <section className="w-full py-12">
+    <section className="w-full py-8">
       <div className="max-w-7xl mx-auto space-y-6 px-3">
         {/* Desktop */}
         <div className="hidden xl:flex gap-3">

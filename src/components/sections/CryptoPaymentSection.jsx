@@ -25,12 +25,12 @@ const CryptoPaymentSection = () => {
   ];
 
   return (
-    <section className="w-full py-2 px-4 flex justify-center items-center">
+    <section className="w-full md:py-2 py-6 px-4 flex justify-center items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-7xl mx-auto rounded-2xl py-6 sm:px-6 grid grid-cols-1 sm:grid-cols-2 items-center gap-8 sm:gap-6"
+        className="w-full max-w-7xl mx-auto rounded-2xl  sm:px-4 grid grid-cols-1 sm:grid-cols-2 items-center gap-8 sm:gap-6"
       >
         {/* LEFT — Desktop left, Mobile center */}
         <div className="flex sm:justify-start justify-center">

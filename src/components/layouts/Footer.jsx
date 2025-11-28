@@ -159,7 +159,7 @@ const Footer = () => {
         >
           <div className="max-w-[1366px] mx-auto px-4 sm:px-10 w-full flex flex-col h-full pt-6">
             {/* ================= TOP LOGO ROW ================= */}
-            <div className="flex items-center justify-center md:justify-between w-full relative">
+            <div className="flex items-center justify-center md:justify-between w-full relative py-6 md:py-2">
               {/* Logo */}
               <img
                 src="/logo/logo.svg"
@@ -169,7 +169,7 @@ const Footer = () => {
 
               {/* Back to top button */}
               <motion.button
-                className="flex items-center gap-2 text-xs sm:text-sm md:text-base font-medium  transition-all duration-300 absolute right-10 sm:static"
+                className="flex items-center gap-2 text-xs sm:text-sm md:text-base font-medium  transition-all duration-300 absolute right-0 md:right-10 sm:static"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -319,40 +319,42 @@ const Footer = () => {
                   Moonbet operates as a decentralized crypto casino on the
                   Solana blockchain. Built by crypto natives for players 18+.
                 </p>
-                {/* Email */}
-                <motion.div
-                  className="flex items-center gap-2"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#282753] backdrop-blur-sm border border-white/10 text-[#9292D2] transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(240,119,48,0.5)]">
-                    ✉
-                  </span>
 
-                  <a
-                    href="mailto:support@moonbet.games"
-                    className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
+                <div className="flex flex-col-2 md:flex-col gap-2">
+                  {/* Email */}
+                  <motion.div
+                    className="flex items-center gap-2"
+                    whileHover={{ scale: 1.05 }}
                   >
-                    support@moonbet.games
-                  </a>
-                </motion.div>
+                    <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#282753] backdrop-blur-sm border border-white/10 text-[#9292D2] transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(240,119,48,0.5)]">
+                      ✉
+                    </span>
 
-                {/* Email */}
-                <motion.div
-                  className="flex items-center gap-2"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#282753] backdrop-blur-sm border border-white/10 text-[#9292D2] transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(240,119,48,0.5)]">
-                    ✉
-                  </span>
+                    <a
+                      href="mailto:support@moonbet.games"
+                      className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
+                    >
+                      support@moonbet.games
+                    </a>
+                  </motion.div>
 
-                  <a
-                    href="mailto:feedback@moonbet.games"
-                    className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
+                  {/* Email */}
+                  <motion.div
+                    className="flex items-center gap-2"
+                    whileHover={{ scale: 1.05 }}
                   >
-                    feedback@moonbet.games
-                  </a>
-                </motion.div>
+                    <span className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#282753] backdrop-blur-sm border border-white/10 text-[#9292D2] transition-all duration-300 hover:text-white hover:shadow-[0_0_15px_rgba(240,119,48,0.5)]">
+                      ✉
+                    </span>
 
+                    <a
+                      href="mailto:feedback@moonbet.games"
+                      className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
+                    >
+                      feedback@moonbet.games
+                    </a>
+                  </motion.div>
+                </div>
                 {/* Social Links */}
                 <div className="flex items-center gap-4">
                   <motion.button

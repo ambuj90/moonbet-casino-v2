@@ -175,7 +175,7 @@ const HomeFAQSection = () => {
   const visibleFaqs = showAll ? faqData : faqData.slice(0, 5);
 
   return (
-    <section className="w-full py-20 relative">
+    <section className="w-full md:py-18 py-6 relative">
       <div className="container mx-auto max-w-5xl px-4 relative z-10">
         <div className="flex flex-col lg:flex-row">
           {/* Left Fixed Image */}
@@ -194,7 +194,7 @@ const HomeFAQSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-[#E5EAF2] text-[28px] font-[400] mb-10 uppercase tracking-wide"
+              className="text-[#E5EAF2] md:text-[28px] text-[16px] font-[400] md:mb-10 uppercase tracking-wide"
             >
               FREQUENTLY ASKED QUESTIONS
             </motion.h2>

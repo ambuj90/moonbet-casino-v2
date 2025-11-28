@@ -568,10 +568,10 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="w-full relative md:h-[200]  ">
+    <section className="w-full relative md:py-4">
       {/* Recent Wins Section - Dark background strip */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex justify-center">
-        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-4 py-2 sm:py-3 rounded-[12px]">
+      <div className="flex justify-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-4 sm:py-3 rounded-[12px]">
           {/* Recent Wins Label positioned above cards */}
           <motion.div
             className="absolute flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2 "
@@ -736,33 +736,6 @@ const HeroSection = () => {
               </AnimatePresence>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Hero Content - Main Banner */}
-      <div className="relative z-10 w-full  flex items-center justify-center pt-24 sm:pt-28 md:pt-32">
-        {/* Background image */}
-        {/* <div
-          className="absolute inset-0 bg-center bg-no-repeat bg-cover h-[400px] sm:h-auto"
-          style={{
-            backgroundImage: "url('/home-assets/home-banner.png')",
-            backgroundSize: "cover",
-          }}
-        >
-         
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-        </div> */}
-
-        {/* Foreground content */}
-        <div className="relative container mx-auto px-4 z-20">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            {/* Add your hero content here */}
-          </motion.div>
         </div>
       </div>
 

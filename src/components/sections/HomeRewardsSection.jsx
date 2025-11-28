@@ -104,7 +104,7 @@ const HomeRewardsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-8 md:py-12 relative overflow-hidden"
+      className="w-full py-2 md:py-4 relative overflow-hidden"
     >
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6">
         {/* Cards Container */}
@@ -222,7 +222,7 @@ const HomeRewardsSection = () => {
         </div>
 
         {/* Mobile Scroll Indicators */}
-        <div className="flex lg:hidden justify-center gap-2 mt-6">
+        <div className="flex lg:hidden justify-center gap-2">
           {rewardsData.map((_, index) => (
             <button
               key={index}
@@ -240,7 +240,7 @@ const HomeRewardsSection = () => {
               }}
               className={`transition-all duration-300 ${
                 currentIndex === index
-                  ? "w-8 h-2 bg-[#F07730]"
+                  ? "w-8 h-2 bg-[#282753]"
                   : "w-2 h-2 bg-white/20"
               } rounded-full`}
               aria-label={`Go to card ${index + 1}`}

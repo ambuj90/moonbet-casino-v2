@@ -79,7 +79,7 @@ const ProvidersSection = () => {
   };
 
   return (
-    <section className="w-full py-8 relative">
+    <section className="w-full py-2 md:py-6 relative">
       <div className="container max-w-7xl mx-auto px-4">
         {/* Header */}
         <motion.div
