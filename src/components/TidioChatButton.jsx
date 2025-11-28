@@ -50,8 +50,8 @@ const TidioChatButton = () => {
       onClick={handleChatOpen}
       style={{
         position: "fixed",
-        bottom: "24px",
-        right: "24px",
+        bottom: "64px",
+        right: "18px",
         border: "none",
         background: "transparent",
         padding: 0,
