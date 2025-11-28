@@ -100,50 +100,54 @@ const TopHeader = ({
         />
 
         {/* Right Section - Profile and Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           {/* ✅ Show Login & Register only when NOT logged in */}
           {!hasToken && (
             <>
               <LoginTrigger
                 buttonText={
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-3 text-white text-sm font-semibold rounded-xl font-[600] text-[16px] font-['Neue_Plack',sans-serif] shadow-md transition-all duration-300 hover:from-[#5A3799]/90 hover:to-[#DC1FFF]/90 flex items-center justify-center"
-                    style={{
+                    whileHover={{
+                      scale: 1.02,
                       background:
-                        "linear-gradient(0deg, #5A3799 0%, #DC1FFF 100%)",
-                      boxShadow:
-                        "inset 0 3px 3px rgba(255,255,255,0.25), 0 3px 3px rgba(0,0,0,0.25)",
+                        "linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 100%), var(--CTA-HOVER)",
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                    className="
+    px-8 py-3 text-white text-sm font-semibold rounded-[8px]
+    font-['Neue_Plack',sans-serif] text-[16px]
+     transition-all duration-300
+    flex items-center justify-center
+  "
+                    style={{
+                      background: "var(--CTA-HOVER)",
                     }}
                   >
                     Login
                   </motion.button>
                 }
-                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                className="p-2 rounded-lg transition-colors"
               />
 
               <LoginTrigger
                 buttonText={
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{
+                      scale: 1.02,
+                      background: "rgba(255,255,255,0.15)",
+                    }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-[129px] h-[36px]
-                      bg-transparent 
-                      border-2
-                      bg-[linear-gradient(#1A1D24,#1A1D24)_padding-box,linear-gradient(90deg,#F07730,#EFD28E)_border-box]
-                      text-white font-[600] text-[16px]
-                      font-['Neue_Plack',sans-serif]
-                      rounded-lg shadow-md
-                      flex items-center justify-center
-                      transition-all duration-300
-                      hover:shadow-lg hover:shadow-[#F07730]/30"
+                    className="text-white px-8 py-3 font-[600] text-[16px] font-['Neue_Plack',sans-serif] rounded-[8px] flex items-center justify-center transition-all duration-300 "
+                    style={{
+                      border: "1px solid var(--icons, #5A3799)",
+                      background: "transparent",
+                    }}
                   >
                     Register
                   </motion.button>
                 }
                 defaultTab="register"
-                className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                className="p-2 transition-colors"
               />
             </>
           )}
