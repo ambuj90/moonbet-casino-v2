@@ -98,7 +98,7 @@ const Footer = () => {
         path: "/cookie-policy",
       },
       {
-        label: "Aml Policy",
+        label: "AML Policy",
         path: "/aml-policy",
       },
     ],
