@@ -8,7 +8,6 @@ import api from "../../api/axios";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import bs58 from "bs58";
-import GlobalLoader from "../GlobalLoader";
 
 // Icon Components
 const GoogleIcon = () => (
@@ -556,9 +555,9 @@ const LoginSignup = ({
     <div
       className="fixed inset-0 z-[99999] h-screen flex items-center justify-center p-4"
       style={{
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-        backdropFilter: "blur(10px)",
-        WebkitBackdropFilter: "blur(10px)",
+        backgroundColor: "rgba(13, 14, 54, 0.30)",
+        backdropFilter: "blur(25px)",
+        WebkitBackdropFilter: "blur(25px)",
       }}
       onClick={() => {
         e.stopPropagation();
@@ -569,7 +568,7 @@ const LoginSignup = ({
     >
       {/* Main Container - Responsive */}
       <div
-        className="relative  rounded-lg overflow-hidden shadow-2xl w-full"
+        className="relative  rounded-lg overflow-hidden w-full"
         style={{
           maxWidth: "804px",
           width: "100%",
@@ -642,10 +641,10 @@ const LoginSignup = ({
           <div
             className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-center relative overflow-hidden"
             style={{
-              borderRadius: "0 12px 12px 0",
-              background: "rgba(255, 255, 255, 0.15)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
+              // borderRadius: "0 12px 12px 0",
+              background: "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
+              backdropFilter: "blur(30px)",
+              WebkitBackdropFilter: "blur(30px)",
               border: "1px solid rgba(255, 255, 255, 0.3)",
               boxShadow: `
       0 8px 32px rgba(0, 0, 0, 0.1),
@@ -700,7 +699,7 @@ const LoginSignup = ({
                 >
                   Login
                   {activeTab === "login" && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F07730]"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[linear-gradient(0deg,#5A3799_0%,#DC1FFF_100%)]"></div>
                   )}
                 </button>
                 <button
@@ -713,7 +712,7 @@ const LoginSignup = ({
                 >
                   Register
                   {activeTab === "register" && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F07730]"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[linear-gradient(0deg,#5A3799_0%,#DC1FFF_100%)]"></div>
                   )}
                 </button>
               </div>
@@ -732,7 +731,7 @@ const LoginSignup = ({
                   <div className="space-y-4">
                     {/* Email Address Field */}
                     <div>
-                      <label className="text-xs text-[#f7f7f7] tracking-wider mb-2 block">
+                      <label className="text-xs text-[#E1E1E1] tracking-wider mb-2 block">
                         Email Address
                       </label>
                       <input
@@ -741,23 +740,32 @@ const LoginSignup = ({
                         placeholder="Email Address"
                         value={loginData.email}
                         onChange={handleLoginChange}
-                        className="w-full px-4 py-3 rounded-md bg-[#1e2029] border border-[#3a3d4a] text-white placeholder-gray-500 focus:outline-none focus:border-[#F07730] transition-all"
+                        className="w-full px-4 py-3 rounded-md text-white placeholder-white/80 focus:outline-none focus:border-[#5A3799] transition-all"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                          backdropFilter: 'blur(20px)',
+                          border: '1px solid rgba(255, 255, 255, 0.18)'
+                        }}
                       />
                     </div>
 
                     {/* Password Field */}
                     <div>
-                      <label className="text-xs text-[#f7f7f7] tracking-wider mb-2 block">
+                      <label className="text-xs text-[#E1E1E1] tracking-wider mb-2 block">
                         Password
                       </label>
                       <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={loginData.password}
-                        onChange={handleLoginChange}
-                        className="w-full px-4 py-3 rounded-md bg-[#1e2029] border border-[#3a3d4a] text-white placeholder-gray-500 focus:outline-none focus:border-[#F07730] transition-all"
-                      />
+  type="password"
+  name="password"
+  placeholder="Password"
+  value={loginData.password}
+  onChange={handleLoginChange}
+  className="w-full px-4 py-3 rounded-md border border-[#fff] text-white placeholder-gray-500 focus:outline-none focus:border-[#5A3799] transition-all"
+  style={{
+    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+    backdropFilter: 'blur(20px)'
+  }}
+/>
                     </div>
 
                     {/* Forgot Password Link */}
@@ -773,23 +781,26 @@ const LoginSignup = ({
                     {/* Sign In Button with gradient */}
                     <button
                       onClick={handleLoginSubmit}
-                      className="w-full py-3 rounded-[12px] font-semibold text-black bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:opacity-90 shadow-xl transition-all"
+                      className="w-full py-3 rounded-[12px] font-semibold text-white custom-btn  hover:opacity-90 shadow-xl transition-all"
                     >
                       Sign In
                     </button>
 
                     {/* OR Divider */}
                     <div className="relative my-6">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-[#3a3d4a]" />
-                      </div>
-                      <div className="relative flex justify-center">
-                        <span className="px-3 text-xs uppercase text-gray-500 bg-transparent tracking-wider">
+                      <div className="flex items-center">
+                        {/* Left Border */}
+                        <div className="flex-grow border-t border-[rgba(255, 255, 255, 0.20)]"></div>
+                        
+                        {/* OR Text */}
+                        <span className="px-3 text-xs uppercase text-white bg-transparent tracking-wider">
                           OR
                         </span>
+                        
+                        {/* Right Border */}
+                        <div className="flex-grow border-t border-[rgba(255, 255, 255, 0.20)]"></div>
                       </div>
                     </div>
-
                     {/* Social Login Buttons - Stack on mobile, side by side on desktop */}
                     <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-3">
                       {/* Google Login */}
@@ -908,11 +919,11 @@ const LoginSignup = ({
                           onChange={handleSignupChange}
                           className="mt-0.5 w-4 h-4 rounded bg-[#1e2029] border-[#3a3d4a] accent-[#F07730]"
                         />
-                        <span className="text-xs text-gray-400">
+                        <span className="text-xs text-[#E1E1E1]">
                           I agree to the{" "}
                           <a
                             href="#"
-                            className="text-[#F07730] hover:underline"
+                            className="text-[#E1E1E1] hover:underline"
                           >
                             Terms
                           </a>{" "}
@@ -928,7 +939,7 @@ const LoginSignup = ({
                           onChange={handleSignupChange}
                           className="mt-0.5 w-4 h-4 rounded bg-[#1e2029] border-[#3a3d4a] accent-[#F07730]"
                         />
-                        <span className="text-xs text-gray-400">
+                        <span className="text-xs text-[#E1E1E1]">
                           Send me promotions
                         </span>
                       </label>
@@ -937,7 +948,7 @@ const LoginSignup = ({
                     {/* Create Account Button with gradient */}
                     <button
                       onClick={handleSignupSubmit}
-                      className="w-full py-3 mt-2 rounded-[12px] font-semibold text-black bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:opacity-90 shadow-xl transition-all"
+                      className="w-full py-3 mt-2 rounded-[12px] font-semibold text-white custom-btn hover:opacity-90 shadow-xl transition-all"
                     >
                       Create Account
                     </button>
