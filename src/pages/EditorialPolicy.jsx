@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 const EditorialPolicy = () => {
   const [activeSection, setActiveSection] = useState("mission");
 
-  // Navigation sections
   const sections = [
     { id: "mission", label: "Our Mission" },
     { id: "guidelines", label: "Content Guidelines" },
@@ -35,21 +34,21 @@ const EditorialPolicy = () => {
   };
 
   return (
-    <div className="min-h-screen  ">
-      {/* Hero Section */}
-      <section className="relative py-8 md:py-16 px-4 border-b border-white/10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />
+    <div className="min-h-screen">
+      <section className="relative py-8 md:py-16 px-4 border-b border-[var(--glass-white-10)]">
+        <div className="absolute inset-0 bg-[var(--cta-pink-gradient)]/10" />
+
         <div className="container max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-2xl md:text-2xl font-bold mb-2 md:mb-6">
+            <h1 className="text-2xl md:text-2xl font-bold mb-2 md:mb-6 text-[var(--text-light-grey)]">
               MOONBET EDITORIAL POLICY
             </h1>
 
-            <p className="text-gray-300 leading-relaxed mt-4">
+            <p className="text-[var(--text-lavender-1)] leading-relaxed mt-4">
               At Moonbet, we are committed to publishing high-quality, accurate,
               and ethical content across our website, blog, forums, and
               platforms. This Editorial Policy outlines the standards and
@@ -60,29 +59,33 @@ const EditorialPolicy = () => {
         </div>
       </section>
 
-      {/* Main Content */}
       <div className="container max-w-7xl mx-auto px-2 md:px-4 py-6 md:py-12">
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Left Sidebar - Desktop Only with orange accent line */}
           <div className="hidden lg:block">
             <div className="sticky top-24">
               <div className="rounded-2xl p-6">
-                <nav className="space-y-2 bg-[rgba(20,20,20,0.80)] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] p-2">
+                <nav className="space-y-2 bg-[var(--container-dark-purple-3)] border border-[var(--glass-white-20)] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[4px] p-2">
                   {sections.map((section) => (
                     <button
                       key={section.id}
                       onClick={() => scrollToSection(section.id)}
-                      className={`w-full text-left px-4 py-2 rounded-lg transition-all flex items-center gap-2 relative
-                               ${
-                                 activeSection === section.id
-                                   ? "bg-transparent text-white"
-                                   : "text-gray-400 hover:bg-white/5 hover:text-white"
-                               }`}
+                      className={`w-full text-left px-4 py-2 rounded-lg transition-all flex items-center gap-2 relative ${
+                        activeSection === section.id
+                          ? "text-[var(--text-light-grey)]"
+                          : "text-[var(--text-lavender-1)] hover:bg-[var(--glass-white-10)] hover:text-[var(--text-light-grey)]"
+                      }`}
                     >
-                      {/* Orange accent line for active section */}
                       {activeSection === section.id && (
-                        <span className="absolute left-0 top-0 bottom-0 w-1 bg-[rgb(240,129,58)] rounded-r"></span>
+                        <span
+                          className="
+                            absolute left-0 top-0 bottom-0 w-1 rounded-r
+                            bg-[var(--container-dark-purple-3)]
+                            before:absolute before:inset-0 before:bg-[var(--glass-white-30)] before:opacity-40
+                            after:absolute after:inset-0 after:bg-[var(--text-lavender-2)] after:opacity-20
+                          "
+                        ></span>
                       )}
+
                       <span
                         className={activeSection === section.id ? "ml-2" : ""}
                       >
@@ -95,392 +98,298 @@ const EditorialPolicy = () => {
             </div>
           </div>
 
-          {/* Main Content Area */}
+          {/* MAIN CONTENT */}
           <div className="lg:col-span-2 space-y-12">
-            {/* Our Mission */}
+            {/* ==== SECTION: OUR MISSION ==== */}
             <motion.section
               id="mission"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="rounded-2xl p-2 md:p-8 mt-0"
+              className="rounded-2xl p-2 md:p-8"
             >
-              <h2 className="text-xl font-bold text-white mb-4">Our Mission</h2>
-              <p className="text-gray-300 mb-3">
+              <h2 className="text-xl font-bold text-[var(--text-light-grey)] mb-4">
+                Our Mission
+              </h2>
+
+              <p className="text-[var(--text-lavender-1)] mb-3">
                 Our editorial mission is to provide players with:
               </p>
 
               <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    Accurate information about our platform, games, and features
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    Transparent disclosures about promotions, bonuses, and
-                    partnerships
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    Helpful guidance on responsible gaming and blockchain
-                    technology
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    Trustworthy reviews and comparisons based on facts, not
-                    commercial interests
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    Ethical content that respects player privacy and safety
-                  </span>
-                </li>
+                {[
+                  "Accurate information about our platform, games, and features",
+                  "Transparent disclosures about promotions, bonuses, and partnerships",
+                  "Helpful guidance on responsible gaming and blockchain technology",
+                  "Trustworthy reviews and comparisons based on facts, not commercial interests",
+                  "Ethical content that respects player privacy and safety",
+                ].map((text, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="text-[var(--cta-pink)] mt-1">•</span>
+                    <span className="text-[var(--text-lavender-1)]">
+                      {text}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </motion.section>
 
-            {/* Content Guidelines */}
+            {/* ==== SECTION: CONTENT GUIDELINES ==== */}
             <motion.section
               id="guidelines"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="rounded-2xl p-2 md:p-8 mt-0"
+              className="rounded-2xl p-2 md:p-8"
             >
-              <h2 className="text-xl font-bold text-white mb-4">
+              <h2 className="text-xl font-bold text-[var(--text-light-grey)] mb-4">
                 Content Guidelines
               </h2>
-              <p className="text-gray-300 mb-4">All Moonbet content must:</p>
+              <p className="text-[var(--text-lavender-1)] mb-4">
+                All Moonbet content must:
+              </p>
 
               <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
-                    Be Factual and Well-Researched
-                  </h3>
-                  <p className="text-gray-300">
-                    All claims are supported by data, third-party sources, or
-                    our own verified experience. We attribute sources clearly
-                    and link to external references where appropriate.
-                  </p>
-                </div>
+                {/* Subsections */}
+                {[
+                  {
+                    title: "Be Factual and Well-Researched",
+                    text: "All claims are supported by data, third-party sources, or our own verified experience. We attribute sources clearly and link to external references where appropriate.",
+                  },
+                  {
+                    title: "Comply with Laws and Regulations",
+                    text: "All content adheres to applicable federal and state laws, gambling regulations, advertising standards (FTC guidelines, state gaming laws), and platform policies. We do not promote illegal gambling or unregulated platforms.",
+                  },
+                  {
+                    title: "Respect Intellectual Property",
+                    text: "We obtain proper permissions and licenses for all images, videos, music, and third-party content. We credit creators and respect copyright protections.",
+                  },
+                ].map((item, i) => (
+                  <div key={i}>
+                    <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-[var(--text-lavender-1)]">{item.text}</p>
+                  </div>
+                ))}
 
+                {/* Avoid Harmful Content */}
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
-                    Comply with Laws and Regulations
-                  </h3>
-                  <p className="text-gray-300">
-                    All content adheres to applicable federal and state laws,
-                    gambling regulations, advertising standards (FTC guidelines,
-                    state gaming laws), and platform policies. We do not promote
-                    illegal gambling or unregulated platforms.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
-                    Respect Intellectual Property
-                  </h3>
-                  <p className="text-gray-300">
-                    We obtain proper permissions and licenses for all images,
-                    videos, music, and third-party content. We credit creators
-                    and respect copyright protections.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
                     Avoid Harmful Content
                   </h3>
-                  <p className="text-gray-300 mb-3">
+                  <p className="text-[var(--text-lavender-1)] mb-3">
                     We prohibit content containing:
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Hate speech, discrimination, or derogatory language
+
+                  {[
+                    "Hate speech, discrimination, or derogatory language",
+                    "Obscene or sexually explicit material",
+                    "Defamatory statements or false accusations",
+                    "Content promoting illegal activities",
+                    "Misleading health or financial claims",
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-start gap-3 pb-1">
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
+                      <span className="text-[var(--text-lavender-1)]">
+                        {text}
                       </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Obscene or sexually explicit material
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Defamatory statements or false accusations
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Content promoting illegal activities
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Misleading health or financial claims
-                      </span>
-                    </li>
-                  </ul>
+                    </div>
+                  ))}
                 </div>
 
+                {/* Disclose Conflicts */}
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
                     Disclose Conflicts of Interest
                   </h3>
-                  <p className="text-gray-300 mb-3">
+
+                  <p className="text-[var(--text-lavender-1)] mb-3">
                     We transparently disclose:
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Sponsored content and paid partnerships
+
+                  {[
+                    "Sponsored content and paid partnerships",
+                    "Affiliate relationships and compensation",
+                    "Internal reviews or featured products",
+                    "Any potential conflicts with commercial interests",
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
+                      <span className="text-[var(--text-lavender-1)]">
+                        {text}
                       </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Affiliate relationships and compensation
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Internal reviews or featured products
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Any potential conflicts with commercial interests
-                      </span>
-                    </li>
-                  </ul>
+                    </div>
+                  ))}
                 </div>
 
+                {/* Responsible Gaming */}
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
                     Promote Responsible Gaming
                   </h3>
-                  <p className="text-gray-300 mb-3">
+
+                  <p className="text-[var(--text-lavender-1)] mb-3">
                     All content about gambling includes:
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Warnings that gambling carries risk of financial loss
+
+                  {[
+                    "Warnings that gambling carries risk of financial loss",
+                    "Information on responsible gaming tools (limits, self-exclusion)",
+                    "Resources for problem gambling support",
+                    'No claims of "guaranteed" or "sure" wins',
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
+                      <span className="text-[var(--text-lavender-1)]">
+                        {text}
                       </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Information on responsible gaming tools (limits,
-                        self-exclusion)
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Resources for problem gambling support
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        No claims of "guaranteed" or "sure" wins
-                      </span>
-                    </li>
-                  </ul>
+                    </div>
+                  ))}
                 </div>
 
+                {/* No Misleading Language */}
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
                     No Misleading Language
                   </h3>
-                  <p className="text-gray-300 mb-3">We do not use:</p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        "Guaranteed returns" or "can't-lose" claims
+
+                  <p className="text-[var(--text-lavender-1)] mb-3">
+                    We do not use:
+                  </p>
+
+                  {[
+                    `"Guaranteed returns" or "can't-lose" claims`,
+                    "False promises of easy money or consistent profits",
+                    "Sensationalized or manipulative language",
+                    "Misleading odds or payout representations",
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-start gap-3 pb-1">
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
+                      <span className="text-[var(--text-lavender-1)]">
+                        {text}
                       </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        False promises of easy money or consistent profits
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Sensationalized or manipulative language
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Misleading odds or payout representations
-                      </span>
-                    </li>
-                  </ul>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.section>
 
-            {/* User-Generated Content */}
+            {/* ==== User Generated Content ==== */}
             <motion.section
               id="ugc"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="rounded-2xl p-2 md:p-8 mt-0"
+              className="rounded-2xl p-2 md:p-8"
             >
-              <h2 className="text-xl font-bold text-white mb-4">
+              <h2 className="text-xl font-bold text-[var(--text-light-grey)] mb-4">
                 User-Generated Content
               </h2>
-              <p className="text-gray-300 mb-4">
+
+              <p className="text-[var(--text-lavender-1)] mb-4">
                 We accept user submissions including reviews, forum posts,
                 comments, and articles. However:
               </p>
 
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    <span className="text-white font-bold">
-                      Editorial Control:
+              {[
+                {
+                  bold: "Editorial Control:",
+                  text: "Moonbet reserves full editorial discretion to modify, reject, or remove submissions",
+                },
+                {
+                  bold: "Guidelines Apply:",
+                  text: "All submissions must comply with the Content Guidelines above",
+                },
+                {
+                  bold: "Moderation:",
+                  text: "Submissions are reviewed for accuracy, safety, and appropriateness",
+                },
+                {
+                  bold: "Removal:",
+                  text: "Violating content is removed without notice",
+                },
+                {
+                  bold: "Attribution:",
+                  text: "User content is properly attributed unless anonymity is requested",
+                },
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 list-none">
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
+                  <span className="text-[var(--text-lavender-1)]">
+                    <span className="text-[var(--text-light-grey)] font-bold">
+                      {item.bold}
                     </span>{" "}
-                    Moonbet reserves full editorial discretion to modify,
-                    reject, or remove submissions
+                    {item.text}
                   </span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    <span className="text-white font-bold">
-                      Guidelines Apply:
-                    </span>{" "}
-                    All submissions must comply with the Content Guidelines
-                    above
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    <span className="text-white font-bold">Moderation:</span>{" "}
-                    Submissions are reviewed for accuracy, safety, and
-                    appropriateness
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    <span className="text-white font-bold">Removal:</span>{" "}
-                    Violating content is removed without notice
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
-                  <span className="text-gray-300">
-                    <span className="text-white font-bold">Attribution:</span>{" "}
-                    User content is properly attributed unless anonymity is
-                    requested
-                  </span>
-                </li>
-              </ul>
+              ))}
             </motion.section>
 
-            {/* Content Review Process */}
+            {/* ==== Content Review Process ==== */}
             <motion.section
               id="review"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="rounded-2xl p-2 md:p-8 mt-0"
+              className="rounded-2xl p-2 md:p-8"
             >
-              <h2 className="text-xl font-bold text-white mb-4">
+              <h2 className="text-xl font-bold text-[var(--text-light-grey)] mb-4">
                 Content Review Process
               </h2>
 
               <div className="space-y-6">
+                {/* Before Publication */}
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
                     Before Publication
                   </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        <span className="text-white font-bold">
-                          Fact-Checking:
+
+                  {[
+                    {
+                      bold: "Fact-Checking:",
+                      text: "All claims are verified against credible sources",
+                    },
+                    {
+                      bold: "Accuracy Review:",
+                      text: "Information is reviewed for accuracy and completeness",
+                    },
+                    {
+                      bold: "Compliance Check:",
+                      text: "Content is verified for legal and regulatory compliance",
+                    },
+                    {
+                      bold: "Appropriateness Review:",
+                      text: "Content is assessed for tone, safety, and brand alignment",
+                    },
+                    {
+                      bold: "Editor Approval:",
+                      text: "Senior editors approve all content before publication",
+                    },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 mb-2">
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
+                      <span className="text-[var(--text-lavender-1)]">
+                        <span className="text-[var(--text-light-grey)] font-bold">
+                          {item.bold}
                         </span>{" "}
-                        All claims are verified against credible sources
+                        {item.text}
                       </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        <span className="text-white font-bold">
-                          Accuracy Review:
-                        </span>{" "}
-                        Information is reviewed for accuracy and completeness
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        <span className="text-white font-bold">
-                          Compliance Check:
-                        </span>{" "}
-                        Content is verified for legal and regulatory compliance
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        <span className="text-white font-bold">
-                          Appropriateness Review:
-                        </span>{" "}
-                        Content is assessed for tone, safety, and brand
-                        alignment
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        <span className="text-white font-bold">
-                          Editor Approval:
-                        </span>{" "}
-                        Senior editors approve all content before publication
-                      </span>
-                    </li>
-                  </ul>
+                    </div>
+                  ))}
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
                     Peer Review
                   </h3>
-                  <p className="text-gray-300">
+                  <p className="text-[var(--text-lavender-1)]">
                     Where appropriate, content is reviewed by multiple team
                     members to ensure quality and objectivity.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">Timing</h3>
-                  <p className="text-gray-300">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
+                    Timing
+                  </h3>
+                  <p className="text-[var(--text-lavender-1)]">
                     We aim to complete review within 2-5 business days, with
                     urgent content expedited as needed.
                   </p>
@@ -488,52 +397,39 @@ const EditorialPolicy = () => {
               </div>
             </motion.section>
 
-            {/* Corrections and Updates */}
+            {/* ==== Corrections and Updates ==== */}
             <motion.section
               id="corrections"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="rounded-2xl p-2 md:p-8 mt-0"
+              className="rounded-2xl p-2 md:p-8"
             >
-              <h2 className="text-xl font-bold text-white mb-4">
+              <h2 className="text-xl font-bold text-[var(--text-light-grey)] mb-4">
                 Corrections and Updates
               </h2>
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-3">
+                  <h3 className="text-lg font-bold text-[var(--text-light-grey)] mb-3">
                     Error Correction
                   </h3>
-                  <p className="text-gray-300 mb-3">
+                  <p className="text-[var(--text-lavender-1)] mb-3">
                     If factual errors are identified, we will:
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Correct the information promptly
+
+                  {[
+                    "Correct the information promptly",
+                    "Note the correction transparently (with date and explanation if material)",
+                    "Notify readers if appropriate",
+                    "Update linked references",
+                  ].map((text, i) => (
+                    <div className="flex items-start gap-3" key={i}>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
+                      <span className="text-[var(--text-lavender-1)]">
+                        {text}
                       </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Note the correction transparently (with date and
-                        explanation if material)
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Notify readers if appropriate
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
-                      <span className="text-gray-300">
-                        Update linked references
-                      </span>
-                    </li>
-                  </ul>
+                    </div>
+                  ))}
                 </div>
 
                 <div>
@@ -545,25 +441,25 @@ const EditorialPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Maintain accuracy and relevance
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Reflect new information or regulatory changes
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Incorporate reader feedback
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Update outdated links or references
                       </span>
@@ -580,7 +476,7 @@ const EditorialPolicy = () => {
                     or concerns. Email{" "}
                     <a
                       href="mailto:support@moonbet.games"
-                      className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                      className="text-[#EFD28E] hover:text-[var(--cta-pink)] transition-colors"
                     >
                       support@moonbet.games
                     </a>{" "}
@@ -588,25 +484,25 @@ const EditorialPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         The article title/URL
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         The specific error or concern
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Supporting information
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Suggested correction
                       </span>
@@ -635,37 +531,37 @@ const EditorialPolicy = () => {
                   <p className="text-gray-300 mb-3">We rely on:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         First-hand experience and testing
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Third-party certifications and audits
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Academic research and studies
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Industry publications and reports
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Government and regulatory sources
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Direct quotes from authoritative figures
                       </span>
@@ -682,19 +578,19 @@ const EditorialPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Clearly cited in the text or footnotes
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Linked to whenever possible
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Credited appropriately (author, publication, date)
                       </span>
@@ -736,19 +632,19 @@ const EditorialPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">"Sponsored"</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">"Advertisement"</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">"Paid Partnership"</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">"Affiliate Link"</span>
                     </li>
                   </ul>
@@ -803,7 +699,7 @@ const EditorialPolicy = () => {
 
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">Age Reminder:</span>{" "}
                     "18+ only. Must be of legal age to gamble in your
@@ -811,7 +707,7 @@ const EditorialPolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Risk Disclosure:
@@ -821,7 +717,7 @@ const EditorialPolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Resource Links:
@@ -831,7 +727,7 @@ const EditorialPolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">No Hype:</span>{" "}
                     Gambling is presented as entertainment, not a money-making
@@ -858,25 +754,25 @@ const EditorialPolicy = () => {
 
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Avoid stereotyping or discriminatory language
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Include diverse voices and viewpoints
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Respect cultural differences and sensitivities
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Challenge biases and promote inclusive content
                   </span>
@@ -956,31 +852,31 @@ const EditorialPolicy = () => {
 
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Gaming industry experts and veterans
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Blockchain and cryptocurrency specialists
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Responsible gambling advocates
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Writers with journalism experience
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Subject matter experts for specialized topics
                   </span>
@@ -1055,35 +951,35 @@ const EditorialPolicy = () => {
 
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">Truthfulness:</span>{" "}
                     Honesty and accuracy above all
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">Fairness:</span>{" "}
                     Balanced, unbiased information
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">Clarity:</span>{" "}
                     Content that's understandable and useful
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">Safety:</span>{" "}
                     Responsible messaging and player protection
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">Trust:</span>{" "}
                     Building and maintaining reader confidence
@@ -1114,26 +1010,26 @@ const EditorialPolicy = () => {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Email:</span>{" "}
                         <a
                           href="mailto:support@moonbet.games"
-                          className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                          className="text-[#EFD28E] hover:text-[var(--cta-pink)] transition-colors"
                         >
                           support@moonbet.games
                         </a>
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Subject:</span>{" "}
                         [Article Title] – Error Report or Feedback
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Include specific issue, supporting information, and
                         suggested correction
@@ -1151,7 +1047,7 @@ const EditorialPolicy = () => {
                     24/7 via{" "}
                     <a
                       href="https://moonbet.games/"
-                      className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                      className="text-[#EFD28E] hover:text-[var(--cta-pink)] transition-colors"
                     >
                       Moonbet.games
                     </a>
@@ -1186,23 +1082,23 @@ const EditorialPolicy = () => {
 
               <ul className="space-y-3 mb-6">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Changes in industry standards
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">Regulatory developments</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Technological advancements
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[var(--cta-pink)] mt-1">•</span>
                   <span className="text-gray-300">
                     Reader feedback and evolving best practices
                   </span>

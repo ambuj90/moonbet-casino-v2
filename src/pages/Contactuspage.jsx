@@ -98,8 +98,8 @@ const ContactUsPage = () => {
               Got a question or hit a snag? Moonbet's support squad is on
               standby. Drop us a line using the form on the right and we'll sort
               it fast. For quick fixes, hit the{" "}
-              <span className="text-[#F07730] font-bold">FAQ</span> link in the
-              top menu.
+              <span className="text-[var(--cta-pink)] font-bold">FAQ</span> link
+              in the top menu.
             </p>
 
             {/* Social Links */}
@@ -250,11 +250,10 @@ const ContactUsPage = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 md:py-5 bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
-                         text-black font-bold text-base md:text-lg rounded-xl 
-                         hover:shadow-lg hover:shadow-[#F07730]/25 transition-all duration-300
-                         disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{ fontFamily: "Avenir, -apple-system, sans-serif" }}
+                className="w-full py-4 md:py-5 rounded-xl font-bold text-base md:text-lg transition-all duration-300  hover:shadow-lg hover:shadow-[var(--cta-pink)]/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{
+                  background: "var(--cta-pink-gradient)",
+                }}
               >
                 {isSubmitting ? "Sending..." : "Submit Message"}
               </motion.button>
@@ -314,7 +313,7 @@ const ContactUsPage = () => {
                 <div className="text-3xl mb-3">{item.icon}</div>
                 <h3 className="text-white font-bold mb-1">{item.title}</h3>
                 <p className="text-gray-400 text-sm mb-3">{item.desc}</p>
-                <span className="text-[#F07730] text-sm font-bold group-hover:text-[#EFD28E] transition-colors">
+                <span className="text-[var(--cta-pink)] text-sm font-bold group-hover:text-[#EFD28E] transition-colors">
                   {item.action} →
                 </span>
               </motion.div>

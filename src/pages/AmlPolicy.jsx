@@ -68,7 +68,7 @@ const AmlPolicy = () => {
                       className={`w-full text-left px-4 py-2 rounded-lg transition-all flex items-center gap-2
                                ${
                                  activeSection === section.id
-                                   ? "bg-[#F07730]/20 text-[#F07730]"
+                                   ? "bg-[#fff]/10 text-[var(--cta-pink)]"
                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
                                }`}
                     >
@@ -114,7 +114,7 @@ const AmlPolicy = () => {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Legal Name:
@@ -123,21 +123,21 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Business:</span>{" "}
                         Online cryptocurrency gaming and casino services
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Platform:</span>{" "}
                         Moonbet.games and associated applications
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Regulatory Oversight:
@@ -167,27 +167,27 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">This Policy aligns with:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Applicable US federal AML/CFT laws (Trafficking Victims
                         Protection Act, Bank Secrecy Act provisions)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Financial Action Task Force (FATF) recommendations
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         FinCEN guidance on cryptocurrency and virtual asset
                         service providers
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         State-level AML requirements
                       </span>
@@ -229,14 +229,14 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Low Risk:</span>{" "}
                         No identified risk factors
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Medium Risk:
@@ -246,7 +246,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">High Risk:</span>{" "}
                         Two or more risk factors identified; business
@@ -263,7 +263,7 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">Risk factors include:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Adverse Media:
@@ -273,7 +273,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Politically Exposed Persons (PEPs):
@@ -283,7 +283,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Sanctions Lists:
@@ -292,7 +292,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           High-Risk Jurisdictions:
@@ -310,19 +310,19 @@ const AmlPolicy = () => {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customers are classified as Low Risk by default
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Risk assessment completed during onboarding
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Classification documented and reviewed regularly
                       </span>
@@ -353,25 +353,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Online application with personal data
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Government-issued ID verification
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Address verification
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Beneficial ownership verification (where applicable)
                       </span>
@@ -386,19 +386,19 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">Customers provide:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">Full legal name</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">Date of birth</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">Full address</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Contact details (phone and email)
                       </span>
@@ -415,25 +415,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Copy of national ID card, passport, or driver's license
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Utility bill (not older than 6 months)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Bank statement (not older than 6 months)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Other documents as required by the Company
                       </span>
@@ -447,32 +447,32 @@ const AmlPolicy = () => {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Scanned copies or high-quality photos required
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Full name verified against identity documents
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Account closed if information does not match
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Account closed if customer is underage or
                         gambling-prohibited
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         All documents stored securely for 5+ years
                       </span>
@@ -489,25 +489,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer identification completed
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Risk classification determined
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Enhanced Due Diligence (if required) completed
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Appropriate approvals obtained
                       </span>
@@ -538,25 +538,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Medium Risk customers (one risk factor identified)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Large transactions or unusual patterns
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customers in elevated-risk jurisdictions
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         PEPs and close associates
                       </span>
@@ -571,31 +571,31 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">EDD measures include:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Request for additional information and documentation
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Verification of source of funds and source of wealth
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Senior manager approval required
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Collection of business relationship documentation
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Risk mitigation assessment
                       </span>
@@ -610,21 +610,21 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">Following EDD:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Business relationship approved if risk adequately
                         mitigated
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Business relationship declined if customer fails to
                         provide documentation or risk cannot be mitigated
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer notified in writing of decision
                       </span>
@@ -642,19 +642,19 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Business relationship automatically declined
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer notified in writing
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Record maintained in compliance registry
                       </span>
@@ -685,25 +685,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Transaction patterns and amounts
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Frequency of deposits and withdrawals
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Gaming behavior and patterns
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Account activity consistency with customer profile
                       </span>
@@ -720,25 +720,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Low Risk customers: At least every 24 months
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Medium/High Risk customers: At least every 12 months
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Upon customer request
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         When risk factors change
                       </span>
@@ -755,25 +755,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Unusual transaction detection
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Pattern anomaly identification
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Risk score recalculation
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Alert generation for manual review
                       </span>
@@ -790,31 +790,31 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer fails to provide updated documentation
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Risk factors change negatively
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Suspicious activity detected
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer becomes prohibited from gambling
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Legal or regulatory requirements dictate termination
                       </span>
@@ -845,44 +845,44 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Transactions inconsistent with customer's known behavior
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Unusually large transactions without apparent economic
                         purpose
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Rapid deposits followed by immediate withdrawals
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Multiple small transactions (structuring)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Transactions from high-risk jurisdictions
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Duplicate account activity
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Gaming activity inconsistent with customer profile
                       </span>
@@ -899,23 +899,23 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Transaction details and context
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Detection date and methodology
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">Risk assessment</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Supporting evidence and documentation
                       </span>
@@ -934,20 +934,20 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3 mb-4">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Suspicious activity reported to senior manager without
                         undue delay
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Detailed investigation and analysis completed
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Documentation of all findings
                       </span>
@@ -960,21 +960,21 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Money Laundering Reporting Officer (MLRO) prepares
                         external report
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Report submitted to FinCEN (or applicable authority)
                         without undue delay
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Quarterly compliance reporting submitted
                       </span>
@@ -992,20 +992,20 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Electronic storage with secure access controls
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Documentation of reported and non-reported suspicious
                         activity
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Reasons for any decisions not to report
                       </span>
@@ -1019,7 +1019,7 @@ const AmlPolicy = () => {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Money Laundering Reporting Officer (MLRO):
@@ -1028,7 +1028,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Executive Director:
@@ -1037,7 +1037,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Senior Management:
@@ -1046,7 +1046,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           All directors:
@@ -1080,25 +1080,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Monitor all deposits and withdrawals in real-time
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Detect unusual transaction patterns
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Flag high-risk transactions for manual review
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Generate alerts for suspicious activity
                       </span>
@@ -1115,26 +1115,26 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Investigation by trained compliance personnel
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Assessment against customer profile and history
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Risk determination (normal, suspicious, or potential
                         criminal activity)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Documentation of findings and conclusions
                       </span>
@@ -1151,31 +1151,31 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         On-chain transaction verification
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Blockchain address analysis
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Wallet reputation screening
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Cross-exchange transaction tracking (where feasible)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Mixing or tumbling service detection
                       </span>
@@ -1206,49 +1206,49 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Applicable AML/CFT laws and regulations
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         FATF and CFATF recommendations
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Money laundering and terrorist financing typologies
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Company AML policies and procedures
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer identification and verification
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Suspicious activity indicators
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Reporting obligations and procedures
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Consequences of non-compliance
                       </span>
@@ -1262,21 +1262,21 @@ const AmlPolicy = () => {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Initial:</span>{" "}
                         All new hires within 30 days
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Annual:</span>{" "}
                         Mandatory refresher for all employees
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Specialized:
@@ -1285,7 +1285,7 @@ const AmlPolicy = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Senior Management:
@@ -1306,19 +1306,19 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Trained and certified personnel
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Employees demonstrating competency through testing
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Staff with current knowledge of AML/CFT practices
                       </span>
@@ -1347,37 +1347,37 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">Moonbet maintains:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer identification records
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Enhanced Due Diligence documentation
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Transaction monitoring logs
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Suspicious activity reports
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Business relationship establishment records
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Business relationship termination records
                       </span>
@@ -1394,17 +1394,17 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Date of customer account closure
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">Date of transaction</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Date of suspicious activity report filing
                       </span>
@@ -1418,25 +1418,25 @@ const AmlPolicy = () => {
                   </h3>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Secure electronic storage with access controls
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Data not sold or disclosed to third parties
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Disclosure only to authorities if legally required
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Breach notification procedures implemented
                       </span>
@@ -1454,19 +1454,19 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Cooperation with regulatory audits and investigations
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Prompt response to information requests
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Documentation of all authority requests and responses
                       </span>
@@ -1497,25 +1497,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         OFAC Specially Designated Nationals (SDN) list
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         FATF-identified high-risk jurisdictions
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Interpol alerts and watch lists
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Other applicable sanctions and watch lists
                       </span>
@@ -1530,25 +1530,25 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">Screening conducted:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         During customer onboarding
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Ongoing periodic screening (minimum quarterly)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Prior to high-value transactions
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Upon name changes or updated information
                       </span>
@@ -1565,25 +1565,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         False positive determination
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Name similarity assessment
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer clarification requested if needed
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Account frozen pending clearance
                       </span>
@@ -1612,31 +1612,31 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">PEPs include:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Current and former national government officials
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Military and judicial officers
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Senior executives of state-owned enterprises
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         International organization officials
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Close family members and associates
                       </span>
@@ -1651,25 +1651,25 @@ const AmlPolicy = () => {
                   <p className="text-gray-300 mb-3">PEPs identified through:</p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Public records searches
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Third-party PEP databases
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Adverse media screening
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Customer self-identification
                       </span>
@@ -1686,25 +1686,25 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Enhanced Due Diligence (EDD)
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Senior management approval
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Enhanced ongoing monitoring
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Higher transaction scrutiny
                       </span>
@@ -1735,31 +1735,31 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Changes in regulatory requirements
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Emerging AML/CFT threats and typologies
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Lessons learned from incident investigations
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Technological advancements
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         FATF recommendations and guidance
                       </span>
@@ -1776,19 +1776,19 @@ const AmlPolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Effective upon approval
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         All employees notified of policy changes
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
                         Training updated to reflect policy changes
                       </span>
@@ -1819,7 +1819,7 @@ const AmlPolicy = () => {
                     <span className="font-bold">Email:</span>{" "}
                     <a
                       href="mailto:support@moonbet.games"
-                      className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                      className="text-[#EFD28E] hover:text-[var(--cta-pink)] transition-colors"
                     >
                       support@moonbet.games
                     </a>
@@ -1831,7 +1831,7 @@ const AmlPolicy = () => {
                     accessible via{" "}
                     <a
                       href="https://moonbet.games/"
-                      className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                      className="text-[#EFD28E] hover:text-[var(--cta-pink)] transition-colors"
                     >
                       {" "}
                       Moonbet.games
