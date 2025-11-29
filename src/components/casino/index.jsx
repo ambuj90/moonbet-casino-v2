@@ -56,10 +56,14 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
     fetchGames();
   }, [type, filter, searchTerm]);
 
-  const handlePlayNow = (gameName) => {
-    const gameSlug = encodeURIComponent(gameName);
-    navigate(`/game/${gameSlug}`);
-  };
+  const handlePlayNow = (game) => {
+  const slug = game.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  navigate(`/game/${game.uuid}/${slug}`);
+};
 
   const handleLoadMore = () => setVisibleCount((prev) => prev + 48);
 
@@ -207,7 +211,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                     {/* Overlay with Play Now Button */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
                       <motion.button
-                        onClick={() => handlePlayNow(game.name)}
+                        onClick={() => handlePlayNow(game)}
                         className="px-4 py-2 rounded-full text-white font-semibold text-sm"
                         whileTap={{ scale: 0.9 }}
                       >

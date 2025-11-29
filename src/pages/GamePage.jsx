@@ -13,7 +13,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import GamesYouLike from "../components/sections/GamesYouLike";
 
 const GamePage = () => {
-  const { gameId } = useParams(); // actually the game name
+  const { game_uuid, slug } = useParams(); // actually the game name
   const navigate = useNavigate();
   const iframeRef = useRef(null);
   const { isLoggedIn } = useAuthStore();
@@ -99,12 +99,9 @@ const GamePage = () => {
       try {
         // 🕹 Step 1: Fetch all games
         const res = await axios.get("/wallet-service/api/games");
-        const allGames = res.data?.data || [];
+        const allGames = res.data?.data?.items || res.data?.data || res.data?.games || [];
 
-        const game = allGames.find(
-          (g) =>
-            g.name.toLowerCase() === decodeURIComponent(gameId).toLowerCase()
-        );
+        const game = allGames.find((g) => g.uuid === game_uuid);
 
         if (!game) {
           toast.error("Game not found!");
@@ -169,12 +166,12 @@ const GamePage = () => {
     };
 
     fetchGameUrl();
-  }, [gameId, isRealPlay, preferredCurrency, navigate]);
+  }, [game_uuid, isRealPlay, preferredCurrency, navigate]);
 
   useEffect(() => {
     // Always scroll to the top when this page mounts or when a new game is loaded
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [gameId]);
+  }, [game_uuid]);
 
   useEffect(() => {
     if (!isRealPlay) return;

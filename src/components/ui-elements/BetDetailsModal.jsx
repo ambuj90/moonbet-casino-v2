@@ -301,15 +301,20 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
                 {/* Play Button */}
                 <motion.button
                   onClick={() => {
-                    const slug = makeSlug(betData?.gameName);
+  const slug = makeSlug(betData?.gameName);
+  const uuid = betData?.gameUuid || betData?.uuid;
 
-                    handleClose();
+  if (!uuid) {
+    console.error("❌ Missing game UUID in betData:", betData);
+    return;
+  }
 
-                    // Navigate after closing animation completes
-                    setTimeout(() => {
-                      navigate(`/game/${slug}`);
-                    }, 250);
-                  }}
+  handleClose();
+
+  setTimeout(() => {
+    navigate(`/game/${uuid}/${slug}`);
+  }, 250);
+}}
                   className="w-full py-4 bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-[#000] font-[600] text-[16px] rounded-lg shadow-md transition-all duration-300 hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 flex items-center justify-center "
                   whileHover={{
                     scale: 1.02,

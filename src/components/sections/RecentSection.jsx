@@ -129,11 +129,14 @@ const RecentSection = () => {
     setTimeout(checkScrollPosition, 400);
   };
 
-  const handlePlayNow = (gameName) => {
-    // Replace spaces with dashes for clean URLs
-    const gameSlug = encodeURIComponent(gameName);
-    navigate(`/game/${gameSlug}`);
-  };
+  const handlePlayNow = (game) => {
+  const slug = game.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  navigate(`/game/${game.uuid}/${slug}`);
+};
 
   const handleViewAll = () => {
     navigate("/casino/recent"); // Navigate to all live casino page
@@ -490,7 +493,7 @@ const RecentSection = () => {
                         whileHover="hover"
                       >
                         <motion.button
-                          onClick={() => handlePlayNow(game.name)}
+                          onClick={() => handlePlayNow(game)}
                           className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-white font-semibold text-sm sm:text-base shadow-lg"
                           variants={buttonVariants}
                           whileTap="tap"

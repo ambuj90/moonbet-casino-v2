@@ -151,7 +151,7 @@ function App() {
             <Route path="game/coinflip" element={<CoinflipPage />} />
             <Route path="game/pumpdump" element={<PumpDumpPage />} />
             <Route path="game/futures" element={<FuturesPage />} />
-            <Route path="game/:gameId" element={<GamePage />} />
+            <Route path="/game/:game_uuid/:slug?" element={<GamePage />} />
 
             <Route path="chat" element={<ChatPage />} />
             <Route path="authtest" element={<AuthTest />} />

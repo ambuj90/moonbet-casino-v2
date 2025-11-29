@@ -38,10 +38,14 @@ const SlotsSection = () => {
     fetchGames();
   }, []);
 
-  const handlePlayNow = (gameName) => {
-    const gameSlug = encodeURIComponent(gameName);
-    navigate(`/game/${gameSlug}`);
-  };
+  const handlePlayNow = (game) => {
+  const slug = game.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  navigate(`/game/${game.uuid}/${slug}`);
+};
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 48); // Load 8 more rows (48 more games)
@@ -185,7 +189,7 @@ const SlotsSection = () => {
                       whileHover="hover"
                     >
                       <motion.button
-                        onClick={() => handlePlayNow(game.name)}
+                        onClick={() => handlePlayNow(game)}
                         className="px-4 py-2 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-full text-white font-semibold text-sm shadow-lg"
                         variants={buttonVariants}
                         whileTap="tap"
