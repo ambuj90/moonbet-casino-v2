@@ -977,7 +977,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             className="fixed inset-0 flex items-center justify-center z-[101] p-4"
           >
             <div
-              className=" rounded-2xl w-full max-w-xl shadow-2xl transform transition-all duration-300 scale-100"
+              className=" rounded-2xl w-full max-w-lg shadow-2xl transform transition-all duration-300 scale-100"
               style={{
                 background:
                   "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
