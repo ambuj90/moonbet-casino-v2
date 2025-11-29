@@ -465,6 +465,48 @@ const LoginSignup = ({
     setForgotPasswordData({ email: "" });
   };
 
+  const handleGoogleLogin = async (credentialResponse) => {
+    try {
+      const { credential } = credentialResponse;
+
+      const decoded = jwtDecode(credential);
+      console.log("Google decoded:", decoded);
+
+      const { data } = await axios.post("/auth-service/api/auth/google", {
+        token: credential,
+      });
+
+      if (data?.token) {
+        // 1️⃣ Store token
+        localStorage.setItem("token", data.token);
+
+        // 2️⃣ MASK EMAIL BEFORE SAVING ANYWHERE
+        const maskedEmail = data.user.email?.replace(
+          /(.{2}).+(@.+)/,
+          (m, p1, p2) => p1 + "*****" + p2
+        );
+
+        const safeUser = {
+          id: data.user._id,
+          username: data.user.username || "Player",
+          email: maskedEmail,
+          avatar: data.user.avatar || null,
+          provider: "google",
+        };
+
+        localStorage.setItem("user", JSON.stringify(safeUser));
+        window.dispatchEvent(new Event("tokenChanged"));
+
+        toast.success("Signed in with Google!");
+
+        if (onLoginSuccess) onLoginSuccess(data);
+      }
+    } catch (err) {
+      console.error("Google login failed:", err);
+      toast.error("Google login failed");
+    }
+  };
+
   const handleWalletLogin = async (provider) => {
     setWalletLoading(true);
     try {
@@ -891,35 +933,15 @@ const LoginSignup = ({
                       {/* Google Login */}
                       <div className="flex justify-center">
                         <GoogleLogin
-                          onSuccess={async (credentialResponse) => {
-                            try {
-                              const { credential } = credentialResponse;
-                              const decoded = jwtDecode(credential);
-                              console.log("✅ Google user:", decoded);
-
-                              const { data } = await axios.post(
-                                "/auth-service/api/auth/google",
-                                { token: credential }
-                              );
-
-                              if (data?.token) {
-                                localStorage.setItem("token", data.token);
-                                localStorage.setItem(
-                                  "user",
-                                  JSON.stringify(data.user)
-                                );
-                                window.dispatchEvent(new Event("tokenChanged"));
-                                toast.success("Signed in with Google!");
-                                if (onLoginSuccess) onLoginSuccess(data);
-                              }
-                            } catch (err) {
-                              console.error("Google login failed:", err);
-                              toast.error("Google login failed");
-                            }
-                          }}
+                          onSuccess={handleGoogleLogin}
                           onError={() => toast.error("Google Sign-In failed")}
                           theme="filled_black"
                           width="100%"
+                          useOneTap={false} // ❗ stops auto-login
+                          ux_mode="popup" // ❗ allows choosing account
+                          context="use" // ❗ forces Google to re-open account chooser
+                          auto_select={false}
+                          promptMomentNotification={() => {}}
                         />
                       </div>
 
@@ -1054,35 +1076,15 @@ const LoginSignup = ({
                     <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-3">
                       <div className="flex justify-center">
                         <GoogleLogin
-                          onSuccess={async (credentialResponse) => {
-                            try {
-                              const { credential } = credentialResponse;
-                              const decoded = jwtDecode(credential);
-                              console.log("✅ Google user:", decoded);
-
-                              const { data } = await axios.post(
-                                "/auth-service/api/auth/google",
-                                { token: credential }
-                              );
-
-                              if (data?.token) {
-                                localStorage.setItem("token", data.token);
-                                localStorage.setItem(
-                                  "user",
-                                  JSON.stringify(data.user)
-                                );
-                                window.dispatchEvent(new Event("tokenChanged"));
-                                toast.success("Signed in with Google!");
-                                if (onLoginSuccess) onLoginSuccess(data);
-                              }
-                            } catch (err) {
-                              console.error("Google login failed:", err);
-                              toast.error("Google login failed");
-                            }
-                          }}
+                          onSuccess={handleGoogleLogin}
                           onError={() => toast.error("Google Sign-In failed")}
                           theme="filled_black"
                           width="100%"
+                          useOneTap={false} // ❗ stops auto-login
+                          ux_mode="popup" // ❗ allows choosing account
+                          context="use" // ❗ forces Google to re-open account chooser
+                          auto_select={false}
+                          promptMomentNotification={() => {}}
                         />
                       </div>
 
