@@ -40,6 +40,8 @@ const WalletModal = ({ isOpen, onClose }) => {
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [showProcessingPopup, setShowProcessingPopup] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [addressValid, setAddressValid] = useState(null);
+  const [isValidatingAddress, setIsValidatingAddress] = useState(false);
 
   const [showWithdrawConfirmation, setShowWithdrawConfirmation] =
     useState(false);
@@ -300,6 +302,41 @@ const WalletModal = ({ isOpen, onClose }) => {
     { code: "QAR", symbol: "ر.ق" },
     { code: "SAR", symbol: "﷼" },
   ];
+
+  const validateAddressAPI = async (address, currency) => {
+    try {
+      const { data } = await axios.post(
+        "/wallet-service/api/wallet/validate-address",
+        { address, currency }
+      );
+
+      return data.valid === true;
+    } catch (err) {
+      console.error("❌ Address validation failed:", err);
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    if (!withdrawAddress || !selectedWithdrawCoin) {
+      setAddressValid(null);
+      return;
+    }
+
+    const delay = setTimeout(async () => {
+      setIsValidatingAddress(true);
+
+      const isValid = await validateAddressAPI(
+        withdrawAddress,
+        selectedWithdrawCoin.symbol.toUpperCase()
+      );
+
+      setAddressValid(isValid);
+      setIsValidatingAddress(false);
+    }, 600);
+
+    return () => clearTimeout(delay);
+  }, [withdrawAddress, selectedWithdrawCoin]);
 
   useEffect(() => {
     if (isOpen) {
@@ -669,6 +706,7 @@ const WalletModal = ({ isOpen, onClose }) => {
     Number(withdrawAmount) < minWithdraw ||
     (availableBalance !== null && withdrawAmount > availableBalance) ||
     withdrawAddress.trim().length === 0;
+  addressValid === false || addressValid === null;
 
   let dynamicInsufficientMessage = "Enter a valid amount";
 
@@ -871,6 +909,23 @@ const WalletModal = ({ isOpen, onClose }) => {
                         "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
                     }}
                   />
+                  {isValidatingAddress && withdrawAddress && (
+                    <p className="text-yellow-400 text-xs mt-1">
+                      Validating address...
+                    </p>
+                  )}
+
+                  {addressValid === false && (
+                    <p className="text-red-400 text-xs mt-1">
+                      ❌ Invalid {selectedWithdrawCoin?.symbol} address
+                    </p>
+                  )}
+
+                  {addressValid === true && (
+                    <p className="text-green-400 text-xs mt-1">
+                      ✔ Valid {selectedWithdrawCoin?.symbol} address
+                    </p>
+                  )}
                 </div>
 
                 {/* AMOUNT */}
@@ -941,7 +996,17 @@ const WalletModal = ({ isOpen, onClose }) => {
                 <motion.button
                   whileHover={!isWithdrawDisabled ? { scale: 1.02 } : {}}
                   whileTap={!isWithdrawDisabled ? { scale: 0.98 } : {}}
-                  onClick={!isWithdrawDisabled ? handleWithdrawClick : null}
+                  onClick={() => {
+                    if (isWithdrawDisabled) {
+                      if (addressValid === false) {
+                        toast.error(
+                          `Invalid ${selectedWithdrawCoin?.symbol} address`
+                        );
+                      }
+                      return;
+                    }
+                    handleWithdrawClick();
+                  }}
                   disabled={isWithdrawDisabled}
                   className={`w-full py-4 px-6 rounded-lg font-bold transition-all
       ${
