@@ -222,62 +222,14 @@ const GamePage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const fetchGameUrl = async () => {
-  //     try {
-  //       // Step 1: Get all games
-  //       const res = await fetch("https://mapi.examtree.ai/wallet-service/api/games");
-  //       const data = await res.json();
-  //       const game = data?.games?.items?.find(
-  //         (g) => g.name.toLowerCase() === decodeURIComponent(gameId).toLowerCase()
-  //       );
-
-  //       if (!game) {
-  //         toast.error("Game not found!");
-  //         return;
-  //       }
-
-  //       setGameData(game);
-
-  //       // Step 2: Call init-demo API with that UUID
-  //       const initRes = await fetch(
-  //         `https://mapi.examtree.ai/wallet-service/api/games/${game.uuid}/init-demo`,
-  //         {
-  //           method: "POST",
-  //           headers: { "Content-Type": "application/json" },
-  //           body: JSON.stringify({
-  //             device: "desktop",
-  //             language: "en",
-  //             return_url: window.location.origin,
-  //           }),
-  //         }
-  //       );
-
-  //       const initData = await initRes.json();
-  //       if (initData.success && initData.data?.url) {
-  //         setIframeUrl(initData.data.url);
-  //       } else {
-  //         throw new Error("Failed to initialize demo game");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error loading game:", error);
-  //       toast.error(error.message || "Unable to load game");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchGameUrl();
-  // }, [gameId]);
-
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen   text-white text-xl">
+      <div className="flex flex-col items-center justify-center h-screen text-white text-xl">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-transparent bg-clip-text bg-gradient-to-r from-[#F07730] via-[#EFD28E] to-[#F07730] text-2xl sm:text-3xl font-bold blur-[0.3px]"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-[#5A3799] to-[#DC1FFF] text-2xl sm:text-3xl font-bold blur-[0.3px]"
         >
           {isRealPlay
             ? "Loading for Real gamePlay..."
@@ -287,7 +239,7 @@ const GamePage = () => {
         {/* Shimmer bar effect */}
         <div className="mt-6 w-64 h-2 rounded-full bg-gradient-to-r from-[#F07730]/20 via-[#EFD28E]/30 to-[#F07730]/20 overflow-hidden">
           <motion.div
-            className="h-full w-1/3 bg-gradient-to-r from-[#F07730] via-[#EFD28E] to-[#F07730]"
+            className="h-full w-1/3 bg-gradient-to-r from-[#5A3799] to-[#DC1FFF]"
             animate={{ x: ["-100%", "100%"] }}
             transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
           />
@@ -306,7 +258,7 @@ const GamePage = () => {
 
   return (
     <>
-      <div className="h-full   flex flex-col">
+      <div className="container h-full relative flex flex-col  max-w-7xl mx-auto px-4 ">
         <div
           className="iframe-wrapper"
           style={{
@@ -320,29 +272,15 @@ const GamePage = () => {
             ref={iframeRef}
             src={iframeUrl}
             title={gameData?.name || "Game"}
-            className="w-full  h-[82vh] border-none pointer-events-auto md:px-[10%] px-[4%]"
+            className="w-full h-[82vh] border-none pointer-events-auto"
             allowFullScreen
           />
         </div>
 
         {/* Bottom Control Bar with Glassmorphism */}
-        <div
-          className="relative bg-white/5 backdrop-blur-xl border-t border-white/20"
-          style={{
-            height: "10vh",
-            width: "80%",
-            margin: "auto",
-            minHeight: "30px",
-            background:
-              "linear-gradient(135deg, rgba(30, 36, 51, 0.8) 0%, rgba(20, 25, 40, 0.9) 100%)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            boxShadow:
-              "0 -4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
-          }}
-        >
+        <div className="trust_btn w-full h-[10vh] px-10 relative bg-[#282753] backdrop-blur-xl">
           {/* Glass overlay effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-r pointer-events-none"></div>
 
           <div className="relative h-full flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-4">
             {/* Left Side - Game Info with 80px margin */}
@@ -351,7 +289,12 @@ const GamePage = () => {
 
               {/* Rainbet Logo */}
               <div className="flex items-center gap-2 sm:gap-3">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#F07730] to-[#EFD28E] flex items-center justify-center shadow-lg shadow-[#F07730]/30">
+                <div
+                  className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-br flex items-center justify-center shadow-lg shadow-[#5a3799]/30"
+                  style={{
+                    background: "var(--cta-pink-gradient)",
+                  }}
+                >
                   <span className="text-white font-bold text-sm sm:text-base md:text-lg">
                     R
                   </span>
@@ -373,7 +316,7 @@ const GamePage = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-1.5 sm:p-2 md:p-2.5 bg-white/10 hover:bg-white/20 rounded-lg transition-all text-gray-300 hover:text-white backdrop-blur-sm border border-white/10"
+                className="p-1.5 sm:p-2 md:p-2.5 bg-[#0D0E36] hover:bg-[#0D0E36]/20 rounded-lg transition-all text-gray-300 hover:text-white backdrop-blur-sm"
                 title="Screenshot"
               >
                 <svg
@@ -396,7 +339,7 @@ const GamePage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => toggleFullScreen(iframeRef)}
-                className="p-1.5 sm:p-2 md:p-2.5 bg-white/10 hover:bg-white/20 rounded-lg transition-all text-gray-300 hover:text-white backdrop-blur-sm border border-white/10"
+                className="p-1.5 sm:p-2 md:p-2.5 bg-[#0D0E36] hover:bg-[#0D0E36]/20 rounded-lg transition-all text-gray-300 hover:text-white backdrop-blur-sm "
                 title="Fullscreen"
               >
                 <svg
@@ -422,7 +365,7 @@ const GamePage = () => {
               <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
                 <span
                   className={`text-[10px] sm:text-xs md:text-sm font-semibold transition-colors duration-300 ${
-                    !isRealPlay ? "text-blue-400" : "text-gray-400"
+                    !isRealPlay ? "text-[#dc1fff]" : "text-[#e1e1e1"
                   }`}
                 >
                   Fun Play
@@ -431,10 +374,10 @@ const GamePage = () => {
                 <motion.button
                   whileTap={{ scale: 0.95 }}
                   onClick={handlePlayToggle}
-                  className={`relative w-12 h-6 sm:w-14 sm:h-7 md:w-16 md:h-8 rounded-full transition-all backdrop-blur-sm border ${
+                  className={`relative w-12 h-6 sm:w-14 sm:h-7 md:w-16 md:h-8 rounded-full transition-all backdrop-blur-sm  ${
                     isRealPlay
-                      ? "bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg shadow-blue-500/40 border-blue-400/50"
-                      : "bg-white/20 border-white/10"
+                      ? "bg-gradient-to-r from-[#5A3799] to-[#DC1FFF] shadow-lg"
+                      : "bg-[#0D0E36]"
                   }`}
                 >
                   <motion.div
@@ -452,13 +395,13 @@ const GamePage = () => {
                       stiffness: 500,
                       damping: 30,
                     }}
-                    className="absolute top-0.5 sm:top-1 w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 bg-white rounded-full shadow-lg"
+                    className="absolute top-0.8 sm:top-1 w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 bg-white rounded-full shadow-lg"
                   />
                 </motion.button>
 
                 <span
                   className={`text-[10px] sm:text-xs md:text-sm font-semibold transition-colors duration-300 ${
-                    isRealPlay ? "text-blue-400" : "text-gray-400"
+                    isRealPlay ? "text-[#dc1fff]" : "text-gray-400"
                   }`}
                 >
                   Real Play
