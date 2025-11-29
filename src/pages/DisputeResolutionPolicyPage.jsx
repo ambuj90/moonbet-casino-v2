@@ -15,25 +15,25 @@ const PolicySection = ({ number, title, children }) => {
     >
       <div
         onClick={() => setIsExpanded(!isExpanded)}
-        className="cursor-pointer p-6 transition-all duration-300 hover:bg-white/5"
+        className="cursor-pointer p-6 transition-all duration-300 hover:bg-[var(--glass-white-10)]"
       >
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+          <h2 className="text-2xl font-bold text-[var(--text-light-grey)] flex items-center gap-3">
             <span
-              className="px-3 py-1 text-gray-300"
+              className="px-3 py-1 text-[var(--text-lavender-2)]"
               style={{
                 borderRadius: "4px",
-                background: "rgba(255, 255, 255, 0.05)",
+                background: "var(--glass-white-10)",
               }}
             >
               {number}
             </span>
-            <span className="text-gray-100">{title}</span>
+            <span className="text-[var(--text-light-grey)]">{title}</span>
           </h2>
           <motion.div
             animate={{ rotate: isExpanded ? 180 : 0 }}
             transition={{ duration: 0.3 }}
-            className="text-gray-400 text-xl"
+            className="text-[var(--text-lavender-1)] text-xl"
           >
             ▼
           </motion.div>
@@ -61,19 +61,19 @@ const PolicySection = ({ number, title, children }) => {
 const SubSection = ({ number, title, children }) => {
   return (
     <div
-      className="mb-6 p-5 hover:bg-white/5 transition-all"
+      className="mb-6 p-5 hover:bg-[var(--glass-white-10)] transition-all"
       style={{
         borderRadius: "8px",
-        border: "1px solid rgba(255, 255, 255, 0.20)",
+        border: "1px solid var(--glass-white-20)",
       }}
     >
-      <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-white">
+      <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-[var(--text-light-grey)]">
         <span
-          className="px-2 py-0.5 text-sm font-bold text-gray-300"
+          className="px-2 py-0.5 text-sm font-bold text-[var(--text-lavender-2)]"
           style={{
             borderRadius: "4px",
-            border: "1px solid rgba(255, 255, 255, 0.20)",
-            background: "rgba(255, 255, 255, 0.05)",
+            border: "1px solid var(--glass-white-20)",
+            background: "var(--glass-white-10)",
           }}
         >
           {number}
@@ -85,21 +85,21 @@ const SubSection = ({ number, title, children }) => {
   );
 };
 
-// List Item Component with minimal styling
+// List Item Component
 const ListItem = ({ children }) => (
   <div className="flex items-start gap-3 mb-2">
-    <span className="text-gray-400 text-lg mt-1">•</span>
-    <p className="text-gray-300 flex-1">{children}</p>
+    <span className="text-[var(--text-lavender-1)] text-lg mt-1">•</span>
+    <p className="text-[var(--text-light-grey)] flex-1">{children}</p>
   </div>
 );
 
 // Highlight Box Component
 const HighlightBox = ({ children, variant = "default" }) => {
   const variants = {
-    default: "rgba(255, 255, 255, 0.05)",
-    warning: "rgba(255, 100, 100, 0.1)",
-    info: "rgba(100, 150, 255, 0.1)",
-    success: "rgba(100, 255, 100, 0.1)",
+    default: "var(--glass-white-10)",
+    warning: "rgba(220, 31, 255, 0.15)",
+    info: "rgba(146, 146, 210, 0.16)",
+    success: "rgba(170, 242, 63, 0.15)",
   };
 
   return (
@@ -107,7 +107,7 @@ const HighlightBox = ({ children, variant = "default" }) => {
       className="p-4 mt-4"
       style={{
         borderRadius: "8px",
-        border: "1px solid rgba(255, 255, 255, 0.30)",
+        border: "1px solid var(--glass-white-30)",
         background: variants[variant],
       }}
     >
@@ -116,7 +116,7 @@ const HighlightBox = ({ children, variant = "default" }) => {
   );
 };
 
-// Timeline Component for Dispute Resolution Process
+// Timeline Component
 const TimelineStep = ({ number, title, duration, description }) => (
   <motion.div
     initial={{ opacity: 0, x: -20 }}
@@ -126,30 +126,41 @@ const TimelineStep = ({ number, title, duration, description }) => (
   >
     <div className="flex flex-col items-center">
       <div
-        className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
+        className="w-12 h-12 rounded-full flex items-center justify-center text-[var(--text-light-grey)] font-bold"
         style={{
-          background:
-            "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
-          border: "2px solid rgba(255, 255, 255, 0.2)",
+          background: "var(--glass-white-10)",
+          border: "2px solid var(--glass-white-30)",
         }}
       >
         {number}
       </div>
-      {number < 8 && <div className="w-0.5 h-20 bg-gray-700 mt-2" />}
+
+      {/* TIMELINE: COMBINED A + B + C */}
+      {number < 8 && (
+        <div
+          className="w-0.5 h-20 bg-[var(--container-dark-purple-3)] relative
+          before:absolute before:inset-0 before:bg-[var(--glass-white-30)] before:opacity-40
+          after:absolute after:inset-0 after:bg-[var(--text-lavender-2)] after:opacity-20"
+        />
+      )}
     </div>
+
     <div className="flex-1 pb-8">
-      <h4 className="text-white font-semibold text-lg mb-1">{title}</h4>
-      {duration && <p className="text-blue-400 text-sm mb-2">{duration}</p>}
-      <p className="text-gray-300">{description}</p>
+      <h4 className="text-[var(--text-light-grey)] font-semibold text-lg mb-1">
+        {title}
+      </h4>
+      {duration && (
+        <p className="text-[var(--cta-pink)] text-sm mb-2">{duration}</p>
+      )}
+      <p className="text-[var(--text-lavender-1)]">{description}</p>
     </div>
   </motion.div>
 );
 
-// Main Dispute Resolution Policy Page Component
+// Main Page Component
 const DisputeResolutionPolicyPage = () => {
   const [activeSection, setActiveSection] = useState(null);
 
-  // Table of Contents
   const sections = [
     { id: 1, title: "OVERVIEW" },
     { id: 2, title: "DISPUTE RESOLUTION PROCESS" },
@@ -164,8 +175,8 @@ const DisputeResolutionPolicyPage = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Subtle animated background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30">
+      {/* Background Motion */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-20">
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
@@ -173,14 +184,12 @@ const DisputeResolutionPolicyPage = () => {
             style={{
               width: 600,
               height: 600,
-              background: `radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%)`,
+              background:
+                "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)",
               left: `${i * 33}%`,
               top: `${i * 20}%`,
             }}
-            animate={{
-              y: [0, 30, 0],
-              x: [0, -20, 0],
-            }}
+            animate={{ y: [0, 30, 0], x: [0, -20, 0] }}
             transition={{
               duration: 10 + i * 2,
               repeat: Infinity,
@@ -191,16 +200,16 @@ const DisputeResolutionPolicyPage = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 max-w-6xl">
-        {/* Header Section */}
+        {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
+          <h1 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[var(--text-light-grey)] to-[var(--text-lavender-2)] bg-clip-text text-transparent">
             DISPUTE RESOLUTION POLICY
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-[var(--text-lavender-1)] text-lg">
             Last Updated: November 18, 2025
           </p>
         </motion.header>
@@ -209,19 +218,19 @@ const DisputeResolutionPolicyPage = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
           className="mb-12"
           style={{
             borderRadius: "12px",
-            border: "1px solid rgba(255, 255, 255, 0.10)",
-            background: "rgba(255, 255, 255, 0.03)",
+            border: "1px solid var(--glass-white-10)",
+            background: "var(--glass-white-5)",
             backdropFilter: "blur(10px)",
           }}
         >
           <div className="p-8">
-            <h2 className="text-2xl font-bold text-white mb-6">
+            <h2 className="text-2xl font-bold text-[var(--text-light-grey)] mb-6">
               TABLE OF CONTENTS
             </h2>
+
             <div className="grid md:grid-cols-2 gap-3">
               {sections.map((section) => (
                 <motion.div
@@ -229,17 +238,17 @@ const DisputeResolutionPolicyPage = () => {
                   whileHover={{ x: 5 }}
                   className="cursor-pointer"
                   onClick={() => {
-                    const element = document.getElementById(
-                      `section-${section.id}`
-                    );
-                    element?.scrollIntoView({ behavior: "smooth" });
+                    const el = document.getElementById(`section-${section.id}`);
+                    el?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  <div className="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-white/5">
-                    <span className="text-gray-400 text-sm font-mono">
+                  <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--glass-white-10)] transition-all">
+                    <span className="text-[var(--text-lavender-1)] text-sm font-mono">
                       {String(section.id).padStart(2, "0")}
                     </span>
-                    <span className="text-gray-200">{section.title}</span>
+                    <span className="text-[var(--text-light-grey)]">
+                      {section.title}
+                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -247,27 +256,27 @@ const DisputeResolutionPolicyPage = () => {
           </div>
         </motion.div>
 
-        {/* Policy Sections */}
+        {/* PAGE CONTENT WRAPPER */}
         <div
           style={{
             borderRadius: "12px",
-            border: "1px solid rgba(255, 255, 255, 0.10)",
-            background: "rgba(255, 255, 255, 0.02)",
+            border: "1px solid var(--glass-white-10)",
+            background: "var(--glass-white-5)",
             backdropFilter: "blur(10px)",
           }}
         >
-          {/* Section 1: OVERVIEW */}
+          {/* ---- SECTION 1 ---- */}
           <div id="section-1">
             <PolicySection number="01" title="OVERVIEW">
               <SubSection number="1.1" title="Legal Framework">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   Moonbet Games LLC (the "Company" or "we") acknowledges that
                   gambling may be restricted or prohibited by law in certain
                   jurisdictions. The Company operates under a license granted by
                   [To be provided].
                 </p>
 
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   By participating in games and using Moonbet's services, you
                   confirm that:
                 </p>
@@ -289,7 +298,7 @@ const DisputeResolutionPolicyPage = () => {
               </SubSection>
 
               <SubSection number="1.2" title="Customer Responsibility">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   Customers are responsible for:
                 </p>
 
@@ -312,7 +321,7 @@ const DisputeResolutionPolicyPage = () => {
               </SubSection>
 
               <SubSection number="1.3" title="Account Violations">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   If your account is closed due to age verification failure,
                   legal non-compliance, or terms violation:
                 </p>
@@ -331,7 +340,7 @@ const DisputeResolutionPolicyPage = () => {
               </SubSection>
 
               <SubSection number="1.4" title="Platform Errors">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   If you detect a clear gambling error on the platform and
                   understand that any resulting payout cannot be valid or real:
                 </p>
@@ -347,7 +356,7 @@ const DisputeResolutionPolicyPage = () => {
                 </ListItem>
 
                 <HighlightBox variant="warning">
-                  <p className="text-gray-200 font-semibold">
+                  <p className="text-[var(--text-light-grey)] font-semibold">
                     Important: Exploiting platform errors is considered
                     fraudulent behavior and will result in immediate account
                     termination.
@@ -357,11 +366,11 @@ const DisputeResolutionPolicyPage = () => {
             </PolicySection>
           </div>
 
-          {/* Section 2: DISPUTE RESOLUTION PROCESS */}
+          {/* ---- SECTION 2 ---- */}
           <div id="section-2">
             <PolicySection number="02" title="DISPUTE RESOLUTION PROCESS">
               <SubSection number="2.1" title="Legal Jurisdiction">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   Legal relations between Customers and the Company are governed
                   by the laws of [Jurisdiction to be specified upon licensing
                   completion]. All disputes arising from bets, gaming, or
@@ -370,22 +379,22 @@ const DisputeResolutionPolicyPage = () => {
               </SubSection>
 
               <SubSection number="2.2" title="Internal Resolution (First Step)">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   All disputes with the Company must first be addressed directly
                   through our internal complaints procedure:
                 </p>
 
                 <HighlightBox variant="info">
                   <div className="space-y-2">
-                    <p className="text-gray-200">
+                    <p className="text-[var(--text-light-grey)]">
                       <span className="font-semibold">Email:</span>{" "}
                       support@moonbet.games
                     </p>
-                    <p className="text-gray-200">
+                    <p className="text-[var(--text-light-grey)]">
                       <span className="font-semibold">Live Chat:</span> 24/7
                       accessible via Moonbet.games
                     </p>
-                    <p className="text-gray-200">
+                    <p className="text-[var(--text-light-grey)]">
                       <span className="font-semibold">Provide:</span> Detailed
                       description of dispute, supporting documentation, and
                       desired resolution
@@ -395,7 +404,7 @@ const DisputeResolutionPolicyPage = () => {
               </SubSection>
 
               <SubSection number="2.3" title="Initial Response">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-lavender-1)] mb-4">
                   The Customer Support Department will:
                 </p>
 

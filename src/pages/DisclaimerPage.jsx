@@ -15,25 +15,25 @@ const PolicySection = ({ number, title, children }) => {
     >
       <div
         onClick={() => setIsExpanded(!isExpanded)}
-        className="cursor-pointer p-6 transition-all duration-300 hover:bg-white/5"
+        className="cursor-pointer p-6 transition-all duration-300 hover:bg-[var(--glass-white-10)]"
       >
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold text-white flex items-center gap-3">
+          <h2 className="text-xl font-bold text-[var(--text-light-grey)] flex items-center gap-3">
             <span
-              className="px-3 py-1 text-gray-300"
+              className="px-3 py-1 text-[var(--text-lavender-2)]"
               style={{
                 borderRadius: "4px",
-                background: "rgba(255, 255, 255, 0.05)",
+                background: "var(--glass-white-10)",
               }}
             >
               {number}
             </span>
-            <span className="text-gray-100">{title}</span>
+            <span className="text-[var(--text-light-grey)]">{title}</span>
           </h2>
           <motion.div
             animate={{ rotate: isExpanded ? 180 : 0 }}
             transition={{ duration: 0.3 }}
-            className="text-gray-400 text-xl"
+            className="text-[var(--text-lavender-1)] text-xl"
           >
             ▼
           </motion.div>
@@ -61,19 +61,19 @@ const PolicySection = ({ number, title, children }) => {
 const SubSection = ({ number, title, children }) => {
   return (
     <div
-      className="mb-6 p-5 hover:bg-white/5 transition-all"
+      className="mb-6 p-5 hover:bg-[var(--glass-white-10)] transition-all"
       style={{
         borderRadius: "8px",
-        border: "1px solid rgba(255, 255, 255, 0.20)",
+        border: "1px solid var(--glass-white-20)",
       }}
     >
-      <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-white">
+      <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-[var(--text-light-grey)]">
         <span
-          className="px-2 py-0.5 text-sm font-bold text-gray-300"
+          className="px-2 py-0.5 text-sm font-bold text-[var(--text-lavender-2)]"
           style={{
             borderRadius: "4px",
-            border: "1px solid rgba(255, 255, 255, 0.20)",
-            background: "rgba(255, 255, 255, 0.05)",
+            border: "1px solid var(--glass-white-20)",
+            background: "var(--glass-white-10)",
           }}
         >
           {number}
@@ -88,18 +88,18 @@ const SubSection = ({ number, title, children }) => {
 // List Item Component with minimal styling
 const ListItem = ({ children, icon = "•" }) => (
   <div className="flex items-start gap-3 mb-3">
-    <span className="text-gray-400 text-lg mt-1">{icon}</span>
-    <p className="text-gray-300 flex-1">{children}</p>
+    <span className="text-[var(--text-lavender-1)] text-lg mt-1">{icon}</span>
+    <p className="text-[var(--text-light-grey)] flex-1">{children}</p>
   </div>
 );
 
 // Highlight Box Component
 const HighlightBox = ({ children, variant = "default" }) => {
   const variants = {
-    default: "rgba(255, 255, 255, 0.05)",
-    warning: "rgba(255, 100, 100, 0.1)",
-    info: "rgba(100, 150, 255, 0.1)",
-    success: "rgba(100, 255, 100, 0.1)",
+    default: "var(--glass-white-10)",
+    warning: "rgba(220, 31, 255, 0.12)",
+    info: "rgba(146, 146, 210, 0.16)",
+    success: "rgba(170, 242, 63, 0.12)",
   };
 
   return (
@@ -107,7 +107,7 @@ const HighlightBox = ({ children, variant = "default" }) => {
       className="p-4 mt-4"
       style={{
         borderRadius: "8px",
-        border: "1px solid rgba(255, 255, 255, 0.30)",
+        border: "1px solid var(--glass-white-30)",
         background: variants[variant],
       }}
     >
@@ -119,19 +119,19 @@ const HighlightBox = ({ children, variant = "default" }) => {
 // Risk Card Component for Blockchain Risks
 const RiskCard = ({ icon, title, description, color = "blue" }) => {
   const colors = {
-    blue: "rgba(59, 130, 246, 0.1)",
-    red: "rgba(239, 68, 68, 0.1)",
-    yellow: "rgba(245, 158, 11, 0.1)",
-    purple: "rgba(147, 51, 234, 0.1)",
-    green: "rgba(34, 197, 94, 0.1)",
+    blue: "rgba(146, 146, 210, 0.16)",
+    red: "rgba(220, 31, 255, 0.12)",
+    yellow: "rgba(170, 242, 63, 0.12)",
+    purple: "rgba(203, 200, 225, 0.16)",
+    green: "rgba(40, 194, 3, 0.16)",
   };
 
   const borderColors = {
-    blue: "rgba(59, 130, 246, 0.3)",
-    red: "rgba(239, 68, 68, 0.3)",
-    yellow: "rgba(245, 158, 11, 0.3)",
-    purple: "rgba(147, 51, 234, 0.3)",
-    green: "rgba(34, 197, 94, 0.3)",
+    blue: "rgba(146, 146, 210, 0.5)",
+    red: "rgba(220, 31, 255, 0.5)",
+    yellow: "rgba(170, 242, 63, 0.6)",
+    purple: "rgba(203, 200, 225, 0.5)",
+    green: "rgba(40, 194, 3, 0.6)",
   };
 
   return (
@@ -146,8 +146,10 @@ const RiskCard = ({ icon, title, description, color = "blue" }) => {
       <div className="flex items-start gap-3">
         <span className="text-2xl">{icon}</span>
         <div>
-          <h4 className="text-white font-semibold mb-1">{title}</h4>
-          <p className="text-gray-400 text-sm">{description}</p>
+          <h4 className="text-[var(--text-light-grey)] font-semibold mb-1">
+            {title}
+          </h4>
+          <p className="text-[var(--text-lavender-1)] text-sm">{description}</p>
         </div>
       </div>
     </motion.div>
@@ -220,7 +222,8 @@ const DisclaimerPage = () => {
             style={{
               width: 600,
               height: 600,
-              background: `radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%)`,
+              background:
+                "radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%)",
               left: `${i * 33}%`,
               top: `${i * 20}%`,
             }}
@@ -244,10 +247,10 @@ const DisclaimerPage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="text-2xl font-bold text-white mb-4 bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
+          <h1 className="text-2xl font-bold mb-4 bg-gradient-to-r from-[var(--text-light-grey)] to-[var(--text-lavender-2)] bg-clip-text text-transparent">
             DISCLAIMER
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-[var(--text-lavender-1)] text-lg">
             Last Updated: November 18, 2025
           </p>
         </motion.header>
@@ -260,7 +263,7 @@ const DisclaimerPage = () => {
           className="mb-8"
         >
           <HighlightBox variant="info">
-            <p className="text-gray-200 text-center">
+            <p className="text-[var(--text-light-grey)] text-center">
               Welcome to Moonbet.games. By accessing or using this website,
               platform, and services, you agree to the following disclaimer.
             </p>
@@ -275,13 +278,13 @@ const DisclaimerPage = () => {
           className="mb-12"
           style={{
             borderRadius: "12px",
-            border: "1px solid rgba(255, 255, 255, 0.10)",
-            background: "rgba(255, 255, 255, 0.03)",
+            border: "1px solid var(--glass-white-10)",
+            background: "var(--glass-white-5)",
             backdropFilter: "blur(10px)",
           }}
         >
           <div className="p-8">
-            <h2 className="text-2xl font-bold text-white mb-6">
+            <h2 className="text-2xl font-bold text-[var(--text-light-grey)] mb-6">
               TABLE OF CONTENTS
             </h2>
             <div className="grid md:grid-cols-2 gap-3">
@@ -297,11 +300,13 @@ const DisclaimerPage = () => {
                     element?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  <div className="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-white/5">
-                    <span className="text-gray-400 text-sm font-mono">
+                  <div className="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-[var(--glass-white-10)]">
+                    <span className="text-[var(--text-lavender-1)] text-sm font-mono">
                       {String(section.id).padStart(2, "0")}
                     </span>
-                    <span className="text-gray-200">{section.title}</span>
+                    <span className="text-[var(--text-light-grey)]">
+                      {section.title}
+                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -313,15 +318,15 @@ const DisclaimerPage = () => {
         <div
           style={{
             borderRadius: "12px",
-            border: "1px solid rgba(255, 255, 255, 0.10)",
-            background: "rgba(255, 255, 255, 0.02)",
+            border: "1px solid var(--glass-white-10)",
+            background: "var(--glass-white-5)",
             backdropFilter: "blur(10px)",
           }}
         >
           {/* Section 1: NO WARRANTIES */}
           <div id="section-1">
             <PolicySection number="01" title="NO WARRANTIES">
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 All information, software, products, and services on
                 Moonbet.games are provided "as is" without warranty of any kind.
                 Moonbet makes no representations or warranties about the
@@ -330,13 +335,13 @@ const DisclaimerPage = () => {
                 data.
               </p>
 
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 Cryptocurrency values are volatile and unpredictable. Use is at
                 your own risk.
               </p>
 
               <HighlightBox variant="warning">
-                <p className="text-gray-200 font-semibold">
+                <p className="text-[var(--text-light-grey)] font-semibold">
                   ⚠️ Important: All services are provided without any guarantees
                   or warranties. Users assume all risks associated with platform
                   usage.
@@ -348,14 +353,16 @@ const DisclaimerPage = () => {
           {/* Section 2: LIMITATION OF LIABILITY */}
           <div id="section-2">
             <PolicySection number="02" title="LIMITATION OF LIABILITY">
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 Under no circumstances shall Moonbet be liable for any direct,
                 indirect, punitive, incidental, special, or consequential
                 damages arising from or relating to the use or inability to use
                 this website or services.
               </p>
 
-              <p className="text-gray-300 mb-4">This includes damages for:</p>
+              <p className="text-[var(--text-light-grey)] mb-4">
+                This includes damages for:
+              </p>
 
               <div className="grid md:grid-cols-2 gap-3 mb-4">
                 <ListItem icon="❌">Errors and defects</ListItem>
@@ -367,7 +374,7 @@ const DisclaimerPage = () => {
               </div>
 
               <HighlightBox variant="warning">
-                <p className="text-gray-200">
+                <p className="text-[var(--text-light-grey)]">
                   Moonbet's liability is limited to the maximum extent permitted
                   by applicable law.
                 </p>
@@ -381,7 +388,7 @@ const DisclaimerPage = () => {
               number="03"
               title="BLOCKCHAIN AND CRYPTOCURRENCY RISKS"
             >
-              <p className="text-gray-300 mb-6">
+              <p className="text-[var(--text-light-grey)] mb-6">
                 Moonbet operates on blockchain networks. Users acknowledge:
               </p>
 
@@ -397,16 +404,18 @@ const DisclaimerPage = () => {
                 ))}
               </div>
 
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 For more information on blockchain security, visit:
               </p>
 
               <div className="grid md:grid-cols-2 gap-4">
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                  <h4 className="text-white font-semibold mb-2">Ethereum</h4>
+                <div className="p-4 bg-[var(--glass-white-10)] rounded-lg border border-[var(--glass-white-20)]">
+                  <h4 className="text-[var(--text-light-grey)] font-semibold mb-2">
+                    Ethereum
+                  </h4>
                   <a
                     href="https://www.ethereum.org/en/"
-                    className="text-blue-400 hover:text-blue-300 text-sm"
+                    className="text-[var(--cta-pink)] hover:text-[var(--text-lavender-2)] text-sm"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -414,11 +423,13 @@ const DisclaimerPage = () => {
                   </a>
                 </div>
 
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                  <h4 className="text-white font-semibold mb-2">Solana</h4>
+                <div className="p-4 bg-[var(--glass-white-10)] rounded-lg border border-[var(--glass-white-20)]">
+                  <h4 className="text-[var(--text-light-grey)] font-semibold mb-2">
+                    Solana
+                  </h4>
                   <a
                     href="https://solana.com/"
-                    className="text-blue-400 hover:text-blue-300 text-sm"
+                    className="text-[var(--cta-pink)] hover:text-[var(--text-lavender-2)] text-sm"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -432,7 +443,7 @@ const DisclaimerPage = () => {
           {/* Section 4: THIRD-PARTY LINKS AND SERVICES */}
           <div id="section-4">
             <PolicySection number="04" title="THIRD-PARTY LINKS AND SERVICES">
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 This website may contain links to third-party websites, wallets,
                 payment processors, and blockchain explorers. These links are
                 provided solely for convenience. Moonbet has no control over and
@@ -440,30 +451,30 @@ const DisclaimerPage = () => {
                 policies of any third-party sites.
               </p>
 
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 We recommend reviewing third-party privacy policies and terms
                 before use.
               </p>
 
               <SubSection number="4.1" title="Examples of Third-Party Services">
                 <div className="grid md:grid-cols-3 gap-3">
-                  <div className="p-3 bg-white/5 rounded-lg">
-                    <h5 className="text-white font-medium mb-1">
+                  <div className="p-3 bg-[var(--glass-white-10)] rounded-lg">
+                    <h5 className="text-[var(--text-light-grey)] font-medium mb-1">
                       Wallet Providers
                     </h5>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-[var(--text-lavender-1)] text-sm">
                       MetaMask, Phantom, etc.
                     </p>
                   </div>
 
-                  <div className="p-3 bg-white/5 rounded-lg">
-                    <h5 className="text-white font-medium mb-1">
+                  <div className="p-3 bg-[var(--glass-white-10)] rounded-lg">
+                    <h5 className="text-[var(--text-light-grey)] font-medium mb-1">
                       Blockchain Explorers
                     </h5>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-[var(--text-lavender-1)] text-sm">
                       <a
                         href="https://solscan.io/"
-                        className="text-blue-400 hover:text-blue-300"
+                        className="text-[var(--cta-pink)] hover:text-[var(--text-lavender-2)]"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -472,11 +483,11 @@ const DisclaimerPage = () => {
                     </p>
                   </div>
 
-                  <div className="p-3 bg-white/5 rounded-lg">
-                    <h5 className="text-white font-medium mb-1">
+                  <div className="p-3 bg-[var(--glass-white-10)] rounded-lg">
+                    <h5 className="text-[var(--text-light-grey)] font-medium mb-1">
                       Payment Processors
                     </h5>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-[var(--text-lavender-1)] text-sm">
                       Various crypto services
                     </p>
                   </div>
@@ -488,20 +499,20 @@ const DisclaimerPage = () => {
           {/* Section 5: USER-GENERATED CONTENT */}
           <div id="section-5">
             <PolicySection number="05" title="USER-GENERATED CONTENT">
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 Moonbet does not endorse or assume liability for user-generated
                 content such as comments, forum posts, reviews, or chat
                 messages. Users are solely responsible for their own submissions
                 and interactions.
               </p>
 
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 Moonbet reserves the right to remove or moderate content that
                 violates our policies.
               </p>
 
               <HighlightBox variant="info">
-                <p className="text-gray-200">
+                <p className="text-[var(--text-light-grey)]">
                   <span className="font-semibold">Note:</span> User content does
                   not represent the views or opinions of Moonbet Games LLC.
                 </p>
@@ -513,46 +524,60 @@ const DisclaimerPage = () => {
           <div id="section-6">
             <PolicySection number="06" title="RESPONSIBLE GAMING DISCLAIMER">
               <HighlightBox variant="warning">
-                <p className="text-gray-200 mb-3 font-semibold">
+                <p className="text-[var(--text-light-grey)] mb-3 font-semibold">
                   ⚠️ Gambling involves risk of financial loss
                 </p>
-                <p className="text-gray-200">
+                <p className="text-[var(--text-light-grey)]">
                   Moonbet is for entertainment purposes only and is not a source
                   of income. Never gamble more than you can afford to lose.
                 </p>
               </HighlightBox>
 
               <div className="mt-6">
-                <p className="text-gray-300 mb-4">
+                <p className="text-[var(--text-light-grey)] mb-4">
                   If you experience problem gambling, seek help immediately:
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
-                    <h4 className="text-white font-semibold mb-2">
+                  <div
+                    className="p-4 rounded-lg"
+                    style={{
+                      background: "var(--cta2-green-gradient)",
+                      border: "1px solid var(--cta2-light-green)",
+                    }}
+                  >
+                    <h4 className="text-[var(--text-light-grey)] font-semibold mb-2">
                       National Council on Problem Gambling
                     </h4>
-                    <p className="text-gray-400 text-sm mb-2">
+                    <p className="text-[var(--text-lavender-1)] text-sm mb-2">
                       <a
                         href="https://www.ncpgambling.org/"
-                        className="text-blue-400 hover:text-blue-300"
+                        className="text-[var(--cta-pink)] hover:text-[var(--text-lavender-2)]"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         https://www.ncpgambling.org/
                       </a>
                     </p>
-                    <p className="text-gray-400 text-sm">📞 1-800-522-4700</p>
+                    <p className="text-[var(--text-lavender-1)] text-sm">
+                      📞 1-800-522-4700
+                    </p>
                   </div>
 
-                  <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
-                    <h4 className="text-white font-semibold mb-2">
+                  <div
+                    className="p-4 rounded-lg"
+                    style={{
+                      background: "var(--cta2-green-gradient)",
+                      border: "1px solid var(--cta2-light-green)",
+                    }}
+                  >
+                    <h4 className="text-[var(--text-light-grey)] font-semibold mb-2">
                       Gamblers Anonymous
                     </h4>
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-[var(--text-lavender-1)] text-sm">
                       <a
                         href="https://www.gamblersanonymous.org/"
-                        className="text-blue-400 hover:text-blue-300"
+                        className="text-[var(--cta-pink)] hover:text-[var(--text-lavender-2)]"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -568,24 +593,24 @@ const DisclaimerPage = () => {
           {/* Section 7: RESTRICTED LOCATIONS */}
           <div id="section-7">
             <PolicySection number="07" title="RESTRICTED LOCATIONS">
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 Residents of certain jurisdictions may be restricted from
                 accessing Moonbet.games and its services based on local laws and
                 regulations.
               </p>
 
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 It is your sole responsibility to determine whether use is legal
                 in your location. Moonbet does not provide legal advice
                 regarding jurisdiction-specific restrictions.
               </p>
 
-              <div className="mt-4 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
-                <p className="text-gray-300">
+              <div className="mt-4 p-4 rounded-lg border border-[var(--glass-white-20)] bg-[var(--glass-white-10)]">
+                <p className="text-[var(--text-light-grey)]">
                   For US-specific gambling regulations, see:{" "}
                   <a
                     href="https://www.fincen.gov/"
-                    className="text-blue-400 hover:text-blue-300"
+                    className="text-[var(--cta-pink)] hover:text-[var(--text-lavender-2)]"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -599,33 +624,41 @@ const DisclaimerPage = () => {
           {/* Section 8: NO PROFESSIONAL ADVICE */}
           <div id="section-8">
             <PolicySection number="08" title="NO PROFESSIONAL ADVICE">
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 Nothing on Moonbet.games constitute financial, legal, tax, or
                 investment advice. Cryptocurrency transactions have tax
                 implications.
               </p>
 
-              <p className="text-gray-300">
+              <p className="text-[var(--text-light-grey)]">
                 Consult appropriate professionals before making decisions based
                 on platform information.
               </p>
 
               <div className="grid md:grid-cols-4 gap-3 mt-6">
-                <div className="p-3 bg-white/5 rounded-lg text-center">
+                <div className="p-3 bg-[var(--glass-white-10)] rounded-lg text-center">
                   <span className="text-2xl mb-2 block">💰</span>
-                  <p className="text-gray-400 text-sm">No Financial Advice</p>
+                  <p className="text-[var(--text-lavender-1)] text-sm">
+                    No Financial Advice
+                  </p>
                 </div>
-                <div className="p-3 bg-white/5 rounded-lg text-center">
+                <div className="p-3 bg-[var(--glass-white-10)] rounded-lg text-center">
                   <span className="text-2xl mb-2 block">⚖️</span>
-                  <p className="text-gray-400 text-sm">No Legal Advice</p>
+                  <p className="text-[var(--text-lavender-1)] text-sm">
+                    No Legal Advice
+                  </p>
                 </div>
-                <div className="p-3 bg-white/5 rounded-lg text-center">
+                <div className="p-3 bg-[var(--glass-white-10)] rounded-lg text-center">
                   <span className="text-2xl mb-2 block">📊</span>
-                  <p className="text-gray-400 text-sm">No Tax Advice</p>
+                  <p className="text-[var(--text-lavender-1)] text-sm">
+                    No Tax Advice
+                  </p>
                 </div>
-                <div className="p-3 bg-white/5 rounded-lg text-center">
+                <div className="p-3 bg-[var(--glass-white-10)] rounded-lg text-center">
                   <span className="text-2xl mb-2 block">📈</span>
-                  <p className="text-gray-400 text-sm">No Investment Advice</p>
+                  <p className="text-[var(--text-lavender-1)] text-sm">
+                    No Investment Advice
+                  </p>
                 </div>
               </div>
             </PolicySection>
@@ -634,18 +667,18 @@ const DisclaimerPage = () => {
           {/* Section 9: MODIFICATIONS */}
           <div id="section-9">
             <PolicySection number="09" title="MODIFICATIONS">
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 Moonbet reserves the right to revise this disclaimer at any time
                 by updating this posting. Your continued use after modifications
                 implies acceptance of the revised disclaimer.
               </p>
 
               <HighlightBox variant="info">
-                <p className="text-gray-200">
+                <p className="text-[var(--text-light-grey)]">
                   <span className="font-semibold">Last Updated:</span> November
                   18, 2025
                 </p>
-                <p className="text-gray-200 mt-2">
+                <p className="text-[var(--text-light-grey)] mt-2">
                   Check this page periodically for updates to our disclaimer.
                 </p>
               </HighlightBox>
@@ -658,13 +691,13 @@ const DisclaimerPage = () => {
               number="10"
               title="GOVERNING LAW AND DISPUTE RESOLUTION"
             >
-              <p className="text-gray-300 mb-4">
+              <p className="text-[var(--text-light-grey)] mb-4">
                 This disclaimer shall be governed by and construed in accordance
                 with the laws of [Jurisdiction to be specified upon licensing
                 completion].
               </p>
 
-              <p className="text-gray-300">
+              <p className="text-[var(--text-light-grey)]">
                 Any disputes shall be resolved via binding arbitration in
                 accordance with [Arbitration Rules to be specified upon
                 licensing completion].
@@ -675,7 +708,7 @@ const DisclaimerPage = () => {
           {/* Section 11: CONTACT */}
           <div id="section-11">
             <PolicySection number="11" title="CONTACT">
-              <p className="text-gray-300 mb-6">
+              <p className="text-[var(--text-light-grey)] mb-6">
                 If you have questions about this disclaimer or disagree with any
                 provision, please contact us:
               </p>
@@ -685,8 +718,12 @@ const DisclaimerPage = () => {
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">📧</span>
                     <div>
-                      <p className="text-gray-200 font-semibold">Email</p>
-                      <p className="text-gray-400">support@moonbet.games</p>
+                      <p className="text-[var(--text-light-grey)] font-semibold">
+                        Email
+                      </p>
+                      <p className="text-[var(--text-lavender-1)]">
+                        support@moonbet.games
+                      </p>
                     </div>
                   </div>
                 </HighlightBox>
@@ -695,15 +732,19 @@ const DisclaimerPage = () => {
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">💬</span>
                     <div>
-                      <p className="text-gray-200 font-semibold">Live Chat</p>
-                      <p className="text-gray-400">24/7 via Moonbet.games</p>
+                      <p className="text-[var(--text-light-grey)] font-semibold">
+                        Live Chat
+                      </p>
+                      <p className="text-[var(--text-lavender-1)]">
+                        24/7 via Moonbet.games
+                      </p>
                     </div>
                   </div>
                 </HighlightBox>
               </div>
 
               <HighlightBox variant="warning">
-                <p className="text-gray-200 text-center font-semibold">
+                <p className="text-[var(--text-light-grey)] text-center font-semibold">
                   If you do not agree with this disclaimer, please discontinue
                   use of Moonbet.games immediately.
                 </p>
