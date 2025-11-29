@@ -51,6 +51,7 @@ import CookiePolicy from "./pages/PrivacyPolicyPage";
 import AmlPolicy from "./pages/AmlPolicy.jsx";
 import EditorialPolicy from "./pages/EditorialPolicy.jsx";
 import Leaderboard2 from "./pages/Leaderboard2.jsx";
+import GameReturn from "./pages/GameReturn.jsx";
 
 // Temporary pages
 const SimplePage = ({ title }) => (
@@ -152,6 +153,7 @@ function App() {
             <Route path="game/pumpdump" element={<PumpDumpPage />} />
             <Route path="game/futures" element={<FuturesPage />} />
             <Route path="/game/:game_uuid/:slug?" element={<GamePage />} />
+            <Route path="/game-return/:uuid" element={<GameReturn />} />
 
             <Route path="chat" element={<ChatPage />} />
             <Route path="authtest" element={<AuthTest />} />

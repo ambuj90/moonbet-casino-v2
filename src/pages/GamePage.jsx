@@ -95,78 +95,72 @@ const GamePage = () => {
   }, []);
 
   useEffect(() => {
-    const fetchGameUrl = async () => {
-      try {
-        // 🕹 Step 1: Fetch all games
-        const res = await axios.get("/wallet-service/api/games");
-        const allGames = res.data?.data?.items || res.data?.data || res.data?.games || [];
+  const fetchGameUrl = async () => {
+    try {
+      // 🟢 1. Fetch game by UUID
+      const { data } = await axios.get(`/wallet-service/api/games/${game_uuid}/details`);
 
-        const game = allGames.find((g) => g.uuid === game_uuid);
+      if (!data.success) {
+        toast.error("Game not found!");
+        return;
+      }
 
-        if (!game) {
-          toast.error("Game not found!");
+      const game = data.data;
+      setGameData(game);
+
+      // 🟣 2. Prepare init URL + payload
+      let initUrl;
+      let payload;
+
+      if (isRealPlay) {
+        const token = localStorage.getItem("token");
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+        if (!token || !user?.id) {
+          toast.warning("Please log in to play for real money!");
+          setShowLogin(true);
           return;
         }
 
-        setGameData(game);
+        const preferredCurrency = localStorage.getItem("gameCurrency") || "USD";
 
-        // 🎮 Step 2: Initialize depending on play mode
-        let initUrl;
-        let payload;
-
-        if (isRealPlay) {
-          const token = localStorage.getItem("token");
-          const user = JSON.parse(localStorage.getItem("user") || "{}");
-
-          if (!token || !user?.id) {
-            toast.warning("Please log in to play for real money!");
-            setShowLogin(true);
-            return;
-          }
-          // Real Play payload
-          const preferredCurrency =
-            localStorage.getItem("gameCurrency") || "USD";
-          initUrl = `/wallet-service/api/games/${game.uuid}/init`;
-          payload = {
-            player_id: user.id || "68eb94c22a7983ea19b0bd6a",
-            player_name: user.username || "Guest Player",
-            currency: preferredCurrency,
-            device: "desktop",
-            language: "en",
-            email: user.email || "ashtavinayaksharma555@gmail.com",
-            return_url: `${window.location.origin}/game-return`,
-          };
-        } else {
-          // Fun Play payload
-          initUrl = `/wallet-service/api/games/${game.uuid}/init-demo`;
-          payload = {
-            device: "desktop",
-            language: "en",
-            return_url: window.location.origin,
-          };
-        }
-
-        const { data: initData } = await axios.post(initUrl, payload);
-
-        if (initData.success && initData.data?.url) {
-          setIframeUrl(initData.data.url);
-        } else {
-          throw new Error("Failed to initialize game session");
-        }
-      } catch (error) {
-        console.error("❌ Error loading game:", error);
-        toast.error(
-          error.response?.data?.message ||
-            error.message ||
-            "Unable to load game"
-        );
-      } finally {
-        setLoading(false);
+        initUrl = `/wallet-service/api/games/${game_uuid}/init`;
+        payload = {
+          player_id: user.id,
+          player_name: user.username || "Guest Player",
+          currency: preferredCurrency,
+          device: "desktop",
+          language: "en",
+          email: user.email,
+          return_url: `${window.location.origin}/game-return/${game_uuid}`,
+        };
+      } else {
+        initUrl = `/wallet-service/api/games/${game_uuid}/init-demo`;
+        payload = {
+          device: "desktop",
+          language: "en",
+          return_url: `${window.location.origin}/game-return/${game_uuid}`,
+        };
       }
-    };
 
-    fetchGameUrl();
-  }, [game_uuid, isRealPlay, preferredCurrency, navigate]);
+      // 🟡 3. Init game session
+      const initData = await axios.post(initUrl, payload);
+
+      if (initData.data.success && initData.data.data?.url) {
+        setIframeUrl(initData.data.data.url);
+      } else {
+        throw new Error("Failed to initialize game session");
+      }
+    } catch (error) {
+      console.error("❌ Error loading game:", error);
+      toast.error(error.response?.data?.message || error.message || "Unable to load game");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchGameUrl();
+}, [game_uuid, isRealPlay, preferredCurrency, navigate]);
 
   useEffect(() => {
     // Always scroll to the top when this page mounts or when a new game is loaded
