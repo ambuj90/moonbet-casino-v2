@@ -221,7 +221,7 @@ const SelfExclusionPolicyPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen">
       {/* Subtle animated background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-30">
         {[...Array(3)].map((_, i) => (
