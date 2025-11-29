@@ -159,7 +159,7 @@ const CasinoGameCards = () => {
   );
 
   return (
-    <section className="w-full md:py-2 py-6">
+    <section className="w-full md:py-2 py-2">
       <div className="max-w-7xl mx-auto space-y-6 px-3">
         {/* Desktop */}
         <div className="hidden xl:flex gap-3">
