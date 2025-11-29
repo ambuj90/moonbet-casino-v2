@@ -13,7 +13,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import GamesYouLike from "../components/sections/GamesYouLike";
 
 const GamePage = () => {
-  const { game_uuid, slug } = useParams(); // actually the game name
+  const { gameId } = useParams(); // actually the game name
   const navigate = useNavigate();
   const iframeRef = useRef(null);
   const { isLoggedIn } = useAuthStore();
@@ -99,9 +99,12 @@ const GamePage = () => {
       try {
         // 🕹 Step 1: Fetch all games
         const res = await axios.get("/wallet-service/api/games");
-        const allGames = res.data?.data?.items || res.data?.data || res.data?.games || [];
+        const allGames = res.data?.data || [];
 
-        const game = allGames.find((g) => g.uuid === game_uuid);
+        const game = allGames.find(
+          (g) =>
+            g.name.toLowerCase() === decodeURIComponent(gameId).toLowerCase()
+        );
 
         if (!game) {
           toast.error("Game not found!");
@@ -166,12 +169,12 @@ const GamePage = () => {
     };
 
     fetchGameUrl();
-  }, [game_uuid, isRealPlay, preferredCurrency, navigate]);
+  }, [gameId, isRealPlay, preferredCurrency, navigate]);
 
   useEffect(() => {
     // Always scroll to the top when this page mounts or when a new game is loaded
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [game_uuid]);
+  }, [gameId]);
 
   useEffect(() => {
     if (!isRealPlay) return;
@@ -255,7 +258,7 @@ const GamePage = () => {
 
   return (
     <>
-      <div className="container h-full relative flex flex-col  max-w-7xl mx-auto px-4 ">
+      <div className="container h-full relative flex flex-col  max-w-7xl mx-auto px-4">
         <div
           className="iframe-wrapper"
           style={{

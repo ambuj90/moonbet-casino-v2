@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 const AffiliateLandingPage = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
 
-  // Custom Icons as SVG components
   const ChevronRight = ({ className }) => (
     <svg
       className={className}
@@ -96,7 +95,7 @@ const AffiliateLandingPage = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2z"
       />
     </svg>
   );
@@ -144,7 +143,7 @@ const AffiliateLandingPage = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
       />
     </svg>
   );
@@ -213,7 +212,6 @@ const AffiliateLandingPage = () => {
     </svg>
   );
 
-  // FAQ data
   const faqs = [
     {
       question: "How quickly can I start earning?",
@@ -252,7 +250,6 @@ const AffiliateLandingPage = () => {
     },
   ];
 
-  // Commission tiers data
   const commissionTiers = [
     { range: "$0 - $10,000", rate: "X%", bonus: "None" },
     { range: "$10,001 - $25,000", rate: "X+5%", bonus: "Performance bonus" },
@@ -261,10 +258,10 @@ const AffiliateLandingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen  ">
-      {/* Hero Section */}
+    <div className="min-h-screen">
+      {/* HERO */}
       <section className="relative overflow-hidden py-20 px-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />
+        <div className="absolute inset-0 bg-[var(--cta-pink-gradient)]/10" />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -273,7 +270,7 @@ const AffiliateLandingPage = () => {
         >
           <div className="text-center mb-12">
             <p
-              className="text-5xl md:text-2xl font-bold mb-6 "
+              className="text-5xl md:text-2xl font-bold mb-6"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
               Moonbet Affiliate Program
@@ -284,6 +281,7 @@ const AffiliateLandingPage = () => {
             >
               Start earning at X% and never stop growing
             </p>
+
             <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-10">
               Join the first truly decentralized crypto casino affiliate program
               where transparency meets profitability. Built on Solana's
@@ -294,10 +292,10 @@ const AffiliateLandingPage = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
-                       text-black font-bold text-lg rounded-xl hover:shadow-lg 
-                       hover:shadow-[#F07730]/25 transition-all duration-200"
-              style={{ fontFamily: "Avenir, -apple-system, sans-serif" }}
+              className="px-8 py-4 rounded-xl font-bold text-lg text-black transition-all duration-200 hover:shadow-lg hover:shadow-[var(--cta-pink)]/25"
+              style={{
+                background: "var(--cta-pink-gradient)",
+              }}
             >
               Join Now
             </motion.button>
@@ -305,7 +303,7 @@ const AffiliateLandingPage = () => {
         </motion.div>
       </section>
 
-      {/* Simple Steps Section */}
+      {/* SIMPLE STEPS */}
       <section className="py-16 px-4 border-t border-white/10">
         <div className="container max-w-7xl mx-auto">
           <motion.p
@@ -350,12 +348,12 @@ const AffiliateLandingPage = () => {
                 <div className="wallet-btn3 p-6">
                   <div className="flex items-center gap-4 mb-4">
                     <div
-                      className="w-12 h-12 bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
-                                  rounded-xl flex items-center justify-center text-black font-bold text-xl"
+                      className="w-12 h-12 rounded-xl flex items-center justify-center text-black font-bold text-xl"
+                      style={{ background: "var(--cta-pink-gradient)" }}
                     >
                       {step.number}
                     </div>
-                    <div className="text-[#F07730]">{step.icon}</div>
+                    <div className="text-[var(--cta-pink)]">{step.icon}</div>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3">
                     {step.title}
@@ -368,7 +366,7 @@ const AffiliateLandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* FEATURES */}
       <section className="py-16 px-4 border-t border-white/10">
         <div className="container max-w-7xl mx-auto">
           <motion.div
@@ -418,10 +416,7 @@ const AffiliateLandingPage = () => {
                 transition={{ delay: index * 0.1 }}
                 className="wallet-btn3 p-6"
               >
-                <div
-                  className="w-12 h-12 bg-[#F07730]/20 rounded-xl flex items-center 
-                              justify-center text-[#F07730] mb-4"
-                >
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-[var(--cta-pink)] bg-[var(--cta-pink)]/20">
                   {feature.icon}
                 </div>
                 <h3 className="text-lg font-bold text-white mb-3">
@@ -474,7 +469,7 @@ const AffiliateLandingPage = () => {
                 transition={{ delay: index * 0.1 }}
                 className="flex items-start gap-4"
               >
-                <CheckCircle className="w-6 h-6 text-[#F07730] flex-shrink-0 mt-1" />
+                <CheckCircle className="w-6 h-6 flex-shrink-0 mt-1" />
                 <div>
                   <span className="font-bold text-white">{item.label}:</span>
                   <span className="text-gray-400 ml-2">{item.value}</span>
@@ -486,7 +481,12 @@ const AffiliateLandingPage = () => {
           {/* Commission Tiers Table */}
           <div className="wallet-btn3 rounded-2xl overflow-hidden">
             <table className="w-full">
-              <thead className="bg-[#F07730]/20">
+              <thead
+                className=""
+                style={{
+                  background: "var(--cta-pink-gradient)",
+                }}
+              >
                 <tr>
                   <th className="px-6 py-4 text-left text-white font-bold">
                     Monthly Revenue Generated
@@ -506,7 +506,7 @@ const AffiliateLandingPage = () => {
                     className="border-t border-white/10 hover:bg-white/5 transition-colors"
                   >
                     <td className="px-6 py-4 text-gray-300">{tier.range}</td>
-                    <td className="px-6 py-4 text-center text-[#F07730] font-bold">
+                    <td className="px-6 py-4 text-center font-bold">
                       {tier.rate}
                     </td>
                     <td className="px-6 py-4 text-right text-gray-400">
@@ -569,7 +569,7 @@ const AffiliateLandingPage = () => {
                 className="wallet-btn3 p-6"
               >
                 <div
-                  className="w-12 h-12 bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
+                  className="w-12 h-12 bg-[var(--cta-pink)] text-white 
                               rounded-xl flex items-center justify-center text-black 
                               font-bold text-xl mb-4"
                 >
@@ -588,7 +588,7 @@ const AffiliateLandingPage = () => {
                         key={idx}
                         className="text-gray-400 text-sm flex items-start gap-2"
                       >
-                        <span className="text-[#F07730] mt-1">•</span>
+                        <span className="text-[var(--cta-pink)] mt-1">•</span>
                         <span>{point}</span>
                       </li>
                     ))}
@@ -619,7 +619,7 @@ const AffiliateLandingPage = () => {
               className="wallet-btn3 p-8"
             >
               <div className="flex items-center gap-3 mb-6">
-                <BarChart className="w-8 h-8 text-[#F07730]" />
+                <BarChart className="w-8 h-8 text-[var(--cta-pink)]" />
                 <h3 className="text-2xl font-bold text-white">
                   Tracking & Analytics
                 </h3>
@@ -632,7 +632,7 @@ const AffiliateLandingPage = () => {
                   "Detailed geographic and demographic breakdowns",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#F07730] flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-[var(--cta-pink)] flex-shrink-0 mt-0.5" />
                     <span className="text-gray-300">{item}</span>
                   </li>
                 ))}
@@ -645,7 +645,7 @@ const AffiliateLandingPage = () => {
               className="wallet-btn3 p-8"
             >
               <div className="flex items-center gap-3 mb-6">
-                <Headphones className="w-8 h-8 text-[#F07730]" />
+                <Headphones className="w-8 h-8 text-[var(--cta-pink)]" />
                 <h3 className="text-2xl font-bold text-white">
                   Support & Optimization
                 </h3>
@@ -658,7 +658,7 @@ const AffiliateLandingPage = () => {
                   "Priority support via Discord, Telegram, and email",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#F07730] flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="w-5 h-5 text-[var(--cta-pink)] flex-shrink-0 mt-0.5" />
                     <span className="text-gray-300">{item}</span>
                   </li>
                 ))}
@@ -694,7 +694,7 @@ const AffiliateLandingPage = () => {
                   "Should have existing audience interested in crypto/gaming",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <ChevronRight className="w-5 h-5 text-[#F07730] flex-shrink-0 mt-0.5" />
+                    <ChevronRight className="w-5 h-5 text-[var(--cta-pink)] flex-shrink-0 mt-0.5" />
                     <span className="text-gray-300">{item}</span>
                   </li>
                 ))}
@@ -731,7 +731,7 @@ const AffiliateLandingPage = () => {
                 ].map((item, index) => (
                   <div key={index} className="flex gap-4">
                     <div
-                      className="w-8 h-8 bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
+                      className="w-8 h-8 bg-gradient-to-r bg-[var(--cta-pink)] 
                                   rounded-lg flex items-center justify-center text-black 
                                   font-bold flex-shrink-0"
                     >
@@ -768,7 +768,7 @@ const AffiliateLandingPage = () => {
                 },
               ].map((item, index) => (
                 <div key={index}>
-                  <h4 className="font-bold text-[#F07730] mb-2">
+                  <h4 className="font-bold text-[var(--cta-pink)] mb-2">
                     {item.label}:
                   </h4>
                   <p className="text-gray-400 text-sm">{item.value}</p>
@@ -811,7 +811,7 @@ const AffiliateLandingPage = () => {
                     {faq.question}
                   </span>
                   {openFAQ === index ? (
-                    <ChevronUp className="w-5 h-5 text-[#F07730]" />
+                    <ChevronUp className="w-5 h-5 text-[var(--cta-pink)]" />
                   ) : (
                     <ChevronDown className="w-5 h-5 text-gray-400" />
                   )}
@@ -848,7 +848,7 @@ const AffiliateLandingPage = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
+              className="px-8 py-4 bg-gradient-to-r bg-[var(--cta-pink)] 
                        text-black font-bold text-lg rounded-xl hover:shadow-lg 
                        hover:shadow-[#F07730]/25 transition-all duration-200 mb-12"
               style={{ fontFamily: "Avenir, -apple-system, sans-serif" }}
@@ -863,21 +863,21 @@ const AffiliateLandingPage = () => {
               <div className="flex flex-wrap justify-center gap-6">
                 <a
                   href="mailto:affiliates@moonbet.com"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#F07730] transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-[var(--cta-pink)] transition-colors"
                 >
                   <Mail className="w-5 h-5" />
                   affiliates@moonbet.com
                 </a>
                 <a
                   href="#"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#F07730] transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-[var(--cta-pink)] transition-colors"
                 >
                   <MessageCircle className="w-5 h-5" />
                   MoonbetAffiliates
                 </a>
                 <a
                   href="#"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#F07730] transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-[var(--cta-pink)] transition-colors"
                 >
                   <Headphones className="w-5 h-5" />
                   24/7 Live Chat
