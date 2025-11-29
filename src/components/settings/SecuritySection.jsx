@@ -462,7 +462,50 @@ const SecuritySection = ({
                     onClick={() => setShowCurrentPassword((prev) => !prev)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1"
                   >
-                    {showCurrentPassword ? "🙈" : "👁️"}
+                    {showCurrentPassword ? (
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="var(--cta-pink)"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.878 9.878a3 3 0 014.243 4.243"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.878 9.878L6.59 6.59M9.878 9.878l4.242 4.242M17.41 17.41L21 21M3 3l3.59 3.59a9.953 9.953 0 015.41-1.59c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="var(--cta-pink)"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        />
+                      </svg>
+                    )}
                   </button>
                 </div>
               </div>
@@ -491,7 +534,50 @@ const SecuritySection = ({
                     onClick={() => setShowNewPassword((prev) => !prev)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1"
                   >
-                    {showNewPassword ? "🙈" : "👁️"}
+                    {showCurrentPassword ? (
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="var(--cta-pink)"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.878 9.878a3 3 0 014.243 4.243"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.878 9.878L6.59 6.59M9.878 9.878l4.242 4.242M17.41 17.41L21 21M3 3l3.59 3.59a9.953 9.953 0 015.41-1.59c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="var(--cta-pink)"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        />
+                      </svg>
+                    )}
                   </button>
                 </div>
               </div>
@@ -520,7 +606,50 @@ const SecuritySection = ({
                     onClick={() => setShowConfirmPassword((prev) => !prev)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1"
                   >
-                    {showConfirmPassword ? "🙈" : "👁️"}
+                    {showCurrentPassword ? (
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="var(--cta-pink)"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.878 9.878a3 3 0 014.243 4.243"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.878 9.878L6.59 6.59M9.878 9.878l4.242 4.242M17.41 17.41L21 21M3 3l3.59 3.59a9.953 9.953 0 015.41-1.59c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="var(--cta-pink)"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        />
+                      </svg>
+                    )}
                   </button>
                 </div>
               </div>
