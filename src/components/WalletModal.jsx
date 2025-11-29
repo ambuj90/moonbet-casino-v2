@@ -415,29 +415,6 @@ const WalletModal = ({ isOpen, onClose }) => {
                 </button>
               </div>
 
-              {/* <div className="flex gap-2 p-4">
-                <button
-                  onClick={() => setDepositTab("crypto")}
-                  className={`flex-1 py-3 px-4 rounded-full font-medium transition-all ${
-                    depositTab === "crypto"
-                      ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-black"
-                      : "bg-white/5 text-gray-400 hover:text-white"
-                  }`}
-                >
-                  Crypto
-                </button>
-                <button
-                  onClick={() => setDepositTab("local")}
-                  className={`flex-1 py-3 px-4 rounded-full font-medium transition-all ${
-                    depositTab === "local"
-                      ? "bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-black"
-                      : "bg-white/5 text-gray-400 hover:text-white"
-                  }`}
-                >
-                  Local Currency
-                </button>
-              </div> */}
-
               <div className="px-6 pb-6">
                 <div className="mb-4 mt-4 relative">
                   <label className="text-[#E1E1E1] text-sm mb-2 block">
@@ -446,23 +423,29 @@ const WalletModal = ({ isOpen, onClose }) => {
 
                   <div
                     onClick={() => setShowDepositDropdown(!showDepositDropdown)}
-                    className=" rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all"
+                    className="rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                        "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
                       backdropFilter: "blur(20px)",
-                      border: "1px solid rgba(255, 255, 255, 0.18)",
+                      border: "1px solid rgba(255,255,255,0.18)",
                       boxShadow:
-                        "rgba(0, 0, 0, 0.5) 0px 20px 60px, rgba(240, 119, 48, 0.1) 0px 0px 100px",
+                        "rgba(0,0,0,0.5) 0px 20px 60px, rgba(220,31,255,0.1) 0px 0px 100px",
                       borderRadius: "6px",
                     }}
                   >
                     <div className="flex items-center gap-3">
                       {selectedDepositCoin ? (
                         <>
-                          <div className="w-10 h-10 bg-gradient-to-br from-[#F07730] to-[#EFD28E] rounded-full flex items-center justify-center text-[#fff] font-bold">
+                          <div
+                            className="w-10 h-10 rounded-full flex items-center justify-center text-[#fff] font-bold"
+                            style={{
+                              background: "var(--cta-pink-gradient)",
+                            }}
+                          >
                             {selectedDepositCoin.symbol.charAt(0)}
                           </div>
+
                           <div>
                             <div className="text-white font-bold">
                               {selectedDepositCoin.symbol}
@@ -478,6 +461,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                         </div>
                       )}
                     </div>
+
                     <svg
                       className={`w-5 h-5 text-gray-400 transition-transform ${
                         showDepositDropdown ? "rotate-180" : ""
@@ -495,6 +479,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                     </svg>
                   </div>
 
+                  {/* DROPDOWN WITH YOUR WALLET STYLE */}
                   <AnimatePresence>
                     {showDepositDropdown && (
                       <motion.div
@@ -502,30 +487,39 @@ const WalletModal = ({ isOpen, onClose }) => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute left-0 right-0 mt-2 border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
+                        className="absolute left-0 right-0 mt-2 rounded-lg shadow-lg z-[999]  overflow-y-auto p-2"
                         style={{
-                          background: "rgb(40, 39, 83)",
+                          background: "var(--container-dark-purple-3)",
+                          border: "1px solid rgba(255,255,255,0.1)",
                         }}
                       >
-                        {depositCoinList.map((coin) => (
-                          <div
-                            key={coin.symbol}
-                            onClick={() => {
-                              setSelectedDepositCoin(coin);
-                              setShowDepositDropdown(false);
-                            }}
-                            className="flex items-center justify-between px-4 py-3 hover:bg-white/5 cursor-pointer transition-all"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div
-                                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                                style={{
-                                  background: "var(--cta-pink-gradient)",
-                                }}
-                              >
-                                {coin.symbol.charAt(0)}
+                        <div className="wallet-list flex-1 max-h-[240px] overflow-y-auto pr-1.5 pb-2">
+                          {depositCoinList.map((coin) => (
+                            <div
+                              key={coin.symbol}
+                              onClick={() => {
+                                setSelectedDepositCoin(coin);
+                                setShowDepositDropdown(false);
+                              }}
+                              className="wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250"
+                            >
+                              {/* Hover Background Effect */}
+                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/45 to-white/15 opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
+
+                              {/* Icon */}
+                              <div className="icon-wrap w-9 h-9 rounded-full flex items-center justify-center transition-all duration-250 relative z-10 group-hover:bg-white/55">
+                                <div
+                                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                                  style={{
+                                    background: "var(--cta-pink-gradient)",
+                                  }}
+                                >
+                                  {coin.symbol.charAt(0)}
+                                </div>
                               </div>
-                              <div>
+
+                              {/* Text */}
+                              <div className="ml-3 relative z-10">
                                 <div className="text-white font-bold">
                                   {coin.symbol}
                                 </div>
@@ -533,17 +527,19 @@ const WalletModal = ({ isOpen, onClose }) => {
                                   {coin.name}
                                 </div>
                               </div>
+
+                              <span className="text-gray-400 text-sm ml-auto relative z-10">
+                                {coin.network}
+                              </span>
                             </div>
-                            <span className="text-gray-400 text-sm">
-                              {coin.network}
-                            </span>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
 
+                {/* ADDRESS FIELD */}
                 <div className="mb-6">
                   <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Address
@@ -552,12 +548,13 @@ const WalletModal = ({ isOpen, onClose }) => {
                     className="rounded-lg p-2 flex items-center gap-3 border border-white/10"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                        "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
                     }}
                   >
                     <span className="text-white text-sm font-mono flex-1 truncate">
                       {depositAddress || "Please select currency..."}
                     </span>
+
                     <motion.button
                       whileTap={{ scale: 0.95 }}
                       onClick={copyToClipboard}
@@ -600,31 +597,31 @@ const WalletModal = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
+                {/* QR CODE */}
                 <div className="flex justify-center mb-6">
                   <div className="bg-white p-4 rounded-xl relative w-40 h-40 flex items-center justify-center">
-                    {/* QR (Blur until a coin is selected) */}
                     {qrCodeData && (
                       <img
                         src={qrCodeData}
                         alt="QR Code"
-                        className={`w-36 h-36 transition-all duration-300
-          ${
-            !selectedDepositCoin ? "blur-sm opacity-60" : "blur-0 opacity-100"
-          }`}
+                        className={`w-36 h-36 transition-all duration-300 ${
+                          !selectedDepositCoin
+                            ? "blur-sm opacity-60"
+                            : "blur-0 opacity-100"
+                        }`}
                       />
                     )}
-
-                    {/* Remove lock - nothing else */}
                   </div>
                 </div>
 
                 <div className="text-center text-white mb-4">Or</div>
 
+                {/* DIRECT WALLET BUTTON */}
                 <button
                   className="w-full hover:bg-white/5 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-3 transition-all border border-white/10"
                   style={{
                     background:
-                      "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                      "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
                   }}
                 >
                   <span>Deposit Directly From Your Wallet</span>
@@ -635,9 +632,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                     <span className="text-xl">◎</span>
                     <span
                       className="text-sm text-white px-2 py-1 rounded font-bold"
-                      style={{
-                        background: "var(--cta-pink-gradient)",
-                      }}
+                      style={{ background: "var(--cta-pink-gradient)" }}
                     >
                       +300
                     </span>
@@ -759,24 +754,23 @@ const WalletModal = ({ isOpen, onClose }) => {
                   <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Currency
                   </label>
+
+                  {/* Top Selector */}
                   <div
                     onClick={() =>
                       setShowWithdrawDropdown(!showWithdrawDropdown)
                     }
-                    className=" rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all border border-white/10"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.05)",
-                    }}
+                    className="rounded-lg p-2 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all border border-white/10"
+                    style={{ background: "rgba(255,255,255,0.05)" }}
                   >
                     <div className="flex items-center gap-3">
                       <div
                         className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
-                        style={{
-                          background: "var(--cta-pink-gradient)",
-                        }}
+                        style={{ background: "var(--cta-pink-gradient)" }}
                       >
                         {selectedWithdrawCoin?.symbol?.charAt(0) || "◎"}
                       </div>
+
                       <div>
                         <div className="text-white font-bold">
                           {selectedWithdrawCoin?.symbol || "SOL"}
@@ -786,6 +780,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                         </div>
                       </div>
                     </div>
+
                     <svg
                       className={`w-5 h-5 text-gray-400 transition-transform ${
                         showWithdrawDropdown ? "rotate-180" : ""
@@ -803,36 +798,44 @@ const WalletModal = ({ isOpen, onClose }) => {
                     </svg>
                   </div>
 
+                  {/* DROPDOWN WITH WALLET STYLE */}
                   <AnimatePresence>
                     {showWithdrawDropdown && (
                       <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute left-0 right-0 mt-2 border border-white/10 rounded-lg shadow-lg z-[999] max-h-60 overflow-y-auto"
-                        style={{
-                          background: "rgb(40, 39, 83) ",
-                        }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute left-0 right-0 mt-2 rounded-lg shadow-lg z-[999] overflow-y-auto p-2 border border-white/10"
+                        style={{ background: "var(--container-dark-purple-3)" }}
                       >
-                        {withdrawCoinList.map((coin) => (
-                          <div
-                            key={coin.symbol}
-                            onClick={() => {
-                              setSelectedWithdrawCoin(coin);
-                              setShowWithdrawDropdown(false);
-                            }}
-                            className="flex items-center justify-between px-4 py-3 hover:bg-white/5 cursor-pointer transition-all"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div
-                                className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
-                                style={{
-                                  background: "var(--cta-pink-gradient)",
-                                }}
-                              >
-                                {coin.symbol.charAt(0)}
+                        <div className="wallet-list flex-1 max-h-[240px] overflow-y-auto pr-1.5 pb-2">
+                          {withdrawCoinList.map((coin) => (
+                            <div
+                              key={coin.symbol}
+                              onClick={() => {
+                                setSelectedWithdrawCoin(coin);
+                                setShowWithdrawDropdown(false);
+                              }}
+                              className="wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250"
+                            >
+                              {/* Hover Background */}
+                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/45 to-white/15 opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
+
+                              {/* Icon */}
+                              <div className="icon-wrap w-9 h-9 rounded-full flex items-center justify-center transition-all duration-250 relative z-10 group-hover:bg-white/55">
+                                <div
+                                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                                  style={{
+                                    background: "var(--cta-pink-gradient)",
+                                  }}
+                                >
+                                  {coin.symbol.charAt(0)}
+                                </div>
                               </div>
-                              <div>
+
+                              {/* Coin Text */}
+                              <div className="ml-3 relative z-10">
                                 <div className="text-white font-bold">
                                   {coin.symbol}
                                 </div>
@@ -840,17 +843,19 @@ const WalletModal = ({ isOpen, onClose }) => {
                                   {coin.name}
                                 </div>
                               </div>
+
+                              <span className="text-gray-400 text-sm ml-auto relative z-10">
+                                {coin.network}
+                              </span>
                             </div>
-                            <span className="text-gray-400 text-sm">
-                              {coin.network}
-                            </span>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
 
+                {/* WITHDRAWAL ADDRESS INPUT */}
                 <div className="mb-4">
                   <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Withdrawal Address
@@ -863,11 +868,12 @@ const WalletModal = ({ isOpen, onClose }) => {
                     className="w-full rounded-lg p-4 text-white font-mono text-sm border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                        "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
                     }}
                   />
                 </div>
 
+                {/* AMOUNT */}
                 <div className="mb-6">
                   <label className="text-[#E1E1E1] text-sm mb-2 block">
                     Amount
@@ -881,13 +887,14 @@ const WalletModal = ({ isOpen, onClose }) => {
                       className="w-full rounded-lg p-4 pr-20 text-white text-lg font-bold border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
                       style={{
                         background:
-                          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                          "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
                       }}
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-bold">
                       {selectedWithdrawCoin?.symbol || "SOL"}
                     </div>
                   </div>
+
                   <div className="mt-2 flex justify-between text-sm">
                     <span className="text-[#E1E1E1]">Available Balance:</span>
                     <span className="text-[#E1E1E1] font-bold">
@@ -902,20 +909,18 @@ const WalletModal = ({ isOpen, onClose }) => {
                   </div>
                 </div>
 
-                {/* Info Box */}
+                {/* INFO BOX */}
                 <div
                   className="rounded-lg p-4 mb-6"
                   style={{
                     background:
-                      "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
+                      "linear-gradient(109deg, rgba(255,255,255,0.50) 1.57%, rgba(255,255,255,0.10) 100%)",
                   }}
                 >
                   <div className="flex gap-3">
                     <div
                       className="w-5 h-5 flex-shrink-0 mt-0.5 rounded-full flex items-center justify-center"
-                      style={{
-                        background: "var(--cta-pink-gradient)",
-                      }}
+                      style={{ background: "var(--cta-pink-gradient)" }}
                     >
                       <svg className="w-3 h-3" fill="#fff" viewBox="0 0 20 20">
                         <path
@@ -931,18 +936,20 @@ const WalletModal = ({ isOpen, onClose }) => {
                     </p>
                   </div>
                 </div>
+
+                {/* BUTTON */}
                 <motion.button
                   whileHover={!isWithdrawDisabled ? { scale: 1.02 } : {}}
                   whileTap={!isWithdrawDisabled ? { scale: 0.98 } : {}}
                   onClick={!isWithdrawDisabled ? handleWithdrawClick : null}
                   disabled={isWithdrawDisabled}
                   className={`w-full py-4 px-6 rounded-lg font-bold transition-all
-                  ${
-                    isWithdrawDisabled
-                      ? "bg-gray-500 text-gray-300 cursor-not-allowed opacity-50"
-                      : "bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 text-black"
-                  }
-                `}
+      ${
+        isWithdrawDisabled
+          ? "bg-gray-500 text-gray-300 cursor-not-allowed opacity-50"
+          : "text-black bg-gradient-to-r from-[#F07730] to-[#EFD28E] hover:from-[#F07730]/90 hover:to-[#EFD28E]/90"
+      }
+    `}
                 >
                   {isWithdrawDisabled
                     ? dynamicInsufficientMessage
