@@ -292,9 +292,10 @@ const AffiliateLandingPage = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 rounded-xl font-bold text-lg text-black transition-all duration-200 hover:shadow-lg hover:shadow-[var(--cta-pink)]/25"
+              className="px-8 py-4 rounded-xl font-bold text-lg text-white transition-all duration-200 hover:shadow-lg hover:shadow-[var(--cta-pink)]/25"
               style={{
                 background: "var(--cta-pink-gradient)",
+                color : " --text-light-grey"
               }}
             >
               Join Now

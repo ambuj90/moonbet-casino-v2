@@ -1236,15 +1236,15 @@ const LoginSignup = ({
                           onClick={handleForgotPasswordSubmit}
                           disabled={recoverySent === "loading"}
                           className={`w-full py-3 rounded-[12px] font-semibold text-black 
-    bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
-    shadow-xl transition-all
-    ${
-      recoverySent === "loading"
-        ? "opacity-60 cursor-not-allowed"
-        : "hover:opacity-90"
-    }
-  `}
-                        >
+                          bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
+                          shadow-xl transition-all
+                          ${
+                            recoverySent === "loading"
+                              ? "opacity-60 cursor-not-allowed"
+                              : "hover:opacity-90"
+                          }
+                        `}
+                          >
                           {recoverySent === "loading"
                             ? "Sending..."
                             : "Recover Account"}
