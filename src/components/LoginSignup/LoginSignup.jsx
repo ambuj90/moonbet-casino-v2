@@ -1072,6 +1072,7 @@ const LoginSignup = ({
                           I agree to the{" "}
                           <a
                             href="/terms-and-condition"
+                            target="_blank"
                             className="text-[#E1E1E1] hover:underline"
                           >
                             Terms
