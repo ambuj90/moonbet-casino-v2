@@ -64,6 +64,14 @@ const WalletDropdownCenter = ({
 
   if (!hasToken) return null;
 
+  // Calculate selected coin USD value
+  const selectedBalance = selectedCurrency?.balance || 0;
+  const selectedUsd = selectedCurrency?.usdValue || 0;
+  const selectedConvertedValue = (selectedBalance * selectedUsd).toFixed(2);
+
+  // game currency
+  const gameCurrency = localStorage.getItem("gameCurrency") || "USD";
+
   return (
     <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-3">
       {/* Balance Display with Dropdown */}
@@ -89,9 +97,7 @@ const WalletDropdownCenter = ({
 
           {/* Balance text */}
           <span className="text-white text-xs sm:text-sm font-semibold tracking-wide truncate">
-            {selectedCurrency
-              ? `${selectedCurrency.icon || ""} ${walletBalance}`
-              : walletBalance}
+            {Number(selectedCurrency?.convertedValue || 0).toFixed(2)} {gameCurrency}
           </span>
 
           {/* Dropdown arrow */}
@@ -120,8 +126,7 @@ const WalletDropdownCenter = ({
     shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden fdsfsdf"
             style={{
               padding: "0 12px",
-              background:
-                "rgb(40 39 83",
+              background: "rgb(40 39 83",
               backdropFilter: "blur(67.5px)",
               WebkitBackdropFilter: "blur(67.5px)",
               boxShadow: "rgba(0, 0, 0, 0.25) 0px 4px 10px",
@@ -167,7 +172,15 @@ const WalletDropdownCenter = ({
                   <div
                     key={currency.symbol}
                     onClick={() => {
+                      setSelectedCurrency(currency);
                       handleCurrencySelect(currency);
+                      localStorage.setItem(
+                        "preferredCurrency",
+                        currency.symbol
+                      );
+                      window.dispatchEvent(
+                        new Event("preferredCurrencyUpdated")
+                      );
                       setWalletDropdownOpen(false);
                     }}
                     className={`wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250 ${

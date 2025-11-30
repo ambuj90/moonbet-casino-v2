@@ -27,10 +27,13 @@ export const useLoadWalletCoins = (userId, hasToken) => {
     useCurrencyStore();
 
   useEffect(() => {
+    console.log("🔥 useLoadWalletCoins mounted:", { userId, hasToken });
     if (!hasToken || !userId) return;
 
     const load = async () => {
       try {
+        console.log("📌 Calling wallet APIs...");
+
         const [coinsRes, balanceRes] = await Promise.all([
           axios.get("/wallet-service/api/wallet/coins"),
           axios.get(`/wallet-service/api/wallet/${userId}/balance`),
@@ -40,36 +43,41 @@ export const useLoadWalletCoins = (userId, hasToken) => {
         const walletBalances = balanceRes.data?.balances || [];
 
         const merged = coins.map((coin) => {
-  const balanceEntry = walletBalances.find(
-    (b) => b.currency.toUpperCase() === coin.symbol.toUpperCase()
-  );
+          const symbol = coin.symbol.toUpperCase();
 
-  return {
-    ...coin,
-    balance: balanceEntry ? balanceEntry.amount : 0,
-    iconPath: `/wallet-icons/${iconMap[coin.symbol] || "bitcoin.svg"}`, // fallback
-  };
-});
+          const balanceEntry = walletBalances.find(
+            (b) => b.currency.toUpperCase() === symbol
+          );
+
+          const balance = balanceEntry ? balanceEntry.amount : 0;
+
+          return {
+            ...coin,
+            balance,
+            convertedValue: balance, // show raw balance (not USD)
+            iconPath: `/wallet-icons/${iconMap[symbol] || "bitcoin.svg"}`,
+          };
+        });
 
         setCurrencies(merged);
 
-        // Preferred selection
-        const savedPref = localStorage.getItem("preferredCurrency");
+        // Load preferred or default currency
+        const savedSymbol = localStorage.getItem("preferredCurrency");
+
         const finalCurrency =
-          merged.find((c) => c.symbol === savedPref) ||
+          merged.find((c) => c.symbol === savedSymbol) ||
           merged.find((c) => c.symbol === "BTC") ||
           merged[0];
 
-        if (finalCurrency) setSelectedCurrency(finalCurrency);
+        if (finalCurrency) {
+          setSelectedCurrency(finalCurrency);
 
-        // Restore converted OR normal
-        const savedConverted = localStorage.getItem("convertedValue");
-        const gameCurrency = localStorage.getItem("gameCurrency");
+          let gameCurrency = localStorage.getItem("gameCurrency") || "USD";
 
-        if (savedConverted && gameCurrency) {
-          setDisplayBalance(`${savedConverted} ${gameCurrency}`);
-        } else {
-          setDisplayBalance(`${finalCurrency.balance} ${finalCurrency.symbol}`);
+          // Show raw balance (converted later in header)
+          setDisplayBalance(
+            `${finalCurrency.balance} ${finalCurrency.symbol}`
+          );
         }
 
         window.dispatchEvent(new Event("currencyLoaded"));

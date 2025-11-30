@@ -13,6 +13,7 @@ import WalletDropdownCenter from "../Navbar/WalletDropdownCenter";
 import MobileHeader from "../Navbar/MobileHeader";
 import SidebarHeader from "../Navbar/SidebarHeader";
 import TopHeader from "../Navbar/TopHeader";
+import { useLoadWalletCoins } from "../../hooks/useLoadWalletCoins";
 
 // 3D Rotating Coin Component
 const RotatingCoin = () => {
@@ -64,6 +65,7 @@ const Header = ({
   const userId = user.id;
   const userName = user.username;
   console.log("selectedCurrency are:", selectedCurrency);
+  useLoadWalletCoins(userId, hasToken);
 
   useEffect(() => {
     const checkToken = () => {
@@ -204,24 +206,37 @@ const Header = ({
       );
 
       if (res.data?.success && res.data.data) {
-        const { balances, betCurrency, preferredCurrency, rate } =
+        const { convertedAmount, rate, betCurrency, preferredCurrency } =
           res.data.data;
-        const amount = Number(res.data.data.convertedAmount).toFixed(2);
-        console.log("amount are:", amount);
 
-        // ✅ Store in localStorage to persist across reloads
+        const amount = Number(convertedAmount).toFixed(2);
+
+        // ⭐ Update Zustand selected currency
+        setSelectedCurrency((prev) => ({
+          ...prev,
+          convertedValue: amount,
+        }));
+
+        // ⭐ Update Zustand currencies array
+        setCurrencies((prev) =>
+          prev.map((c) =>
+            c.symbol === preferredCurrency
+              ? { ...c, convertedValue: amount }
+              : c
+          )
+        );
+
+        // ⭐ Update header balance
+        setWalletBalance(`${amount} ${betCurrency}`);
+
+        // Save LS
         localStorage.setItem("convertedValue", amount);
         localStorage.setItem("preferredCurrency", preferredCurrency);
         localStorage.setItem("gameCurrency", betCurrency);
         localStorage.setItem("conversionRate", rate);
 
-        setWalletBalance(`${amount} ${betCurrency}`);
-
-        // ✅ Notify GamePage that currency changed
+        // Notify GamePage
         window.dispatchEvent(new Event("preferredCurrencyUpdated"));
-        console.log(
-          `💱 Converted ${preferredCurrency} → ${betCurrency} @ rate ${rate}`
-        );
       } else {
         console.warn("⚠️ Conversion API failed:", res.data?.message);
         setWalletBalance("0.00");

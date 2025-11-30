@@ -1,6 +1,7 @@
 // src/components/WalletSettingsModal.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useCurrencyStore } from "../store/useCurrencyStore";
 
 const WalletSettingsModal = ({ isOpen, onClose }) => {
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
@@ -8,6 +9,8 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userId = user.id;
+  const setPreferredCurrency = useCurrencyStore((s) => s.setPreferredCurrency);
+  const setGameCurrency = useCurrencyStore((s) => s.setGameCurrency);
 
   // Currency options with their flags/icons
   const currencies = [
@@ -61,8 +64,12 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
         currency: selectedCurrency,
       });
 
-      // Optionally, notify other components
-      window.dispatchEvent(new Event("currencyChanged"));
+      // 🔥 UPDATE LOCAL STORAGE THROUGH ZUSTAND
+      setGameCurrency(selectedCurrency);
+
+      // 🔥 Notify GamePage
+      window.dispatchEvent(new Event("preferredCurrencyUpdated"));
+
       onClose();
     } catch (err) {
       console.error(
@@ -103,10 +110,10 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <div 
+              <div
                 className="w-10 h-10 rounded-lg flex items-center justify-center"
                 style={{
-                  background: 'var(--cta-pink-gradient)'
+                  background: "var(--cta-pink-gradient)",
                 }}
               >
                 <svg
@@ -208,23 +215,21 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Info Box */}
-            <div className="rounded-xl p-4"
+            <div
+              className="rounded-xl p-4"
               style={{
-                background: 'linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)',
-                
-              }}>
+                background:
+                  "linear-gradient(109deg, rgba(255, 255, 255, 0.50) 1.57%, rgba(255, 255, 255, 0.10) 100%)",
+              }}
+            >
               <div className="flex gap-3">
-                <div 
+                <div
                   className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
                   style={{
-                    background: 'var(--cta-pink-gradient)'
+                    background: "var(--cta-pink-gradient)",
                   }}
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="#fff"
-                    viewBox="0 0 20 20"
-                  >
+                  <svg className="w-4 h-4" fill="#fff" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
