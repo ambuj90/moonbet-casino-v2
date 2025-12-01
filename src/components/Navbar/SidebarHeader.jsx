@@ -36,12 +36,12 @@ const SidebarHeader = ({
     isSubmenuActive = false
   ) => {
     const isActive = currentPath === item.path || isSubmenuActive;
-    const base = "w-5 h-5 transition-all duration-300";
+    const base = "w-5 h-5 transition-all duration-200 sidebar-icon";
 
     if (isActive) {
       return `${base} icon-active`;
     } else {
-      return `${base} icon-normal group-hover:icon-hover`;
+      return `${base} icon-normal`;
     }
   };
 
@@ -57,9 +57,9 @@ const SidebarHeader = ({
       return "trust_btn view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px] transition-all text-white";
     } else {
       if (isCollapsed) {
-        return "justify-center  hover: hover:bg-white/5";
+        return "justify-center hover:bg-white/5";
       } else {
-        return "gap-3 rounded-lg hover: hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
+        return "gap-3 rounded-lg hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
       }
     }
   };
@@ -311,11 +311,11 @@ const SidebarHeader = ({
                     <Link
                       key={subItem.path}
                       to={subItem.path}
-                      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all
+                      className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all group
                         ${
                           location.pathname === subItem.path
                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                            : "text-[#A8A8A8] hover: hover:bg-white/5"
+                            : "text-[#A8A8A8] hover:bg-white/5"
                         }`}
                       onClick={closeSidebar}
                     >
@@ -398,13 +398,54 @@ const SidebarHeader = ({
 
   return (
     <div className="hidden lg:block">
+      {/* Inline styles for icon hover effect */}
+      <style>{`
+        /* Icon hover effect - changes to #E1E1E1 on hover */
+        .sidebar-icon {
+          transition: filter 0.2s ease, opacity 0.2s ease;
+        }
+        
+        /* Normal state */
+        .sidebar-icon.icon-normal {
+          filter: brightness(0) saturate(100%) invert(70%) sepia(8%) saturate(900%) hue-rotate(200deg) brightness(90%);
+          opacity: 0.7;
+        }
+        
+        /* Hover state - icon becomes #E1E1E1 */
+        .group:hover .sidebar-icon.icon-normal,
+        a:hover .sidebar-icon.icon-normal,
+        button:hover .sidebar-icon.icon-normal {
+          filter: brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(100%) hue-rotate(200deg) brightness(100%);
+          opacity: 1;
+        }
+        
+        /* Active state */
+        .sidebar-icon.icon-active {
+          filter: brightness(0) invert(1);
+          opacity: 1;
+        }
+        
+        /* Submenu icon hover */
+        .submenu-icon {
+          transition: filter 0.2s ease, opacity 0.2s ease;
+          filter: brightness(0) saturate(100%) invert(70%) sepia(8%) saturate(900%) hue-rotate(200deg) brightness(90%);
+          opacity: 0.7;
+        }
+        
+        .group:hover .submenu-icon,
+        a:hover .submenu-icon {
+          filter: brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(100%) hue-rotate(200deg) brightness(100%);
+          opacity: 1;
+        }
+      `}</style>
+
       {/* Backdrop for mobile/tablet */}
       {sidebarOpen && !sidebarCollapsed && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0  /50 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 /50 backdrop-blur-sm z-40 lg:hidden"
           onClick={closeSidebar}
         />
       )}
@@ -417,7 +458,7 @@ const SidebarHeader = ({
           x: 0,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`fixed left-0 top-16 bottom-0 bg-[#1C1D49] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px] border-r border-white/10 px-2 `}
+        className={`fixed left-0 top-16 bottom-0 bg-[#1C1D49] px-2 `}
       >
         <div className="h-full overflow-y-auto overflow-x-hidden scrollbar-thin scrollbar-thumb-[#3a3a3a] scrollbar-track-transparent pr-1">
           {/* Main Menu */}
@@ -466,7 +507,7 @@ const SidebarHeader = ({
                                     location.pathname,
                                     sidebarCollapsed
                                   )}
-                                  key={`${item.id}-${isActive}-${sidebarCollapsed}`} // Force re-render
+                                  key={`${item.id}-${isActive}-${sidebarCollapsed}`}
                                 />
                               ) : (
                                 item.icon
@@ -532,11 +573,11 @@ const SidebarHeader = ({
                                   <Link
                                     key={subItem.path}
                                     to={subItem.path}
-                                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all
+                                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all group
                                         ${
                                           location.pathname === subItem.path
                                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                                            : "text-[#A8A8A8] hover: hover:bg-white/5"
+                                            : "text-[#A8A8A8] hover:bg-white/5"
                                         }`}
                                     onClick={closeSidebar}
                                   >
@@ -591,7 +632,7 @@ const SidebarHeader = ({
                                   location.pathname,
                                   sidebarCollapsed
                                 )}
-                                key={`${item.id}-${isActive}-${sidebarCollapsed}`} // Force re-render
+                                key={`${item.id}-${isActive}-${sidebarCollapsed}`}
                               />
                             ) : (
                               item.icon
@@ -657,7 +698,7 @@ const SidebarHeader = ({
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
                           onClick={() => toggleSubmenu(item.id)}
-                          className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] hover: ${
+                          className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] ${
                             sidebarCollapsed
                               ? "justify-center"
                               : "justify-between bg-[#282753] shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)]"
@@ -691,7 +732,7 @@ const SidebarHeader = ({
                                     sidebarCollapsed,
                                     isSubmenuActive
                                   )}
-                                  key={`${item.id}-${isActive}-${sidebarCollapsed}`} // Force re-render
+                                  key={`${item.id}-${isActive}-${sidebarCollapsed}`}
                                 />
                               ) : (
                                 item.icon
@@ -768,11 +809,11 @@ const SidebarHeader = ({
                                   <Link
                                     key={subItem.path}
                                     to={subItem.path}
-                                    className={`group flex items-center gap-4 px-3 py-1.5 rounded-[8px] backdrop-blur-[2px] transition-all
+                                    className={`flex items-center gap-4 px-3 py-1.5 rounded-[8px] backdrop-blur-[2px] transition-all group
                                         ${
                                           location.pathname === subItem.path
-                                            ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                                            : "text-[#E1E1E1] hover: hover:bg-white/5"
+                                            ? "trust_btn view_moon_btn text-white bg-gradient-to-b backdrop-blur-[2px]"
+                                            : "text-[#E1E1E1] hover:bg-white/5"
                                         }`}
                                     onClick={closeSidebar}
                                   >
@@ -782,7 +823,7 @@ const SidebarHeader = ({
                                         <img
                                           src={subItem.icon}
                                           alt={subItem.label}
-                                          className="w-5 h-5 object-contain opacity-70 transition-all duration-300 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert"
+                                          className="w-5 h-5 object-contain submenu-icon"
                                         />
                                       ) : (
                                         subItem.icon
@@ -853,7 +894,7 @@ const SidebarHeader = ({
                                   location.pathname,
                                   sidebarCollapsed
                                 )}
-                                key={`${item.id}-${isActive}-${sidebarCollapsed}`} // Force re-render
+                                key={`${item.id}-${isActive}-${sidebarCollapsed}`}
                               />
                             ) : (
                               item.icon
@@ -1066,7 +1107,7 @@ const SidebarHeader = ({
                   <img
                     src="/icons/logout-new.svg"
                     alt="Logout"
-                    className="w-5 h-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                    className="w-5 h-5 object-contain sidebar-icon icon-normal"
                   />
                   <AnimatePresence>
                     {!sidebarCollapsed && (
@@ -1159,7 +1200,7 @@ const SidebarHeader = ({
                           height="34"
                           rx="12"
                           stroke="url(#paint0_linear_9185_1053)"
-                          stroke-width="2"
+                          strokeWidth="2"
                         />
                         <path
                           d="M26.9543 14.2921C26.9121 13.3357 26.7574 12.6781 26.5358 12.1084C26.3072 11.5036 25.9555 10.9621 25.4947 10.512C25.0445 10.0549 24.4994 9.69969 23.9015 9.4747C23.3283 9.25315 22.6741 9.09848 21.7175 9.05632C20.7538 9.01058 20.4478 9 18.0035 9C15.5592 9 15.2532 9.01058 14.2931 9.05274C13.3365 9.09491 12.6788 9.24971 12.1091 9.47113C11.5041 9.69969 10.9625 10.0513 10.5123 10.512C10.0551 10.9621 9.69996 11.5072 9.47479 12.1049C9.2532 12.6781 9.0985 13.3321 9.05633 14.2885C9.01058 15.252 9 15.5579 9 18.0018C9 20.4456 9.01058 20.7515 9.05275 21.7115C9.09493 22.6679 9.24976 23.3254 9.47136 23.8952C9.69996 24.5 10.0551 25.0414 10.5123 25.4916C10.9625 25.9487 11.5076 26.3039 12.1055 26.5289C12.6788 26.7504 13.3329 26.9051 14.2896 26.9473C15.2497 26.9896 15.5558 27 18.0001 27C20.4444 27 20.7503 26.9896 21.7105 26.9473C22.6671 26.9051 23.3247 26.7504 23.8945 26.5289C25.1044 26.0612 26.061 25.1048 26.5288 23.8952C26.7502 23.322 26.9051 22.6679 26.9472 21.7115C26.9894 20.7515 27 20.4456 27 18.0018C27 15.5579 26.9964 15.252 26.9543 14.2921ZM25.333 21.6412C25.2943 22.5203 25.1466 22.995 25.0235 23.3114C24.721 24.0956 24.0985 24.718 23.3142 25.0204C22.9976 25.1435 22.5194 25.2911 21.6436 25.3297C20.694 25.3721 20.4092 25.3825 18.0071 25.3825C15.6049 25.3825 15.3166 25.3721 14.3704 25.3297C13.4912 25.2911 13.0164 25.1435 12.6998 25.0204C12.3095 24.8762 11.9543 24.6476 11.6659 24.3487C11.367 24.0569 11.1384 23.7052 10.9941 23.315C10.871 22.9985 10.7233 22.5203 10.6847 21.6448C10.6424 20.6953 10.632 20.4105 10.632 18.0088C10.632 15.6071 10.6424 15.3188 10.6847 14.373C10.7233 13.4939 10.871 13.0192 10.9941 12.7027C11.1384 12.3123 11.367 11.9573 11.6695 11.6688C11.9613 11.3699 12.313 11.1414 12.7034 10.9973C13.02 10.8742 13.4983 10.7266 14.374 10.6878C15.3236 10.6457 15.6085 10.6351 18.0105 10.6351C20.4162 10.6351 20.701 10.6457 21.6472 10.6878C22.5264 10.7266 23.0012 10.8742 23.3177 10.9973C23.708 11.1414 24.0633 11.3699 24.3517 11.6688C24.6506 11.9607 24.8792 12.3123 25.0235 12.7027C25.1466 13.0192 25.2943 13.4973 25.333 14.373C25.3752 15.3224 25.3858 15.6071 25.3858 18.0088C25.3858 20.4105 25.3752 20.6918 25.333 21.6412Z"
@@ -1182,21 +1223,21 @@ const SidebarHeader = ({
                             y2="38.2923"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stop-color="white" stop-opacity="0.4" />
+                            <stop stopColor="white" stopOpacity="0.4" />
                             <stop
                               offset="0.405687"
-                              stop-color="white"
-                              stop-opacity="0.01"
+                              stopColor="white"
+                              stopOpacity="0.01"
                             />
                             <stop
                               offset="0.574372"
-                              stop-color="white"
-                              stop-opacity="0.01"
+                              stopColor="white"
+                              stopOpacity="0.01"
                             />
                             <stop
                               offset="1"
-                              stop-color="white"
-                              stop-opacity="0.1"
+                              stopColor="white"
+                              stopOpacity="0.1"
                             />
                           </linearGradient>
                         </defs>
@@ -1235,7 +1276,7 @@ const SidebarHeader = ({
                           height="34"
                           rx="12"
                           stroke="url(#paint0_linear_9185_1056)"
-                          stroke-width="2"
+                          strokeWidth="2"
                         />
                         <path
                           d="M19.7124 16.6218L26.4133 9H24.8254L19.0071 15.6179L14.3599 9H9L16.0274 19.0074L9 27H10.588L16.7324 20.0113L21.6401 27H27L19.7124 16.6218ZM11.1602 10.1697H13.5992L24.8262 25.8835H22.3871L11.1602 10.1697Z"
@@ -1250,21 +1291,21 @@ const SidebarHeader = ({
                             y2="38.2923"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stop-color="white" stop-opacity="0.4" />
+                            <stop stopColor="white" stopOpacity="0.4" />
                             <stop
                               offset="0.405687"
-                              stop-color="white"
-                              stop-opacity="0.01"
+                              stopColor="white"
+                              stopOpacity="0.01"
                             />
                             <stop
                               offset="0.574372"
-                              stop-color="white"
-                              stop-opacity="0.01"
+                              stopColor="white"
+                              stopOpacity="0.01"
                             />
                             <stop
                               offset="1"
-                              stop-color="white"
-                              stop-opacity="0.1"
+                              stopColor="white"
+                              stopOpacity="0.1"
                             />
                           </linearGradient>
                         </defs>
@@ -1303,7 +1344,7 @@ const SidebarHeader = ({
                           height="34"
                           rx="12"
                           stroke="url(#paint0_linear_9185_1059)"
-                          stroke-width="2"
+                          strokeWidth="2"
                         />
                         <path
                           d="M16.0631 21.2041L15.7653 25.9505C16.1913 25.9505 16.3758 25.7431 16.5971 25.4941L18.5944 23.3308L22.733 26.7657C23.492 27.2451 24.0267 26.9926 24.2315 25.9743L26.9481 11.5482L26.9488 11.5473C27.1896 10.2757 26.5431 9.7785 25.8035 10.0904L9.83565 17.0188C8.74588 17.4982 8.76238 18.1867 9.6504 18.4986L13.7327 19.9376L23.2152 13.2133C23.6615 12.8784 24.0672 13.0637 23.7335 13.3986L16.0631 21.2041Z"
@@ -1318,21 +1359,21 @@ const SidebarHeader = ({
                             y2="38.2923"
                             gradientUnits="userSpaceOnUse"
                           >
-                            <stop stop-color="white" stop-opacity="0.4" />
+                            <stop stopColor="white" stopOpacity="0.4" />
                             <stop
                               offset="0.405687"
-                              stop-color="white"
-                              stop-opacity="0.01"
+                              stopColor="white"
+                              stopOpacity="0.01"
                             />
                             <stop
                               offset="0.574372"
-                              stop-color="white"
-                              stop-opacity="0.01"
+                              stopColor="white"
+                              stopOpacity="0.01"
                             />
                             <stop
                               offset="1"
-                              stop-color="white"
-                              stop-opacity="0.1"
+                              stopColor="white"
+                              stopOpacity="0.1"
                             />
                           </linearGradient>
                         </defs>
