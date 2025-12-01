@@ -88,6 +88,9 @@ const LoginSignup = ({
   const [signupLoading, setSignupLoading] = useState(false);
   const [walletLoading, setWalletLoading] = useState(false);
   const [alreadySubmitted, setAlreadySubmitted] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showSignupPassword, setShowSignupPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Form state
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -696,27 +699,37 @@ const LoginSignup = ({
         style={{
           maxWidth: "804px",
           width: "100%",
-          height: "auto",
+          height: "93vh",
           minHeight: "535px",
-          maxHeight: "90vh",
+          maxHeight: "93vh",
         }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* ========== NEW TOP HEADER BAR ========== */}
         <div
-        className="w-full flex items-center justify-between px-4 sm:px-6 py-3"
-        style={{
-          borderRadius: "12px 12px 0 0",
-          background: "rgba(255, 255, 255, 0.50)",
-          backdropFilter: "blur(30px)",
-          // opacity: 0.5,
-          WebkitBackdropFilter: "blur(30px)",
-        }}
-      >
+          className="w-full flex items-center justify-between px-4 sm:px-6 py-3"
+          style={{
+            borderRadius: "12px 12px 0 0",
+            background: "rgba(255, 255, 255, 0.50)",
+            backdropFilter: "blur(30px)",
+            // opacity: 0.5,
+            WebkitBackdropFilter: "blur(30px)",
+          }}
+        >
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="153" height="18" viewBox="0 0 153 18" fill="none">
-              <path d="M48.0696 6.96387C48.6926 0.817612 55.4001 -1.95472 59.9065 1.84863C68.8808 9.42572 58.3734 22.5881 50.6077 15.6895C46.6908 12.2092 42.9565 0.519215 36.4856 4.21191C30.4252 7.67124 34.3001 17.1374 40.7473 14.6953C42.4245 14.0599 43.606 12.5147 45.0833 11.5146L45.0852 11.5137C43.4725 17.9504 36.1112 20.3601 31.7581 15.2051C25.0324 7.23926 34.6868 -3.91872 42.1877 2.41699C46.0955 5.71764 50.6683 19.0446 57.1038 13.7881C62.7924 9.14051 56.8705 0.324447 51.1038 4.08105C49.9693 4.82004 49.1036 6.09383 48.0696 6.96387ZM97.7395 0C105.629 1.77283e-05 108.37 1.32706 108.37 5.04492C108.37 6.81354 107.926 8.02067 106.722 8.80371C108.019 9.5471 108.758 10.834 108.758 12.4629C108.758 16.261 105.924 17.5878 97.887 17.5879C95.4426 17.5879 91.5711 17.2059 89.4036 16.8447C89.1804 16.8051 89.0696 16.6642 89.0696 16.4033H89.0706V1.24707C89.0706 1.00588 89.1813 0.864284 89.4045 0.803711C91.5528 0.421566 95.3499 0 97.7395 0ZM123.153 0C125.56 9.78498e-06 127.357 0.221682 128.783 0.523438C128.987 0.563163 129.098 0.703838 129.154 0.905273L129.562 2.93457C129.636 3.23623 129.525 3.35632 129.247 3.2959C127.377 2.93466 124.635 2.79395 123.115 2.79395C117.096 2.79401 114.967 4.08046 114.559 7.45801H129.061C129.283 7.45801 129.413 7.59894 129.413 7.83984V9.58887C129.413 9.84988 129.283 9.97168 129.061 9.97168H114.522C114.929 13.4086 117.041 14.7148 123.115 14.7148C124.635 14.7148 127.376 14.5543 129.247 14.2129C129.525 14.1327 129.636 14.2732 129.562 14.5537L129.154 16.584C129.117 16.8052 129.005 16.9248 128.802 16.9854C127.375 17.2871 125.56 17.5283 123.153 17.5283C114.504 17.5283 111.318 14.5933 111.336 8.74414C111.318 2.95473 114.504 0 123.153 0ZM70.1223 0C72.8072 1.42967e-05 74.3442 1.30616 75.5852 4.74414C75.6958 5.16595 76.5303 7.41892 77.8079 11.1777C78.7332 13.8711 79.2894 14.5947 80.512 14.5947C81.6231 14.5947 82.1233 13.6091 82.1233 11.3184V0.623047C82.1234 0.362279 82.2342 0.241246 82.4563 0.241211H84.7346C84.9567 0.241261 85.0851 0.361196 85.0852 0.623047V12.7441C85.0852 15.5182 83.3455 17.5086 80.8079 17.5088C78.1219 17.5088 76.6036 16.2023 75.3625 12.7441C75.2516 12.3215 74.3614 9.88862 73.1399 6.33105C72.2318 3.6376 71.6572 2.91406 70.4172 2.91406C69.3063 2.91426 68.8059 3.91869 68.8059 6.19043L68.8254 16.8848V16.8857C68.8254 17.1466 68.7143 17.2676 68.4729 17.2676H66.1956C65.9734 17.2676 65.8626 17.1477 65.8625 16.8857V4.74414C65.8627 1.95028 67.6038 0 70.1223 0ZM6.39282 0C8.31856 0.000146321 9.59718 1.06616 10.4485 3.39746C11.3739 5.88975 11.5955 9.1678 12.2815 10.9365C12.5778 11.7205 12.9673 12.2031 13.5598 12.2031H14.0042C14.5966 12.203 15.0037 11.7204 15.301 10.9365C15.986 9.1678 16.2083 5.89085 17.1155 3.39746C17.9871 1.06611 19.2654 0 21.1731 0H21.8958C24.5258 7.3913e-05 26.0816 1.64905 26.3596 4.52344L27.5637 16.9062L27.5627 16.9053C27.581 17.1464 27.4889 17.287 27.2668 17.2871H24.97C24.7296 17.287 24.5985 17.1464 24.5813 16.9053L23.5627 5.84863C23.377 3.73886 22.8026 2.89453 21.7473 2.89453H21.2102C20.4321 2.89473 19.8768 3.43794 19.47 4.70312C18.8592 6.65361 18.6176 9.80895 17.7288 12.1006C17.0255 13.9704 15.9506 15.1357 14.2288 15.1357H13.3401C11.6366 15.1356 10.5619 13.9693 9.85767 12.1006C8.96881 9.80887 8.72797 6.65359 8.0979 4.70312C7.70927 3.43664 7.15351 2.89456 6.37524 2.89453H5.82056C4.7643 2.89453 4.20913 3.73888 4.00513 5.84863L3.00415 16.9053C2.98589 17.1465 2.83771 17.2871 2.61548 17.2871H0.317627C0.0771409 17.2871 -0.0160615 17.1465 0.00219727 16.9053L1.2063 4.52344C1.48434 1.64899 3.05925 0 5.67017 0H6.39282ZM152.272 0.242188C152.475 0.242355 152.586 0.362774 152.642 0.583984L152.993 2.6543C153.03 2.93606 152.939 3.07603 152.661 3.07617H143.808V16.8652H143.806C143.806 17.1262 143.696 17.248 143.455 17.248H141.196C140.972 17.248 140.843 17.1273 140.843 16.8652V3.07617H131.99C131.713 3.07609 131.619 2.93494 131.656 2.6543L132.009 0.583984C132.046 0.362718 132.176 0.242295 132.379 0.242188H152.272ZM103.889 9.70801C102.556 9.9492 100.832 10.0498 98.6096 10.0498H92.0159V14.4932C93.7389 14.7344 96.1659 14.8545 97.4993 14.8545C104.074 14.8545 105.649 14.3117 105.649 12.1006C105.649 10.7945 105.13 10.0494 103.889 9.70801ZM97.3323 2.75488C95.7026 2.75489 93.4984 2.91565 92.0159 3.11719V7.7793H98.2209C103.944 7.7793 105.26 7.33777 105.26 5.28711C105.26 3.23673 103.758 2.75488 97.3323 2.75488Z" fill="white" fillOpacity="0.9"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="153"
+              height="18"
+              viewBox="0 0 153 18"
+              fill="none"
+            >
+              <path
+                d="M48.0696 6.96387C48.6926 0.817612 55.4001 -1.95472 59.9065 1.84863C68.8808 9.42572 58.3734 22.5881 50.6077 15.6895C46.6908 12.2092 42.9565 0.519215 36.4856 4.21191C30.4252 7.67124 34.3001 17.1374 40.7473 14.6953C42.4245 14.0599 43.606 12.5147 45.0833 11.5146L45.0852 11.5137C43.4725 17.9504 36.1112 20.3601 31.7581 15.2051C25.0324 7.23926 34.6868 -3.91872 42.1877 2.41699C46.0955 5.71764 50.6683 19.0446 57.1038 13.7881C62.7924 9.14051 56.8705 0.324447 51.1038 4.08105C49.9693 4.82004 49.1036 6.09383 48.0696 6.96387ZM97.7395 0C105.629 1.77283e-05 108.37 1.32706 108.37 5.04492C108.37 6.81354 107.926 8.02067 106.722 8.80371C108.019 9.5471 108.758 10.834 108.758 12.4629C108.758 16.261 105.924 17.5878 97.887 17.5879C95.4426 17.5879 91.5711 17.2059 89.4036 16.8447C89.1804 16.8051 89.0696 16.6642 89.0696 16.4033H89.0706V1.24707C89.0706 1.00588 89.1813 0.864284 89.4045 0.803711C91.5528 0.421566 95.3499 0 97.7395 0ZM123.153 0C125.56 9.78498e-06 127.357 0.221682 128.783 0.523438C128.987 0.563163 129.098 0.703838 129.154 0.905273L129.562 2.93457C129.636 3.23623 129.525 3.35632 129.247 3.2959C127.377 2.93466 124.635 2.79395 123.115 2.79395C117.096 2.79401 114.967 4.08046 114.559 7.45801H129.061C129.283 7.45801 129.413 7.59894 129.413 7.83984V9.58887C129.413 9.84988 129.283 9.97168 129.061 9.97168H114.522C114.929 13.4086 117.041 14.7148 123.115 14.7148C124.635 14.7148 127.376 14.5543 129.247 14.2129C129.525 14.1327 129.636 14.2732 129.562 14.5537L129.154 16.584C129.117 16.8052 129.005 16.9248 128.802 16.9854C127.375 17.2871 125.56 17.5283 123.153 17.5283C114.504 17.5283 111.318 14.5933 111.336 8.74414C111.318 2.95473 114.504 0 123.153 0ZM70.1223 0C72.8072 1.42967e-05 74.3442 1.30616 75.5852 4.74414C75.6958 5.16595 76.5303 7.41892 77.8079 11.1777C78.7332 13.8711 79.2894 14.5947 80.512 14.5947C81.6231 14.5947 82.1233 13.6091 82.1233 11.3184V0.623047C82.1234 0.362279 82.2342 0.241246 82.4563 0.241211H84.7346C84.9567 0.241261 85.0851 0.361196 85.0852 0.623047V12.7441C85.0852 15.5182 83.3455 17.5086 80.8079 17.5088C78.1219 17.5088 76.6036 16.2023 75.3625 12.7441C75.2516 12.3215 74.3614 9.88862 73.1399 6.33105C72.2318 3.6376 71.6572 2.91406 70.4172 2.91406C69.3063 2.91426 68.8059 3.91869 68.8059 6.19043L68.8254 16.8848V16.8857C68.8254 17.1466 68.7143 17.2676 68.4729 17.2676H66.1956C65.9734 17.2676 65.8626 17.1477 65.8625 16.8857V4.74414C65.8627 1.95028 67.6038 0 70.1223 0ZM6.39282 0C8.31856 0.000146321 9.59718 1.06616 10.4485 3.39746C11.3739 5.88975 11.5955 9.1678 12.2815 10.9365C12.5778 11.7205 12.9673 12.2031 13.5598 12.2031H14.0042C14.5966 12.203 15.0037 11.7204 15.301 10.9365C15.986 9.1678 16.2083 5.89085 17.1155 3.39746C17.9871 1.06611 19.2654 0 21.1731 0H21.8958C24.5258 7.3913e-05 26.0816 1.64905 26.3596 4.52344L27.5637 16.9062L27.5627 16.9053C27.581 17.1464 27.4889 17.287 27.2668 17.2871H24.97C24.7296 17.287 24.5985 17.1464 24.5813 16.9053L23.5627 5.84863C23.377 3.73886 22.8026 2.89453 21.7473 2.89453H21.2102C20.4321 2.89473 19.8768 3.43794 19.47 4.70312C18.8592 6.65361 18.6176 9.80895 17.7288 12.1006C17.0255 13.9704 15.9506 15.1357 14.2288 15.1357H13.3401C11.6366 15.1356 10.5619 13.9693 9.85767 12.1006C8.96881 9.80887 8.72797 6.65359 8.0979 4.70312C7.70927 3.43664 7.15351 2.89456 6.37524 2.89453H5.82056C4.7643 2.89453 4.20913 3.73888 4.00513 5.84863L3.00415 16.9053C2.98589 17.1465 2.83771 17.2871 2.61548 17.2871H0.317627C0.0771409 17.2871 -0.0160615 17.1465 0.00219727 16.9053L1.2063 4.52344C1.48434 1.64899 3.05925 0 5.67017 0H6.39282ZM152.272 0.242188C152.475 0.242355 152.586 0.362774 152.642 0.583984L152.993 2.6543C153.03 2.93606 152.939 3.07603 152.661 3.07617H143.808V16.8652H143.806C143.806 17.1262 143.696 17.248 143.455 17.248H141.196C140.972 17.248 140.843 17.1273 140.843 16.8652V3.07617H131.99C131.713 3.07609 131.619 2.93494 131.656 2.6543L132.009 0.583984C132.046 0.362718 132.176 0.242295 132.379 0.242188H152.272ZM103.889 9.70801C102.556 9.9492 100.832 10.0498 98.6096 10.0498H92.0159V14.4932C93.7389 14.7344 96.1659 14.8545 97.4993 14.8545C104.074 14.8545 105.649 14.3117 105.649 12.1006C105.649 10.7945 105.13 10.0494 103.889 9.70801ZM97.3323 2.75488C95.7026 2.75489 93.4984 2.91565 92.0159 3.11719V7.7793H98.2209C103.944 7.7793 105.26 7.33777 105.26 5.28711C105.26 3.23673 103.758 2.75488 97.3323 2.75488Z"
+                fill="white"
+                fillOpacity="0.9"
+              />
             </svg>
           </Link>
           {/* Close Button */}
@@ -727,15 +740,51 @@ const LoginSignup = ({
             }}
             className="flex items-center justify-center transition-all hover:opacity-80 relative z-10"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" viewBox="0 0 32 31" fill="none">
-              <rect x="1" y="1" width="28.1644" height="30" rx="7" transform="matrix(-4.10515e-08 1 1 4.62187e-08 -4.62187e-08 1.35958e-06)" fill="#080808" fillOpacity="0.2" stroke="url(#paint0_linear_9379_1117)" strokeWidth="2"/>
-              <path d="M10 10.6182C10 10.7821 10.0754 10.9397 10.21 11.0557L15.4512 15.5664L10.21 20.0791C10.0832 20.1963 10.0143 20.3516 10.0176 20.5117C10.021 20.6717 10.0962 20.8243 10.2275 20.9375C10.3592 21.0508 10.5374 21.1163 10.7236 21.1191C10.9096 21.1219 11.0894 21.0622 11.2256 20.9531L16.4678 16.4414L21.71 20.9531C21.7758 21.0139 21.8552 21.0629 21.9434 21.0967C22.0315 21.1305 22.1271 21.1479 22.2236 21.1494C22.32 21.1508 22.4155 21.1355 22.5049 21.1045C22.5943 21.0734 22.6759 21.0274 22.7441 20.9688C22.8124 20.91 22.8662 20.8397 22.9023 20.7627C22.9384 20.6858 22.9567 20.6035 22.9551 20.5205C22.9534 20.4374 22.9319 20.3552 22.8926 20.2793C22.8533 20.2035 22.7962 20.1357 22.7256 20.0791L17.4834 15.5664L22.7256 11.0557C22.8602 10.9397 22.9365 10.7821 22.9365 10.6182C22.9365 10.4542 22.8602 10.2967 22.7256 10.1807C22.5909 10.065 22.4081 10 22.2178 10C22.0274 10.0001 21.8447 10.0649 21.71 10.1807L16.4678 14.6924L11.2256 10.1807C11.0909 10.065 10.9081 10 10.7178 10C10.5274 10.0001 10.3446 10.0649 10.21 10.1807C10.0754 10.2967 10 10.4542 10 10.6182Z" fill="white" fillOpacity="0.9"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="31"
+              viewBox="0 0 32 31"
+              fill="none"
+            >
+              <rect
+                x="1"
+                y="1"
+                width="28.1644"
+                height="30"
+                rx="7"
+                transform="matrix(-4.10515e-08 1 1 4.62187e-08 -4.62187e-08 1.35958e-06)"
+                fill="#080808"
+                fillOpacity="0.2"
+                stroke="url(#paint0_linear_9379_1117)"
+                strokeWidth="2"
+              />
+              <path
+                d="M10 10.6182C10 10.7821 10.0754 10.9397 10.21 11.0557L15.4512 15.5664L10.21 20.0791C10.0832 20.1963 10.0143 20.3516 10.0176 20.5117C10.021 20.6717 10.0962 20.8243 10.2275 20.9375C10.3592 21.0508 10.5374 21.1163 10.7236 21.1191C10.9096 21.1219 11.0894 21.0622 11.2256 20.9531L16.4678 16.4414L21.71 20.9531C21.7758 21.0139 21.8552 21.0629 21.9434 21.0967C22.0315 21.1305 22.1271 21.1479 22.2236 21.1494C22.32 21.1508 22.4155 21.1355 22.5049 21.1045C22.5943 21.0734 22.6759 21.0274 22.7441 20.9688C22.8124 20.91 22.8662 20.8397 22.9023 20.7627C22.9384 20.6858 22.9567 20.6035 22.9551 20.5205C22.9534 20.4374 22.9319 20.3552 22.8926 20.2793C22.8533 20.2035 22.7962 20.1357 22.7256 20.0791L17.4834 15.5664L22.7256 11.0557C22.8602 10.9397 22.9365 10.7821 22.9365 10.6182C22.9365 10.4542 22.8602 10.2967 22.7256 10.1807C22.5909 10.065 22.4081 10 22.2178 10C22.0274 10.0001 21.8447 10.0649 21.71 10.1807L16.4678 14.6924L11.2256 10.1807C11.0909 10.065 10.9081 10 10.7178 10C10.5274 10.0001 10.3446 10.0649 10.21 10.1807C10.0754 10.2967 10 10.4542 10 10.6182Z"
+                fill="white"
+                fillOpacity="0.9"
+              />
               <defs>
-                <linearGradient id="paint0_linear_9379_1117" x1="2.11317" y1="-7.09502e-06" x2="17.9712" y2="34.4136" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="white" stopOpacity="0.4"/>
-                  <stop offset="0.405687" stopColor="white" stopOpacity="0.01"/>
-                  <stop offset="0.574372" stopColor="white" stopOpacity="0.01"/>
-                  <stop offset="1" stopColor="white" stopOpacity="0.1"/>
+                <linearGradient
+                  id="paint0_linear_9379_1117"
+                  x1="2.11317"
+                  y1="-7.09502e-06"
+                  x2="17.9712"
+                  y2="34.4136"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="white" stopOpacity="0.4" />
+                  <stop
+                    offset="0.405687"
+                    stopColor="white"
+                    stopOpacity="0.01"
+                  />
+                  <stop
+                    offset="0.574372"
+                    stopColor="white"
+                    stopOpacity="0.01"
+                  />
+                  <stop offset="1" stopColor="white" stopOpacity="0.1" />
                 </linearGradient>
               </defs>
             </svg>
@@ -782,7 +831,7 @@ const LoginSignup = ({
 
           {/* Right Side - Form with specified background */}
           <div
-            className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-center relative overflow-hidden"
+            className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-start relative overflow-hidden"
             style={{
               background:
                 "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
@@ -884,12 +933,12 @@ const LoginSignup = ({
                         placeholder="Email Address"
                         value={loginData.email}
                         onChange={handleLoginChange}
-                        className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#5A3799] transition-all"
+                        className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
                         style={{
                           background:
                             "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
                           backdropFilter: "blur(20px)",
-                          border: "var(--border-input)"
+                          border: "var(--border-input)",
                         }}
                       />
                     </div>
@@ -899,26 +948,79 @@ const LoginSignup = ({
                       <label className="text-xs text-[#E1E1E1] tracking-wider mb-2 block">
                         Password
                       </label>
-                      <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={loginData.password}
-                        onChange={handleLoginChange}
-                        className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#5A3799] transition-all"
-                        style={{
-                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-                          backdropFilter: "blur(20px)",
-                          border: "var(--border-input)"
-                        }}
-                      />
+                      <div className="relative">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          name="password"
+                          placeholder="Password"
+                          value={loginData.password}
+                          onChange={handleLoginChange}
+                          className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                            backdropFilter: "blur(20px)",
+                            border: "var(--border-input)",
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:opacity-80 transition-opacity"
+                        >
+                          {showPassword ? (
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="var(--cta-pink)"
+                              viewBox="0 0 24 24"
+                              strokeWidth="2"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9.878 9.878a3 3 0 014.243 4.243"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9.878 9.878L6.59 6.59M9.878 9.878l4.242 4.242M17.41 17.41L21 21M3 3l3.59 3.59a9.953 9.953 0 015.41-1.59c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="var(--cta-pink)"
+                              viewBox="0 0 24 24"
+                              strokeWidth="2"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              />
+                            </svg>
+                          )}
+                        </button>
+                      </div>
                     </div>
 
                     {/* Forgot Password Link */}
                     <div className="text-right">
                       <button
                         onClick={() => setActiveTab("forgot")}
-                        className="text-sm text-gray-400 hover:text-[#F07730] transition-colors"
+                        className="text-sm text-white-90 hover:text-[#dc1fff] transition-colors"
                       >
                         Forgot Password?
                       </button>
@@ -950,33 +1052,36 @@ const LoginSignup = ({
                     {/* Social Login Buttons - Stack on mobile, side by side on desktop */}
                     <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-3">
                       {/* Google Login */}
+
                       <div className="flex justify-center">
-                        <GoogleLogin
-                          onSuccess={handleGoogleLogin}
-                          onError={() => toast.error("Google Sign-In failed")}
-                          theme="filled_black"
-                          width="100%"
-                          useOneTap={false} // ❗ stops auto-login
-                          ux_mode="popup" // ❗ allows choosing account
-                          context="use" // ❗ forces Google to re-open account chooser
-                          auto_select={false}
-                          promptMomentNotification={() => {}}
-                        />
+                        <div className="[&_div]:!bg-white [&_span]:!text-black [&_div]:!border-none [&_div]:!rounded-lg">
+                          <GoogleLogin
+                            onSuccess={handleGoogleLogin}
+                            onError={() => toast.error("Google Sign-In failed")}
+                            theme="filled_black"
+                            width="100%"
+                            useOneTap={false} // ❗ stops auto-login
+                            ux_mode="popup" // ❗ allows choosing account
+                            context="use" // ❗ forces Google to re-open account chooser
+                            auto_select={false}
+                            promptMomentNotification={() => {}}
+                          />
+                        </div>
                       </div>
 
                       {/* Connect Wallet Button */}
-                        <button
-                          onClick={() => setWalletModalOpen(true)}
-                          className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all w-full hover:opacity-90"
-                          style={{
-                            border: "1px solid var(--cta2-light-green)",
-                          }}
-                        >
-                          <WalletIcon />
-                          <span className="text-white text-sm font-medium">
-                            Connect Wallet
-                          </span>
-                        </button>
+                      <button
+                        onClick={() => setWalletModalOpen(true)}
+                        className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all w-full hover:opacity-90"
+                        style={{
+                          border: "1px solid var(--cta2-light-green)",
+                        }}
+                      >
+                        <WalletIcon />
+                        <span className="text-white text-sm font-medium">
+                          Connect Wallet
+                        </span>
+                      </button>
                     </div>
 
                     {/* Register Link */}
@@ -986,7 +1091,7 @@ const LoginSignup = ({
                       </span>
                       <button
                         onClick={() => setActiveTab("register")}
-                        className="text-sm text-[#E1E1E1] hover:text-[#E06620] font-medium"
+                        className="text-sm text-white-90 hover:text-[#dc1fff] font-medium"
                       >
                         Register Now
                       </button>
@@ -1001,64 +1106,177 @@ const LoginSignup = ({
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.15 }}
                   className="max-h-[calc(90vh-200px)] overflow-y-auto md:overflow-y-visible scrollbar-thin scrollbar-thumb-[#F07730]/40"
-
                 >
                   <div className="space-y-3">
-                 <input
-                  type="email"
-                  name="email"
-                  placeholder="Email address"
-                  value={signupData.email}
-                  onChange={handleSignupChange}
-                  className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#F07730] transition-all"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-                    backdropFilter: "blur(20px)",
-                    border: "var(--border-input)"
-                  }}
-                />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email address"
+                      value={signupData.email}
+                      onChange={handleSignupChange}
+                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                        backdropFilter: "blur(20px)",
+                        border: "var(--border-input)",
+                      }}
+                    />
 
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  value={signupData.username}
-                  onChange={handleSignupChange}
-                  className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#F07730] transition-all"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-                    backdropFilter: "blur(20px)",
-                    border: "var(--border-input)"
-                  }}
-                />
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder="Username"
+                      value={signupData.username}
+                      onChange={handleSignupChange}
+                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                        backdropFilter: "blur(20px)",
+                        border: "var(--border-input)",
+                      }}
+                    />
 
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={signupData.password}
-                  onChange={handleSignupChange}
-                  className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#F07730] transition-all"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-                    backdropFilter: "blur(20px)",
-                    border: "var(--border-input)"
-                  }}
-                />
+                    {/* Password Field */}
+                    <div className="relative">
+                      <input
+                        type={showSignupPassword ? "text" : "password"}
+                        name="password"
+                        placeholder="Password"
+                        value={signupData.password}
+                        onChange={handleSignupChange}
+                        className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                          backdropFilter: "blur(20px)",
+                          border: "var(--border-input)",
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setShowSignupPassword(!showSignupPassword)
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:opacity-80 transition-opacity"
+                      >
+                        {showSignupPassword ? (
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="var(--cta-pink)"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M9.878 9.878a3 3 0 014.243 4.243"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M9.878 9.878L6.59 6.59M9.878 9.878l4.242 4.242M17.41 17.41L21 21M3 3l3.59 3.59a9.953 9.953 0 015.41-1.59c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411"
+                            />
+                          </svg>
+                        ) : (
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="var(--cta-pink)"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                            />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
 
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm password"
-                  value={signupData.confirmPassword}
-                  onChange={handleSignupChange}
-                  className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#F07730] transition-all"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-                    backdropFilter: "blur(20px)",
-                    border: "var(--border-input)"
-                  }}
-                />
+                    {/* Confirm Password Field */}
+                    <div className="relative">
+                      <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        placeholder="Confirm password"
+                        value={signupData.confirmPassword}
+                        onChange={handleSignupChange}
+                        className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                          backdropFilter: "blur(20px)",
+                          border: "var(--border-input)",
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setShowConfirmPassword(!showConfirmPassword)
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:opacity-80 transition-opacity"
+                      >
+                        {showConfirmPassword ? (
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="var(--cta-pink)"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M9.878 9.878a3 3 0 014.243 4.243"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M9.878 9.878L6.59 6.59M9.878 9.878l4.242 4.242M17.41 17.41L21 21M3 3l3.59 3.59a9.953 9.953 0 015.41-1.59c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411"
+                            />
+                          </svg>
+                        ) : (
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="var(--cta-pink)"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                            />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
                     <div className="space-y-2 pt-1">
                       <label className="flex items-start gap-2 cursor-pointer">
                         <input
@@ -1066,13 +1284,17 @@ const LoginSignup = ({
                           name="agreeTerms"
                           checked={signupData.agreeTerms}
                           onChange={handleSignupChange}
-                          className="mt-0.5 w-4 h-4 rounded bg-[#1e2029] border-[#3a3d4a] accent-[#F07730]"
+                          className="mt-0.5 w-4 h-4 rounded border-[#3a3d4a] bg-white checked:bg-transparent accent-[#dc1fff]"
+                          style={{
+                            background: signupData.agreeTerms
+                              ? "var(--cta-pink-gradient)"
+                              : "#ffffff",
+                          }}
                         />
                         <span className="text-xs text-[#E1E1E1]">
                           I agree to the{" "}
                           <a
                             href="/terms-and-condition"
-                            target="_blank"
                             className="text-[#E1E1E1] hover:underline"
                           >
                             Terms
@@ -1087,7 +1309,12 @@ const LoginSignup = ({
                           name="agreeMarketing"
                           checked={signupData.agreeMarketing}
                           onChange={handleSignupChange}
-                          className="mt-0.5 w-4 h-4 rounded bg-[#1e2029] border-[#3a3d4a] accent-[#F07730]"
+                          className="mt-0.5 w-4 h-4 rounded border-[#3a3d4a] bg-white checked:bg-transparent accent-[#dc1fff]"
+                          style={{
+                            background: signupData.agreeMarketing
+                              ? "var(--cta-pink-gradient)"
+                              : "#ffffff",
+                          }}
                         />
                         <span className="text-xs text-[#E1E1E1]">
                           Send me promotions
@@ -1118,17 +1345,24 @@ const LoginSignup = ({
                     {/* Social Login - Stack on mobile */}
                     <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-3">
                       <div className="flex justify-center">
-                        <GoogleLogin
-                          onSuccess={handleGoogleLogin}
-                          onError={() => toast.error("Google Sign-In failed")}
-                          theme="filled_black"
-                          width="100%"
-                          useOneTap={false} // ❗ stops auto-login
-                          ux_mode="popup" // ❗ allows choosing account
-                          context="use" // ❗ forces Google to re-open account chooser
-                          auto_select={false}
-                          promptMomentNotification={() => {}}
-                        />
+                        {/* Google Login - Register  */}
+                        <div className="flex justify-center">
+                          <div className="[&_div]:!bg-white [&_span]:!text-black [&_div]:!border-none [&_div]:!rounded-lg">
+                            <GoogleLogin
+                              onSuccess={handleGoogleLogin}
+                              onError={() =>
+                                toast.error("Google Sign-In failed")
+                              }
+                              theme="filled_black"
+                              width="100%"
+                              useOneTap={false} // ❗ stops auto-login
+                              ux_mode="popup" // ❗ allows choosing account
+                              context="use" // ❗ forces Google to re-open account chooser
+                              auto_select={false}
+                              promptMomentNotification={() => {}}
+                            />
+                          </div>
+                        </div>
                       </div>
 
                       {/* Connect Wallet Button */}
@@ -1137,7 +1371,8 @@ const LoginSignup = ({
                         className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all w-full hover:opacity-90"
                         style={{
                           border: "1px solid var(--cta2-light-green)",
-                          background: "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
+                          background:
+                            "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
                           backdropFilter: "blur(30px)",
                           WebkitBackdropFilter: "blur(30px)",
                         }}
@@ -1189,7 +1424,7 @@ const LoginSignup = ({
                       </span>
                       <button
                         onClick={() => setActiveTab("login")}
-                        className="text-sm text-[#F07730] hover:text-[#E06620] font-medium"
+                        className="text-sm text-white-90 hover:text-[#dc1fff] font-medium"
                       >
                         Sign in
                       </button>
@@ -1245,7 +1480,7 @@ const LoginSignup = ({
                               : "hover:opacity-90"
                           }
                         `}
-                          >
+                        >
                           {recoverySent === "loading"
                             ? "Sending..."
                             : "Recover Account"}
@@ -1310,11 +1545,19 @@ const LoginSignup = ({
               )}
             </AnimatePresence>
             {(loginLoading || signupLoading) && (
-              <div className="absolute inset-0 z-[99999] bg-black/60 backdrop-blur-md flex flex-col items-center justify-center pointer-events-auto">
-                {/* Animated Loader */}
+              <div
+                className="absolute inset-0 z-[99999] flex flex-col items-center justify-center pointer-events-auto"
+                style={{
+                  background:
+                    "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
+                  backdropFilter: "blur(30px)",
+                  WebkitBackdropFilter: "blur(30px)",
+                }}
+              >
+                {/* Animated Loader - Responsive with aspect ratio */}
                 <img
                   src="/icons/moonlogo.gif"
-                  className="w-28 h-28 animate-pulse"
+                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
                   alt="Loading"
                 />
 
