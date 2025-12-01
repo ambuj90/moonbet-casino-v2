@@ -34,7 +34,7 @@ const CookiePolicy = () => {
     <div className="min-h-screen  ">
       {/* Hero Section */}
       <section className="relative py-8 md:py-16 px-4 border-b border-white/10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#dc1fff]/10 via-transparent to-[#EFD28E]/10" />
         <div className="container max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ const CookiePolicy = () => {
                     >
                       {/* Blue accent line for active section */}
                       {activeSection === section.id && (
-                        <span className="absolute left-0 top-0 bottom-0 w-1 bg-[rgb(240,129,58)] rounded-r"></span>
+                        <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#dc1fff] rounded-r"></span>
                       )}
                       <span
                         className={activeSection === section.id ? "ml-2" : ""}
@@ -218,7 +218,7 @@ const CookiePolicy = () => {
 
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Blockchain transactions (wallet addresses,
                     deposit/withdrawal amounts, timestamps) are permanently
@@ -226,21 +226,21 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Browser cookies can link your identity to blockchain
                     transactions across different websites
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     We minimize this risk by using secure, privacy-focused
                     cookie practices (HttpOnly attributes, SameSite protections)
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     For maximum privacy, you can disable non-essential cookies
                     or use privacy-focused browser extensions
@@ -271,17 +271,17 @@ const CookiePolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">Accept all cookies</span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         Reject non-essential cookies
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         Customize your cookie preferences
                       </span>
@@ -302,21 +302,21 @@ const CookiePolicy = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         Most browsers automatically accept cookies, but you can
                         change this
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         You can choose to reject cookies or receive alerts
                         before cookies are saved
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         You can delete cookies at any time
                       </span>
@@ -332,25 +332,25 @@ const CookiePolicy = () => {
                   </p>
                   <ul className="space-y-3 mt-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         Prevent you from logging in
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         Disable responsible gambling tools
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         Affect game performance
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#F07730] mt-1">•</span>
+                      <span className="text-[#dc1fff] mt-1">•</span>
                       <span className="text-gray-300">
                         Limit personalization features
                       </span>
@@ -376,25 +376,25 @@ const CookiePolicy = () => {
 
               <ul className="space-y-3 mb-4">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Clicking the "Cookie Settings" link in the footer of our
                     website
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Accessing your account settings
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Contacting us at{" "}
                     <a
                       href="mailto:support@moonbet.games"
-                      className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                      className="text-[#EFD28E] hover:text-[#dc1fff] transition-colors"
                     >
                       support@moonbet.games
                     </a>
@@ -425,7 +425,7 @@ const CookiePolicy = () => {
 
               <ul className="space-y-3 mb-4">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Google Analytics
@@ -434,7 +434,7 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Payment Processors
@@ -443,7 +443,7 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Marketing Partners
@@ -452,7 +452,7 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Customer Support Tools
@@ -461,7 +461,7 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Security Services
@@ -537,7 +537,7 @@ const CookiePolicy = () => {
 
               <ul className="space-y-3 mb-4">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Session cookies:
@@ -546,7 +546,7 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Essential cookies:
@@ -555,7 +555,7 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Analytical cookies:
@@ -564,7 +564,7 @@ const CookiePolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     <span className="text-white font-bold">
                       Marketing cookies:
@@ -593,27 +593,27 @@ const CookiePolicy = () => {
 
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     All cookies are encrypted during transmission
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Essential cookies do not store personally identifiable
                     information
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     We use industry-standard security practices to protect
                     cookie data
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Your cookie preferences are stored securely
                   </span>
@@ -637,25 +637,25 @@ const CookiePolicy = () => {
 
               <ul className="space-y-3 mb-4">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Changes in our cookie practices
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     New technologies or tools
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Legal or regulatory requirements
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300">
                     Improvements to privacy and security
                   </span>
@@ -687,7 +687,7 @@ const CookiePolicy = () => {
                     <span className="font-bold">Email:</span>{" "}
                     <a
                       href="mailto:support@moonbet.games"
-                      className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                      className="text-[#EFD28E] hover:text-[#dc1fff] transition-colors"
                     >
                       support@moonbet.games
                     </a>
@@ -698,7 +698,7 @@ const CookiePolicy = () => {
                     <span className="font-bold">Live Chat:</span> 24/7 via{" "}
                     <a
                       href="https://moonbet.games/"
-                      className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                      className="text-[#EFD28E] hover:text-[#dc1fff] transition-colors"
                     >
                       Moonbet.games
                     </a>

@@ -464,7 +464,7 @@ const AffiliateProgram = () => {
           <motion.div whileHover={{ scale: 1.02 }} className="relative">
             <div className="p-2">
               <p className="affiliate-para">Total Referrals</p>
-              <div className="flex items-center gap-3 wallet-btn3 relative p-3">
+              <div className="flex items-center gap-3  relative p-3">
                 <svg
                   className="w-6 h-6 text-[#dc1fff]"
                   fill="none"
@@ -487,7 +487,7 @@ const AffiliateProgram = () => {
           <motion.div whileHover={{ scale: 1.02 }} className="relative">
             <div className="p-2 ">
               <p className="affiliate-para">Total Wagered</p>
-              <div className="flex items-center gap-3 p-3 relative wallet-btn3">
+              <div className="flex items-center gap-3 p-3 relative ">
                 <span className="inline-flex items-center gap-3 align-middle">
                   <span style={titleStyle} className="flex items-center gap-1">
                     {stats.totalWagered.toFixed(0)}
@@ -501,7 +501,7 @@ const AffiliateProgram = () => {
           <motion.div whileHover={{ scale: 1.02 }} className="relative">
             <div className="p-2">
               <p className="affiliate-para">Total Earnings</p>
-              <div className="flex items-center gap-3 p-3 relative wallet-btn3">
+              <div className="flex items-center gap-3 p-3 relative ">
                 <span className="inline-flex items-center gap-3 align-middle">
                   <span style={titleStyle} className="flex items-center gap-1">
                     {stats.totalEarnings.toFixed(0)}
@@ -517,7 +517,7 @@ const AffiliateProgram = () => {
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <p className="affiliate-para">Pending Income</p>
-                  <div className="flex items-center gap-3 p-3 relative wallet-btn3">
+                  <div className="flex items-center gap-3 p-3 relative ">
                     <span className="inline-flex items-center gap-3 align-middle">
                       <span
                         style={titleStyle}
@@ -552,7 +552,7 @@ const AffiliateProgram = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div
-            className="overflow-hidden wallet-btn3"
+            className="overflow-hidden "
             style={{
               borderRadius: "12px",
               backgroundImage: "url('/affiliates/bg-table.svg')",
@@ -563,11 +563,11 @@ const AffiliateProgram = () => {
             {/* Table Header */}
             <div className="p-6 border-b border-white/20">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <p className="wallet-btn3 your-reff">Your Referrals</p>
+                <p className=" your-reff">Your Referrals</p>
 
                 <div className="flex gap-3 w-full sm:w-auto">
                   {/* Search Input */}
-                  <div className="affiliate-para2 wallet-btn3 relative inline-flex items-center rounded-[8px] px-3 py-[8px] w-full sm:w-[200px]">
+                  <div className="affiliate-para2  relative inline-flex items-center rounded-[8px] px-3 py-[8px] w-full sm:w-[200px]">
                     <svg
                       className="w-4 h-4 mr-2 text-[#7D7D7D] flex-shrink-0"
                       fill="none"

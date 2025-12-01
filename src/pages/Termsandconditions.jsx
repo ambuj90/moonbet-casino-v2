@@ -202,7 +202,7 @@ const TermsAndConditions = () => {
     <div className="min-h-screen  ">
       {/* Hero Section */}
       <section className="relative py-12 px-4 border-b border-white/10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#dc1fff]/10 via-transparent to-[#EFD28E]/10" />
         <div className="container max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -228,42 +228,13 @@ const TermsAndConditions = () => {
         </div>
       </section>
 
-      {/* Quick Navigation Pills */}
-      <div className="sticky top-0 z-40  /95 backdrop-blur-md border-b border-white/10">
-        <div className="container max-w-7xl mx-auto px-4 py-3">
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide">
-            {sections.slice(0, 10).map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap text-xs transition-all
-                         ${
-                           activeSection === section.id
-                             ? "bg-gradient-to-r from-[#F07730]/30 to-[#EFD28E]/30 border border-[#F07730]/50"
-                             : "bg-white/5 border border-white/10 hover:bg-white/10"
-                         }`}
-              >
-                <span>
-                  {typeof section.icon === "string"
-                    ? section.icon
-                    : section.icon}
-                </span>
-                <span className="hidden md:inline text-gray-300">
-                  {section.label}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="container max-w-7xl mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sidebar Navigation */}
           <div className="hidden lg:block">
             <div className="sticky top-24">
-              <div className="wallet-btn3 rounded-2xl p-4">
+              <div className="rounded-2xl p-4">
                 <p className="text-sm font-bold text-white mb-4 px-2">
                   ALL SECTIONS
                 </p>
@@ -275,7 +246,7 @@ const TermsAndConditions = () => {
                       className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all
                                ${
                                  activeSection === section.id
-                                   ? "bg-[#F07730]/20 text-[#F07730] border-l-2 border-[#F07730]"
+                                   ? "bg-[#dc1fff]/20 border-l-2 border-[#dc1fff]"
                                    : "text-gray-400 hover:bg-white/5 hover:text-white"
                                }`}
                     >
@@ -294,24 +265,24 @@ const TermsAndConditions = () => {
               id="introduction"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Book className="w-6 h-6 text-[#F07730]" />
+                <Book className="w-6 h-6 text-[#dc1fff]" />
                 1. Introduction
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">1.1 Purpose:</span>{" "}
+                  <span className="text-[#dc1fff] font-bold">1.1 Purpose:</span>{" "}
                   Define rules, rights, and responsibilities for Users.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">1.2 Scope:</span>{" "}
+                  <span className="text-[#dc1fff] font-bold">1.2 Scope:</span>{" "}
                   Applies to all access, gameplay, deposits, withdrawals, and
                   services on the Platform.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     1.3 Acceptance:
                   </span>{" "}
                   By connecting your Wallet, you agree to these Terms and our
@@ -325,7 +296,7 @@ const TermsAndConditions = () => {
               id="definitions"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">📚</span>
@@ -362,7 +333,7 @@ const TermsAndConditions = () => {
                     key={i}
                     className="bg-white/5 rounded-xl p-3 border border-white/10"
                   >
-                    <h4 className="text-[#F07730] font-bold text-sm mb-1">
+                    <h4 className="text-[#dc1fff] font-bold text-sm mb-1">
                       {item.term}
                     </h4>
                     <p className="text-gray-400 text-sm">{item.def}</p>
@@ -376,29 +347,29 @@ const TermsAndConditions = () => {
               id="eligibility"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <User className="w-6 h-6 text-[#F07730]" />
+                <User className="w-6 h-6 text-[#dc1fff]" />
                 3. Eligibility & Compliance
               </p>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <span className="text-[#F07730] font-bold">3.1</span>
+                  <span className="text-[#dc1fff] font-bold">3.1</span>
                   <p className="text-gray-300">
                     <span className="font-bold">Minimum Age:</span> 18+ (or
                     legal age in jurisdiction).
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-[#F07730] font-bold">3.2</span>
+                  <span className="text-[#dc1fff] font-bold">3.2</span>
                   <p className="text-gray-300">
                     <span className="font-bold">Jurisdiction:</span> Not
                     available where crypto gambling is illegal.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-[#F07730] font-bold">3.3</span>
+                  <span className="text-[#dc1fff] font-bold">3.3</span>
                   <p className="text-gray-300">
                     <span className="font-bold">Self-Certification:</span> You
                     warrant eligibility and compliance with local laws.
@@ -412,24 +383,24 @@ const TermsAndConditions = () => {
               id="account"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Wallet className="w-6 h-6 text-[#F07730]" />
+                <Wallet className="w-6 h-6 text-[#dc1fff]" />
                 4. Account & Wallet Connection
               </p>
               <div className="space-y-3">
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">4.1</span> No
+                  <span className="text-[#dc1fff] font-bold">4.1</span> No
                   traditional registration; connect via Wallet.
                 </p>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">4.2</span> You
+                  <span className="text-[#dc1fff] font-bold">4.2</span> You
                   control your private keys; Moonbet is not liable for lost
                   keys.
                 </p>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">4.3</span> You must
+                  <span className="text-[#dc1fff] font-bold">4.3</span> You must
                   not share Wallet credentials or permit unauthorized use.
                 </p>
               </div>
@@ -440,7 +411,7 @@ const TermsAndConditions = () => {
               id="deposits"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">💰</span>
@@ -455,7 +426,7 @@ const TermsAndConditions = () => {
                     {["BTC", "ETH", "SOL", "USDT", "USDC"].map((crypto) => (
                       <span
                         key={crypto}
-                        className="px-3 py-1 bg-[#F07730]/20 rounded-lg text-[#F07730] text-sm font-bold"
+                        className="px-3 py-1 bg-[#dc1fff]/20 rounded-lg text-[#dc1fff] text-sm font-bold"
                       >
                         {crypto}
                       </span>
@@ -463,21 +434,21 @@ const TermsAndConditions = () => {
                   </div>
                 </div>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     5.2 Deposit Process:
                   </span>{" "}
                   Instant credit after blockchain confirmation; network fees
                   apply.
                 </p>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     5.3 Withdrawal Process:
                   </span>{" "}
                   Requested onchain, processed within 60 seconds; network fees
                   apply.
                 </p>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     5.4 Irreversible:
                   </span>{" "}
                   All onchain Transactions are final once confirmed.
@@ -490,15 +461,15 @@ const TermsAndConditions = () => {
               id="gameplay"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">🎮</span>
                 6. Gameplay & Fairness
               </p>
               <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-gradient-to-br from-[#F07730]/10 to-transparent rounded-xl p-4 border border-[#F07730]/30">
-                  <h3 className="text-[#F07730] font-bold mb-2">
+                <div className="bg-gradient-to-br from-[#dc1fff]/10 to-transparent rounded-xl p-4 border border-[#dc1fff]/30">
+                  <h3 className="text-[#dc1fff] font-bold mb-2">
                     6.1 Provably Fair RNG
                   </h3>
                   <p className="text-gray-300 text-sm">
@@ -535,7 +506,7 @@ const TermsAndConditions = () => {
               id="promotions"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">🎁</span>
@@ -543,21 +514,21 @@ const TermsAndConditions = () => {
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     7.1 Promotion Terms:
                   </span>{" "}
                   Each offer has specific criteria (e.g., min deposit,
                   wagering).
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     7.2 Abuse Prevention:
                   </span>{" "}
                   Multiple Wallets, collusion, or prohibited conduct voids
                   bonuses.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     7.3 Amendments:
                   </span>{" "}
                   Moonbet may cancel or adjust promotions at its discretion.
@@ -570,7 +541,7 @@ const TermsAndConditions = () => {
               id="fees"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">💸</span>
@@ -584,13 +555,13 @@ const TermsAndConditions = () => {
                   </p>
                 </div>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     8.2 Network Fees:
                   </span>{" "}
                   You bear blockchain gas fees.
                 </p>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     8.3 Tax Obligations:
                   </span>{" "}
                   You are solely responsible for reporting/winning taxes.
@@ -603,7 +574,7 @@ const TermsAndConditions = () => {
               id="responsible"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">❤️</span>
@@ -632,8 +603,8 @@ const TermsAndConditions = () => {
                     organizations.
                   </p>
                 </div>
-                <div className="bg-[#F07730]/10 rounded-xl p-4 border border-[#F07730]/30">
-                  <h3 className="text-[#F07730] font-bold mb-2">9.4 Advice</h3>
+                <div className="bg-[#dc1fff]/10 rounded-xl p-4 border border-[#dc1fff]/30">
+                  <h3 className="text-[#dc1fff] font-bold mb-2">9.4 Advice</h3>
                   <p className="text-gray-300 text-sm">
                     Gamble responsibly; bet only what you can afford to lose.
                   </p>
@@ -646,7 +617,7 @@ const TermsAndConditions = () => {
               id="conduct"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">⚠️</span>
@@ -654,7 +625,7 @@ const TermsAndConditions = () => {
               </p>
               <div className="space-y-4">
                 <div className="bg-red-500/10 rounded-xl p-4 border border-red-500/30">
-                  <h3 className="text-red-400 font-bold mb-3">
+                  <h3 className="text-[#5a3799] font-bold mb-3">
                     10.1 Prohibited Conduct:
                   </h3>
                   <ul className="space-y-2 text-gray-300 text-sm">
@@ -668,7 +639,7 @@ const TermsAndConditions = () => {
                   </ul>
                 </div>
                 <p className="text-gray-300">
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     10.2 Enforcement:
                   </span>{" "}
                   Violations lead to suspension, fund forfeiture, and reporting.
@@ -681,7 +652,7 @@ const TermsAndConditions = () => {
               id="intellectual"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">©️</span>
@@ -689,14 +660,14 @@ const TermsAndConditions = () => {
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     11.1 Ownership:
                   </span>{" "}
                   All content, software, graphics, trademarks, and materials on
                   the Platform are owned by or licensed to Moonbet.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     11.2 Restrictions:
                   </span>{" "}
                   You may not copy, modify, distribute, or create derivative
@@ -710,7 +681,7 @@ const TermsAndConditions = () => {
               id="refunds"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">↩️</span>
@@ -718,14 +689,14 @@ const TermsAndConditions = () => {
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     12.1 No Refunds:
                   </span>{" "}
                   All deposits and bets are final and non-refundable, except as
                   required by law.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     12.2 Chargebacks:
                   </span>{" "}
                   Attempted chargebacks on network fees or platform operations
@@ -739,7 +710,7 @@ const TermsAndConditions = () => {
               id="disclaimers"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">⚡</span>
@@ -747,20 +718,20 @@ const TermsAndConditions = () => {
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     13.1 "As Is" Basis:
                   </span>{" "}
                   The Platform is provided without warranties of any kind,
                   express or implied.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     13.2 No Guarantee:
                   </span>{" "}
                   Moonbet does not guarantee uninterrupted or error-free play.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     13.3 Risk Acknowledgment:
                   </span>{" "}
                   Crypto gambling carries volatility and loss risk. Play
@@ -774,29 +745,29 @@ const TermsAndConditions = () => {
               id="liability"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Shield className="w-6 h-6 text-[#F07730]" />
+                <Shield className="w-6 h-6 text-[#dc1fff]" />
                 14. Limitation of Liability
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     14.1 Maximum Liability:
                   </span>{" "}
                   Moonbet's total liability is limited to the refund of your net
                   deposits (deposits minus withdrawals).
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     14.2 No Consequential Damages:
                   </span>{" "}
                   Moonbet is not liable for indirect, special, incidental, or
                   consequential damages.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     14.3 Exclusions:
                   </span>{" "}
                   Liability limitations apply to the fullest extent permitted by
@@ -810,7 +781,7 @@ const TermsAndConditions = () => {
               id="indemnification"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">🛡️</span>
@@ -829,7 +800,7 @@ const TermsAndConditions = () => {
               id="privacy"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4">
                 Privacy & Data Protection
@@ -839,15 +810,15 @@ const TermsAndConditions = () => {
                 {/* Privacy */}
                 <div>
                   <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-                    <Lock className="w-5 h-5 text-[#F07730]" />
+                    <Lock className="w-5 h-5 text-[#dc1fff]" />
                     16. Privacy & Data Protection
                   </h3>
                   <p className="text-gray-300">
-                    <span className="text-[#F07730] font-bold">16.1</span>{" "}
+                    <span className="text-[#dc1fff] font-bold">16.1</span>{" "}
                     Privacy Policy at Moonbet.games/privacy.
                   </p>
                   <p className="text-gray-300">
-                    <span className="text-[#F07730] font-bold">16.2</span> By
+                    <span className="text-[#dc1fff] font-bold">16.2</span> By
                     using the Platform, you consent to data collection and
                     processing.
                   </p>
@@ -860,12 +831,12 @@ const TermsAndConditions = () => {
                     17. Cookies & Tracking
                   </h3>
                   <p className="text-gray-300">
-                    <span className="text-[#F07730] font-bold">17.1</span> We
+                    <span className="text-[#dc1fff] font-bold">17.1</span> We
                     use cookies and similar technologies to provide and improve
                     services.
                   </p>
                   <p className="text-gray-300">
-                    <span className="text-[#F07730] font-bold">17.2</span> You
+                    <span className="text-[#dc1fff] font-bold">17.2</span> You
                     can manage cookie preferences via your browser settings.
                   </p>
                 </div>
@@ -879,19 +850,19 @@ const TermsAndConditions = () => {
                   <div className="grid md:grid-cols-3 gap-3">
                     <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <p className="text-sm text-gray-300">
-                        <span className="text-[#F07730] font-bold">18.1</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">18.1</span>{" "}
                         Industry-standard encryption & Fireblocks custody
                       </p>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <p className="text-sm text-gray-300">
-                        <span className="text-[#F07730] font-bold">18.2</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">18.2</span>{" "}
                         Role-based access controls
                       </p>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 border border-white/10">
                       <p className="text-sm text-gray-300">
-                        <span className="text-[#F07730] font-bold">18.3</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">18.3</span>{" "}
                         Breach response procedures
                       </p>
                     </div>
@@ -907,23 +878,23 @@ const TermsAndConditions = () => {
                   <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                     <ul className="space-y-2 text-sm text-gray-300">
                       <li>
-                        <span className="text-[#F07730] font-bold">19.1</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">19.1</span>{" "}
                         Account Data: Active + 6 years
                       </li>
                       <li>
-                        <span className="text-[#F07730] font-bold">19.2</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">19.2</span>{" "}
                         Transaction Records: 6 years per regulations
                       </li>
                       <li>
-                        <span className="text-[#F07730] font-bold">19.3</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">19.3</span>{" "}
                         Support Logs: 3 years
                       </li>
                       <li>
-                        <span className="text-[#F07730] font-bold">19.4</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">19.4</span>{" "}
                         Analytics Data: 2 years
                       </li>
                       <li>
-                        <span className="text-[#F07730] font-bold">19.5</span>{" "}
+                        <span className="text-[#dc1fff] font-bold">19.5</span>{" "}
                         Blockchain Data: Permanent on Solana ledger
                       </li>
                     </ul>
@@ -937,7 +908,7 @@ const TermsAndConditions = () => {
               id="support"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">🤝</span>
@@ -945,7 +916,7 @@ const TermsAndConditions = () => {
               </p>
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <h3 className="text-[#F07730] font-bold mb-2">
+                  <h3 className="text-[#dc1fff] font-bold mb-2">
                     20.1 Self-Exclusion
                   </h3>
                   <p className="text-gray-400 text-sm">
@@ -953,13 +924,13 @@ const TermsAndConditions = () => {
                   </p>
                 </div>
                 <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <h3 className="text-[#F07730] font-bold mb-2">20.2 Limits</h3>
+                  <h3 className="text-[#dc1fff] font-bold mb-2">20.2 Limits</h3>
                   <p className="text-gray-400 text-sm">
                     Set deposit/bet limits onchain
                   </p>
                 </div>
                 <div className="text-center p-4 bg-white/5 rounded-xl">
-                  <h3 className="text-[#F07730] font-bold mb-2">
+                  <h3 className="text-[#dc1fff] font-bold mb-2">
                     20.3 Resources
                   </h3>
                   <p className="text-gray-400 text-sm">
@@ -974,28 +945,28 @@ const TermsAndConditions = () => {
               id="law"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Scale className="w-6 h-6 text-[#F07730]" />
+                <Scale className="w-6 h-6 text-[#dc1fff]" />
                 21. Governing Law & Dispute Resolution
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     21.1 Governing Law:
                   </span>{" "}
                   These Terms are governed by Cayman Islands law.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     21.2 Dispute Resolution:
                   </span>{" "}
                   Any dispute will be resolved via binding arbitration in the
                   Cayman Islands.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     21.3 Arbitration Binding:
                   </span>{" "}
                   The arbitrator's decision is final and binding.
@@ -1008,7 +979,7 @@ const TermsAndConditions = () => {
               id="changes"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                 <span className="text-xl">📝</span>
@@ -1016,14 +987,14 @@ const TermsAndConditions = () => {
               </p>
               <div className="space-y-3 text-gray-300">
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     22.1 Amendments:
                   </span>{" "}
                   We may update these Terms. Material changes will be notified
                   on the Platform.
                 </p>
                 <p>
-                  <span className="text-[#F07730] font-bold">
+                  <span className="text-[#dc1fff] font-bold">
                     22.2 Acceptance:
                   </span>{" "}
                   Continued use after changes indicates your acceptance of the
@@ -1037,10 +1008,10 @@ const TermsAndConditions = () => {
               id="contact"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="wallet-btn3 rounded-2xl p-6"
+              className="rounded-2xl p-6"
             >
               <p className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <Mail className="w-6 h-6 text-[#F07730]" />
+                <Mail className="w-6 h-6 text-[#dc1fff]" />
                 23. Contact Us
               </p>
               <p className="text-gray-300 mb-4">
@@ -1052,7 +1023,7 @@ const TermsAndConditions = () => {
                   className="flex items-center gap-2 px-4 py-3 bg-white/5 rounded-xl border border-white/10 
                             hover:bg-white/10 transition-all"
                 >
-                  <Mail className="w-5 h-5 text-[#F07730]" />
+                  <Mail className="w-5 h-5 text-[#dc1fff]" />
                   <span className="text-gray-300">support@moonbet.games</span>
                 </a>
                 <div className="flex items-center gap-2 px-4 py-3 bg-white/5 rounded-xl border border-white/10">
@@ -1068,7 +1039,7 @@ const TermsAndConditions = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="bg-gradient-to-r from-[#F07730]/20 to-[#EFD28E]/20 rounded-2xl p-6 border border-[#F07730]/30 text-center"
+              className="bg-gradient-to-r from-[#dc1fff]/20 to-[#EFD28E]/20 rounded-2xl p-6 border border-[#dc1fff]/30 text-center"
             >
               <p className="text-lg text-white font-bold mb-2">
                 Thank you for choosing Moonbet
@@ -1090,8 +1061,8 @@ const TermsAndConditions = () => {
                     localStorage.setItem("moonbet_terms_accepted", "true");
                     setAcceptedTerms(true);
                   }}
-                  className="px-8 py-3 bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-black font-bold 
-                           rounded-xl hover:shadow-lg hover:shadow-[#F07730]/25 transition-all"
+                  className="px-8 py-3 bg-gradient-to-r from-[#dc1fff] to-[#5a3799] font-bold 
+                           rounded-xl hover:shadow-lg hover:shadow-[#dc1fff]/25 transition-all"
                 >
                   I Accept the Terms & Conditions
                 </button>
