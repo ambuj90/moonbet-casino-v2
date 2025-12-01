@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import LoginTrigger from "../LoginSignup/LoginTrigger";
 import WalletDropdownCenter from "./WalletDropdownCenter";
+import { useGameSearchStore } from "../../store/useGameSearchStore";
 
 const TopHeader = ({
   onDesktopSidebarToggle,
@@ -23,6 +24,8 @@ const TopHeader = ({
 }) => {
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
+  const searchTerm = useGameSearchStore((s) => s.searchTerm);
+  const setSearchTerm = useGameSearchStore((s) => s.setSearchTerm);
 
   const toggleDesktopSidebar = () => {
     const newCollapsed = !sidebarCollapsed;
@@ -146,8 +149,21 @@ const TopHeader = ({
                       type="text"
                       placeholder="Search games..."
                       autoFocus
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value.trim())}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          const value = searchTerm.trim();
+
+                          if (value.length > 0) {
+                            navigate(`/casino/${value.toLowerCase()}`);
+                          } else {
+                            navigate("/casino");
+                          }
+                        }
+                      }}
                       className="px-3 py-2 mr-2 text-white text-sm rounded-lg 
-                                 bg-[var(--bg-dark-purple-2)] border border-white/10 outline-none"
+               bg-[var(--bg-dark-purple-2)] border border-white/10 outline-none"
                     />
                   )}
                 </AnimatePresence>
