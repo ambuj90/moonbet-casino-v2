@@ -211,6 +211,10 @@
   }
 }
 
+@theme {
+  --breakpoint-3xl: 1920px;
+}
+
 /* Utilities Layer */
 @layer utilities {
   /* Gradient Text Effects */
@@ -464,7 +468,7 @@
 @media (max-width: 768px) {
   .reward_btn:before {
     background-size: contain !important;
-}
+  }
   .casin-btncard-final::before {
     width: 159px;
     height: 48px;

@@ -544,21 +544,21 @@ const LoginSignup = ({
 
       console.log("🔌 Wallet connected:", walletAddress);
 
-      // 2️⃣ GET NONCE
+      // 2️⃣ GET *****
       let nonceRes;
       try {
-        nonceRes = await axios.post("/auth-service/api/auth/wallet/nonce", {
+        nonceRes = await axios.post("/auth-service/api/auth/wallet/*****", {
           walletAddress,
         });
         setWalletLoading(true);
       } catch (err) {
-        console.error("Nonce error:", err);
-        toast.error("Failed to get login nonce. Try again.");
+        console.error("***** error:", err);
+        toast.error("Failed to get login *****. Try again.");
         return;
       }
 
       if (!nonceRes.data?.success) {
-        toast.error(nonceRes.data?.error || "Nonce generation failed.");
+        toast.error(nonceRes.data?.error || "***** generation failed.");
         return;
       }
 
@@ -680,29 +680,21 @@ const LoginSignup = ({
 
   return (
     <div
-      className="fixed inset-0 z-[99999] h-screen flex items-center justify-center p-4"
+      className="fixed inset-0 flex items-center justify-center"
       style={{
         backgroundColor: "rgba(13, 14, 54, 0.30)",
         backdropFilter: "blur(25px)",
         WebkitBackdropFilter: "blur(25px)",
       }}
-      onClick={() => {
+      onClick={(e) => {
         e.stopPropagation();
-        if (!walletLoading && !loginLoading && !signupLoading) {
-          onClose();
-        }
+        if (!walletLoading && !loginLoading && !signupLoading) onClose();
       }}
     >
-      {/* Main Container - Responsive */}
+      {/* Main Container */}
       <div
-        className="relative rounded-lg overflow-hidden w-full flex flex-col"
-        style={{
-          maxWidth: "804px",
-          width: "100%",
-          height: "93vh",
-          minHeight: "535px",
-          maxHeight: "93vh",
-        }}
+        className="relative rounded-lg overflow-hidden w-full flex flex-col h-[90vh] max-h-[90vh] min-h-[70vh]"
+        style={{ maxWidth: "850px" }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* ========== NEW TOP HEADER BAR ========== */}
@@ -712,7 +704,6 @@ const LoginSignup = ({
             borderRadius: "12px 12px 0 0",
             background: "rgba(255, 255, 255, 0.50)",
             backdropFilter: "blur(30px)",
-            // opacity: 0.5,
             WebkitBackdropFilter: "blur(30px)",
           }}
         >
@@ -793,10 +784,10 @@ const LoginSignup = ({
         {/* ========== END TOP HEADER BAR ========== */}
 
         {/* Split Layout - Responsive */}
-        <div className="flex flex-col md:flex-row flex-1 min-h-0">
+        <div className="flex flex-col md:flex-row flex-1 min-h-0 max-h-[90vh]">
           {/* Left Side - Image Background (Hidden on mobile) */}
           <div
-            className="hidden md:block md:w-[340px] relative bg-gradient-to-br from-blue-600/30 to-purple-600/30"
+            className="hidden md:block md:w-[360px] relative"
             style={{
               backgroundImage: "url('/home-assets/login-bg.svg')",
               backgroundSize: "cover",
@@ -831,47 +822,25 @@ const LoginSignup = ({
 
           {/* Right Side - Form with specified background */}
           <div
-            className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-start relative overflow-hidden"
+            className="
+    flex-1 
+    p-6 sm:p-8 md:p-10 
+    flex flex-col 
+    justify-start 
+    overflow-y-auto 
+    min-h-0 
+    h-full
+    max-h-full
+    scrollbar-thin 
+    scrollbar-thumb-[#DC1FFF]/40
+  "
             style={{
               background:
-                "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
+                "linear-gradient(109deg, rgba(201,201,201,0.80) 1.57%, rgba(196,196,196,0.10) 100%)",
               backdropFilter: "blur(30px)",
               WebkitBackdropFilter: "blur(30px)",
-              // border: "1px solid rgba(255, 255, 255, 0.3)",
-              borderTop: "none",
-              boxShadow: `
-                0 8px 32px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-                inset 0 0 20px 10px rgba(255, 255, 255, 0.1)
-              `,
             }}
           >
-            {/* Top gradient line */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "1px",
-                background:
-                  "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent)",
-              }}
-            />
-
-            {/* Left gradient line */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "1px",
-                height: "100%",
-                background:
-                  "linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent, rgba(255, 255, 255, 0.3))",
-              }}
-            />
             {/* Mobile Logo (shown only on mobile) - HIDDEN since we have header now */}
             <div className="hidden">
               <h1 className="text-2xl font-bold text-white tracking-wider text-center">
@@ -887,7 +856,7 @@ const LoginSignup = ({
                   className={`flex-1 pb-3 font-medium transition-all relative ${
                     activeTab === "login"
                       ? "text-[#E1E1E1]"
-                      : "text-gray-400 hover:text-gray-300"
+                      : "hover:text-gray-300"
                   }`}
                 >
                   Login
@@ -900,7 +869,7 @@ const LoginSignup = ({
                   className={`flex-1 pb-3 font-medium transition-all relative ${
                     activeTab === "register"
                       ? "text-[#E1E1E1]"
-                      : "text-gray-400 hover:text-gray-300"
+                      : "hover:text-gray-300"
                   }`}
                 >
                   Register
@@ -916,6 +885,7 @@ const LoginSignup = ({
               {activeTab === "login" ? (
                 <motion.div
                   key="login"
+                  className="flex-1 overflow-y-auto min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#DC1FFF]/40"
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
@@ -924,7 +894,7 @@ const LoginSignup = ({
                   <div className="space-y-4">
                     {/* Email Address Field */}
                     <div>
-                      <label className="text-xs text-[#E1E1E1] tracking-wider mb-2 block">
+                      <label className="text-xs tracking-wider mb-2 block">
                         Email Address
                       </label>
                       <input
@@ -945,7 +915,7 @@ const LoginSignup = ({
 
                     {/* Password Field */}
                     <div>
-                      <label className="text-xs text-[#E1E1E1] tracking-wider mb-2 block">
+                      <label className="text-xs tracking-wider mb-2 block">
                         Password
                       </label>
                       <div className="relative">
@@ -1101,11 +1071,11 @@ const LoginSignup = ({
               ) : activeTab === "register" ? (
                 <motion.div
                   key="register"
+                  className="flex-1 overflow-y-auto min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#DC1FFF]/40"
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.15 }}
-                  className="max-h-[calc(90vh-200px)] overflow-y-auto md:overflow-y-visible scrollbar-thin scrollbar-thumb-[#F07730]/40 pr-2.5 md:pr-0"
                 >
                   <div className="space-y-3">
                     <input
@@ -1331,14 +1301,18 @@ const LoginSignup = ({
                     </button>
 
                     {/* OR Divider */}
-                    <div className="relative my-4">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-[#3a3d4a]" />
-                      </div>
-                      <div className="relative flex justify-center">
-                        <span className="px-3 text-xs uppercase text-gray-500 bg-transparent tracking-wider">
+                    <div className="relative my-6">
+                      <div className="flex items-center">
+                        {/* Left Border */}
+                        <div className="flex-grow border-t border-[rgba(255, 255, 255, 0.20)]"></div>
+
+                        {/* OR Text */}
+                        <span className="px-3 text-xs uppercase text-white bg-transparent tracking-wider">
                           OR
                         </span>
+
+                        {/* Right Border */}
+                        <div className="flex-grow border-t border-[rgba(255, 255, 255, 0.20)]"></div>
                       </div>
                     </div>
 

@@ -57,13 +57,13 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
   }, [type, filter, searchTerm]);
 
   const handlePlayNow = (game) => {
-  const slug = game.name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+    const slug = game.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
 
-  navigate(`/game/${game.uuid}/${slug}`);
-};
+    navigate(`/game/${game.uuid}/${slug}`);
+  };
 
   const handleLoadMore = () => setVisibleCount((prev) => prev + 48);
 
@@ -114,7 +114,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                         [game.uuid]: !prev[game.uuid],
                       }));
                     }}
-                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-50 ${
+                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-10 ${
                       favorite?.[game.uuid]
                         ? ""
                         : "hover:bg-[rgba(240,119,48,0.10)]"
