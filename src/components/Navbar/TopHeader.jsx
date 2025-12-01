@@ -155,7 +155,7 @@ const TopHeader = ({
           {/* ✅ Profile & Wallet shown only when logged in */}
           {/* ✅ Profile, Leaderboard and Wallet shown only when logged in */}
           {hasToken && (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center">
               {/* ⭐ Leaderboard Button */}
               <button
                 onClick={() => navigate("/leaderboard2")}
@@ -183,7 +183,7 @@ const TopHeader = ({
                     </svg>
                   </div>
                 }
-                className="p-2 rounded-lg hover:opacity-80 transition-colors"
+                className="rounded-lg hover:opacity-80 transition-colors"
               />
             </div>
           )}
