@@ -17,6 +17,23 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 
+// Theme colors for 3D elements (matching CSS variables)
+const THEME = {
+  pink: "#dc1fff",
+  purple: "#5a3799",
+  green: "#28c203",
+  lightGreen: "#aaf23f",
+  gold: "#AA8F23",
+  darkPurple1: "#0d0e36",
+  darkPurple2: "#1c1d49",
+  darkPurple3: "#282753",
+  mediumPurple1: "#35326b",
+  mediumPurple2: "#555594",
+  lavender1: "#7171b4",
+  lavender2: "#9292d2",
+  lightGrey: "#e1e1e1",
+};
+
 // 3D Rotating Coin Component
 const FloatingCoin = ({ position = [0, 0, 0], scale = 1 }) => {
   const meshRef = useRef();
@@ -26,14 +43,14 @@ const FloatingCoin = ({ position = [0, 0, 0], scale = 1 }) => {
       <mesh ref={meshRef} position={position} scale={scale}>
         <cylinderGeometry args={[1, 1, 0.2, 32]} />
         <meshStandardMaterial
-          color="#FFD700"
+          color={THEME.gold}
           metalness={0.95}
           roughness={0.05}
-          emissive="#FFA500"
+          emissive={THEME.gold}
           emissiveIntensity={0.5}
         />
       </mesh>
-      <pointLight position={[...position]} intensity={0.5} color="#FFD700" />
+      <pointLight position={[...position]} intensity={0.5} color={THEME.gold} />
     </Float>
   );
 };
@@ -45,10 +62,10 @@ const FloatingCard = ({ position = [0, 0, 0] }) => {
       <mesh position={position} rotation={[0, Math.PI / 4, 0]}>
         <boxGeometry args={[1.5, 2, 0.1]} />
         <meshStandardMaterial
-          color="#4A90E2"
+          color={THEME.purple}
           metalness={0.8}
           roughness={0.2}
-          emissive="#00D9FF"
+          emissive={THEME.pink}
           emissiveIntensity={0.3}
         />
       </mesh>
@@ -63,10 +80,10 @@ const FloatingDice = ({ position = [0, 0, 0] }) => {
       <mesh position={position} rotation={[Math.PI / 4, Math.PI / 4, 0]}>
         <boxGeometry args={[0.8, 0.8, 0.8]} />
         <meshStandardMaterial
-          color="#FF3366"
+          color={THEME.pink}
           metalness={0.7}
           roughness={0.3}
-          emissive="#FF0066"
+          emissive={THEME.pink}
           emissiveIntensity={0.4}
         />
       </mesh>
@@ -117,24 +134,34 @@ const GlassCard = ({ children, className = "", delay = 0, onClick = null }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5, type: "spring", stiffness: 100 }}
       whileHover={{ scale: 1.02, y: -5 }}
-      className={`
-        relative overflow-hidden
-        bg-white/5 backdrop-blur-xl
-        border border-white/10 rounded-2xl
-        shadow-2xl shadow-purple-500/10
-        ${className}
-      `}
+      className={`relative overflow-hidden backdrop-blur-xl rounded-2xl shadow-2xl ${className}`}
+      style={{
+        background: "var(--glass-white-5)",
+        border: "1px solid var(--glass-white-10)",
+        boxShadow: "0 20px 40px rgba(90, 55, 153, 0.1)",
+      }}
       onClick={onClick}
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(220, 31, 255, 0.05), transparent, rgba(90, 55, 153, 0.05))",
+        }}
+      />
+
+      {/* Glass Highlight */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "var(--glass-highlight)" }}
+      />
 
       {/* Glow Effect */}
       <motion.div
-        className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 rounded-2xl opacity-0"
+        className="absolute -inset-1 rounded-2xl opacity-0"
         whileHover={{ opacity: 0.2 }}
         transition={{ duration: 0.3 }}
-        style={{ filter: "blur(20px)" }}
       />
 
       {children}
@@ -150,27 +177,34 @@ const NeonButton = ({
   className = "",
 }) => {
   const variants = {
-    primary: "from-purple-500 via-blue-500 to-cyan-500",
-    secondary: "from-pink-500 via-red-500 to-orange-500",
-    success: "from-green-500 via-emerald-500 to-teal-500",
+    primary: {
+      background: "var(--cta-gradient)",
+    },
+    secondary: {
+      background: "var(--cta-pink-gradient)",
+    },
+    success: {
+      background: "var(--cta3-green-gradient)",
+    },
   };
+
+  const currentVariant = variants[variant];
 
   return (
     <motion.button
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className={`
-        relative px-8 py-4 rounded-xl font-bold text-white
-        bg-gradient-to-r ${variants[variant]}
-        shadow-lg transition-all duration-300
-        hover:shadow-2xl hover:shadow-purple-500/25
-        ${className}
-      `}
+      className={`relative px-8 py-4 rounded-xl font-bold text-white shadow-lg transition-all duration-300 ${className}`}
+      style={{
+        background: currentVariant.background,
+        boxShadow: `0 0 20px ${currentVariant.glowColor}`,
+      }}
     >
       {/* Neon Glow */}
       <motion.div
-        className={`absolute -inset-1 bg-gradient-to-r ${variants[variant]} rounded-xl opacity-75 blur-xl`}
+        className="absolute rounded-xl opacity-75 blur-xl"
+        style={{ background: currentVariant.background }}
         animate={{
           opacity: [0.5, 0.8, 0.5],
         }}
@@ -197,7 +231,8 @@ const JobCard = ({ job, delay }) => {
         <div className="flex justify-between items-start">
           <div>
             <motion.h3
-              className="text-2xl font-bold text-white mb-2"
+              className="text-2xl font-bold mb-2"
+              style={{ color: "var(--white)" }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: delay + 0.2 }}
@@ -205,14 +240,35 @@ const JobCard = ({ job, delay }) => {
               {job.title}
             </motion.h3>
             <div className="flex flex-wrap gap-3 mt-3">
-              <span className="px-3 py-1 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-300 text-sm">
+              <span
+                className="px-3 py-1 rounded-lg text-sm"
+                style={{
+                  background: "rgba(220, 31, 255, 0.2)",
+                  border: "1px solid rgba(220, 31, 255, 0.3)",
+                  color: "var(--cta-pink)",
+                }}
+              >
                 {job.location}
               </span>
-              <span className="px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-lg text-blue-300 text-sm">
+              <span
+                className="px-3 py-1 rounded-lg text-sm"
+                style={{
+                  background: "rgba(90, 55, 153, 0.2)",
+                  border: "1px solid rgba(90, 55, 153, 0.3)",
+                  color: "var(--text-lavender-2)",
+                }}
+              >
                 {job.type}
               </span>
               {job.compensation && (
-                <span className="px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300 text-sm">
+                <span
+                  className="px-3 py-1 rounded-lg text-sm"
+                  style={{
+                    background: "rgba(40, 194, 3, 0.2)",
+                    border: "1px solid rgba(40, 194, 3, 0.3)",
+                    color: "var(--cta2-light-green)",
+                  }}
+                >
                   {job.compensation}
                 </span>
               )}
@@ -236,19 +292,30 @@ const JobCard = ({ job, delay }) => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="space-y-6 border-t border-white/10 pt-6"
+              className="space-y-6 pt-6"
+              style={{ borderTop: "1px solid var(--glass-white-10)" }}
             >
               {/* About the Role */}
               <div>
-                <h4 className="text-lg font-semibold text-white mb-3">
+                <h4
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: "var(--white)" }}
+                >
                   About the Role
                 </h4>
-                <p className="text-gray-300 leading-relaxed">{job.about}</p>
+                <p
+                  style={{ color: "var(--text-lavender-1)", lineHeight: "1.7" }}
+                >
+                  {job.about}
+                </p>
               </div>
 
               {/* What You'll Do */}
               <div>
-                <h4 className="text-lg font-semibold text-white mb-3">
+                <h4
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: "var(--white)" }}
+                >
                   What You'll Do
                 </h4>
                 <ul className="space-y-2">
@@ -258,9 +325,15 @@ const JobCard = ({ job, delay }) => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="flex items-start text-gray-300"
+                      className="flex items-start"
+                      style={{ color: "var(--text-lavender-1)" }}
                     >
-                      <span className="text-purple-400 mr-2 mt-1">▸</span>
+                      <span
+                        className="mr-2 mt-1"
+                        style={{ color: "var(--cta-pink)" }}
+                      >
+                        ▸
+                      </span>
                       <span>{resp}</span>
                     </motion.li>
                   ))}
@@ -269,7 +342,10 @@ const JobCard = ({ job, delay }) => {
 
               {/* Who You Are */}
               <div>
-                <h4 className="text-lg font-semibold text-white mb-3">
+                <h4
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: "var(--white)" }}
+                >
                   Who You Are
                 </h4>
                 <ul className="space-y-2">
@@ -279,9 +355,15 @@ const JobCard = ({ job, delay }) => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="flex items-start text-gray-300"
+                      className="flex items-start"
+                      style={{ color: "var(--text-lavender-1)" }}
                     >
-                      <span className="text-blue-400 mr-2 mt-1">✦</span>
+                      <span
+                        className="mr-2 mt-1"
+                        style={{ color: "var(--cta-purple)" }}
+                      >
+                        ✦
+                      </span>
                       <span>{req}</span>
                     </motion.li>
                   ))}
@@ -291,7 +373,10 @@ const JobCard = ({ job, delay }) => {
               {/* Bonus Points */}
               {job.bonusPoints && (
                 <div>
-                  <h4 className="text-lg font-semibold text-white mb-3">
+                  <h4
+                    className="text-lg font-semibold mb-3"
+                    style={{ color: "var(--white)" }}
+                  >
                     Bonus Points
                   </h4>
                   <ul className="space-y-2">
@@ -301,9 +386,15 @@ const JobCard = ({ job, delay }) => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.05 }}
-                        className="flex items-start text-gray-300"
+                        className="flex items-start"
+                        style={{ color: "var(--text-lavender-1)" }}
                       >
-                        <span className="text-green-400 mr-2 mt-1">★</span>
+                        <span
+                          className="mr-2 mt-1"
+                          style={{ color: "var(--cta2-light-green)" }}
+                        >
+                          ★
+                        </span>
                         <span>{point}</span>
                       </motion.li>
                     ))}
@@ -313,7 +404,10 @@ const JobCard = ({ job, delay }) => {
 
               {/* What We Offer */}
               <div>
-                <h4 className="text-lg font-semibold text-white mb-3">
+                <h4
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: "var(--white)" }}
+                >
                   What We Offer
                 </h4>
                 <ul className="space-y-2">
@@ -323,9 +417,15 @@ const JobCard = ({ job, delay }) => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="flex items-start text-gray-300"
+                      className="flex items-start"
+                      style={{ color: "var(--text-lavender-1)" }}
                     >
-                      <span className="text-pink-400 mr-2 mt-1">◆</span>
+                      <span
+                        className="mr-2 mt-1"
+                        style={{ color: "var(--cta-pink)" }}
+                      >
+                        ◆
+                      </span>
                       <span>{offer}</span>
                     </motion.li>
                   ))}
@@ -333,12 +433,18 @@ const JobCard = ({ job, delay }) => {
               </div>
 
               {/* How to Apply */}
-              <div className="pt-4 border-t border-white/10">
-                <h4 className="text-lg font-semibold text-white mb-3">
+              <div
+                className="pt-4"
+                style={{ borderTop: "1px solid var(--glass-white-10)" }}
+              >
+                <h4
+                  className="text-lg font-semibold mb-3"
+                  style={{ color: "var(--white)" }}
+                >
                   How to Apply
                 </h4>
                 <div className="space-y-3">
-                  <p className="text-gray-300">
+                  <p style={{ color: "var(--text-lavender-1)" }}>
                     Send the following to career@moonbet.games:
                   </p>
                   <ul className="space-y-2">
@@ -348,9 +454,15 @@ const JobCard = ({ job, delay }) => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.05 }}
-                        className="flex items-start text-gray-300"
+                        className="flex items-start"
+                        style={{ color: "var(--text-lavender-1)" }}
                       >
-                        <span className="text-cyan-400 mr-2 mt-1">→</span>
+                        <span
+                          className="mr-2 mt-1"
+                          style={{ color: "var(--cta2-light-green)" }}
+                        >
+                          →
+                        </span>
                         <span>{step}</span>
                       </motion.li>
                     ))}
@@ -531,15 +643,28 @@ const CareersPage = () => {
   ];
 
   return (
-    <div className="min-h-screen   text-white relative overflow-hidden">
+    <div
+      className="min-h-screen text-white relative overflow-hidden"
+      style={{ background: "var(--bg-dark-purple-1)" }}
+    >
       {/* 3D Background */}
       <Background3D />
 
       {/* Animated Gradient Background */}
       <div className="fixed inset-0 -z-5">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(90, 55, 153, 0.2), var(--bg-dark-purple-1), rgba(220, 31, 255, 0.1))",
+          }}
+        />
         <motion.div
-          className="absolute inset-0 bg-gradient-to-tr from-pink-500/10 via-transparent to-cyan-500/10"
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(225deg, rgba(220, 31, 255, 0.1), transparent, rgba(90, 55, 153, 0.1))",
+          }}
           animate={{
             opacity: [0.3, 0.6, 0.3],
           }}
@@ -565,19 +690,26 @@ const CareersPage = () => {
               className="text-5xl md:text-7xl font-bold"
               style={{ y: y1 }}
             >
-              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent">
+              <span
+                style={{
+                  background: "var(--cta-gradient)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
                 Careers
               </span>
-              <span className="text-white"> - Moonbet</span>
+              <span style={{ color: "var(--white)" }}> - Moonbet</span>
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p
-              className="text-2xl md:text-3xl text-gray-300 font-semibold"
+              className="text-2xl md:text-3xl font-semibold"
+              style={{ color: "var(--text-lavender-1)", y: y2 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              style={{ y: y2 }}
             >
               Let's Build the Fairest Casino on Earth Together
             </motion.p>
@@ -587,13 +719,26 @@ const CareersPage = () => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full"
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-full"
+              style={{
+                background: "rgba(40, 194, 3, 0.2)",
+                border: "1px solid rgba(40, 194, 3, 0.3)",
+              }}
             >
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                  style={{ background: "var(--cta2-light-green)" }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-3 w-3"
+                  style={{ background: "var(--cta2-green)" }}
+                />
               </span>
-              <span className="text-lg font-semibold text-green-300">
+              <span
+                className="text-lg font-semibold"
+                style={{ color: "var(--cta2-light-green)" }}
+              >
                 3 Open Positions
               </span>
             </motion.div>
@@ -612,11 +757,21 @@ const CareersPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              <span
+                style={{
+                  background: "var(--cta-pink-gradient)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
                 Open Positions
               </span>
             </h2>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+            <p
+              className="text-lg max-w-3xl mx-auto"
+              style={{ color: "var(--text-lavender-1)" }}
+            >
               Join our mission to revolutionize online gambling with
               transparency, fairness, and blockchain technology.
             </p>
@@ -640,7 +795,14 @@ const CareersPage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-3xl font-bold mb-6"
             >
-              <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+              <span
+                style={{
+                  background: "var(--cta-gradient)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
                 Ready to Join Moonbet?
               </span>
             </motion.h3>
@@ -649,7 +811,8 @@ const CareersPage = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto"
+              className="text-lg mb-8 max-w-2xl mx-auto"
+              style={{ color: "var(--text-lavender-1)" }}
             >
               Be part of the revolution. Help us build the fairest, most
               transparent casino in the world.
@@ -678,8 +841,8 @@ const CareersPage = () => {
             style={{
               background: `radial-gradient(circle, ${
                 i % 2 === 0
-                  ? "rgba(147, 51, 234, 0.1)"
-                  : "rgba(59, 130, 246, 0.1)"
+                  ? "rgba(220, 31, 255, 0.1)"
+                  : "rgba(90, 55, 153, 0.1)"
               } 0%, transparent 70%)`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
