@@ -23,20 +23,20 @@ export const LoginTrigger = ({
   const dropdownRef = useRef(null);
 
   // 🔥 PRELOAD ICONS - always at top level
-useEffect(() => {
-  const icons = [
-    "/icons/profile.png",
-    "/icons/bets.png",
-    "/icons/transactions.png",
-    "/icons/settings.png",
-    "/icons/logout.png",
-  ];
+  useEffect(() => {
+    const icons = [
+      "/icons/profile.png",
+      "/icons/bets.png",
+      "/icons/transactions.png",
+      "/icons/settings.png",
+      "/icons/logout.png",
+    ];
 
-  icons.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-}, []);
+    icons.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   /* ------------------------------- CHECK LOGIN ------------------------------ */
   useEffect(() => {
@@ -203,11 +203,11 @@ useEffect(() => {
         {/* DROPDOWN MENU */}
         {dropdownOpen && (
           <div
-            className="custom-header absolute right-0 mt-3 w-44 rounded-[24px] py-2 z-[9999] shadow-2xl"
+            className="custom-header absolute right-0 mt-3 w-44 rounded-[24px] py-2 shadow-2xl"
             style={{
-              background: "rgb(40 39 83)",
-              backdropFilter: "blur(70px)",
-              WebkitBackdropFilter: "blur(70px)",
+              background: "rgba(200,200,225,0.20)",
+              backdropFilter: "blur(67.5px)",
+              WebkitBackdropFilter: "blur(67.5px)",
             }}
           >
             {/* PROFILE */}

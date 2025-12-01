@@ -122,13 +122,7 @@ const WalletDropdownCenter = ({
         {/* Wallet Dropdown */}
         {walletDropdownOpen && (
           <div
-            className="
-    custom-header wallet-dropdown-card
-    absolute left-[80%] sm:left-1/2 md:left-[65%]
-    -translate-x-1/2 mt-10 w-[267px]
-    rounded-[24px] overflow-hidden
-    shadow-[0_20px_60px_rgba(0,0,0,0.8)]
-  "
+            className="custom-header wallet-dropdown-card absolute left-[80%] sm:left-1/2 md:left-[65%] -translate-x-1/2 mt-12 w-[267px] rounded-[24px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
             style={{
               padding: "0 12px",
               border:
