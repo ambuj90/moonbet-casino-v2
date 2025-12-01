@@ -850,7 +850,7 @@ const LoginSignup = ({
 
             {/* Tabs */}
             {activeTab !== "forgot" && (
-              <div className="flex mb-6 md:mb-8 border-b border-white/10">
+              <div className="flex overflow-y-auto mb-6 md:mb-8 border-b border-white/10">
                 <button
                   onClick={() => setActiveTab("login")}
                   className={`flex-1 pb-3 font-medium transition-all relative ${
@@ -1071,13 +1071,27 @@ const LoginSignup = ({
               ) : activeTab === "register" ? (
                 <motion.div
                   key="register"
-                  className="flex-1 overflow-y-auto min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#DC1FFF]/40"
+                  className="flex-1 min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#DC1FFF]/40"
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.15 }}
                 >
                   <div className="space-y-3">
+                    <input
+                      type="text"
+                      name="referral"
+                      placeholder="Have a referral code?"
+                      value={signupData.email}
+                      onChange={handleSignupChange}
+                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                        backdropFilter: "blur(20px)",
+                        border: "var(--border-input)",
+                      }}
+                    />
                     <input
                       type="email"
                       name="email"
