@@ -99,7 +99,7 @@ const LoginSignup = ({
     username: "",
     password: "",
     confirmPassword: "",
-    referralCode: "",
+    referral: "",
     agreeTerms: false,
     agreeMarketing: false,
   });
@@ -1082,7 +1082,7 @@ const LoginSignup = ({
                       type="text"
                       name="referral"
                       placeholder="Have a referral code?"
-                      value={signupData.email}
+                      value={signupData.referral}
                       onChange={handleSignupChange}
                       className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
                       style={{
