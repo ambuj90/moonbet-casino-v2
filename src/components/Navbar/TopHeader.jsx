@@ -90,7 +90,7 @@ const TopHeader = ({
         />
 
         {/* RIGHT SIDE — Actions */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           {/* Show login/register only when not logged in */}
           {!hasToken && (
             <>
@@ -119,7 +119,7 @@ const TopHeader = ({
                       background: "rgba(255,255,255,0.15)",
                     }}
                     whileTap={{ scale: 0.98 }}
-                    className="text-white px-8 py-3 font-semibold rounded-[8px] transition-all"
+                    className="text-white px-8 py-2.5 font-semibold rounded-[8px] transition-all"
                     style={{
                       border: "1px solid var(--icons, #5A3799)",
                       background: "transparent",
@@ -163,7 +163,7 @@ const TopHeader = ({
                         }
                       }}
                       className="px-3 py-2 mr-2 text-white text-sm rounded-lg 
-               bg-[var(--bg-dark-purple-2)] border border-white/10 outline-none"
+                                 bg-[var(--bg-dark-purple-2)] border border-white/10 outline-none"
                     />
                   )}
                 </AnimatePresence>
