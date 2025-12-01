@@ -312,18 +312,57 @@ const GamePage = () => {
             {/* RIGHT SIDE — Buttons & Play Toggle */}
             <div className="flex items-center gap-2 sm:gap-4">
               {/* Rakeback Available Box */}
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[var(--bg-dark-purple-2)] shadow-sm">
-                <div className="text-[var(--text-lavender-2)] text-xs sm:text-sm font-medium">
-                  Rakeback available
+              <div
+                className="
+    flex items-center gap-2 sm:gap-3 
+    px-3 py-2 rounded-xl 
+    bg-[var(--glass-white-10)] 
+    border border-[var(--glass-white-20)] 
+    backdrop-blur-md 
+    shadow-[0_4px_12px_rgba(0,0,0,0.25)]
+  "
+              >
+                {/* Title */}
+                <div className="text-[var(--text-lavender-2)] text-xs sm:text-sm font-semibold whitespace-nowrap">
+                  Rakeback
                 </div>
 
-                <div className="flex items-center gap-1 ml-2">
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center bg-[var(--cta2-green)] text-[var(--text-light-grey)] text-[10px] sm:text-xs font-bold">
+                {/* Amount & Claim */}
+                <div className="flex items-center gap-2 sm:gap-3">
+                  {/* Dollar Icon */}
+                  <div
+                    className="
+        w-4 h-4 sm:w-5 sm:h-5 
+        rounded-full flex items-center justify-center 
+        bg-[var(--cta2-green)] 
+        text-[var(--black)] 
+        text-[10px] sm:text-xs font-extrabold 
+        shadow-md
+      "
+                  >
                     $
                   </div>
-                  <span className="text-[var(--cta2-green] text-sm sm:text-base">
-                    0
-                  </span>
+
+                  {/* Amount */}
+                  <span className="text-sm sm:text-base font-semibold">0</span>
+
+                  {/* Claim Button */}
+                  <button
+                    className="
+        px-2 py-1 
+        rounded-lg text-[10px] sm:text-xs font-bold 
+        text-[var(--text-light-grey)]
+        transition-all
+      "
+                    style={{
+                      background:
+                        "linear-gradient(180deg, var(--cta2-light-green) 0%, var(--cta2-green) 100%)",
+                      border: "1px solid var(--cta2-green)",
+                      boxShadow: "0 0 10px rgba(40,194,3,0.35)",
+                    }}
+                  >
+                    Claim
+                  </button>
                 </div>
               </div>
 
