@@ -38,6 +38,14 @@
   --cta-purple: #5a3799;
   --cta-pink-gradient: linear-gradient(0deg, #dc1fff 0%, #5a3799 100%);
   --cta-gradient: linear-gradient(0deg, #5a3799 0%, #dc1fff 100%);
+  --drop-down-order: linear-gradient(
+      134deg,
+      rgba(255, 255, 255, 0.9) -7.85%,
+      rgba(255, 255, 255, 0.36) 9.73%,
+      rgba(255, 255, 255, 0) 84.96%,
+      rgba(255, 255, 255, 0.9) 100.63%
+    ),
+    rgba(255, 255, 255, 0.05);
 
   /* ===========================
      CTA 2 (Green system)
@@ -80,12 +88,10 @@
   --border-light-purple: #9f9bd2;
   --border-dark-purple: #1c1d49;
 
-
-    /* ===========================
+  /* ===========================
     Login/ Register  BORDERS Input Color 
   ============================ */
---border-input: 1px solid rgba(255, 255, 255, 0.60);
-
+  --border-input: 1px solid rgba(255, 255, 255, 0.6);
 
   /* ===========================
      GLASS EFFECTS

@@ -97,7 +97,8 @@ const WalletDropdownCenter = ({
 
           {/* Balance text */}
           <span className="text-white text-xs sm:text-sm font-semibold tracking-wide truncate">
-            {Number(selectedCurrency?.convertedValue || 0).toFixed(2)} {gameCurrency}
+            {Number(selectedCurrency?.convertedValue || 0).toFixed(2)}{" "}
+            {gameCurrency}
           </span>
 
           {/* Dropdown arrow */}
@@ -121,15 +122,20 @@ const WalletDropdownCenter = ({
         {/* Wallet Dropdown */}
         {walletDropdownOpen && (
           <div
-            className="custom-header wallet-dropdown-card absolute left-[80%] sm:left-1/2 md:left-[65%] 
-    -translate-x-1/2 mt-10 w-[267px] rounded-[24px] z-[99999] 
-    shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden fdsfsdf"
+            className="
+    custom-header wallet-dropdown-card
+    absolute left-[80%] sm:left-1/2 md:left-[65%]
+    -translate-x-1/2 mt-10 w-[267px]
+    rounded-[24px] overflow-hidden
+    shadow-[0_20px_60px_rgba(0,0,0,0.8)]
+  "
             style={{
               padding: "0 12px",
-              background: "rgb(40 39 83",
+              border:
+                "2px solid var(--drop-down-order, rgba(255,255,255,0.05))",
+              background: "rgba(200,200,225,0.20)",
               backdropFilter: "blur(67.5px)",
               WebkitBackdropFilter: "blur(67.5px)",
-              boxShadow: "rgba(0, 0, 0, 0.25) 0px 4px 10px",
             }}
           >
             {/* Search Box */}
