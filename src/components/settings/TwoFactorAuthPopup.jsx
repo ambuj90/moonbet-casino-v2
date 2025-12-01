@@ -81,12 +81,15 @@ const TwoFactorAuthPopup = ({
     try {
       const { data } = await axios.post("/auth-service/api/auth/verify-2fa", {
         userId,
-        token: Number(verificationCode),
+        token: verificationCode,
       });
 
       if (data?.success) {
         toast.success("Two-Factor Authentication enabled successfully!");
         onComplete?.(true);
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        user.isTwoFactorEnabled = true;
+        localStorage.setItem("user", JSON.stringify(user));
         handleClose();
       } else {
         toast.error(data?.message || "Invalid verification code");

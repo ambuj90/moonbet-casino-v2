@@ -69,7 +69,9 @@ const Settings = () => {
             year: "numeric",
           }),
           emailVerified: data.emailVerified || false,
+          isTwoFactorEnabled: data.isTwoFactorEnabled || false,
         });
+        setEnable2FA(data.isTwoFactorEnabled || false);
 
         setShowLoginModal(false);
       } catch (error) {

@@ -32,21 +32,25 @@ const SecuritySection = ({
 
   // Handle 2FA toggle with API call
   const handle2FAToggle = async () => {
-    // User is turning 2FA ON
     if (!enable2FA) {
+      // Turning ON -> open popup
       setShowTwoFactorPopup(true);
-      return; // Wait until user finishes the popup flow
+      return;
     }
 
-    // User is turning 2FA OFF
+    // Turning OFF
     setIs2FAUpdating(true);
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      const userId = userData?.id?.toLowerCase();
+
+      await axios.post("/auth-service/api/auth/disable-2fa", { userId });
+
       setEnable2FA(false);
-      toast.info("Two-Factor Authentication disabled");
-    } catch (error) {
-      console.error("Failed to disable 2FA:", error);
-      toast.error("Failed to disable 2FA. Please try again.");
+      toast.success("Two-Factor Authentication disabled");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to disable 2FA");
     } finally {
       setIs2FAUpdating(false);
     }
@@ -711,6 +715,12 @@ const SecuritySection = ({
         onComplete={(success) => {
           if (success) {
             setEnable2FA(true);
+
+            // Update local stored user data
+            const user = JSON.parse(localStorage.getItem("user") || "{}");
+            user.isTwoFactorEnabled = true;
+            localStorage.setItem("user", JSON.stringify(user));
+
             setShowTwoFactorPopup(false);
           }
         }}
