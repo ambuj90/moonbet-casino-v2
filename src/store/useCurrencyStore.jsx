@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export const useCurrencyStore = create((set) => ({
   preferredCurrency: localStorage.getItem("preferredCurrency") || "BTC",
-  gameCurrency: localStorage.getItem("gameCurrency") || "USD",
+  gameCurrency: localStorage.getItem("gameCurrency") || null,
   currencies: [],
   selectedCurrency: null,
   displayBalance: "0.00",

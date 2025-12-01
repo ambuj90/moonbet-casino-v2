@@ -70,7 +70,7 @@ const WalletDropdownCenter = ({
   const selectedConvertedValue = (selectedBalance * selectedUsd).toFixed(2);
 
   // game currency
-  const gameCurrency = localStorage.getItem("gameCurrency") || "USD";
+  const gameCurrency = localStorage.getItem("gameCurrency");
 
   return (
     <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-3">

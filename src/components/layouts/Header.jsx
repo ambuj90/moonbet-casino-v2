@@ -86,6 +86,33 @@ const Header = ({
   }, []);
 
   useEffect(() => {
+  if (!userId || !hasToken) return;
+
+  const loadUserCurrency = async () => {
+    try {
+      const res = await axios.get(
+        `/wallet-service/api/games/${userId}/check-currency`
+      );
+
+      if (res.data?.success) {
+        const currency = res.data.data.gameCurrency || "USD";
+
+        console.log("🔥 Restored gameCurrency from backend:", currency);
+
+        localStorage.setItem("gameCurrency", currency);
+
+        // Also apply to Zustand
+        useCurrencyStore.getState().setGameCurrency(currency);
+      }
+    } catch (e) {
+      console.error("❌ Failed to load saved currency:", e);
+    }
+  };
+
+  loadUserCurrency();
+}, [userId, hasToken]);
+
+  useEffect(() => {
     const fetchWalletBalance = async () => {
       try {
         // Replace with dynamic user ID if available in localStorage later

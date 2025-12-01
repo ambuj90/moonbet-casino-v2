@@ -72,7 +72,8 @@ export const useLoadWalletCoins = (userId, hasToken) => {
         if (finalCurrency) {
           setSelectedCurrency(finalCurrency);
 
-          let gameCurrency = localStorage.getItem("gameCurrency") || "USD";
+          let gameCurrency = localStorage.getItem("gameCurrency");
+          if (!gameCurrency) return;   // Wait until backend loads it
 
           // Show raw balance (converted later in header)
           setDisplayBalance(
