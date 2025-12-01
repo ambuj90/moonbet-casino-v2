@@ -44,7 +44,7 @@ const MobileHeader = ({
 
     return isActive
       ? "rounded-[8px] text-white border border-[rgba(255,255,255,0.40)] bg-[var(--click-state,linear-gradient(0deg,rgba(220,31,255,0.80)0%,rgba(220,31,255,0)100%))] shadow-[0_3px_3px_rgba(255,255,255,0.25)_inset,0_3px_3px_rgba(0,0,0,0.25)] px-3 py-2 flex items-center justify-between"
-      : "rounded-[8px] px-3 py-2 flex items-center justify-between text-[#E1E1E1] bg-[#282753] hover:text-white hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]";
+      : "rounded-[8px] w-full px-3 py-2 flex items-center justify-between text-[#E1E1E1] bg-[#282753] hover:text-white hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)] shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]";
   };
 
   const getAccountMenuClass = (item, currentPath) => {
@@ -416,11 +416,11 @@ const MobileHeader = ({
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleLogout}
-                  className="flex items-center gap-3 px-3 py-2 rounded-[8px] text-[#A8A8A8] hover:text-red-400 hover:bg-red-500/10 transition-all"
+                  className="flex w-full items-center gap-3 px-3 py-2 rounded-[8px] text-[#A8A8A8] hover:text-red-400 hover:bg-red-500/10 transition-all"
                 >
                   <img
-                    src="/icons/logout.svg"
-                    className="w-6 h-6 opacity-70 group-hover:opacity-100"
+                    src="/icons/logout-new.svg"
+                    className="w-5 h-5 opacity-70 group-hover:opacity-100"
                   />
                   Logout
                 </motion.button>

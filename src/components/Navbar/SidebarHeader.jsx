@@ -57,9 +57,9 @@ const SidebarHeader = ({
       return "trust_btn view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px] transition-all text-white";
     } else {
       if (isCollapsed) {
-        return "justify-center text-[#000] hover: hover:bg-white/5";
+        return "justify-center  hover: hover:bg-white/5";
       } else {
-        return "gap-3 rounded-lg text-[#A8A8A8] hover: hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
+        return "gap-3 rounded-lg hover: hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
       }
     }
   };
@@ -166,7 +166,7 @@ const SidebarHeader = ({
     {
       id: "leaderboard",
       label: "Leaderboard",
-      icon: "/icons/leaderboard.svg",
+      icon: "/icons/leaderboard-new.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
       path: "/leaderboard2",
     },
@@ -1064,9 +1064,9 @@ const SidebarHeader = ({
                   onClick={handleLogout}
                 >
                   <img
-                    src="/icons/logout.svg"
+                    src="/icons/logout-new.svg"
                     alt="Logout"
-                    className="w-7 h-7 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                    className="w-5 h-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
                   />
                   <AnimatePresence>
                     {!sidebarCollapsed && (

@@ -571,7 +571,7 @@ const HeroSection = () => {
     <section className="w-full relative md:py-2">
       {/* Recent Wins Section - Dark background strip */}
       <div className="flex justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-4 sm:py-3 rounded-[12px]">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 md:px-4 sm:py-3 rounded-[12px]">
           {/* Recent Wins Label positioned above cards */}
           <motion.div
             className="absolute flex items-center gap-1 sm:gap-2 mb-1 sm:mb-2 "
