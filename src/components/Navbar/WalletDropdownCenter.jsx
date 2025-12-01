@@ -20,6 +20,30 @@ const WalletDropdownCenter = ({
   const walletDropdownRef = useRef(null);
 
   const [hoverWallet, setHoverWallet] = useState(false);
+  const [rakeback, setRakeback] = useState(0);
+  const [isClaiming, setIsClaiming] = useState(false);
+  const [showClaimPopup, setShowClaimPopup] = useState(false);
+  const [claimAmount, setClaimAmount] = useState(0);
+
+  useEffect(() => {
+    if (!userId) return;
+    fetchRakeback();
+  }, [userId]);
+
+  const fetchRakeback = async () => {
+    try {
+      const res = await axios.get(
+        `/wallet-service/api/wallet/${userId}/rakeback`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+
+      setRakeback(res.data.pending || 0);
+    } catch (err) {
+      console.error("Rakeback fetch error:", err);
+    }
+  };
 
   // ⭐ Replace icons based on EXACT CDN URLs
   const imageFix = (url) => {
@@ -71,6 +95,66 @@ const WalletDropdownCenter = ({
 
   // game currency
   const gameCurrency = localStorage.getItem("gameCurrency");
+
+  const claimRakeback = async () => {
+    if (rakeback <= 0) return;
+
+    try {
+      setIsClaiming(true);
+
+      const res = await axios.post(
+        `/wallet-service/api/wallet/${userId}/rakeback/claim`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+
+      if (res.data.success) {
+        const usdAmount = Number(res.data.usd || 0).toFixed(2);
+
+        // ⭐ SHOW POPUP ANIMATION
+        setClaimAmount(usdAmount);
+        setShowClaimPopup(true);
+        setTimeout(() => setShowClaimPopup(false), 2000); // hide animation
+
+        setRakeback(0);
+
+        window.dispatchEvent(new Event("preferredCurrencyUpdated"));
+        fetchRakeback();
+      }
+    } catch (err) {
+      console.error("Rakeback claim error:", err);
+    } finally {
+      setIsClaiming(false);
+    }
+  };
+
+  {
+    /* 🎉 CLAIM POPUP ANIMATION */
+  }
+  {
+    showClaimPopup && (
+      <div
+        className="fixed top-20 left-1/2 transform -translate-x-1/2 z-[9999]
+    flex flex-col items-center animate-claimPopup"
+      >
+        <div
+          className="text-[#28C203] font-bold text-2xl tracking-wide drop-shadow-lg"
+          style={{ textShadow: "0 0 12px rgba(40, 194, 3, 0.8)" }}
+        >
+          +${claimAmount}
+        </div>
+
+        <div
+          className="mt-1 px-4 py-1 rounded-full bg-[#28C203]/20 border border-[#28C203]/40 
+      text-[#28C203] text-sm font-semibold backdrop-blur-md"
+        >
+          Rakeback Claimed!
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-3">
@@ -151,24 +235,31 @@ const WalletDropdownCenter = ({
                 <div className="flex items-center gap-2 mt-1">
                   <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
                     <img
-                      src="/icons/dollar.svg"
+                      src="/icons/gift.svg"
                       className="w-3 h-3 opacity-90"
                       alt="dollar"
                     />
                   </div>
 
                   <span className="text-white text-[15px] font-semibold">
-                    $0.00
+                    ${Number(rakeback || 0).toFixed(2)}
                   </span>
                 </div>
               </div>
 
               {/* Claim Button */}
               <button
-                disabled
-                className="px-4 py-1.5 rounded-lg text-sm font-medium bg-white/5  text-white/40  cursor-not-allowed border border-white/15 transition-all "
+                onClick={claimRakeback}
+                disabled={rakeback <= 0 || isClaiming}
+                className={`px-4 py-1.5 rounded-lg text-sm font-medium border transition-all
+      ${
+        rakeback > 0
+          ? "bg-[#28C203] text-black border-[#28C203] hover:bg-[#1EA502]/90"
+          : "bg-white/5 text-white/40 cursor-not-allowed border-white/15"
+      }
+    `}
               >
-                Claim
+                {isClaiming ? "Claiming..." : "Claim"}
               </button>
             </div>
 
@@ -588,6 +679,28 @@ const WalletDropdownCenter = ({
 
         .selected-currency .coin-name {
           text-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
+        }
+        @keyframes claim-float {
+          0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+          }
+          40% {
+            opacity: 1;
+            transform: translateY(-10px) scale(1);
+          }
+          80% {
+            opacity: 1;
+            transform: translateY(-25px) scale(1.05);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-40px) scale(0.7);
+          }
+        }
+
+        .animate-claimPopup {
+          animation: claim-float 1.8s ease-out forwards;
         }
       `}</style>
     </div>

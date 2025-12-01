@@ -262,7 +262,55 @@ const LoginSignup = ({
     setForgotPasswordData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validTlds = [
+    "com",
+    "net",
+    "org",
+    "io",
+    "ai",
+    "app",
+    "co",
+    "in",
+    "uk",
+    "us",
+    "dev",
+    "info",
+    "xyz",
+    "cloud",
+    "store",
+    "online",
+    "casino",
+  ];
+
+  const validateEmail = (email) => {
+    if (!email) return false;
+
+    const lower = email.toLowerCase().trim();
+
+    // Basic check
+    const basicRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    if (!basicRegex.test(lower)) return false;
+
+    // Extract TLD
+    const tld = lower.split(".").pop();
+    return validTlds.includes(tld);
+  };
+
+  const isCommonGmailTypo = (email) => {
+    const lower = email.toLowerCase();
+
+    const mistakes = [
+      "gamil.com",
+      "gmial.com",
+      "gmail.con",
+      "gmail.co",
+      "gmail.cim",
+      "gmaill.com",
+    ];
+
+    return mistakes.some((typo) => lower.endsWith(typo));
+  };
+
   const handleLoginSubmit = async () => {
     const { email, password } = loginData;
 
@@ -361,6 +409,10 @@ const LoginSignup = ({
         position: "top-right",
         autoClose: 3000,
       });
+      return;
+    }
+    if (isCommonGmailTypo(email)) {
+      toast.error("Did you mean '@gmail.com'? Please correct your email.");
       return;
     }
 
