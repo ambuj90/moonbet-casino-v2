@@ -1105,7 +1105,7 @@ const LoginSignup = ({
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
                   transition={{ duration: 0.15 }}
-                  className="max-h-[calc(90vh-200px)] overflow-y-auto md:overflow-y-visible scrollbar-thin scrollbar-thumb-[#F07730]/40"
+                  className="max-h-[calc(90vh-200px)] overflow-y-auto md:overflow-y-visible scrollbar-thin scrollbar-thumb-[#F07730]/40 pr-2.5 md:pr-0"
                 >
                   <div className="space-y-3">
                     <input

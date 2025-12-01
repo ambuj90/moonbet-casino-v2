@@ -406,9 +406,9 @@ const LiveCasino = () => {
                         <div className="absolute top-2 left-2 bg-[#6A4DF4] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.name || "game"}
                         </div>
-                        <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
+                        {/* <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.provider || "Endrophia"}
-                        </div>
+                        </div> */}
                       </div>
 
                       {/* Overlay with Play Button */}
