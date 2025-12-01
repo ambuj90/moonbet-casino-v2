@@ -37,7 +37,7 @@ const MoonbetAccessibility = () => {
     <div className="min-h-screen  ">
       {/* Hero Section */}
       <section className="relative py-16 px-4 border-b border-white/10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/10 via-transparent to-[#EFD28E]/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#dc1fff]/10 via-transparent to-[#EFD28E]/10" />
         <div className="container max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,8 +69,8 @@ const MoonbetAccessibility = () => {
                       className={`w-full text-left px-4 py-2 rounded-lg transition-all flex items-center gap-2
                                ${
                                  activeSection === section.id
-                                   ? "bg-[#F07730]/20 text-[#F07730]"
-                                   : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                   ? "bg-[#dc1fff]/20"
+                                   : " hover:bg-white/5 hover:text-white"
                                }`}
                     >
                       <span>{section.label}</span>
@@ -105,7 +105,7 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Web Content Accessibility Guidelines (WCAG) 2.1 Level AA
@@ -114,7 +114,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Americans with Disabilities Act (ADA) Standards
@@ -124,7 +124,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">EN 301 549</span> -
                       European accessibility requirements for Information and
@@ -132,7 +132,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Section 508 of the Rehabilitation Act
@@ -164,41 +164,41 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Screen readers (NVDA, JAWS, VoiceOver, TalkBack)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Speech recognition software (Dragon NaturallySpeaking,
                       built-in OS voice control)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Keyboard navigation (full keyboard-only access without
                       mouse required)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Voice control interfaces (voice commands for navigation
                       and interaction)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Text magnification and high-contrast settings (supporting
                       browser zoom and custom stylesheets)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Mobile accessibility features (built-in accessibility
                       features in iOS and Android)
@@ -224,7 +224,7 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Text alternatives for non-text content
@@ -233,7 +233,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Proper heading and link structure
@@ -242,7 +242,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Adjustable text sizing and contrast ratios
@@ -252,7 +252,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Descriptive labels for form fields
@@ -261,7 +261,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Captions and transcripts for video/audio content
@@ -271,7 +271,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Seizure prevention
@@ -282,7 +282,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Clear language and readability
@@ -291,7 +291,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Logical tab order
@@ -322,7 +322,7 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Consistent navigation elements
@@ -332,7 +332,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Clear page titles and section headings
@@ -342,7 +342,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Breadcrumb navigation
@@ -352,7 +352,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">Skip links</span> -
                       "Skip to main content" links allow users to bypass
@@ -360,7 +360,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Focus indicators
@@ -370,7 +370,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Descriptive links
@@ -403,7 +403,7 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Wallet compatibility
@@ -413,7 +413,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Transaction confirmations
@@ -423,7 +423,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Blockchain data accessibility
@@ -434,7 +434,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Technical documentation
@@ -466,7 +466,7 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Manual testing
@@ -476,7 +476,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Automated testing
@@ -486,7 +486,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Testing with assistive technologies
@@ -495,7 +495,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         User feedback integration
@@ -505,7 +505,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Ongoing monitoring
@@ -543,21 +543,21 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Email us directly:
                       </span>{" "}
                       <a
                         href="mailto:accessibility@moonbet.games"
-                        className="text-[#F07730] underline hover:text-[#EFD28E]"
+                        className="text-[#dc1fff] underline hover:text-[#EFD28E]"
                       >
                         accessibility@moonbet.games
                       </a>
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Live chat support:
@@ -567,7 +567,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Support team:
@@ -575,7 +575,7 @@ const MoonbetAccessibility = () => {
                       Our customer support team at{" "}
                       <a
                         href="mailto:support@moonbet.games"
-                        className="text-[#F07730] underline hover:text-[#EFD28E]"
+                        className="text-[#dc1fff] underline hover:text-[#EFD28E]"
                       >
                         support@moonbet.games
                       </a>{" "}
@@ -612,19 +612,19 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Accessibility issues or barriers you encounter
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Suggestions for improving accessibility
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Feedback on how well our platform works with your
                       assistive technology
@@ -638,21 +638,21 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Dedicated accessibility email:
                       </span>{" "}
                       <a
                         href="mailto:support@moonbet.games"
-                        className="text-[#F07730] underline hover:text-[#EFD28E]"
+                        className="text-[#dc1fff] underline hover:text-[#EFD28E]"
                       >
                         support@moonbet.games
                       </a>
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">Live chat:</span>{" "}
                       24/7 accessible via the platform
@@ -666,31 +666,31 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       The page or feature you were accessing
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       The specific issue or barrier encountered
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Your assistive technology (if applicable)
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Steps to reproduce the issue
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Suggested solutions (if you have them)
                     </span>
@@ -724,21 +724,21 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Game providers and software developers
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">Payment processors</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">Analytics services</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">Marketing partners</span>
                   </li>
                 </ul>
@@ -774,25 +774,25 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Clear, simple language
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Logical structure and heading hierarchy
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Code samples with comments
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       High contrast and readable formatting
                     </span>
@@ -820,7 +820,7 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Complex data visualizations
@@ -831,7 +831,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Real-time gaming interactions
@@ -843,7 +843,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Third-party wallet integrations
@@ -881,33 +881,33 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Regular audits and testing for accessibility compliance
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Staying updated on WCAG guidelines and best practices
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Gathering feedback from users with disabilities and
                       incorporating their input
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Training staff on accessibility principles and best
                       practices
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       Investing in accessibility improvements as part of
                       platform development
@@ -958,21 +958,21 @@ const MoonbetAccessibility = () => {
 
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         General Support:
                       </span>{" "}
                       <a
                         href="mailto:support@moonbet.games"
-                        className="text-[#F07730] underline hover:text-[#EFD28E]"
+                        className="text-[#dc1fff] underline hover:text-[#EFD28E]"
                       >
                         support@moonbet.games
                       </a>
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Live Chat Support:
@@ -981,7 +981,7 @@ const MoonbetAccessibility = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#F07730] mt-1">•</span>
+                    <span className="text-[#dc1fff] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Response Time:
@@ -998,7 +998,7 @@ const MoonbetAccessibility = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="bg-gradient-to-r from-[#F07730]/20 to-[#EFD28E]/20 rounded-2xl p-6 md:p-8 border border-[#F07730]/30"
+              className="bg-gradient-to-r from-[#dc1fff]/20 to-[#EFD28E]/20 rounded-2xl p-6 md:p-8 border border-[#dc1fff]/30"
             >
               <p className="text-xl font-bold text-white mb-4 text-center">
                 Acknowledgment

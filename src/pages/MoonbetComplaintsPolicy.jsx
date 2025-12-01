@@ -18,8 +18,8 @@ const MoonbetComplaintsPolicy = () => {
       />
       <defs>
         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F07730" />
-          <stop offset="100%" stopColor="#EFD28E" />
+          <stop offset="0%" stopColor="#dc1fff" />
+          <stop offset="100%" stopColor="#5a3799" />
         </linearGradient>
       </defs>
     </svg>
@@ -74,26 +74,26 @@ const MoonbetComplaintsPolicy = () => {
 
             <ul className="space-y-2 mb-6">
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Email:</span>{" "}
                   <a
                     href="mailto:support@moonbet.games"
-                    className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                    className="text-[#8c5e1e] hover:text-[#dc1fff] transition-colors"
                   >
                     support@moonbet.games
                   </a>
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Live Chat:</span> 24/7
                   accessible via Moonbet.games
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Contact Form:</span>{" "}
                   Available on Moonbet.games
@@ -107,31 +107,31 @@ const MoonbetComplaintsPolicy = () => {
 
             <ul className="space-y-2">
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Your full name and account information
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   A detailed description of the complaint
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Relevant dates, transaction IDs, or game round numbers
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Any supporting documentation or screenshots
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Your preferred method of resolution
                 </span>
@@ -221,55 +221,55 @@ const MoonbetComplaintsPolicy = () => {
 
             <ul className="grid sm:grid-cols-2 gap-2">
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Withdrawal or deposit issues
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Disputed game outcomes or results
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Technical malfunctions or platform errors
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Bonus or promotion disputes
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Account access problems
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Billing or transaction errors
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Customer service issues
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Responsible gambling tool malfunction
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Any other platform-related concerns
                 </span>
@@ -291,37 +291,37 @@ const MoonbetComplaintsPolicy = () => {
 
             <ul className="space-y-2">
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Your Moonbet account details
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Specific dates and times of the issue
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Transaction IDs or game round numbers
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Description of what happened and what you expected
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Screenshots or documentation supporting your claim
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   Any previous correspondence with our support team
                 </span>
@@ -363,7 +363,7 @@ const MoonbetComplaintsPolicy = () => {
                 You may escalate your complaint to our Compliance Manager at{" "}
                 <a
                   href="mailto:compliance@moonbet.games"
-                  className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                  className="text-[#EFD28E] hover:text-[#dc1fff] transition-colors"
                 >
                   compliance@moonbet.games
                 </a>
@@ -371,19 +371,19 @@ const MoonbetComplaintsPolicy = () => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Your original complaint and our response
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Explanation of why you're unsatisfied
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     What resolution you're seeking
                   </span>
@@ -402,26 +402,26 @@ const MoonbetComplaintsPolicy = () => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Small claims court proceedings
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Mediation or arbitration services
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Regulatory authority complaints (if applicable in your
                     jurisdiction)
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Third-party dispute resolution services
                   </span>
@@ -445,34 +445,34 @@ const MoonbetComplaintsPolicy = () => {
 
             <ul className="space-y-2">
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   We cannot reverse on-chain transactions, which are immutable
                   and final
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   We can investigate whether the transaction was processed
                   correctly
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   We can identify where funds are held or where they were
                   received
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   We can use blockchain explorers to verify transaction status
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   For disputes, we work with you to identify the correct
                   solution (resend to correct address, re-issue transaction,
@@ -493,21 +493,21 @@ const MoonbetComplaintsPolicy = () => {
 
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Fairness:</span> All
                   complaints are investigated objectively and impartially
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Transparency:</span> We
                   explain our findings and reasoning clearly
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Timeliness:</span> We
                   aim to resolve complaints as quickly as possible, typically
@@ -515,7 +515,7 @@ const MoonbetComplaintsPolicy = () => {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Accessibility:</span>{" "}
                   Multiple channels available; we accommodate accessibility
@@ -523,14 +523,14 @@ const MoonbetComplaintsPolicy = () => {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">Privacy:</span>{" "}
                   Complaint information is kept confidential and secure
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] mt-1">•</span>
+                <span className="text-[#dc1fff] mt-1">•</span>
                 <span className="text-gray-300 text-sm">
                   <span className="font-bold text-white">
                     Continuous Improvement:
@@ -552,31 +552,31 @@ const MoonbetComplaintsPolicy = () => {
             </h2>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-xl border border-white/10">
-                <span className="text-[#F07730]">💬</span>
+                <span className="text-[#dc1fff]">💬</span>
                 <span className="text-gray-300">
                   <span className="font-bold">Live Chat Support:</span> 24/7 via
                   Moonbet.games
                 </span>
               </div>
               <div className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-xl border border-white/10">
-                <span className="text-[#F07730]">📧</span>
+                <span className="text-[#dc1fff]">📧</span>
                 <span className="text-gray-300">
                   <span className="font-bold">Compliance Support:</span>{" "}
                   <a
                     href="mailto:support@moonbet.games"
-                    className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                    className="text-[#EFD28E] hover:text-[#dc1fff] transition-colors"
                   >
                     support@moonbet.games
                   </a>
                 </span>
               </div>
               <div className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-xl border border-white/10">
-                <span className="text-[#F07730]">👤</span>
+                <span className="text-[#dc1fff]">👤</span>
                 <span className="text-gray-300">
                   <span className="font-bold">Compliance Manager:</span>{" "}
                   <a
                     href="mailto:compliance@moonbet.games"
-                    className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                    className="text-[#EFD28E] hover:text-[#dc1fff] transition-colors"
                   >
                     compliance@moonbet.games
                   </a>
@@ -593,7 +593,7 @@ const MoonbetComplaintsPolicy = () => {
               us at{" "}
               <a
                 href="mailto:support@moonbet.games"
-                className="text-[#EFD28E] hover:text-[#F07730] transition-colors"
+                className="text-[#EFD28E] hover:text-[#dc1fff] transition-colors"
               >
                 support@moonbet.games
               </a>

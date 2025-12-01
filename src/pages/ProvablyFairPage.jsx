@@ -20,7 +20,7 @@ const ProvablyFairPage = () => {
       />
       <defs>
         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F07730" />
+          <stop offset="0%" stopColor="#dc1fff" />
           <stop offset="100%" stopColor="#EFD28E" />
         </linearGradient>
       </defs>
@@ -63,7 +63,7 @@ const ProvablyFairPage = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="wallet-btn3 rounded-2xl pb-6 text-center"
+          className="rounded-2xl pb-6 text-center"
         >
           <div className="flex items-center gap-4">
             <FairIcon />
@@ -81,7 +81,7 @@ const ProvablyFairPage = () => {
           className="space-y-6"
         >
           {/* Introduction */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <p className="text-gray-300 leading-relaxed text-sm md:text-base">
               Moonbet's Provably Fair system puts mathematical proof behind
               every bet, replacing blind trust with blockchain-verified
@@ -93,7 +93,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* What Is Provably Fair */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -117,7 +117,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* How Moonbet's Provably Fair System Works */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -172,7 +172,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* The Verification Process */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -181,7 +181,7 @@ const ProvablyFairPage = () => {
             </h2>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] font-bold">
+                <span className="text-[#dc1fff] font-bold">
                   Before betting:
                 </span>
                 <span className="text-gray-300 text-sm md:text-base">
@@ -189,7 +189,7 @@ const ProvablyFairPage = () => {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] font-bold">
+                <span className="text-[#dc1fff] font-bold">
                   During gameplay:
                 </span>
                 <span className="text-gray-300 text-sm md:text-base">
@@ -197,7 +197,7 @@ const ProvablyFairPage = () => {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] font-bold">
+                <span className="text-[#dc1fff] font-bold">
                   Outcome generation:
                 </span>
                 <span className="text-gray-300 text-sm md:text-base">
@@ -205,7 +205,7 @@ const ProvablyFairPage = () => {
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-[#F07730] font-bold">
+                <span className="text-[#dc1fff] font-bold">
                   After the round:
                 </span>
                 <span className="text-gray-300 text-sm md:text-base">
@@ -217,7 +217,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* Step-by-Step Verification Guide */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -237,19 +237,19 @@ const ProvablyFairPage = () => {
 
               <ul className="grid sm:grid-cols-1 gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     The revealed Server Seed matches the original hash
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Your Client Seed was correctly applied
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     The mathematical calculation produces the exact outcome you
                     received
@@ -282,7 +282,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* Game-Specific Implementation */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -299,25 +299,25 @@ const ProvablyFairPage = () => {
 
               <ul className="grid sm:grid-cols-1 gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Initial trajectory angle
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Peg collision physics
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Final landing slot
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Multiplier outcome
                   </span>
@@ -337,25 +337,25 @@ const ProvablyFairPage = () => {
               </p>
               <ul className="grid sm:grid-cols-1 gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Reel positions for each symbol
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Bonus round triggers
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Free spin outcomes
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Progressive jackpot contributions
                   </span>
@@ -375,20 +375,20 @@ const ProvablyFairPage = () => {
 
               <ul className="grid sm:grid-cols-1 gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Card shuffles use cryptographic randomization
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Dice rolls incorporate physical entropy with digital
                     verification
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#F07730] mt-1">•</span>
+                  <span className="text-[#dc1fff] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Roulette spins blend mechanical randomness with blockchain
                     verification
@@ -399,7 +399,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* Why Provably Fair Matters */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -456,7 +456,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* Advanced Features */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -467,7 +467,7 @@ const ProvablyFairPage = () => {
             <div className="grid md:grid-cols-2 gap-6">
               {/* Custom Client Seeds */}
               <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h3 className="text-[#F07730] font-bold text-sm md:text-base mb-2">
+                <h3 className="text-[#dc1fff] font-bold text-sm md:text-base mb-2">
                   Custom Client Seeds
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -478,7 +478,7 @@ const ProvablyFairPage = () => {
 
               {/* Bulk Verification */}
               <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h3 className="text-[#F07730] font-bold text-sm md:text-base mb-2">
+                <h3 className="text-[#dc1fff] font-bold text-sm md:text-base mb-2">
                   Bulk Verification
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -489,7 +489,7 @@ const ProvablyFairPage = () => {
 
               {/* Third-Party Integration */}
               <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h3 className="text-[#F07730] font-bold text-sm md:text-base mb-2">
+                <h3 className="text-[#dc1fff] font-bold text-sm md:text-base mb-2">
                   Third-Party Integration
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -501,7 +501,7 @@ const ProvablyFairPage = () => {
 
               {/* Open Source Tools */}
               <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                <h3 className="text-[#F07730] font-bold text-sm md:text-base mb-2">
+                <h3 className="text-[#dc1fff] font-bold text-sm md:text-base mb-2">
                   Open Source Tools
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -514,7 +514,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* FAQs Section */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-6"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
@@ -531,7 +531,7 @@ const ProvablyFairPage = () => {
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   className="relative rounded-lg p-[1px] bg-[linear-gradient(106deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.10)_35%,rgba(255,255,255,0.05)_70%,rgba(255,255,255,0)_100%)]"
                 >
-                  <div className="rounded-lg bg-[#0A0B0D]/80 backdrop-blur-sm">
+                  <div className="rounded-lg backdrop-blur-sm">
                     {/* Question */}
                     <button
                       onClick={() => toggleAccordion(index)}
@@ -543,7 +543,7 @@ const ProvablyFairPage = () => {
                       <motion.span
                         animate={{ rotate: activeIndex === index ? 45 : 0 }}
                         transition={{ duration: 0.3 }}
-                        className="text-2xl   flex-shrink-0"
+                        className="text-2xl  flex-shrink-0"
                       >
                         +
                       </motion.span>
@@ -572,7 +572,7 @@ const ProvablyFairPage = () => {
           </div>
 
           {/* Trust Through Mathematics */}
-          <div className="wallet-btn3 rounded-2xl">
+          <div className="rounded-2xl">
             <h2
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
