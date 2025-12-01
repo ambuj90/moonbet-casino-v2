@@ -248,7 +248,7 @@ const AffiliateProgram = () => {
                 {/* Title with icon */}
                 <div className="flex items-center gap-4">
                   <svg
-                    className="w-8 h-8 text-[#F07730]"
+                    className="w-8 h-8"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -285,11 +285,9 @@ const AffiliateProgram = () => {
                           borderRadius: "8px",
                           border: "1px solid rgba(255, 255, 255, 0.80)",
                           opacity: 0.5,
-                          background:
-                            "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
+
                           backdropFilter: "blur(30px)",
                           WebkitBackdropFilter: "blur(30px)",
-                          fontFamily: "Avenir, -apple-system, sans-serif",
                         }}
                       >
                         <svg
@@ -329,7 +327,7 @@ const AffiliateProgram = () => {
                           className="flex items-center gap-3"
                         >
                           <span className="text-gray-400">Code:</span>
-                          <span className="text-[#F07730] font-bold text-xl">
+                          <span className=" font-bold text-xl">
                             {referralCode}
                           </span>
                         </div>
@@ -340,8 +338,7 @@ const AffiliateProgram = () => {
                         <div
                           style={{
                             ...subHeadingStyle,
-                            background: "rgba(0, 0, 0, 0.5)",
-                            border: "1px solid rgba(255, 255, 255, 0.2)",
+                            border: "1px solid",
                             borderRadius: "12px",
                             padding: "14px 20px",
                           }}
@@ -353,7 +350,7 @@ const AffiliateProgram = () => {
                         </div>
                         <button
                           onClick={handleCopy}
-                          className="w-12 h-12 bg-gradient-to-r from-[#F07730] to-[#F07730] text-white font-bold 
+                          className="w-12 h-12 bg-gradient-to-r from-[#dc1fff] to-[#5a3799] text-white font-bold 
                                    rounded-xl hover:shadow-lg hover:shadow-[#F07730]/25 transition-all duration-200
                                    hover:scale-[1.02] active:scale-[0.98] min-w-[100px]
                                    flex items-center justify-center"
@@ -469,7 +466,7 @@ const AffiliateProgram = () => {
               <p className="affiliate-para">Total Referrals</p>
               <div className="flex items-center gap-3 wallet-btn3 relative p-3">
                 <svg
-                  className="w-6 h-6 text-[#F07730]"
+                  className="w-6 h-6 text-[#dc1fff]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
