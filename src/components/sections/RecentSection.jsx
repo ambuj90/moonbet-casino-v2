@@ -130,13 +130,13 @@ const RecentSection = () => {
   };
 
   const handlePlayNow = (game) => {
-  const slug = game.name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+    const slug = game.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
 
-  navigate(`/game/${game.uuid}/${slug}`);
-};
+    navigate(`/game/${game.uuid}/${slug}`);
+  };
 
   const handleViewAll = () => {
     navigate("/casino/recent"); // Navigate to all live casino page
@@ -345,7 +345,7 @@ const RecentSection = () => {
             {/* View All Button */}
             <motion.button
               onClick={handleViewAll}
-              className="view_btn text-[#A7A7A7] hover:text-white transition-colors duration-300 "
+              className="view_btn hover:text-white transition-colors duration-300 "
               style={{
                 fontFamily: "Neue Plak",
                 fontSize: "14px",
@@ -353,7 +353,7 @@ const RecentSection = () => {
                 fontWeight: 400,
                 lineHeight: "24px", // 171.429%
                 textTransform: "capitalize",
-                background: "rgba(255, 255, 255, 0.20)",
+                background: "#282753",
                 padding: "2px 10px",
               }}
               whileHover={{ scale: 1.05 }}
