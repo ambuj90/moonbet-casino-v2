@@ -286,7 +286,7 @@ const GamePage = () => {
           />
 
           {/* Responsive Inner Layout */}
-          <div className="relative w-full flex justify-between gap-4 py-2 min-h-[64px] md:min-h-[64px] auto-rows-auto">
+          <div className="relative w-full flex flex-col justify-between gap-4 py-2 min-h-[64px] md:min-h-[64px] auto-rows-auto">
             {/* LEFT SIDE — Logo + Game Info */}
             <div className="flex items-center gap-2 sm:gap-3 flex-shrink min-w-0">
               {/* Logo */}
@@ -310,12 +310,10 @@ const GamePage = () => {
             </div>
 
             {/* RIGHT SIDE — Buttons & Play Toggle */}
-            <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-1 sm:gap-4 ">
               {/* Rakeback Available Box */}
               <div
-                className="
-    flex items-center gap-2 sm:gap-3 
-    px-3 py-2 rounded-xl 
+                className=" flex items-center gap-2 sm:gap-3 px-3 py-2 rounded-xl 
     bg-[var(--glass-white-10)] 
     border border-[var(--glass-white-20)] 
     backdrop-blur-md 
@@ -370,7 +368,7 @@ const GamePage = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-2 rounded-lg bg-[var(--bg-dark-purple-2)] hover:bg-[var(--glass-white-10)]
+                className="p-2 md:flex hidden rounded-lg bg-[var(--bg-dark-purple-2)] hover:bg-[var(--glass-white-10)]
         text-[var(--text-light-grey)] transition-all"
                 title="Screenshot"
               >

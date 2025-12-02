@@ -144,8 +144,6 @@ const HomeRewardsSection = () => {
                   style={{
                     width: "100%",
                     height: "195px",
-                    boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
-                    backdropFilter: "blur(2px)",
                   }}
                 >
                   {/* Content - Left Side */}
@@ -207,14 +205,6 @@ const HomeRewardsSection = () => {
                   </div>
 
                   {/* Hover Effect - GPU Accelerated */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none rounded-[15px]"
-                    style={{
-                      transition:
-                        "opacity 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)",
-                      willChange: "opacity",
-                    }}
-                  />
                 </div>
               </motion.div>
             ))}
