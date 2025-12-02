@@ -286,7 +286,7 @@ const GamePage = () => {
           />
 
           {/* Responsive Inner Layout */}
-          <div className="relative w-full flex flex-col justify-between gap-4 py-2 min-h-[64px] md:min-h-[64px] auto-rows-auto">
+          <div className="relative w-full flex justify-between gap-4 py-2 min-h-[64px] md:min-h-[64px] auto-rows-auto">
             {/* LEFT SIDE — Logo + Game Info */}
             <div className="flex items-center gap-2 sm:gap-3 flex-shrink min-w-0">
               {/* Logo */}
