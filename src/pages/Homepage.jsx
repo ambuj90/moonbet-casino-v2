@@ -45,6 +45,7 @@ const Homepage = () => {
       {/* <AwardSection /> */}
       <TruestedSection />
       <BrandSection />
+      <CryptoPaymentSection />
     </div>
   );
 };

@@ -216,24 +216,15 @@ const WalletDropdownCenter = ({
               WebkitBackdropFilter: "blur(67.5px)",
             }}
           >
-            <div
-              className="
-    mt-3 mb-2 px-3 py-2
-    flex items-center justify-between
-    rounded-xl
-    bg-white/5
-    border border-white/10
-    backdrop-blur-md
-  "
-            >
+            <div className="mt-3 mb-2 px-3 py-2 flex items-center justify-between rounded-[15px] border border-[#555594] bg-[rgba(13,14,54,0.50)] backdrop-blur-[30px]">
               {/* Left Section */}
               <div className="flex flex-col leading-tight">
-                <span className="text-[12px] text-white/60 tracking-wide">
+                <span className="text-[12px] text-[#9292D2] tracking-wide">
                   Rakeback Available
                 </span>
 
                 <div className="flex items-center gap-2 mt-1">
-                  <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <div className="w-5 h-5 bg-white/15 flex items-center justify-center">
                     <img
                       src="/icons/gift.svg"
                       className="w-3 h-3 opacity-90"
@@ -241,23 +232,28 @@ const WalletDropdownCenter = ({
                     />
                   </div>
 
-                  <span className="text-white text-[15px] font-semibold">
+                  <span className="text-white text-[15px] font-semibold opacity-50">
                     ${Number(rakeback || 0).toFixed(2)}
                   </span>
                 </div>
               </div>
 
-              {/* Claim Button */}
               <button
                 onClick={claimRakeback}
                 disabled={rakeback <= 0 || isClaiming}
-                className={`px-4 py-1.5 rounded-lg text-sm font-medium border transition-all
-      ${
-        rakeback > 0
-          ? "bg-[#28C203] text-black border-[#28C203] hover:bg-[#1EA502]/90"
-          : "bg-white/5 text-white/40 cursor-not-allowed border-white/15"
-      }
-    `}
+                className={`claim-btn relative px-4 py-1.5 rounded-[4px] transition-all select-none ${
+                  rakeback > 0 ? "text-white" : "cursor-not-allowed"
+                }
+  `}
+                style={{
+                  background:
+                    rakeback > 0
+                      ? "linear-gradient(180deg, rgba(40,194,3,0) 0%, rgba(0,0,3,0.40) 70%, rgba(40,194,3,0.40) 100%)"
+                      : "rgba(255,255,255,0.05) text-white",
+                  borderRadius: "4px",
+                  background:
+                    "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
+                }}
               >
                 {isClaiming ? "Claiming..." : "Claim"}
               </button>

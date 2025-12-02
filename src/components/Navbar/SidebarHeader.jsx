@@ -330,7 +330,7 @@ const SidebarHeader = ({
                       </span>
                       {item.id === "originals" && subItem.comingSoon && (
                         <span
-                          className="ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
+                          className="claim-btn ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px] whitespace-nowrap tracking-wide"
                           style={{
                             background:
                               "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
@@ -846,7 +846,7 @@ const SidebarHeader = ({
                                     {item.id === "originals" &&
                                       subItem.comingSoon && (
                                         <span
-                                          className="ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
+                                          className="claim-btn ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
                                           style={{
                                             background:
                                               "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
@@ -1061,7 +1061,7 @@ const SidebarHeader = ({
                               {/* ⭐ coming soon Badge */}
                               {item.comingSoon && (
                                 <span
-                                  className="ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
+                                  className="claim-btn ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
                                   style={{
                                     background:
                                       "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",

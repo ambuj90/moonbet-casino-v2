@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import { BegambleawareIcon, ContactIcon } from "../ui-elements/svg-img";
 import CryptoPaymentSection from "../sections/CryptoPaymentSection";
 import TrustBadgesFinal from "../sections/TrustBadges";
-import TruestedSection from "../sections/TrustedSection";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -142,16 +141,10 @@ const Footer = () => {
 
   return (
     <>
-      <footer
-        className="customborder-footer relative w-full overflow-hidden"
-        style={{
-          paddingTop: "clamp(30px, 4vw, 100px)",
-        }}
-      >
-        <CryptoPaymentSection />
+      <footer className="customborder-footer relative w-full overflow-hidden">
         {/* Footer Content */}
         <motion.div
-          className="relative z-10 py-6 md:py-8 flex flex-col"
+          className="relative z-10 py-6 md:py-2 flex flex-col"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
