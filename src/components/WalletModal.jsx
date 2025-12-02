@@ -1138,29 +1138,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                 }}
               >
                 <div className="flex items-center gap-3">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg shadow-[#F07730]/30"
-                    style={{
-                      background: "var(--cta-pink-gradient)",
-                    }}
-                  >
-                    <svg
-                      className="wallet-btn2 w-5 h-5"
-                      fill="none"
-                      stroke="#fff"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                      />
-                    </svg>
-                  </div>
-                  <h2 className="text-xl font-bold text-white drop-shadow-lg">
-                    Wallet
-                  </h2>
+                  <h2 className="text-xl text-white drop-shadow-lg">WALLET</h2>
                 </div>
                 <button
                   onClick={onClose}
@@ -1217,40 +1195,6 @@ const WalletModal = ({ isOpen, onClose }) => {
                 </button>
               </div>
 
-              {/* Tab Navigation with glass effect */}
-              <div className="flex gap-4 px-4 py-2 border-b border-white/10">
-                {/* {["overview", "buycrypto", "settings"].map((tab) => ( */}
-                {["overview"].map((tab) => (
-                  <motion.button
-                    key={tab}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-4 py-2 rounded-full font-medium transition-all ${
-                      activeTab === tab
-                        ? "text-white custom-btn shadow-lg shadow-[#F07730]/30"
-                        : ""
-                    }`}
-                    style={
-                      activeTab !== tab
-                        ? {
-                            background: "rgba(255, 255, 255, 0.05)",
-                            backdropFilter: "blur(10px)",
-                            border: "1px solid rgba(255, 255, 255, 0.1)",
-                            color: "#9CA3AF",
-                          }
-                        : {}
-                    }
-                  >
-                    {tab === "overview"
-                      ? "Overview"
-                      : tab === "buycrypto"
-                      ? "Buy Crypto"
-                      : "Settings"}
-                  </motion.button>
-                ))}
-              </div>
-
               {/* Content Area with glass overlay */}
               <div className="overflow-y-auto">
                 {activeTab === "overview" && (
@@ -1264,9 +1208,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                       <div className="flex items-center justify-between gap-4  /30 px-4 py-3 rounded-xl border border-white/10">
                         {/* Left side: Label and Balance */}
                         <div className="flex flex-col">
-                          <h3 className="text-sm text-gray-400 font-medium tracking-wide">
-                            Balance
-                          </h3>
+                          <p className="font-medium tracking-wide">Balance</p>
                           <span className="text-2xl font-bold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">
                             ${walletBalance?.totalUsd?.toFixed(2) || "0.00"}
                           </span>
@@ -1274,7 +1216,7 @@ const WalletModal = ({ isOpen, onClose }) => {
 
                         {/* Right side: Gradient Icon */}
                         <div
-                          className="w-10 h-10 rounded-full flex items-center justify-center text-white font-extrabold text-lg shadow-[0_0_12px_rgba(240,119,48,0.4)]"
+                          className="w-10 h-10 rounded-full flex items-center justify-center text-white font-extrabold text-lg"
                           style={{
                             background: "var(--cta-pink-gradient)",
                           }}

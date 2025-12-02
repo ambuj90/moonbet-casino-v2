@@ -116,17 +116,12 @@ const Footer = () => {
         label: "Self Exclusion Policy",
         path: "/self-exclusion-policy",
       },
-      {
-        label: "Editorial Policy",
-        path: "/editorial-policy",
-      },
     ],
     moonbet: [
       { label: "Betting Rules", path: "/betting-rules" },
       { label: "Provably Fair", path: "/provably-fair" },
       { label: "Responsible Gambling", path: "/responsible-gambling" },
       { label: "RNG", path: "/rng" },
-      { label: "KYC Policy", path: "/kyc-Policy" },
       {
         label: "Moonbet Complaints Policy",
         path: "/moonbet-complaints-policy",
@@ -135,6 +130,10 @@ const Footer = () => {
       {
         label: "Moonbet Accessibility",
         path: "/moonbet-accessibility-statement",
+      },
+      {
+        label: "Editorial Policy",
+        path: "/editorial-policy",
       },
     ],
   };
