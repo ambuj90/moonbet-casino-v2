@@ -149,20 +149,6 @@ const Settings = () => {
     );
   }
 
-  //   if (showLoginModal) {
-  //   return (
-  //     <LoginSignup
-  //       isOpen={true}
-  //       onClose={() => setShowLoginModal(false)}
-  //       defaultTab="login"
-  //       onLoginSuccess={() => {
-  //         setShowLoginModal(false);
-  //         window.location.reload(); // refresh after successful login
-  //       }}
-  //     />
-  //   );
-  // }
-
   return (
     <div className="min-h-screen py-6 px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -274,7 +260,7 @@ const Settings = () => {
 
           {/* RIGHT COLUMN */}
           <div className="space-y-6">
-            <VerificationSection />
+            {/* <VerificationSection /> */}
 
             <SecuritySection
               userData={userData}
@@ -283,7 +269,7 @@ const Settings = () => {
               setEnable2FA={setEnable2FA}
             />
 
-            <ConnectedWalletsSection />
+            {/* <ConnectedWalletsSection /> */}
           </div>
         </div>
       </div>

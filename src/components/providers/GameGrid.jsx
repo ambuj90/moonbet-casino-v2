@@ -103,7 +103,7 @@ const GameGrid = ({
                         [game.uuid]: !prev[game.uuid],
                       }));
                     }}
-                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-50 ${
+                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-10 ${
                       favorite?.[game.uuid]
                         ? ""
                         : "hover:bg-[rgba(255,255,255,0.10)]"

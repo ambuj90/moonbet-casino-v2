@@ -241,18 +241,16 @@ const WalletDropdownCenter = ({
               <button
                 onClick={claimRakeback}
                 disabled={rakeback <= 0 || isClaiming}
-                className={`claim-btn relative px-4 py-1.5 rounded-[4px] transition-all select-none ${
-                  rakeback > 0 ? "text-white" : "cursor-not-allowed"
-                }
+                className={`
+    claim-btn relative px-4 py-1.5 rounded-[4px] transition-all select-none
+    ${rakeback > 0 ? "text-white" : "cursor-not-allowed text-white/40"}
   `}
                 style={{
                   background:
                     rakeback > 0
-                      ? "linear-gradient(180deg, rgba(40,194,3,0) 0%, rgba(0,0,3,0.40) 70%, rgba(40,194,3,0.40) 100%)"
-                      : "rgba(255,255,255,0.05) text-white",
+                      ? "linear-gradient(180deg, rgba(40,194,3,0.00) 0%, rgba(40,194,3,0.40) 100%)"
+                      : "rgba(255,255,255,0.05)",
                   borderRadius: "4px",
-                  background:
-                    "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
                 }}
               >
                 {isClaiming ? "Claiming..." : "Claim"}
