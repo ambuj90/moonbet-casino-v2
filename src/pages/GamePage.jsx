@@ -286,7 +286,16 @@ const GamePage = () => {
           />
 
           {/* Responsive Inner Layout */}
-          <div className="relative w-full flex justify-between gap-4 py-2 min-h-[64px] md:min-h-[64px] auto-rows-auto">
+          <div
+            className="
+    relative w-full 
+    flex flex-col sm:flex-row 
+    sm:items-center 
+    sm:justify-between 
+    gap-3 sm:gap-4 
+    py-2
+  "
+          >
             {/* LEFT SIDE — Logo + Game Info */}
             <div className="flex items-center gap-2 sm:gap-3 flex-shrink min-w-0">
               {/* Logo */}
@@ -299,59 +308,66 @@ const GamePage = () => {
               </div>
 
               {/* Game Info */}
-              <div>
-                <h3 className="font-bold text-xs sm:text-sm md:text-base text-[var(--text-light-grey)] truncate max-w-[120px] sm:max-w-none">
+              <div className="min-w-0">
+                <h3 className="font-bold text-xs sm:text-sm md:text-base text-[var(--text-light-grey)] truncate max-w-[140px] sm:max-w-[220px] md:max-w-none">
                   {gameData.name}
                 </h3>
-                <p className="text-[10px] sm:text-xs text-[var(--text-lavender-2)]">
+                <p className="text-[10px] sm:text-xs text-[var(--text-lavender-2)] truncate max-w-[160px] sm:max-w-none">
                   {gameData.provider}
                 </p>
               </div>
             </div>
 
             {/* RIGHT SIDE — Buttons & Play Toggle */}
-            <div className="flex items-center gap-1 sm:gap-4 ">
+            <div
+              className="
+      flex flex-wrap 
+      items-center 
+      justify-end 
+      gap-2 sm:gap-3 md:gap-4 
+      w-full sm:w-auto
+    "
+            >
               {/* Rakeback Available Box */}
               <div
-                className=" flex items-center gap-2 sm:gap-3 px-3 py-2 rounded-xl 
-    bg-[var(--glass-white-10)] 
-    border border-[var(--glass-white-20)] 
-    backdrop-blur-md 
-    shadow-[0_4px_12px_rgba(0,0,0,0.25)]
-  "
+                className="
+        flex items-center gap-2 sm:gap-3 
+        px-3 py-2 
+        rounded-xl 
+        bg-[var(--glass-white-10)] 
+        border border-[var(--glass-white-20)] 
+        backdrop-blur-md 
+        shadow-[0_4px_12px_rgba(0,0,0,0.25)]
+        max-w-full
+      "
               >
-                {/* Title */}
                 <div className="text-[var(--text-lavender-2)] text-xs sm:text-sm font-semibold whitespace-nowrap">
                   Rakeback
                 </div>
 
-                {/* Amount & Claim */}
                 <div className="flex items-center gap-2 sm:gap-3">
-                  {/* Dollar Icon */}
                   <div
                     className="
-        w-4 h-4 sm:w-5 sm:h-5 
-        rounded-full flex items-center justify-center 
-        bg-[var(--cta2-green)] 
-        text-[var(--black)] 
-        text-[10px] sm:text-xs font-extrabold 
-        shadow-md
-      "
+            w-4 h-4 sm:w-5 sm:h-5 
+            rounded-full flex items-center justify-center 
+            bg-[var(--cta2-green)] 
+            text-[var(--black)] 
+            text-[10px] sm:text-xs font-extrabold 
+            shadow-md
+          "
                   >
                     $
                   </div>
 
-                  {/* Amount */}
                   <span className="text-sm sm:text-base font-semibold">0</span>
 
-                  {/* Claim Button */}
                   <button
                     className="
-        px-2 py-1 
-        rounded-lg text-[10px] sm:text-xs font-bold 
-        text-[var(--text-light-grey)]
-        transition-all
-      "
+            px-2 py-1 
+            rounded-lg text-[10px] sm:text-xs font-bold 
+            text-[var(--text-light-grey)]
+            transition-all
+          "
                     style={{
                       background:
                         "linear-gradient(180deg, var(--cta2-light-green) 0%, var(--cta2-green) 100%)",
@@ -364,12 +380,19 @@ const GamePage = () => {
                 </div>
               </div>
 
-              {/* Screenshot Button */}
+              {/* Screenshot Button (Desktop only) */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-2 md:flex hidden rounded-lg bg-[var(--bg-dark-purple-2)] hover:bg-[var(--glass-white-10)]
-        text-[var(--text-light-grey)] transition-all"
+                className="
+        p-2 
+        hidden md:flex 
+        rounded-lg 
+        bg-[var(--bg-dark-purple-2)] 
+        hover:bg-[var(--glass-white-10)]
+        text-[var(--text-light-grey)] 
+        transition-all
+      "
                 title="Screenshot"
               >
                 <svg
@@ -391,7 +414,14 @@ const GamePage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => toggleFullScreen(iframeRef)}
-                className="p-2 rounded-lg bg-[var(--bg-dark-purple-2)] hover:bg-[var(--glass-white-10)] text-[var(--text-light-grey)] transition-all"
+                className="
+        p-2 
+        rounded-lg 
+        bg-[var(--bg-dark-purple-2)] 
+        hover:bg-[var(--glass-white-10)] 
+        text-[var(--text-light-grey)] 
+        transition-all
+      "
                 title="Fullscreen"
               >
                 <svg
@@ -410,38 +440,38 @@ const GamePage = () => {
                 </svg>
               </motion.button>
 
-              {/* Divider (Only Desktop) */}
-              <div className="hidden md:block w-px h-8 bg-[var(--glass-white-20)]"></div>
+              {/* Divider (Desktop only) */}
+              <div className="hidden md:block w-px h-8 bg-[var(--glass-white-20)]" />
 
               {/* Toggle (Fun / Real) */}
-              <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-                {/* Fun Play Text */}
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
                 <span
-                  className={`text-[10px] sm:text-xs md:text-sm font-semibold ${
-                    !isRealPlay
-                      ? "text-[var(--cta-pink)]"
-                      : "text-[var(--text-light-grey)]"
-                  }`}
+                  className={`
+          text-[10px] sm:text-xs md:text-sm font-semibold
+          ${
+            !isRealPlay
+              ? "text-[var(--cta-pink)]"
+              : "text-[var(--text-light-grey)]"
+          }
+        `}
                 >
                   Fun Play
                 </span>
 
-                {/* Toggle Button */}
                 <motion.button
                   whileTap={{ scale: 0.95 }}
                   onClick={handlePlayToggle}
-                  className={`relative w-12 h-6 sm:w-14 sm:h-7 md:w-16 md:h-8 rounded-full p-1 flex items-center transition-all 
-            ${
-              isRealPlay
-                ? "bg-[var(--bg-dark-purple-2)] shadow-lg"
-                : "bg-[var(--bg-dark-purple-2)]"
-            }
-          `}
+                  className={`
+          relative 
+          w-12 h-6 sm:w-14 sm:h-7 md:w-16 md:h-8 
+          rounded-full p-1 
+          flex items-center 
+          transition-all 
+          bg-[var(--bg-dark-purple-2)] 
+        `}
                 >
                   <motion.div
-                    animate={{
-                      x: isRealPlay ? "150%" : "0%",
-                    }}
+                    animate={{ x: isRealPlay ? "150%" : "0%" }}
                     transition={{
                       type: "spring",
                       stiffness: 400,
@@ -451,13 +481,15 @@ const GamePage = () => {
                   />
                 </motion.button>
 
-                {/* Real Play Text */}
                 <span
-                  className={`text-[10px] sm:text-xs md:text-sm font-semibold ${
-                    isRealPlay
-                      ? "text-[var(--cta-pink)]"
-                      : "text-[var(--text-lavender-2)]"
-                  }`}
+                  className={`
+          text-[10px] sm:text-xs md:text-sm font-semibold
+          ${
+            isRealPlay
+              ? "text-[var(--cta-pink)]"
+              : "text-[var(--text-lavender-2)]"
+          }
+        `}
                 >
                   Real Play
                 </span>
