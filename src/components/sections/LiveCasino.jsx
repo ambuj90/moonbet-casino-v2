@@ -384,17 +384,9 @@ const LiveCasino = () => {
                     className="group cursor-pointer flex-shrink-0"
                     custom={index}
                   >
-                    <motion.div
-                      className="relative rounded-xl overflow-hidden border border-white/10  transition-all duration-300"
-                      whileHover={{
-                        boxShadow: "0 10px 30px rgba(240, 119, 48, 0.2)",
-                        borderRadius: "12px",
-                        background: "rgba(8, 8, 8, 0.30)",
-                        backdropFilter: "blur(2px)",
-                      }}
-                    >
+                    <motion.div className="relative rounded-xl overflow-hidden border border-white/10  transition-all duration-300">
                       {/* Insert the updated image block here */}
-                      <div className="relative w-full aspect-[18/12]   flex items-center justify-center overflow-hidden rounded-xl">
+                      <div className="relative w-full aspect-[18/12] flex items-center justify-center overflow-hidden rounded-xl">
                         <motion.img
                           src={game.image}
                           alt={game.name}
@@ -406,14 +398,11 @@ const LiveCasino = () => {
                         <div className="absolute top-2 left-2 bg-[#6A4DF4] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.name || "game"}
                         </div>
-                        {/* <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
-                          {game.provider || "Endrophia"}
-                        </div> */}
                       </div>
 
                       {/* Overlay with Play Button */}
                       <motion.div
-                        className="absolute inset-0  bg-[#080808]/70 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
+                        className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto bg-[var(--overlay-bg)] backdrop-blur-[2px]"
                         variants={overlayVariants}
                         initial="idle"
                         animate="idle"

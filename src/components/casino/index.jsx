@@ -100,10 +100,6 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                   variants={cardVariants}
                   custom={i}
                   className="relative overflow-hidden cursor-pointer group transition-all"
-                  whileHover={{
-                    borderColor: "rgba(240, 119, 48, 0.5)",
-                    boxShadow: "0 10px 30px rgba(240, 119, 48, 0.2)",
-                  }}
                 >
                   {/* Favorite Icon (Top Right) */}
                   <button
@@ -209,7 +205,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                     />
 
                     {/* Overlay with Play Now Button */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto bg-[var(--overlay-bg)] backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all">
                       <motion.button
                         onClick={() => handlePlayNow(game)}
                         className="px-4 py-2 rounded-full text-white font-semibold text-sm"

@@ -23,7 +23,7 @@ const CasinoGameCards = () => {
       w: "27%",
       h: "160px",
       title: "Game Shows",
-      icon: "/icons/game-shows.svg",
+      icon: "/icons/game-shows2.svg",
       img: "/category/img10.png",
       desc: "How about live game shows?",
       background: "rgba(90, 55, 153, 0.50)",
@@ -36,7 +36,7 @@ const CasinoGameCards = () => {
       w: "26%",
       h: "160px",
       title: "Slots",
-      icon: "/icons/slots.svg",
+      icon: "/icons/slots2.svg",
       img: "/category/img3.png",
       desc: "How about live game shows?",
       background: "rgba(85, 81, 169, 0.50)",
@@ -49,7 +49,7 @@ const CasinoGameCards = () => {
       w: "50%",
       h: "160px",
       title: "Blackjack",
-      icon: "/icons/blackjack.svg",
+      icon: "/icons/blackjack2.svg",
       img: "/category/img11.png",
       desc: "Dive into our in-house games, live casino and slots",
       background: "rgba(85, 81, 169, 0.50)",
@@ -62,7 +62,7 @@ const CasinoGameCards = () => {
       w: "50%",
       h: "160px",
       title: "Roulette",
-      icon: "/icons/roulette.svg",
+      icon: "/icons/roulette2.svg",
       img: "/category/img6.png",
       desc: "Dive into our in-house games, live casino and slots",
       background: "rgba(132, 67, 160, 0.50)",
@@ -89,8 +89,8 @@ const CasinoGameCards = () => {
       style={!responsive ? { width: c.w } : {}}
     >
       {/* Floating Label */}
-      <div className="absolute top-2 left-2 z-30 flex items-center gap-2 px-0 md:px-3 py-[3px] rounded-lg text-white/60 text-xs sm:text-sm">
-        <img src={c.icon} className="w-4 h-4" alt="" />
+      <div className="absolute top-2 left-2 z-30 flex items-center gap-2 px-0 md:px-3 py-[3px] text-[18px] rounded-lg text-white/60">
+        <img src={c.icon} className="w-5 h-5" alt="" />
         {c.title}
       </div>
 
@@ -122,7 +122,7 @@ const CasinoGameCards = () => {
               style={{
                 color: "rgba(225, 225, 225, 0.30)",
                 fontFamily: "Neue Plak",
-                fontSize: "14px",
+                fontSize: "16px",
                 fontWeight: "400",
                 lineHeight: "18px",
               }}
@@ -135,7 +135,7 @@ const CasinoGameCards = () => {
           <img
             src={c.img}
             alt={c.title}
-            className="absolute bottom-0 right-0 h-full max-h-full object-contain z-10 pointer-events-none"
+            className="absolute bottom-0 right-0 h-full max-h-full w-1/2 object-contain z-10 pointer-events-none"
             style={{
               objectPosition:
                 responsive && (c.id === 1 || c.id === 3 || c.id === 4)

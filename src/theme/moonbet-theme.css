@@ -24,6 +24,7 @@
   ============================ */
   --bg-dark-purple-1: #0d0e36; /* Main deep background */
   --bg-dark-purple-2: #1c1d49; /* Section + sidebar background */
+  --overlay-bg: rgba(40, 39, 83, 0.5);
 
   /* ===========================
      HEADER / MENU

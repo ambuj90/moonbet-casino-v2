@@ -378,15 +378,9 @@ const TrandingSection = () => {
                     className="group cursor-pointer flex-shrink-0"
                     custom={index}
                   >
-                    <motion.div
-                      className="relative rounded-xl overflow-hidden border border-white/10 hover:border-[#F07730]/50 transition-all duration-300"
-                      whileHover={{
-                        borderColor: "rgba(240, 119, 48, 0.5)",
-                        boxShadow: "0 10px 30px rgba(240, 119, 48, 0.2)",
-                      }}
-                    >
+                    <motion.div className="relative rounded-xl overflow-hidden border border-white/10 hover:border-[#F07730]/50 transition-all duration-300">
                       {/* Increased image size but kept 16:9 proportion */}
-                      <div className="relative w-full aspect-[18/12]   flex items-center justify-center overflow-hidden rounded-xl">
+                      <div className="relative w-full aspect-[18/12]  flex items-center justify-center overflow-hidden rounded-xl">
                         <motion.img
                           src={game.image}
                           alt={game.name}
@@ -397,9 +391,7 @@ const TrandingSection = () => {
                         />
 
                         {/* Tags */}
-                        <div className="absolute top-2 left-2 bg-[#6A4DF4] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
-                          NEW
-                        </div>
+
                         <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           99% RTP
                         </div>
@@ -407,7 +399,7 @@ const TrandingSection = () => {
 
                       {/* Overlay with Play Button */}
                       <motion.div
-                        className="absolute inset-0  bg-[#080808]/70 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
+                        className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto bg-[var(--overlay-bg)] backdrop-blur-[2px]"
                         variants={overlayVariants}
                         initial="idle"
                         animate="idle"
@@ -415,7 +407,7 @@ const TrandingSection = () => {
                       >
                         <motion.button
                           onClick={() => handlePlayNow(game)}
-                          className="px-4 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-[#F07730] to-[#EFD28E] rounded-full text-white font-semibold text-sm sm:text-base shadow-lg"
+                          className="px-4 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r rounded-full text-white font-semibold text-sm sm:text-base shadow-lg"
                           variants={buttonVariants}
                           whileTap="tap"
                         >

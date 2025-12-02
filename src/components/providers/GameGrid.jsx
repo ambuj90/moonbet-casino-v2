@@ -23,27 +23,18 @@ const GameGrid = ({
         const userId = user.id || "690b0290cb255ca66b14a529";
         let apiUrl = "";
 
-        // 🔥 If provider filter is active
         if (provider) {
           apiUrl = `/wallet-service/api/games?provider=${provider}`;
-        }
-
-        // 🔥 Other categories
-        else {
+        } else {
           const params = new URLSearchParams();
-
           if (type && type !== "all") params.append("type", type);
           if (filter) params.append("sortBy", filter);
           if (searchTerm) params.append("name", searchTerm);
-
           const query = params.toString() ? `?${params.toString()}` : "";
           apiUrl = `/wallet-service/api/games${query}`;
         }
 
-        console.log("🔗 FINAL GameGrid API:", apiUrl);
-
         const { data } = await axios.get(apiUrl);
-
         if (data?.success) setGames(data.data || []);
         else if (Array.isArray(data?.data)) setGames(data.data);
         else setGames([]);
@@ -59,13 +50,13 @@ const GameGrid = ({
   }, [type, filter, searchTerm, provider]);
 
   const handlePlayNow = (game) => {
-  const slug = game.name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
+    const slug = game.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
 
-  navigate(`/game/${game.uuid}/${slug}`);
-};
+    navigate(`/game/${game.uuid}/${slug}`);
+  };
 
   const handleLoadMore = () => setVisibleCount((prev) => prev + 48);
 
@@ -79,9 +70,9 @@ const GameGrid = ({
   };
 
   return (
-    <section className="w-full   py-10">
+    <section className="w-full py-10">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="  font-['Neuropolitical'] text-xl mb-6 uppercase">
+        <h2 className="font-['Neuropolitical'] text-xl mb-6 uppercase">
           {`${provider}`.toUpperCase()} GAMES
         </h2>
 
@@ -101,27 +92,21 @@ const GameGrid = ({
                   key={game.uuid || i}
                   variants={cardVariants}
                   custom={i}
-                  className="relative rounded-xl overflow-hidden border border-white/10  cursor-pointer group transition-all"
-                  style={{
-                    boxShadow: "0 10px 30px rgba(240, 119, 48, 0.2)",
-                    borderRadius: "12px",
-                    background: "rgba(8, 8, 8, 0.30)",
-                    backdropFilter: "blur(2px)",
-                  }}
+                  className="relative overflow-hidden cursor-pointer group transition-all"
                 >
-                  {/* Favorite Icon (Top Right) */}
+                  {/* Favorite Icon */}
                   <button
                     onClick={(e) => {
-                      e.stopPropagation(); // prevents PLAY NOW trigger
+                      e.stopPropagation();
                       setFavorite((prev) => ({
                         ...prev,
                         [game.uuid]: !prev[game.uuid],
                       }));
                     }}
-                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px]   transition-all duration-300 z-50 ${
+                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-50 ${
                       favorite?.[game.uuid]
                         ? ""
-                        : " hover:bg-[rgba(240,119,48,0.10)]"
+                        : "hover:bg-[rgba(255,255,255,0.10)]"
                     }`}
                   >
                     <svg
@@ -130,22 +115,35 @@ const GameGrid = ({
                       height="16"
                       viewBox="0 0 18 16"
                       fill={
-                        favorite?.[game.uuid]
-                          ? "rgba(209, 51, 51, 1)"
-                          : "#7D7D7D"
+                        favorite?.[game.uuid] ? "rgba(209,51,51,1)" : "#7D7D7D"
                       }
                       className="transition-all duration-300"
                     >
                       <path d="M12.5107 0C13.9776 7.87092e-05 15.3563 0.572114 16.3936 1.60938C18.5348 3.75068 18.5349 7.23458 16.3936 9.37598L10.3721 15.3984C10.0067 15.7637 9.51929 15.9648 9 15.9648C8.48071 15.9648 7.99326 15.7636 7.62793 15.3984L1.60547 9.37598C-0.53553 7.23467 -0.535317 3.75066 1.60547 1.60938C2.64272 0.572084 4.02233 4.57993e-05 5.48926 0C6.78661 0 8.01573 0.44767 9 1.26855C9.98434 0.44767 11.2133 0 12.5107 0Z" />
                     </svg>
                   </button>
+
+                  {/* Image Wrapper */}
                   <div className="relative aspect-[18/12] overflow-hidden rounded-xl">
                     <motion.img
                       src={game.image}
                       alt={game.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0  /50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+
+                    {/* NEW OVERLAY (no red glow) */}
+                    <motion.div
+                      className="
+                        absolute inset-0 
+                        flex items-center justify-center 
+                        pointer-events-none 
+                        group-hover:pointer-events-auto
+                        bg-[var(--overlay-bg)]
+                        backdrop-blur-[2px]
+                        opacity-0 group-hover:opacity-100
+                        transition-all
+                      "
+                    >
                       <motion.button
                         onClick={() => handlePlayNow(game)}
                         className="px-4 py-2 rounded-full text-white font-semibold text-sm"
@@ -164,50 +162,12 @@ const GameGrid = ({
                               fill="#E1E1E1"
                             />
                           </g>
-                          <defs>
-                            <filter
-                              id="filter0_d_8546_318"
-                              x="0"
-                              y="0"
-                              width="53.0522"
-                              height="59.0001"
-                              filterUnits="userSpaceOnUse"
-                              color-interpolation-filters="sRGB"
-                            >
-                              <feFlood
-                                flood-opacity="0"
-                                result="BackgroundImageFix"
-                              />
-                              <feColorMatrix
-                                in="SourceAlpha"
-                                type="matrix"
-                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                result="hardAlpha"
-                              />
-                              <feOffset dy="4" />
-                              <feGaussianBlur stdDeviation="2" />
-                              <feComposite in2="hardAlpha" operator="out" />
-                              <feColorMatrix
-                                type="matrix"
-                                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                              />
-                              <feBlend
-                                mode="normal"
-                                in2="BackgroundImageFix"
-                                result="effect1_dropShadow_8546_318"
-                              />
-                              <feBlend
-                                mode="normal"
-                                in="SourceGraphic"
-                                in2="effect1_dropShadow_8546_318"
-                                result="shape"
-                              />
-                            </filter>
-                          </defs>
                         </svg>
                       </motion.button>
-                    </div>
+                    </motion.div>
                   </div>
+
+                  {/* Title */}
                   <div className="mt-2">
                     <div className="text-sm font-semibold text-white truncate">
                       {game.name}
@@ -226,7 +186,7 @@ const GameGrid = ({
                   onClick={handleLoadMore}
                   className="px-6 py-2 rounded-full text-white font-semibold text-sm shadow-md"
                   style={{
-                    background: "var(--cta-pink-gradient )",
+                    background: "var(--cta-pink-gradient)",
                   }}
                 >
                   LOAD MORE
