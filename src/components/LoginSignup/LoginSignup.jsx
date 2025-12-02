@@ -372,7 +372,7 @@ const LoginSignup = ({
     const pass = validatePassword(password);
     if (!pass.isValid) {
       toast.error(
-        "Password must be 12–15 characters and include uppercase, lowercase, number and special character."
+        "Password must be 8–16 characters and include uppercase, lowercase, number and special character."
       );
       return;
     }
@@ -463,7 +463,7 @@ const LoginSignup = ({
 
     if (!pass.isValid) {
       toast.error(
-        "Password must be 10-18 characters and include uppercase, lowercase, number and special character."
+        "Password must be 8-16 characters and include uppercase, lowercase, number and special character."
       );
       return;
     }
