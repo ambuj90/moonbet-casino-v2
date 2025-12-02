@@ -179,7 +179,7 @@ const GameBetsSection = () => {
             <div className="text-[#555594] text-xs font-medium uppercase tracking-wider">
               Game
             </div>
-            <div className="hidden md:block text-[#555594] text-xs font-medium uppercase tracking-wider">
+            <div className="hidden md:block text-[#555594] text-xs font-medium uppercase tracking-wider ml-10">
               User
             </div>
             <div className="hidden md:block text-[#555594] text-xs font-medium uppercase tracking-wider text-center">

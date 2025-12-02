@@ -940,7 +940,7 @@
 
   height: 1px;
 }
-.customborder-footer:after {
+/* .customborder-footer:after {
   content: "";
   position: absolute;
   top: 20% !important;
@@ -962,7 +962,7 @@
   border-radius: 8px;
 
   height: 1px;
-}
+} */
 .trust_btn {
   position: relative;
   border-radius: 8px;

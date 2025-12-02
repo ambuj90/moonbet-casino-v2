@@ -391,7 +391,7 @@ const RecommendedSection = () => {
                         />
 
                         {/* Tags */}
-                        <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
+                        <div className="absolute top-2 right-2  bg-[#1C1D49] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           99% RTP
                         </div>
                       </div>
