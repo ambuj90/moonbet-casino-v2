@@ -14,11 +14,11 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
 
   // Currency options with their flags/icons
   const currencies = [
-    { code: "AUD", name: "Australian Dollar", flag: "🇦🇺", color: "bg-red-500" },
-    { code: "BRL", name: "Brazilian Real", flag: "🇧🇷", color: "bg-green-500" },
-    { code: "CAD", name: "Canadian Dollar", flag: "🇨🇦", color: "bg-red-500" },
-    { code: "EUR", name: "Euro", flag: "🇪🇺", color: "bg-blue-500" },
-    { code: "GBP", name: "British Pound", flag: "🇬🇧", color: "bg-blue-600" },
+    // { code: "AUD", name: "Australian Dollar", flag: "🇦🇺", color: "bg-red-500" },
+    // { code: "BRL", name: "Brazilian Real", flag: "🇧🇷", color: "bg-green-500" },
+    // { code: "CAD", name: "Canadian Dollar", flag: "🇨🇦", color: "bg-red-500" },
+    // { code: "EUR", name: "Euro", flag: "🇪🇺", color: "bg-blue-500" },
+    // { code: "GBP", name: "British Pound", flag: "🇬🇧", color: "bg-blue-600" },
     { code: "USD", name: "US Dollar", flag: "🇺🇸", color: "bg-yellow-500" },
   ];
 
@@ -250,7 +250,7 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Info Box */}
-            <div
+            {/* <div
               className="rounded-xl p-4"
               style={{
                 background:
@@ -277,7 +277,7 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
                   to the selected currency using current exchange rates.
                 </p>
               </div>
-            </div>
+            </div> */}
 
             {/* Action Buttons */}
             <div className="flex gap-3 mt-6">
