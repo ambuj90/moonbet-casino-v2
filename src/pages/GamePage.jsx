@@ -13,7 +13,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import GamesYouLike from "../components/sections/GamesYouLike";
 
 const GamePage = () => {
-  const { game_uuid, slug } = useParams(); // actually the game name
+  const { game_uuid, slug } = useParams();
   const navigate = useNavigate();
   const iframeRef = useRef(null);
   const { isLoggedIn } = useAuthStore();
@@ -27,19 +27,16 @@ const GamePage = () => {
     localStorage.getItem("preferredCurrency") || "BTC"
   );
 
-  // React to login/logout instantly
+  // React to login/logout
   useEffect(() => {
-    if (!isLoggedIn) {
-      // 👇 if logged out while playing Real
-      if (isRealPlay) {
-        toast.info("You have logged out — switching to Fun Play...");
-        setIsRealPlay(false);
-        setLoading(true);
-      }
+    if (!isLoggedIn && isRealPlay) {
+      toast.info("You have logged out — switching to Fun Play...");
+      setIsRealPlay(false);
+      setLoading(true);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, isRealPlay]);
 
-  // Utility to toggle fullscreen
+  // Fullscreen toggle
   const toggleFullScreen = (iframeRef) => {
     const iframe = iframeRef.current;
     if (!iframe) return;
@@ -53,22 +50,19 @@ const GamePage = () => {
     }
   };
 
+  // Listen for preferredCurrency change (events)
   useEffect(() => {
-    // Whenever another component updates preferredCurrency in localStorage
     const handleCurrencyChange = () => {
       const newCurrency = localStorage.getItem("preferredCurrency") || "BTC";
       setPreferredCurrency(newCurrency);
     };
 
     window.addEventListener("currencyChanged", handleCurrencyChange);
-
-    return () => {
+    return () =>
       window.removeEventListener("currencyChanged", handleCurrencyChange);
-    };
   }, []);
 
   useEffect(() => {
-    // ✅ When preferredCurrency is updated via conversion API
     const handlePreferredCurrencyUpdate = () => {
       const newCurrency = localStorage.getItem("preferredCurrency") || "USD";
       console.log(
@@ -76,9 +70,6 @@ const GamePage = () => {
         newCurrency
       );
       setPreferredCurrency(newCurrency);
-
-      // ✅ Force reload game init with the new currency
-      // This will trigger the useEffect that depends on preferredCurrency
     };
 
     window.addEventListener(
@@ -94,10 +85,10 @@ const GamePage = () => {
     };
   }, []);
 
+  // Load game URL
   useEffect(() => {
     const fetchGameUrl = async () => {
       try {
-        // 🟢 1. Fetch game by UUID
         const { data } = await axios.get(
           `/wallet-service/api/games/${game_uuid}/details`
         );
@@ -110,7 +101,6 @@ const GamePage = () => {
         const game = data.data;
         setGameData(game);
 
-        // 🟣 2. Prepare init URL + payload
         let initUrl;
         let payload;
 
@@ -146,7 +136,6 @@ const GamePage = () => {
           };
         }
 
-        // 🟡 3. Init game session
         const initData = await axios.post(initUrl, payload);
 
         if (initData.data.success && initData.data.data?.url) {
@@ -169,11 +158,12 @@ const GamePage = () => {
     fetchGameUrl();
   }, [game_uuid, isRealPlay, preferredCurrency, navigate]);
 
+  // Scroll top when changing game
   useEffect(() => {
-    // Always scroll to the top when this page mounts or when a new game is loaded
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [game_uuid]);
 
+  // Poll balance on real play
   useEffect(() => {
     if (!isRealPlay) return;
 
@@ -188,31 +178,26 @@ const GamePage = () => {
         if (res.data?.balance !== undefined) {
           console.log("💰 Updated balance:", res.data.balance);
           localStorage.setItem("balance", res.data.balance);
-          // Optionally update a global balance state if you use Recoil/Context
         }
       } catch (err) {
         console.error("❌ Error fetching balance:", err.message);
       }
     };
 
-    // fetch immediately + every 10s
     fetchBalance();
     const interval = setInterval(fetchBalance, 10000);
-
     return () => clearInterval(interval);
   }, [isRealPlay]);
 
   const handlePlayToggle = () => {
     if (isRealPlay) {
-      // Switching back to Fun play
       setLoading(true);
       setIsRealPlay(false);
     } else {
-      // Switching to Real play → check login first
       const token = localStorage.getItem("token");
       if (!token) {
         toast.warning("Please log in to play for real money!");
-        setShowLogin(true); // 👈 open login popup instead of navigating
+        setShowLogin(true);
         return;
       }
       setLoading(true);
@@ -234,7 +219,6 @@ const GamePage = () => {
             : "Loading for Fun Play..."}
         </motion.div>
 
-        {/* Shimmer bar effect */}
         <div className="mt-6 w-64 h-2 rounded-full bg-gradient-to-r from-[#F07730]/20 via-[#EFD28E]/30 to-[#F07730]/20 overflow-hidden">
           <motion.div
             className="h-full w-1/3 bg-gradient-to-r from-[#5A3799] to-[#DC1FFF]"
@@ -256,12 +240,12 @@ const GamePage = () => {
 
   return (
     <>
-      <div className="container h-full relative flex flex-col  max-w-7xl mx-auto px-4">
+      <div className="container h-full relative flex flex-col max-w-7xl mx-auto px-4">
         <div
           className="iframe-wrapper"
           style={{
             flex: 1,
-            overflowY: "auto", // enables parent scroll
+            overflowY: "auto",
             overflowX: "hidden",
             position: "relative",
           }}
@@ -288,17 +272,16 @@ const GamePage = () => {
           {/* Responsive Inner Layout */}
           <div
             className="
-    relative w-full 
-    flex flex-col sm:flex-row 
-    sm:items-center 
-    sm:justify-between 
-    gap-3 sm:gap-4 
-    py-2
-  "
+              relative w-full 
+              flex flex-col sm:flex-row 
+              sm:items-center 
+              sm:justify-between 
+              gap-3 sm:gap-4 
+              py-2
+            "
           >
             {/* LEFT SIDE — Logo + Game Info */}
             <div className="flex items-center gap-2 sm:gap-3 flex-shrink min-w-0">
-              {/* Logo */}
               <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
                 <img
                   src="/home-assets/mobile-logo.svg"
@@ -307,7 +290,6 @@ const GamePage = () => {
                 />
               </div>
 
-              {/* Game Info */}
               <div className="min-w-0">
                 <h3 className="font-bold text-xs sm:text-sm md:text-base text-[var(--text-light-grey)] truncate max-w-[140px] sm:max-w-[220px] md:max-w-none">
                   {gameData.name}
@@ -321,25 +303,25 @@ const GamePage = () => {
             {/* RIGHT SIDE — Buttons & Play Toggle */}
             <div
               className="
-      flex flex-wrap 
-      items-center 
-      justify-end 
-      gap-2 sm:gap-3 md:gap-4 
-      w-full sm:w-auto
-    "
+                flex flex-wrap 
+                items-center 
+                justify-end 
+                gap-2 sm:gap-3 md:gap-4 
+                w-full sm:w-auto
+              "
             >
               {/* Rakeback Available Box */}
               <div
                 className="
-        flex items-center gap-2 sm:gap-3 
-        px-3 py-2 
-        rounded-xl 
-        bg-[var(--glass-white-10)] 
-        border border-[var(--glass-white-20)] 
-        backdrop-blur-md 
-        shadow-[0_4px_12px_rgba(0,0,0,0.25)]
-        max-w-full
-      "
+                  flex items-center gap-2 sm:gap-3 
+                  px-3 py-2 
+                  rounded-xl 
+                  bg-[var(--glass-white-10)] 
+                  border border-[var(--glass-white-20)] 
+                  backdrop-blur-md 
+                  shadow-[0_4px_12px_rgba(0,0,0,0.25)]
+                  max-w-full flex-shrink
+                "
               >
                 <div className="text-[var(--text-lavender-2)] text-xs sm:text-sm font-semibold whitespace-nowrap">
                   Rakeback
@@ -348,13 +330,13 @@ const GamePage = () => {
                 <div className="flex items-center gap-2 sm:gap-3">
                   <div
                     className="
-            w-4 h-4 sm:w-5 sm:h-5 
-            rounded-full flex items-center justify-center 
-            bg-[var(--cta2-green)] 
-            text-[var(--black)] 
-            text-[10px] sm:text-xs font-extrabold 
-            shadow-md
-          "
+                      w-4 h-4 sm:w-5 sm:h-5 
+                      rounded-full flex items-center justify-center 
+                      bg-[var(--cta2-green)] 
+                      text-[var(--black)] 
+                      text-[10px] sm:text-xs font-extrabold 
+                      shadow-md
+                    "
                   >
                     $
                   </div>
@@ -363,11 +345,11 @@ const GamePage = () => {
 
                   <button
                     className="
-            px-2 py-1 
-            rounded-lg text-[10px] sm:text-xs font-bold 
-            text-[var(--text-light-grey)]
-            transition-all
-          "
+                      px-2 py-1 
+                      rounded-lg text-[10px] sm:text-xs font-bold 
+                      text-[var(--text-light-grey)]
+                      transition-all flex-shrink-0
+                    "
                     style={{
                       background:
                         "linear-gradient(180deg, var(--cta2-light-green) 0%, var(--cta2-green) 100%)",
@@ -385,14 +367,14 @@ const GamePage = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="
-        p-2 
-        hidden md:flex 
-        rounded-lg 
-        bg-[var(--bg-dark-purple-2)] 
-        hover:bg-[var(--glass-white-10)]
-        text-[var(--text-light-grey)] 
-        transition-all
-      "
+                  p-2 
+                  hidden md:flex 
+                  rounded-lg 
+                  bg-[var(--bg-dark-purple-2)] 
+                  hover:bg-[var(--glass-white-10)]
+                  text-[var(--text-light-grey)] 
+                  transition-all flex-shrink-0
+                "
                 title="Screenshot"
               >
                 <svg
@@ -409,24 +391,25 @@ const GamePage = () => {
                 </svg>
               </motion.button>
 
-              {/* Fullscreen Button */}
+              {/* Fullscreen Button — ALWAYS VISIBLE, NEVER SHRINKS AWAY */}
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => toggleFullScreen(iframeRef)}
                 className="
-        p-2 
-        rounded-lg 
-        bg-[var(--bg-dark-purple-2)] 
-        hover:bg-[var(--glass-white-10)] 
-        text-[var(--text-light-grey)] 
-        transition-all
-      "
+                  p-2 
+                  rounded-lg 
+                  bg-[var(--bg-dark-purple-2)] 
+                  hover:bg-[var(--glass-white-10)] 
+                  text-[var(--text-light-grey)] 
+                  transition-all 
+                  flex-shrink-0
+                "
                 title="Fullscreen"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="sm:w-6 sm:h-6"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -444,16 +427,16 @@ const GamePage = () => {
               <div className="hidden md:block w-px h-8 bg-[var(--glass-white-20)]" />
 
               {/* Toggle (Fun / Real) */}
-              <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+              <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
                 <span
                   className={`
-          text-[10px] sm:text-xs md:text-sm font-semibold
-          ${
-            !isRealPlay
-              ? "text-[var(--cta-pink)]"
-              : "text-[var(--text-light-grey)]"
-          }
-        `}
+                    text-[10px] sm:text-xs md:text-sm font-semibold
+                    ${
+                      !isRealPlay
+                        ? "text-[var(--cta-pink)]"
+                        : "text-[var(--text-light-grey)]"
+                    }
+                  `}
                 >
                   Fun Play
                 </span>
@@ -461,14 +444,15 @@ const GamePage = () => {
                 <motion.button
                   whileTap={{ scale: 0.95 }}
                   onClick={handlePlayToggle}
-                  className={`
-          relative 
-          w-12 h-6 sm:w-14 sm:h-7 md:w-16 md:h-8 
-          rounded-full p-1 
-          flex items-center 
-          transition-all 
-          bg-[var(--bg-dark-purple-2)] 
-        `}
+                  className="
+                    relative 
+                    w-12 h-6 sm:w-14 sm:h-7 md:w-16 md:h-8 
+                    rounded-full p-1 
+                    flex items-center 
+                    transition-all 
+                    bg-[var(--bg-dark-purple-2)] 
+                    flex-shrink-0
+                  "
                 >
                   <motion.div
                     animate={{ x: isRealPlay ? "150%" : "0%" }}
@@ -483,13 +467,13 @@ const GamePage = () => {
 
                 <span
                   className={`
-          text-[10px] sm:text-xs md:text-sm font-semibold
-          ${
-            isRealPlay
-              ? "text-[var(--cta-pink)]"
-              : "text-[var(--text-lavender-2)]"
-          }
-        `}
+                    text-[10px] sm:text-xs md:text-sm font-semibold
+                    ${
+                      isRealPlay
+                        ? "text-[var(--cta-pink)]"
+                        : "text-[var(--text-lavender-2)]"
+                    }
+                  `}
                 >
                   Real Play
                 </span>
@@ -507,25 +491,26 @@ const GamePage = () => {
         <ProvidersSection />
         <GameBetsSection />
       </div>
-      {!hasToken ||
-        (showLogin && (
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center">
-            <LoginTrigger
-              buttonText=""
-              defaultTab="login"
-              forceOpen={true} // 👈 triggers modal immediately
-              onLoginSuccess={() => {
-                setShowLogin(false);
-                setIsRealPlay(true);
-              }}
-              onSignupSuccess={() => {
-                setShowLogin(false);
-                setIsRealPlay(true);
-              }}
-              className=""
-            />
-          </div>
-        ))}
+
+      {/* Login Modal */}
+      {(!hasToken || showLogin) && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+          <LoginTrigger
+            buttonText=""
+            defaultTab="login"
+            forceOpen={true}
+            onLoginSuccess={() => {
+              setShowLogin(false);
+              setIsRealPlay(true);
+            }}
+            onSignupSuccess={() => {
+              setShowLogin(false);
+              setIsRealPlay(true);
+            }}
+            className=""
+          />
+        </div>
+      )}
     </>
   );
 };
