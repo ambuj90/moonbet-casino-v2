@@ -178,64 +178,98 @@ const LoginSignup = ({
   };
 
   const WalletSelectModal = ({ open, onClose, onSelect }) => {
-    if (!open) return null;
+  if (!open) return null;
 
-    const wallets = [
-      window.phantom?.solana?.isPhantom && {
-        id: "phantom",
-        name: "Phantom",
-        icon: "/wallets/phantom.svg",
-      },
-      window.backpack?.solana?.isBackpack && {
-        id: "backpack",
-        name: "Backpack",
-        icon: "/wallets/backpack.svg",
-      },
-      window.solflare && {
-        id: "solflare",
-        name: "Solflare",
-        icon: "/wallets/solflare.svg",
-      },
-    ].filter(Boolean);
+  // Detect installed wallets
+  const phantomInstalled = !!window.phantom?.solana?.isPhantom;
+  const backpackInstalled = !!window.backpack?.solana?.isBackpack;
+  const solflareInstalled = !!window.solflare?.isSolflare;
 
-    return (
+  // Static list (always show)
+  const walletOptions = [
+    {
+      id: "phantom",
+      name: "Phantom",
+      icon: "/wallets/phantom.svg",
+      installed: phantomInstalled,
+    },
+    {
+      id: "backpack",
+      name: "Backpack",
+      icon: "/wallets/backpack.svg",
+      installed: backpackInstalled,
+    },
+    {
+      id: "solflare",
+      name: "Solflare",
+      icon: "/wallets/solflare.svg",
+      installed: solflareInstalled,
+    },
+  ];
+
+  // Phantom extension link (Chrome)
+  const phantomInstallUrl =
+    "https://chrome.google.com/webstore/detail/phantom-wallet/bfnaelmomeimhlpmgjnjophhpkkoljpa";
+
+  return (
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-md flex justify-center items-center z-[999999]"
+      onClick={onClose}
+    >
       <div
-        className="fixed inset-0  /70 backdrop-blur-sm flex justify-center items-center z-[999999]"
-        onClick={() => {
-          if (!walletLoading) onClose();
-        }}
+        className="bg-[#1a1a1a] p-6 rounded-xl w-[360px] shadow-lg"
+        onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className="bg-[#1a1a1a] p-6 rounded-xl w-[340px] shadow-lg"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <h2 className="text-white text-lg font-semibold mb-4">
-            Select Wallet
-          </h2>
+        <h2 className="text-white text-lg font-semibold mb-4">Select Wallet</h2>
 
-          <div className="flex flex-col gap-3">
-            {wallets.map((w) => (
-              <button
-                key={w.id}
-                onClick={() => onSelect(w.id)}
-                className="flex items-center gap-3 p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all"
-              >
+        {/* Wallet Buttons */}
+        <div className="flex flex-col gap-3">
+          {walletOptions.map((w) => (
+            <button
+              key={w.id}
+              onClick={() =>
+                w.installed ? onSelect(w.id) : window.open(phantomInstallUrl)
+              }
+              className="flex items-center justify-between p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all"
+            >
+              <div className="flex items-center gap-3">
                 <img src={w.icon} alt={w.name} className="w-7 h-7" />
                 <span className="text-white font-medium">{w.name}</span>
-              </button>
-            ))}
-          </div>
+              </div>
 
-          <button
-            className="mt-4 w-full py-2 bg-white/10 rounded-lg text-white hover:bg-white/20"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
+              {!w.installed && (
+                <span className="text-yellow-400 text-xs">Install</span>
+              )}
+            </button>
+          ))}
         </div>
+
+        {/* + Add Wallet Button */}
+        <button
+          onClick={() => window.open(phantomInstallUrl)}
+          className="mt-4 w-full py-3 rounded-lg text-white bg-[#252525] hover:bg-[#333] flex items-center justify-center gap-2"
+        >
+          <span className="text-lg font-bold">+</span> Add Wallet
+        </button>
+
+        {/* Direct link to Phantom */}
+        <button
+          onClick={() => window.open(phantomInstallUrl)}
+          className="mt-2 w-full py-2 text-[#9c6cff] hover:text-white text-sm underline"
+        >
+          Open Phantom Extension
+        </button>
+
+        <button
+          className="mt-4 w-full py-2 bg-white/10 rounded-lg text-white hover:bg-white/20"
+          onClick={onClose}
+        >
+          Cancel
+        </button>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   useEffect(() => {
     if (walletModalOpen) {
@@ -596,21 +630,21 @@ const LoginSignup = ({
 
       console.log("🔌 Wallet connected:", walletAddress);
 
-      // 2️⃣ GET *****
+      // 2️⃣ GET nonce
       let nonceRes;
       try {
-        nonceRes = await axios.post("/auth-service/api/auth/wallet/*****", {
+        nonceRes = await axios.post("/auth-service/api/auth/wallet/nonce", {
           walletAddress,
         });
         setWalletLoading(true);
       } catch (err) {
-        console.error("***** error:", err);
-        toast.error("Failed to get login *****. Try again.");
+        console.error("nonce error:", err);
+        toast.error("Failed to get login nonce. Try again.");
         return;
       }
 
       if (!nonceRes.data?.success) {
-        toast.error(nonceRes.data?.error || "***** generation failed.");
+        toast.error(nonceRes.data?.error || "nonce generation failed.");
         return;
       }
 
