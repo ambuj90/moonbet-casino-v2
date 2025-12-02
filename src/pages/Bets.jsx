@@ -573,7 +573,7 @@ const Bets = () => {
                   Previous
                 </button>
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
                   {[...Array(totalPages)].map((_, i) => {
                     const page = i + 1;
                     if (

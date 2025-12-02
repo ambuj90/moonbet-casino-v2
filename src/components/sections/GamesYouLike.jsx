@@ -239,7 +239,7 @@ const GamesYouLike = ({ provider, excludeGame }) => {
 
           {/* Right side controls - View All and Arrow Buttons */}
           <motion.div
-            className="flex items-center gap-3"
+            className="flex items-center gap-2"
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -256,7 +256,7 @@ const GamesYouLike = ({ provider, excludeGame }) => {
                 lineHeight: "24px", // 171.429%
                 textTransform: "capitalize",
                 background: "#282753",
-                padding: "2px 10px",
+                padding: "4px 10px",
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -265,7 +265,7 @@ const GamesYouLike = ({ provider, excludeGame }) => {
             </motion.button>
 
             {/* Arrow Buttons */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
               <motion.button
                 onClick={() => scroll("left")}
                 disabled={!canScrollLeft}

@@ -176,7 +176,7 @@ const HomeFAQSection = () => {
 
   return (
     <section className="w-full md:py-18 py-4 pb-8 relative">
-      <div className="container mx-auto max-w-5xl px-4 relative z-10">
+      <div className="container mx-auto max-w-4xl relative z-10">
         <div className="flex flex-col lg:flex-row">
           {/* Left Fixed Image */}
           <div className="hidden lg:block w-[28%] relative z-30 md:-right-[15px] md:-top-[1px]">
@@ -194,7 +194,7 @@ const HomeFAQSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-[#E5EAF2] md:text-[28px] text-[16px] font-[400] md:mb-10 uppercase tracking-wide"
+              className=" md:text-[24px] text-[16px] font-[400] md:mb-10 uppercase tracking-wide"
             >
               FREQUENTLY ASKED QUESTIONS
             </motion.h2>
