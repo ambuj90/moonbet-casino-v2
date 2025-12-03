@@ -1107,7 +1107,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 backdrop-blur-lg z-[100]"
             onClick={onClose}
           />
 

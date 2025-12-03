@@ -37,7 +37,7 @@
   ============================ */
   --cta-pink: #ffb8a1;
   --cta-purple: #a62a00;
-  --cta-pink-gradient: linear-gradient(0deg, #FFB8A10%, #a62a00 100%);
+  --cta-pink-gradient: linear-gradient(0deg, #ffb8a1 0%, #a62a00 100%);
   --cta-gradient: linear-gradient(0deg, #a62a00 0%, #ffb8a1 100%);
   --drop-down-order: linear-gradient(
       134deg,

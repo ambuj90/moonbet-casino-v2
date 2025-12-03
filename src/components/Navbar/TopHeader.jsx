@@ -121,7 +121,7 @@ const TopHeader = ({
                     whileTap={{ scale: 0.98 }}
                     className="text-white px-8 py-2.5 font-semibold rounded-[8px] transition-all"
                     style={{
-                      border: "1px solid var(--icons, #a62a00)",
+                      border: " 1px solid #FFB8A1",
                       background: "transparent",
                     }}
                   >

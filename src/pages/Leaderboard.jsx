@@ -238,9 +238,17 @@ const Leaderboard = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   activeTab === tab.id
-                    ? "bg-white text-black shadow-[0_0_18px_rgba(255,255,255,0.35)]"
+                    ? "text-black"
                     : "text-gray-300 hover:text-white"
                 }`}
+                style={
+                  activeTab === tab.id
+                    ? {
+                        background:
+                          "linear-gradient(0deg, #ffb8a1 0%, #a62a00 100%)",
+                      }
+                    : {}
+                }
               >
                 {tab.label}
               </button>
@@ -295,9 +303,14 @@ const Leaderboard = () => {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.3 }}
-          className="max-w-6xl mx-auto rounded-2xl overflow-hidden bg-black/70 border border-white/10 backdrop-blur-xl"
+          className="max-w-6xl mx-auto rounded-2xl overflow-hidden backdrop-blur-xl"
         >
-          <div className="hidden md:grid grid-cols-[0.8fr,3fr,1.5fr] px-8 py-4 text-sm text-gray-400 border-b border-white/10 bg-white/5">
+          <div
+            className="hidden md:grid grid-cols-[0.8fr,3fr,1.5fr] px-8 py-4 text-sm"
+            style={{
+              color: "var( --moon-silver)",
+            }}
+          >
             <div>Rank</div>
             <div>User name</div>
             <div className="text-right">Points</div>
@@ -312,7 +325,7 @@ const Leaderboard = () => {
                 transition={{ duration: 0.25, delay: 0.4 + index * 0.03 }}
                 className="px-4 py-2"
               >
-                <div className="grid grid-cols-[0.8fr,3fr,1.5fr] items-center gap-4 px-4 py-3 rounded-full bg-gradient-to-r from-white/4 via-white/7 to-white/4 border border-white/8 shadow-[0_6px_18px_rgba(0,0,0,0.8)]">
+                <div className="trust_btn grid grid-cols-[0.8fr,3fr,1.5fr] items-center gap-4 px-4 py-3">
                   <div className="text-sm font-semibold text-gray-200">
                     {user.rank}
                   </div>
@@ -332,10 +345,15 @@ const Leaderboard = () => {
                     </span>
                   </div>
                   <div className="flex items-center justify-end gap-2">
-                    <img
-                      src="/leaderboard-assets/diamond.svg"
-                      alt="Points"
+                    <div
                       className="w-4 h-4"
+                      style={{
+                        WebkitMaskImage: "url(/leaderboard-assets/diamond.svg)",
+                        WebkitMaskSize: "contain",
+                        WebkitMaskRepeat: "no-repeat",
+                        background:
+                          "linear-gradient(180deg, #FFB8A1 0%, #A62A00 100%)",
+                      }}
                     />
                     <span className="text-sm font-semibold text-white">
                       {user.points}
