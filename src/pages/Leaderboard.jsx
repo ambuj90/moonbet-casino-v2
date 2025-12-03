@@ -131,7 +131,7 @@ const Leaderboard = () => {
         )}
 
         {/* Helmet avatar */}
-        <div className="relative z-20 -mb-12 sm:-mb-14">
+        <div className="relative z-20 mt-12 sm:-mb-10">
           <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36">
             <img
               src="/leaderboard-assets/astro-profile1.svg"
@@ -156,7 +156,7 @@ const Leaderboard = () => {
           className={`relative w-full max-w-[320px] lg:max-w-[353px] ${heightClasses} flex items-stretch justify-center`}
         >
           <div
-            className="relative w-full h-full rounded-[24px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.6)]"
+            className="relative w-full h-full rounded-[24px] overflow-hidden"
             style={{
               backgroundImage: `url(${podiumBgByPosition[winner.position]})`,
               backgroundSize: "cover",
@@ -228,15 +228,6 @@ const Leaderboard = () => {
     <div className="relative min-h-screen text-white overflow-hidden">
       <StarfieldBackground />
 
-      {/* Top arc glow over starfield */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] max-w-5xl h-64 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at top, rgba(111,76,255,0.55) 0%, transparent 60%)",
-        }}
-      />
-
       <div className="relative z-10 max-w-6xl mx-auto px-4 lg:px-8 pt-10 pb-16">
         {/* Tabs */}
         <div className="flex justify-center mb-10">
@@ -271,7 +262,7 @@ const Leaderboard = () => {
           <>
             {orderedTopWinners.length > 0 && (
               <div className="flex justify-center mb-8 md:mb-10">
-                <div className="flex sm:flex-row justify-center items-end gap-6 lg:gap-10 w-full max-w-5xl">
+                <div className="flex sm:flex-row justify-center items-end gap-2 lg:gap-2 w-full max-w-5xl">
                   {orderedTopWinners.map((winner, i) => (
                     <PodiumCard key={i} winner={winner} />
                   ))}
@@ -335,7 +326,7 @@ const Leaderboard = () => {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.3 }}
-          className="max-w-6xl mx-auto rounded-2xl overflow-hidden backdrop-blur-xl"
+          className="customborder max-w-6xl mx-auto rounded-2xl overflow-hidden backdrop-blur-xl"
         >
           <div
             className="hidden md:grid grid-cols-[0.8fr,3fr,1.5fr] px-8 py-4 text-sm"

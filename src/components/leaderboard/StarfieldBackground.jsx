@@ -25,7 +25,7 @@ const StarfieldBackground = () => {
       <img
         src="/leaderboard-assets/background-top-ellipses.svg"
         alt="bg ellipse"
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[99%] opacity-90"
+        className="absolute -top-20 left-1/2 -translate-x-1/2 w-[99%] opacity-90"
         style={{
           pointerEvents: "none",
           userSelect: "none",
