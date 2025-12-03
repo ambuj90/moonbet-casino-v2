@@ -273,7 +273,7 @@ const Leaderboard = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 lg:px-8 pt-10 pb-16">
         {/* Tabs */}
         <div className="flex justify-center mb-10">
-          <div className="trust_btn inline-flex gap-1 p-2 rounded-full">
+          <div className="trust_btn2 inline-flex gap-1 p-2 rounded-full">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -324,25 +324,92 @@ const Leaderboard = () => {
                   opacity: 0.75,
                 }}
               />
-              <div className="flex flex-wrap items-stretch gap-2 rounded-full bg-[#101338] border border-white/10 px-2 py-1.5 text-xs sm:text-sm shadow-[0_14px_30px_rgba(0,0,0,0.7)]">
+              <div className="flex flex-wrap items-stretch gap-2 px-2 py-1.5 ">
                 {/* Prize Pool */}
-                <div className="flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5">
+                <div className="trust_btn flex items-center gap-2 rounded-full bg-white/5 px-5 py-2.5">
                   <span className="flex h-5 w-5 items-center justify-center text-[11px]">
-                    🏆
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                    >
+                      <g clip-path="url(#clip0_9681_695)">
+                        <path
+                          d="M15.9672 1.24242H14.5454V1.16113C14.5454 0.522523 14.0412 0 13.4124 0H4.91522C4.29207 0 3.78226 0.522523 3.78226 1.16113V1.24242H2.36606C1.42569 1.24242 0.666626 2.02617 0.666626 2.98411V3.57049C0.666626 5.4631 2.03749 7.03645 3.82188 7.29771C4.05983 9.49223 5.55534 11.2978 7.54932 11.9364L6.82425 13.8639H11.509L10.7839 11.9364C12.7836 11.292 14.2734 9.49223 14.5114 7.29771C16.2901 7.03645 17.6666 5.4631 17.6666 3.57049V2.98411C17.6666 2.02617 16.9019 1.24242 15.9672 1.24242ZM3.78226 6.11337C2.6493 5.84629 1.79958 4.81287 1.79958 3.57049V2.98411C1.79958 2.66481 2.05447 2.40355 2.36606 2.40355H3.78226V6.11337ZM11.7696 5.88113L10.8859 6.76937L11.0898 8.0176C11.1691 8.49948 10.682 8.86524 10.2571 8.63881L9.16381 8.04662L8.06484 8.63881C7.65128 8.86524 7.15845 8.49948 7.23777 8.0176L7.44736 6.76937L6.56365 5.88113C6.21811 5.53858 6.41069 4.94643 6.87521 4.87676L8.1045 4.69679L8.65396 3.55887C8.86356 3.12344 9.46969 3.12344 9.67929 3.55887L10.2288 4.69679L11.4524 4.88254C11.9226 4.95224 12.1095 5.54439 11.7696 5.88113ZM16.5337 3.57049C16.5337 4.8071 15.6839 5.84629 14.5454 6.11337V2.40355H15.9672C16.2788 2.40355 16.5337 2.66481 16.5337 2.98411V3.57049Z"
+                          fill="url(#paint0_linear_9681_695)"
+                        />
+                        <path
+                          d="M14.7558 16.8389H13.7193V16.8251C13.7193 15.8312 12.933 15.0254 11.9631 15.0254H6.36748C5.39761 15.0254 4.6114 15.8312 4.6114 16.8251V16.8389H3.57502C3.2619 16.8389 3.00854 17.0985 3.00854 17.4194C3.00854 17.7403 3.2619 18 3.57502 18H14.7558C15.0689 18 15.3223 17.7403 15.3223 17.4194C15.3223 17.0985 15.0689 16.8389 14.7558 16.8389Z"
+                          fill="url(#paint1_linear_9681_695)"
+                        />
+                      </g>
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_9681_695"
+                          x1="0.666626"
+                          y1="2.7"
+                          x2="22.4901"
+                          y2="20.3666"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#FFB8A1" />
+                          <stop offset="1" stop-color="#A62A00" />
+                        </linearGradient>
+                        <linearGradient
+                          id="paint1_linear_9681_695"
+                          x1="0.666626"
+                          y1="2.7"
+                          x2="22.4901"
+                          y2="20.3666"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#FFB8A1" />
+                          <stop offset="1" stop-color="#A62A00" />
+                        </linearGradient>
+                        <clipPath id="clip0_9681_695">
+                          <rect width="18" height="18" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
                   </span>
-                  <span className="text-gray-200">Prize Pool</span>
+                  <span className="text-[#9292D2]">Prize Pool</span>
                   <span className="ml-1 font-semibold">$0.00</span>
                 </div>
 
-                {/* Divider */}
-                <div className="hidden sm:block w-px bg-white/10 mx-1" />
-
                 {/* Your Position */}
-                <div className="flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5">
+                <div className="trust_btn flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5">
                   <span className="flex h-5 w-5 items-center justify-center text-[11px]">
-                    👤
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.1709 18L9.07516 13.8999C9.45084 13.8037 9.79907 13.614 10.0872 13.3433C10.2157 13.2226 10.3577 13.1844 10.5292 13.2246C11.7157 13.5021 12.9162 12.8106 13.2751 11.6436L14.6521 16.7961L12.0724 16.1291L10.1709 18V18ZM7.55195 0.375649C7.19508 0.710859 6.73458 0.834608 6.25833 0.723197C5.54706 0.556848 4.82824 0.972945 4.6163 1.67378C4.4744 2.14297 4.13724 2.48103 3.6693 2.62331C2.97037 2.83582 2.55535 3.55656 2.72125 4.26973C2.83233 4.74722 2.70895 5.20899 2.37463 5.56681C1.87512 6.10145 1.87512 6.9333 2.37463 7.46797C2.70895 7.8258 2.83233 8.28757 2.72125 8.76505C2.55535 9.47822 2.97037 10.199 3.6693 10.4115C4.13724 10.5538 4.4744 10.8918 4.6163 11.361C4.82824 12.0618 5.54706 12.4779 6.25833 12.3116C6.73454 12.2002 7.19508 12.3239 7.55195 12.6591C8.08516 13.16 8.91479 13.16 9.44804 12.6591C9.80491 12.3239 10.2654 12.2002 10.7417 12.3116C11.4529 12.4779 12.1717 12.0618 12.3837 11.361C12.5256 10.8918 12.8627 10.5538 13.3307 10.4115C14.0296 10.199 14.4446 9.47822 14.2787 8.76505C14.1677 8.28757 14.291 7.8258 14.6254 7.46797C15.1249 6.93334 15.1249 6.10148 14.6254 5.56681C14.291 5.20899 14.1677 4.74722 14.2787 4.26973C14.4447 3.55656 14.0296 2.83582 13.3307 2.62331C12.8627 2.48103 12.5256 2.14297 12.3837 1.67378C12.1717 0.972945 11.4529 0.556848 10.7417 0.723197C10.2654 0.834571 9.80491 0.710859 9.44804 0.375649C8.91479 -0.125235 8.08519 -0.125198 7.55195 0.375649ZM8.49999 3.00438L9.53148 5.4647L12.1839 5.68805L10.169 7.43197L10.7768 10.0303L8.49999 8.64779L6.22321 10.0303L6.83099 7.43197L4.81608 5.68805L7.46851 5.4647L8.49999 3.00438ZM6.82912 18L4.92761 16.1291L2.34793 16.796L3.72484 11.6436C4.08372 12.8106 5.28433 13.502 6.47076 13.2245C6.64224 13.1844 6.78424 13.2225 6.91275 13.3432C7.20091 13.6139 7.54914 13.8037 7.92482 13.8998L6.82912 17.9999V18Z"
+                        fill="url(#paint0_linear_9681_701)"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear_9681_701"
+                          x1="2"
+                          y1="2.7"
+                          x2="21.9715"
+                          y2="15.0633"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stop-color="#FFB8A1" />
+                          <stop offset="1" stop-color="#A62A00" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
                   </span>
-                  <span className="text-gray-200">Your Position</span>
+                  <span className="text-[#9292D2]">Your Position</span>
                   <span className="ml-1 font-semibold">-</span>
                   <svg
                     className="w-3.5 h-3.5 text-gray-300"
