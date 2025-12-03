@@ -350,7 +350,7 @@ const AffiliateProgram = () => {
                         </div>
                         <button
                           onClick={handleCopy}
-                          className="w-12 h-12 bg-gradient-to-r from-[#dc1fff] to-[#5a3799] text-white font-bold 
+                          className="w-12 h-12 bg-gradient-to-r from-[#ffb8a1] to-[#a62a00] text-white font-bold 
                                    rounded-xl hover:shadow-lg hover:shadow-[#F07730]/25 transition-all duration-200
                                    hover:scale-[1.02] active:scale-[0.98] min-w-[100px]
                                    flex items-center justify-center"
@@ -466,7 +466,7 @@ const AffiliateProgram = () => {
               <p className="affiliate-para">Total Referrals</p>
               <div className="flex items-center gap-3  relative p-3">
                 <svg
-                  className="w-6 h-6 text-[#dc1fff]"
+                  className="w-6 h-6 text-[#ffb8a1]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

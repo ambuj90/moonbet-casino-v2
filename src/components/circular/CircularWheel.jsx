@@ -309,7 +309,7 @@ const CircularWheel = () => {
                 y2="1094"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#DC1FFF" />
+                <stop stopColor="#ffb8a1" />
                 <stop offset="1" stopColor="white" />
               </linearGradient>
 
@@ -321,7 +321,7 @@ const CircularWheel = () => {
                 y2="329"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop stopColor="#DC1FFF" />
+                <stop stopColor="#ffb8a1" />
                 <stop offset="1" stopColor="white" />
               </linearGradient>
 
@@ -376,7 +376,7 @@ const CircularWheel = () => {
                           y2="232.277"
                           gradientUnits="userSpaceOnUse"
                         >
-                          <stop stop-color="#DC1FFF" />
+                          <stop stop-color="#ffb8a1" />
                           <stop offset="1" stop-color="white" />
                         </linearGradient>
                       </defs>

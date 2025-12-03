@@ -331,7 +331,7 @@ const SecuritySection = ({
       className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all duration-300"
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-gradient-to-br from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#a62a00] to-[#ffb8a1] rounded-lg flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="40"
@@ -454,7 +454,7 @@ const SecuritySection = ({
                     onChange={handlePasswordChange}
                     autoComplete="current-password"
                     placeholder="Current Password"
-                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
+                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
                     style={{
                       background:
                         "linear-gradient(109deg, rgba(255,255,255,0.50) 1.57%, rgba(255,255,255,0.10) 100%)",
@@ -526,7 +526,7 @@ const SecuritySection = ({
                     value={passwordData.newPassword}
                     onChange={handlePasswordChange}
                     autoComplete="new-password"
-                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
+                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
                     placeholder="New Password"
                     style={{
                       background:
@@ -598,7 +598,7 @@ const SecuritySection = ({
                     value={passwordData.confirmPassword}
                     onChange={handlePasswordChange}
                     autoComplete="new-password"
-                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
+                    className="w-full px-4 py-3 bg-[#1B2132] border border-white/10 rounded-lg text-white placeholder-white focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#F07730] transition-all pr-12"
                     placeholder="Confirm Password"
                     style={{
                       background:
@@ -666,7 +666,7 @@ const SecuritySection = ({
     rounded-lg text-white font-semibold 
     transition-all flex items-center justify-center gap-2 
     disabled:opacity-50 disabled:cursor-not-allowed
-    hover:shadow-lg hover:shadow-[#DC1FFF]/30
+    hover:shadow-lg hover:shadow-[#ffb8a1]/30
   "
                 style={{
                   background: "var(--cta-gradient)",

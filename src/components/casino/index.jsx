@@ -132,8 +132,8 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                           x2="100%"
                           y2="0%"
                         >
-                          <stop offset="0%" stopColor="#5A3799" />
-                          <stop offset="100%" stopColor="#DC1FFF" />
+                          <stop offset="0%" stopColor="#a62a00" />
+                          <stop offset="100%" stopColor="#ffb8a1" />
                         </linearGradient>
                       </defs>
 

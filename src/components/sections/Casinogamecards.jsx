@@ -27,7 +27,7 @@ const CasinoGameCards = () => {
       img: "/category/img10.png",
       desc: "How about live game shows?",
       background: "rgba(90, 55, 153, 0.50)",
-      hoverBg: "#5A3799",
+      hoverBg: "#a62a00",
       mobileClipPath: "special", // Special clip-path for mobile
     },
     {
@@ -40,7 +40,7 @@ const CasinoGameCards = () => {
       img: "/category/img3.png",
       desc: "How about live game shows?",
       background: "rgba(85, 81, 169, 0.50)",
-      hoverBg: "#5A3799",
+      hoverBg: "#a62a00",
       mobileClipPath: "small", // For small mobile cards
     },
     {

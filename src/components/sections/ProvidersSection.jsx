@@ -109,8 +109,8 @@ const ProvidersSection = () => {
                   y2="-3.90783"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#5A3799" />
-                  <stop offset="1" stop-color="#DC1FFF" />
+                  <stop stop-color="#a62a00" />
+                  <stop offset="1" stop-color="#ffb8a1" />
                 </linearGradient>
               </defs>
             </svg>

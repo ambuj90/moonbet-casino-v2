@@ -20,8 +20,8 @@ const ResponsibleGamblingPage = () => {
       />
       <defs>
         <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#dc1fff" />
-          <stop offset="100%" stopColor="#5a3799" />
+          <stop offset="0%" stopColor="#ffb8a1" />
+          <stop offset="100%" stopColor="#a62a00" />
         </linearGradient>
       </defs>
     </svg>
@@ -117,7 +117,7 @@ const ResponsibleGamblingPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className="wallet-btn3 rounded-xl p-4 text-center hover:bg-gradient-to-br 
-                         hover:from-[#dc1fff]/10 hover:to-transparent transition-all duration-300"
+                         hover:from-[#ffb8a1]/10 hover:to-transparent transition-all duration-300"
               >
                 <div className="text-3xl mb-3">{item.icon}</div>
                 <p className="text-gray-300 text-sm">{item.text}</p>
@@ -150,7 +150,7 @@ const ResponsibleGamblingPage = () => {
                 <h3 className="text-lg font-bold text-white">
                   Cooling-Off Periods
                 </h3>
-                <span className="text-[#dc1fff]">
+                <span className="text-[#ffb8a1]">
                   {expandedSection === "cooling" ? "−" : "+"}
                 </span>
               </div>
@@ -168,7 +168,7 @@ const ResponsibleGamblingPage = () => {
                       (period) => (
                         <span
                           key={period}
-                          className="px-3 py-1 bg-[#dc1fff]/20 rounded-lg text-[#dc1fff] text-sm"
+                          className="px-3 py-1 bg-[#ffb8a1]/20 rounded-lg text-[#ffb8a1] text-sm"
                         >
                           {period}
                         </span>
@@ -191,7 +191,7 @@ const ResponsibleGamblingPage = () => {
             >
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-bold text-white">Self-Exclusion</h3>
-                <span className="text-[#dc1fff]">
+                <span className="text-[#ffb8a1]">
                   {expandedSection === "exclusion" ? "−" : "+"}
                 </span>
               </div>
@@ -241,7 +241,7 @@ const ResponsibleGamblingPage = () => {
                   "Immutable on-chain enforcement for accountability",
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-2">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300 text-sm">{item}</span>
                   </div>
                 ))}
@@ -304,7 +304,7 @@ const ResponsibleGamblingPage = () => {
                 key={index}
                 className="bg-white/5 rounded-lg p-4 border border-white/10"
               >
-                <span className="text-[#dc1fff] font-bold">{index + 1}.</span>
+                <span className="text-[#ffb8a1] font-bold">{index + 1}.</span>
                 <span className="text-gray-300 text-sm ml-2">{question}</span>
               </div>
             ))}
@@ -343,7 +343,7 @@ const ResponsibleGamblingPage = () => {
                     href={`https://${resource.url}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-gray-400 hover:text-[#dc1fff] text-sm transition-colors"
+                    className="block text-gray-400 hover:text-[#ffb8a1] text-sm transition-colors"
                   >
                     {resource.name} →
                   </a>
@@ -459,7 +459,7 @@ const ResponsibleGamblingPage = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-[#dc1fff]/10 to-transparent rounded-lg p-4 border border-[#dc1fff]/30 text-center"
+                className="bg-gradient-to-br from-[#ffb8a1]/10 to-transparent rounded-lg p-4 border border-[#ffb8a1]/30 text-center"
               >
                 <div className="text-2xl mb-2">{item.icon}</div>
                 <h3 className="text-white font-bold text-sm mb-1">

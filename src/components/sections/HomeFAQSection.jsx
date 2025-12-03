@@ -244,7 +244,7 @@ const HomeFAQSection = () => {
                   className="px-8 py-3 text-white rounded-full text-sm font-semibold"
                   style={{
                     background:
-                      "linear-gradient(0deg, #5A3799 0%, #DC1FFF 100%)",
+                      "linear-gradient(0deg, #a62a00 0%, #FFB8A1100%)",
                     boxShadow:
                       "inset 0 3px 3px rgba(255,255,255,0.25), 0 3px 3px rgba(0,0,0,0.25)",
                   }}

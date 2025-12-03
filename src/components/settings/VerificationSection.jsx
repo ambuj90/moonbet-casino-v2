@@ -56,7 +56,7 @@ const VerificationSection = () => {
       className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all duration-300"
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-gradient-to-br from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#a62a00] to-[#ffb8a1] rounded-lg flex items-center justify-center">
           <svg
             className="w-5 h-5 text-green-400"
             fill="none"
@@ -167,7 +167,7 @@ const VerificationSection = () => {
                     </div>
                     <button
                       onClick={() => handleStartVerification(level.id)}
-                      className="w-full px-4 py-2 bg-gradient-to-r from-[#5A3799] to-[#DC1FFF]  rounded-lg text-white font-semibold hover:scale-105 hover:from-[#DC1FFF] to-[#5A3799] transition-transform"
+                      className="w-full px-4 py-2 bg-gradient-to-r from-[#a62a00] to-[#ffb8a1]  rounded-lg text-white font-semibold hover:scale-105 hover:from-[#ffb8a1] to-[#a62a00] transition-transform"
                     >
                       Start Verification
                     </button>

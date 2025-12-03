@@ -29,7 +29,7 @@ const ConnectedWalletsSection = () => {
       className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all duration-300"
     >
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-gradient-to-br from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#a62a00] to-[#ffb8a1] rounded-lg flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

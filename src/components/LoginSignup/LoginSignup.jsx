@@ -178,98 +178,100 @@ const LoginSignup = ({
   };
 
   const WalletSelectModal = ({ open, onClose, onSelect }) => {
-  if (!open) return null;
+    if (!open) return null;
 
-  // Detect installed wallets
-  const phantomInstalled = !!window.phantom?.solana?.isPhantom;
-  const backpackInstalled = !!window.backpack?.solana?.isBackpack;
-  const solflareInstalled = !!window.solflare?.isSolflare;
+    // Detect installed wallets
+    const phantomInstalled = !!window.phantom?.solana?.isPhantom;
+    const backpackInstalled = !!window.backpack?.solana?.isBackpack;
+    const solflareInstalled = !!window.solflare?.isSolflare;
 
-  // Static list (always show)
-  const walletOptions = [
-    {
-      id: "phantom",
-      name: "Phantom",
-      icon: "/wallets/phantom.svg",
-      installed: phantomInstalled,
-    },
-    {
-      id: "backpack",
-      name: "Backpack",
-      icon: "/wallets/backpack.svg",
-      installed: backpackInstalled,
-    },
-    {
-      id: "solflare",
-      name: "Solflare",
-      icon: "/wallets/solflare.svg",
-      installed: solflareInstalled,
-    },
-  ];
+    // Static list (always show)
+    const walletOptions = [
+      {
+        id: "phantom",
+        name: "Phantom",
+        icon: "/wallets/phantom.svg",
+        installed: phantomInstalled,
+      },
+      {
+        id: "backpack",
+        name: "Backpack",
+        icon: "/wallets/backpack.svg",
+        installed: backpackInstalled,
+      },
+      {
+        id: "solflare",
+        name: "Solflare",
+        icon: "/wallets/solflare.svg",
+        installed: solflareInstalled,
+      },
+    ];
 
-  // Phantom extension link (Chrome)
-  const phantomInstallUrl =
-    "https://chrome.google.com/webstore/detail/phantom-wallet/bfnaelmomeimhlpmgjnjophhpkkoljpa";
+    // Phantom extension link (Chrome)
+    const phantomInstallUrl =
+      "https://chrome.google.com/webstore/detail/phantom-wallet/bfnaelmomeimhlpmgjnjophhpkkoljpa";
 
-  return (
-    <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-md flex justify-center items-center z-[999999]"
-      onClick={onClose}
-    >
+    return (
       <div
-        className="bg-[#1a1a1a] p-6 rounded-xl w-[360px] shadow-lg"
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 bg-black/60 backdrop-blur-md flex justify-center items-center z-[999999]"
+        onClick={onClose}
       >
-        <h2 className="text-white text-lg font-semibold mb-4">Select Wallet</h2>
+        <div
+          className="bg-[#1a1a1a] p-6 rounded-xl w-[360px] shadow-lg"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2 className="text-white text-lg font-semibold mb-4">
+            Select Wallet
+          </h2>
 
-        {/* Wallet Buttons */}
-        <div className="flex flex-col gap-3">
-          {walletOptions.map((w) => (
-            <button
-              key={w.id}
-              onClick={() =>
-                w.installed ? onSelect(w.id) : window.open(phantomInstallUrl)
-              }
-              className="flex items-center justify-between p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all"
-            >
-              <div className="flex items-center gap-3">
-                <img src={w.icon} alt={w.name} className="w-7 h-7" />
-                <span className="text-white font-medium">{w.name}</span>
-              </div>
+          {/* Wallet Buttons */}
+          <div className="flex flex-col gap-3">
+            {walletOptions.map((w) => (
+              <button
+                key={w.id}
+                onClick={() =>
+                  w.installed ? onSelect(w.id) : window.open(phantomInstallUrl)
+                }
+                className="flex items-center justify-between p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <img src={w.icon} alt={w.name} className="w-7 h-7" />
+                  <span className="text-white font-medium">{w.name}</span>
+                </div>
 
-              {!w.installed && (
-                <span className="text-yellow-400 text-xs">Install</span>
-              )}
-            </button>
-          ))}
+                {!w.installed && (
+                  <span className="text-yellow-400 text-xs">Install</span>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* + Add Wallet Button */}
+          <button
+            onClick={() => window.open(phantomInstallUrl)}
+            className="mt-4 w-full py-3 rounded-lg text-white bg-[#252525] hover:bg-[#333] flex items-center justify-center gap-2"
+          >
+            <span className="text-lg font-bold">+</span> Add Wallet
+          </button>
+
+          {/* Direct link to Phantom */}
+          <button
+            onClick={() => window.open(phantomInstallUrl)}
+            className="mt-2 w-full py-2 text-[#9c6cff] hover:text-white text-sm underline"
+          >
+            Open Phantom Extension
+          </button>
+
+          <button
+            className="mt-4 w-full py-2 bg-white/10 rounded-lg text-white hover:bg-white/20"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
         </div>
-
-        {/* + Add Wallet Button */}
-        <button
-          onClick={() => window.open(phantomInstallUrl)}
-          className="mt-4 w-full py-3 rounded-lg text-white bg-[#252525] hover:bg-[#333] flex items-center justify-center gap-2"
-        >
-          <span className="text-lg font-bold">+</span> Add Wallet
-        </button>
-
-        {/* Direct link to Phantom */}
-        <button
-          onClick={() => window.open(phantomInstallUrl)}
-          className="mt-2 w-full py-2 text-[#9c6cff] hover:text-white text-sm underline"
-        >
-          Open Phantom Extension
-        </button>
-
-        <button
-          className="mt-4 w-full py-2 bg-white/10 rounded-lg text-white hover:bg-white/20"
-          onClick={onClose}
-        >
-          Cancel
-        </button>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
   useEffect(() => {
     if (walletModalOpen) {
@@ -918,7 +920,7 @@ const LoginSignup = ({
     h-full
     max-h-full
     scrollbar-thin 
-    scrollbar-thumb-[#DC1FFF]/40
+    scrollbar-thumb-[#ffb8a1]/40
   "
             style={{
               background:
@@ -947,7 +949,7 @@ const LoginSignup = ({
                 >
                   Login
                   {activeTab === "login" && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[linear-gradient(0deg,#5A3799_0%,#DC1FFF_100%)]"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[linear-gradient(0deg,#a62a00_0%,#ffb8a1_100%)]"></div>
                   )}
                 </button>
                 <button
@@ -960,7 +962,7 @@ const LoginSignup = ({
                 >
                   Register
                   {activeTab === "register" && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[linear-gradient(0deg,#5A3799_0%,#DC1FFF_100%)]"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[linear-gradient(0deg,#a62a00_0%,#ffb8a1_100%)]"></div>
                   )}
                 </button>
               </div>
@@ -971,7 +973,7 @@ const LoginSignup = ({
               {activeTab === "login" ? (
                 <motion.div
                   key="login"
-                  className="flex-1 overflow-y-auto min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#DC1FFF]/40"
+                  className="flex-1 overflow-y-auto min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#ffb8a1]/40"
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
@@ -989,7 +991,7 @@ const LoginSignup = ({
                         placeholder="Email Address"
                         value={loginData.email}
                         onChange={handleLoginChange}
-                        className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                        className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
                         style={{
                           background:
                             "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
@@ -1011,7 +1013,7 @@ const LoginSignup = ({
                           placeholder="Password"
                           value={loginData.password}
                           onChange={handleLoginChange}
-                          className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                          className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
                           style={{
                             background:
                               "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
@@ -1076,7 +1078,7 @@ const LoginSignup = ({
                     <div className="text-right">
                       <button
                         onClick={() => setActiveTab("forgot")}
-                        className="text-sm text-white-90 hover:text-[#dc1fff] transition-colors"
+                        className="text-sm text-white-90 hover:text-[#ffb8a1] transition-colors"
                       >
                         Forgot Password?
                       </button>
@@ -1147,7 +1149,7 @@ const LoginSignup = ({
                       </span>
                       <button
                         onClick={() => setActiveTab("register")}
-                        className="text-sm text-white-90 hover:text-[#dc1fff] font-medium"
+                        className="text-sm text-white-90 hover:text-[#ffb8a1] font-medium"
                       >
                         Register Now
                       </button>
@@ -1157,7 +1159,7 @@ const LoginSignup = ({
               ) : activeTab === "register" ? (
                 <motion.div
                   key="register"
-                  className="flex-1 min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#DC1FFF]/40"
+                  className="flex-1 min-h-0 pr-1 scrollbar-thin scrollbar-thumb-[#ffb8a1]/40"
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -10 }}
@@ -1170,7 +1172,7 @@ const LoginSignup = ({
                       placeholder="Have a referral code?"
                       value={signupData.referral}
                       onChange={handleSignupChange}
-                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
                       style={{
                         background:
                           "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
@@ -1184,7 +1186,7 @@ const LoginSignup = ({
                       placeholder="Email address"
                       value={signupData.email}
                       onChange={handleSignupChange}
-                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
                       style={{
                         background:
                           "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
@@ -1199,7 +1201,7 @@ const LoginSignup = ({
                       placeholder="Username"
                       value={signupData.username}
                       onChange={handleSignupChange}
-                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
                       style={{
                         background:
                           "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
@@ -1216,7 +1218,7 @@ const LoginSignup = ({
                         placeholder="Password"
                         value={signupData.password}
                         onChange={handleSignupChange}
-                        className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                        className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
                         style={{
                           background:
                             "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
@@ -1286,7 +1288,7 @@ const LoginSignup = ({
                         placeholder="Confirm password"
                         value={signupData.confirmPassword}
                         onChange={handleSignupChange}
-                        className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#DC1FFF] focus:ring-1 focus:ring-[#DC1FFF] transition-all"
+                        className="w-full px-4 py-3 pr-12 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
                         style={{
                           background:
                             "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
@@ -1354,7 +1356,7 @@ const LoginSignup = ({
                           name="agreeTerms"
                           checked={signupData.agreeTerms}
                           onChange={handleSignupChange}
-                          className="mt-0.5 w-4 h-4 rounded border-[#3a3d4a] bg-white checked:bg-transparent accent-[#dc1fff]"
+                          className="mt-0.5 w-4 h-4 rounded border-[#3a3d4a] bg-white checked:bg-transparent accent-[#ffb8a1]"
                           style={{
                             background: signupData.agreeTerms
                               ? "var(--cta-pink-gradient)"
@@ -1379,7 +1381,7 @@ const LoginSignup = ({
                           name="agreeMarketing"
                           checked={signupData.agreeMarketing}
                           onChange={handleSignupChange}
-                          className="mt-0.5 w-4 h-4 rounded border-[#3a3d4a] bg-white checked:bg-transparent accent-[#dc1fff]"
+                          className="mt-0.5 w-4 h-4 rounded border-[#3a3d4a] bg-white checked:bg-transparent accent-[#ffb8a1]"
                           style={{
                             background: signupData.agreeMarketing
                               ? "var(--cta-pink-gradient)"
@@ -1498,7 +1500,7 @@ const LoginSignup = ({
                       </span>
                       <button
                         onClick={() => setActiveTab("login")}
-                        className="text-sm text-white-90 hover:text-[#dc1fff] font-medium"
+                        className="text-sm text-white-90 hover:text-[#ffb8a1] font-medium"
                       >
                         Sign in
                       </button>

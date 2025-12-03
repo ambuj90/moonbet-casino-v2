@@ -285,8 +285,8 @@ const RecentSection = () => {
                     y2="-3.90783"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#5A3799" />
-                    <stop offset="1" stop-color="#DC1FFF" />
+                    <stop stop-color="#a62a00" />
+                    <stop offset="1" stop-color="#ffb8a1" />
                   </linearGradient>
                   <linearGradient
                     id="paint1_linear_9169_861"
@@ -296,8 +296,8 @@ const RecentSection = () => {
                     y2="-3.90783"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#5A3799" />
-                    <stop offset="1" stop-color="#DC1FFF" />
+                    <stop stop-color="#a62a00" />
+                    <stop offset="1" stop-color="#ffb8a1" />
                   </linearGradient>
                   <linearGradient
                     id="paint2_linear_9169_861"
@@ -307,8 +307,8 @@ const RecentSection = () => {
                     y2="-3.90783"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#5A3799" />
-                    <stop offset="1" stop-color="#DC1FFF" />
+                    <stop stop-color="#a62a00" />
+                    <stop offset="1" stop-color="#ffb8a1" />
                   </linearGradient>
                   <linearGradient
                     id="paint3_linear_9169_861"
@@ -318,8 +318,8 @@ const RecentSection = () => {
                     y2="-3.90783"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#5A3799" />
-                    <stop offset="1" stop-color="#DC1FFF" />
+                    <stop stop-color="#a62a00" />
+                    <stop offset="1" stop-color="#ffb8a1" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -468,10 +468,6 @@ const RecentSection = () => {
                         />
 
                         {/* Tags */}
-
-                        <div className="absolute top-2 right-2 bg-[#1C1D49] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
-                          99% RTP
-                        </div>
                       </div>
 
                       {/* Overlay with Play Button */}

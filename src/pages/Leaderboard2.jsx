@@ -166,7 +166,7 @@ const Leaderboard2 = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`px-6 py-3 rounded-lg font-semibold transition-all ${
                 activeTab === tab.id
-                  ? "bg-gradient-to-r from-[#dc1fff] to-[#5a3799] text-white"
+                  ? "bg-gradient-to-r from-[#ffb8a1] to-[#a62a00] text-white"
                   : "bg-white/5 text-gray-400 hover:bg-white/10"
               }`}
             >
@@ -195,7 +195,7 @@ const Leaderboard2 = () => {
 
           <div className="flex items-center justify-between px-6 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#dc1fff] to-[#5a3799] flex items-center justify-center text-black font-bold">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#ffb8a1] to-[#a62a00] flex items-center justify-center text-black font-bold">
                 {myPosition.initials}
               </div>
               <div>

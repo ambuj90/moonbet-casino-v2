@@ -594,7 +594,7 @@ const Bets = () => {
                             currentPage === page
                               ? {
                                   background:
-                                    "linear-gradient(0deg, #5A3799 0%, #DC1FFF 100%)",
+                                    "linear-gradient(0deg, #a62a00 0%, #FFB8A1100%)",
                                 }
                               : {}
                           }

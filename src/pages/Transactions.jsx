@@ -229,7 +229,7 @@ const Transactions = () => {
                   }}
                   className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
                     filterType === filter
-                      ? "bg-gradient-to-r from-[#5A3799] to-[#DC1FFF] text-white"
+                      ? "bg-gradient-to-r from-[#a62a00] to-[#ffb8a1] text-white"
                       : "bg-white/5 text-gray-400 hover:bg-white/10"
                   }`}
                 >
@@ -314,7 +314,7 @@ const Transactions = () => {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-[#DC1FFF]">
+                          <span className="text-[#ffb8a1]">
                             {getTypeIcon(tx.type)}
                           </span>
                           <span className="text-white font-medium">
@@ -472,7 +472,7 @@ const Transactions = () => {
                           onClick={() => setCurrentPage(page)}
                           className={`w-8 h-8 rounded-lg font-semibold transition-all ${
                             currentPage === page
-                              ? "bg-gradient-to-r from-[#DC1FFF] to-[#5a3799] text-white"
+                              ? "bg-gradient-to-r from-[#ffb8a1] to-[#a62a00] text-white"
                               : "bg-white/5 text-gray-400 hover:bg-white/10"
                           }`}
                         >

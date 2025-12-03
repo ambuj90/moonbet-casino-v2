@@ -35,10 +35,10 @@
   /* ===========================
      CTA COLORS
   ============================ */
-  --cta-pink: #dc1fff;
-  --cta-purple: #5a3799;
-  --cta-pink-gradient: linear-gradient(0deg, #dc1fff 0%, #5a3799 100%);
-  --cta-gradient: linear-gradient(0deg, #5a3799 0%, #dc1fff 100%);
+  --cta-pink: #ffb8a1;
+  --cta-purple: #a62a00;
+  --cta-pink-gradient: linear-gradient(0deg, #FFB8A10%, #a62a00 100%);
+  --cta-gradient: linear-gradient(0deg, #a62a00 0%, #FFB8A1100%);
   --drop-down-order: linear-gradient(
       134deg,
       rgba(255, 255, 255, 0.9) -7.85%,
@@ -138,7 +138,7 @@
   --z-tooltip: 1070;
 
   /* CTA Hover Gradient */
-  --CTA-HOVER: linear-gradient(0deg, #5a3799 0%, #dc1fff 100%);
+  --CTA-HOVER: linear-gradient(0deg, #a62a00 0%, #ffb8a1 100%);
 
   /* Glass Border Gradient */
   --new-glass: rgba(255, 255, 255, 0.4);
@@ -213,7 +213,7 @@ body::before {
 }
 
 .gradient-neon {
-  background: linear-gradient(0deg, #5a3799 0%, #dc1fff 100%);
+  background: linear-gradient(0deg, #a62a00 0%, #FFB8A1100%);
 }
 
 .gradient-space {

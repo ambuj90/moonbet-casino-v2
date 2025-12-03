@@ -54,7 +54,7 @@ const ActivityPreferencesSection = ({
       onClick={onChange}
       disabled={disabled || isLoading}
       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-300 ${
-        enabled ? "bg-gradient-to-r from-[#5A3799] to-[#DC1FFF]" : "bg-gray-600"
+        enabled ? "bg-gradient-to-r from-[#a62a00] to-[#ffb8a1]" : "bg-gray-600"
       } ${
         disabled || isLoading
           ? "opacity-50 cursor-not-allowed"
@@ -134,9 +134,9 @@ const ActivityPreferencesSection = ({
         <div className="space-y-6">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-3 flex-1">
-              <div className="w-10 h-10 from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-10 h-10 from-[#a62a00] to-[#ffb8a1] rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                 <svg
-                  className="w-5 h-5 text-[#5A3799]"
+                  className="w-5 h-5 text-[#a62a00]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -175,7 +175,7 @@ const ActivityPreferencesSection = ({
 
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-3 flex-1">
-              <div className="w-10 h-10 from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-10 h-10 from-[#a62a00] to-[#ffb8a1] rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                 <svg
                   className="w-5 h-5 text-[#00D4FF]"
                   fill="none"
@@ -228,7 +228,7 @@ const ActivityPreferencesSection = ({
 
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3 flex-1">
-            <div className="w-10 h-10 from-[#5A3799] to-[#DC1FFF] rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+            <div className="w-10 h-10 from-[#a62a00] to-[#ffb8a1] rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
               <svg
                 className="w-5 h-5 text-purple-400"
                 fill="none"

@@ -973,7 +973,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                     value={withdrawAddress}
                     onChange={(e) => setWithdrawAddress(e.target.value)}
                     placeholder="Enter wallet address"
-                    className="w-full rounded-lg p-4 text-white font-mono text-sm border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
+                    className="w-full rounded-lg p-4 text-white font-mono text-sm border border-white/10 focus:border-[#a62a00] focus:outline-none transition-all placeholder-[#E1E1E1]"
                     style={{
                       background:
                         "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
@@ -1009,7 +1009,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                       value={withdrawAmount}
                       onChange={(e) => setWithdrawAmount(e.target.value)}
                       placeholder="0.00"
-                      className="w-full rounded-lg p-4 pr-20 text-white text-lg font-bold border border-white/10 focus:border-[#5A3799] focus:outline-none transition-all placeholder-[#E1E1E1]"
+                      className="w-full rounded-lg p-4 pr-20 text-white text-lg font-bold border border-white/10 focus:border-[#a62a00] focus:outline-none transition-all placeholder-[#E1E1E1]"
                       style={{
                         background:
                           "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",

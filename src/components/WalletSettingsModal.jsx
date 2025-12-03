@@ -209,7 +209,7 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
                         transition-all duration-200
                         ${
                           selectedCurrency === currency.code
-                            ? "bg-white/10 border-2 border-[#5A3799]"
+                            ? "bg-white/10 border-2 border-[#a62a00]"
                             : "bg-white/5 border-2 border-transparent hover:bg-white/10"
                         }
                         ${saving ? "opacity-60 cursor-not-allowed" : ""}

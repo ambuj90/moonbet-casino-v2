@@ -248,8 +248,8 @@ const LiveCasino = () => {
                     y2="-5.39131"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#5A3799" />
-                    <stop offset="1" stop-color="#DC1FFF" />
+                    <stop stop-color="#a62a00" />
+                    <stop offset="1" stop-color="#ffb8a1" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -276,7 +276,7 @@ const LiveCasino = () => {
 
             <motion.button
               onClick={handleViewAll}
-              className="view_btn hover:text-white transition-colors duration-300 "
+              className="view_btn hover:text-white transition-colors duration-300"
               style={{
                 fontFamily: "Neue Plak",
                 fontSize: "14px",
@@ -403,9 +403,9 @@ const LiveCasino = () => {
                           initial="idle"
                           whileHover="hover"
                         />
-                        <div className="absolute top-2 left-2 bg-[#1C1D49] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
+                        {/* <div className="absolute top-2 left-2 bg-[#1C1D49] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.name || "game"}
-                        </div>
+                        </div> */}
                         <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.provider || "Endrophia"}
                         </div>

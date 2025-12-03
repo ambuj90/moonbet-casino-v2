@@ -19,8 +19,8 @@ import * as THREE from "three";
 
 // Theme colors for 3D elements (matching CSS variables)
 const THEME = {
-  pink: "#dc1fff",
-  purple: "#5a3799",
+  pink: "#ffb8a1",
+  purple: "#a62a00",
   green: "#28c203",
   lightGreen: "#aaf23f",
   gold: "#AA8F23",

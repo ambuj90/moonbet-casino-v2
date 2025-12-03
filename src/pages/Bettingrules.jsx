@@ -171,7 +171,7 @@ const BettingRules = () => {
     <div className="min-h-screen  ">
       {/* Hero Section */}
       <section className="relative py-16 px-4 border-b border-white/10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#dc1fff]/10 via-transparent to-[#EFD28E]/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#ffb8a1]/10 via-transparent to-[#EFD28E]/10" />
         <div className="container max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -211,7 +211,7 @@ const BettingRules = () => {
                       className={`w-full text-left px-4 py-2 rounded-lg transition-all flex items-center gap-2
                                ${
                                  activeSection === section.id
-                                   ? "bg-[#dc1fff]/20 "
+                                   ? "bg-[#ffb8a1]/20 "
                                    : " hover:bg-white/5 hover:text-white"
                                }`}
                     >
@@ -242,11 +242,11 @@ const BettingRules = () => {
               <div className="space-y-4">
                 <p className="text-gray-300">
                   All complaints must be submitted within{" "}
-                  <span className="text-[#dc1fff] font-bold">14 days</span> of
+                  <span className="text-[#ffb8a1] font-bold">14 days</span> of
                   the wager's result via{" "}
                   <a
                     href="mailto:support@moonbet.games"
-                    className="text-[#dc1fff] underline hover:text-[#EFD28E]"
+                    className="text-[#ffb8a1] underline hover:text-[#EFD28E]"
                   >
                     support@moonbet.games
                   </a>
@@ -286,7 +286,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Once you confirm a wager, it is irrevocable. Always
                         verify game type, stake, and settings (volatility, rows,
@@ -294,7 +294,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Moonbet may void or adjust wagers only for clear
                         technical errors or rule violations (e.g., system
@@ -310,7 +310,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         All casino games use blockchain-based RNG with open
                         shuffles or provable algorithms. Game results are
@@ -318,7 +318,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Moonbet cannot alter results after provable data is
                         committed.
@@ -333,7 +333,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         If a game fails to load or a transaction times out, any
                         pending wager is canceled and stake returned
@@ -341,7 +341,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         In rare cases of smart‐contract malfunction, Moonbet
                         will issue refunds once the issue is verified and fixed.
@@ -374,7 +374,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Single Spin Wager:
@@ -383,7 +383,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Bonus Rounds & Free Spins:
@@ -393,7 +393,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Autoplay Mode:
@@ -411,7 +411,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Table Bet:</span>{" "}
                         Stake placed against dealer on outcomes (e.g.,
@@ -419,7 +419,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Side Bets:</span>{" "}
                         Optional wagers (e.g., pairs in blackjack) follow
@@ -427,7 +427,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Time Limits:
@@ -445,7 +445,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Ball Drop Wager:
@@ -455,7 +455,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Volatility Settings:
@@ -465,7 +465,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">Row Count:</span>{" "}
                         8–16 rows adjust maximum multiplier potential versus hit
@@ -495,7 +495,7 @@ const BettingRules = () => {
               <div className="space-y-4">
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Default Minimum Stake:
@@ -504,7 +504,7 @@ const BettingRules = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Default Maximum Stake:
@@ -514,7 +514,7 @@ const BettingRules = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Dynamic Caps:
@@ -524,7 +524,7 @@ const BettingRules = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Player Controls:
@@ -558,14 +558,14 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Winnings are disbursed immediately via the same wallet
                         used for betting.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Payout transactions generate an on-chain record you can
                         verify in real time.
@@ -580,7 +580,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Voided Scenarios:
@@ -590,7 +590,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Refund Process:
@@ -608,13 +608,13 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Moonbet charges no platform withdrawal fees.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Only blockchain network gas fees apply, and those are
                         handled by your wallet provider.
@@ -646,7 +646,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Low Volatility:
@@ -656,7 +656,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Medium Volatility:
@@ -666,7 +666,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           High Volatility:
@@ -676,7 +676,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Row Impact:
@@ -694,14 +694,14 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Each slot lists its Return to Player (RTP) percentage
                         (e.g., 90%–98%).
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Higher RTP games offer steadier returns; low‐RTP titles
                         may feature bigger jackpot potential.
@@ -716,14 +716,14 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Standard pay tables are displayed before each bet window
                         (e.g., Blackjack pays 3:2 on naturals).
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Side bet odds (e.g., Perfect Pairs 25:1) clearly listed
                         on game UI.
@@ -751,20 +751,20 @@ const BettingRules = () => {
               <div className="space-y-3">
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       All RNG logic and shuffle contracts are open-source.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       Independent third-party audits are conducted quarterly;
                       reports published on Moonbet's Transparency page.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       Players can verify individual game seeds and outcomes via
                       on-chain proof tools linked in the game lobby.
@@ -795,7 +795,7 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Welcome Bonus:
@@ -805,7 +805,7 @@ const BettingRules = () => {
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         <span className="text-white font-bold">
                           Free Spins:
@@ -823,14 +823,14 @@ const BettingRules = () => {
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         VIP players earn rakeback on net losses across all
                         casino games.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-[#dc1fff] mt-1">•</span>
+                      <span className="text-[#ffb8a1] mt-1">•</span>
                       <span className="text-gray-300">
                         Rakeback credited weekly as withdrawable funds.
                       </span>
@@ -857,7 +857,7 @@ const BettingRules = () => {
               <div className="space-y-3">
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Self‐Exclusion & Account Verification:
@@ -866,7 +866,7 @@ const BettingRules = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Fraud Detection:
@@ -876,7 +876,7 @@ const BettingRules = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Unauthorised Transactions:
@@ -906,7 +906,7 @@ const BettingRules = () => {
               <div className="space-y-3">
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Deposit/Loss Limits:
@@ -915,14 +915,14 @@ const BettingRules = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">Time-Outs:</span>{" "}
                       Temporary session breaks of 24 hours up to 30 days.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">
                         Self-Exclusion:
@@ -931,13 +931,13 @@ const BettingRules = () => {
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-[#dc1fff] mt-1">•</span>
+                    <span className="text-[#ffb8a1] mt-1">•</span>
                     <span className="text-gray-300">
                       <span className="text-white font-bold">Support:</span>{" "}
                       24/7 live chat, email at{" "}
                       <a
                         href="mailto:support@moonbet.games"
-                        className="text-[#dc1fff] underline hover:text-[#EFD28E]"
+                        className="text-[#ffb8a1] underline hover:text-[#EFD28E]"
                       >
                         support@moonbet.games
                       </a>
@@ -968,7 +968,7 @@ const BettingRules = () => {
                     key={i}
                     className="bg-white/5 rounded-xl p-4 border border-white/10"
                   >
-                    <h4 className="text-[#dc1fff] font-bold mb-1">
+                    <h4 className="text-[#ffb8a1] font-bold mb-1">
                       {item.term}
                     </h4>
                     <p className="text-gray-300 text-sm">{item.definition}</p>
@@ -981,7 +981,7 @@ const BettingRules = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="bg-gradient-to-r from-[#dc1fff]/20 to-[#EFD28E]/20 rounded-2xl p-8 border border-[#dc1fff]/30"
+              className="bg-gradient-to-r from-[#ffb8a1]/20 to-[#EFD28E]/20 rounded-2xl p-8 border border-[#ffb8a1]/30"
             >
               <p className="text-gray-300 text-center">
                 With these rules, Moonbet guarantees a fair, transparent, and

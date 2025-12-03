@@ -20,7 +20,7 @@ const RNGTestingPolicy = () => {
       />
       <defs>
         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#dc1fff" />
+          <stop offset="0%" stopColor="#ffb8a1" />
           <stop offset="100%" stopColor="#EFD28E" />
         </linearGradient>
       </defs>
@@ -95,7 +95,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">1.</span> OVERVIEW
+              <span className="text-[#ffb8a1]">1.</span> OVERVIEW
             </h2>
 
             {/* 1.1 Company Information */}
@@ -150,7 +150,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">2.</span> RANDOM NUMBER GENERATOR
+              <span className="text-[#ffb8a1]">2.</span> RANDOM NUMBER GENERATOR
               (RNG) DEFINITION AND PURPOSE
             </h2>
 
@@ -167,41 +167,41 @@ const RNGTestingPolicy = () => {
               </p>
               <ul className="grid sm:grid-cols-2 gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Slot symbol positions
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Roulette ball landing positions
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Card shuffling and distribution
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">Dice rolls</span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Bonus trigger timing
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Payout multipliers
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     All randomized game elements
                   </span>
@@ -284,7 +284,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">3.</span> RNG TECHNOLOGY AND
+              <span className="text-[#ffb8a1]">3.</span> RNG TECHNOLOGY AND
               IMPLEMENTATION
             </h2>
 
@@ -348,7 +348,7 @@ const RNGTestingPolicy = () => {
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     1. Commitment Phase
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -357,7 +357,7 @@ const RNGTestingPolicy = () => {
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     2. Gameplay Phase
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -366,7 +366,7 @@ const RNGTestingPolicy = () => {
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     3. Result Generation
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -374,7 +374,7 @@ const RNGTestingPolicy = () => {
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     4. Blockchain Recording
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -382,7 +382,7 @@ const RNGTestingPolicy = () => {
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-lg p-3 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     5. Player Verification
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -400,7 +400,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">4.</span> THIRD-PARTY
+              <span className="text-[#ffb8a1]">4.</span> THIRD-PARTY
               CERTIFICATION AND TESTING
             </h2>
 
@@ -467,14 +467,14 @@ const RNGTestingPolicy = () => {
               </p>
               <ul className="grid gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     <span className="font-bold text-white">Functionality:</span>{" "}
                     Games operate as designed without errors or malfunctions
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     <span className="font-bold text-white">
                       Display accuracy:
@@ -484,7 +484,7 @@ const RNGTestingPolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     <span className="font-bold text-white">
                       Transaction integrity:
@@ -493,14 +493,14 @@ const RNGTestingPolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     <span className="font-bold text-white">Game rules:</span>{" "}
                     Rules are implemented exactly as published
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     <span className="font-bold text-white">
                       RNG mathematics:
@@ -510,7 +510,7 @@ const RNGTestingPolicy = () => {
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     <span className="font-bold text-white">
                       RTP calculations:
@@ -542,7 +542,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">5.</span> CONTINUOUS MONITORING
+              <span className="text-[#ffb8a1]">5.</span> CONTINUOUS MONITORING
               AND COMPLIANCE
             </h2>
 
@@ -558,26 +558,26 @@ const RNGTestingPolicy = () => {
               </p>
               <ul className="grid gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Monitor statistical distribution of outcomes for each game
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Detect anomalies or deviations from expected ranges
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Trigger immediate investigation if unusual patterns are
                     detected
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Log all monitoring activities for audit and compliance
                     purposes
@@ -599,27 +599,27 @@ const RNGTestingPolicy = () => {
               </p>
               <ul className="grid gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     RNG systems function properly and generate truly random
                     results
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Game mathematical integrity is maintained
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Actual payout percentages align with published Theoretical
                     RTP values (within acceptable statistical variance)
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     No systematic bias or manipulation has occurred
                   </span>
@@ -648,7 +648,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">6.</span> RETURN TO PLAYER (RTP)
+              <span className="text-[#ffb8a1]">6.</span> RETURN TO PLAYER (RTP)
               AND THEORETICAL RTP
             </h2>
 
@@ -739,7 +739,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">7.</span> COMPLIANCE TESTING AND
+              <span className="text-[#ffb8a1]">7.</span> COMPLIANCE TESTING AND
               INTEGRATION
             </h2>
 
@@ -753,7 +753,7 @@ const RNGTestingPolicy = () => {
               </p>
               <div className="grid gap-3">
                 <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     Phase 1: Developer Testing
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -763,7 +763,7 @@ const RNGTestingPolicy = () => {
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     Phase 2: Third-Party Certification Testing
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -773,7 +773,7 @@ const RNGTestingPolicy = () => {
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     Phase 3: Integration Testing
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -783,7 +783,7 @@ const RNGTestingPolicy = () => {
                   </p>
                 </div>
                 <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-                  <p className="text-[#dc1fff] font-bold text-sm mb-2">
+                  <p className="text-[#ffb8a1] font-bold text-sm mb-2">
                     Phase 4: User Acceptance Testing (UAT)
                   </p>
                   <p className="text-gray-300 text-sm">
@@ -827,7 +827,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">8.</span> PLAYER VERIFICATION AND
+              <span className="text-[#ffb8a1]">8.</span> PLAYER VERIFICATION AND
               TRANSPARENCY
             </h2>
 
@@ -890,31 +890,31 @@ const RNGTestingPolicy = () => {
               </p>
               <ul className="grid gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     RNG algorithm descriptions and specifications
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Cryptographic hashing methods used
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Commitment/verification protocols
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     RTP calculation methodologies
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Game rule specifications
                   </span>
@@ -934,7 +934,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">9.</span> REGULATORY COMPLIANCE
+              <span className="text-[#ffb8a1]">9.</span> REGULATORY COMPLIANCE
               AND AUTHORITY OVERSIGHT
             </h2>
 
@@ -985,7 +985,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">10.</span> RNG ACROSS GAME TYPES
+              <span className="text-[#ffb8a1]">10.</span> RNG ACROSS GAME TYPES
             </h2>
 
             <div className="grid md:grid-cols-2 gap-4">
@@ -999,25 +999,25 @@ const RNGTestingPolicy = () => {
                 </p>
                 <ul className="space-y-1 ml-4">
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Reel positions: Which symbols appear on each reel
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Bonus triggers: When and if bonus rounds activate
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Multipliers: Random payout multipliers applied to wins
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Progressive jackpots: Trigger conditions for progressive
                       prize pools
@@ -1036,28 +1036,28 @@ const RNGTestingPolicy = () => {
                 </p>
                 <ul className="space-y-1 ml-4">
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Card shuffling: Virtual decks are shuffled using
                       cryptographic randomness
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Dice rolls: Craps and other dice games use RNG to simulate
                       authentic roll outcomes
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Roulette spins: Ball landing positions generated through
                       cryptographically secure algorithms
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Card distribution: Baccarat, blackjack, and other card
                       games use RNG for authentic card distribution
@@ -1077,27 +1077,27 @@ const RNGTestingPolicy = () => {
                 </p>
                 <ul className="space-y-1 ml-4">
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Physical elements: Real dealers use physical cards and
                       wheels
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Shuffle verification: Card shuffles incorporate
                       cryptographic verification
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Cut card placement: Random elements determined by RNG
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Side bets: Digital side bets use certified RNG systems
                     </span>
@@ -1116,20 +1116,20 @@ const RNGTestingPolicy = () => {
                 </p>
                 <ul className="space-y-1 ml-4">
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Physics simulation: Ball trajectories and interactions in
                       physics-based games
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Crash multipliers: Randomly determined crash points
                     </span>
                   </li>
                   <li className="flex items-start md:items-center gap-2">
-                    <span className="text-[#dc1fff] mt-1 text-xs">•</span>
+                    <span className="text-[#ffb8a1] mt-1 text-xs">•</span>
                     <span className="text-gray-300 text-sm">
                       Mini-games: All bonus games use certified RNG systems
                     </span>
@@ -1145,7 +1145,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">11.</span> INTEGRITY AND FAIRNESS
+              <span className="text-[#ffb8a1]">11.</span> INTEGRITY AND FAIRNESS
               ASSURANCES
             </h2>
 
@@ -1160,19 +1160,19 @@ const RNGTestingPolicy = () => {
               </p>
               <ul className="grid gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Human bias or favoritism
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Predictable patterns
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Unfair advantages to any party
                   </span>
@@ -1191,25 +1191,25 @@ const RNGTestingPolicy = () => {
               </p>
               <ul className="grid gap-2 ml-4">
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Preventing unfair practices
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Ensuring outcomes are immutable and permanently recorded
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Enabling independent verification
                   </span>
                 </li>
                 <li className="flex items-start md:items-center gap-2">
-                  <span className="text-[#dc1fff] mt-1">•</span>
+                  <span className="text-[#ffb8a1] mt-1">•</span>
                   <span className="text-gray-300 text-sm">
                     Maintaining house edge within published parameters
                   </span>
@@ -1224,7 +1224,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-6"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">12.</span> FREQUENTLY ASKED
+              <span className="text-[#ffb8a1]">12.</span> FREQUENTLY ASKED
               QUESTIONS
             </h2>
 
@@ -1283,7 +1283,7 @@ const RNGTestingPolicy = () => {
               className="text-xl md:text-2xl font-bold text-white mb-4"
               style={{ fontFamily: "Neuropolitical, sans-serif" }}
             >
-              <span className="text-[#dc1fff]">13.</span> CONTACT FOR FAIRNESS
+              <span className="text-[#ffb8a1]">13.</span> CONTACT FOR FAIRNESS
               INQUIRIES
             </h2>
             <p className="text-gray-300 mb-4 text-sm md:text-base">
@@ -1295,11 +1295,11 @@ const RNGTestingPolicy = () => {
                 href="mailto:support@moonbet.games"
                 className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
               >
-                <span className="text-[#dc1fff]">📧</span>
+                <span className="text-[#ffb8a1]">📧</span>
                 <span className="text-gray-300">support@moonbet.games</span>
               </a>
               <div className="flex items-center gap-3 px-4 py-3 bg-white/5 rounded-xl border border-white/10">
-                <span className="text-[#dc1fff]">💬</span>
+                <span className="text-[#ffb8a1]">💬</span>
                 <span className="text-gray-300">
                   24/7 Live Chat via the platform
                 </span>
