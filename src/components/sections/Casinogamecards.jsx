@@ -25,7 +25,7 @@ const CasinoGameCards = () => {
       title: "Game Shows",
       icon: "/icons/game-shows2.svg",
       img: "/category/img10.png",
-      desc: "Live hosts, spinning wheels, and pumping multipliers.",
+      desc: "Spinning wheels, pumping multipliers",
       background: "rgba(90, 55, 153, 0.50)",
       hoverBg: "#a62a00",
       mobileClipPath: "special", // Special clip-path for mobile
@@ -38,7 +38,7 @@ const CasinoGameCards = () => {
       title: "Slots",
       icon: "/icons/slots2.svg",
       img: "/category/img3.png",
-      desc: "2,000 + titles, 98% + RTP, one mission: your next big win.",
+      desc: "2K + titles, 98% + RTP, chase your next big win.",
       background: "rgba(85, 81, 169, 0.50)",
       hoverBg: "#a62a00",
       mobileClipPath: "small", // For small mobile cards
@@ -89,7 +89,7 @@ const CasinoGameCards = () => {
       style={!responsive ? { width: c.w } : {}}
     >
       {/* Floating Label */}
-      <div className="absolute top-2 left-2 z-30 flex items-center gap-2 px-0 md:px-3 py-[3px] text-[18px] rounded-lg text-white/60">
+      <div className="absolute top-2 left-2 z-30 flex items-center gap-2 px-0 md:px-2 py-[3px] text-[18px] rounded-lg text-white/60">
         <img src={c.icon} className="w-5 h-5" alt="" />
         {c.title}
       </div>
@@ -116,7 +116,7 @@ const CasinoGameCards = () => {
           }}
         >
           {/* LEFT TEXT */}
-          <div className="w-[50%] sm:w-[40%] flex-col justify-end h-full hidden md:flex">
+          <div className="w-[50%] sm:w-[50%] flex-col justify-end h-full hidden md:flex">
             <p
               className="mb-2"
               style={{
