@@ -12,7 +12,7 @@ const CasinoCategoryNav = () => {
       title: "Casino",
       icon: "/icons/casino.svg",
       img: "/category/img8.png",
-      desc: "Dive into our in-house games, live casino and slots",
+      desc: "The full casino experience. Live, fair, and always on.",
       background: "rgba(132, 67, 160, 0.50)",
       hoverBg: "#8443A0",
       mobileClipPath: "large", // For large mobile cards
@@ -25,7 +25,7 @@ const CasinoCategoryNav = () => {
       title: "Game Shows",
       icon: "/icons/game-shows.svg",
       img: "/category/img3.png",
-      desc: "How about live game shows?",
+      desc: "Live hosts, spinning wheels, and pumping multipliers.",
       background: "rgba(90, 55, 153, 0.50)",
       hoverBg: "#a62a00",
       mobileClipPath: "small", // For small mobile cards
@@ -38,7 +38,7 @@ const CasinoCategoryNav = () => {
       title: "Slots",
       icon: "/icons/slots.svg",
       img: "/category/img10.png",
-      desc: "How about live game shows?",
+      desc: "2,000 + titles, 98%+ RTP, one mission: your next big win.",
       background: "rgba(85, 81, 169, 0.50)",
       hoverBg: "#a62a00",
       mobileClipPath: "small", // For small mobile cards
@@ -51,7 +51,7 @@ const CasinoCategoryNav = () => {
       title: "Blackjack",
       icon: "/icons/blackjack.svg",
       img: "/category/img11.png",
-      desc: "Dive into our in-house games, live casino and slots",
+      desc: "The thinking player's game with almost no house edge.",
       background: "rgba(85, 81, 169, 0.50)",
       hoverBg: "#5551A9",
       mobileClipPath: "large", // For large mobile cards
@@ -64,7 +64,7 @@ const CasinoCategoryNav = () => {
       title: "Roulette",
       icon: "/icons/roulette.svg",
       img: "/category/img6.png",
-      desc: "Dive into our in-house games, live casino and slots",
+      desc: "Banker bets hit 50.68% of the time. The math is in your favor.",
       background: "rgba(132, 67, 160, 0.50)",
       hoverBg: "#8443A0",
       mobileClipPath: "small", // For small mobile cards
