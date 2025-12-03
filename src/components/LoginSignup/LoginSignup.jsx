@@ -875,11 +875,12 @@ const LoginSignup = ({
         <div className="flex flex-col md:flex-row flex-1 min-h-0 max-h-[90vh]">
           {/* Left Side - Image Background (Hidden on mobile) */}
           <div
-            className="hidden md:block md:w-[360px] relative"
+            className="hidden md:block md:w-[40%] relative"
             style={{
-              backgroundImage: "url('/home-assets/login-bg.svg')",
+              backgroundImage: "url('/home-assets/login-right.png')",
               backgroundSize: "cover",
               backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
               backgroundBlendMode: "overlay",
             }}
           >
