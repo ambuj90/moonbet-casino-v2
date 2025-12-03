@@ -120,13 +120,50 @@ const Leaderboard = () => {
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="absolute -top-4 z-30"
+            className="absolute top-8 left-1/2 z-30"
           >
-            <img
-              src="/leaderboard-assets/crown.svg"
-              alt="Crown"
-              className="w-8 h-8 sm:w-9 sm:h-9"
-            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="37"
+              height="37"
+              viewBox="0 0 37 37"
+              fill="none"
+            >
+              <path
+                d="M0.266001 24.0488C0.686392 23.5226 1.47125 23.435 1.99745 23.8554L14.8314 34.1084C15.3576 34.5287 15.4451 35.3136 15.0248 35.8398C14.6044 36.366 13.8195 36.4545 13.2933 36.0341L0.459361 25.7802C-0.0667064 25.3598 -0.154304 24.5749 0.266001 24.0488Z"
+                fill="url(#paint0_linear_9665_5200)"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M9.92713 1.11227C10.4572 -0.419661 12.6279 -0.346635 13.0805 1.19234L15.2816 8.96383C15.5619 10.0077 16.7599 10.4816 17.6908 9.92184L25.2875 5.415C26.5902 4.62674 28.1682 5.88741 27.6869 7.33199L24.9447 15.7382C24.6144 16.7569 25.3544 17.8319 26.4242 17.8877L34.4906 18.3183C36.0886 18.3971 36.6391 20.4978 35.2494 21.3427L17.9652 32.0283C17.3857 32.3853 16.6205 32.3427 16.0814 31.9121L3.85096 22.1406C3.31193 21.7099 3.0912 20.986 3.32167 20.3291L9.92713 1.11227ZM12.639 17.1142C12.1129 16.6939 11.328 16.7814 10.9076 17.3076C10.4875 17.8337 10.575 18.6186 11.101 19.039L17.518 24.166C18.0441 24.5863 18.83 24.4987 19.2504 23.9726C19.6708 23.4464 19.5822 22.6606 19.056 22.2402L12.639 17.1142Z"
+                fill="url(#paint1_linear_9665_5200)"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_9665_5200"
+                  x1="-2.81969e-08"
+                  y1="5.44497"
+                  x2="44.4179"
+                  y2="43.2482"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#FFB8A1" />
+                  <stop offset="1" stop-color="#A62A00" />
+                </linearGradient>
+                <linearGradient
+                  id="paint1_linear_9665_5200"
+                  x1="-2.81969e-08"
+                  y1="5.44497"
+                  x2="44.4179"
+                  y2="43.2482"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#FFB8A1" />
+                  <stop offset="1" stop-color="#A62A00" />
+                </linearGradient>
+              </defs>
+            </svg>
           </motion.div>
         )}
 
@@ -136,13 +173,13 @@ const Leaderboard = () => {
             <img
               src="/leaderboard-assets/astro-profile1.svg"
               alt="Astronaut Helmet"
-              className="absolute inset-0 w-full h-full"
+              className="absolute object-contain inset-0 w-full h-full"
             />
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center -mt-4">
               <img
                 src={winner.profileInner}
                 alt={winner.name}
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover"
+                className="w-20 h-20 sm:w-20 sm:h-20 rounded-full object-cover"
                 onError={(e) => {
                   e.target.src = `https://ui-avatars.com/api/?name=${winner.name}&background=random`;
                 }}
@@ -167,7 +204,7 @@ const Leaderboard = () => {
             {/* Slight top glow */}
             <div className="absolute inset-0" />
 
-            <div className="relative z-10 px-6 sm:px-8 pt-20 sm:pt-24 pb-7 flex flex-col h-full text-center">
+            <div className="relative z-10 px-6 sm:px-8 pt-20 sm:pt-20 flex flex-col h-full text-center">
               <h3 className="text-xl sm:text-2xl font-['Neue_Plak'] font-bold mb-3 sm:mb-4 truncate">
                 {winner.name}
               </h3>
@@ -187,10 +224,15 @@ const Leaderboard = () => {
               </p>
 
               <div className="mb-3 sm:mb-4 flex items-center justify-center gap-2">
-                <img
-                  src="/leaderboard-assets/diamond.svg"
-                  alt="Diamond"
-                  className="w-6 h-6 sm:w-7 sm:h-7"
+                <div
+                  className="w-5 h-5"
+                  style={{
+                    WebkitMaskImage: "url(/leaderboard-assets/diamond.svg)",
+                    WebkitMaskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    background:
+                      "linear-gradient(131deg, #FFB8A1 6.92%, #A62A00 121.35%)",
+                  }}
                 />
                 <span className="text-xl sm:text-2xl font-['Neue_Plak'] font-bold">
                   {winner.points}
@@ -231,14 +273,14 @@ const Leaderboard = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 lg:px-8 pt-10 pb-16">
         {/* Tabs */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex gap-1 p-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
+          <div className="trust_btn inline-flex gap-1 p-2 rounded-full">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
+                className={`px-4 sm:px-6 py-2 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   activeTab === tab.id
-                    ? "text-white shadow-[0_0_12px_rgba(255,184,161,0.5)]"
+                    ? "text-white "
                     : "text-gray-300 hover:text-white"
                 }`}
                 style={
@@ -329,7 +371,7 @@ const Leaderboard = () => {
           className="customborder max-w-6xl mx-auto rounded-2xl overflow-hidden backdrop-blur-xl"
         >
           <div
-            className="hidden md:grid grid-cols-[0.8fr,3fr,1.5fr] px-8 py-4 text-sm"
+            className="hidden md:grid grid-cols-3 px-8 py-4 text-sm mt-6"
             style={{
               color: "var(--moon-silver)",
             }}
@@ -349,10 +391,25 @@ const Leaderboard = () => {
                 transition={{ duration: 0.25, delay: 0.4 + index * 0.03 }}
                 className="px-4 py-2"
               >
-                <div className="trust_btn grid grid-cols-[0.8fr,3fr,1.5fr] items-center gap-4 px-4 py-3 rounded-full bg-[#282753]/70">
+                {/* ⭐ TABLE ROW DEFAULT STYLE UPDATE */}
+                <div
+                  className="trust_btn grid grid-cols-3 items-center gap-4 px-4 py-3 rounded-[8px] transition-all"
+                  style={{
+                    borderRadius: "8px",
+
+                    background: "#1C1D49",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#35326B";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#1C1D49";
+                  }}
+                >
                   <div className="text-sm font-semibold text-gray-200">
                     {user.rank}
                   </div>
+
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-800 flex-shrink-0">
                       <img
@@ -368,7 +425,9 @@ const Leaderboard = () => {
                       {user.username}
                     </span>
                   </div>
+
                   <div className="flex items-center justify-end gap-2">
+                    {/* ⭐ DIAMOND COLOR FIX */}
                     <div
                       className="w-4 h-4"
                       style={{
@@ -376,7 +435,7 @@ const Leaderboard = () => {
                         WebkitMaskSize: "contain",
                         WebkitMaskRepeat: "no-repeat",
                         background:
-                          "linear-gradient(180deg, #FFB8A1 0%, #A62A00 100%)",
+                          "linear-gradient(131deg, #FFB8A1 6.92%, #A62A00 121.35%)",
                       }}
                     />
                     <span className="text-sm font-semibold text-white">
@@ -404,9 +463,9 @@ const Leaderboard = () => {
                 transition={{ duration: 0.25, delay: 0.3 + index * 0.03 }}
                 className="px-3 py-2"
               >
-                <div className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-full bg-[#282753]/70 border border-white/8 shadow-[0_6px_18px_rgba(0,0,0,0.8)]">
-                  <div className="flex items-center gap-2">
-                    <span className="w-6 text-xs font-semibold text-gray-200 text-center">
+                <div className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-2xl bg-[#282753]/70 border border-white/8 shadow-[0_6px_18px_rgba(0,0,0,0.8)]">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="w-6 text-xs font-semibold text-gray-200 text-center flex-shrink-0">
                       {user.rank}
                     </span>
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-800 flex-shrink-0">
@@ -423,7 +482,7 @@ const Leaderboard = () => {
                       {user.username}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 flex-shrink-0">
                     <img
                       src="/leaderboard-assets/diamond.svg"
                       alt="Points"
@@ -473,8 +532,8 @@ const Leaderboard = () => {
               onClick={() => setCurrentPage(page)}
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full text-xs sm:text-sm font-medium transition-all ${
                 currentPage === page
-                  ? "bg-white text-black shadow-[0_0_18px_rgba(255,255,255,0.4)]"
-                  : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
+                  ? "bg-white text.black shadow-[0_0_18px_rgba(255,255,255,0.4)] text-black"
+                  : "bg.white/5 text-gray-300 hover:bg-white/10 border border-white/10 bg-white/5"
               }`}
             >
               {page}
@@ -489,8 +548,8 @@ const Leaderboard = () => {
               onClick={() => setCurrentPage(page)}
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full text-xs sm:text-sm font-medium transition-all ${
                 currentPage === page
-                  ? "bg-white text-black shadow-[0_0_18px_rgba(255,255,255,0.4)]"
-                  : "bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10"
+                  ? "bg.white text-black shadow-[0_0_18px_rgba(255,255,255,0.4)] bg-white"
+                  : "bg.white/5 text-gray-300 hover:bg-white/10 border border-white/10 bg-white/5"
               }`}
             >
               {page}
@@ -501,7 +560,7 @@ const Leaderboard = () => {
             onClick={() =>
               setCurrentPage(Math.min(totalPages, currentPage + 1))
             }
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/10 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-2 rounded-lg bg.white/5 hover:bg-white/10 transition-colors border border-white/10 disabled:opacity-40 disabled:cursor-not-allowed bg-white/5"
             disabled={currentPage === totalPages}
           >
             <svg
