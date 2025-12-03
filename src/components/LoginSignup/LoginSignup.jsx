@@ -1374,7 +1374,7 @@ const LoginSignup = ({
                           and confirm I'm 18+
                         </span>
                       </label>
-
+                      {/* 
                       <label className="flex items-start gap-2 cursor-pointer">
                         <input
                           type="checkbox"
@@ -1391,7 +1391,7 @@ const LoginSignup = ({
                         <span className="text-xs text-[#E1E1E1]">
                           Send me promotions
                         </span>
-                      </label>
+                      </label> */}
                     </div>
 
                     {/* Create Account Button with gradient */}
