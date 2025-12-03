@@ -13,6 +13,7 @@ const SlotsSection = () => {
   const [loading, setLoading] = useState(true);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const navigate = useNavigate();
 
   // Check scroll position
@@ -28,6 +29,17 @@ const SlotsSection = () => {
     setCanScrollLeft(scrollLeft > tolerance);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - tolerance);
   };
+
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobileDevice(window.innerWidth <= 768); // mobile breakpoint
+    };
+
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -197,6 +209,27 @@ const SlotsSection = () => {
       scale: 0.95,
     },
   };
+
+  // Filter games based on device type (mobile / desktop)
+  const filteredGames = games.filter((game) => {
+    const isMobileFlag =
+      game.is_mobile === true ||
+      game.is_mobile === "true" ||
+      game.is_mobile === 1;
+
+    if (isMobileDevice) {
+      // show only mobile games
+      return isMobileFlag;
+    } else {
+      // show desktop games
+      return (
+        game.is_mobile === false ||
+        game.is_mobile === "false" ||
+        game.is_mobile === 0 ||
+        typeof game.is_mobile === "undefined"
+      );
+    }
+  });
 
   return (
     <motion.section
@@ -388,7 +421,7 @@ const SlotsSection = () => {
                   overscrollBehaviorX: "contain",
                 }}
               >
-                {games.map((game, index) => (
+                {filteredGames.map((game, index) => (
                   <motion.div
                     key={game.uuid}
                     variants={cardVariants}

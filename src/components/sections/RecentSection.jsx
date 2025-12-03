@@ -12,6 +12,7 @@ const RecentSection = () => {
   const [loading, setLoading] = useState(true);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userId = user.id || "690b0290cb255ca66b14a529";
@@ -42,6 +43,20 @@ const RecentSection = () => {
     setCanScrollLeft(scrollLeft > tolerance);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - tolerance);
   };
+
+  useEffect(() => {
+    const checkDevice = () => {
+      // You can tune this breakpoint (768px = typical mobile/tablet)
+      setIsMobileDevice(window.innerWidth <= 768);
+    };
+
+    checkDevice(); // run on mount
+    window.addEventListener("resize", checkDevice);
+
+    return () => {
+      window.removeEventListener("resize", checkDevice);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchAllGames = async () => {
@@ -81,6 +96,12 @@ const RecentSection = () => {
         };
 
         setGames(shuffleArray(unique));
+        console.log("🎮 Total Games Fetched:", unique.length);
+        console.log("📦 Sample Game:", unique[0]);
+        console.log(
+          "📌 is_mobile values:",
+          unique.map((g) => g.is_mobile)
+        );
       } catch (error) {
         console.error("❌ Error fetching games:", error);
         toast.error(
@@ -226,6 +247,29 @@ const RecentSection = () => {
       scale: 0.95,
     },
   };
+
+  // Filter games for current device
+  const filteredGames = games.filter((game) => {
+    // Normalize is_mobile (in case it's undefined or not strictly boolean)
+    const isMobileFlag =
+      game.is_mobile === true ||
+      game.is_mobile === "true" ||
+      game.is_mobile === 1;
+
+    if (isMobileDevice) {
+      // On mobile: show only mobile games
+      return isMobileFlag;
+    } else {
+      // On desktop: show only desktop games
+      // (either explicitly false, "false", 0 or missing)
+      return (
+        game.is_mobile === false ||
+        game.is_mobile === "false" ||
+        game.is_mobile === 0 ||
+        typeof game.is_mobile === "undefined"
+      );
+    }
+  });
 
   return (
     <motion.section
@@ -447,7 +491,7 @@ const RecentSection = () => {
                   overscrollBehaviorX: "contain",
                 }}
               >
-                {games.map((game, index) => (
+                {filteredGames.map((game, index) => (
                   <motion.div
                     key={game.uuid}
                     variants={cardVariants}
