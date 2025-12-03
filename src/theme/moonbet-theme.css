@@ -213,7 +213,7 @@ body::before {
 }
 
 .gradient-neon {
-  background: linear-gradient(0deg, #a62a00 0%, #FFB8A1100%);
+  background: linear-gradient(0deg, #a62a00 0%, #ffb8a1 100%);
 }
 
 .gradient-space {
