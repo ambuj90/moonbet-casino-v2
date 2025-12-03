@@ -205,32 +205,7 @@ const GamePage = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen text-white text-xl">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-transparent bg-clip-text bg-gradient-to-r from-[#5A3799] to-[#DC1FFF] text-2xl sm:text-3xl font-bold blur-[0.3px]"
-        >
-          {isRealPlay
-            ? "Loading for Real gamePlay..."
-            : "Loading for Fun Play..."}
-        </motion.div>
-
-        <div className="mt-6 w-64 h-2 rounded-full bg-gradient-to-r from-[#F07730]/20 via-[#EFD28E]/30 to-[#F07730]/20 overflow-hidden">
-          <motion.div
-            className="h-full w-1/3 bg-gradient-to-r from-[#5A3799] to-[#DC1FFF]"
-            animate={{ x: ["-100%", "100%"] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  if (!iframeUrl) {
+  if (!loading && !iframeUrl) {
     return (
       <div className="flex items-center justify-center h-screen text-red-400 text-xl">
         Failed to load game.
@@ -250,12 +225,22 @@ const GamePage = () => {
             position: "relative",
           }}
         >
+          {loading && (
+            <div className="absolute inset-0 flex items-center justify-center bg-[#00000080] backdrop-blur-sm z-[999]">
+              <img
+                src="/icons/moonlogo.gif"
+                alt="Moon Loader"
+                className="w-28 h-28 object-contain"
+              />
+            </div>
+          )}
           <iframe
             ref={iframeRef}
             src={iframeUrl}
             title={gameData?.name || "Game"}
             className="w-full h-[82vh] border-none pointer-events-auto"
             allowFullScreen
+            onLoad={() => setLoading(false)}
           />
         </div>
 
@@ -292,10 +277,10 @@ const GamePage = () => {
 
               <div className="min-w-0">
                 <h3 className="font-bold text-xs sm:text-sm md:text-base text-[var(--text-light-grey)] truncate max-w-[140px] sm:max-w-[220px] md:max-w-none">
-                  {gameData.name}
+                  {gameData?.name || "Loading..."}
                 </h3>
                 <p className="text-[10px] sm:text-xs text-[var(--text-lavender-2)] truncate max-w-[160px] sm:max-w-none">
-                  {gameData.provider}
+                  {gameData?.provider || ""}
                 </p>
               </div>
             </div>
