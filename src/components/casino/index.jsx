@@ -8,7 +8,19 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
   const [visibleCount, setVisibleCount] = useState(48);
   const [loading, setLoading] = useState(true);
   const [favorite, setFavorite] = useState({});
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkDevice = () => {
+      setIsMobileDevice(window.innerWidth <= 768); // Mobile breakpoint
+    };
+
+    checkDevice(); // run initially
+    window.addEventListener("resize", checkDevice);
+
+    return () => window.removeEventListener("resize", checkDevice);
+  }, []);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -76,6 +88,27 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
     }),
   };
 
+  // Filter games based on device type (mobile/desktop)
+  const filteredGames = games.filter((game) => {
+    const isMobileFlag =
+      game.is_mobile === true ||
+      game.is_mobile === "true" ||
+      game.is_mobile === 1;
+
+    if (isMobileDevice) {
+      // User is on mobile → show ONLY mobile games
+      return isMobileFlag;
+    } else {
+      // User on desktop → show desktop ones
+      return (
+        game.is_mobile === false ||
+        game.is_mobile === "false" ||
+        game.is_mobile === 0 ||
+        typeof game.is_mobile === "undefined"
+      );
+    }
+  });
+
   return (
     <section className="w-full py-10">
       <div className="max-w-7xl mx-auto px-4">
@@ -94,7 +127,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
               initial="hidden"
               animate="visible"
             >
-              {games.slice(0, visibleCount).map((game, i) => (
+              {filteredGames.slice(0, visibleCount).map((game, i) => (
                 <motion.div
                   key={game.uuid || i}
                   variants={cardVariants}
