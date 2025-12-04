@@ -54,11 +54,6 @@ import Leaderboard2 from "./pages/Leaderboard2.jsx";
 import GameReturn from "./pages/GameReturn.jsx";
 
 // Temporary pages
-const SimplePage = ({ title }) => (
-  <div className="min-h-screen p-8 text-white">
-    <h1>{title}</h1>
-  </div>
-);
 
 const HoneypotPage = () => <SimplePage title="Honeypot Game" />;
 const CoinflipPage = () => <SimplePage title="Coinflip Game" />;
@@ -155,7 +150,6 @@ function App() {
             <Route path="/game/:game_uuid/:slug?" element={<GamePage />} />
             <Route path="/game-return/:uuid" element={<GameReturn />} />
 
-            <Route path="chat" element={<ChatPage />} />
             <Route path="authtest" element={<AuthTest />} />
 
             <Route path="leaderboard" element={<Leaderboard />} />

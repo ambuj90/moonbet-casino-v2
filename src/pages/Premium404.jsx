@@ -14,7 +14,7 @@ const Premium404 = () => {
   const floatingCoins = ["₿", "Ξ", "◎", "🪙", "Ξ", "₿"];
 
   return (
-    <div className="min-h-screen w-full   overflow-hidden flex flex-col items-center justify-center relative">
+    <div className="min-h-screen w-full overflow-hidden flex flex-col items-center justify-center relative bg-[#0D0E36]">
       {/* ===== STARFIELD ===== */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 55 }).map((_, i) => (
@@ -48,7 +48,7 @@ const Premium404 = () => {
       {floatingCoins.map((coin, i) => (
         <motion.div
           key={i}
-          className="absolute text-2xl md:text-3xl opacity-40 pointer-events-none"
+          className="absolute text-2xl md:text-3xl opacity-40 pointer-events-none text-[#FFB8A1]"
           initial={{ y: -200, x: Math.random() * window.innerWidth }}
           animate={{ y: ["0%", "120%"] }}
           transition={{
@@ -56,24 +56,22 @@ const Premium404 = () => {
             repeat: Infinity,
             ease: "linear",
           }}
-          style={{
-            left: `${Math.random() * 100}%`,
-          }}
+          style={{ left: `${Math.random() * 100}%` }}
         >
           {coin}
         </motion.div>
       ))}
 
-      {/* ===== SOFT MOON GLOW BEHIND 404 ===== */}
+      {/* ===== MOON GLOW BEHIND 404 (updated to Moonbet gradient) ===== */}
       <div
         className="absolute top-1/3 w-[450px] h-[450px] rounded-full opacity-20 blur-3xl"
         style={{
           background:
-            "radial-gradient(circle, rgba(239,210,142,0.4), transparent 60%)",
+            "radial-gradient(circle, rgba(255,184,161,0.4), rgba(166,42,0,0.1) 60%)",
         }}
       />
 
-      {/* ===== SLOT MACHINE STYLE 404 ===== */}
+      {/* ===== SLOT MACHINE STYLE 404 (Moonbet CTA gradient) ===== */}
       <motion.div
         initial={{ scale: 0.7, opacity: 0, rotate: -6 }}
         animate={{ scale: 1, opacity: 1, rotate: 0 }}
@@ -87,11 +85,11 @@ const Premium404 = () => {
             animate={{ y: 0, rotateX: 0 }}
             transition={{ duration: 0.7 + index * 0.2 }}
             className="w-28 h-32 sm:w-36 sm:h-40 
-                       bg-gradient-to-b from-[#F07730] to-[#EFD28E]
                        rounded-lg flex items-center justify-center text-black 
-                       shadow-[0_0_40px_rgba(240,119,48,0.6)]
-                       border border-[#EFD28E]/30"
+                       shadow-[0_0_35px_rgba(255,184,161,0.6)]
+                       border border-[#FFB8A1]/40"
             style={{
+              background: "linear-gradient(0deg,#A62A00 0%, #FFB8A1 100%)",
               textShadow: "0 0 10px rgba(255,255,255,0.3)",
             }}
           >
@@ -100,18 +98,18 @@ const Premium404 = () => {
         ))}
       </motion.div>
 
-      {/* ===== NEON PAGE NOT FOUND ===== */}
+      {/* ===== NEON PAGE NOT FOUND (Moonbet gold) ===== */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="mt-4 text-xl sm:text-2xl text-[#EFD28E] font-light tracking-widest 
-                   drop-shadow-[0_0_10px_rgba(239,210,142,0.8)]"
+        className="mt-4 text-xl sm:text-2xl font-light tracking-widest 
+                   text-[#FFB8A1] drop-shadow-[0_0_10px_rgba(255,184,161,0.8)]"
       >
         PAGE NOT FOUND
       </motion.p>
 
-      {/* ===== FLOATING ASTRONAUT GIF ===== */}
+      {/* ===== FLOATING ASTRONAUT ===== */}
       <motion.img
         src="/icons/moonlogo.gif"
         alt="MoonBet Astronaut"
@@ -121,28 +119,30 @@ const Premium404 = () => {
           opacity: { delay: 1.2, duration: 0.6 },
           y: { repeat: Infinity, duration: 3, ease: "easeInOut" },
         }}
-        className="w-28 mt-8 opacity-90 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+        className="w-28 mt-8 opacity-90 drop-shadow-[0_0_20px_rgba(255,184,161,0.4)]"
       />
 
-      {/* ===== REDIRECT TIMER ===== */}
+      {/* ===== REDIRECT TIMER (CTA Orange/Gold) ===== */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="mt-6 text-gray-300 text-sm"
+        className="mt-6 text-[#E1E1E1] text-sm"
       >
         Redirecting to homepage in{" "}
-        <span className="text-[#F07730] font-bold">5 seconds...</span>
+        <span className="text-[#FFB8A1] font-bold">5 seconds...</span>
       </motion.p>
 
-      {/* ===== BUTTON ===== */}
+      {/* ===== GO HOME BUTTON (CTA gradient) ===== */}
       <motion.button
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
-        className="mt-6 bg-gradient-to-r from-[#F07730] to-[#EFD28E] 
-                   text-black px-6 py-3 rounded-lg font-bold 
-                   shadow-lg shadow-[#F07730]/40"
         onClick={() => navigate("/")}
+        className="mt-6 px-6 py-3 rounded-lg font-bold text-black
+                   shadow-lg shadow-[#A62A00]/40"
+        style={{
+          background: "linear-gradient(0deg,#A62A00 0%, #FFB8A1 100%)",
+        }}
       >
         Go Home Now
       </motion.button>

@@ -162,7 +162,7 @@ const MobileHeader = ({
       label: "Leaderboard",
       icon: "/icons/leaderboard.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
-      path: "/leaderboard2",
+      path: "/leaderboard",
     },
   ];
 
