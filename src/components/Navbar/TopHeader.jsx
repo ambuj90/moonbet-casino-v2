@@ -103,7 +103,7 @@ const TopHeader = ({
                         "linear-gradient(0deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.25) 100%), var(--CTA-HOVER)",
                     }}
                     whileTap={{ scale: 0.98 }}
-                    className="px-8 py-3 text-white text-sm font-semibold rounded-[8px] transition-all"
+                    className="px-8 py-3 text-white font-semibold rounded-[8px] transition-all"
                     style={{ background: "var(--CTA-HOVER)" }}
                   >
                     Login

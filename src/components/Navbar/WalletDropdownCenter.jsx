@@ -408,7 +408,7 @@ const WalletDropdownCenter = ({
                 width="34"
                 height="34"
                 rx="7.5"
-                fill="url(#paint0_linear_9018_5922)"
+                fill="url(#paint0_linear_9685_893)"
               />
               <rect
                 x="0.5"
@@ -416,9 +416,9 @@ const WalletDropdownCenter = ({
                 width="34"
                 height="34"
                 rx="7.5"
-                stroke="url(#paint1_linear_9018_5922)"
+                stroke="url(#paint1_linear_9685_893)"
               />
-              <g filter="url(#filter0_d_9018_5922)">
+              <g filter="url(#filter0_d_9685_893)">
                 <path
                   d="M23.4646 10C23.9974 10.0001 24.4286 10.43 24.4287 10.9598C24.4287 11.4897 23.9974 11.9195 23.4646 11.9196H11.5713C11.2172 11.9197 10.9283 12.2066 10.9282 12.5598C10.9282 12.9131 11.2171 13.1999 11.5713 13.2H25.3928C26.2787 13.2 27 13.9174 27 14.8V16.4H23.7856C22.0134 16.4001 20.5713 17.8356 20.5713 19.6C20.5714 21.3643 22.0134 22.7999 23.7856 22.8H27V24.4C26.9999 25.2825 26.2786 26 25.3928 26H11.5713C10.1533 25.9999 9.00019 24.8518 9 23.4402C9 23.4402 9 12.5694 9 12.5598C9.00005 11.1481 10.1532 10.0001 11.5713 10H23.4646Z"
                   fill="white"
@@ -430,7 +430,7 @@ const WalletDropdownCenter = ({
               </g>
               <defs>
                 <filter
-                  id="filter0_d_9018_5922"
+                  id="filter0_d_9685_893"
                   x="6"
                   y="7"
                   width="24"
@@ -455,28 +455,28 @@ const WalletDropdownCenter = ({
                   <feBlend
                     mode="normal"
                     in2="BackgroundImageFix"
-                    result="effect1_dropShadow_9018_5922"
+                    result="effect1_dropShadow_9685_893"
                   />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"
-                    in2="effect1_dropShadow_9018_5922"
+                    in2="effect1_dropShadow_9685_893"
                     result="shape"
                   />
                 </filter>
                 <linearGradient
-                  id="paint0_linear_9018_5922"
+                  id="paint0_linear_9685_893"
                   x1="17.5"
                   y1="0"
                   x2="17.5"
                   y2="35"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#AAF23F" />
-                  <stop offset="1" stop-color="#28C203" />
+                  <stop stop-color="#9292D2" />
+                  <stop offset="1" stop-color="#7171B4" />
                 </linearGradient>
                 <linearGradient
-                  id="paint1_linear_9018_5922"
+                  id="paint1_linear_9685_893"
                   x1="2.45192"
                   y1="-7.76018e-06"
                   x2="19.1272"
@@ -515,7 +515,7 @@ const WalletDropdownCenter = ({
                 width="34"
                 height="34"
                 rx="7.5"
-                fill="url(#paint0_linear_9018_5924)"
+                fill="url(#paint0_linear_9685_893)"
               />
               <rect
                 x="0.5"
@@ -523,18 +523,9 @@ const WalletDropdownCenter = ({
                 width="34"
                 height="34"
                 rx="7.5"
-                fill="black"
-                fill-opacity="0.25"
+                stroke="url(#paint1_linear_9685_893)"
               />
-              <rect
-                x="0.5"
-                y="0.5"
-                width="34"
-                height="34"
-                rx="7.5"
-                stroke="url(#paint1_linear_9018_5924)"
-              />
-              <g filter="url(#filter0_d_9018_5924)">
+              <g filter="url(#filter0_d_9685_893)">
                 <path
                   d="M23.4646 10C23.9974 10.0001 24.4286 10.43 24.4287 10.9598C24.4287 11.4897 23.9974 11.9195 23.4646 11.9196H11.5713C11.2172 11.9197 10.9283 12.2066 10.9282 12.5598C10.9282 12.9131 11.2171 13.1999 11.5713 13.2H25.3928C26.2787 13.2 27 13.9174 27 14.8V16.4H23.7856C22.0134 16.4001 20.5713 17.8356 20.5713 19.6C20.5714 21.3643 22.0134 22.7999 23.7856 22.8H27V24.4C26.9999 25.2825 26.2786 26 25.3928 26H11.5713C10.1533 25.9999 9.00019 24.8518 9 23.4402C9 23.4402 9 12.5694 9 12.5598C9.00005 11.1481 10.1532 10.0001 11.5713 10H23.4646Z"
                   fill="white"
@@ -546,7 +537,7 @@ const WalletDropdownCenter = ({
               </g>
               <defs>
                 <filter
-                  id="filter0_d_9018_5924"
+                  id="filter0_d_9685_893"
                   x="6"
                   y="7"
                   width="24"
@@ -571,28 +562,28 @@ const WalletDropdownCenter = ({
                   <feBlend
                     mode="normal"
                     in2="BackgroundImageFix"
-                    result="effect1_dropShadow_9018_5924"
+                    result="effect1_dropShadow_9685_893"
                   />
                   <feBlend
                     mode="normal"
                     in="SourceGraphic"
-                    in2="effect1_dropShadow_9018_5924"
+                    in2="effect1_dropShadow_9685_893"
                     result="shape"
                   />
                 </filter>
                 <linearGradient
-                  id="paint0_linear_9018_5924"
+                  id="paint0_linear_9685_893"
                   x1="17.5"
                   y1="0"
                   x2="17.5"
                   y2="35"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#AAF23F" />
-                  <stop offset="1" stop-color="#28C203" />
+                  <stop stop-color="#9292D2" />
+                  <stop offset="1" stop-color="#7171B4" />
                 </linearGradient>
                 <linearGradient
-                  id="paint1_linear_9018_5924"
+                  id="paint1_linear_9685_893"
                   x1="2.45192"
                   y1="-7.76018e-06"
                   x2="19.1272"

@@ -51,7 +51,7 @@
   /* ===========================
      CTA 2 (Green system)
   ============================ */
-  --cta2-light-green: #aaf23f;
+  --cta2-light-green: #9292d2;
   --cta2-green: #28c203;
   --cta2-green-gradient: linear-gradient(
     180deg,
@@ -59,10 +59,13 @@
     rgba(40, 194, 3, 0.4) 100%
   );
 
-  --cta3-green-gradient: linear-gradient(180deg, #aaf23f 0%, #28c203 100%);
-  --cta3-dark-hover-button:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%),
-    linear-gradient(180deg, #8BD32A 0%, #1F9503 100%);
+  --cta3-green-gradient: linear-gradient(180deg, #9292d2 0%, #7171b4 100%);
+  --cta3-dark-hover-button: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.35) 100%
+    ),
+    linear-gradient(180deg, #8bd32a 0%, #1f9503 100%);
   /* ===========================
      MOON BADGES (VIP Tiers)
   ============================ */
