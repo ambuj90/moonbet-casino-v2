@@ -102,56 +102,40 @@ const AffiliateProgram = () => {
         return;
       }
 
-      // ✅ Get user info from state or localStorage
       const user = JSON.parse(localStorage.getItem("user") || "{}");
-      const payload = { userId: user.id };
 
       const { data } = await axios.post(
         "/referral-service/api/referral/generate-code",
-        payload,
+        {
+          userId: user.id,
+          userInfo: {
+            username: user.username,
+            email: user.email,
+            displayName: user.displayName,
+          },
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
+
+            // 🔥 REQUIRED 🔥
+            "x-internal-secret": import.meta.env.VITE_INTERNAL_API_KEY,
           },
         }
       );
 
       if (data?.success) {
         const info = data.data;
-
-        // ✅ Update UI state
         setReferralCode(info.code);
         setGeneratedLink(info.shareLink);
-        setPoints({
-          referrer: info.points?.referrerPoints || 0,
-          referee: info.points?.refereePoints || 0,
-        });
+        setPoints(info.points);
         setIsCodeSet(true);
-
-        // Optional: cache locally for reload persistence
-        localStorage.setItem(
-          "referralData",
-          JSON.stringify({
-            referralCode: info.code,
-            referralLink: info.shareLink,
-            points: {
-              referrer: info.points?.referrerPoints || 0,
-              referee: info.points?.refereePoints || 0,
-            },
-          })
-        );
-
-        console.log(`🎁 Referral code generated: ${info.code}`);
-      } else {
-        alert(data?.message || "Failed to generate referral code.");
       }
     } catch (error) {
       console.error("Referral API error:", error);
-      alert(
-        error.response?.data?.message ||
-          "Error generating referral code. Please try again."
-      );
+      alert(error.response?.data?.message || "Error generating referral code");
+      console.log("❌ ERROR RESPONSE:", error.response);
     } finally {
       setLoading(false);
     }
@@ -219,8 +203,12 @@ const AffiliateProgram = () => {
       {/* Background gradient effect */}
       <div className="fixed inset-0 bg-gradient-to-br from-[#13151A]/30 via-transparent to-[#1A1D24]/30 pointer-events-none" />
       {loading && (
-        <div className="text-center text-gray-400 text-lg py-10">
-          Loading referral info...
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-50">
+          <img
+            src="/icons/moonlogo.gif"
+            alt="Loading..."
+            className="w-32 h-32 object-contain animate-pulse"
+          />
         </div>
       )}
 
