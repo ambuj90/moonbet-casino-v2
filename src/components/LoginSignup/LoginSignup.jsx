@@ -1159,7 +1159,7 @@ const LoginSignup = ({
                       {/* Google Login */}
 
                       <div className="flex justify-center">
-                        <div className="[&_div]:!bg-white [&_span]:!text-black [&_div]:!border-none [&_div]:!rounded-lg">
+                        <div className="login">
                           <GoogleLogin
                             onSuccess={handleGoogleLogin}
                             onError={() => toast.error("Google Sign-In failed")}
@@ -1177,7 +1177,7 @@ const LoginSignup = ({
                       {/* Connect Wallet Button */}
                       <button
                         onClick={() => setWalletModalOpen(true)}
-                        className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all w-full hover:opacity-90"
+                        className="flex items-center justify-center gap-2 py-1 px-4 rounded-lg transition-all w-full hover:opacity-90"
                         style={{
                           background:
                             "linear-gradient(180deg, #9292D2 0%, #7171B4 100%)",
