@@ -64,11 +64,60 @@ const validatePassword = (password) => {
 };
 
 const WalletIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-    <path
-      d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"
-      fill="currentColor"
-    />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="23"
+    viewBox="0 0 24 23"
+    fill="none"
+  >
+    <g filter="url(#filter0_d_9409_572)">
+      <path
+        d="M17.4646 3C17.9974 3.0001 18.4286 3.45689 18.4287 4.01981C18.4287 4.58278 17.9974 5.03951 17.4646 5.03961H5.5713C5.21715 5.03967 4.9283 5.34453 4.92824 5.71981C4.92824 6.09513 5.21712 6.39995 5.5713 6.4H19.3928C20.2787 6.4 21 7.16229 21 8.1V9.8H17.7856C16.0134 9.8001 14.5713 11.3253 14.5713 13.2C14.5714 15.0746 16.0134 16.5999 17.7856 16.6H21V18.3C20.9999 19.2376 20.2786 20 19.3928 20H5.5713C4.1533 19.9999 3.00019 18.7801 3 17.2802C3 17.2802 3 5.73001 3 5.71981C3.00005 4.21982 4.15321 3.00005 5.5713 3H17.4646Z"
+        fill="white"
+      />
+      <path
+        d="M21 15.2396H17.7856C16.7206 15.2395 15.8575 14.3266 15.8574 13.2C15.8574 12.0733 16.7205 11.1595 17.7856 11.1594H21V15.2396Z"
+        fill="white"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_d_9409_572"
+        x="0"
+        y="0"
+        width="24"
+        height="23"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset />
+        <feGaussianBlur stdDeviation="1.5" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_9409_572"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_9409_572"
+          result="shape"
+        />
+      </filter>
+    </defs>
   </svg>
 );
 
@@ -790,7 +839,7 @@ const LoginSignup = ({
           className="w-full flex items-center justify-between px-4 sm:px-6 py-3"
           style={{
             borderRadius: "12px 12px 0 0",
-            background: "rgba(255, 255, 255, 0.50)",
+            background: "rgba(255, 255, 255, 0.30)",
             backdropFilter: "blur(30px)",
             WebkitBackdropFilter: "blur(30px)",
           }}
@@ -917,17 +966,14 @@ const LoginSignup = ({
     flex flex-col 
     justify-start 
     overflow-y-auto 
-    min-h-0 
-    h-full
-    max-h-full
+    min-h-0 h-full max-h-full
     scrollbar-thin 
     scrollbar-thumb-[#ffb8a1]/40
+    backdrop-blur-2xl
   "
             style={{
               background:
-                "linear-gradient(109deg, rgba(201,201,201,0.80) 1.57%, rgba(196,196,196,0.10) 100%)",
-              backdropFilter: "blur(30px)",
-              WebkitBackdropFilter: "blur(30px)",
+                "linear-gradient(137deg, rgb(201 201 201 / 26%) 1.57%, rgba(196, 196, 196, 0.1) 100%)",
             }}
           >
             {/* Mobile Logo (shown only on mobile) - HIDDEN since we have header now */}
@@ -1133,7 +1179,8 @@ const LoginSignup = ({
                         onClick={() => setWalletModalOpen(true)}
                         className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all w-full hover:opacity-90"
                         style={{
-                          border: "1px solid var(--cta2-light-green)",
+                          background:
+                            "linear-gradient(180deg, #9292D2 0%, #7171B4 100%)",
                         }}
                       >
                         <WalletIcon />
