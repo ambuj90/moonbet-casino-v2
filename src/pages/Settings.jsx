@@ -158,7 +158,7 @@ const Settings = () => {
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8"
         >
-          <h1 className="text-2xl lg:text-4xl font-bold text-white">
+          <h1 className="text-2xl lg:text-3xl font-bold text-white">
             Settings
           </h1>
           <div className="flex flex-wrap gap-3">

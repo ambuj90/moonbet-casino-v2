@@ -60,6 +60,9 @@
   );
 
   --cta3-green-gradient: linear-gradient(180deg, #aaf23f 0%, #28c203 100%);
+  --cta3-dark-hover-button:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%),
+    linear-gradient(180deg, #8BD32A 0%, #1F9503 100%);
   /* ===========================
      MOON BADGES (VIP Tiers)
   ============================ */
