@@ -1169,6 +1169,7 @@ const LoginSignup = ({
                             context="use"
                             auto_select={false}
                             promptMomentNotification={() => {}}
+                            prompt="select_account"
                           />
                         </div>
                       </div>
@@ -1490,6 +1491,7 @@ const LoginSignup = ({
                               context="use" // ❗ forces Google to re-open account chooser
                               auto_select={false}
                               promptMomentNotification={() => {}}
+                              prompt="select_account"
                             />
                           </div>
                         </div>
