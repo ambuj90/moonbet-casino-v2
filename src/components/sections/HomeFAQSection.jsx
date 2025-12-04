@@ -175,7 +175,7 @@ const HomeFAQSection = () => {
   const visibleFaqs = showAll ? faqData : faqData.slice(0, 5);
 
   return (
-    <section className="w-full md:py-18 py-4 pb-8 relative">
+    <section className="w-full md:py-18 py-4 pb-8 px-4 md:px-0 relative">
       <div className="container mx-auto max-w-4xl relative z-10">
         <div className="flex flex-col lg:flex-row">
           {/* Left Fixed Image */}

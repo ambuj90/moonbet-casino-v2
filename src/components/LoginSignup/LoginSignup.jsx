@@ -817,7 +817,7 @@ const LoginSignup = ({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      className="fixed inset-0 z-[9999] flex items-center justify-center px-2"
       style={{
         backgroundColor: "rgba(13, 14, 54, 0.30)",
         backdropFilter: "blur(25px)",
@@ -1154,20 +1154,19 @@ const LoginSignup = ({
                         <div className="flex-grow border-t border-[rgba(255, 255, 255, 0.20)]"></div>
                       </div>
                     </div>
-                    {/* Social Login Buttons - Stack on mobile, side by side on desktop */}
-                    <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-3">
+                    {/* Social Login Buttons - Responsive */}
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {/* Google Login */}
-
-                      <div className="flex justify-center">
-                        <div className="login">
+                      <div className="w-full flex justify-center sm:justify-start">
+                        <div className="w-full">
                           <GoogleLogin
                             onSuccess={handleGoogleLogin}
                             onError={() => toast.error("Google Sign-In failed")}
                             theme="filled_black"
                             width="100%"
-                            useOneTap={false} // ❗ stops auto-login
-                            ux_mode="popup" // ❗ allows choosing account
-                            context="use" // ❗ forces Google to re-open account chooser
+                            useOneTap={false}
+                            ux_mode="popup"
+                            context="use"
                             auto_select={false}
                             promptMomentNotification={() => {}}
                           />
@@ -1177,7 +1176,14 @@ const LoginSignup = ({
                       {/* Connect Wallet Button */}
                       <button
                         onClick={() => setWalletModalOpen(true)}
-                        className="flex items-center justify-center gap-2 py-1 px-4 rounded-lg transition-all w-full hover:opacity-90"
+                        className="
+      w-full 
+      flex items-center justify-center 
+      gap-2 py-2 
+      rounded-lg 
+      transition-all 
+      hover:opacity-90
+    "
                         style={{
                           background:
                             "linear-gradient(180deg, #9292D2 0%, #7171B4 100%)",

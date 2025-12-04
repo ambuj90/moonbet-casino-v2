@@ -121,7 +121,7 @@ const MobileBottomNav = ({ onHamburgerClick }) => {
     <>
       {/* Mobile Bottom Navigation - Only visible on mobile */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40   border-t border-white/10">
-        <div className="flex items-center justify-around px-2 py-2 bg-[linear-gradient(0deg,rgba(28,29,73,0.70)_0%,rgba(28,29,73,0)_100%)] backdrop-blur-[21.5px]">
+        <div className="flex items-center justify-around px-2 py-2 bg-[linear-gradient(0deg, rgb(28 29 73) 0%, rgb(28 29 73 / 72%) 100%)] backdrop-blur-2xl">
           {menuItems.map((item) => {
             const IconComponent = item.icon;
             return (

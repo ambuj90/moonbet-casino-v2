@@ -51,7 +51,7 @@
   /* ===========================
      CTA 2 (Green system)
   ============================ */
-  --cta2-light-green: #9292d2;
+  --cta2-light-green: #aaf23f;
   --cta2-green: #28c203;
   --cta2-green-gradient: linear-gradient(
     180deg,
@@ -60,6 +60,7 @@
   );
 
   --cta3-green-gradient: linear-gradient(180deg, #9292d2 0%, #7171b4 100%);
+
   --cta3-dark-hover-button: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.35) 0%,
