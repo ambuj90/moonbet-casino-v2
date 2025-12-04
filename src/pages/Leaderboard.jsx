@@ -443,8 +443,8 @@ const Leaderboard = () => {
               color: "var(--moon-silver)",
             }}
           >
-            <div>Rank</div>
-            <div>User name</div>
+            <div className="text-left">Rank</div>
+            <div className="text-center">User name</div>
             <div className="text-right">Points</div>
           </div>
 
@@ -463,7 +463,6 @@ const Leaderboard = () => {
                   className="trust_btn grid grid-cols-3 items-center gap-4 px-4 py-3 rounded-[8px] transition-all"
                   style={{
                     borderRadius: "8px",
-
                     background: "#1C1D49",
                   }}
                   onMouseEnter={(e) => {
@@ -473,11 +472,13 @@ const Leaderboard = () => {
                     e.currentTarget.style.background = "#1C1D49";
                   }}
                 >
-                  <div className="text-sm font-semibold text-gray-200">
+                  {/* Rank (Left) */}
+                  <div className="text-sm font-semibold text-gray-200 text-left">
                     {user.rank}
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  {/* Username (Center) */}
+                  <div className="flex items-center justify-center gap-3">
                     <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-800 flex-shrink-0">
                       <img
                         src={user.avatar}
@@ -493,8 +494,8 @@ const Leaderboard = () => {
                     </span>
                   </div>
 
+                  {/* Points (Right) */}
                   <div className="flex items-center justify-end gap-2">
-                    {/* ⭐ DIAMOND COLOR FIX */}
                     <div
                       className="w-4 h-4"
                       style={{
