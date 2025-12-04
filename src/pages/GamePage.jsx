@@ -226,7 +226,7 @@ const GamePage = () => {
           }}
         >
           {loading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-[#00000080] backdrop-blur-sm z-[999]">
+            <div className="absolute inset-0 flex items-center justify-center bg-[#00000080] backdrop-blur-sm">
               <img
                 src="/icons/moonlogo.gif"
                 alt="Moon Loader"
@@ -479,7 +479,7 @@ const GamePage = () => {
 
       {/* Login Modal */}
       {(!hasToken || showLogin) && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+        <div>
           <LoginTrigger
             buttonText=""
             defaultTab="login"

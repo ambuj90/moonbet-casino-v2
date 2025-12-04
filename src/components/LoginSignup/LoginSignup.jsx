@@ -768,7 +768,7 @@ const LoginSignup = ({
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center"
+      className="fixed inset-0 z-[9999] flex items-center justify-center"
       style={{
         backgroundColor: "rgba(13, 14, 54, 0.30)",
         backdropFilter: "blur(25px)",
