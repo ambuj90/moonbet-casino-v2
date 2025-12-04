@@ -26,6 +26,13 @@ const GamePage = () => {
   const [preferredCurrency, setPreferredCurrency] = useState(
     localStorage.getItem("preferredCurrency") || "BTC"
   );
+  window.dataLayer = window.dataLayer || [];
+
+  const pushEvent = (data) => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(data);
+    console.log("📡 GTM Event:", data);
+  };
 
   // ------------------------------------------
   // On logout: force switch to Fun Play
@@ -187,19 +194,35 @@ const GamePage = () => {
   // Handle fun <-> real play toggle
   // ------------------------------------------
   const handlePlayToggle = () => {
-    if (isRealPlay) {
-      setLoading(true);
-      setIsRealPlay(false);
-    } else {
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+    // IF USER SWITCHES TO REAL PLAY
+    if (!isRealPlay) {
       if (!token) {
         toast.warning("Please log in to play for real money!");
         setShowLogin(true);
         return;
       }
+
+      // GTM EVENT: REAL PLAY STARTED
+      pushEvent({
+        event: "bet_placed",
+        user_id: user?.id || null,
+        game_name: gameData?.name?.toLowerCase() || "unknown_game",
+        // bet_amount: 0, // you will replace with real value later
+        currency: preferredCurrency || "USD",
+        is_demo: false,
+      });
+
       setLoading(true);
       setIsRealPlay(true);
+      return;
     }
+
+    // IF USER SWITCHES BACK TO FUN PLAY
+    setLoading(true);
+    setIsRealPlay(false);
   };
 
   // ------------------------------------------
@@ -223,7 +246,7 @@ const GamePage = () => {
               <img
                 src="/icons/moonlogo.gif"
                 alt="loader"
-                className="w-28 h-28"
+                className="w-28 h-28 object-contain"
               />
             </div>
           )}
@@ -234,7 +257,17 @@ const GamePage = () => {
             title={gameData?.name || "Game"}
             className="w-full md:h-[80vh] h-[75vh] pt-5 border-none pointer-events-auto"
             allowFullScreen
-            onLoad={() => setLoading(false)}
+            onLoad={() => {
+              setLoading(false);
+
+              // GTM EVENT: GAME OPENED
+              if (gameData?.name) {
+                pushEvent({
+                  event: "game_opened",
+                  game_name: gameData?.name?.toLowerCase() || "unknown_game",
+                });
+              }
+            }}
           />
         </div>
 
