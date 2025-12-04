@@ -205,9 +205,6 @@ const Transactions = () => {
           <p className="text-3xl lg:text-4xl font-bold text-white mb-2">
             Transactions
           </p>
-          <p className="text-gray-400">
-            View your transaction history and activity
-          </p>
         </motion.div>
 
         {/* Filters */}
