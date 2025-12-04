@@ -155,15 +155,7 @@ const CasinoGameCards = () => {
           alt=""
         />
         <span className={`${isSmall ? "leading-tight" : ""}`}>
-          {isSmall && c.title === "Game Shows" ? (
-            <>
-              Game
-              <br />
-              Shows
-            </>
-          ) : (
-            c.title
-          )}
+          {isSmall && c.title === "Game Shows" ? <>Game Shows</> : c.title}
         </span>
       </div>
 
