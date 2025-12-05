@@ -31,7 +31,7 @@ const Homepage = () => {
       <ProvidersSection />
       <GameBetsSection />
       <HomeFAQSection />
-      <TruestedSection />
+      {/* <TruestedSection /> */}
       <BrandSection />
       <CryptoPaymentSection />
     </div>

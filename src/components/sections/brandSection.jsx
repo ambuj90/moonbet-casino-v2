@@ -11,9 +11,13 @@ const BrandSection = () => {
     { id: 2, name: "Evolution", logo: "/brands/img2.svg" },
     { id: 3, name: "BGaming", logo: "/brands/img3.svg" },
     { id: 4, name: "Hacksaw Gaming", logo: "/brands/img4.svg" },
-    { id: 5, name: "Thunderkick", logo: "/brands/img5.svg" },
-    { id: 6, name: "Thunderkick", logo: "/brands/img6.svg" },
-    { id: 7, name: "Spribe", logo: "/brands/img7.svg" },
+    { id: 5, name: "Thunderkick", logo: "/brands/bitcoin.png" },
+    {
+      id: 6,
+      name: "Thunderkick",
+      logo: "/truested-by/cryptorunner-site-1.png",
+    },
+    { id: 7, name: "Spribe", logo: "/brands/ninja.svg" },
     { id: 8, name: "Endorphina", logo: "/brands/img8.svg" },
   ];
 
