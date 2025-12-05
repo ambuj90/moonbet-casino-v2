@@ -35,7 +35,19 @@ const CryptoPaymentSection = () => {
         {/* LEFT — Desktop left, Mobile center */}
         <div className="flex sm:justify-start justify-center">
           <p className="flex items-center sm:text-2xl">
-            <span className="text-[#28C203] text-2xl font-bold">100%</span>{" "}
+            <span
+              className="text-2xl font-bold"
+              style={{
+                background:
+                  "var(--icons-orange, linear-gradient(131deg, #FFB8A1 6.92%, #A62A00 121.35%))",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              100%
+            </span>
+
             <span className="text-[#7171B4] text-[20px] px-2">
               Deposit Bonus
             </span>
