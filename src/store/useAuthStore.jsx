@@ -1,78 +1,69 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-const AuthContext = createContext();
+const PRIVATE_ROUTES = [
+  "/settings",
+  "/transactions",
+  "/bets",
+  "/bet-history",
+  "/affiliate"
+];
 
-export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!token);
+export const useAuthStore = create(
+  persist(
+    (set, get) => ({
+      token: localStorage.getItem("token") || null,
+      isLoggedIn: !!localStorage.getItem("token"),
 
-  useEffect(() => {
-    const syncToken = () => {
-      const newToken = localStorage.getItem("token");
-      setToken(newToken);
-      setIsLoggedIn(!!newToken);
-    };
-
-    window.addEventListener("storage", syncToken);
-    window.addEventListener("tokenChanged", syncToken);
-
-    return () => {
-      window.removeEventListener("storage", syncToken);
-      window.removeEventListener("tokenChanged", syncToken);
-    };
-  }, []);
-
-  // ✅ Full logout including Google revoke
-  const logout = () => {
-    try {
-      // ---- (1) Remove app storage ----
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-
-      // ---- (2) Revoke Google One-Tap / OAuth session ----
-      if (window.google && window.google.accounts) {
-        try {
-          window.google.accounts.id.disableAutoSelect();
-        } catch (e) {
-          console.warn("Google disableAutoSelect failed:", e);
+      setToken: (token) => {
+        if (token) {
+          localStorage.setItem("token", token);
         }
-      }
+        set({ token, isLoggedIn: !!token });
+        window.dispatchEvent(new Event("tokenChanged"));
+      },
 
-      // ---- (3) Revoke Google Credential if present ----
-      const googleToken = localStorage.getItem("google_credential");
-      if (googleToken && window.google?.accounts?.id) {
-        window.google.accounts.id.revoke(googleToken, (done) => {
-          console.log("Google session revoked:", done);
-        });
+      logout: () => {
+        const currentPath = window.location.pathname;
+
+        // ---- 1) Remove auth data ----
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        // ---- 2) Revoke Google session ----
+        const googleToken = localStorage.getItem("google_credential");
+        if (googleToken && window.google?.accounts?.id) {
+          try {
+            window.google.accounts.id.disableAutoSelect();
+            window.google.accounts.id.revoke(googleToken);
+          } catch (e) {
+            console.warn("Google revoke failed:", e);
+          }
+        }
         localStorage.removeItem("google_credential");
-      }
 
-      // ---- (4) Clear cookies (best effort) ----
-      document.cookie =
-        "g_state=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "G_AUTHUSER_H=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie =
-        "G_ENABLED_IDPS=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        // ---- 3) Zustand state update ----
+        set({ token: null, isLoggedIn: false });
 
-      // ---- (5) Update global app state ----
-      setToken(null);
-      setIsLoggedIn(false);
+        window.dispatchEvent(new Event("tokenChanged"));
 
-      // ---- (6) Broadcast logout event ----
-      window.dispatchEvent(new Event("tokenChanged"));
+        // ---- 4) Logic: Public route refresh | Private route redirect ----
+        const isPrivate = PRIVATE_ROUTES.some((route) =>
+          currentPath.startsWith(route)
+        );
 
-      console.log("🧹 Full logout complete (Google + App).");
-    } catch (err) {
-      console.error("Logout error:", err);
+        if (isPrivate) {
+          // Private route → go home
+          window.location.replace("/");
+        } else {
+          // Public route → refresh page
+          window.location.reload();
+        }
+      },
+    }),
+    {
+      name: "auth-storage",
+      storage: createJSONStorage(() => localStorage),
     }
-  };
-
-  return (
-    <AuthContext.Provider value={{ token, setToken, isLoggedIn, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export const useAuthStore = () => useContext(AuthContext);
+  )
+);

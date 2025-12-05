@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoginSignup from "./LoginSignup";
 import ProfileModal from "../profile/ProfileModal";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export const LoginTrigger = ({
   buttonText = "Login",
@@ -16,9 +17,9 @@ export const LoginTrigger = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(defaultTab);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const { isLoggedIn, setToken } = useAuthStore();
 
   const dropdownRef = useRef(null);
 
@@ -43,10 +44,6 @@ export const LoginTrigger = ({
     if (forceOpen) setIsModalOpen(true);
   }, [forceOpen]);
 
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
-
   /* --------------------------- CLICK OUTSIDE CLOSE -------------------------- */
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -59,23 +56,15 @@ export const LoginTrigger = ({
   }, []);
 
   /* --------------------------- LOGIN / SIGNUP SUCCESS ----------------------- */
-  const handleLoginSuccess = (userData) => {
-    const { token, user } = userData || {};
-    if (token) {
-      localStorage.setItem("token", token);
-      window.dispatchEvent(new Event("tokenChanged"));
-    }
-    if (user) {
-      const { username, email, kycStatus, id } = user;
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ id, username, email, kycStatus })
-      );
-    }
-    setIsLoggedIn(true);
-    setIsModalOpen(false);
-    if (onLoginSuccess) onLoginSuccess(userData);
-  };
+  const handleLoginSuccess = ({ token, user }) => {
+  if (token) setToken(token); // Zustand updates global state
+
+  if (user) {
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
+  setIsModalOpen(false);
+};
 
   const handleSignupSuccess = (userData) => {
     const { token, user } = userData || {};
@@ -101,17 +90,12 @@ export const LoginTrigger = ({
   };
 
   /* --------------------------------- LOGOUT -------------------------------- */
-  const handleLogout = () => {
-    localStorage.clear();
-    window.dispatchEvent(new Event("tokenChanged"));
-    setIsLoggedIn(false);
-    setDropdownOpen(false);
+  const logout = useAuthStore((s) => s.logout);
 
-    toast.info("You have been logged out successfully", {
-      position: "top-right",
-      autoClose: 3000,
-    });
-  };
+const handleLogout = () => {
+  logout(); // 🚀 Zustand handles redirect vs refresh
+  setDropdownOpen(false);
+};
 
   const handleOpenModal = () => {
     setActiveTab(defaultTab);

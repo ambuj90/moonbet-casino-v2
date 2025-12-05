@@ -52,6 +52,7 @@ import AmlPolicy from "./pages/AmlPolicy.jsx";
 import EditorialPolicy from "./pages/EditorialPolicy.jsx";
 import Leaderboard2 from "./pages/Leaderboard2.jsx";
 import GameReturn from "./pages/GameReturn.jsx";
+import { useAuthStore } from "./store/useAuthStore";
 
 // Temporary pages
 
@@ -61,25 +62,24 @@ const PumpDumpPage = () => <SimplePage title="PumpDump Game" />;
 const FuturesPage = () => <SimplePage title="Futures Game" />;
 const ChatPage = () => <SimplePage title="Chat" />;
 
-//
+
 // 🔐 PRIVATE ROUTE
-//
 const PrivateRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  if (!token) {
+  const { isLoggedIn } = useAuthStore();
+
+  if (!isLoggedIn) {
     return <Navigate to="/?modal=auth&tab=login" replace />;
   }
   return children;
 };
 
-//
+
 // 🔓 Auth Modal Wrapper
-//
 const AuthModalHandler = ({ children }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [defaultTab, setDefaultTab] = useState("login");
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const { isLoggedIn } = useAuthStore();
 
   useEffect(() => {
     const modalParam = searchParams.get("modal");
@@ -101,7 +101,6 @@ const AuthModalHandler = ({ children }) => {
   };
 
   const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
     closeModal();
   };
 
