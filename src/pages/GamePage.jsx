@@ -10,6 +10,7 @@ import ProvidersSection from "../components/sections/ProvidersSection";
 import { LoginTrigger } from "../components/LoginSignup/LoginTrigger";
 import { useAuthStore } from "../store/useAuthStore";
 import GamesYouLike from "../components/sections/GamesYouLike";
+import GamepageLeaderboard from "../components/leaderboard/GamepageLeaderboard";
 
 const GamePage = () => {
   const { slug } = useParams();
@@ -529,13 +530,15 @@ const GamePage = () => {
       </div>
 
       {/* Suggested games */}
+      <GamepageLeaderboard />
       <div className="game-you-may-like">
         <GamesYouLike
           provider={gameData?.provider}
           excludeGame={gameData?.name}
         />
-        <ProvidersSection />
+
         <GameBetsSection />
+        <ProvidersSection />
       </div>
 
       {/* Login Modal */}
