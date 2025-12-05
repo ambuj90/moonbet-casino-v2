@@ -926,7 +926,7 @@ const LoginSignup = ({
           <div
             className="hidden md:block md:w-[40%] relative"
             style={{
-              backgroundImage: "url('/home-assets/login-right.png')",
+              backgroundImage: "url('/home-assets/login-left.svg')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
