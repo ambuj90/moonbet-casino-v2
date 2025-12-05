@@ -13,7 +13,7 @@ const HomeRewardsSection = () => {
       {
         id: 1,
         badge: "Bonus",
-        titleLine1: "Upto $20,000",
+        titleLine1: "Upto $10,000",
         titleLine2: "Bonus",
         description1: "Elite Status, Stellar",
         description2: "Awards",
