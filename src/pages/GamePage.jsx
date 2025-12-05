@@ -12,7 +12,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import GamesYouLike from "../components/sections/GamesYouLike";
 
 const GamePage = () => {
-  const { game_uuid, slug } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const iframeRef = useRef(null);
   const { isLoggedIn } = useAuthStore();
@@ -90,7 +90,7 @@ const GamePage = () => {
     const fetchGameUrl = async () => {
       try {
         const { data } = await axios.get(
-          `/wallet-service/api/games/${game_uuid}/details`
+          `/wallet-service/api/games/slug/${slug}`
         );
 
         if (!data.success) {
@@ -100,6 +100,7 @@ const GamePage = () => {
 
         const game = data.data;
         setGameData(game);
+        const realUUID = game.uuid;
 
         let initUrl;
         let payload;
@@ -117,7 +118,7 @@ const GamePage = () => {
           const preferredCurrency =
             localStorage.getItem("gameCurrency") || "USD";
 
-          initUrl = `/wallet-service/api/games/${game_uuid}/init`;
+          initUrl = `/wallet-service/api/games/${realUUID}/init`;
           payload = {
             player_id: user.id,
             player_name: user.username || "Guest Player",
@@ -125,21 +126,21 @@ const GamePage = () => {
             device: "desktop",
             language: "en",
             email: user.email,
-            return_url: `${window.location.origin}/game-return/${game_uuid}`,
+            return_url: `${window.location.origin}/game-return/${realUUID}`,
           };
         } else {
-          initUrl = `/wallet-service/api/games/${game_uuid}/init-demo`;
+          initUrl = `/wallet-service/api/games/${realUUID}/init-demo`;
           payload = {
             device: "desktop",
             language: "en",
-            return_url: `${window.location.origin}/game-return/${game_uuid}`,
+            return_url: `${window.location.origin}/game-return/${realUUID}`,
           };
         }
 
         const initData = await axios.post(initUrl, payload);
 
         if (initData.data.success && initData.data.data?.url) {
-          setIframeUrl(initData.data.data.url);
+          setIframeUrl(initData.data.data?.url || "");
         } else {
           throw new Error("Failed to start game session");
         }
@@ -156,12 +157,12 @@ const GamePage = () => {
     };
 
     fetchGameUrl();
-  }, [game_uuid, isRealPlay, preferredCurrency]);
+  }, [slug, isRealPlay, preferredCurrency]);
 
   // Scroll on new game
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [game_uuid]);
+  }, [slug]);
 
   // ------------------------------------------
   // Poll wallet balance (real play only)

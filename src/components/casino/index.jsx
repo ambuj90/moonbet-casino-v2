@@ -69,12 +69,12 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
   }, [type, filter, searchTerm]);
 
   const handlePlayNow = (game) => {
-    const slug = game.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
+    if (!game.slug) {
+      console.error("❌ No slug found for game:", game);
+      return;
+    }
 
-    navigate(`/game/${game.uuid}/${slug}`);
+    navigate(`/game/${game.slug}`);
   };
 
   const handleLoadMore = () => setVisibleCount((prev) => prev + 48);

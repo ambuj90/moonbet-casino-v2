@@ -116,12 +116,12 @@ const LiveCasino = () => {
   };
 
   const handlePlayNow = (game) => {
-    const slug = game.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
+    if (!game.slug) {
+      console.error("❌ No slug found for game:", game);
+      return;
+    }
 
-    navigate(`/game/${game.uuid}/${slug}`);
+    navigate(`/game/${game.slug}`);
   };
 
   const handleViewAll = () => {
