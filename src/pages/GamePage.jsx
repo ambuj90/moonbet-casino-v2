@@ -530,13 +530,13 @@ const GamePage = () => {
       </div>
 
       {/* Suggested games */}
-      <GamepageLeaderboard />
+
       <div className="game-you-may-like">
         <GamesYouLike
           provider={gameData?.provider}
           excludeGame={gameData?.name}
         />
-
+        <GamepageLeaderboard />
         <GameBetsSection />
         <ProvidersSection />
       </div>
