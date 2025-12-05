@@ -32,6 +32,16 @@ const TopHeader = ({
     if (onDesktopSidebarToggle) onDesktopSidebarToggle(newCollapsed);
   };
 
+  const submitSearch = () => {
+    const value = searchTerm.trim();
+
+    if (value.length > 0) {
+      navigate(`/casino/${value.toLowerCase()}`);
+    } else {
+      navigate("/casino");
+    }
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -140,39 +150,41 @@ const TopHeader = ({
               <div className="relative flex items-center mr-2">
                 <AnimatePresence>
                   {showSearch && (
-                    <motion.input
-                      key="search-input"
+                    <motion.div
+                      key="search-wrapper"
                       initial={{ width: 0, opacity: 0 }}
-                      animate={{ width: 180, opacity: 1 }}
+                      animate={{ width: 220, opacity: 1 }}
                       exit={{ width: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      type="text"
-                      placeholder="Search games..."
-                      autoFocus
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value.trim())}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          const value = searchTerm.trim();
+                      className="flex items-center bg-[var(--bg-dark-purple-2)] border border-white/10 rounded-lg overflow-hidden"
+                    >
+                      {/* INPUT */}
+                      <input
+                        type="text"
+                        placeholder="Search games..."
+                        autoFocus
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && submitSearch()}
+                        className="px-3 py-2 text-white text-sm bg-transparent outline-none w-full"
+                      />
 
-                          if (value.length > 0) {
-                            navigate(`/casino/${value.toLowerCase()}`);
-                          } else {
-                            navigate("/casino");
-                          }
-                        }
-                      }}
-                      className="px-3 py-2 mr-2 text-white text-sm rounded-lg 
-                                 bg-[var(--bg-dark-purple-2)] border border-white/10 outline-none"
-                    />
+                      <button
+                        onClick={submitSearch}
+                        className="px-2 py-1 mr-2 text-[10px] font-semibold text-white rounded-md 
+             bg-gradient-to-r from-[#a62a00] to-[#ffb8a1]
+             hover:shadow-[0_0_6px_#ffb8a1] transition-all duration-300"
+                      >
+                        Ent.
+                      </button>
+                    </motion.div>
                   )}
                 </AnimatePresence>
 
-                {/* Search Button */}
+                {/* ICON button to toggle search */}
                 <button
                   onClick={() => setShowSearch((prev) => !prev)}
-                  className="w-10 h-10 hidden md:flex items-center justify-center 
-                             rounded-full transition-all"
+                  className="w-10 h-10 hidden md:flex items-center justify-center rounded-full transition-all"
                 >
                   <img
                     src="/icons/search.svg"
