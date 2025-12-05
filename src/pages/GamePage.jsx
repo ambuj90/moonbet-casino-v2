@@ -272,16 +272,19 @@ const GamePage = () => {
         </div>
 
         {/* ---------------------------------------------------------------
-           MOBILE BOTTOM BAR — ONLY LOGO + TOGGLE (Option A)
-        ---------------------------------------------------------------- */}
-        <div className="sm:hidden w-full py-3 flex items-center justify-between bg-[#1C1D49] px-3 mt-2">
-          {/* Logo */}
-          <div className="trust_btn flex items-center gap-3 px-3 py-2">
-            <div className="text-[#9292D2] text-sm">Rakeback</div>
-            <div className="flex items-center gap-2">
-              <span className="text-white font-semibold">$0.00</span>
+   MOBILE BOTTOM BAR — RESPONSIVE FIXED VERSION
+---------------------------------------------------------------- */}
+        <div className="sm:hidden w-full px-3 py-2 flex items-center justify-between bg-[#1C1D49] mt-2 gap-2">
+          {/* LEFT — Rakeback Box (Shrinks gracefully on small screens) */}
+          <div className="trust_btn px-2 py-2 flex items-center gap-2 min-w-0 flex-shrink overflow-hidden">
+            <div className="text-[#9292D2] text-xs whitespace-nowrap">
+              Rakeback
+            </div>
+
+            <div className="flex items-center gap-1 flex-shrink-0">
+              <span className="text-white font-semibold text-xs">$0.00</span>
               <button
-                className="px-2 py-1 text-xs rounded-lg"
+                className="px-2 py-1 text-[10px] rounded-lg flex-shrink-0"
                 style={{
                   background: "linear-gradient(180deg,#9292D2 0%,#7171B4 100%)",
                 }}
@@ -290,18 +293,21 @@ const GamePage = () => {
               </button>
             </div>
           </div>
+
+          {/* CENTER — Fullscreen Button (Auto-size on all screens) */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => toggleFullScreen(iframeRef)}
-            className="ml-2"
+            className="flex-shrink-0 mx-1"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="37"
-              height="37"
+              width="32"
+              height="32"
               viewBox="0 0 37 37"
               fill="none"
+              className="w-8 h-8"
             >
               <rect
                 x="1"
@@ -329,39 +335,16 @@ const GamePage = () => {
                 d="M9.95 15.65C9.69804 15.65 9.45641 15.5499 9.27825 15.3718C9.10009 15.1936 9 14.952 9 14.7V10.9C9 10.3961 9.20018 9.91282 9.5565 9.5565C9.91282 9.20018 10.3961 9 10.9 9H14.7C14.952 9 15.1936 9.10009 15.3718 9.27825C15.5499 9.45641 15.65 9.69804 15.65 9.95C15.65 10.202 15.5499 10.4436 15.3718 10.6218C15.1936 10.7999 14.952 10.9 14.7 10.9H10.9V14.7C10.9 14.952 10.7999 15.1936 10.6218 15.3718C10.4436 15.5499 10.202 15.65 9.95 15.65Z"
                 fill="#9292D2"
               />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_9689_1588"
-                  x1="3.45192"
-                  y1="0.999992"
-                  x2="20.1272"
-                  y2="39.3892"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="white" stopOpacity="0.4" />
-                  <stop
-                    offset="0.405687"
-                    stopColor="white"
-                    stopOpacity="0.01"
-                  />
-                  <stop
-                    offset="0.574372"
-                    stopColor="white"
-                    stopOpacity="0.01"
-                  />
-                  <stop offset="1" stopColor="white" stopOpacity="0.1" />
-                </linearGradient>
-              </defs>
             </svg>
           </motion.button>
 
-          {/* Toggle */}
-          <div className="trust_btn2 flex items-center gap-0 p-1 rounded-full bg-[#282753]">
+          {/* RIGHT — Fun / Real Toggle */}
+          <div className="flex flex-shrink-0 items-center gap-0 p-1 rounded-full bg-[#282753]">
             {/* FUN */}
             <button
               onClick={() => isRealPlay && handlePlayToggle()}
-              className={`relative z-10 px-4 py-1.5 text-xs font-semibold rounded-full ${
-                !isRealPlay ? "text-white" : "text-gray-300"
+              className={`relative z-10 px-4 py-1 text-xs font-semibold rounded-full ${
+                !isRealPlay ? "text-white" : "text-gray-400"
               }`}
             >
               {!isRealPlay && (
@@ -379,8 +362,8 @@ const GamePage = () => {
             {/* REAL */}
             <button
               onClick={() => !isRealPlay && handlePlayToggle()}
-              className={`relative z-10 px-4 py-1.5 text-xs font-semibold rounded-full ${
-                isRealPlay ? "text-white" : "text-gray-300"
+              className={`relative z-10 px-4 py-1 text-xs font-semibold rounded-full ${
+                isRealPlay ? "text-white" : "text-gray-400"
               }`}
             >
               {isRealPlay && (
