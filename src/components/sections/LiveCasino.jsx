@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import MoonBetButton from "../ui-elements/MoonBetButton";
 import api from "../../api/axios";
 import axios from "axios";
+import localGames from "../../data/games.json";
 
 const LiveCasino = () => {
   const scrollContainerRef = useRef(null);
@@ -42,35 +43,19 @@ const LiveCasino = () => {
   }, []);
 
   useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const { data } = await axios.get("/wallet-service/api/games");
+    try {
+      let fetchedGames = localGames;
 
-        // ✅ Support both new and old response formats
-        let fetchedGames = [];
+      // Shuffle randomly
+      const shuffled = [...fetchedGames].sort(() => Math.random() - 0.5);
 
-        if (Array.isArray(data?.data)) {
-          // new backend structure
-          fetchedGames = data.data;
-        } else if (Array.isArray(data?.games?.items)) {
-          // old backend structure
-          fetchedGames = data.games.items;
-        }
-
-        // ✅ Shuffle the games list randomly
-        const shuffled = fetchedGames.sort(() => Math.random() - 0.5);
-        setGames(shuffled);
-      } catch (error) {
-        console.error("❌ Error fetching games:", error);
-        toast.error(
-          error.response?.data?.message || "Failed to load games list"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGames();
+      setGames(shuffled);
+    } catch (error) {
+      console.error("❌ Error loading JSON:", error);
+      toast.error("Could not load games list");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   // Add scroll position check after games are loaded

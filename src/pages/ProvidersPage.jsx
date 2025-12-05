@@ -6,7 +6,7 @@ import GameGrid from "../components/providers/GameGrid";
 
 // ⭐ All providers added
 const providers = [
-  { id: 1, name: "Pragmatic Play", logo: "/providers/vector1.svg" },
+  { id: 1, name: "PragmaticPlay", logo: "/providers/vector1.svg" },
   { id: 2, name: "Evolution Gaming", logo: "/providers/evolution.svg" },
   { id: 3, name: "BGaming", logo: "/providers/bgaming.svg" },
   { id: 5, name: "Hacksaw Gaming", logo: "/providers/hacksaw.svg" },
