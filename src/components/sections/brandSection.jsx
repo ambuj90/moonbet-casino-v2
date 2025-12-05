@@ -11,11 +11,11 @@ const BrandSection = () => {
     { id: 2, name: "Evolution", logo: "/brands/img2.svg" },
     { id: 3, name: "BGaming", logo: "/brands/img3.svg" },
     { id: 4, name: "Hacksaw Gaming", logo: "/brands/img4.svg" },
-    { id: 5, name: "Thunderkick", logo: "/brands/bitcoin.png" },
+    { id: 5, name: "Thunderkick", logo: "/brands/bitcoin.svg" },
     {
       id: 6,
       name: "Thunderkick",
-      logo: "/truested-by/cryptorunner-site-1.png",
+      logo: "/brands/crypto.png",
     },
     { id: 7, name: "Spribe", logo: "/brands/ninja.svg" },
     { id: 8, name: "Endorphina", logo: "/brands/img8.svg" },
@@ -101,7 +101,7 @@ const BrandSection = () => {
                 <img
                   src={provider.logo}
                   alt={provider.name}
-                  className="max-w-[80px] sm:max-w-[120px] max-h-[35px] sm:max-h-[40px] object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+                  className="max-w-[80px] sm:max-w-[120px] max-h-[35px] sm:max-h-[40px] object-contain opacity-80 hover:opacity-100 transition-opacity"
                   onError={(e) => {
                     e.target.style.display = "none";
                     e.target.parentElement.innerHTML = `<span class='text-white/60 text-xs font-medium text-center'>${provider.name}</span>`;
