@@ -24,6 +24,9 @@ const GamePage = () => {
   const [isRealPlay, setIsRealPlay] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [hasToken, setHasToken] = useState(!!localStorage.getItem("token"));
+  const [hasSeenLoginPopup, setHasSeenLoginPopup] = useState(
+    localStorage.getItem("hasSeenGamePageLoginPopup") === "true"
+  );
   const [preferredCurrency, setPreferredCurrency] = useState(
     localStorage.getItem("preferredCurrency") || "BTC"
   );
@@ -95,7 +98,10 @@ const GamePage = () => {
         );
 
         if (!data.success) {
-          toast.error("Game not found!");
+          // Don't instantly show error — wait 2 seconds
+          setTimeout(() => {
+            toast.error("Game not found!");
+          }, 3000);
           return;
         }
 
@@ -204,6 +210,8 @@ const GamePage = () => {
       if (!token) {
         toast.warning("Please log in to play for real money!");
         setShowLogin(true);
+        localStorage.setItem("hasSeenGamePageLoginPopup", "true");
+        setHasSeenLoginPopup(true);
         return;
       }
 
@@ -227,17 +235,6 @@ const GamePage = () => {
     setIsRealPlay(false);
   };
 
-  // ------------------------------------------
-  // Fallback error UI
-  // ------------------------------------------
-  if (!loading && !iframeUrl) {
-    return (
-      <div className="flex items-center justify-center h-screen text-red-400 text-xl">
-        Failed to load game.
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="container relative flex flex-col max-w-7xl mx-auto px-4">
@@ -260,7 +257,7 @@ const GamePage = () => {
             className="w-full md:h-[80vh] h-[75vh] pt-5 border-none pointer-events-auto"
             allowFullScreen
             onLoad={() => {
-              setLoading(false);
+              setTimeout(() => setLoading(false), 800);
 
               // GTM EVENT: GAME OPENED
               if (gameData?.name) {
@@ -542,11 +539,15 @@ const GamePage = () => {
       </div>
 
       {/* Login Modal */}
-      {(!hasToken || showLogin) && (
+      {( showLogin) && (
         <LoginTrigger
           buttonText=""
           defaultTab="login"
           forceOpen={true}
+          onOpen={() => {
+            localStorage.setItem("hasSeenGamePageLoginPopup", "true");
+            setHasSeenLoginPopup(true);
+          }}
           onLoginSuccess={() => {
             setShowLogin(false);
             setIsRealPlay(true);
