@@ -259,7 +259,7 @@ const GamesYouLike = ({ provider, excludeGame }) => {
               </svg>
             </motion.span>
             <motion.h3
-              className="font-[400]  text-[14px] md:text-[18px] leading-[44px] 
+              className="font-[400]  text-[12px] md:text-[18px] leading-[44px] 
                      font-['Neuropolitical'] not-italic uppercase"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}

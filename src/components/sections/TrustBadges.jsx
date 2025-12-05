@@ -84,10 +84,10 @@ const TrustBadgesFinal = () => {
             >
               <button className="trust_btn w-full h-full group relative overflow-hidden transition-all duration-300 rounded-lg sm:rounded-xl hover:transform hover:scale-[1.02] active:scale-[0.98]">
                 {/* Inner content wrapper */}
-                <div className="flex flex-col md:flex-row items-center justify-center md:justify-center gap-1.5 sm:gap-2 md:gap-3 p-3 sm:p-3.5 md:p-4 lg:px-6 h-full">
+                <div className="flex md:flex-row items-center justify-center md:justify-center gap-5 sm:gap-2 md:gap-3 p-3 sm:p-3.5 md:p-4 lg:px-6 h-full">
                   {/* Icon with responsive sizing */}
                   <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                    <div className="w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] md:w-[30px] md:h-[30px] lg:w-[33px] lg:h-[33px]">
+                    <div className="w-[20px] h-[20px] sm:w-[26px] sm:h-[26px] md:w-[30px] md:h-[30px] lg:w-[33px] lg:h-[33px]">
                       {badge.icon}
                     </div>
                   </div>
