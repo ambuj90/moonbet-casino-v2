@@ -1,5 +1,5 @@
 // src/components/sections/HeroSection.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BetDetailsModal from "../ui-elements/BetDetailsModal";
 import { useWalletSocket } from "../../context/WalletSocketContext";
@@ -32,11 +32,15 @@ const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBetData, setSelectedBetData] = useState(null);
 
+  // Auto-slide state for mobile
+  const [mobileScrollPosition, setMobileScrollPosition] = useState(0);
+  const mobileContainerRef = useRef(null);
+
   // Recent wins data with game cards
   const initialWinsData = [
     {
       id: 1,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -53,7 +57,7 @@ const HeroSection = () => {
     },
     {
       id: 2,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard2.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -69,7 +73,7 @@ const HeroSection = () => {
     },
     {
       id: 3,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -85,7 +89,7 @@ const HeroSection = () => {
     },
     {
       id: 4,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard2.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -101,7 +105,7 @@ const HeroSection = () => {
     },
     {
       id: 5,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -117,7 +121,7 @@ const HeroSection = () => {
     },
     {
       id: 6,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard2.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -133,7 +137,7 @@ const HeroSection = () => {
     },
     {
       id: 7,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -149,7 +153,7 @@ const HeroSection = () => {
     },
     {
       id: 8,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard2.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -165,7 +169,7 @@ const HeroSection = () => {
     },
     {
       id: 9,
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard.svg",
       amount: "$0.16",
       username: "6z...CfcH",
       icon: "/icons/moon.svg",
@@ -178,150 +182,6 @@ const HeroSection = () => {
       payout: "$0.32",
       originalCurrency: "C$0.22",
       isLive: false,
-    },
-    {
-      id: 10,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Dream Catcher",
-      provider: "Evolution Gaming",
-      betId: "n9k0j7lk-l777-36k",
-      date: "Nov 1, 2025",
-      time: "12:31:15",
-      multiplier: "7.00x",
-      payout: "$1.12",
-      originalCurrency: "C$0.22",
-      isLive: true,
-    },
-    {
-      id: 11,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Wolf Gold",
-      provider: "Pragmatic Play",
-      betId: "o0l1k8ml-m888-47l",
-      date: "Nov 1, 2025",
-      time: "12:30:30",
-      multiplier: "1.75x",
-      payout: "$0.28",
-      originalCurrency: "C$0.22",
-      isLive: false,
-    },
-    {
-      id: 12,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Lightning Dice",
-      provider: "Evolution Gaming",
-      betId: "p1m2l9nm-n999-58m",
-      date: "Nov 1, 2025",
-      time: "12:29:45",
-      multiplier: "3.50x",
-      payout: "$0.56",
-      originalCurrency: "C$0.22",
-      isLive: true,
-    },
-    {
-      id: 13,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "The Dog House",
-      provider: "Pragmatic Play",
-      betId: "q2n3m0on-o000-69n",
-      date: "Nov 1, 2025",
-      time: "12:29:00",
-      multiplier: "6.00x",
-      payout: "$0.96",
-      originalCurrency: "C$0.22",
-      isLive: false,
-    },
-    {
-      id: 14,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Cash or Crash",
-      provider: "Evolution Gaming",
-      betId: "r3o4n1po-p111-70o",
-      date: "Nov 1, 2025",
-      time: "12:28:15",
-      multiplier: "8.00x",
-      payout: "$1.28",
-      originalCurrency: "C$0.22",
-      isLive: true,
-    },
-    {
-      id: 15,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Starburst",
-      provider: "NetEnt",
-      betId: "s4p5o2qp-q222-81p",
-      date: "Nov 1, 2025",
-      time: "12:27:30",
-      multiplier: "1.10x",
-      payout: "$0.18",
-      originalCurrency: "C$0.22",
-      isLive: false,
-    },
-    {
-      id: 16,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Gonzo's Quest",
-      provider: "NetEnt",
-      betId: "t5q6p3rq-r333-92q",
-      date: "Nov 1, 2025",
-      time: "12:26:45",
-      multiplier: "15.00x",
-      payout: "$2.40",
-      originalCurrency: "C$0.22",
-      isLive: false,
-    },
-    {
-      id: 17,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Mega Ball",
-      provider: "Evolution Gaming",
-      betId: "u6r7q4sr-s444-03r",
-      date: "Nov 1, 2025",
-      time: "12:26:00",
-      multiplier: "100.00x",
-      payout: "$16.00",
-      originalCurrency: "C$0.22",
-      isLive: true,
-    },
-    {
-      id: 18,
-      gameImage: "/games/golden.svg",
-      amount: "$0.16",
-      username: "6z...CfcH",
-      icon: "/icons/moon.svg",
-      gameName: "Aviator",
-      provider: "Spribe",
-      betId: "v7s8r5ts-t555-14s",
-      date: "Nov 1, 2025",
-      time: "12:25:15",
-      multiplier: "12.50x",
-      payout: "$2.00",
-      originalCurrency: "C$0.22",
-      isLive: true,
     },
   ];
 
@@ -358,7 +218,7 @@ const HeroSection = () => {
 
     return {
       id: Date.now(),
-      gameImage: "/games/golden.svg",
+      gameImage: "/bg/herocard.svg",
       amount: `$${randomAmount}`,
       username: randomUsername,
       icon: "/icons/moon1.svg",
@@ -381,6 +241,32 @@ const HeroSection = () => {
     setSelectedBetData(winData);
     setIsModalOpen(true);
   };
+
+  // Auto-sliding carousel for mobile
+  useEffect(() => {
+    let autoSlideInterval;
+
+    if (!isPaused && mobileContainerRef.current) {
+      autoSlideInterval = setInterval(() => {
+        const container = mobileContainerRef.current;
+        if (container) {
+          const maxScroll = container.scrollWidth - container.clientWidth;
+          const newPosition = mobileScrollPosition + 60; // Card width + gap
+
+          if (newPosition >= maxScroll) {
+            // Reset to beginning with smooth transition
+            container.scrollTo({ left: 0, behavior: "smooth" });
+            setMobileScrollPosition(0);
+          } else {
+            container.scrollTo({ left: newPosition, behavior: "smooth" });
+            setMobileScrollPosition(newPosition);
+          }
+        }
+      }, 2500); // Slide every 2.5 seconds
+    }
+
+    return () => clearInterval(autoSlideInterval);
+  }, [isPaused, mobileScrollPosition]);
 
   // Auto update winners with push/pop animation
   useEffect(() => {
@@ -580,10 +466,10 @@ const HeroSection = () => {
             transition={{ duration: 0.5 }}
           >
             <span
-              className="flex items-center gap-2 text-white text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-md whitespace-nowrap"
+              className="flex items-center gap-2 text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-md whitespace-nowrap"
               style={{
-                background: "#4B4B4B",
-                border: "3.5px solid #222223",
+                background: "#282753",
+                border: "3.5px solid #0D0E36",
                 zIndex: 1,
                 borderRadius: "8px",
               }}
@@ -600,13 +486,13 @@ const HeroSection = () => {
                 }}
               >
                 <span
-                  className="relative inline-flex rounded-full h-1 w-1 sm:h-1.5 sm:w-1.5 bg-[#F07730]"
+                  className="relative inline-flex rounded-full h-1 w-1 sm:h-1.5 sm:w-1.5 bg-[#28C203]"
                   style={{
                     opacity: 0.8,
-                    boxShadow: "0 0 8px 0 #F07730",
+                    boxShadow: "0 0 8px 0 #28C203",
                   }}
                 ></span>
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F07730] opacity-50"></span>
+                <span className=" absolute inline-flex h-full w-full rounded-full bg-[#28C203] opacity-50"></span>
               </motion.span>
               Recent Wins
             </span>
@@ -617,72 +503,68 @@ const HeroSection = () => {
             className="overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setTimeout(() => setIsPaused(false), 3000)}
           >
-            {/* Mobile View - Show 7 cards */}
-            <div className="sm:hidden flex gap-1.5">
-              <AnimatePresence mode="popLayout">
-                {mobileWinsData.map((win, index) => (
-                  <motion.div
-                    key={win.id}
-                    layout
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    variants={cardVariants}
-                    transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.2 },
-                    }}
-                    whileHover={{ scale: 1.05, y: -3 }}
-                    className="flex flex-col items-center cursor-pointer flex-shrink-0"
-                    onClick={() => handleCardClick(win)}
-                  >
-                    {/* Game Card */}
-                    <div className="relative">
-                      <motion.div
-                        className="relative w-[50px] h-[60px] xs:w-[60px] xs:h-[70px] rounded-lg overflow-hidden"
-                        style={{
-                          backdropFilter: "blur(10px)",
-                        }}
-                        whileHover={{
-                          boxShadow: "0 8px 16px rgba(147, 51, 234, 0.3)",
-                        }}
-                      >
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <img
-                            src={win.gameImage}
-                            alt="Game"
-                            className="w-20 h-20 xs:w-10 xs:h-10 object-contain"
-                          />
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    {/* Win Amount */}
-                    <motion.div className="mt-0.5">
-                      <span className="text-white text-[10px] xs:text-[11px] font-semibold">
-                        {win.amount}
-                      </span>
+            {/* Mobile View - Auto-sliding carousel with 7 cards */}
+            <div
+              ref={mobileContainerRef}
+              className="sm:hidden flex gap-3 overflow-x-auto scrollbar-hide py-2"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {mobileWinsData.map((win, index) => (
+                <motion.div
+                  key={win.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex flex-col items-center cursor-pointer flex-shrink-0"
+                  onClick={() => handleCardClick(win)}
+                >
+                  {/* Game Card Image */}
+                  <div className="relative mb-2">
+                    <motion.div
+                      className="relative w-[48px] h-[64px] rounded-lg overflow-hidden"
+                      whileHover={{
+                        boxShadow: "0 8px 16px rgba(147, 51, 234, 0.3)",
+                      }}
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <img
+                          src={win.gameImage}
+                          alt="Game"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     </motion.div>
+                  </div>
 
-                    {/* Username with Icon */}
-                    <motion.div className="flex items-center gap-1">
-                      <img
-                        src={`/moon/moon${(index % 3) + 1}.svg`}
-                        alt="icon"
-                        className="w-3 h-3"
-                      />
-                      <span className="text-gray-400 text-[8px] xs:text-[9px]">
-                        {win.username}
-                      </span>
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+                  {/* Username with Icon - Equal spacing */}
+                  <div className="flex items-center gap-1 mb-1">
+                    <img
+                      src={`/moon/moon${(index % 3) + 1}.svg`}
+                      alt="icon"
+                      className="w-3 h-3"
+                    />
+                    <span className="text-gray-400 text-[9px]">
+                      {win.username}
+                    </span>
+                  </div>
+
+                  {/* Win Amount - Equal spacing */}
+                  <div className="win-amount">
+                    <span className="text-[#28C203] text-[11px] font-semibold">
+                      {win.amount}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
             {/* Desktop View - Show all cards */}
-            <div className="hidden sm:flex gap-1.5 md:gap-2">
+            <div className="hidden sm:flex gap-2 md:gap-2 lg:gap- py-2">
               <AnimatePresence mode="popLayout">
                 {recentWinsData.map((win, index) => (
                   <motion.div
@@ -696,41 +578,35 @@ const HeroSection = () => {
                       x: { type: "spring", stiffness: 300, damping: 30 },
                       opacity: { duration: 0.2 },
                     }}
-                    whileHover={{ scale: 1.05, y: -3 }}
-                    className="flex flex-col items-center cursor-pointer flex-shrink-0"
+                    whileHover={{ scale: 1.06, y: -3 }}
+                    className="flex flex-col items-center cursor-pointer "
                     onClick={() => handleCardClick(win)}
                   >
-                    {/* Game Card */}
-                    <div className="relative">
-                      <motion.div className="relative w-[60px] h-[70px] md:w-[70px] md:h-[80px] lg:w-[75px] lg:h-[85px] rounded-lg overflow-hidden">
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <img
-                            src={win.gameImage}
-                            alt="Game"
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      </motion.div>
+                    {/* Card Image (scaled 3.5x smaller) */}
+                    <div className="relative rounded-lg overflow-hidden">
+                      <img
+                        src={win.gameImage}
+                        alt={win.gameName}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
                     </div>
 
-                    {/* Win Amount */}
-                    <motion.div className="mt-1">
-                      <span className="text-[#D3D3D3] text-[11px] md:text-xs font-semibold">
-                        {win.amount}
-                      </span>
-                    </motion.div>
-
-                    {/* Username with Icon */}
-                    <motion.div className="flex items-center gap-1">
+                    {/* Username + Icon */}
+                    <div className="flex items-center gap-1 mt-1">
                       <img
                         src={win.icon}
                         alt="icon"
-                        className="w-3 h-3 md:w-4 md:h-4"
+                        className="w-3 h-3 opacity-80"
                       />
-                      <span className="text-gray-400 text-[9px] md:text-[10px]">
+                      <span className="text-gray-300 text-[11px] leading-none">
                         {win.username}
                       </span>
-                    </motion.div>
+                    </div>
+
+                    {/* Amount in Green */}
+                    <span className="text-[#28C203] text-[12px] font-semibold leading-none mt-0.5">
+                      {win.amount}
+                    </span>
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -749,11 +625,11 @@ const HeroSection = () => {
       {/* Add custom scrollbar styles */}
       <style jsx>{`
         .scrollbar-hide {
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
         .scrollbar-hide::-webkit-scrollbar {
-          display: none; /* Chrome, Safari and Opera */
+          display: none;
         }
       `}</style>
     </section>
