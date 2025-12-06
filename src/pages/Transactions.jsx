@@ -92,8 +92,21 @@ const Transactions = () => {
         </motion.div>
 
         {/* FILTER TABS */}
+        {/* FILTER TABS (desktop unchanged, mobile improved) */}
         <div
-          className="bet_btn flex gap-1 mb-6 p-1 rounded-full overflow-x-auto scrollbar-hide w-fit"
+          className="
+    bet_btn 
+    flex 
+    gap-1 
+    mb-6 
+    p-1 
+    rounded-full 
+    overflow-x-auto 
+    scrollbar-hide 
+    w-full
+    md:w-fit 
+    md:justify-start
+  "
           style={{ background: "#282753" }}
         >
           {["all", "reward", "rakeback", "deposit", "withdrawal"].map((tab) => (
@@ -103,12 +116,21 @@ const Transactions = () => {
                 setActiveTab(tab);
                 setCurrentPage(1);
               }}
-              className={`relative px-5 py-2 font-medium text-sm rounded-full transition-all ${
-                activeTab === tab
-                  ? "text-white"
-                  : "text-gray-400 hover:text-white"
-              }`}
+              className={`
+        relative 
+        px-4 
+        sm:px-5 
+        py-2 
+        text-xs 
+        sm:text-sm 
+        font-medium 
+        whitespace-nowrap 
+        rounded-full 
+        transition-all 
+        ${activeTab === tab ? "text-white" : "text-gray-300 hover:text-white"}
+      `}
             >
+              {/* Active Background */}
               {activeTab === tab && (
                 <motion.div
                   layoutId="activeTab"
@@ -119,6 +141,7 @@ const Transactions = () => {
                   transition={{ type: "spring", duration: 0.4 }}
                 />
               )}
+
               <span className="relative z-10 capitalize">
                 {tab === "all" ? "All Transactions" : tab}
               </span>
