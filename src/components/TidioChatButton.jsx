@@ -70,7 +70,7 @@ const TidioChatButton = () => {
         }}
       >
         {/* Glow */}
-        <div
+        {/* <div
           style={{
             position: "absolute",
             inset: 0,
@@ -80,7 +80,7 @@ const TidioChatButton = () => {
             opacity: 0.7,
             pointerEvents: "none",
           }}
-        />
+        /> */}
 
         {/* Chat Icon */}
         <img
