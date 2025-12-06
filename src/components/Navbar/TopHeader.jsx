@@ -77,6 +77,7 @@ const TopHeader = ({
               height="18"
               viewBox="0 0 153 18"
               fill="none"
+              className="hidden sm:block"
             >
               <g clip-path="url(#clip0_9612_7404)">
                 <path

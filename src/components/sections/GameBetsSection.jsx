@@ -203,7 +203,7 @@ const GameBetsSection = () => {
                   exit={{ opacity: 0 }}
                   className="p-8 text-center text-gray-400"
                 >
-                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+                  <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
                 </motion.div>
               ) : !isLoggedIn && activeTab === "my" ? (
                 <motion.div
@@ -264,7 +264,7 @@ const GameBetsSection = () => {
                       className={`text-sm font-semibold text-right ${
                         bet.color === "green"
                           ? "text-green-400"
-                          : "text-green-400"
+                          : "text-[#555594]"
                       }`}
                     >
                       {bet.payout}
