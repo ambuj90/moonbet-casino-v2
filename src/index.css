@@ -1057,7 +1057,7 @@
   z-index: 1;
 }
 
-/* .bj-action-btn::before {
+.bj-action-btn::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1072,7 +1072,7 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-} */
+}
 .bj-action-btn:hover::before {
   inset: 0;
   padding: 1px;
