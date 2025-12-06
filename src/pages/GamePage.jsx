@@ -30,6 +30,13 @@ const GamePage = () => {
   const [preferredCurrency, setPreferredCurrency] = useState(
     localStorage.getItem("preferredCurrency") || "BTC"
   );
+
+  // 🌍 NEW: geo restriction state
+  const [geoBlocked, setGeoBlocked] = useState({
+    blocked: false,
+    message: "",
+  });
+
   window.dataLayer = window.dataLayer || [];
 
   const pushEvent = (data) => {
@@ -87,18 +94,25 @@ const GamePage = () => {
     return () => window.removeEventListener("preferredCurrencyUpdated", update);
   }, []);
 
+  // Reset geo-block when game changes
+  useEffect(() => {
+    setGeoBlocked({ blocked: false, message: "" });
+    setIframeUrl("");
+    setLoading(true);
+  }, [slug]);
+
   // ------------------------------------------
   // Load game session URL
   // ------------------------------------------
   useEffect(() => {
     const fetchGameUrl = async () => {
       try {
+        // First: fetch game metadata by slug
         const { data } = await axios.get(
           `/wallet-service/api/games/slug/${slug}`
         );
 
         if (!data.success) {
-          // Don't instantly show error — wait 2 seconds
           setTimeout(() => {
             toast.error("Game not found!");
           }, 3000);
@@ -148,16 +162,31 @@ const GamePage = () => {
 
         if (initData.data.success && initData.data.data?.url) {
           setIframeUrl(initData.data.data?.url || "");
+          setGeoBlocked({ blocked: false, message: "" });
         } else {
           throw new Error("Failed to start game session");
         }
       } catch (error) {
         console.error("❌ Error loading game:", error);
-        toast.error(
-          error.response?.data?.message ||
-            error.message ||
-            "Unable to load game"
-        );
+
+        // 🌍 NEW: handle geo restriction from backend
+        if (
+          error.response?.status === 403 &&
+          error.response?.data?.blocked
+        ) {
+          const msg =
+            error.response.data.message ||
+            "This game is not available in your region.";
+          setGeoBlocked({ blocked: true, message: msg });
+          setIframeUrl("");
+          toast.warning(msg);
+        } else {
+          toast.error(
+            error.response?.data?.message ||
+              error.message ||
+              "Unable to load game"
+          );
+        }
       } finally {
         setLoading(false);
       }
@@ -202,6 +231,14 @@ const GamePage = () => {
   // Handle fun <-> real play toggle
   // ------------------------------------------
   const handlePlayToggle = () => {
+    // If geo-blocked, don't allow toggle to real play
+    if (geoBlocked.blocked) {
+      toast.info(
+        geoBlocked.message || "This game is not available in your region."
+      );
+      return;
+    }
+
     const token = localStorage.getItem("token");
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
@@ -220,7 +257,6 @@ const GamePage = () => {
         event: "bet_placed",
         user_id: user?.id || null,
         game_name: gameData?.name?.toLowerCase() || "unknown_game",
-        // bet_amount: 0, // you will replace with real value later
         currency: preferredCurrency || "USD",
         is_demo: false,
       });
@@ -238,10 +274,10 @@ const GamePage = () => {
   return (
     <>
       <div className="container relative flex flex-col max-w-7xl mx-auto px-4">
-        {/* Game iframe */}
-        <div className="iframe-wrapper">
+        {/* Game iframe / geo-block card */}
+        <div className="iframe-wrapper relative">
           {loading && (
-            <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm">
+            <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm z-20">
               <img
                 src="/icons/moonlogo.gif"
                 alt="loader"
@@ -250,24 +286,50 @@ const GamePage = () => {
             </div>
           )}
 
-          <iframe
-            ref={iframeRef}
-            src={iframeUrl}
-            title={gameData?.name || "Game"}
-            className="w-full md:h-[80vh] h-[75vh] pt-5 border-none pointer-events-auto"
-            allowFullScreen
-            onLoad={() => {
-              setTimeout(() => setLoading(false), 800);
+          {geoBlocked.blocked ? (
+            <div className="w-full md:h-[80vh] h-[75vh] pt-5 flex items-center justify-center">
+              <div className="max-w-md w-full bg-[#181836] border border-[#3B3B70] rounded-2xl px-6 py-6 text-center shadow-lg">
+                <div className="mb-3 text-2xl">🚫</div>
+                <h2 className="text-lg md:text-xl font-semibold text-white mb-2">
+                  Game not available in your region
+                </h2>
+                <p className="text-sm text-[#B4B4DE] mb-4">
+                  {geoBlocked.message ||
+                    "Due to provider regulations, this game cannot be played from your location."}
+                </p>
+                <button
+                  onClick={() => navigate("/casino")}
+                  className="w-full px-4 py-2 rounded-xl text-sm font-semibold text-white"
+                  style={{
+                    background:
+                      "linear-gradient(90deg,#FFB8A1 0%,#A62A00 100%)",
+                  }}
+                >
+                  Explore other games
+                </button>
+              </div>
+            </div>
+          ) : (
+            <iframe
+              ref={iframeRef}
+              src={iframeUrl}
+              title={gameData?.name || "Game"}
+              className="w-full md:h-[80vh] h-[75vh] pt-5 border-none pointer-events-auto"
+              allowFullScreen
+              onLoad={() => {
+                setTimeout(() => setLoading(false), 800);
 
-              // GTM EVENT: GAME OPENED
-              if (gameData?.name) {
-                pushEvent({
-                  event: "game_opened",
-                  game_name: gameData?.name?.toLowerCase() || "unknown_game",
-                });
-              }
-            }}
-          />
+                // GTM EVENT: GAME OPENED
+                if (gameData?.name) {
+                  pushEvent({
+                    event: "game_opened",
+                    game_name:
+                      gameData?.name?.toLowerCase() || "unknown_game",
+                  });
+                }
+              }}
+            />
+          )}
         </div>
 
         {/* ---------------------------------------------------------------
@@ -300,6 +362,7 @@ const GamePage = () => {
             onClick={() => toggleFullScreen(iframeRef)}
             className="flex-shrink-0 mx-1"
           >
+            {/* (icon unchanged) */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -420,6 +483,7 @@ const GamePage = () => {
                 onClick={() => toggleFullScreen(iframeRef)}
                 className="ml-2"
               >
+                {/* fullscreen icon unchanged */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="37"
@@ -538,7 +602,7 @@ const GamePage = () => {
       </div>
 
       {/* Login Modal */}
-      {( showLogin) && (
+      {showLogin && (
         <LoginTrigger
           buttonText=""
           defaultTab="login"
