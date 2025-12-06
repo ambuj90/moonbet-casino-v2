@@ -47,6 +47,10 @@ const SecuritySection = ({
       await axios.post("/auth-service/api/auth/disable-2fa", { userId });
 
       setEnable2FA(false);
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      user.isTwoFactorEnabled = false;
+      localStorage.setItem("user", JSON.stringify(user));
+
       toast.success("Two-Factor Authentication disabled");
     } catch (err) {
       console.error(err);
@@ -331,7 +335,6 @@ const SecuritySection = ({
       className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-6 hover:border-white/20 transition-all duration-300"
     >
       <div className="flex items-center gap-3 mb-6">
-
         <p className="text-xl font-bold text-white">Security</p>
       </div>
 
