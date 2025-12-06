@@ -5,17 +5,14 @@ const TidioChatButton = () => {
 
   useEffect(() => {
     const onTidioChatApiReady = () => {
-      // Hide default widget
       window.tidioChatApi.hide();
       window.tidioChatApi.hideDefaultWidget?.();
       window.tidioChatApi.hideWidget?.();
 
-      // When chat opens → hide button
       window.tidioChatApi.on("open", () => {
         setIsChatOpen(true);
       });
 
-      // When chat closes → show button again
       window.tidioChatApi.on("close", () => {
         setIsChatOpen(false);
         window.tidioChatApi.hide();
@@ -42,7 +39,6 @@ const TidioChatButton = () => {
     }
   };
 
-  // ⭐ If chat is open → hide the button
   if (isChatOpen) return null;
 
   return (
@@ -69,31 +65,25 @@ const TidioChatButton = () => {
           justifyContent: "center",
         }}
       >
-        {/* Glow */}
-        {/* <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: "50%",
-            background: "#E5EAF2",
-            filter: "blur(20px)",
-            opacity: 0.7,
-            pointerEvents: "none",
-          }}
-        /> */}
-
-        {/* Chat Icon */}
-        <img
-          src="/home-assets/chat-final.png"
-          alt="Chat Icon"
-          style={{
-            width: "60px",
-            height: "60px",
-            display: "block",
-            position: "relative",
-            zIndex: 10,
-          }}
-        />
+        <picture>
+          {/* Desktop image */}
+          <source
+            srcSet="/active-menu/moonbet-logo.png"
+            media="(min-width: 768px)"
+          />
+          {/* Mobile image (default) */}
+          <img
+            src="/active-menu/chat-final.png"
+            alt="Chat Icon"
+            style={{
+              width: "150px",
+              height: "auto",
+              display: "block",
+              position: "relative",
+              zIndex: 10,
+            }}
+          />
+        </picture>
       </div>
     </button>
   );
