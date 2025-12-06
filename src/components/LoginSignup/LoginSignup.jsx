@@ -152,6 +152,13 @@ const LoginSignup = ({
     agreeTerms: false,
     agreeMarketing: false,
   });
+  useEffect(() => {
+  const storedRef = localStorage.getItem("referral_code");
+  if (storedRef && activeTab === "register") {
+    setSignupData((prev) => ({ ...prev, referral: storedRef }));
+  }
+}, [activeTab]);
+
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: "",
   });
@@ -546,6 +553,7 @@ const LoginSignup = ({
         position: "top-right",
         autoClose: 3000,
       });
+      localStorage.removeItem("referral_code");
 
       setTimeout(() => {
         setSignupLoading(false);

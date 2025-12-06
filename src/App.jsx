@@ -53,6 +53,7 @@ import EditorialPolicy from "./pages/EditorialPolicy.jsx";
 import Leaderboard2 from "./pages/Leaderboard2.jsx";
 import GameReturn from "./pages/GameReturn.jsx";
 import { useAuthStore } from "./store/useAuthStore";
+import ReferralRegisterRedirect from "./pages/ReferralRegisterRedirect.jsx";
 
 // Temporary pages
 
@@ -222,6 +223,7 @@ function App() {
 
             <Route path="provably-fair" element={<ProvablyFairPage />} />
           </Route>
+          <Route path="/register" element={<ReferralRegisterRedirect />} />
           {/* ---------------- PRIVATE ROUTES OUTSIDE LAYOUT ---------------- */}
           <Route path="/" element={<Layout />}>
             <Route
