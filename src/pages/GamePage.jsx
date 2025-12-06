@@ -534,7 +534,6 @@ const GamePage = () => {
           excludeGame={gameData?.name}
         />
         <GamepageLeaderboard />
-        <GameBetsSection />
         <ProvidersSection />
       </div>
 
