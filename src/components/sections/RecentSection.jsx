@@ -96,12 +96,6 @@ const RecentSection = () => {
         };
 
         setGames(shuffleArray(unique));
-        console.log("🎮 Total Games Fetched:", unique.length);
-        console.log("📦 Sample Game:", unique[0]);
-        console.log(
-          "📌 is_mobile values:",
-          unique.map((g) => g.is_mobile)
-        );
       } catch (error) {
         console.error("❌ Error fetching games:", error);
         toast.error(
