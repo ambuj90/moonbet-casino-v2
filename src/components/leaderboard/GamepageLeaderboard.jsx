@@ -65,30 +65,38 @@ const LeaderboardSection = () => {
   }));
 
   return (
-    <section className="w-full mx-auto px-4 py-4">
+    <section
+      className="w-full mx-auto py-4"
+      style={{
+        borderRadius: "12px",
+        border: "1px solid #35326B",
+        background: "#1C1D49",
+      }}
+    >
       {/* TOP HEADER */}
-      <div className="w-full flex flex-wrap items-center justify-between gap-3 bg-[#101338] px-4 py-4 rounded-xl mb-6">
+      <div className="w-full flex flex-wrap items-center justify-between gap-3 px-6 py-4 rounded-xl">
         {/* Prize Pool */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 flex-1">
-          <div className="flex items-center gap-2 bg-[#1C1D49] border border-white/10 rounded-lg px-4 py-2">
+          <div className="bj-action-btn flex items-center gap-2 bg-[#0D0E36] rounded-lg px-4 py-3">
             <img src="/icons/prizepool.svg" className="w-5 h-5" />
             <span className="text-[#9292D2] text-sm">Prize Pool</span>
-            <span className="text-white font-semibold text-sm">$0.00</span>
+            <span className="text-white font-semibold pl-8 text-sm">$0.00</span>
           </div>
 
           {/* Your Position */}
-          <div className="flex items-center gap-2 bg-[#1C1D49] border border-white/10 rounded-lg px-4 py-2">
+          <div className="bj-action-btn flex items-center gap-2 bg-[#0D0E36] rounded-lg px-4 py-3">
             <img src="/icons/yourposition.svg" className="w-5 h-5" />
             <span className="text-[#9292D2] text-sm">Your Position</span>
-            <span className="text-white font-semibold text-sm">-</span>
+            <span className="text-white font-semibold text-sm pl-8">-</span>
           </div>
-        </div>
-
-        {/* Ends In */}
-        <div className="flex items-center gap-2 mx-auto bg-[#1C1D49] border border-white/10 rounded-lg px-4 py-2">
-          <img src="/icons/timer.svg" className="w-4 h-4 opacity-60" />
-          <span className="text-[#9292D2] text-sm">Ends in</span>
-          <span className="text-white text-sm font-semibold">10d 23h 59m</span>
+          {/* Ends In */}
+          <div className="flex items-center gap-2 rounded-lg px-10 py-2">
+            <img src="/icons/timer.svg" className="w-4 h-4 opacity-60" />
+            <span className="text-[#9292D2] text-sm">Ends in</span>
+            <span className="text-white text-sm font-semibold">
+              10d 23h 59m
+            </span>
+          </div>
         </div>
 
         {/* Internal Tabs */}
@@ -116,20 +124,20 @@ const LeaderboardSection = () => {
       </div>
 
       {/* TABLE */}
-      <div className="rounded-xl overflow-hidden bg-[#101338] border border-white/10">
-        <div className="grid grid-cols-4 px-6 py-3 text-[#555594] text-xs font-semibold uppercase">
+      <div className="rounded-xl overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-4 px-6 py-3 text-[#555594] text-xs font-semibold uppercase">
           <div>Rank</div>
-          <div>Username</div>
+          <div className="hidden md:block px-4">Username</div>
           <div className="hidden md:block text-center">Points</div>
-          <div className="text-right">Prize</div>
+          <div className="text-right pr-12">Prize</div>
         </div>
 
         {/* Rows */}
         {leaderboardData.map((p, i) => (
           <div
             key={i}
-            className={`grid grid-cols-4 px-6 py-3 ${
-              i % 2 === 0 ? "bg-[#282753]/40" : ""
+            className={`grid grid-cols-2 md:grid-cols-4 px-6 py-3 rounded-[12px] mx-6 ${
+              i % 2 === 0 ? "bg-[#282753]" : ""
             }`}
           >
             <div className="flex items-center gap-2 text-white font-medium">
@@ -141,7 +149,7 @@ const LeaderboardSection = () => {
               <span>{String(i + 1).padStart(2, "0")}</span>
             </div>
 
-            <div className="flex items-center gap-2 text-white">
+            <div className=" hidden md:flex items-center gap-2 text-white">
               <img
                 src="/leaderboard-assets/astro-profile1.svg"
                 className="w-6 h-6 rounded-full"
