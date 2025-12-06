@@ -62,39 +62,48 @@ const TidioChatButton = () => {
       <div
         style={{
           position: "relative",
-          width: "60px",
+          width: "100px",
           height: "60px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        {/* Glow */}
-        {/* <div
+        <img
+          src="/home-assets/moonbet-logo.png"
+          alt="Chat Desktop Icon"
+          className="hidden md:block"
           style={{
             position: "absolute",
-            inset: 0,
-            borderRadius: "50%",
-            background: "#E5EAF2",
-            filter: "blur(20px)",
-            opacity: 0.7,
-            pointerEvents: "none",
+            bottom: "0",
+            right: "0",
           }}
-        /> */}
-
-        {/* Chat Icon */}
+        />
+        {/* MOBILE ICON - only visible on mobile (md:hidden) */}
         <img
-          src="/home-assets/chat-icon.png"
-          alt="Chat Icon"
+          src="/home-assets/chat-final.png"
+          alt="Chat Mobile Icon"
+          className="block md:hidden"
           style={{
             width: "60px",
             height: "60px",
-            display: "block",
-            position: "relative",
-            zIndex: 10,
+            position: "absolute",
+            bottom: "0",
+            right: "0",
           }}
         />
       </div>
+      {/* Desktop-specific position override */}
+      <style>
+        {`
+          @media (min-width: 768px) {
+            button {
+              bottom: 40px !important;
+              right: 40px !important;
+            }
+          }
+        `}
+      </style>
     </button>
   );
 };
