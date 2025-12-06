@@ -11,6 +11,7 @@ import { LoginTrigger } from "../components/LoginSignup/LoginTrigger";
 import { useAuthStore } from "../store/useAuthStore";
 import GamesYouLike from "../components/sections/GamesYouLike";
 import GamepageLeaderboard from "../components/leaderboard/GamepageLeaderboard";
+import GameDescriptionCard from "../components/sections/GameDescriptionCard";
 
 const GamePage = () => {
   const { slug } = useParams();
@@ -170,10 +171,7 @@ const GamePage = () => {
         console.error("❌ Error loading game:", error);
 
         // 🌍 NEW: handle geo restriction from backend
-        if (
-          error.response?.status === 403 &&
-          error.response?.data?.blocked
-        ) {
+        if (error.response?.status === 403 && error.response?.data?.blocked) {
           const msg =
             error.response.data.message ||
             "This game is not available in your region.";
@@ -323,8 +321,7 @@ const GamePage = () => {
                 if (gameData?.name) {
                   pushEvent({
                     event: "game_opened",
-                    game_name:
-                      gameData?.name?.toLowerCase() || "unknown_game",
+                    game_name: gameData?.name?.toLowerCase() || "unknown_game",
                   });
                 }
               }}
@@ -593,10 +590,12 @@ const GamePage = () => {
       {/* Suggested games */}
 
       <div className="game-you-may-like">
+        <GameDescriptionCard />
         <GamesYouLike
           provider={gameData?.provider}
           excludeGame={gameData?.name}
         />
+
         <GamepageLeaderboard />
         <ProvidersSection />
       </div>

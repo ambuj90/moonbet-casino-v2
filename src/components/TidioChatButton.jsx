@@ -84,7 +84,7 @@ const TidioChatButton = () => {
 
         {/* Chat Icon */}
         <img
-          src="/home-assets/chat-icon.png"
+          src="/home-assets/chat-final.png"
           alt="Chat Icon"
           style={{
             width: "60px",
