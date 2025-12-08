@@ -576,7 +576,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                               className="wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250"
                             >
                               {/* Hover Background Effect */}
-                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/45 to-white/15 opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
+                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/45 to-purple/15 opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
 
                               {/* Icon */}
                               <div className="icon-wrap w-9 h-9 rounded-full flex items-center justify-center transition-all duration-250 relative z-10 group-hover:bg-white/55">
@@ -928,7 +928,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                               className="wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250"
                             >
                               {/* Hover Background */}
-                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/45 to-white/15 opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
+                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/45 to-purple/15 opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
 
                               {/* Icon */}
                               <div className="icon-wrap w-9 h-9 rounded-full flex items-center justify-center transition-all duration-250 relative z-10 group-hover:bg-white/55">

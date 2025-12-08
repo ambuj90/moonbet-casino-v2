@@ -310,12 +310,12 @@ const WalletDropdownCenter = ({
                     }}
                     className={`wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250 ${
                       selectedCurrency?.symbol === currency.symbol
-                        ? "selected-currency"
+                        ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]"
                         : ""
                     }`}
                   >
                     {/* Hover Background Effect */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/45 to-white/15 opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
 
                     {/* Icon Wrapper */}
                     <div
@@ -341,7 +341,7 @@ const WalletDropdownCenter = ({
                       <span className="coin-name text-white text-sm font-medium">
                         {currency.name}
                       </span>
-                      <span className="coin-symbol text-[#bfbfbf] text-xs -mt-px">
+                      <span className="coin-symbol text-[#9292D2] text-xs group-hover:text-[#C8C8E1]">
                         {currency.symbol}
                       </span>
                     </div>
@@ -628,7 +628,6 @@ const WalletDropdownCenter = ({
         /* Selected currency styling */
         .selected-currency {
           background: rgba(255, 255, 255, 0.3);
-          // border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         /* Smooth transitions */

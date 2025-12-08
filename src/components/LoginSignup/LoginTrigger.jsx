@@ -57,14 +57,14 @@ export const LoginTrigger = ({
 
   /* --------------------------- LOGIN / SIGNUP SUCCESS ----------------------- */
   const handleLoginSuccess = ({ token, user }) => {
-  if (token) setToken(token); // Zustand updates global state
+    if (token) setToken(token); // Zustand updates global state
 
-  if (user) {
-    localStorage.setItem("user", JSON.stringify(user));
-  }
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
 
-  setIsModalOpen(false);
-};
+    setIsModalOpen(false);
+  };
 
   const handleSignupSuccess = (userData) => {
     const { token, user } = userData || {};
@@ -92,10 +92,10 @@ export const LoginTrigger = ({
   /* --------------------------------- LOGOUT -------------------------------- */
   const logout = useAuthStore((s) => s.logout);
 
-const handleLogout = () => {
-  logout(); // 🚀 Zustand handles redirect vs refresh
-  setDropdownOpen(false);
-};
+  const handleLogout = () => {
+    logout(); // 🚀 Zustand handles redirect vs refresh
+    setDropdownOpen(false);
+  };
 
   const handleOpenModal = () => {
     setActiveTab(defaultTab);
@@ -197,7 +197,7 @@ const handleLogout = () => {
             {/* PROFILE */}
             <button
               onClick={handleProfileClick}
-              className="header-item flex items-center gap-3 w-full"
+              className="header-item flex items-center gap-3 w-full "
             >
               <div className="header-icon-wrap">
                 <img src="/icons/profile.png" />
@@ -290,10 +290,10 @@ const handleLogout = () => {
             inset: 0;
             border-radius: 50px;
             background: linear-gradient(
-              90deg,
-              rgba(255, 255, 255, 0.45),
-              rgba(255, 255, 255, 0.15)
-            );
+              to right,
+              rgba(255, 255, 255, 0.35),
+              rgba(90, 55, 153, 0.1)
+            ); /* bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] */
             opacity: 0;
             transform: scale(0.98);
             transition: opacity 0.25s, transform 0.25s;
@@ -322,7 +322,7 @@ const handleLogout = () => {
           }
 
           .header-item:hover .header-icon-wrap {
-            background: rgba(255, 255, 255, 0.55);
+            background: rgba(200, 200, 225, 0.4);
           }
 
           .header-info {
