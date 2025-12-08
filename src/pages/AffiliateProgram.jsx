@@ -172,7 +172,7 @@ const AffiliateProgram = () => {
     color: "#C1C1C1",
     fontSize: "24px",
     fontStyle: "normal",
-    fontWeight: 800,
+    fontWeight: 600,
     lineHeight: "normal",
   };
 
@@ -226,7 +226,7 @@ const AffiliateProgram = () => {
               className="grid lg:grid-cols-2 gap-8 items-center"
               style={{
                 borderRadius: "12px",
-                backgroundImage: "url('/affiliates/bg-image.svg')",
+                backgroundImage: "url('/affiliates/bg-image2.png')",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}
@@ -307,12 +307,10 @@ const AffiliateProgram = () => {
                         <div
                           style={{
                             ...subHeadingStyle,
-                            background: "rgba(0, 0, 0, 0.5)",
-                            border: "1px solid rgba(255, 255, 255, 0.2)",
-                            borderRadius: "12px",
+
                             padding: "14px 20px",
                           }}
-                          className="flex items-center gap-3"
+                          className="trust_btn flex items-center gap-3"
                         >
                           <span className="text-gray-400">Code:</span>
                           <span className=" font-bold text-xl">
@@ -385,9 +383,6 @@ const AffiliateProgram = () => {
                       <button
                         onClick={handleGenerateCode}
                         className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center gap-1"
-                        style={{
-                          fontFamily: "Avenir, -apple-system, sans-serif",
-                        }}
                       >
                         <svg
                           className="w-4 h-4"
@@ -428,12 +423,12 @@ const AffiliateProgram = () => {
               </div>
 
               {/* Right Side - Visual Element */}
-              <div className="hidden lg:flex justify-content-start">
+              <div className="hidden lg:flex justify-content-start -mt-2">
                 <div className="relative">
                   <img
                     src="/affiliates/astro-affilaite-final.svg"
                     alt="Affiliate Illustration"
-                    className="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(240,119,48,0.3)]"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </div>
@@ -452,19 +447,67 @@ const AffiliateProgram = () => {
           <motion.div whileHover={{ scale: 1.02 }} className="relative">
             <div className="p-2">
               <p className="affiliate-para">Total Referrals</p>
-              <div className="flex items-center gap-3  relative p-3">
+              <div className="trust_btn flex items-center gap-3  relative p-3">
                 <svg
-                  className="w-6 h-6 text-[#ffb8a1]"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="19"
+                  height="18"
+                  viewBox="0 0 19 18"
                   fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0 11.0826L1.50788 11.1131L3.6168 8.96536L5.28872 10.6697C5.72581 10.0967 6.26313 9.6166 6.88753 9.24862L6.99724 9.18497L7.08325 9.27711L6.71316 7.68072C6.41094 7.75925 6.09688 7.79971 5.77631 7.79971C4.73402 7.79971 3.76173 7.37276 3.03841 6.5999L2.9524 6.50777L2.84269 6.5713C1.31272 7.47306 0.306496 9.04847 0.0108933 11.0113L0 11.0826ZM5.7763 7.01097C3.88059 7.01097 2.33824 5.43872 2.33824 3.50609C2.33824 1.57214 3.88059 0 5.7763 0C7.41736 0 8.79347 1.17794 9.13367 2.74781C7.69568 3.2535 6.47709 4.97501 6.46406 6.94026C6.24177 6.9865 6.01182 7.01097 5.7763 7.01097Z"
+                    fill="url(#paint0_linear_10064_1292)"
                   />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8.2141 18H18.9888C19.1192 15.0711 18.1211 12.565 15.4398 10.9865L15.3029 10.9057L15.1916 11.0226C14.2739 12.0031 13.0404 12.5449 11.7177 12.5449C10.3953 12.5449 9.16189 12.0031 8.24413 11.0226L8.13499 10.9057L7.99591 10.9865C7.42817 11.321 6.93601 11.6974 6.51368 12.1105L8.3126 13.9441H5.49752C5.62486 15.3375 6.13305 16.4856 7.34173 17.3652L8.2141 18ZM11.7177 11.5442C9.31262 11.5442 7.35587 9.54954 7.35587 7.09767C7.35587 4.64409 9.31262 2.64966 11.7177 2.64966C14.1231 2.64966 16.08 4.64409 16.08 7.0956C16.08 9.54745 14.1231 11.5442 11.7177 11.5442Z"
+                    fill="url(#paint1_linear_10064_1292)"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M3.36832 10.437L0.348586 13.377H2.07298C2.50481 16.3196 4.66104 17.5791 6.81726 17.9999C5.30739 16.9493 4.61901 15.4781 4.61901 13.377H6.38545L3.36832 10.437Z"
+                    fill="url(#paint2_linear_10064_1292)"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear_10064_1292"
+                      x1="-1.48639e-08"
+                      y1="2.7"
+                      x2="22.2012"
+                      y2="22.7868"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#FFB8A1" />
+                      <stop offset="1" stop-color="#A62A00" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint1_linear_10064_1292"
+                      x1="-1.48639e-08"
+                      y1="2.7"
+                      x2="22.2012"
+                      y2="22.7868"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#FFB8A1" />
+                      <stop offset="1" stop-color="#A62A00" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint2_linear_10064_1292"
+                      x1="-1.48639e-08"
+                      y1="2.7"
+                      x2="22.2012"
+                      y2="22.7868"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stop-color="#FFB8A1" />
+                      <stop offset="1" stop-color="#A62A00" />
+                    </linearGradient>
+                  </defs>
                 </svg>
                 <span style={titleStyle}>{stats.totalReferrals}</span>
               </div>
@@ -475,7 +518,7 @@ const AffiliateProgram = () => {
           <motion.div whileHover={{ scale: 1.02 }} className="relative">
             <div className="p-2 ">
               <p className="affiliate-para">Total Wagered</p>
-              <div className="flex items-center gap-3 p-3 relative ">
+              <div className="trust_btn flex items-center gap-3 p-3 relative ">
                 <span className="inline-flex items-center gap-3 align-middle">
                   <span style={titleStyle} className="flex items-center gap-1">
                     {stats.totalWagered.toFixed(0)}
@@ -489,7 +532,7 @@ const AffiliateProgram = () => {
           <motion.div whileHover={{ scale: 1.02 }} className="relative">
             <div className="p-2">
               <p className="affiliate-para">Total Earnings</p>
-              <div className="flex items-center gap-3 p-3 relative ">
+              <div className="trust_btn flex items-center gap-3 p-3 relative ">
                 <span className="inline-flex items-center gap-3 align-middle">
                   <span style={titleStyle} className="flex items-center gap-1">
                     {stats.totalEarnings.toFixed(0)}
@@ -505,7 +548,7 @@ const AffiliateProgram = () => {
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <p className="affiliate-para">Pending Income</p>
-                  <div className="flex items-center gap-3 p-3 relative ">
+                  <div className="trust_btn flex items-center gap-3 p-3 relative ">
                     <span className="inline-flex items-center gap-3 align-middle">
                       <span
                         style={titleStyle}
@@ -516,7 +559,7 @@ const AffiliateProgram = () => {
                     </span>
                   </div>
                 </div>
-                <button
+                {/* <button
                   onClick={handleClaim}
                   disabled={stats.pendingIncome === 0}
                   className={`absolute right-0 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${
@@ -527,7 +570,7 @@ const AffiliateProgram = () => {
                   style={{ fontFamily: "Avenir, -apple-system, sans-serif" }}
                 >
                   Claim
-                </button>
+                </button> */}
               </div>
             </div>
           </motion.div>
@@ -540,24 +583,21 @@ const AffiliateProgram = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div
-            className="overflow-hidden "
+            className="trust_btn overflow-hidden "
             style={{
-              borderRadius: "12px",
-              backgroundImage: "url('/affiliates/bg-table.svg')",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
+              background: "#0D0E36 ",
             }}
           >
             {/* Table Header */}
             <div className="p-6 border-b border-white/20">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <p className=" your-reff">Your Referrals</p>
+                <p className="text-[#9292D2]">Your Referrals</p>
 
                 <div className="flex gap-3 w-full sm:w-auto">
                   {/* Search Input */}
-                  <div className="affiliate-para2  relative inline-flex items-center rounded-[8px] px-3 py-[8px] w-full sm:w-[200px]">
+                  <div className="affiliate-para2 relative inline-flex items-center rounded-[8px] px-3 py-[8px] w-full sm:w-[200px]">
                     <svg
-                      className="w-4 h-4 mr-2 text-[#7D7D7D] flex-shrink-0"
+                      className="w-4 h-4 mr-2 text-[#555594] flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -575,7 +615,7 @@ const AffiliateProgram = () => {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       style={{
-                        color: "#7D7D7D",
+                        color: "#555594",
                         fontFeatureSettings: "'ss01' on, 'cv01' on",
                         fontFamily: "Neue Plak, sans-serif",
                         fontSize: "12px",
@@ -584,7 +624,7 @@ const AffiliateProgram = () => {
                         lineHeight: "20px",
                         letterSpacing: "0",
                       }}
-                      className="bg-transparent w-full placeholder-[#7D7D7D] focus:outline-none"
+                      className="bg-transparent w-full placeholder-[#555594] focus:outline-none"
                     />
                   </div>
 
@@ -601,16 +641,16 @@ const AffiliateProgram = () => {
                         fontWeight: 400,
                         lineHeight: "20px",
                         letterSpacing: "0",
-                        background: "rgba(255, 255, 255, 0.1)",
+
                         borderRadius: "8px",
                         padding: "8px 16px",
-                        border: "1px solid rgba(255, 255, 255, 0.40)",
+
                         backdropFilter: "blur(30px)",
                       }}
-                      className="flex items-center gap-2 hover:border-white/30 transition-all duration-200"
+                      className="affiliate-para2 flex items-center gap-2  transition-all duration-200"
                     >
-                      <span className="text-[#7D7D7D]">Sort By:</span>
-                      <span>{sortBy}</span>
+                      <span className="text-[#555594]">Sort By:</span>
+                      <span className="text-[#E1E1E1]">{sortBy}</span>
                       <svg
                         className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
                           showSortDropdown ? "rotate-180" : ""

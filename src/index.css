@@ -1309,7 +1309,25 @@
 }
 .affiliate-para2 {
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #0d0e36;
+}
+.affiliate-para2:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 8px;
+  background: linear-gradient(
+    172deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgb(255 255 255 / 0%) 50%,
+    rgb(255 255 255 / 5%) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
 }
 .custom-header::before {
   content: "";
