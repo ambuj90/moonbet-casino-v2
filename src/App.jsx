@@ -55,6 +55,7 @@ import GameReturn from "./pages/GameReturn.jsx";
 import { useAuthStore } from "./store/useAuthStore";
 import ReferralRegisterRedirect from "./pages/ReferralRegisterRedirect.jsx";
 import { useGeoStore } from "./store/useGeoStore";
+import axios from "axios";
 
 // Temporary pages
 
