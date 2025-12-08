@@ -20,7 +20,6 @@ const TrustBadgesFinal = () => {
         </svg>
       ),
       title: "Responsible Gambling",
-      mobileTitle: "18+ Only",
     },
     {
       id: 2,
@@ -39,7 +38,6 @@ const TrustBadgesFinal = () => {
         </svg>
       ),
       title: "Provably Fair",
-      mobileTitle: "Provably Fair",
     },
     {
       id: 3,
@@ -51,75 +49,53 @@ const TrustBadgesFinal = () => {
         />
       ),
       title: "Licensed",
-      mobileTitle: "Licensed",
     },
     {
       id: 4,
-
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="26"
+          height="25"
+          viewBox="0 0 26 25"
+          fill="none"
+        >
+          <path
+            d="M21.0828 7.22783L18.7774 4.17471C19.0427 4.12691 19.3151 4.12691 19.5804 4.17471C19.9257 4.22987 20.2518 4.36417 20.5304 4.56602C20.8091 4.76787 21.032 5.03122 21.1798 5.33335C21.3277 5.63547 21.3961 5.96731 21.3792 6.30022C21.3623 6.63313 21.2606 6.95713 21.0828 7.24427V7.22783ZM22.1146 4.69247C22.208 4.69247 22.2989 4.66363 22.3736 4.61029L25.8273 2.14478C25.8727 2.11241 25.9109 2.07184 25.9398 2.02541C25.9686 1.97898 25.9876 1.92758 25.9957 1.87416C26.0037 1.82074 26.0006 1.76634 25.9865 1.71407C25.9724 1.66179 25.9477 1.61267 25.9137 1.5695C25.8796 1.52633 25.837 1.48996 25.7882 1.46247C25.7395 1.43497 25.6855 1.41689 25.6293 1.40926C25.516 1.39385 25.4009 1.42193 25.3093 1.48732L21.8555 3.95282C21.7639 4.01821 21.7034 4.11555 21.6872 4.22344C21.671 4.33133 21.7005 4.44092 21.7692 4.5281C21.8094 4.57914 21.8615 4.62056 21.9215 4.64909C21.9814 4.67762 22.0475 4.69247 22.1146 4.69247ZM20.7503 3.45972H20.8194C20.9229 3.46099 21.0234 3.42683 21.1026 3.36348C21.1819 3.30012 21.2346 3.21178 21.2511 3.11455L21.6828 0.649045C21.7012 0.540063 21.6732 0.428618 21.6052 0.339226C21.5372 0.249834 21.4347 0.189818 21.3202 0.172381C21.2057 0.154944 21.0886 0.181514 20.9947 0.246246C20.9008 0.310978 20.8377 0.408569 20.8194 0.517551L20.3877 2.98305C20.3779 3.0371 20.3795 3.09247 20.3925 3.1459C20.4055 3.19933 20.4296 3.24975 20.4634 3.29417C20.4972 3.33859 20.54 3.37613 20.5893 3.40456C20.6386 3.43299 20.6933 3.45175 20.7503 3.45972ZM8.7702 18.3842L5.96404 20.3073L8.98606 24.3138C9.14585 24.526 9.35647 24.6989 9.60046 24.8183C9.84446 24.9376 10.1148 24.9999 10.3891 25C10.75 24.9998 11.1018 24.8921 11.395 24.6918C11.7671 24.4378 12.0179 24.0536 12.0924 23.6236C12.1668 23.1936 12.0589 22.7531 11.7922 22.3989L8.7702 18.3842ZM7.311 17.8665L3.78819 13.1902C3.70353 13.0765 3.63934 12.9501 3.59824 12.8163L1.43966 14.2956C0.885315 14.6744 0.461279 15.201 0.221066 15.8089C-0.0191476 16.4168 -0.0647723 17.0789 0.0899501 17.7115C0.244672 18.3441 0.592807 18.9188 1.09042 19.3633C1.58803 19.8077 2.21281 20.1019 2.88591 20.2087C3.07262 20.2399 3.2619 20.255 3.45145 20.2539C4.17219 20.2552 4.87488 20.0395 5.45894 19.6375L7.61752 18.1582C7.4983 18.0787 7.39457 17.9799 7.311 17.8665ZM25.7367 6.77171L22.7146 5.53896C22.6103 5.50132 22.4947 5.50361 22.392 5.54535C22.2894 5.58709 22.2077 5.66503 22.1642 5.76284C22.1206 5.86064 22.1186 5.9707 22.1584 6.06992C22.1982 6.16915 22.2769 6.24983 22.3779 6.29505L25.3999 7.5278C25.4525 7.55222 25.5098 7.5662 25.5683 7.56889C25.6677 7.56871 25.764 7.53586 25.841 7.4759C25.9179 7.41593 25.9707 7.33252 25.9905 7.23977C26.0103 7.14702 25.9959 7.0506 25.9496 6.96682C25.9034 6.88304 25.8281 6.81702 25.7367 6.77993V6.77171ZM20.487 7.85242L14.6977 0.172381C14.6557 0.116377 14.5997 0.071291 14.5347 0.0412549C14.4697 0.0112188 14.3978 -0.00280629 14.3256 0.000465163C14.2534 0.00373662 14.1833 0.0242 14.1216 0.0599795C14.0598 0.0957591 14.0085 0.14571 13.9724 0.205254C13.9378 0.258673 10.5187 5.83893 9.2235 7.47027C8.51549 8.39073 6.57276 10.2768 5.40713 11.3658C4.97541 11.7767 4.5437 12.1876 4.5437 12.1876C4.46991 12.2565 4.42454 12.3483 4.41582 12.4463C4.40711 12.5443 4.43563 12.6421 4.49621 12.7218L8.01901 17.3939C8.05874 17.447 8.11117 17.4904 8.17197 17.5204C8.23278 17.5504 8.30021 17.5662 8.3687 17.5665C8.43761 17.5657 8.50547 17.5503 8.56729 17.5213C8.56729 17.5213 9.07672 17.2706 9.65522 16.9994C11.1015 16.3132 13.6184 15.1503 14.7495 14.7928C16.7785 14.1436 23.4313 12.8492 23.496 12.8327C23.5663 12.8192 23.6319 12.7891 23.6869 12.7454C23.742 12.7016 23.7847 12.6455 23.8112 12.5821C23.8415 12.5153 23.8527 12.4422 23.8436 12.37C23.8345 12.2978 23.8055 12.2292 23.7594 12.1712L20.487 7.85242Z"
+            fill="#7171B4"
+          />
+        </svg>
+      ),
       title: "BeGambleAware",
-      mobileTitle: "BeGambleAware",
     },
   ];
 
   return (
-    <section className="relative w-full py-6 sm:py-5 md:py-6 lg:py-8  ">
-      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 md:px-6">
-        {/* Perfect 2x2 grid on mobile, 1x4 on desktop */}
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4"
-          style={{ gridAutoRows: "minmax(0, 1fr)" }}
+    <div className="w-full flex flex-col gap-2 sm:gap-3 md:gap-3">
+      {badges.map((badge, index) => (
+        <motion.button
+          key={badge.id}
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            delay: index * 0.05,
+            duration: 0.25,
+            ease: "easeOut",
+          }}
+          className="w-full group relative bg-[#1C1D49] hover:bg-[#282753] overflow-hidden rounded-xl sm:rounded-2xl flex items-center gap-3 sm:gap-4 px-4 py-3 sm:px-5 sm:py-3.5 md:px-6"
         >
-          {badges.map((badge, index) => (
-            <motion.div
-              key={badge.id}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: index * 0.05,
-                duration: 0.3,
-                ease: "easeOut",
-              }}
-              className="w-full"
-            >
-              <button className="trust_btn w-full h-full group relative overflow-hidden transition-all duration-300 rounded-lg sm:rounded-xl hover:transform hover:scale-[1.02] active:scale-[0.98]">
-                {/* Inner content wrapper */}
-                <div className="flex md:flex-row items-center justify-center md:justify-center gap-5 sm:gap-2 md:gap-3 p-3 sm:p-3.5 md:p-4 lg:px-6 h-full">
-                  {/* Icon with responsive sizing */}
-                  <div className="flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                    <div className="w-[20px] h-[20px] sm:w-[26px] sm:h-[26px] md:w-[30px] md:h-[30px] lg:w-[33px] lg:h-[33px]">
-                      {badge.icon}
-                    </div>
-                  </div>
+          <div className="flex-shrink-0 w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] flex items-center justify-center">
+            {badge.icon}
+          </div>
+          <span className="text-sm sm:text-[13px] md:text-sm font-normal text-[var(--text-lavender-2)] group-hover:text-[#9292D2] transition-colors duration-300">
+            {badge.title}
+          </span>
 
-                  {/* Text with better responsive sizing */}
-                  <span className="text-center md:text-left font-normal capitalize transition-colors duration-300 group-hover:text-white leading-tight">
-                    {/* Mobile: Smaller text, full words when possible */}
-                    <span className="block md:hidden text-[11px] sm:text-xs whitespace-nowrap">
-                      {badge.mobileTitle}
-                    </span>
-
-                    {/* Desktop: Full text */}
-                    <span
-                      className="hidden md:block"
-                      style={{ color: "var(--text-lavender-2)" }}
-                    >
-                      {badge.title}
-                    </span>
-                  </span>
-                </div>
-
-                {/* Subtle hover overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                {/* Glow effect on hover */}
-                <div className="absolute inset-0 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </button>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+          <div className="absolute inset-0 bg-gradient-to-t from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        </motion.button>
+      ))}
+    </div>
   );
 };
 
