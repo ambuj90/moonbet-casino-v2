@@ -31,104 +31,125 @@ const GameDescriptionCard = ({
 }) => {
   return (
     <motion.section
-      className={`container max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 pt-6 max-[480px]:px-2 ${className}`}
+      className={`container max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 pt-6 
+        max-[480px]:px-2 max-[375px]:px-1.5 ${className}`}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <div
-        className="flex flex-col sm:flex-row px-4 rounded-lg py-5 max-[480px]:px-3 max-[480px]:py-4"
+        className="flex flex-col sm:flex-row px-4 rounded-lg py-5 
+          max-[480px]:px-3 max-[480px]:py-4 
+          max-[375px]:px-2 max-[375px]:py-3"
         style={{
           background: "rgba(28, 29, 73, 0.6)",
           border: "1px solid rgba(53, 50, 107, 0.4)",
         }}
       >
-        {/* Left Section - Game Image */}
-        <div className="relative w-full sm:w-[120px] md:w-[140px] lg:w-[160px] flex-shrink-0 max-[480px]:max-w-[220px] max-[480px]:mx-auto">
-          <div className="relative aspect-[4/5] sm:aspect-auto sm:h-full min-h-[130px] overflow-hidden">
+        {/* Left Section - Game Image Card */}
+        <div
+          className="relative w-full sm:w-[140px] md:w-[160px] lg:w-[180px] flex-shrink-0 
+  max-[480px]:max-w-[200px] max-[375px]:max-w-[180px] max-[480px]:mx-auto"
+        >
+          <div
+            className="
+      relative 
+      rounded-lg 
+      overflow-hidden 
+      w-full 
+      h-[136px]       /* Desktop height fixed */
+      sm:h-[170px]    /* Tablet/desktop */
+      max-[480px]:h-auto   /* Mobile auto height */
+    "
+          >
+            {/* Game Image */}
             <img
               src={gameImage}
               alt={gameTitle}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-full object-cover bg-[#0D0E36]"
               onError={(e) => {
                 e.target.src =
-                  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='180'%3E%3Crect fill='%231C1D49' width='160' height='180'/%3E%3Ctext fill='%239292D2' font-size='12' x='80' y='90' text-anchor='middle'%3EGame%3C/text%3E%3C/svg%3E";
+                  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='220'%3E%3Crect fill='%231C1D49' width='180' height='220'/%3E%3Ctext fill='%239292D2' font-size='12' x='90' y='110' text-anchor='middle'%3EGame%3C/text%3E%3C/svg%3E";
               }}
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0D0E36] via-[#0D0E36]/30 to-transparent" />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0D0E36] via-[#0D0E36]/50 to-transparent" />
 
-            <div className="absolute bottom-7 left-2 right-2 max-[480px]:bottom-6">
-              <p
-                className="text-[10px] font-bold text-white uppercase tracking-wide"
-                style={{ fontFamily: "Neuropolitical, sans-serif" }}
-              >
-                {gameTitle}
-              </p>
-              <p
-                className="text-[11px] font-bold text-white uppercase"
-                style={{ fontFamily: "Neuropolitical, sans-serif" }}
-              >
-                {gameSubtitle}
-              </p>
-              {gameBadge && (
-                <span
-                  className="text-[7px] font-bold uppercase tracking-widest"
-                  style={{
-                    color: "#FFB8A1",
-                    textShadow: "0 0 6px rgba(255, 184, 161, 0.5)",
-                  }}
-                >
-                  {gameBadge}
-                </span>
-              )}
-            </div>
-
+            {/* Bets & RTP Bar */}
             <div
-              className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-2 py-1.5"
-              style={{
-                background: "rgba(13, 14, 54, 0.95)",
-              }}
+              className="affiliate-para2 absolute bottom-0 left-0 right-0 flex items-center justify-between px-2.5 py-2 sm:px-3 sm:py-2.5"
+              style={{ borderRadius: "0 0 8px 8px" }}
             >
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5 pr-3 border-r border-[#35326B]/40">
                 <span
-                  className="text-[8px] font-semibold"
+                  className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wide"
                   style={{ color: "#FFB8A1" }}
                 >
                   Bets
                 </span>
-                <span className="text-white text-[9px] font-bold">{bets}</span>
+                <span
+                  className="text-white text-[10px] sm:text-[11px] font-bold"
+                  style={{ fontFamily: "Neue Plak, sans-serif" }}
+                >
+                  {bets}
+                </span>
               </div>
+
               <div className="flex items-center gap-1">
-                <span className="text-[8px]" style={{ color: "#7171B4" }}>
+                <span
+                  className="text-[9px] sm:text-[10px] font-medium"
+                  style={{ color: "#7171B4" }}
+                >
                   RTP:
                 </span>
-                <span className="text-white text-[9px] font-bold">{rtp}</span>
+                <span
+                  className="text-white text-[10px] sm:text-[11px] font-bold"
+                  style={{ fontFamily: "Neue Plak, sans-serif" }}
+                >
+                  {rtp}
+                </span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Right Section - Description Content */}
-        <div className="flex-1 p-3 sm:p-3.5 flex flex-col min-w-0 max-[480px]:pt-4">
+        <div
+          className="flex-1 pt:0 sm:p-0 lg:pl-4 flex flex-col min-w-0 
+          max-[480px]:pt-4 max-[375px]:p-2 max-[375px]:pt-0"
+        >
+          {/* Description Header */}
           <h4
-            className="text-white text-[12px] font-semibold mb-2 max-[480px]:mb-1"
+            className="text-white text-[13px] sm:text-[14px] font-semibold mb-2.5 
+              max-[480px]:mb-2 max-[375px]:text-[12px]"
             style={{ fontFamily: "Neue Plak, sans-serif" }}
           >
             Description
           </h4>
 
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2 pb-2 border-b border-[#35326B]/40 max-[480px]:overflow-x-auto max-[480px]:scrollbar-hide max-[480px]:pb-1">
+          {/* Stats Pills */}
+          <div
+            className="flex flex-wrap items-center gap-x-2 gap-y-1.5 pb-3 
+            max-[480px]:gap-x-1.5 max-[480px]:gap-y-1 max-[480px]:mb-2 max-[480px]:pb-2
+            max-[375px]:overflow-x-auto max-[375px]:flex-nowrap max-[375px]:scrollbar-hide"
+          >
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="trust_btn2 px-2 py-1 flex items-center gap-1 whitespace-nowrap max-[480px]:text-[9px]"
+                className="trust_btn px-2 py-1 sm:px-2.5 sm:py-1.5 flex items-center gap-1 
+                  whitespace-nowrap
+                  max-[480px]:px-1.5 max-[480px]:py-0.5
+                  max-[375px]:flex-shrink-0"
               >
-                <span className="text-[10px]" style={{ color: "#7171B4" }}>
+                <span
+                  className="text-[9px] sm:text-[10px] max-[375px]:text-[8px] relative z-10"
+                  style={{ color: "#7171B4" }}
+                >
                   {stat.label}:
                 </span>
                 <span
-                  className="text-[10px] font-medium"
+                  className="text-[9px] sm:text-[10px] font-medium max-[375px]:text-[8px] relative z-10"
                   style={{ color: "#9292D2" }}
                 >
                   {stat.value}
@@ -137,13 +158,21 @@ const GameDescriptionCard = ({
             ))}
           </div>
 
-          <div className="flex-1 space-y-1 text-[10px] leading-[1.6] max-[480px]:text-[9px]">
+          {/* Description Text Content */}
+          <div
+            className="flex-1 space-y-2 text-[11px] sm:text-[12px] leading-[1.2] 
+            max-[480px]:text-[10px] max-[480px]:space-y-1.5
+            max-[375px]:text-[9px] max-[375px]:leading-[1.6]"
+            style={{ color: "#9292D2" }}
+          >
             <p>
               {description} Wanted Dead or a Wild is a gritty adventure slot
               from{" "}
               <a
                 href={providerLink}
-                className="underline decoration-dotted underline-offset-2 transition-colors hover:opacity-80"
+                className="underline decoration-dotted underline-offset-2 
+                  transition-colors hover:opacity-80 hover:text-white"
+                style={{ color: "#B8B8E0" }}
               >
                 {providerName}
               </a>
@@ -154,31 +183,40 @@ const GameDescriptionCard = ({
               {additionalContent}{" "}
               <a
                 href={casinoLink}
-                className="underline decoration-dotted underline-offset-2 transition-colors hover:opacity-80"
+                className="underline decoration-dotted underline-offset-2 
+                  transition-colors hover:opacity-80 hover:text-white"
+                style={{ color: "#B8B8E0" }}
               >
                 {casinoName}
               </a>{" "}
               today.
             </p>
 
-            <div className="pt-1">
-              <h5 className="text-white text-[10px] font-semibold mb-0.5">
+            <div className="max-[480px]:pt-1">
+              <p
+                className="text-white text-[13px] sm:text-[14px] font-semibold mb-1 
+                  max-[480px]:text-[12px] max-[375px]:text-[11px]"
+                style={{ fontFamily: "Neue Plak, sans-serif" }}
+              >
                 {howToPlayTitle}
-              </h5>
+              </p>
               <p>{howToPlayContent}</p>
             </div>
           </div>
 
-          <div className="flex justify-end mt-2 max-[480px]:mt-1">
+          {/* View More Button */}
+          <div className="flex justify-end mt-3 max-[480px]:mt-2">
             <motion.button
               onClick={onViewMore}
-              className="text-[10px] font-medium flex items-center gap-0.5 transition-colors cursor-pointer"
-              whileHover={{ x: 2, opacity: 0.8 }}
-              transition={{ duration: 0.15 }}
+              className="text-[10px] sm:text-[11px] font-medium flex items-center gap-1 
+                transition-colors cursor-pointer max-[375px]:text-[9px]"
+              style={{ color: "#9292D2" }}
+              whileHover={{ x: 3, color: "#ffffff" }}
+              transition={{ duration: 0.2 }}
             >
               View More
               <svg
-                className="w-2.5 h-2.5"
+                className="w-3 h-3 max-[375px]:w-2.5 max-[375px]:h-2.5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
