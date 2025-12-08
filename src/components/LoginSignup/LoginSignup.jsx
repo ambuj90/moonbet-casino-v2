@@ -153,11 +153,11 @@ const LoginSignup = ({
     agreeMarketing: false,
   });
   useEffect(() => {
-  const storedRef = localStorage.getItem("referral_code");
-  if (storedRef && activeTab === "register") {
-    setSignupData((prev) => ({ ...prev, referral: storedRef }));
-  }
-}, [activeTab]);
+    const storedRef = localStorage.getItem("referral_code");
+    if (storedRef && activeTab === "register") {
+      setSignupData((prev) => ({ ...prev, referral: storedRef }));
+    }
+  }, [activeTab]);
 
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: "",
@@ -942,27 +942,16 @@ const LoginSignup = ({
             }}
           >
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
 
-            {/* Logo at the top left of the image - HIDDEN since we have header now */}
-            {/* You can remove this entire block if you want */}
-            <div className="absolute top-8 left-8 hidden">
-              <Link to="/" className="flex gap-2">
-                <span className="flex gap-2 text-xl font-bold text-white tracking-wider">
-                  {/* Desktop Logo */}
-                  <img
-                    src="/icons/logo.svg"
-                    alt="Moonbet Logo"
-                    className="w-32 h-auto object-contain hidden md:block md:mx-1"
-                  />
-                  {/* Mobile Logo */}
-                  <img
-                    src="/home-assets/mobile-logo.svg"
-                    alt="Moonbet Logo Mobile"
-                    className="w-28 h-auto object-contain block md:hidden"
-                  />
-                </span>
-              </Link>
+            {/* Bottom content */}
+            <div className="absolute text-center inset-x-0 bottom-0 px-5 pb-7 lg:px-7 lg:pb-9">
+              <p className="text-white text-sm lg:text-base font-medium leading-snug">
+                200% Deposit Bonus
+              </p>
+              <p className="text-white text-xl lg:text-2xl font-semibold leading-snug">
+                Upto $100,000
+              </p>
             </div>
           </div>
 
@@ -1230,20 +1219,6 @@ const LoginSignup = ({
                 >
                   <div className="space-y-3">
                     <input
-                      type="text"
-                      name="referral"
-                      placeholder="Have a referral code?"
-                      value={signupData.referral}
-                      onChange={handleSignupChange}
-                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-                        backdropFilter: "blur(20px)",
-                        border: "var(--border-input)",
-                      }}
-                    />
-                    <input
                       type="email"
                       name="email"
                       placeholder="Email address"
@@ -1412,6 +1387,20 @@ const LoginSignup = ({
                         )}
                       </button>
                     </div>
+                    <input
+                      type="text"
+                      name="referral"
+                      placeholder="Have a referral code?"
+                      value={signupData.referral}
+                      onChange={handleSignupChange}
+                      className="w-full px-4 py-3 rounded-md text-white placeholder-white/50 focus:outline-none focus:border-[#ffb8a1] focus:ring-1 focus:ring-[#ffb8a1] transition-all"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
+                        backdropFilter: "blur(20px)",
+                        border: "var(--border-input)",
+                      }}
+                    />
                     <div className="space-y-2 pt-1">
                       <label className="flex items-start gap-2 cursor-pointer">
                         <input
@@ -1510,9 +1499,9 @@ const LoginSignup = ({
                         onClick={() => setWalletModalOpen(true)}
                         className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all w-full hover:opacity-90"
                         style={{
-                          border: "1px solid var(--cta2-light-green)",
                           background:
-                            "linear-gradient(109deg, rgba(201, 201, 201, 0.80) 1.57%, rgba(196, 196, 196, 0.10) 100%)",
+                            "linear-gradient(180deg, #9292D2 0%, #7171B4 100%)",
+
                           backdropFilter: "blur(30px)",
                           WebkitBackdropFilter: "blur(30px)",
                         }}
