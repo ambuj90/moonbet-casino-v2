@@ -7,7 +7,7 @@ import {
   useSearchParams,
   useLocation,
 } from "react-router-dom";
-
+import axios from "axios";
 import Layout from "./components/layouts/Layout";
 import Homepage from "./pages/Homepage";
 import Settings from "./pages/Settings";
@@ -55,7 +55,6 @@ import GameReturn from "./pages/GameReturn.jsx";
 import { useAuthStore } from "./store/useAuthStore";
 import ReferralRegisterRedirect from "./pages/ReferralRegisterRedirect.jsx";
 import { useGeoStore } from "./store/useGeoStore";
-import axios from "axios";
 
 // Temporary pages
 

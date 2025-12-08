@@ -2,8 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import MoonBetButton from "../ui-elements/MoonBetButton";
-import api from "../../api/axios";
 import { useGeoStore } from "../../store/useGeoStore";
 import axios from "axios";
 
