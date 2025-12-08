@@ -68,7 +68,7 @@ const TidioChatButton = () => {
         <picture>
           {/* Desktop image */}
           <source
-            srcSet="/active-menu/moonbet-logo.png"
+            srcSet="/active-menu/desktop-bot.png"
             media="(min-width: 768px)"
           />
           {/* Mobile image (default) */}

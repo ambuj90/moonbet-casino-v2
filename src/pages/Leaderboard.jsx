@@ -122,7 +122,7 @@ const Leaderboard = () => {
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="absolute top-4 xs:top-6 sm:top-8 left-1/2 z-30"
+            className="absolute top-8 md:top-4 xs:top-6 sm:top-8 left-1/2 z-30"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
