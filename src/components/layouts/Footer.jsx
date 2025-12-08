@@ -95,16 +95,16 @@ const Footer = () => {
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
       >
-        <div className="max-w-[1366px] mx-auto px-4 sm:px-10 w-full flex flex-col h-full pt-6">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-10 w-full flex flex-col h-full pt-6">
           {/* Top row: logo + back to top */}
-          <div className="flex items-center justify-center md:justify-between w-full relative py-6 md:py-2">
+          <div className="flex items-center justify-betwwen md:justify-between w-full relative py-6 md:py-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="201"
               height="25"
               viewBox="0 0 201 25"
               fill="none"
-              className="w-40 sm:w-48 md:w-52 lg:w-56 object-contain"
+              className=""
             >
               <g clip-path="url(#clip0_9930_1835)">
                 <path
@@ -283,7 +283,7 @@ const Footer = () => {
                 className="flex flex-col gap-3 md:gap-3 text-left"
                 variants={itemVariants}
               >
-                <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-clip-text text-transparent uppercase text-[rgba(225,225,225,0.50)]">
+                <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-clip-text text-transparent text-[rgba(225,225,225,0.50)]">
                   About Us
                 </p>
                 <ul className="flex flex-col gap-2 md:gap-3">
@@ -305,7 +305,7 @@ const Footer = () => {
                 className="flex flex-col gap-3 md:gap-3 text-left"
                 variants={itemVariants}
               >
-                <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent uppercase text-[#E2E2E2]">
+                <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent text-[#E2E2E2]">
                   Support
                 </p>
                 <ul className="flex flex-col gap-2 md:gap-3">
@@ -327,7 +327,7 @@ const Footer = () => {
                 className="flex flex-col gap-3 md:gap-3 text-left"
                 variants={itemVariants}
               >
-                <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent uppercase text-[#E2E2E2]">
+                <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent text-[#E2E2E2]">
                   Moonbet
                 </p>
                 <ul className="flex flex-col gap-2 md:gap-3 mt-1">
@@ -350,7 +350,7 @@ const Footer = () => {
                 variants={itemVariants}
               >
                 <div>
-                  <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-clip-text text-transparent uppercase text-[rgba(225,225,225,0.50)]">
+                  <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-clip-text text-transparent text-[rgba(225,225,225,0.50)]">
                     Contact Us
                   </p>
                   <ul className="flex flex-col gap-2 md:gap-3">
@@ -374,7 +374,7 @@ const Footer = () => {
                 </div>
 
                 <div>
-                  <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-clip-text text-transparent uppercase text-[rgba(225,225,225,0.50)]">
+                  <p className="text-sm sm:text-base font-semibold text-white mb-1 md:mb-2 bg-clip-text text-transparent text-[rgba(225,225,225,0.50)]">
                     Community
                   </p>
                   <ul className="flex flex-col gap-2 md:gap-3">
@@ -397,7 +397,7 @@ const Footer = () => {
 
             {/* trust badges column (5th) */}
             <motion.div
-              className="w-full lg:max-w-xs lg:ml-auto"
+              className="w-full lg:max-w-xs lg:ml-auto mt-2"
               variants={itemVariants}
             >
               <TrustBadgesFinal layout="column" />
