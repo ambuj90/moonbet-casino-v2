@@ -71,7 +71,7 @@ const TrustBadgesFinal = () => {
   ];
 
   return (
-    <div className="w-full flex flex-col gap-2 sm:gap-3 md:gap-3">
+    <div className="w-full grid grid-cols-2 md:grid-cols-1 gap-2 sm:gap-3 md:gap-3">
       {badges.map((badge, index) => (
         <motion.button
           key={badge.id}
@@ -83,12 +83,13 @@ const TrustBadgesFinal = () => {
             duration: 0.25,
             ease: "easeOut",
           }}
-          className="w-full group relative bg-[#1C1D49] hover:bg-[#282753] overflow-hidden rounded-xl sm:rounded-2xl flex items-center gap-3 sm:gap-4 px-4 py-3 sm:px-5 sm:py-3.5 md:px-6"
+          className="w-full group relative bg-[#1C1D49] hover:bg-[#282753] overflow-hidden rounded-xl sm:rounded-2xl flex items-center justify-start md:justify-start gap-2 sm:gap-4 px-2 py-3 sm:px-5 sm:py-3.5 md:px-6"
         >
           <div className="flex-shrink-0 w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] flex items-center justify-center">
             {badge.icon}
           </div>
-          <span className="text-sm sm:text-[13px] md:text-sm font-normal text-[var(--text-lavender-2)] group-hover:text-[#9292D2] transition-colors duration-300">
+
+          <span className="text-center md:text-left text-xs sm:text-[13px] md:text-sm font-normal text-[var(--text-lavender-2)] group-hover:text-[#9292D2] transition-colors duration-300">
             {badge.title}
           </span>
 
