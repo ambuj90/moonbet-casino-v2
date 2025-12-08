@@ -404,8 +404,9 @@ const Footer = () => {
             </motion.div>
           </div>
 
-          <div className="mt-6 text-xs sm:text-sm text-white/60 text-center">
-            © MoonBet {new Date().getFullYear()}
+          <div className="mt-6 pb-8 text-xs sm:text-sm text-white/60 text-left">
+            Moonbet operates as a decentralized crypto casino on the Solana
+            blockchain. Built by crypto natives for players 18+.
           </div>
         </div>
       </motion.div>
