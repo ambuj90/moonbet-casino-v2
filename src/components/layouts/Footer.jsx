@@ -275,7 +275,7 @@ const Footer = () => {
           </div>
 
           {/* main layout: four link columns + trust badges column */}
-          <div className="grid grid-cols-1 lg:grid-cols-[3fr_1.5fr] gap-8 md:gap-12 pt-2">
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_1.5fr] gap-8 md:gap-2 pt-2">
             {/* link columns */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 lg:pt-[10px]">
               {/* About Us */}

@@ -446,9 +446,6 @@ const GamePage = () => {
           <div className="w-full flex items-center justify-between gap-4 py-3">
             {/* LEFT: Logo + Game info */}
             <div className="flex items-center gap-4">
-              {/* Moonbet Logo */}
-              <img src="/logo/logo.svg" className="w-40" />
-
               {/* Game Info */}
               <div className="flex flex-col">
                 <p className="font-bold text-[#C8C8E1]">{gameData?.name}</p>
@@ -456,24 +453,25 @@ const GamePage = () => {
               </div>
             </div>
 
+            {/* center: Rakeback  */}
+            {/* Rakeback Box */}
+            <div className="trust_btn flex items-center gap-3 px-3 py-2">
+              <div className="text-[#9292D2] text-sm">Rakeback</div>
+              <div className="flex items-center gap-1">
+                <span className="text-white font-semibold">$0.00</span>
+                <button
+                  className="px-2 py-1 text-xs rounded-lg"
+                  style={{
+                    background:
+                      "linear-gradient(180deg,#9292D2 0%,#7171B4 100%)",
+                  }}
+                >
+                  Claim
+                </button>
+              </div>
+            </div>
             {/* RIGHT: Rakeback + fullscreen + toggle */}
             <div className="flex items-center gap-4">
-              {/* Rakeback Box */}
-              <div className="trust_btn flex items-center gap-3 px-3 py-2">
-                <div className="text-[#9292D2] text-sm">Rakeback</div>
-                <div className="flex items-center gap-1">
-                  <span className="text-white font-semibold">$0.00</span>
-                  <button
-                    className="px-2 py-1 text-xs rounded-lg"
-                    style={{
-                      background:
-                        "linear-gradient(180deg,#9292D2 0%,#7171B4 100%)",
-                    }}
-                  >
-                    Claim
-                  </button>
-                </div>
-              </div>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
