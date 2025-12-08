@@ -588,7 +588,7 @@ const GamePage = () => {
       {/* Suggested games */}
 
       <div className="game-you-may-like">
-        <GameDescriptionCard />
+        {/* <GameDescriptionCard /> */}
         <GamesYouLike
           provider={gameData?.provider}
           excludeGame={gameData?.name}
