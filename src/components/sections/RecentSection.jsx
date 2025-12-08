@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import MoonBetButton from "../ui-elements/MoonBetButton";
 import api from "../../api/axios";
+import { useGeoStore } from "../../store/useGeoStore";
 import axios from "axios";
 
 const RecentSection = () => {
@@ -16,6 +17,7 @@ const RecentSection = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userId = user.id || "690b0290cb255ca66b14a529";
+  const { isProviderBlocked } = useGeoStore();
 
   const GAME_QUERIES = [
     "Aviamasters",
@@ -485,7 +487,9 @@ const RecentSection = () => {
                   overscrollBehaviorX: "contain",
                 }}
               >
-                {filteredGames.map((game, index) => (
+                {filteredGames.map((game, index) => {
+                  const isBlocked = isProviderBlocked(game.provider);
+                  return(
                   <motion.div
                     key={game.uuid}
                     variants={cardVariants}
@@ -504,6 +508,17 @@ const RecentSection = () => {
                           initial="idle"
                           whileHover="hover"
                         />
+                        {/* 🌍 GEO BLOCK OVERLAY */}
+                        {isBlocked && (
+                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="text-3xl mb-2">🔒</div>
+                              <p className="text-xs text-white">
+                                Not available in your region
+                              </p>
+                            </div>
+                          </div>
+                        )}
 
                         {/* Tags */}
                       </div>
@@ -521,7 +536,15 @@ const RecentSection = () => {
                         whileHover="hover"
                       >
                         <motion.button
-                          onClick={() => handlePlayNow(game)}
+                          onClick={() => {
+                            if (isBlocked) {
+                              toast.error(
+                                "This game is blocked in your region."
+                              );
+                              return;
+                            }
+                            handlePlayNow(game);
+                          }}
                           className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-white font-semibold text-sm sm:text-base shadow-lg"
                           variants={buttonVariants}
                           whileTap="tap"
@@ -592,7 +615,8 @@ const RecentSection = () => {
                       {game.provider || "Moonbet Originals"}
                     </div>
                   </motion.div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           )}

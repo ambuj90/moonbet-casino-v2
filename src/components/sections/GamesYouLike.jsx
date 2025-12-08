@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import MoonBetButton from "../ui-elements/MoonBetButton";
 import api from "../../api/axios";
+import { useGeoStore } from "../../store/useGeoStore";
 import axios from "axios";
 
 const GamesYouLike = ({ provider, excludeGame }) => {
@@ -14,6 +15,7 @@ const GamesYouLike = ({ provider, excludeGame }) => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
   const navigate = useNavigate();
+  const { isProviderBlocked } = useGeoStore();
 
   // Check scroll position
   const checkScrollPosition = () => {
@@ -381,7 +383,9 @@ const GamesYouLike = ({ provider, excludeGame }) => {
                   overscrollBehaviorX: "contain",
                 }}
               >
-                {filteredGames.map((game, index) => (
+                {filteredGames.map((game, index) => {
+                  const isBlocked = isProviderBlocked(game.provider);
+                  return (
                   <motion.div
                     key={game.uuid}
                     variants={cardVariants}
@@ -408,6 +412,17 @@ const GamesYouLike = ({ provider, excludeGame }) => {
                           initial="idle"
                           whileHover="hover"
                         />
+                        {/* 🌍 GEO BLOCK OVERLAY */}
+                          {isBlocked && (
+                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                              <div className="text-center">
+                                <div className="text-3xl mb-2">🔒</div>
+                                <p className="text-xs text-white">
+                                  Not available in your region
+                                </p>
+                              </div>
+                            </div>
+                          )}
                       </div>
 
                       {/* Overlay with Play Button */}
@@ -490,7 +505,8 @@ const GamesYouLike = ({ provider, excludeGame }) => {
                       {game.provider || "Moonbet Originals"}
                     </div>
                   </motion.div>
-                ))}
+                  )
+                })}
               </div>
             </motion.div>
           )}

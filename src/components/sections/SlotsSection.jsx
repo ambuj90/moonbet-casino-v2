@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import MoonBetButton from "../ui-elements/MoonBetButton";
 import api from "../../api/axios";
+import { useGeoStore } from "../../store/useGeoStore";
 import axios from "axios";
 
 const SlotsSection = () => {
@@ -15,6 +16,8 @@ const SlotsSection = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
   const navigate = useNavigate();
+  const { isProviderBlocked } = useGeoStore();
+
 
   // Check scroll position
   const checkScrollPosition = () => {
@@ -421,7 +424,9 @@ const SlotsSection = () => {
                   overscrollBehaviorX: "contain",
                 }}
               >
-                {filteredGames.map((game, index) => (
+                {filteredGames.map((game, index) => {
+                  const isBlocked = isProviderBlocked(game.provider);
+                  return (
                   <motion.div
                     key={game.uuid}
                     variants={cardVariants}
@@ -440,6 +445,17 @@ const SlotsSection = () => {
                           initial="idle"
                           whileHover="hover"
                         />
+                        {/* 🌍 GEO BLOCK OVERLAY */}
+                          {isBlocked && (
+                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                              <div className="text-center">
+                                <div className="text-3xl mb-2">🔒</div>
+                                <p className="text-xs text-white">
+                                  Not available in your region
+                                </p>
+                              </div>
+                            </div>
+                          )}
                         {/* <div className="absolute top-2 left-2 bg-[#1C1D49] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.name || "game"}
                         </div> */}
@@ -528,7 +544,8 @@ const SlotsSection = () => {
                       {game.provider || "endrophia"}
                     </div>
                   </motion.div>
-                ))}
+                  )
+                })}
               </div>
             </motion.div>
           )}

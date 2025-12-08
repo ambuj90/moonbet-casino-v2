@@ -54,6 +54,7 @@ import Leaderboard2 from "./pages/Leaderboard2.jsx";
 import GameReturn from "./pages/GameReturn.jsx";
 import { useAuthStore } from "./store/useAuthStore";
 import ReferralRegisterRedirect from "./pages/ReferralRegisterRedirect.jsx";
+import { useGeoStore } from "./store/useGeoStore";
 
 // Temporary pages
 
@@ -62,7 +63,6 @@ const CoinflipPage = () => <SimplePage title="Coinflip Game" />;
 const PumpDumpPage = () => <SimplePage title="PumpDump Game" />;
 const FuturesPage = () => <SimplePage title="Futures Game" />;
 const ChatPage = () => <SimplePage title="Chat" />;
-
 
 // 🔐 PRIVATE ROUTE
 const PrivateRoute = ({ children }) => {
@@ -73,7 +73,6 @@ const PrivateRoute = ({ children }) => {
   }
   return children;
 };
-
 
 // 🔓 Auth Modal Wrapper
 const AuthModalHandler = ({ children }) => {
@@ -126,6 +125,28 @@ const AuthModalHandler = ({ children }) => {
 function App() {
   const location = useLocation();
   const { loading, setLoading } = useLoader();
+  const setUserCountry = useGeoStore((s) => s.setUserCountry);
+  const setRestrictedProviders = useGeoStore((s) => s.setRestrictedProviders);
+
+  useEffect(() => {
+    async function loadGeo() {
+      try {
+        // 1. Get user country from backend
+        const c = await axios.get("/wallet-service/api/geo/country");
+        if (c.data?.country) setUserCountry(c.data.country);
+
+        // 2. Load provider restrictions from backend
+        const r = await axios.get("/wallet-service/api/geo/rules");
+        if (r.data?.providers) setRestrictedProviders(r.data.providers);
+
+        console.log("🌍 GEO READY");
+      } catch (err) {
+        console.error("Geo load error:", err);
+      }
+    }
+
+    loadGeo();
+  }, []);
 
   /* Global Loader on route change */
   useEffect(() => {
