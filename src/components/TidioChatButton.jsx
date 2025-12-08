@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const TidioChatButton = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [offset, setOffset] = useState(-60); // default mobile offset
 
   useEffect(() => {
     const onTidioChatApiReady = () => {
@@ -9,10 +10,7 @@ const TidioChatButton = () => {
       window.tidioChatApi.hideDefaultWidget?.();
       window.tidioChatApi.hideWidget?.();
 
-      window.tidioChatApi.on("open", () => {
-        setIsChatOpen(true);
-      });
-
+      window.tidioChatApi.on("open", () => setIsChatOpen(true));
       window.tidioChatApi.on("close", () => {
         setIsChatOpen(false);
         window.tidioChatApi.hide();
@@ -30,6 +28,22 @@ const TidioChatButton = () => {
     return () => {
       document.removeEventListener("tidioChat-ready", onTidioChatApiReady);
     };
+  }, []);
+
+  // Detect viewport and dynamically set placement
+  useEffect(() => {
+    const updateOffset = () => {
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        setOffset(-50); // desktop image lift
+      } else {
+        setOffset(10); // mobile image lift
+      }
+    };
+
+    updateOffset(); // initial load
+    window.addEventListener("resize", updateOffset);
+
+    return () => window.removeEventListener("resize", updateOffset);
   }, []);
 
   const handleChatOpen = () => {
@@ -58,7 +72,7 @@ const TidioChatButton = () => {
       <div
         style={{
           position: "relative",
-          width: "60px",
+          width: "90px",
           height: "60px",
           display: "flex",
           alignItems: "center",
@@ -71,15 +85,17 @@ const TidioChatButton = () => {
             srcSet="/active-menu/desktop-bot.png"
             media="(min-width: 768px)"
           />
-          {/* Mobile image (default) */}
+
+          {/* Mobile image */}
           <img
             src="/active-menu/chat-final.png"
             alt="Chat Icon"
             style={{
-              width: "150px",
+              width: "80px",
               height: "auto",
-              display: "block",
-              position: "relative",
+              position: "absolute",
+              bottom: `${offset}px`, // dynamic offset
+              right: "-6px",
               zIndex: 10,
             }}
           />
