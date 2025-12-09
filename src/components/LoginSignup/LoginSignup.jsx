@@ -1474,8 +1474,8 @@ const LoginSignup = ({
                     <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-3">
                       <div className="flex justify-center">
                         {/* Google Login - Register  */}
-                        <div className="flex justify-center">
-                          <div className="[&_div]:!bg-white [&_span]:!text-black [&_div]:!border-none [&_div]:!rounded-lg">
+                        <div className="w-full flex justify-center sm:justify-start">
+                          <div className="Register-moonbet w-full">
                             <GoogleLogin
                               onSuccess={handleGoogleLogin}
                               onError={() =>
