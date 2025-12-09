@@ -45,11 +45,11 @@ const CryptoPaymentSection = () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              100%
+              200%
             </span>
 
             <span className="text-[#7171B4] text-[20px] px-2">
-              Deposit Bonus
+              Deposit Bonus or 50% Rakeback
             </span>
           </p>
         </div>
