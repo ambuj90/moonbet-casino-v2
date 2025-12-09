@@ -99,12 +99,45 @@ const TopHeader = ({
           setWalletSettingsOpen={setWalletSettingsOpen}
           handleCurrencySelect={handleCurrencySelect}
         />
+        <div className="relative hidden md:flex items-center mr-2">
+          <div className="trust_btn flex items-center bg-[var(--bg-dark-purple-2)] rounded-lg overflow-hidden w-[260px]">
+            {/* Search Icon Inside Input - Centered */}
+            <div className="flex items-center justify-center pl-3">
+              <img
+                src="/icons/search.svg"
+                alt="Search"
+                className="w-10 h-10 object-contain opacity-60"
+              />
+            </div>
+
+            {/* INPUT */}
+            <input
+              type="text"
+              placeholder="Search games..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && submitSearch()}
+              className="px-3 py-2 text-white text-sm bg-transparent outline-none w-full"
+            />
+
+            <button
+              onClick={submitSearch}
+              className="px-2 py-1 mr-2 text-[10px] font-semibold text-white rounded-md 
+        bg-gradient-to-r from-[#a62a00] to-[#ffb8a1]
+        hover:shadow-[0_0_6px_#ffb8a1] transition-all duration-300"
+            >
+              Ent.
+            </button>
+          </div>
+        </div>
 
         {/* RIGHT SIDE — Actions */}
         <div className="flex items-center gap-2">
           {/* Show login/register only when not logged in */}
           {!hasToken && (
             <>
+              {/* Animated Search Field */}
+
               <LoginTrigger
                 buttonText={
                   <motion.button
