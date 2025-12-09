@@ -269,16 +269,24 @@ const LoginSignup = ({
 
     return (
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-md flex justify-center items-center z-[999999]"
+        className="fixed inset-0 bg-black/70 backdrop-blur-[6px] flex justify-center items-center z-[999999]"
         onClick={onClose}
       >
         <div
-          className="bg-[#1a1a1a] p-6 rounded-xl w-[360px] shadow-lg"
+          className="rounded-2xl p-6 w-[360px] sm:w-[400px] relative"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(28,29,73,0.85) 0%, rgba(20,21,60,0.90) 100%)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            boxShadow:
+              "0 0 20px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.05)",
+          }}
           onClick={(e) => e.stopPropagation()}
         >
-          <h2 className="text-white text-lg font-semibold mb-4">
+          {/* Header */}
+          <p className="text-white text-lg font-semibold mb-4 tracking-wide">
             Select Wallet
-          </h2>
+          </p>
 
           {/* Wallet Buttons */}
           <div className="flex flex-col gap-3">
@@ -288,38 +296,59 @@ const LoginSignup = ({
                 onClick={() =>
                   w.installed ? onSelect(w.id) : window.open(phantomInstallUrl)
                 }
-                className="flex items-center justify-between p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all"
+                className="group flex items-center justify-between p-3 rounded-xl transition-all duration-200"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 100%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
               >
                 <div className="flex items-center gap-3">
-                  <img src={w.icon} alt={w.name} className="w-7 h-7" />
-                  <span className="text-white font-medium">{w.name}</span>
+                  <div className="w-9 h-9 rounded-lg overflow-hidden bg-[#1C1D49] flex items-center justify-center">
+                    <img
+                      src={w.icon}
+                      alt={w.name}
+                      className="w-7 h-7 object-contain"
+                    />
+                  </div>
+
+                  <span className="text-white font-medium text-sm tracking-wide group-hover:text-[#FFB8A1] transition-colors">
+                    {w.name}
+                  </span>
                 </div>
 
-                {!w.installed && (
-                  <span className="text-yellow-400 text-xs">Install</span>
+                {!w.installed ? (
+                  <span className="text-[#FFB8A1] text-xs font-semibold group-hover:opacity-80">
+                    Install
+                  </span>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4 text-[#9292D2] group-hover:text-white transition-colors"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12l2 2 4-4"
+                    />
+                  </svg>
                 )}
               </button>
             ))}
           </div>
 
-          {/* + Add Wallet Button */}
+          {/* Cancel Button */}
           <button
-            onClick={() => window.open(phantomInstallUrl)}
-            className="mt-4 w-full py-3 rounded-lg text-white bg-[#252525] hover:bg-[#333] flex items-center justify-center gap-2"
-          >
-            <span className="text-lg font-bold">+</span> Add Wallet
-          </button>
-
-          {/* Direct link to Phantom */}
-          <button
-            onClick={() => window.open(phantomInstallUrl)}
-            className="mt-2 w-full py-2 text-[#9c6cff] hover:text-white text-sm underline"
-          >
-            Open Phantom Extension
-          </button>
-
-          <button
-            className="mt-4 w-full py-2 bg-white/10 rounded-lg text-white hover:bg-white/20"
+            className="mt-5 w-full py-2.5 rounded-xl text-sm font-medium text-white transition-all duration-200"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.03) 100%)",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
             onClick={onClose}
           >
             Cancel
@@ -985,7 +1014,7 @@ const LoginSignup = ({
               <div className="flex overflow-y-auto mb-6 md:mb-8 border-b border-white/10">
                 <button
                   onClick={() => setActiveTab("login")}
-                  className={`flex-1 pb-3 font-medium transition-all relative ${
+                  className={`flex-1 pb-3 font-bold transition-all relative ${
                     activeTab === "login"
                       ? "text-[#E1E1E1]"
                       : "hover:text-gray-300"
@@ -998,7 +1027,7 @@ const LoginSignup = ({
                 </button>
                 <button
                   onClick={() => setActiveTab("register")}
-                  className={`flex-1 pb-3 font-medium transition-all relative ${
+                  className={`flex-1 pb-3 font-bold transition-all relative ${
                     activeTab === "register"
                       ? "text-[#E1E1E1]"
                       : "hover:text-gray-300"
