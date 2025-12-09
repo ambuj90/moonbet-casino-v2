@@ -1,0 +1,642 @@
+[
+  {
+    "slug": "blackjack-21",
+    "success": true,
+    "game": {
+      "uuid": "6d9a7194034e4e6d816ac59271aaa632",
+      "slug": "blackjack-21",
+      "name": "Blackjack 21",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/6d9a7194034e4e6d816ac59271aaa632.jpg",
+      "is_mobile": false,
+      "type": "blackjack",
+      "rtp": 99.28,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "blackjack-7",
+    "success": true,
+    "game": {
+      "uuid": "aa81e6f59cf741f9b764cd76f458679a",
+      "slug": "blackjack-7",
+      "name": "Blackjack 7",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/aa81e6f59cf741f9b764cd76f458679a.jpg",
+      "is_mobile": false,
+      "type": "blackjack",
+      "rtp": 99.28,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "roulette-lobby",
+    "success": true,
+    "game": {
+      "uuid": "f0405541cacc44e388e359f2c8863b18",
+      "slug": "roulette-lobby",
+      "name": "Roulette Lobby",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/f0405541cacc44e388e359f2c8863b18.png",
+      "is_mobile": false,
+      "type": "roulette",
+      "rtp": 97.3,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "baccarat-lobby",
+    "success": true,
+    "game": {
+      "uuid": "ef1a56fc53384740a14aa2b0b03af854",
+      "slug": "baccarat-lobby",
+      "name": "Baccarat Lobby",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/ef1a56fc53384740a14aa2b0b03af854.png",
+      "is_mobile": false,
+      "type": "baccarat",
+      "rtp": 98.94,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "dragon-tiger",
+    "success": true,
+    "game": {
+      "uuid": "ebde8483f9784fafb58db08c3f162941",
+      "slug": "dragon-tiger",
+      "name": "Dragon Tiger",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/ebde8483f9784fafb58db08c3f162941.png",
+      "is_mobile": false,
+      "type": "dragon tiger",
+      "rtp": 96.51,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "speed-roulette-2",
+    "success": true,
+    "game": {
+      "uuid": "8ccc8773dc6045c594db8cd866e3d2dc",
+      "slug": "speed-roulette-2",
+      "name": "Speed Roulette 2",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/8ccc8773dc6045c594db8cd866e3d2dc.png",
+      "is_mobile": false,
+      "type": "roulette",
+      "rtp": 97.3,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "red-door-roulette",
+    "success": true,
+    "game": {
+      "uuid": "681d496ab44047cf83b65bb877e5a796",
+      "slug": "red-door-roulette",
+      "name": "Red Door Roulette",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/681d496ab44047cf83b65bb877e5a796.png",
+      "is_mobile": true,
+      "type": "roulette",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "emperor-bac-bo",
+    "success": true,
+    "game": {
+      "uuid": "f1a6566e808444d1a573c287ce5b7a22",
+      "slug": "emperor-bac-bo",
+      "name": "Emperor Bac Bo",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/f1a6566e808444d1a573c287ce5b7a22.png",
+      "is_mobile": true,
+      "type": "bac bo",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "bac-bo",
+    "success": true,
+    "game": {
+      "uuid": "16413866cc9743bf818422a8b046fc6d",
+      "slug": "bac-bo",
+      "name": "Bac Bo",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/16413866cc9743bf818422a8b046fc6d.png",
+      "is_mobile": true,
+      "type": "bac bo",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "casino-malta-roulette",
+    "success": true,
+    "game": {
+      "uuid": "de5a210387914851ae7c553dce3aab7c",
+      "slug": "casino-malta-roulette",
+      "name": "Casino Malta Roulette",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/de5a210387914851ae7c553dce3aab7c.png",
+      "is_mobile": true,
+      "type": "roulette",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "stock-market",
+    "success": true,
+    "game": {
+      "uuid": "4a39db54ecb64e3884ba289e4eb58371",
+      "slug": "stock-market",
+      "name": "Stock Market",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/4a39db54ecb64e3884ba289e4eb58371.png",
+      "is_mobile": true,
+      "type": "live dealer",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "crazy-time",
+    "success": true,
+    "game": {
+      "uuid": "d2a26037ab894755abcf8549e060c1a9",
+      "slug": "crazy-time",
+      "name": "Crazy Time",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/d2a26037ab894755abcf8549e060c1a9.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "cash-or-crash",
+    "success": true,
+    "game": {
+      "uuid": "baaabed1e71c4155b6e54d432f8187f7",
+      "slug": "cash-or-crash",
+      "name": "Cash or Crash",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/baaabed1e71c4155b6e54d432f8187f7.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "lightning-ball",
+    "success": true,
+    "game": {
+      "uuid": "3163c4dfeffd40c8a497bcb319d02dd3",
+      "slug": "lightning-ball",
+      "name": "Lightning Ball",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/3163c4dfeffd40c8a497bcb319d02dd3.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "crazy-pachinko",
+    "success": true,
+    "game": {
+      "uuid": "311962167ff14dd9b552fdaf3a3350d8",
+      "slug": "crazy-pachinko",
+      "name": "Crazy pachinko",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/311962167ff14dd9b552fdaf3a3350d8.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "gonzo-s-treasure-map",
+    "success": true,
+    "game": {
+      "uuid": "81d879b7e68d4b18855a692b92d1c8ec",
+      "slug": "gonzo-s-treasure-map",
+      "name": "Gonzo's Treasure Map",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/81d879b7e68d4b18855a692b92d1c8ec.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "sweet-bonanza-candyland",
+    "success": true,
+    "game": {
+      "uuid": "35eba85f4e674ac9a4cdf828db13af0d",
+      "slug": "sweet-bonanza-candyland",
+      "name": "Sweet Bonanza CandyLand",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/35eba85f4e674ac9a4cdf828db13af0d.png",
+      "is_mobile": false,
+      "type": "live dealer",
+      "rtp": 96.95,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "football-studio",
+    "success": true,
+    "game": {
+      "uuid": "5a4b5d8961a5426ebaa03c6e64c31b71",
+      "slug": "football-studio",
+      "name": "Football Studio",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/5a4b5d8961a5426ebaa03c6e64c31b71.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "monopoly-big-baller",
+    "success": true,
+    "game": {
+      "uuid": "3c3f062f42f54efc9926ce50bc7ffe4a",
+      "slug": "monopoly-big-baller",
+      "name": "Monopoly Big Baller",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/3c3f062f42f54efc9926ce50bc7ffe4a.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "mega-ball",
+    "success": true,
+    "game": {
+      "uuid": "b8d8887d19294abcbf7822dcfae001b7",
+      "slug": "mega-ball",
+      "name": "Mega Ball",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/b8d8887d19294abcbf7822dcfae001b7.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "funky-time",
+    "success": true,
+    "game": {
+      "uuid": "0a286e0e9cd34f628e67d4185f3c6047",
+      "slug": "funky-time",
+      "name": "Funky TIme",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/0a286e0e9cd34f628e67d4185f3c6047.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "dragon-tiger-mobile",
+    "success": true,
+    "game": {
+      "uuid": "80e1f2c618534208ad292f882828e07c",
+      "slug": "dragon-tiger-mobile",
+      "name": "Dragon Tiger Mobile",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/80e1f2c618534208ad292f882828e07c.png",
+      "is_mobile": true,
+      "type": "dragon tiger",
+      "rtp": 96.51,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "extreme-texas-hold-em",
+    "success": true,
+    "game": {
+      "uuid": "35f39a232d044941b3ef96a5f709e4a2",
+      "slug": "extreme-texas-hold-em",
+      "name": "Extreme Texas Hold'em",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/35f39a232d044941b3ef96a5f709e4a2.png",
+      "is_mobile": true,
+      "type": "poker",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "casino-charms",
+    "success": true,
+    "game": {
+      "uuid": "57deffebd82849f9a8aa98152c7ce93a",
+      "slug": "casino-charms",
+      "name": "Casino Charms",
+      "provider": "Playtech",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Playtech/57deffebd82849f9a8aa98152c7ce93a.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "casino-hold-em-italia",
+    "success": true,
+    "game": {
+      "uuid": "d61ae94505654f3cbdb0c26d3539222f",
+      "slug": "casino-hold-em-italia",
+      "name": "Casino Hold'em Italia",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/d61ae94505654f3cbdb0c26d3539222f.png",
+      "is_mobile": true,
+      "type": "poker",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "grand-casino-roulette",
+    "success": true,
+    "game": {
+      "uuid": "3538d47c79014fd79f3ec03a294ddd60",
+      "slug": "grand-casino-roulette",
+      "name": "Grand Casino Roulette",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/3538d47c79014fd79f3ec03a294ddd60.png",
+      "is_mobile": true,
+      "type": "roulette",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "blackjack-21-mobile",
+    "success": true,
+    "game": {
+      "uuid": "1a68b1465d584d089b74526cd2e8d371",
+      "slug": "blackjack-21-mobile",
+      "name": "Blackjack 21 Mobile",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/1a68b1465d584d089b74526cd2e8d371.jpg",
+      "is_mobile": true,
+      "type": "blackjack",
+      "rtp": 99.28,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "blackjack-7-mobile",
+    "success": true,
+    "game": {
+      "uuid": "7700eacc661b4aecbbfec958f608d597",
+      "slug": "blackjack-7-mobile",
+      "name": "Blackjack 7 Mobile",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/7700eacc661b4aecbbfec958f608d597.jpg",
+      "is_mobile": true,
+      "type": "blackjack",
+      "rtp": 99.28,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "roulette-lobby-mobile",
+    "success": true,
+    "game": {
+      "uuid": "bb693f9c83d946259f8e954dd22a74d1",
+      "slug": "roulette-lobby-mobile",
+      "name": "Roulette Lobby Mobile",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/bb693f9c83d946259f8e954dd22a74d1.png",
+      "is_mobile": true,
+      "type": "roulette",
+      "rtp": 97.3,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "baccarat-lobby-mobile",
+    "success": true,
+    "game": {
+      "uuid": "262baf6d6dd9464e92d4371367e8f702",
+      "slug": "baccarat-lobby-mobile",
+      "name": "Baccarat Lobby Mobile",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/262baf6d6dd9464e92d4371367e8f702.png",
+      "is_mobile": true,
+      "type": "baccarat",
+      "rtp": 98.94,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "dragon-tiger",
+    "success": true,
+    "game": {
+      "uuid": "ebde8483f9784fafb58db08c3f162941",
+      "slug": "dragon-tiger",
+      "name": "Dragon Tiger",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/ebde8483f9784fafb58db08c3f162941.png",
+      "is_mobile": false,
+      "type": "dragon tiger",
+      "rtp": 96.51,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "speed-roulette-2-mobile",
+    "success": true,
+    "game": {
+      "uuid": "770d15f28e4242df84be933480402062",
+      "slug": "speed-roulette-2-mobile",
+      "name": "Speed Roulette 2 Mobile",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/770d15f28e4242df84be933480402062.png",
+      "is_mobile": true,
+      "type": "roulette",
+      "rtp": 97.3,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "bac-bo-ao-vivo",
+    "success": true,
+    "game": {
+      "uuid": "6dcdaf8638884407b016bca4cedf4ea2",
+      "slug": "bac-bo-ao-vivo",
+      "name": "Bac Bo Ao Vivo",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/6dcdaf8638884407b016bca4cedf4ea2.png",
+      "is_mobile": true,
+      "type": "bac bo",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "casino-hold-em",
+    "success": true,
+    "game": {
+      "uuid": "ecf3bb949cda4033aecc9bce80bc358d",
+      "slug": "casino-hold-em",
+      "name": "Casino Hold'Em",
+      "provider": "Playtech",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Playtech/ecf3bb949cda4033aecc9bce80bc358d.png",
+      "is_mobile": true,
+      "type": "table",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "hippodrome-grand-casino",
+    "success": true,
+    "game": {
+      "uuid": "da4cf785201f4918970348775ab131c6",
+      "slug": "hippodrome-grand-casino",
+      "name": "Hippodrome Grand Casino",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/da4cf785201f4918970348775ab131c6.png",
+      "is_mobile": true,
+      "type": "roulette",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "casino-hold-em",
+    "success": true,
+    "game": {
+      "uuid": "ecf3bb949cda4033aecc9bce80bc358d",
+      "slug": "casino-hold-em",
+      "name": "Casino Hold'Em",
+      "provider": "Playtech",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Playtech/ecf3bb949cda4033aecc9bce80bc358d.png",
+      "is_mobile": true,
+      "type": "table",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "pirate-s-map",
+    "success": true,
+    "game": {
+      "uuid": "2ba0177560b342b3aff4de8eb2798f68",
+      "slug": "pirate-s-map",
+      "name": "Pirate`s Map",
+      "provider": "Platipus2",
+      "image": "https://gis-static.com/games/Platipus2/2ba0177560b342b3aff4de8eb2798f68.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 95,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "game-shows",
+    "success": true,
+    "game": {
+      "uuid": "88d5a69a56f040a39be2b63c7ca08571",
+      "slug": "game-shows",
+      "name": "Game shows",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/88d5a69a56f040a39be2b63c7ca08571.png",
+      "is_mobile": false,
+      "type": "live dealer",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "mega-wheel",
+    "success": true,
+    "game": {
+      "uuid": "3767449285304828b177deb6995bdecc",
+      "slug": "mega-wheel",
+      "name": "Mega Wheel",
+      "provider": "PragmaticPlayLive",
+      "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/3767449285304828b177deb6995bdecc.png",
+      "is_mobile": false,
+      "type": "live dealer",
+      "rtp": 96.51,
+      "volatility": null,
+      "reels_count": null
+    }
+  },
+  {
+    "slug": "monopoly-live",
+    "success": true,
+    "game": {
+      "uuid": "0fba8ce49982447db569491b66e45156",
+      "slug": "monopoly-live",
+      "name": "MONOPOLY Live",
+      "provider": "Evolution Gaming",
+      "image": "https://gis-static.com/games/2ba977d934f57f1a9ee4e829d4dba646/Evolution Gaming/0fba8ce49982447db569491b66e45156.png",
+      "is_mobile": true,
+      "type": "game_shows",
+      "rtp": null,
+      "volatility": null,
+      "reels_count": null
+    }
+  }
+]

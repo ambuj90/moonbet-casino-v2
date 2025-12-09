@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useGeoStore } from "../../store/useGeoStore";
 import axios from "axios";
+import curatedGames from "../../data/slot-games.json";
 
 const SlotsSection = () => {
   const scrollContainerRef = useRef(null);
@@ -43,31 +44,29 @@ const SlotsSection = () => {
   }, []);
 
   useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const { data } = await axios.get("/wallet-service/api/games");
+  setLoading(true);
 
-        // ✅ Updated according to new backend response
-        if (Array.isArray(data?.data)) {
-          setGames(data.data);
-        } else if (Array.isArray(data?.games?.items)) {
-          // backward compatibility (old format)
-          setGames(data.games.items);
-        } else {
-          setGames([]);
-        }
-      } catch (error) {
-        console.error("❌ Error fetching games:", error);
-        toast.error(
-          error.response?.data?.message || "Failed to load games list"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
+  const validGames = curatedGames
+    .filter((item) => item.success && item.game)   // valid entries only
+    .map((item) => {
+      const g = item.game; // clean object
 
-    fetchGames();
-  }, []);
+      return {
+        uuid: g.uuid,
+        slug: g.slug,
+        name: g.name,
+        provider: g.provider,
+        image: g.image,
+        is_mobile: g.is_mobile,
+        rtp: g.rtp,
+        volatility: g.volatility,
+        reels_count: g.reels_count,
+      };
+    });
+
+  setGames(validGames);
+  setLoading(false);
+}, []);
 
   // Add scroll position check after games are loaded
   useEffect(() => {

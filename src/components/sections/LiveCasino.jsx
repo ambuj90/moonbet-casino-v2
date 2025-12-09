@@ -7,7 +7,7 @@ import MoonBetButton from "../ui-elements/MoonBetButton";
 import api from "../../api/axios";
 import axios from "axios";
 import { useGeoStore } from "../../store/useGeoStore";
-import localGames from "../../data/games.json";
+import liveGames from "../../data/live-games.json";
 
 const LiveCasino = () => {
   const scrollContainerRef = useRef(null);
@@ -18,6 +18,7 @@ const LiveCasino = () => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
   const navigate = useNavigate();
   const { isProviderBlocked } = useGeoStore();
+  const shuffleArray = (arr) => arr.sort(() => Math.random() - 0.5);
 
   // Check scroll position
   const checkScrollPosition = () => {
@@ -45,20 +46,16 @@ const LiveCasino = () => {
   }, []);
 
   useEffect(() => {
-    try {
-      let fetchedGames = localGames;
+  const validLiveGames = liveGames
+    .filter((item) => item.success && item.game)
+    .map((item) => item.game);
 
-      // Shuffle randomly
-      const shuffled = [...fetchedGames].sort(() => Math.random() - 0.5);
+  // Shuffle games randomly
+  const randomGames = shuffleArray(validLiveGames);
 
-      setGames(shuffled);
-    } catch (error) {
-      console.error("❌ Error loading JSON:", error);
-      toast.error("Could not load games list");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  setGames(randomGames);
+  setLoading(false);
+}, []);
 
   // Add scroll position check after games are loaded
   useEffect(() => {

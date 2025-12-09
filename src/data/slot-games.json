@@ -1,0 +1,594 @@
+[
+  {
+    "slug": "sweet-bonanza-1000",
+    "success": true,
+    "game": {
+      "uuid": "df61abd27adc941e19df1accbe88208ba21e4f70",
+      "slug": "sweet-bonanza-1000",
+      "name": "Sweet Bonanza 1000",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/df61abd27adc941e19df1accbe88208ba21e4f70.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.53,
+      "volatility": "very-high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "wanted-dead-or-a-wild-96",
+    "success": true,
+    "game": {
+      "uuid": "0dec5bcd937c40269c7a27c00399bdee",
+      "slug": "wanted-dead-or-a-wild-96",
+      "name": "Wanted Dead or a Wild 96%",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/0dec5bcd937c40269c7a27c00399bdee.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.38,
+      "volatility": "high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "gates-of-olympus-1000",
+    "success": true,
+    "game": {
+      "uuid": "221101cf569449de93de210b3e0eadfa",
+      "slug": "gates-of-olympus-1000",
+      "name": "Gates of Olympus 1000",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/221101cf569449de93de210b3e0eadfa.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "very-high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "duck-hunt-500",
+    "success": true,
+    "game": {
+      "uuid": "549793c594964e57880a0f7fde5b2487",
+      "slug": "duck-hunt-500",
+      "name": "Duck Hunt 500",
+      "provider": "AvatarUX",
+      "image": "https://gis-static.com/games/AvatarUX/549793c594964e57880a0f7fde5b2487.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": null,
+      "volatility": "",
+      "reels_count": ""
+    }
+  },
+  {
+    "slug": "le-bandit",
+    "success": true,
+    "game": {
+      "uuid": "4d3f45d23f12496486d4725b8f98180d",
+      "slug": "le-bandit",
+      "name": "Le Bandit",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/4d3f45d23f12496486d4725b8f98180d.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.34,
+      "volatility": "medium",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "duel-at-dawn-mobile",
+    "success": true,
+    "game": {
+      "uuid": "193e2a0133ad89f3287ec9113e409890f7debf01",
+      "slug": "duel-at-dawn-mobile",
+      "name": "Duel at Dawn Mobile",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/193e2a0133ad89f3287ec9113e409890f7debf01.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.3,
+      "volatility": "medium-high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "sweet-rush-bonanza",
+    "success": true,
+    "game": {
+      "uuid": "255719f01d234d63b7073b637340bf20",
+      "slug": "sweet-rush-bonanza",
+      "name": "Sweet Rush Bonanza",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/255719f01d234d63b7073b637340bf20.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "very-high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "gold-rush",
+    "success": true,
+    "game": {
+      "uuid": "bea8862dd2ee43209075202a2057f504",
+      "slug": "gold-rush",
+      "name": "Gold Rush",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/bea8862dd2ee43209075202a2057f504.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "Big Bass Bonanza 1000",
+    "success": false,
+    "error": {
+      "success": false,
+      "message": "Game not found"
+    }
+  },
+  {
+    "slug": "Le Viking",
+    "success": false,
+    "error": {
+      "success": false,
+      "message": "Game not found"
+    }
+  },
+  {
+    "slug": "sugar-rush",
+    "success": true,
+    "game": {
+      "uuid": "d8f118e9bfd01ace4f417a8adf3c72845788a658",
+      "slug": "sugar-rush",
+      "name": "Sugar Rush",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/d8f118e9bfd01ace4f417a8adf3c72845788a658.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "high",
+      "reels_count": "7"
+    }
+  },
+  {
+    "slug": "bingo-mania",
+    "success": true,
+    "game": {
+      "uuid": "4bbf364916114e3595daaf5b8d84057f",
+      "slug": "bingo-mania",
+      "name": "Bingo Mania",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/4bbf364916114e3595daaf5b8d84057f.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.51,
+      "volatility": "very-high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "reel-banks",
+    "success": true,
+    "game": {
+      "uuid": "ee7a358afa08459780a49d57fa74a797",
+      "slug": "reel-banks",
+      "name": "Reel Banks",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/ee7a358afa08459780a49d57fa74a797.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.04,
+      "volatility": "high",
+      "reels_count": "4"
+    }
+  },
+  {
+    "slug": "phoenix-duelreels",
+    "success": true,
+    "game": {
+      "uuid": "61f5be3d337a4e6aae19b2760f910e3d",
+      "slug": "phoenix-duelreels",
+      "name": "Phoenix DuelReels",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/61f5be3d337a4e6aae19b2760f910e3d.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.27,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "wild-fruits",
+    "success": true,
+    "game": {
+      "uuid": "b074a2e5f0f1a8ec225554d9692d01194ce86f6c",
+      "slug": "wild-fruits",
+      "name": "Wild Fruits",
+      "provider": "Endorphina",
+      "image": "https://gis-static.com/games/b074a2e5f0f1a8ec225554d9692d01194ce86f6c.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "aztec-twist",
+    "success": true,
+    "game": {
+      "uuid": "454caf24c80444ffb3c77919e80ce991",
+      "slug": "aztec-twist",
+      "name": "Aztec Twist",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/454caf24c80444ffb3c77919e80ce991.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.3,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "rooster-fury",
+    "success": true,
+    "game": {
+      "uuid": "e59fc50ab8543fc449cc0d4531104d528f8399c9",
+      "slug": "rooster-fury",
+      "name": "Rooster Fury",
+      "provider": "Endorphina",
+      "image": "https://gis-static.com/games/e59fc50ab8543fc449cc0d4531104d528f8399c9.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96,
+      "volatility": "high",
+      "reels_count": "3"
+    }
+  },
+  {
+    "slug": "gates-of-olympus-super-scatter",
+    "success": true,
+    "game": {
+      "uuid": "032d94e9bbdf45568b944d608e1a1a70",
+      "slug": "gates-of-olympus-super-scatter",
+      "name": "Gates of Olympus Super Scatter",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/032d94e9bbdf45568b944d608e1a1a70.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "akbar-birbal",
+    "success": true,
+    "game": {
+      "uuid": "dcdeb90134c13e44fd52e71be20742dcd8762cc7",
+      "slug": "akbar-birbal",
+      "name": "Akbar Birbal",
+      "provider": "Endorphina",
+      "image": "https://gis-static.com/games/dcdeb90134c13e44fd52e71be20742dcd8762cc7.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96,
+      "volatility": "high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "rad-maxx-mobile",
+    "success": true,
+    "game": {
+      "uuid": "27efd36a6bfe4d7882664dffb5f9353c",
+      "slug": "rad-maxx-mobile",
+      "name": "Rad Maxx Mobile",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/27efd36a6bfe4d7882664dffb5f9353c.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.32,
+      "volatility": "medium-high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "sweet-bonanza-1000-mobile",
+    "success": true,
+    "game": {
+      "uuid": "212234fd5214a67d91717fa6edda6d8e54640eec",
+      "slug": "sweet-bonanza-1000-mobile",
+      "name": "Sweet Bonanza 1000 Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/212234fd5214a67d91717fa6edda6d8e54640eec.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.53,
+      "volatility": "very-high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "wanted-dead-or-a-wild-96-mobile",
+    "success": true,
+    "game": {
+      "uuid": "f3cd45af1b3241218705dc12b2b80773",
+      "slug": "wanted-dead-or-a-wild-96-mobile",
+      "name": "Wanted Dead or a Wild 96% Mobile",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/f3cd45af1b3241218705dc12b2b80773.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.38,
+      "volatility": "high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "gates-of-olympus-1000-mobile",
+    "success": true,
+    "game": {
+      "uuid": "fec310babd42482597380c8933cd761a",
+      "slug": "gates-of-olympus-1000-mobile",
+      "name": "Gates of Olympus 1000 Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/fec310babd42482597380c8933cd761a.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "very-high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "le-bandit-mobile",
+    "success": true,
+    "game": {
+      "uuid": "ad1deef237304bf78744cd95a3139129",
+      "slug": "le-bandit-mobile",
+      "name": "Le Bandit Mobile",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/ad1deef237304bf78744cd95a3139129.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.34,
+      "volatility": "medium",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "duel-at-dawn",
+    "success": true,
+    "game": {
+      "uuid": "d44a1023e2c1a91d32bf20cb1915257d1e4e51c7",
+      "slug": "duel-at-dawn",
+      "name": "Duel at Dawn",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/d44a1023e2c1a91d32bf20cb1915257d1e4e51c7.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.3,
+      "volatility": "medium-high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "sweet-rush-bonanza-mobile",
+    "success": true,
+    "game": {
+      "uuid": "97a9bdb5c3a34f2484ce288c48210801",
+      "slug": "sweet-rush-bonanza-mobile",
+      "name": "Sweet Rush Bonanza Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/97a9bdb5c3a34f2484ce288c48210801.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "very-high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "gold-rush-mobile",
+    "success": true,
+    "game": {
+      "uuid": "824526741bad4909a63314e8a4d62bb3",
+      "slug": "gold-rush-mobile",
+      "name": "Gold Rush Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/824526741bad4909a63314e8a4d62bb3.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "Big Bass Bonanza 1000 Mobile",
+    "success": false,
+    "error": {
+      "success": false,
+      "message": "Game not found"
+    }
+  },
+  {
+    "slug": "Le Viking Mobile",
+    "success": false,
+    "error": {
+      "success": false,
+      "message": "Game not found"
+    }
+  },
+  {
+    "slug": "sugar-rush-mobile",
+    "success": true,
+    "game": {
+      "uuid": "a90e2dfc927a7af291051b192c0ab32376cc5c2d",
+      "slug": "sugar-rush-mobile",
+      "name": "Sugar Rush Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/a90e2dfc927a7af291051b192c0ab32376cc5c2d.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "high",
+      "reels_count": "7"
+    }
+  },
+  {
+    "slug": "bingo-mania-mobile",
+    "success": true,
+    "game": {
+      "uuid": "3419c41495644ee7abbddc01b7638e2f",
+      "slug": "bingo-mania-mobile",
+      "name": "Bingo Mania Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/3419c41495644ee7abbddc01b7638e2f.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.51,
+      "volatility": "very-high",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "reel-banks-mobile",
+    "success": true,
+    "game": {
+      "uuid": "fbf3568d1e5b428c8102d9e6710fb58e",
+      "slug": "reel-banks-mobile",
+      "name": "Reel Banks Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/fbf3568d1e5b428c8102d9e6710fb58e.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.04,
+      "volatility": "high",
+      "reels_count": "4"
+    }
+  },
+  {
+    "slug": "phoenix-duelreels-mobile",
+    "success": true,
+    "game": {
+      "uuid": "36a32d82e42441789f5e19e6de3ed39c",
+      "slug": "phoenix-duelreels-mobile",
+      "name": "Phoenix DuelReels Mobile",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/36a32d82e42441789f5e19e6de3ed39c.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.27,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "wild-spin",
+    "success": true,
+    "game": {
+      "uuid": "9d822e3e3ea647339e23b619ed98dda6",
+      "slug": "wild-spin",
+      "name": "Wild Spin",
+      "provider": "Platipus2",
+      "image": "https://gis-static.com/games/Platipus2/9d822e3e3ea647339e23b619ed98dda6.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 95,
+      "volatility": "low-medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "aztec-twist-mobile",
+    "success": true,
+    "game": {
+      "uuid": "781f91ec06fc401d938f26bb071e72d8",
+      "slug": "aztec-twist-mobile",
+      "name": "Aztec Twist Mobile",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/781f91ec06fc401d938f26bb071e72d8.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.3,
+      "volatility": "medium",
+      "reels_count": "5"
+    }
+  },
+  {
+    "slug": "rooster-fury-dice",
+    "success": true,
+    "game": {
+      "uuid": "a687b918e6d84b158c0652cce9738ada",
+      "slug": "rooster-fury-dice",
+      "name": "Rooster Fury Dice",
+      "provider": "Endorphina",
+      "image": "https://gis-static.com/games/Endorphina/a687b918e6d84b158c0652cce9738ada.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96,
+      "volatility": "high",
+      "reels_count": "3"
+    }
+  },
+  {
+    "slug": "gates-of-olympus-super-scatter-mobile",
+    "success": true,
+    "game": {
+      "uuid": "40a1966a3c8743a6890c9e3ab9ee0f1d",
+      "slug": "gates-of-olympus-super-scatter-mobile",
+      "name": "Gates of Olympus Super Scatter Mobile",
+      "provider": "PragmaticPlay",
+      "image": "https://gis-static.com/games/PragmaticPlay/40a1966a3c8743a6890c9e3ab9ee0f1d.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96.5,
+      "volatility": "high",
+      "reels_count": "6"
+    }
+  },
+  {
+    "slug": "fortune-capybara",
+    "success": true,
+    "game": {
+      "uuid": "502829fe1dfcdaae41b1f2495310072a2b629292",
+      "slug": "fortune-capybara",
+      "name": "Fortune Capybara",
+      "provider": "Endorphina",
+      "image": "https://gis-static.com/games/Endorphina/502829fe1dfcdaae41b1f2495310072a2b629292.png",
+      "is_mobile": true,
+      "type": "slots",
+      "rtp": 96,
+      "volatility": "medium",
+      "reels_count": "3"
+    }
+  },
+  {
+    "slug": "rad-maxx",
+    "success": true,
+    "game": {
+      "uuid": "81b9f56a073644d9873115a8653ac6fa",
+      "slug": "rad-maxx",
+      "name": "Rad Maxx",
+      "provider": "Hacksaw Gaming",
+      "image": "https://gis-static.com/games/ea4f9fcc7813874c1d5e40cc18f7820a/Hacksaw Gaming/81b9f56a073644d9873115a8653ac6fa.png",
+      "is_mobile": false,
+      "type": "slots",
+      "rtp": 96.32,
+      "volatility": "medium-high",
+      "reels_count": "5"
+    }
+  }
+]
