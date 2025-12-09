@@ -1175,7 +1175,10 @@ const SidebarHeader = ({
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
                       onClick={() =>
-                        window.open("https://x.com/moonbetgames", "_blank")
+                        window.open(
+                          "https://www.instagram.com/moonbet.games/",
+                          "_blank"
+                        )
                       }
                     >
                       <svg
@@ -1248,10 +1251,7 @@ const SidebarHeader = ({
                       whileTap={{ scale: 0.95 }}
                       className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
                       onClick={() =>
-                        window.open(
-                          "https://www.instagram.com/moonbet.games/",
-                          "_blank"
-                        )
+                        window.open("https://x.com/moonbetgames ", "_blank")
                       }
                     >
                       <svg
