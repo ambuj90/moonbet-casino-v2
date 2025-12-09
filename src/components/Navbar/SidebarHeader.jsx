@@ -1093,46 +1093,6 @@ const SidebarHeader = ({
                   </motion.div>
                 );
               })}
-
-              {/* Logout Button */}
-              {hasToken && (
-                <motion.button
-                  whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.01 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full flex items-center ${
-                    sidebarCollapsed ? "justify-center" : "gap-3"
-                  } px-3 py-2 rounded-lg text-[#A8A8A8] hover:text-red-400 hover:bg-red-500/10 transition-all duration-200 group relative`}
-                  onClick={handleLogout}
-                >
-                  <img
-                    src="/icons/logout-new.svg"
-                    alt="Logout"
-                    className="w-5 h-5 object-contain sidebar-icon icon-normal"
-                  />
-                  <AnimatePresence>
-                    {!sidebarCollapsed && (
-                      <motion.span
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6"
-                        style={{
-                          textShadow: "0 0 10px rgba(255, 255, 255, 0.25)",
-                        }}
-                      >
-                        Logout
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Tooltip for collapsed state */}
-                  {sidebarCollapsed && (
-                    <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                      Logout
-                    </div>
-                  )}
-                </motion.button>
-              )}
             </div>
           </div>
 
@@ -1169,7 +1129,7 @@ const SidebarHeader = ({
                   </div>
 
                   {/* Social Links */}
-                  <div className="flex items-center ">
+                  <div className="flex items-center px-1">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}

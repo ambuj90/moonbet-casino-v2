@@ -410,21 +410,6 @@ const MobileHeader = ({
                   </motion.div>
                 );
               })}
-
-              {hasToken && (
-                <motion.button
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleLogout}
-                  className="flex w-full items-center gap-3 px-3 py-2 rounded-[8px] text-[#A8A8A8] hover:text-red-400 hover:bg-red-500/10 transition-all"
-                >
-                  <img
-                    src="/icons/logout-new.svg"
-                    className="w-5 h-5 opacity-70 group-hover:opacity-100"
-                  />
-                  Logout
-                </motion.button>
-              )}
             </div>
           </div>
         </div>
