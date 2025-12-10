@@ -100,29 +100,19 @@ const Leaderboard = () => {
       right: 0.25,
     };
 
-    const marginTopClasses =
-      winner.position === "center"
-        ? "sm:mt-0"
-        : "mt-6 xs:mt-8 sm:mt-6 lg:mt-[52px]";
-
-    const scaleClasses =
-      winner.position === "center"
-        ? "sm:scale-105"
-        : "sm:scale-[0.9] lg:scale-100";
-
     return (
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: delayMap[winner.position] || 0 }}
-        className={`relative flex flex-col items-center flex-1 min-w-0 sm:min-w-[230px] ${marginTopClasses} ${scaleClasses}`}
+        className={`relative flex flex-col items-center flex-1`}
       >
         {winner.isWinner && (
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="absolute top-8 md:top-4 xs:top-6 sm:top-8 left-1/2 z-30"
+            className="absolute top-2 md:top-8 xs:top-6 sm:top-8 left-1/2 z-30"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -171,18 +161,18 @@ const Leaderboard = () => {
         )}
 
         {/* Helmet avatar */}
-        <div className="relative z-20 mt-8 xs:mt-10 sm:mt-12 sm:-mb-10">
-          <div className="relative w-20 h-20 xs:w-24 xs:h-24 sm:w-32 sm:h-32 md:w-36 md:h-36">
+        <div className="relative z-20 ">
+          <div className="relative w-20 h-20 xs:w-24 xs:h-24 md:w-44 md:h-44">
             <img
               src="/leaderboard-assets/astro-profile1.svg"
               alt="Astronaut Helmet"
-              className="absolute object-cover inset-0 w-full h-full mt-6 md:mt-0"
+              className="absolute object-contain inset-0 w-full h-full md:mt-[40px] mt-[23px]"
             />
-            <div className="absolute inset-0 flex items-center justify-center mt-8 xs:-mt-3 sm:-mt-4">
+            <div className="absolute inset-0 flex items-center justify-center">
               <img
                 src={winner.profileInner}
                 alt={winner.name}
-                className="w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 rounded-full object-cover"
+                className="w-10 h-10 xs:w-16 xs:h-16 sm:w-20 sm:h-20 rounded-full object-cover md:mt-[40px] mt-[38px]"
                 onError={(e) => {
                   e.target.src = `https://ui-avatars.com/api/?name=${winner.name}&background=random`;
                 }}
@@ -207,7 +197,7 @@ const Leaderboard = () => {
             {/* Slight top glow */}
             <div className="absolute inset-0" />
 
-            <div className="relative z-10 px-3 xs:px-4 sm:px-6 sm:px-8 pt-12 xs:pt-14 sm:pt-20 sm:pt-20 flex flex-col h-full text-center">
+            <div className="relative z-10 px-3 xs:px-4 sm:px-6 sm:px-8 pt-12 xs:pt-14 sm:pt-20 sm:pt-10 flex flex-col h-full text-center">
               <h3 className="text-sm xs:text-base sm:text-xl sm:text-2xl font-['Neue_Plak'] font-bold mb-1 xs:mb-2 sm:mb-3 sm:mb-4 truncate">
                 {winner.name}
               </h3>
@@ -338,7 +328,7 @@ const Leaderboard = () => {
         ) : (
           <>
             {orderedTopWinners.length > 0 && (
-              <div className="flex justify-center mb-6 xs:mb-8 md:mb-10">
+              <div className="flex justify-center mb-6">
                 <div className="flex sm:flex-row justify-center items-end gap-1 xs:gap-1.5 sm:gap-2 lg:gap-2 w-full max-w-5xl px-1">
                   {orderedTopWinners.map((winner, i) => (
                     <PodiumCard key={i} winner={winner} />
@@ -347,115 +337,120 @@ const Leaderboard = () => {
               </div>
             )}
 
-            {/* Prize Pool + Your Position bar with glow */}
-            <div className="relative flex justify-center mb-6 xs:mb-8 sm:mb-10">
-              {/* Glow behind bar (from your glow SVG) */}
+            {/* GLOW BEHIND ALL PODIUMS */}
+            <div className="relative flex justify-center w-full mt-[-40px] mb-6">
               <div
-                className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px]"
+                className="absolute -z-10 w-[500px] h-[500px]"
                 style={{
                   background:
                     "radial-gradient(circle, rgba(244,116,251,0.5) 0%, rgba(244,116,251,0) 70%)",
-                  filter: "blur(90px)",
+                  filter: "blur(120px)",
+                  top: "-120px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
                   opacity: 0.75,
                 }}
               />
-              <div className="flex flex-wrap justify-center items-stretch gap-1.5 xs:gap-2 px-2 py-1.5 ">
+            </div>
+
+            {/* PRIZE POOL + YOUR POSITION ABOVE CENTER PODIUM */}
+            <div className="flex justify-center w-full mt-8 md:-mt-8 mb-6">
+              <div className="flex items-center gap-1 sm:gap-2">
                 {/* Prize Pool */}
-                <div className="trust_btn flex items-center gap-1.5 xs:gap-2 rounded-full bg-white/5 px-3 xs:px-4 sm:px-5 py-2 xs:py-2.5">
-                  <span className="flex h-4 w-4 xs:h-5 xs:w-5 items-center justify-center text-[11px]">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                    >
-                      <g clipPath="url(#clip0_9681_695)">
-                        <path
-                          d="M15.9672 1.24242H14.5454V1.16113C14.5454 0.522523 14.0412 0 13.4124 0H4.91522C4.29207 0 3.78226 0.522523 3.78226 1.16113V1.24242H2.36606C1.42569 1.24242 0.666626 2.02617 0.666626 2.98411V3.57049C0.666626 5.4631 2.03749 7.03645 3.82188 7.29771C4.05983 9.49223 5.55534 11.2978 7.54932 11.9364L6.82425 13.8639H11.509L10.7839 11.9364C12.7836 11.292 14.2734 9.49223 14.5114 7.29771C16.2901 7.03645 17.6666 5.4631 17.6666 3.57049V2.98411C17.6666 2.02617 16.9019 1.24242 15.9672 1.24242ZM3.78226 6.11337C2.6493 5.84629 1.79958 4.81287 1.79958 3.57049V2.98411C1.79958 2.66481 2.05447 2.40355 2.36606 2.40355H3.78226V6.11337ZM11.7696 5.88113L10.8859 6.76937L11.0898 8.0176C11.1691 8.49948 10.682 8.86524 10.2571 8.63881L9.16381 8.04662L8.06484 8.63881C7.65128 8.86524 7.15845 8.49948 7.23777 8.0176L7.44736 6.76937L6.56365 5.88113C6.21811 5.53858 6.41069 4.94643 6.87521 4.87676L8.1045 4.69679L8.65396 3.55887C8.86356 3.12344 9.46969 3.12344 9.67929 3.55887L10.2288 4.69679L11.4524 4.88254C11.9226 4.95224 12.1095 5.54439 11.7696 5.88113ZM16.5337 3.57049C16.5337 4.8071 15.6839 5.84629 14.5454 6.11337V2.40355H15.9672C16.2788 2.40355 16.5337 2.66481 16.5337 2.98411V3.57049Z"
-                          fill="url(#paint0_linear_9681_695)"
-                        />
-                        <path
-                          d="M14.7558 16.8389H13.7193V16.8251C13.7193 15.8312 12.933 15.0254 11.9631 15.0254H6.36748C5.39761 15.0254 4.6114 15.8312 4.6114 16.8251V16.8389H3.57502C3.2619 16.8389 3.00854 17.0985 3.00854 17.4194C3.00854 17.7403 3.2619 18 3.57502 18H14.7558C15.0689 18 15.3223 17.7403 15.3223 17.4194C15.3223 17.0985 15.0689 16.8389 14.7558 16.8389Z"
-                          fill="url(#paint1_linear_9681_695)"
-                        />
-                      </g>
-                      <defs>
-                        <linearGradient
-                          id="paint0_linear_9681_695"
-                          x1="0.666626"
-                          y1="2.7"
-                          x2="22.4901"
-                          y2="20.3666"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop stopColor="#FFB8A1" />
-                          <stop offset="1" stopColor="#A62A00" />
-                        </linearGradient>
-                        <linearGradient
-                          id="paint1_linear_9681_695"
-                          x1="0.666626"
-                          y1="2.7"
-                          x2="22.4901"
-                          y2="20.3666"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop stopColor="#FFB8A1" />
-                          <stop offset="1" stopColor="#A62A00" />
-                        </linearGradient>
-                        <clipPath id="clip0_9681_695">
-                          <rect width="18" height="18" fill="white" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </span>
-                  <span className="text-[#9292D2] text-xs xs:text-sm">
+                <div className="trust_btn flex items-center gap-2 px-4 sm:px-6 py-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                  >
+                    <g clip-path="url(#clip0_9681_695)">
+                      <path
+                        d="M15.9672 1.24242H14.5454V1.16113C14.5454 0.522523 14.0412 0 13.4124 0H4.91522C4.29207 0 3.78226 0.522523 3.78226 1.16113V1.24242H2.36606C1.42569 1.24242 0.666626 2.02617 0.666626 2.98411V3.57049C0.666626 5.4631 2.03749 7.03645 3.82188 7.29771C4.05983 9.49223 5.55534 11.2978 7.54932 11.9364L6.82425 13.8639H11.509L10.7839 11.9364C12.7836 11.292 14.2734 9.49223 14.5114 7.29771C16.2901 7.03645 17.6666 5.4631 17.6666 3.57049V2.98411C17.6666 2.02617 16.9019 1.24242 15.9672 1.24242ZM3.78226 6.11337C2.6493 5.84629 1.79958 4.81287 1.79958 3.57049V2.98411C1.79958 2.66481 2.05447 2.40355 2.36606 2.40355H3.78226V6.11337ZM11.7696 5.88113L10.8859 6.76937L11.0898 8.0176C11.1691 8.49948 10.682 8.86524 10.2571 8.63881L9.16381 8.04662L8.06484 8.63881C7.65128 8.86524 7.15845 8.49948 7.23777 8.0176L7.44736 6.76937L6.56365 5.88113C6.21811 5.53858 6.41069 4.94643 6.87521 4.87676L8.1045 4.69679L8.65396 3.55887C8.86356 3.12344 9.46969 3.12344 9.67929 3.55887L10.2288 4.69679L11.4524 4.88254C11.9226 4.95224 12.1095 5.54439 11.7696 5.88113ZM16.5337 3.57049C16.5337 4.8071 15.6839 5.84629 14.5454 6.11337V2.40355H15.9672C16.2788 2.40355 16.5337 2.66481 16.5337 2.98411V3.57049Z"
+                        fill="url(#paint0_linear_9681_695)"
+                      />
+                      <path
+                        d="M14.7558 16.8389H13.7193V16.8251C13.7193 15.8312 12.933 15.0254 11.9631 15.0254H6.36748C5.39761 15.0254 4.6114 15.8312 4.6114 16.8251V16.8389H3.57502C3.2619 16.8389 3.00854 17.0985 3.00854 17.4194C3.00854 17.7403 3.2619 18 3.57502 18H14.7558C15.0689 18 15.3223 17.7403 15.3223 17.4194C15.3223 17.0985 15.0689 16.8389 14.7558 16.8389Z"
+                        fill="url(#paint1_linear_9681_695)"
+                      />
+                    </g>
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_9681_695"
+                        x1="0.666626"
+                        y1="2.7"
+                        x2="22.4901"
+                        y2="20.3666"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FFB8A1" />
+                        <stop offset="1" stop-color="#A62A00" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_9681_695"
+                        x1="0.666626"
+                        y1="2.7"
+                        x2="22.4901"
+                        y2="20.3666"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FFB8A1" />
+                        <stop offset="1" stop-color="#A62A00" />
+                      </linearGradient>
+                      <clipPath id="clip0_9681_695">
+                        <rect width="18" height="18" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                  <span className="text-[#9292D2] text-xs sm:text-sm">
                     Prize Pool
                   </span>
-                  <span className="ml-0.5 xs:ml-1 font-semibold text-xs xs:text-sm">
+                  <span className="font-semibold text-xs sm:text-sm text-white">
                     $0.00
                   </span>
                 </div>
 
                 {/* Your Position */}
-                <div className="trust_btn flex items-center gap-1.5 xs:gap-2 rounded-full bg-white/5 px-2.5 xs:px-3 py-1 xs:py-1.5">
-                  <span className="flex h-4 w-4 xs:h-5 xs:w-5 items-center justify-center text-[11px]">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M10.1709 18L9.07516 13.8999C9.45084 13.8037 9.79907 13.614 10.0872 13.3433C10.2157 13.2226 10.3577 13.1844 10.5292 13.2246C11.7157 13.5021 12.9162 12.8106 13.2751 11.6436L14.6521 16.7961L12.0724 16.1291L10.1709 18V18ZM7.55195 0.375649C7.19508 0.710859 6.73458 0.834608 6.25833 0.723197C5.54706 0.556848 4.82824 0.972945 4.6163 1.67378C4.4744 2.14297 4.13724 2.48103 3.6693 2.62331C2.97037 2.83582 2.55535 3.55656 2.72125 4.26973C2.83233 4.74722 2.70895 5.20899 2.37463 5.56681C1.87512 6.10145 1.87512 6.9333 2.37463 7.46797C2.70895 7.8258 2.83233 8.28757 2.72125 8.76505C2.55535 9.47822 2.97037 10.199 3.6693 10.4115C4.13724 10.5538 4.4744 10.8918 4.6163 11.361C4.82824 12.0618 5.54706 12.4779 6.25833 12.3116C6.73454 12.2002 7.19508 12.3239 7.55195 12.6591C8.08516 13.16 8.91479 13.16 9.44804 12.6591C9.80491 12.3239 10.2654 12.2002 10.7417 12.3116C11.4529 12.4779 12.1717 12.0618 12.3837 11.361C12.5256 10.8918 12.8627 10.5538 13.3307 10.4115C14.0296 10.199 14.4446 9.47822 14.2787 8.76505C14.1677 8.28757 14.291 7.8258 14.6254 7.46797C15.1249 6.93334 15.1249 6.10148 14.6254 5.56681C14.291 5.20899 14.1677 4.74722 14.2787 4.26973C14.4447 3.55656 14.0296 2.83582 13.3307 2.62331C12.8627 2.48103 12.5256 2.14297 12.3837 1.67378C12.1717 0.972945 11.4529 0.556848 10.7417 0.723197C10.2654 0.834571 9.80491 0.710859 9.44804 0.375649C8.91479 -0.125235 8.08519 -0.125198 7.55195 0.375649ZM8.49999 3.00438L9.53148 5.4647L12.1839 5.68805L10.169 7.43197L10.7768 10.0303L8.49999 8.64779L6.22321 10.0303L6.83099 7.43197L4.81608 5.68805L7.46851 5.4647L8.49999 3.00438ZM6.82912 18L4.92761 16.1291L2.34793 16.796L3.72484 11.6436C4.08372 12.8106 5.28433 13.502 6.47076 13.2245C6.64224 13.1844 6.78424 13.2225 6.91275 13.3432C7.20091 13.6139 7.54914 13.8037 7.92482 13.8998L6.82912 17.9999V18Z"
-                        fill="url(#paint0_linear_9681_701)"
-                      />
-                      <defs>
-                        <linearGradient
-                          id="paint0_linear_9681_701"
-                          x1="2"
-                          y1="2.7"
-                          x2="21.9715"
-                          y2="15.0633"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop stopColor="#FFB8A1" />
-                          <stop offset="1" stopColor="#A62A00" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </span>
-                  <span className="text-[#9292D2] text-xs xs:text-sm">
+                <div className="trust_btn flex items-center gap-2 px-4 sm:px-6 py-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M10.1709 18L9.07516 13.8999C9.45084 13.8037 9.79907 13.614 10.0872 13.3433C10.2157 13.2226 10.3577 13.1844 10.5292 13.2246C11.7157 13.5021 12.9162 12.8106 13.2751 11.6436L14.6521 16.7961L12.0724 16.1291L10.1709 18V18ZM7.55195 0.375649C7.19508 0.710859 6.73458 0.834608 6.25833 0.723197C5.54706 0.556848 4.82824 0.972945 4.6163 1.67378C4.4744 2.14297 4.13724 2.48103 3.6693 2.62331C2.97037 2.83582 2.55535 3.55656 2.72125 4.26973C2.83233 4.74722 2.70895 5.20899 2.37463 5.56681C1.87512 6.10145 1.87512 6.9333 2.37463 7.46797C2.70895 7.8258 2.83233 8.28757 2.72125 8.76505C2.55535 9.47822 2.97037 10.199 3.6693 10.4115C4.13724 10.5538 4.4744 10.8918 4.6163 11.361C4.82824 12.0618 5.54706 12.4779 6.25833 12.3116C6.73454 12.2002 7.19508 12.3239 7.55195 12.6591C8.08516 13.16 8.91479 13.16 9.44804 12.6591C9.80491 12.3239 10.2654 12.2002 10.7417 12.3116C11.4529 12.4779 12.1717 12.0618 12.3837 11.361C12.5256 10.8918 12.8627 10.5538 13.3307 10.4115C14.0296 10.199 14.4446 9.47822 14.2787 8.76505C14.1677 8.28757 14.291 7.8258 14.6254 7.46797C15.1249 6.93334 15.1249 6.10148 14.6254 5.56681C14.291 5.20899 14.1677 4.74722 14.2787 4.26973C14.4447 3.55656 14.0296 2.83582 13.3307 2.62331C12.8627 2.48103 12.5256 2.14297 12.3837 1.67378C12.1717 0.972945 11.4529 0.556848 10.7417 0.723197C10.2654 0.834571 9.80491 0.710859 9.44804 0.375649C8.91479 -0.125235 8.08519 -0.125198 7.55195 0.375649ZM8.49999 3.00438L9.53148 5.4647L12.1839 5.68805L10.169 7.43197L10.7768 10.0303L8.49999 8.64779L6.22321 10.0303L6.83099 7.43197L4.81608 5.68805L7.46851 5.4647L8.49999 3.00438ZM6.82912 18L4.92761 16.1291L2.34793 16.796L3.72484 11.6436C4.08372 12.8106 5.28433 13.502 6.47076 13.2245C6.64224 13.1844 6.78424 13.2225 6.91275 13.3432C7.20091 13.6139 7.54914 13.8037 7.92482 13.8998L6.82912 17.9999V18Z"
+                      fill="url(#paint0_linear_9681_701)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_9681_701"
+                        x1="2"
+                        y1="2.7"
+                        x2="21.9715"
+                        y2="15.0633"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stop-color="#FFB8A1" />
+                        <stop offset="1" stop-color="#A62A00" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+
+                  <span className="text-[#9292D2] text-xs sm:text-sm">
                     Your Position
                   </span>
-                  <span className="ml-0.5 xs:ml-1 font-semibold text-xs xs:text-sm">
+                  <span className="font-semibold text-xs sm:text-sm text-white">
                     -
                   </span>
+
                   <svg
-                    className="w-3 h-3 xs:w-3.5 xs:h-3.5 text-gray-300"
+                    className="w-3 h-3 text-gray-300"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -473,147 +468,102 @@ const Leaderboard = () => {
           </>
         )}
 
-        {/* Table */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.3 }}
-          className="customborder max-w-6xl mx-auto rounded-2xl overflow-hidden backdrop-blur-xl"
+        {/* Table Header */}
+        <div
+          className="grid grid-cols-4 px-8 py-4 text-sm mt-6"
+          style={{ color: "var(--moon-silver)" }}
         >
-          <div
-            className="hidden md:grid grid-cols-3 px-8 py-4 text-sm mt-6"
-            style={{
-              color: "var(--moon-silver)",
-            }}
-          >
-            <div className="text-left">Rank</div>
-            <div className="text-center">User name</div>
-            <div className="text-right">Points</div>
-          </div>
+          <div className="text-left">Rank</div>
+          <div className="text-center">User name</div>
+          <div className="text-center">Points</div>
+          <div className="text-right">Prize</div>
+        </div>
 
-          {/* Desktop rows */}
-          <div className="hidden md:block">
-            {leaderboardData.map((user, index) => (
-              <motion.div
-                key={user.rank ?? index}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: 0.4 + index * 0.03 }}
-                className="px-4 py-2"
+        {/* Desktop rows */}
+        <div className="block">
+          {leaderboardData.map((user, index) => (
+            <motion.div
+              key={user.rank ?? index}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, delay: 0.3 + index * 0.03 }}
+              className="px-4 py-1.5"
+            >
+              <div
+                className="
+          grid grid-cols-4 items-center 
+          rounded-xl px-6 py-3 
+          transition-all
+          bg-[#1C1D49]
+          hover:bg-[#35326B]
+        "
+                style={{ border: "1px solid rgba(255,255,255,0.05)" }}
               >
-                {/* ⭐ TABLE ROW DEFAULT STYLE UPDATE */}
-                <div
-                  className="trust_btn grid grid-cols-3 items-center gap-4 px-4 py-3 rounded-[8px] transition-all"
-                  style={{
-                    borderRadius: "8px",
-                    background: "#1C1D49",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#35326B";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "#1C1D49";
-                  }}
-                >
-                  {/* Rank (Left) */}
-                  <div className="text-sm font-semibold text-gray-200 text-left">
-                    {user.rank}
-                  </div>
-
-                  {/* Username (Center) */}
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-800 flex-shrink-0">
-                      <img
-                        src={user.avatar}
-                        alt={user.username}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.src = `https://ui-avatars.com/api/?name=${user.username}&background=random`;
-                        }}
-                      />
-                    </div>
-                    <span className="text-sm font-medium text-white truncate">
-                      {user.username}
-                    </span>
-                  </div>
-
-                  {/* Points (Right) */}
-                  <div className="flex items-center justify-end gap-2">
-                    <div
-                      className="w-4 h-4"
-                      style={{
-                        WebkitMaskImage: "url(/leaderboard-assets/diamond.svg)",
-                        WebkitMaskSize: "contain",
-                        WebkitMaskRepeat: "no-repeat",
-                        background:
-                          "linear-gradient(131deg, #FFB8A1 6.92%, #A62A00 121.35%)",
-                      }}
-                    />
-                    <span className="text-sm font-semibold text-white">
-                      {user.points}
-                    </span>
-                  </div>
+                {/* Rank */}
+                <div className="text-sm font-semibold text-gray-200 text-left">
+                  {user.rank.toString().padStart(2, "0")}
                 </div>
-              </motion.div>
-            ))}
 
-            {!leaderboardData.length && !loading && (
-              <div className="py-8 text-center text-gray-400 text-sm">
-                No leaderboard entries
-              </div>
-            )}
-          </div>
-
-          {/* Mobile rows */}
-          <div className="md:hidden divide-y divide-white/5">
-            {leaderboardData.map((user, index) => (
-              <motion.div
-                key={user.rank ?? index}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: 0.3 + index * 0.03 }}
-                className="px-2 xs:px-3 py-1.5 xs:py-2"
-              >
-                <div className="flex items-center justify-between gap-2 xs:gap-3 px-2 xs:px-3 py-2 xs:py-2.5 rounded-xl xs:rounded-2xl bg-[#282753]/70 border border-white/8 shadow-[0_6px_18px_rgba(0,0,0,0.8)]">
-                  <div className="flex items-center gap-1.5 xs:gap-2 min-w-0">
-                    <span className="w-5 xs:w-6 text-[10px] xs:text-xs font-semibold text-gray-200 text-center flex-shrink-0">
-                      {user.rank}
-                    </span>
-                    <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-full overflow-hidden bg-gray-800 flex-shrink-0">
-                      <img
-                        src={user.avatar}
-                        alt={user.username}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.src = `https://ui-avatars.com/api/?name=${user.username}&background=random`;
-                        }}
-                      />
-                    </div>
-                    <span className="text-[10px] xs:text-xs font-medium text-white truncate max-w-[100px] xs:max-w-[120px]">
-                      {user.username}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1 xs:gap-1.5 flex-shrink-0">
-                    <img
-                      src="/leaderboard-assets/diamond.svg"
-                      alt="Points"
-                      className="w-3 h-3 xs:w-3.5 xs:h-3.5"
-                    />
-                    <span className="text-[10px] xs:text-xs font-semibold text_white">
-                      {user.points}
-                    </span>
-                  </div>
+                {/* Username */}
+                <div className="flex items-center justify-center gap-3">
+                  <img
+                    src={user.avatar}
+                    className="w-9 h-9 rounded-full object-cover"
+                    onError={(e) => {
+                      e.target.src = `https://ui-avatars.com/api/?name=${user.username}&background=random`;
+                    }}
+                  />
+                  <span className="text-sm font-medium text-white truncate">
+                    {user.username}
+                  </span>
                 </div>
-              </motion.div>
-            ))}
 
-            {!leaderboardData.length && !loading && (
-              <div className="py-6 text-center text-gray-400 text-xs">
-                No leaderboard entries
+                {/* Points */}
+                <div className="flex items-center justify-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 18 17"
+                    className="w-4 h-4"
+                    fill="none"
+                  >
+                    <path
+                      d="M11.2645 0C11.8972 -0.000147852 12.3209 -0.000577709 12.7274 0.0986328C12.9114 0.143552 13.0912 0.203898 13.2645 0.27832C13.6493 0.443628 13.9785 0.697098 14.4617 1.06934L14.5203 1.11523L14.5477 1.13574C15.4193 1.80677 16.1101 2.33876 16.618 2.81543C17.137 3.30257 17.5198 3.78063 17.7205 4.36426C17.8853 4.84339 17.9474 5.3488 17.9022 5.85156C17.8469 6.46623 17.5867 7.01541 17.1961 7.59863C16.8149 8.1679 16.2681 8.82735 15.5809 9.65723L12.199 13.7412C11.5855 14.4822 11.081 15.0914 10.618 15.5088C10.1317 15.9472 9.61048 16.25 8.95782 16.25C8.30525 16.25 7.78387 15.9471 7.29767 15.5088C6.83469 15.0913 6.33016 14.4822 5.71661 13.7412L2.33478 9.65723C1.64776 8.82755 1.10175 8.16781 0.72052 7.59863C0.329943 7.01541 0.069749 6.46623 0.0144653 5.85156C-0.0307519 5.34881 0.0304065 4.84338 0.195129 4.36426C0.395796 3.78069 0.778781 3.30252 1.29767 2.81543C1.80558 2.33869 2.49711 1.80691 3.36896 1.13574L3.39532 1.11523L3.45392 1.06934C3.93728 0.697024 4.26628 0.443648 4.65118 0.27832C4.82453 0.203865 5.00425 0.143572 5.18829 0.0986328C5.59491 -0.000631231 6.01915 -0.000147919 6.65216 0L11.2645 0ZM7.29083 4.58301C6.94602 4.58327 6.66606 4.86318 6.66583 5.20801C6.66583 5.55302 6.94588 5.83274 7.29083 5.83301L10.6248 5.83301C10.9699 5.83292 11.2498 5.55313 11.2498 5.20801C11.2496 4.86308 10.9698 4.5831 10.6248 4.58301L7.29083 4.58301Z"
+                      fill="url(#diamondGradient)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="diamondGradient"
+                        x1="0"
+                        y1="2.43"
+                        x2="20.11"
+                        y2="21.44"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#FFB8A1" />
+                        <stop offset="1" stopColor="#A62A00" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+
+                  <span className="text-sm font-semibold text-white">
+                    {user.points}
+                  </span>
+                </div>
+
+                {/* Prize */}
+                <div className="text-right text-sm font-semibold text-white">
+                  ${Number(user.prize || 15000).toLocaleString()}
+                </div>
               </div>
-            )}
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+
+          {!leaderboardData.length && !loading && (
+            <div className="py-8 text-center text-gray-400 text-sm">
+              No leaderboard entries
+            </div>
+          )}
+        </div>
 
         {/* Pagination */}
         <div className="flex justify-center items-center gap-1.5 xs:gap-2 mt-6 xs:mt-8">
