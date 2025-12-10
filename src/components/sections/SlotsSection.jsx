@@ -17,7 +17,6 @@ const SlotsSection = () => {
   const navigate = useNavigate();
   const { isProviderBlocked } = useGeoStore();
 
-
   // Check scroll position
   const checkScrollPosition = () => {
     const container = scrollContainerRef.current;
@@ -44,29 +43,29 @@ const SlotsSection = () => {
   }, []);
 
   useEffect(() => {
-  setLoading(true);
+    setLoading(true);
 
-  const validGames = curatedGames
-    .filter((item) => item.success && item.game)   // valid entries only
-    .map((item) => {
-      const g = item.game; // clean object
+    const validGames = curatedGames
+      .filter((item) => item.success && item.game) // valid entries only
+      .map((item) => {
+        const g = item.game; // clean object
 
-      return {
-        uuid: g.uuid,
-        slug: g.slug,
-        name: g.name,
-        provider: g.provider,
-        image: g.image,
-        is_mobile: g.is_mobile,
-        rtp: g.rtp,
-        volatility: g.volatility,
-        reels_count: g.reels_count,
-      };
-    });
+        return {
+          uuid: g.uuid,
+          slug: g.slug,
+          name: g.name,
+          provider: g.provider,
+          image: g.image,
+          is_mobile: g.is_mobile,
+          rtp: g.rtp,
+          volatility: g.volatility,
+          reels_count: g.reels_count,
+        };
+      });
 
-  setGames(validGames);
-  setLoading(false);
-}, []);
+    setGames(validGames);
+    setLoading(false);
+  }, []);
 
   // Add scroll position check after games are loaded
   useEffect(() => {
@@ -424,124 +423,134 @@ const SlotsSection = () => {
                 {filteredGames.map((game, index) => {
                   const isBlocked = isProviderBlocked(game.provider);
                   return (
-                  <motion.div
-                    key={game.uuid}
-                    variants={cardVariants}
-                    whileHover="hover"
-                    className="group cursor-pointer flex-shrink-0"
-                    custom={index}
-                  >
-                    <motion.div className="relative rounded-xl overflow-hidden border border-white/10  transition-all duration-300">
-                      {/* Insert the updated image block here */}
-                      <div className="relative w-full aspect-[18/12] flex items-center justify-center overflow-hidden rounded-xl">
-                        <motion.img
-                          src={game.image}
-                          alt={game.name}
-                          className="w-full h-full object-cover rounded-xl"
-                          variants={imageVariants}
-                          initial="idle"
-                          whileHover="hover"
-                        />
-                        {/* 🌍 GEO BLOCK OVERLAY */}
+                    <motion.div
+                      key={game.uuid}
+                      variants={cardVariants}
+                      whileHover="hover"
+                      className="group cursor-pointer flex-shrink-0"
+                      custom={index}
+                    >
+                      <motion.div className="relative rounded-xl overflow-hidden border border-white/10  transition-all duration-300">
+                        {/* Insert the updated image block here */}
+                        <div className="relative w-full aspect-[18/12] flex items-center justify-center overflow-hidden rounded-xl">
+                          <motion.img
+                            src={game.image}
+                            alt={game.name}
+                            className="w-full h-full object-cover rounded-xl"
+                            variants={imageVariants}
+                            initial="idle"
+                            whileHover="hover"
+                          />
+                          {/* 🌍 GEO-RESTRICTED OVERLAY (PREMIUM UI) */}
                           {isBlocked && (
-                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                              <div className="text-center">
-                                <div className="text-3xl mb-2">🔒</div>
-                                <p className="text-xs text-white">
-                                  Not available in your region
-                                </p>
-                              </div>
+                            <div
+                              className="absolute inset-0 bg-black/65 backdrop-blur-[3px] 
+                    flex flex-col items-center justify-center gap-3 px-3"
+                            >
+                              {/* ICON */}
+                              <img
+                                src="/icons/geo-locked.svg"
+                                alt="locked"
+                                className="w-14 h-14 opacity-90 animate-pulse"
+                              />
+
+                              {/* TEXT */}
+                              <p className="text-white text-sm font-semibold tracking-wide text-center">
+                                Not available in your region
+                              </p>
                             </div>
                           )}
-                        {/* <div className="absolute top-2 left-2 bg-[#1C1D49] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
+                          {/* <div className="absolute top-2 left-2 bg-[#1C1D49] text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.name || "game"}
                         </div> */}
-                        {/* <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
+                          {/* <div className="absolute top-2 right-2  /70 text-white text-[10px] font-semibold px-2 py-[2px] rounded">
                           {game.provider || "endrophia"}
                         </div> */}
-                      </div>
+                        </div>
 
-                      {/* Overlay with Play Button */}
-                      <motion.div
-                        className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto bg-[var(--overlay-bg)] backdrop-blur-[2px]"
-                        variants={overlayVariants}
-                        initial="idle"
-                        animate="idle"
-                        whileHover="hover"
-                      >
-                        <motion.button
-                          onClick={() => handlePlayNow(game)}
-                          className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-white font-semibold text-sm sm:text-base shadow-lg"
-                          variants={buttonVariants}
-                          whileTap="tap"
+                        {/* Overlay with Play Button */}
+                        {!isBlocked && (
+                        <motion.div
+                          className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto bg-[var(--overlay-bg)] backdrop-blur-[2px]"
+                          variants={overlayVariants}
+                          initial="idle"
+                          animate="idle"
+                          whileHover="hover"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="54"
-                            height="59"
-                            viewBox="0 0 54 59"
-                            fill="none"
+                          <motion.button
+                            onClick={() => handlePlayNow(game)}
+                            className="px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-white font-semibold text-sm sm:text-base shadow-lg"
+                            variants={buttonVariants}
+                            whileTap="tap"
                           >
-                            <g filter="url(#filter0_d_8546_318)">
-                              <path
-                                d="M12.1624 1.12451C7.65462 -1.51293 4 0.647693 4 5.94654V45.0497C4 50.3539 7.65462 52.5117 12.1624 49.8767L45.6704 30.2758C50.1797 27.6374 50.1797 23.3629 45.6704 20.7251L12.1624 1.12451Z"
-                                fill="#E1E1E1"
-                              />
-                            </g>
-                            <defs>
-                              <filter
-                                id="filter0_d_8546_318"
-                                x="0"
-                                y="0"
-                                width="53.0522"
-                                height="59.0001"
-                                filterUnits="userSpaceOnUse"
-                                color-interpolation-filters="sRGB"
-                              >
-                                <feFlood
-                                  flood-opacity="0"
-                                  result="BackgroundImageFix"
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="54"
+                              height="59"
+                              viewBox="0 0 54 59"
+                              fill="none"
+                            >
+                              <g filter="url(#filter0_d_8546_318)">
+                                <path
+                                  d="M12.1624 1.12451C7.65462 -1.51293 4 0.647693 4 5.94654V45.0497C4 50.3539 7.65462 52.5117 12.1624 49.8767L45.6704 30.2758C50.1797 27.6374 50.1797 23.3629 45.6704 20.7251L12.1624 1.12451Z"
+                                  fill="#E1E1E1"
                                 />
-                                <feColorMatrix
-                                  in="SourceAlpha"
-                                  type="matrix"
-                                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                  result="hardAlpha"
-                                />
-                                <feOffset dy="4" />
-                                <feGaussianBlur stdDeviation="2" />
-                                <feComposite in2="hardAlpha" operator="out" />
-                                <feColorMatrix
-                                  type="matrix"
-                                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                                />
-                                <feBlend
-                                  mode="normal"
-                                  in2="BackgroundImageFix"
-                                  result="effect1_dropShadow_8546_318"
-                                />
-                                <feBlend
-                                  mode="normal"
-                                  in="SourceGraphic"
-                                  in2="effect1_dropShadow_8546_318"
-                                  result="shape"
-                                />
-                              </filter>
-                            </defs>
-                          </svg>
-                        </motion.button>
+                              </g>
+                              <defs>
+                                <filter
+                                  id="filter0_d_8546_318"
+                                  x="0"
+                                  y="0"
+                                  width="53.0522"
+                                  height="59.0001"
+                                  filterUnits="userSpaceOnUse"
+                                  color-interpolation-filters="sRGB"
+                                >
+                                  <feFlood
+                                    flood-opacity="0"
+                                    result="BackgroundImageFix"
+                                  />
+                                  <feColorMatrix
+                                    in="SourceAlpha"
+                                    type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                    result="hardAlpha"
+                                  />
+                                  <feOffset dy="4" />
+                                  <feGaussianBlur stdDeviation="2" />
+                                  <feComposite in2="hardAlpha" operator="out" />
+                                  <feColorMatrix
+                                    type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                                  />
+                                  <feBlend
+                                    mode="normal"
+                                    in2="BackgroundImageFix"
+                                    result="effect1_dropShadow_8546_318"
+                                  />
+                                  <feBlend
+                                    mode="normal"
+                                    in="SourceGraphic"
+                                    in2="effect1_dropShadow_8546_318"
+                                    result="shape"
+                                  />
+                                </filter>
+                              </defs>
+                            </svg>
+                          </motion.button>
+                        </motion.div>
+                        )}
                       </motion.div>
-                    </motion.div>
 
-                    {/* Game title + provider */}
-                    <div className="mt-2 text-sm  font-semibold">
-                      {game.name || "Game"}
-                    </div>
-                    <div className="text-xs text-white/50">
-                      {game.provider || "endrophia"}
-                    </div>
-                  </motion.div>
-                  )
+                      {/* Game title + provider */}
+                      <div className="mt-2 text-sm  font-semibold">
+                        {game.name || "Game"}
+                      </div>
+                      <div className="text-xs text-white/50">
+                        {game.provider || "endrophia"}
+                      </div>
+                    </motion.div>
+                  );
                 })}
               </div>
             </motion.div>
