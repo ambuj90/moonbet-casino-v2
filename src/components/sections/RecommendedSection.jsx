@@ -119,7 +119,7 @@ const RecommendedSection = () => {
   };
 
   const handleViewAll = () => {
-    navigate("/casino/recent"); // Navigate to all live casino page
+    navigate("/casino/trending"); // Navigate to all live casino page
   };
 
   // Animation variants
