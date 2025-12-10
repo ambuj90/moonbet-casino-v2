@@ -132,12 +132,6 @@ const HomeRewardsSection = () => {
                   transition: { duration: 0.2 },
                 }}
                 className="flex-shrink-0 lg:flex-shrink w-full lg:w-auto snap-center"
-                // style={{
-                //   minWidth:
-                //     window.innerWidth < 1024 ? "calc(100vw - 32px)" : "auto",
-                //   maxWidth:
-                //     window.innerWidth < 1024 ? "calc(100vw - 32px)" : "100%",
-                // }}
               >
                 <div
                   className="reward_btn relative rounded-[15px] group cursor-pointer will-change-transform overflow-visible mt-8 md-mt-0"
@@ -186,7 +180,7 @@ const HomeRewardsSection = () => {
                   </div>
 
                   {/* Image - Right Side (Fixed Size) */}
-                  <div className="absolute right-0 top-1/2 -translate-y-[58%] w-[52%] overflow-visible pointer-events-none z-20">
+                  <div className="absolute right-0 top-1/2 -translate-y-[58%] w-[53%] overflow-visible pointer-events-none z-20">
                     {/* Background Box */}
                     <div className="flex items-center justify-center ">
                       {/* Image */}
@@ -258,6 +252,24 @@ const HomeRewardsSection = () => {
           .rewards-scroll-container > div > div {
             scroll-snap-align: center;
             scroll-snap-stop: always;
+          }
+        }
+        /* Tablet layout fix */
+        @media (min-width: 768px) and (max-width: 1024px) {
+          .rewards-scroll-container {
+            overflow-x: visible;
+          }
+
+          .rewards-scroll-container > div {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            scroll-snap-type: none;
+          }
+
+          .reward_btn {
+            width: 100%;
+            height: 220px;
           }
         }
       `}</style>
