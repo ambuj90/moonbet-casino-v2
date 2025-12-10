@@ -108,7 +108,7 @@ const SidebarHeader = ({
           icon: "/icons/roulette.svg",
         },
         {
-          path: "/casino/bacarrat",
+          path: "/casino/baccarat",
           label: "Baccarat",
           icon: "/icons/bacarrat.svg",
         },
