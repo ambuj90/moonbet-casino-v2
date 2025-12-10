@@ -1,6 +1,6 @@
 // src/pages/ProvidersPage.jsx
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
 import GameGrid from "../components/providers/GameGrid";
 
@@ -34,169 +34,14 @@ const slugToName = (slug) =>
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
     .join(" ");
 
-// Region Restriction Popup Component
-const RegionRestrictionPopup = ({
-  isOpen,
-  onClose,
-  providerName,
-  regionCode = "IN",
-}) => {
-  const navigate = useNavigate();
-
-  const handleExploreGames = () => {
-    onClose();
-    navigate("/");
-  };
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop with blur */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center"
-            onClick={onClose}
-          >
-            {/* Blur overlay */}
-            <div className="absolute inset-0 bg-[#0a0a1a]/80 backdrop-blur-sm" />
-
-            {/* Popup Container */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative z-10 w-[90%] max-w-[480px] mx-4"
-            >
-              {/* Popup Box */}
-              <div
-                className="relative rounded-2xl px-6 py-8 sm:px-10 sm:py-10 text-center"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(35, 37, 79, 0.95) 0%, rgba(28, 29, 63, 0.98) 100%)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  boxShadow:
-                    "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05)",
-                }}
-              >
-                {/* Restricted Icon */}
-                <div className="flex justify-center mb-5">
-                  <div className="relative w-12 h-12 sm:w-14 sm:h-14">
-                    {/* Circle */}
-                    <svg
-                      viewBox="0 0 56 56"
-                      fill="none"
-                      className="w-full h-full"
-                    >
-                      {/* Outer circle */}
-                      <circle
-                        cx="28"
-                        cy="28"
-                        r="24"
-                        stroke="#E57373"
-                        strokeWidth="3"
-                        fill="none"
-                      />
-                      {/* Diagonal line */}
-                      <line
-                        x1="14"
-                        y1="42"
-                        x2="42"
-                        y2="14"
-                        stroke="#E57373"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Title */}
-                <h2
-                  className="text-white text-xl sm:text-2xl md:text-[26px] font-bold mb-3 leading-tight"
-                  style={{
-                    fontFamily: "Neuropolitical, sans-serif",
-                    textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
-                  }}
-                >
-                  Game not Found for this Provider !!
-                </h2>
-
-                {/* Subtitle */}
-                <p
-                  className="text-[#9ca3af] text-sm sm:text-[15px] mb-8 leading-relaxed"
-                  style={{ fontFamily: "Neue Plak, sans-serif" }}
-                >
-                  Provider{" "}
-                  <span className="text-white font-medium uppercase">
-                    {providerName}
-                  </span>{" "}
-                  is restricted in your region ({regionCode})
-                </p>
-
-                {/* Explore Button */}
-                <motion.button
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleExploreGames}
-                  className="relative w-full max-w-[340px] mx-auto overflow-hidden rounded-full cursor-pointer"
-                >
-                  {/* Button background with gradient */}
-                  <div className="trust_btn view_moon_btn relative px-8 py-3.5 sm:py-4">
-                    {/* Top highlight */}
-                    <div
-                      className="absolute top-0 left-0 right-0 h-[1px]"
-                      style={{
-                        background:
-                          "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)",
-                      }}
-                    />
-
-                    {/* Button text */}
-                    <span
-                      className="relative z-10 text-white text-sm sm:text-[15px] font-semibold tracking-wide"
-                      style={{
-                        fontFamily: "Neue Plak, sans-serif",
-                        textShadow: "0 1px 2px rgba(0, 0, 0, 0.3)",
-                      }}
-                    >
-                      Explore other games
-                    </span>
-                  </div>
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
-
 const ProvidersPage = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
   const providerName = slug ? slugToName(slug) : null;
 
-  // Popup state
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedProvider, setSelectedProvider] = useState(null);
-
-  // Handle provider click - open popup
+  // Navigate on click
   const handleProviderClick = (name) => {
-    setSelectedProvider(name);
-    setIsPopupOpen(true);
-  };
-
-  // Close popup
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
-    setSelectedProvider(null);
+    navigate(`/providers/${nameToSlug(name)}`);
   };
 
   return (
@@ -250,7 +95,7 @@ const ProvidersPage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => handleProviderClick(p.name)}
-                  className={`trust_btn cursor-pointer rounded-xl flex items-center justify-center p-1 transition-all ${
+                  className={`trust_btn  cursor-pointer rounded-xl flex items-center justify-center p-2 transition-all ${
                     providerName === p.name
                       ? "bg-white/10 border border-white/20"
                       : "hover:bg-white/5"
@@ -270,14 +115,6 @@ const ProvidersPage = () => {
           </div>
         )}
       </div>
-
-      {/* Region Restriction Popup */}
-      <RegionRestrictionPopup
-        isOpen={isPopupOpen}
-        onClose={handleClosePopup}
-        providerName={selectedProvider}
-        regionCode="IN"
-      />
     </section>
   );
 };

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
+import { createPortal } from "react-dom";
 
 const SidebarHeader = ({
   sidebarCollapsed = false,
@@ -14,6 +15,19 @@ const SidebarHeader = ({
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [tooltip, setTooltip] = useState({ show: false, text: '', top: 0 });
+
+  // Tooltip handlers
+  const handleMouseEnter = (e, text) => {
+    if (sidebarCollapsed) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setTooltip({ show: true, text, top: rect.top + rect.height / 2 });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setTooltip({ show: false, text: '', top: 0 });
+  };
 
   // Helper functions for menu icons and classes
   const getMenuIcon = (
@@ -168,7 +182,7 @@ const SidebarHeader = ({
       label: "Leaderboard",
       icon: "/icons/leaderboard-new.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
-      path: "/leaderboard2",
+      path: "/leaderboard",
     },
   ];
 
@@ -231,6 +245,8 @@ const SidebarHeader = ({
           <motion.button
             whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.01 }}
             onClick={() => toggleSubmenu(item.id)}
+             onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+            onMouseLeave={handleMouseLeave}
             className={`w-full flex items-center ${
               sidebarCollapsed ? "justify-center" : "justify-between"
             } px-3 py-2 rounded-lg transition-all duration-200 group relative
@@ -289,11 +305,11 @@ const SidebarHeader = ({
             )}
 
             {/* Tooltip for collapsed state */}
-            {sidebarCollapsed && (
+            {/* {sidebarCollapsed && (
               <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                 {item.label}
               </div>
-            )}
+            )} */}
           </motion.button>
 
           {/* Submenu */}
@@ -385,11 +401,11 @@ const SidebarHeader = ({
             </AnimatePresence>
 
             {/* Tooltip for collapsed state */}
-            {sidebarCollapsed && (
+            {/* {sidebarCollapsed && (
               <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                 {item.label}
               </div>
-            )}
+            )} */}
           </Link>
         </motion.div>
       )}
@@ -476,6 +492,8 @@ const SidebarHeader = ({
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
                           onClick={() => toggleSubmenu(item.id)}
+                          onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                          onMouseLeave={handleMouseLeave}
                           className={`w-full flex items-center ${
                             sidebarCollapsed
                               ? "justify-center"
@@ -551,11 +569,11 @@ const SidebarHeader = ({
                           )}
 
                           {/* Tooltip for collapsed state */}
-                          {sidebarCollapsed && (
+                          {/* {sidebarCollapsed && (
                             <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                               {item.label}
                             </div>
-                          )}
+                          )} */}
                         </motion.button>
 
                         {/* Submenu */}
@@ -616,6 +634,8 @@ const SidebarHeader = ({
                                 sidebarCollapsed
                               )}`}
                           onClick={closeSidebar}
+                          onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                          onMouseLeave={handleMouseLeave}
                         >
                           <span className="text-lg flex items-center justify-center">
                             {typeof item.icon === "string" &&
@@ -664,11 +684,11 @@ const SidebarHeader = ({
                           )}
 
                           {/* Tooltip for collapsed state */}
-                          {sidebarCollapsed && (
+                          {/* {sidebarCollapsed && (
                             <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                               {item.label}
                             </div>
-                          )}
+                          )} */}
                         </Link>
                       </motion.div>
                     )}
@@ -698,6 +718,8 @@ const SidebarHeader = ({
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
                           onClick={() => toggleSubmenu(item.id)}
+                          onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                          onMouseLeave={handleMouseLeave}
                           className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] ${
                             sidebarCollapsed
                               ? "justify-center"
@@ -782,11 +804,11 @@ const SidebarHeader = ({
                           )}
 
                           {/* Tooltip for collapsed state */}
-                          {sidebarCollapsed && (
+                          {/* {sidebarCollapsed && (
                             <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                               {item.label}
                             </div>
-                          )}
+                          )} */}
                         </motion.button>
 
                         {/* Submenu */}
@@ -823,7 +845,11 @@ const SidebarHeader = ({
                                         <img
                                           src={subItem.icon}
                                           alt={subItem.label}
-                                          className="w-5 h-5 object-contain submenu-icon"
+                                          className={`w-5 h-5 object-contain ${
+                                            location.pathname === subItem.path
+                                              ? "icon-active"
+                                              : "submenu-icon"
+                                          }`}
                                         />
                                       ) : (
                                         subItem.icon
@@ -878,6 +904,8 @@ const SidebarHeader = ({
                                 sidebarCollapsed
                               )}`}
                           onClick={closeSidebar}
+                          onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                          onMouseLeave={handleMouseLeave}
                         >
                           <span className="text-lg flex items-center justify-center">
                             {typeof item.icon === "string" &&
@@ -927,11 +955,11 @@ const SidebarHeader = ({
                           )}
 
                           {/* Tooltip for collapsed state */}
-                          {sidebarCollapsed && (
+                          {/* {sidebarCollapsed && (
                             <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                               {item.label}
                             </div>
-                          )}
+                          )} */}
                         </Link>
                       </motion.div>
                     )}
@@ -967,6 +995,8 @@ const SidebarHeader = ({
                             console.warn("Tidio not ready");
                           }
                         }}
+                        onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                        onMouseLeave={handleMouseLeave}
                         className={`flex items-center ${
                           sidebarCollapsed ? "justify-center" : "gap-3"
                         } w-full px-3 py-2 rounded-[8px] transition-all duration-200
@@ -1007,11 +1037,11 @@ const SidebarHeader = ({
                         </AnimatePresence>
 
                         {/* Tooltip */}
-                        {sidebarCollapsed && (
+                        {/* {sidebarCollapsed && (
                           <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                             {item.label}
                           </div>
-                        )}
+                        )} */}
                       </button>
                     ) : (
                       /* ⭐ ALL OTHER NORMAL LINK ITEMS */
@@ -1023,6 +1053,8 @@ const SidebarHeader = ({
                 ${getMenuLinkClass(item, location.pathname, sidebarCollapsed)}
               `}
                         onClick={closeSidebar}
+                        onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                        onMouseLeave={handleMouseLeave}
                       >
                         <span className="text-lg flex items-center justify-center">
                           <img
@@ -1083,11 +1115,11 @@ const SidebarHeader = ({
                         )}
 
                         {/* Tooltip */}
-                        {sidebarCollapsed && (
+                        {/* {sidebarCollapsed && (
                           <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                             {item.label}
                           </div>
-                        )}
+                        )} */}
                       </Link>
                     )}
                   </motion.div>
@@ -1345,6 +1377,17 @@ const SidebarHeader = ({
             </AnimatePresence>
           )}
         </div>
+
+        {/* Portal Tooltip - Renders to body, bypasses all stacking contexts */}
+        {sidebarCollapsed && tooltip.show && createPortal(
+          <div
+            className="fixed left-[70px] px-2 py-1  border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap pointer-events-none"
+            style={{ top: tooltip.top, transform: 'translateY(-50%)', zIndex: 9999, backgroundColor: 'var(--bg-dark-purple-2)' }}
+          >
+            {tooltip.text}
+          </div>,
+          document.body
+        )}
       </motion.aside>
     </div>
   );

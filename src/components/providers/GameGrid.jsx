@@ -111,8 +111,50 @@ const GameGrid = ({
 
         {loading ? (
           <p className="text-gray-400 text-center py-8">Loading games...</p>
-        ) : games.length === 0 ? (
-          <p className="text-gray-400 text-center py-8">No games found.</p>
+        ) : filteredGames.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 text-center">
+            {/* ICON */}
+            <div className="mb-4 opacity-80">
+              <svg width="64" height="64" viewBox="0 0 56 56">
+                <circle
+                  cx="28"
+                  cy="28"
+                  r="24"
+                  stroke="#E57373"
+                  strokeWidth="3"
+                />
+                <line
+                  x1="14"
+                  y1="42"
+                  x2="42"
+                  y2="14"
+                  stroke="#E57373"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+
+            <h3 className="text-white text-2xl font-bold mb-2 tracking-wide font-['Neuropolitical']">
+              No Games Available
+            </h3>
+
+            <p className="text-gray-400 max-w-md text-[15px] mb-6 leading-relaxed font-['Neue Plak']">
+              No games found for{" "}
+              <span className="text-white font-semibold">{provider}</span>. Try
+              exploring other providers.
+            </p>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/providers")}
+              className="trust_btn view_moon_btn px-6 py-3 rounded-full font-semibold text-white"
+              style={{ background: "var(--cta-pink-gradient)" }}
+            >
+              Browse Providers
+            </motion.button>
+          </div>
         ) : (
           <>
             <motion.div

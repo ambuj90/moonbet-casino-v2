@@ -34,6 +34,35 @@ const GamePage = () => {
   const [rakeback, setRakeback] = useState(0);
   const [isClaiming, setIsClaiming] = useState(false);
 
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "MSFullscreenChange",
+        handleFullscreenChange
+      );
+    };
+  }, []);
+
   // 🌍 NEW: geo restriction state
   const [geoBlocked, setGeoBlocked] = useState({
     blocked: false,
@@ -330,6 +359,58 @@ const GamePage = () => {
             </div>
           )}
 
+          {/* Fullscreen Close Button - Works on Desktop & Mobile */}
+          {isFullscreen && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                if (document.exitFullscreen) {
+                  document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                  document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                  document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                  document.msExitFullscreen();
+                }
+              }}
+              className="fixed top-2 right-2 sm:top-4 sm:right-4 z-[9999] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg sm:rounded-xl cursor-pointer transition-all duration-200"
+              style={{
+                background: "rgba(40, 39, 83, 0.95)",
+                backdropFilter: "blur(10px)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              {/* Close X Icon - Responsive size */}
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6L6 18"
+                  stroke="#E5E5E5"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M6 6L18 18"
+                  stroke="#E5E5E5"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </motion.button>
+          )}
+
           {geoBlocked.blocked ? (
             <div className="w-full md:h-[80vh] h-[75vh] pt-5 flex items-center justify-center">
               <div className="max-w-md w-full bg-[#181836] border border-[#3B3B70] rounded-2xl px-6 py-6 text-center shadow-lg">
@@ -362,8 +443,6 @@ const GamePage = () => {
               allowFullScreen
               onLoad={() => {
                 setTimeout(() => setLoading(false), 800);
-
-                // GTM EVENT: GAME OPENED
                 if (gameData?.name) {
                   pushEvent({
                     event: "game_opened",
