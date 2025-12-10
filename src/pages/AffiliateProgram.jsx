@@ -222,15 +222,7 @@ const AffiliateProgram = () => {
         >
           {/* Main Glass Card */}
           <div className="main-grid-affi">
-            <div
-              className="grid lg:grid-cols-2 gap-8 items-center"
-              style={{
-                borderRadius: "12px",
-                backgroundImage: "url('/affiliates/bg-image2.png')",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
+            <div className="trust_btn grid lg:grid-cols-2 gap-8 items-center">
               {/* Left Content */}
               <div className="space-y-6 md:px-12 px:4 p-4">
                 {/* Title with icon */}
@@ -423,7 +415,7 @@ const AffiliateProgram = () => {
               </div>
 
               {/* Right Side - Visual Element */}
-              <div className="hidden lg:flex justify-content-start -mt-2">
+              <div className="hidden lg:flex justify-content-start -mt-2 z-20">
                 <div className="relative">
                   <img
                     src="/affiliates/astro-affilaite-final.svg"
@@ -514,20 +506,6 @@ const AffiliateProgram = () => {
             </div>
           </motion.div>
 
-          {/* Total Wagered Card */}
-          <motion.div whileHover={{ scale: 1.02 }} className="relative">
-            <div className="p-2 ">
-              <p className="affiliate-para">Total Wagered</p>
-              <div className="trust_btn flex items-center gap-3 p-3 relative ">
-                <span className="inline-flex items-center gap-3 align-middle">
-                  <span style={titleStyle} className="flex items-center gap-1">
-                    {stats.totalWagered.toFixed(0)}
-                  </span>
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Total Earnings Card */}
           <motion.div whileHover={{ scale: 1.02 }} className="relative">
             <div className="p-2">
@@ -538,39 +516,6 @@ const AffiliateProgram = () => {
                     {stats.totalEarnings.toFixed(0)}
                   </span>
                 </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Pending Income Card with Claim */}
-          <motion.div whileHover={{ scale: 1.02 }} className="relative">
-            <div className="p-2">
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <p className="affiliate-para">Pending Income</p>
-                  <div className="trust_btn flex items-center gap-3 p-3 relative ">
-                    <span className="inline-flex items-center gap-3 align-middle">
-                      <span
-                        style={titleStyle}
-                        className="flex items-center gap-1"
-                      >
-                        {stats.pendingIncome.toFixed(0)}
-                      </span>
-                    </span>
-                  </div>
-                </div>
-                {/* <button
-                  onClick={handleClaim}
-                  disabled={stats.pendingIncome === 0}
-                  className={`absolute right-0 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 ${
-                    stats.pendingIncome > 0
-                      ? "bg-gradient-to-r from-[#10B981] to-[#059669] text-white hover:shadow-lg hover:shadow-green-500/25"
-                      : "bg-gray-700/50 text-gray-500 cursor-not-allowed"
-                  }`}
-                  style={{ fontFamily: "Avenir, -apple-system, sans-serif" }}
-                >
-                  Claim
-                </button> */}
               </div>
             </div>
           </motion.div>
@@ -704,62 +649,43 @@ const AffiliateProgram = () => {
             </div>
 
             {/* Table Content */}
-            <div className="p-1 text-center">
+            <div className="p-1">
               {!referrals || referrals.length === 0 ? (
                 <>
                   <p style={h2Style}>Share Referral for Earning</p>
-                  {/* <p
-      style={{
-        ...subHeadingStyle,
-        fontSize: "14px",
-        marginTop: "12px",
-        color: "#6B7280",
-      }}
-    >
-      Share your referral link to start earning commissions.
-    </p> */}
                 </>
               ) : (
-                <div className="overflow-x-auto">
-                  <table className="min-w-full border-collapse border border-white/10">
+                <div className="overflow-x-auto w-full">
+                  <table className="min-w-full text-left ">
                     <thead>
-                      <tr className="affiliate-para2 text-gray-300 text-sm uppercase tracking-wider">
-                        <th className="px-4 py-3 text-left border-b border-white/10">
-                          #
-                        </th>
-                        <th className="px-4 py-3 text-left border-b border-white/10">
-                          Referee ID
-                        </th>
-                        <th className="px-4 py-3 text-left border-b border-white/10">
-                          Points Earned
-                        </th>
-                        <th className="px-4 py-3 text-left border-b border-white/10">
-                          Referred Date
-                        </th>
+                      <tr className="text-[#9292D2] text-sm uppercase ">
+                        <th className="px-4 py-3">#</th>
+                        <th className="px-4 py-3">Referee ID</th>
+                        <th className="px-4 py-3">Points</th>
+                        <th className="px-4 py-3">Date</th>
                       </tr>
                     </thead>
+
                     <tbody>
                       {referrals.map((ref, idx) => (
                         <motion.tr
                           key={idx}
                           initial={{ opacity: 0, y: 5 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: idx * 0.05 }}
-                          className={`text-gray-200 hover:bg-white/5 ${
-                            idx % 2 === 0 ? " /30" : " /20"
-                          }`}
+                          transition={{ delay: idx * 0.04 }}
+                          className={`text-gray-200
+                ${idx % 2 === 0 ? "bg-white/5" : "bg-transparent"}
+                hover:bg-white/10 transition-colors`}
                         >
-                          <td className="px-4 py-3 text-left border-b border-white/10">
-                            {idx + 1}
-                          </td>
-                          <td className="px-4 py-3 text-left border-b border-white/10">
-                            {"Player_8ec0"}
-                            {/* {ref.referee?.id || ref.referee?._id || "N/A"} */}
-                          </td>
-                          <td className="px-4 py-3 text-left border-b border-white/10 text-[#10B981] font-semibold">
+                          <td className="px-4 py-3">{idx + 1}</td>
+
+                          <td className="px-4 py-3">Player_8ec0</td>
+
+                          <td className="px-4 py-3 text-[#10B981] font-semibold">
                             +{ref.pointsEarned}
                           </td>
-                          <td className="px-4 py-3 text-left border-b border-white/10 text-gray-400">
+
+                          <td className="px-4 py-3 text-gray-400">
                             {new Date(ref.referredAt).toLocaleDateString(
                               "en-US",
                               {
