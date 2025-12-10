@@ -342,6 +342,8 @@ const CasinoCategoryNav = ({
   const [loading, setLoading] = useState(false);
   // const [searchTerm, setSearchTerm] = useState("");
   const { category } = useParams();
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+const isLoggedIn = !!user?.id;
 
   // when URL changes (e.g. /casino/slots)
   useEffect(() => {
@@ -353,12 +355,21 @@ const CasinoCategoryNav = ({
   }, [category]);
 
   useEffect(() => {
-    const fetchGames = async () => {
-      setLoading(true);
-      try {
-        const params = new URLSearchParams();
+  const fetchGames = async () => {
+    setLoading(true);
+    try {
+      let res;
 
-        // category from URL (or all)
+      // ⭐ If category is "favorites", fetch ONLY favourite games
+      if (selectedCategory === "favorites") {
+        const user = JSON.parse(localStorage.getItem("user") || "{}");
+        const userId = user.id;
+
+        res = await fetch(`/wallet-service/api/games/${userId}/favourite-game`);
+      } 
+      else {
+        // ⭐ Normal categories fetch
+        const params = new URLSearchParams();
         const activeCategory = category || selectedCategory;
 
         if (activeCategory && activeCategory !== "all") {
@@ -374,21 +385,24 @@ const CasinoCategoryNav = ({
         }
 
         const query = params.toString() ? `?${params.toString()}` : "";
-        const res = await fetch(`/wallet-service/api/games${query}`);
-        const data = await res.json();
 
-        if (data.success) setGames(data.data || []);
-        else setGames([]);
-      } catch (err) {
-        console.error("Error fetching games:", err);
-        setGames([]);
-      } finally {
-        setLoading(false);
+        res = await fetch(`/wallet-service/api/games${query}`);
       }
-    };
 
-    fetchGames();
-  }, [category, selectedFilter, searchTerm]);
+      const data = await res.json();
+      if (data.success) setGames(data.data || []);
+      else setGames([]);
+
+    } catch (err) {
+      console.error("Error fetching games:", err);
+      setGames([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchGames();
+}, [category, selectedFilter, searchTerm, selectedCategory]);
 
   // --- SVG Icon Components ---
   const ChevronLeft = ({ className }) => (
@@ -600,6 +614,8 @@ const CasinoCategoryNav = ({
         </svg>
       ),
     },
+    ...(isLoggedIn
+      ? [
     {
       id: "favorites",
       label: "Favorites",
@@ -618,6 +634,8 @@ const CasinoCategoryNav = ({
         </svg>
       ),
     },
+    ]
+  : []),
     {
       id: "live",
       label: "Live Dealer",

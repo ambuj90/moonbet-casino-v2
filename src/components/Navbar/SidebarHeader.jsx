@@ -16,6 +16,8 @@ const SidebarHeader = ({
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tooltip, setTooltip] = useState({ show: false, text: '', top: 0 });
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+const isLoggedIn = !!user?.id;
 
   // Tooltip handlers
   const handleMouseEnter = (e, text) => {
@@ -87,13 +89,16 @@ const SidebarHeader = ({
       activeIcon: "/active-menu/home-active.svg",
       path: "/",
     },
+    ...(isLoggedIn
+      ? [
     {
       id: "favourites",
       label: "Favorites",
       icon: "/icons/favourites.svg",
       activeIcon: "/active-menu/favourites-active.svg",
-      path: "/casino/favourites",
+      path: "/casino/favorites",
     },
+  ]: []),
     {
       id: "recommended",
       label: "Trending",

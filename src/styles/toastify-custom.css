@@ -328,10 +328,10 @@
 }
 
 /* Special animation for error toasts */
-.Toastify__toast--error {
+/* .Toastify__toast--error {
   animation: toastSlideIn 0.4s cubic-bezier(0.23, 1, 0.32, 1),
     errorPulse 2s ease-in-out infinite;
-}
+} */
 
 @keyframes errorPulse {
   0%,
