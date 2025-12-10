@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "../../styles/gameShapes.css";
+import { Link } from "react-router-dom";
 
 const CasinoGameCards = () => {
   const cards = [
@@ -16,6 +17,7 @@ const CasinoGameCards = () => {
       desc: "The full casino experience. Live, fair, and always on.",
       background: "rgba(132, 67, 160, 0.50)",
       hoverBg: "#8443A0",
+      link: "/casino",
     },
     {
       id: 2,
@@ -29,6 +31,7 @@ const CasinoGameCards = () => {
       desc: "Spinning wheels, pumping multipliers",
       background: "rgba(90, 55, 153, 0.50)",
       hoverBg: "#a62a00",
+      link: "/casino/gameshows",
     },
     {
       id: 3,
@@ -42,6 +45,7 @@ const CasinoGameCards = () => {
       desc: "2K + titles, 98% + RTP, chase your next big win.",
       background: "rgba(85, 81, 169, 0.50)",
       hoverBg: "#a62a00",
+      link: "/casino/slots",
     },
     {
       id: 4,
@@ -55,6 +59,7 @@ const CasinoGameCards = () => {
       desc: "The thinking player's game with almost no house edge.",
       background: "rgba(85, 81, 169, 0.50)",
       hoverBg: "#5551A9",
+      link: "/casino/blackjack",
     },
     {
       id: 5,
@@ -68,6 +73,7 @@ const CasinoGameCards = () => {
       desc: "Banker bets hit 50.68% of the time. The math is in your favor.",
       background: "rgba(132, 67, 160, 0.50)",
       hoverBg: "#8443A0",
+      link: "/casino/baccarat",
     },
   ];
 
@@ -79,6 +85,8 @@ const CasinoGameCards = () => {
       className="relative group"
       style={{ width: c.w }}
     >
+      <Link to={c.link} className="absolute inset-0 z-40"></Link>
+
       {/* Floating Label */}
       <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[15px] text-white/80">
         <img src={c.icon} className="w-4 h-4" alt="" />
@@ -99,7 +107,6 @@ const CasinoGameCards = () => {
             padding: "16px 16px",
           }}
         >
-          {/* Desktop description */}
           <div className="w-[50%] h-full flex flex-col justify-end">
             <p
               className="mb-2"
@@ -115,19 +122,10 @@ const CasinoGameCards = () => {
             </p>
           </div>
 
-          {/* Image */}
           <img
             src={c.img}
             alt={c.title}
             className="absolute z-10 pointer-events-none object-contain desktop-img"
-          />
-
-          {/* Hover sweep */}
-          <motion.div
-            className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 pointer-events-none"
-            initial={{ x: "-100%" }}
-            whileHover={{ x: "100%" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
           />
         </div>
       </motion.div>
@@ -136,60 +134,66 @@ const CasinoGameCards = () => {
 
   // Mobile Card Component with specific SVG clip-path
   const MobileCard = ({ c, isSmall = false }) => (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-      className="relative group w-full"
-    >
-      {/* Floating Label */}
-      <div
-        className={`absolute top-2 left-2 z-30 flex items-center gap-1.5 text-white/90 ${
-          isSmall ? "text-[11px] sm:text-[13px]" : "text-[13px] sm:text-[14px]"
-        }`}
-      >
-        <img
-          src={c.icon}
-          className={`${
-            isSmall ? "w-3 h-3 sm:w-3.5 sm:h-3.5" : "w-3.5 h-3.5 sm:w-4 sm:h-4"
-          }`}
-          alt=""
-        />
-        <span className={`${isSmall ? "leading-tight" : ""}`}>
-          {isSmall && c.title === "Game Shows" ? <>Game Shows</> : c.title}
-        </span>
-      </div>
-
+    <Link to={c.link} className="block">
       <motion.div
-        className="p-[4px] sm:p-[5px] rounded-lg sm:rounded-xl transition-all"
-        style={{ background: c.background }}
-        whileHover={{ backgroundColor: c.hoverBg }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3 }}
+        className="relative group w-full"
       >
+        {/* Floating Label */}
         <div
-          className={`relative overflow-hidden bg-[#0D0E36] ${c.mobileClass}`}
-          style={{
-            width: "100%",
-            height: isSmall ? "107px" : "107px",
-          }}
+          className={`absolute top-2 left-2 z-30 flex items-center gap-1.5 text-white/90 ${
+            isSmall
+              ? "text-[11px] sm:text-[13px]"
+              : "text-[13px] sm:text-[14px]"
+          }`}
         >
-          {/* Image */}
           <img
-            src={c.img}
-            alt={c.title}
-            className={`absolute z-10 pointer-events-none object-contain ${
-              isSmall ? "mobile-img-small" : "mobile-img-large"
+            src={c.icon}
+            className={`${
+              isSmall
+                ? "w-3 h-3 sm:w-3.5 sm:h-3.5"
+                : "w-3.5 h-3.5 sm:w-4 sm:h-4"
             }`}
+            alt=""
           />
-
-          {/* Hover sweep */}
-          <motion.div
-            className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 pointer-events-none"
-            initial={{ x: "-100%" }}
-            whileHover={{ x: "100%" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
+          <span className={`${isSmall ? "leading-tight" : ""}`}>
+            {isSmall && c.title === "Game Shows" ? <>Game Shows</> : c.title}
+          </span>
         </div>
+
+        <motion.div
+          className="p-[4px] sm:p-[5px] rounded-lg sm:rounded-xl transition-all"
+          style={{ background: c.background }}
+          whileHover={{ backgroundColor: c.hoverBg }}
+        >
+          <div
+            className={`relative overflow-hidden bg-[#0D0E36] ${c.mobileClass}`}
+            style={{
+              width: "100%",
+              height: isSmall ? "107px" : "107px",
+            }}
+          >
+            {/* Image */}
+            <img
+              src={c.img}
+              alt={c.title}
+              className={`absolute z-10 pointer-events-none object-contain ${
+                isSmall ? "mobile-img-small" : "mobile-img-large"
+              }`}
+            />
+
+            {/* Hover sweep */}
+            <motion.div
+              className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 pointer-events-none"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            />
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </Link>
   );
 
   // Tablet Card Component
@@ -199,6 +203,9 @@ const CasinoGameCards = () => {
       transition={{ duration: 0.3 }}
       className="relative group w-full"
     >
+      {/* CLICKABLE OVERLAY */}
+      <Link to={c.link} className="absolute inset-0 z-40"></Link>
+
       {/* Floating Label */}
       <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[14px] text-white/90">
         <img src={c.icon} className="w-4 h-4" alt="" />
@@ -215,6 +222,7 @@ const CasinoGameCards = () => {
           style={{
             width: "100%",
             height: "140px",
+            borderRadius: "18px",
           }}
         >
           {/* Image */}
