@@ -31,6 +31,8 @@ const GamePage = () => {
   const [preferredCurrency, setPreferredCurrency] = useState(
     localStorage.getItem("preferredCurrency") || "BTC"
   );
+  const [rakeback, setRakeback] = useState(0);
+  const [isClaiming, setIsClaiming] = useState(false);
 
   // 🌍 NEW: geo restriction state
   const [geoBlocked, setGeoBlocked] = useState({
@@ -225,6 +227,50 @@ const GamePage = () => {
     return () => clearInterval(interval);
   }, [isRealPlay]);
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    if (!user?.id) return;
+
+    const fetchRake = async () => {
+      try {
+        const res = await axios.get(
+          `/wallet-service/api/wallet/${user.id}/rakeback`
+        );
+        setRakeback(res.data.pending || 0);
+      } catch (err) {
+        console.error("Rakeback fetch error:", err);
+      }
+    };
+
+    fetchRake();
+  }, [isRealPlay, slug]);
+
+  const claimRakeback = async () => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    if (!user?.id) return;
+
+    try {
+      setIsClaiming(true);
+
+      const res = await axios.post(
+        `/wallet-service/api/wallet/${user.id}/rakeback/claim`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+
+      if (res.data.success) {
+        toast.success(`Rakeback claimed !!`);
+        setRakeback(0);
+      }
+    } catch (err) {
+      console.error("Claim error:", err);
+    } finally {
+      setIsClaiming(false);
+    }
+  };
+
   // ------------------------------------------
   // Handle fun <-> real play toggle
   // ------------------------------------------
@@ -340,8 +386,12 @@ const GamePage = () => {
             </div>
 
             <div className="flex items-center gap-1 flex-shrink-0">
-              <span className="text-white font-semibold text-xs">$0.00</span>
+              <span className="text-white font-semibold text-xs">
+                ${Number(rakeback).toFixed(2)}
+              </span>
+
               <button
+                onClick={claimRakeback}
                 className="px-2 py-1 text-[10px] rounded-lg flex-shrink-0"
                 style={{
                   background: "linear-gradient(180deg,#9292D2 0%,#7171B4 100%)",
@@ -458,12 +508,18 @@ const GamePage = () => {
             <div className="trust_btn flex items-center gap-3 px-3 py-2">
               <div className="text-[#9292D2] text-sm">Rakeback</div>
               <div className="flex items-center gap-1">
-                <span className="text-white font-semibold">$0.00</span>
+                <span className="text-white font-semibold">
+                  ${Number(rakeback).toFixed(2)}
+                </span>
+
                 <button
                   className="px-2 py-1 text-xs rounded-lg"
+                  onClick={claimRakeback}
+                  disabled={rakeback <= 0}
                   style={{
                     background:
                       "linear-gradient(180deg,#9292D2 0%,#7171B4 100%)",
+                    opacity: rakeback > 0 ? 1 : 0.5,
                   }}
                 >
                   Claim
