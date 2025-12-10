@@ -113,7 +113,7 @@ const SidebarHeader = ({
           icon: "/icons/bacarrat.svg",
         },
         {
-          path: "/casino/game-shows",
+          path: "/casino/gameshows",
           label: "Game Shows",
           icon: "/icons/game-shows.svg",
         },
