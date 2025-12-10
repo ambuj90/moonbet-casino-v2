@@ -45,7 +45,7 @@ const RegionRestrictionPopup = ({
 
   const handleExploreGames = () => {
     onClose();
-    navigate("/casino");
+    navigate("/");
   };
 
   return (
@@ -124,7 +124,7 @@ const RegionRestrictionPopup = ({
                     textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
                   }}
                 >
-                  Game not available in your region
+                  Game not Found for this Provider !!
                 </h2>
 
                 {/* Subtitle */}

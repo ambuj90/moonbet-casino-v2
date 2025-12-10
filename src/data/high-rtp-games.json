@@ -1,0 +1,322 @@
+[
+  {
+    "uuid": "baaf8586781e46bb9689323e07610c24",
+    "slug": "blackjack-surrender",
+    "name": "Blackjack Surrender",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/baaf8586781e46bb9689323e07610c24.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "764e62e274f2443e98805e6d5e043d06",
+    "slug": "blackjack",
+    "name": "Blackjack",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/764e62e274f2443e98805e6d5e043d06.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "16c8b2ce62404a08b7b6cf8f9235e83f",
+    "slug": "premium-european-blackjack",
+    "name": "Premium European Blackjack",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/16c8b2ce62404a08b7b6cf8f9235e83f.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "28835f6e136d4887ba5d12135e1a3c80",
+    "slug": "blackjack-vip",
+    "name": "Blackjack Vip",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/28835f6e136d4887ba5d12135e1a3c80.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "82d10f9295c9410abd1c58130b5bd609",
+    "slug": "jacks-or-better",
+    "name": "Jacks or Better",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/82d10f9295c9410abd1c58130b5bd609.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "25304ba933694259a590195ce1143847",
+    "slug": "multihand-blackjack-vip",
+    "name": "Multihand Blackjack VIP",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/25304ba933694259a590195ce1143847.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "810ef79f84e2436d842bb60d00467460",
+    "slug": "multihand-blackjack",
+    "name": "Multihand BlackJack",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/810ef79f84e2436d842bb60d00467460.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "f5281bcf9541623c84e00ad51cdda2e758e52a6d",
+    "slug": "classic-multihand-blackjack",
+    "name": "Classic Multihand Blackjack",
+    "provider": "BGaming",
+    "image": "https://gis-static.com/games/BGaming/f5281bcf9541623c84e00ad51cdda2e758e52a6d.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "b416f5ff3d0f44daab34750890bef285",
+    "slug": "multihand-blackjack-pro-2",
+    "name": "Multihand Blackjack Pro 2",
+    "provider": "BGaming",
+    "image": "https://gis-static.com/games/BGaming/b416f5ff3d0f44daab34750890bef285.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "d199cb16c3384384b14af5a1ae33c658",
+    "slug": "european-blackjack-multihand",
+    "name": "European Blackjack Multihand",
+    "provider": "Platipus2",
+    "image": "https://gis-static.com/games/Platipus2/d199cb16c3384384b14af5a1ae33c658.png",
+    "is_mobile": true
+  },
+  {
+    "uuid": "b19ebfa865a3422b97be83bce20daa11",
+    "slug": "blackjack-9-mobile",
+    "name": "Blackjack 9 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/b19ebfa865a3422b97be83bce20daa11.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "c4049f43038448a5b249688446a254b4",
+    "slug": "blackjack-10-mobile",
+    "name": "Blackjack 10 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/c4049f43038448a5b249688446a254b4.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "b0fda02f46744149a7d3bf91a36dd62f",
+    "slug": "blackjack-5-mobile",
+    "name": "Blackjack 5 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/b0fda02f46744149a7d3bf91a36dd62f.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "b560033bdbaf45738ba34f5993bbf9f7",
+    "slug": "blackjack-2-mobile",
+    "name": "Blackjack 2 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/b560033bdbaf45738ba34f5993bbf9f7.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "f8ceafabc15b4509b306ce3a3e3faed5",
+    "slug": "blackjack-4-mobile",
+    "name": "Blackjack 4 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/f8ceafabc15b4509b306ce3a3e3faed5.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "27c0d3eed5314df68f207c9e81912a53",
+    "slug": "blackjack-1-mobile",
+    "name": "Blackjack 1 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/27c0d3eed5314df68f207c9e81912a53.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "7700eacc661b4aecbbfec958f608d597",
+    "slug": "blackjack-7-mobile",
+    "name": "Blackjack 7 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/7700eacc661b4aecbbfec958f608d597.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "e12a48ae25df4a18ac84b9441bb625a2",
+    "slug": "blackjack-3-mobile",
+    "name": "Blackjack 3 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/e12a48ae25df4a18ac84b9441bb625a2.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "eabcc7aa41d049c2b5a76bba1680b035",
+    "slug": "blackjack-8-mobile",
+    "name": "Blackjack 8 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/eabcc7aa41d049c2b5a76bba1680b035.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "adeec507555c4ed29c1ebb0da7eb3e6d",
+    "slug": "blackjack-6-mobile",
+    "name": "Blackjack 6 Mobile",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/adeec507555c4ed29c1ebb0da7eb3e6d.jpg",
+    "is_mobile": true
+  },
+  {
+    "uuid": "df0600d492104f43b8dc32deb4b80c91",
+    "slug": "blackjack-11",
+    "name": "Blackjack 11",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/df0600d492104f43b8dc32deb4b80c91.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "aa81e6f59cf741f9b764cd76f458679a",
+    "slug": "blackjack-7",
+    "name": "Blackjack 7",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/aa81e6f59cf741f9b764cd76f458679a.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "418823fd3d7642c1a36df0a14a918c9a",
+    "slug": "one-blackjack-2",
+    "name": "ONE Blackjack 2",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/418823fd3d7642c1a36df0a14a918c9a.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "493574a0ed1b4e7e951275f83ef2d3e3",
+    "slug": "blackjack-2",
+    "name": "Blackjack 2",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/493574a0ed1b4e7e951275f83ef2d3e3.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "dfe045f5af194bb5ae6896b532786270",
+    "slug": "blackjack-1",
+    "name": "Blackjack 1",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/dfe045f5af194bb5ae6896b532786270.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "ee2a04572e6b40cf9139d28a9d4c96f3",
+    "slug": "blackjack-3",
+    "name": "Blackjack 3",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/ee2a04572e6b40cf9139d28a9d4c96f3.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "b8c3124bd6754d719804ae6ace57ebef",
+    "slug": "blackjack-12",
+    "name": "Blackjack 12",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/b8c3124bd6754d719804ae6ace57ebef.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "1c6e1daa36a44e9d97a61aab5f91bde8",
+    "slug": "blackjack-14",
+    "name": "Blackjack 14",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/1c6e1daa36a44e9d97a61aab5f91bde8.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "7340b1f4f9d64d95acd1c4c5b00f6363",
+    "slug": "blackjack-4",
+    "name": "Blackjack 4",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/7340b1f4f9d64d95acd1c4c5b00f6363.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "104842d543ff4a9d9d34d76860971d4e",
+    "slug": "blackjack-15",
+    "name": "Blackjack 15",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/104842d543ff4a9d9d34d76860971d4e.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "06c6e06ff5b84958ad83e43d13fb927b",
+    "slug": "blackjack-5",
+    "name": "Blackjack 5",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/06c6e06ff5b84958ad83e43d13fb927b.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "96d50fe90def445daa0b020dc1a5c322",
+    "slug": "blackjack-9",
+    "name": "Blackjack 9",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/96d50fe90def445daa0b020dc1a5c322.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "251eb4a40ec04df69e4e7fdde999d8be",
+    "slug": "blackjack-lobby",
+    "name": "Blackjack Lobby",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/251eb4a40ec04df69e4e7fdde999d8be.png",
+    "is_mobile": false
+  },
+  {
+    "uuid": "668b77576aa24526bfbc3f62da7fbffe",
+    "slug": "blackjack-8",
+    "name": "Blackjack 8",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/668b77576aa24526bfbc3f62da7fbffe.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "76eda0f788d94506a400fa55f8406326",
+    "slug": "one-blackjack-1",
+    "name": "ONE Blackjack 1",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/76eda0f788d94506a400fa55f8406326.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "6e6c237fefec4a20a337f96f8ef4e7bc",
+    "slug": "blackjack-18",
+    "name": "Blackjack 18",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/6e6c237fefec4a20a337f96f8ef4e7bc.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "53af833562454380ae4601bdfea0311d",
+    "slug": "blackjack-17",
+    "name": "Blackjack 17",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/53af833562454380ae4601bdfea0311d.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "030e49bd01b14cf5a0f3a9b7ccd872c5",
+    "slug": "blackjack-16",
+    "name": "Blackjack 16",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/030e49bd01b14cf5a0f3a9b7ccd872c5.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "26cdfc5c441b4f40ad55ffd247a44c07",
+    "slug": "blackjack-6",
+    "name": "Blackjack 6",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/26cdfc5c441b4f40ad55ffd247a44c07.jpg",
+    "is_mobile": false
+  },
+  {
+    "uuid": "6bb70c6d06db400c90de6ff5e6c6c46b",
+    "slug": "blackjack-10",
+    "name": "Blackjack 10",
+    "provider": "PragmaticPlayLive",
+    "image": "https://gis-static.com/games/08f21347a26c7f9643172901a3e2a6d1/PragmaticPlayLive/6bb70c6d06db400c90de6ff5e6c6c46b.jpg",
+    "is_mobile": false
+  }
+]
