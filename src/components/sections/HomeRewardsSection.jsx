@@ -1,6 +1,7 @@
 // src/components/sections/HomeRewardsSection.jsx (MOBILE FIXED)
 import React, { useRef, useState, useEffect, useMemo } from "react";
 import { motion, scale, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const HomeRewardsSection = () => {
   const sectionRef = useRef(null);
@@ -19,6 +20,7 @@ const HomeRewardsSection = () => {
         description2: "Awards",
         img: "/rewards/rewards7.png",
         bg: "/rewards/bg-reward.png",
+        link: "/affiliate",
       },
       {
         id: 2,
@@ -28,6 +30,7 @@ const HomeRewardsSection = () => {
         description1: "Odds out of this",
         description2: "world.",
         img: "/rewards/rewards8.png",
+        link: "/casino/live-casino",
       },
       {
         id: 3,
@@ -37,6 +40,7 @@ const HomeRewardsSection = () => {
         description1: "Best out of all Crash",
         description2: "games out there.",
         img: "/rewards/rewards10.png",
+        link: "/leaderboard",
       },
     ],
     []
@@ -133,73 +137,75 @@ const HomeRewardsSection = () => {
                 }}
                 className="flex-shrink-0 lg:flex-shrink w-full lg:w-auto snap-center"
               >
-                <div
-                  className="reward_btn relative rounded-[15px] group cursor-pointer will-change-transform overflow-visible mt-8 md-mt-0"
-                  style={{
-                    width: "100%",
-                    height: "195px",
-                  }}
-                >
-                  {/* Content - Left Side */}
+                <Link to={reward.link}>
                   <div
-                    className="absolute left-0 top-0 bottom-0 z-10 flex flex-col justify-start gap-5 p-6"
-                    style={{ width: "50%" }}
+                    className="reward_btn relative rounded-[15px] group cursor-pointer will-change-transform overflow-visible mt-8 md-mt-0"
+                    style={{
+                      width: "100%",
+                      height: "195px",
+                    }}
                   >
-                    {/* Badge */}
-                    <span
-                      className="inline-block w-fit px-0 md:px-3 py-0 rounded-full"
-                      style={{
-                        color: "var(--text-charcoal",
-                        fontStyle: "normal",
-                        fontWeight: 700,
-                        lineHeight: "24px" /* 171.429% */,
-                        borderRadius: "4px",
-                        background: "#C8C8E1",
-                      }}
+                    {/* Content - Left Side */}
+                    <div
+                      className="absolute left-0 md:top-0 top-2 bottom-0 z-10 flex flex-col justify-start gap-5 p-6"
+                      style={{ width: "50%" }}
                     >
-                      {reward.badge}
-                    </span>
-
-                    {/* Title & Description */}
-                    <div>
-                      <h3
-                        className="mb-2"
+                      {/* Badge */}
+                      <span
+                        className="inline-block w-fit px-2 md:px-3 py-0 rounded-full"
                         style={{
-                          color: "#E5EAF2",
-                          fontFamily: "Neue Plak, sans-serif",
-                          fontSize: "20px",
-                          fontWeight: 400,
-                          lineHeight: "23px",
+                          color: "var(--text-charcoal",
+                          fontStyle: "normal",
+                          fontWeight: 700,
+                          lineHeight: "24px" /* 171.429% */,
+                          borderRadius: "4px",
+                          background: "#C8C8E1",
                         }}
                       >
-                        {reward.titleLine1}
-                        <br />
-                        {reward.titleLine2}
-                      </h3>
-                    </div>
-                  </div>
+                        {reward.badge}
+                      </span>
 
-                  {/* Image - Right Side (Fixed Size) */}
-                  <div className="absolute right-0 top-1/2 -translate-y-[58%] w-[53%] overflow-visible pointer-events-none z-20">
-                    {/* Background Box */}
-                    <div className="flex items-center justify-center ">
-                      {/* Image */}
-                      <img
-                        src={imageErrors[reward.id] || reward.img}
-                        alt={reward.titleLine2}
-                        loading="lazy"
-                        className="w-full h-auto object-contain drop-shadow-2xl"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          handleImageError(reward.id, reward.fallbackImg);
-                          e.target.src = reward.fallbackImg;
-                        }}
-                      />
+                      {/* Title & Description */}
+                      <div>
+                        <h3
+                          className="mb-2"
+                          style={{
+                            color: "#E5EAF2",
+                            fontFamily: "Neue Plak, sans-serif",
+                            fontSize: "20px",
+                            fontWeight: 400,
+                            lineHeight: "23px",
+                          }}
+                        >
+                          {reward.titleLine1}
+                          <br />
+                          {reward.titleLine2}
+                        </h3>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Hover Effect - GPU Accelerated */}
-                </div>
+                    {/* Image - Right Side (Fixed Size) */}
+                    <div className="absolute right-0 top-1/2 -translate-y-[58%] w-[53%] overflow-visible pointer-events-none z-20">
+                      {/* Background Box */}
+                      <div className="flex items-center justify-center ">
+                        {/* Image */}
+                        <img
+                          src={imageErrors[reward.id] || reward.img}
+                          alt={reward.titleLine2}
+                          loading="lazy"
+                          className="w-full h-auto object-contain drop-shadow-2xl"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            handleImageError(reward.id, reward.fallbackImg);
+                            e.target.src = reward.fallbackImg;
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Hover Effect - GPU Accelerated */}
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
