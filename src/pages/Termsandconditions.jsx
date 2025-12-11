@@ -1026,7 +1026,7 @@ const TermsAndConditions = () => {
                   <Mail className="w-5 h-5 text-[#ffb8a1]" />
                   <span className="text-gray-300">support@moonbet.games</span>
                   <br/>
-                  <span className="text-gray-300">complaints@moonbet.com</span>
+                  <span className="text-gray-300">complaints@moonbet.games</span>
                 </a>
                 <div className="flex items-center gap-2 px-4 py-3 bg-white/5 rounded-xl border border-white/10">
                   <span className="text-xl">💬</span>

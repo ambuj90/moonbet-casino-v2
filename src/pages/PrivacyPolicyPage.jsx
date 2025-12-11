@@ -696,7 +696,7 @@ const CookiePolicy = () => {
                       href="mailto:support@moonbet.games"
                       className="text-[#EFD28E] hover:text-[#ffb8a1] transition-colors"
                     >
-                      privacy@moonbet.com
+                      privacy@moonbet.games
                     </a>
                   </span>
                 </div>

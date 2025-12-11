@@ -201,7 +201,7 @@ const AmlKycPolicy = () => {
                     <li className="flex items-start gap-3">
                       <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
-                        Connect on Email : compliance@moonbet.com
+                        Connect on Email : compliance@moonbet.games
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
@@ -2014,7 +2014,7 @@ const AmlKycPolicy = () => {
                     Email Connect
                   </h3>
                   <p className="text-gray-300">
-                    compliance@moonbet.com
+                    compliance@moonbet.games
                   </p>
                 </div>
               </div>

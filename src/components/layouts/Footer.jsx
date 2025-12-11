@@ -392,7 +392,7 @@ const Footer = () => {
                         href="mailto:feedback@moonbet.games"
                         className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
                       >
-                        complaints@moonbet.com
+                        complaints@moonbet.games
                       </a>
                     </li>
                   </ul>

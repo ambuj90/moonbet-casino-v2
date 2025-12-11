@@ -823,7 +823,7 @@ const CareersPage = () => {
               transition={{ delay: 0.2 }}
               className="text-lg mb-8 max-w-2xl mx-auto"
               style={{ color: "var(--text-lavender-1)" }}
-            >careers@moonbet.com</motion.p>
+            >careers@moonbet.games</motion.p>
 
             <NeonButton
               onClick={() =>

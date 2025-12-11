@@ -863,11 +863,11 @@ const AffiliateLandingPage = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-6">
                 <a
-                  href="mailto:affiliates@moonbet.com"
+                  href="mailto:affiliates@moonbet.games"
                   className="flex items-center gap-2 text-gray-300 hover:text-[var(--cta-pink)] transition-colors"
                 >
                   <Mail className="w-5 h-5" />
-                  affiliates@moonbet.com
+                  affiliates@moonbet.games
                 </a>
                 <a
                   href="#"
