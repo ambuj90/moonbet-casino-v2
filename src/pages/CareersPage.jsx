@@ -817,6 +817,13 @@ const CareersPage = () => {
               Be part of the revolution. Help us build the fairest, most
               transparent casino in the world.
             </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg mb-8 max-w-2xl mx-auto"
+              style={{ color: "var(--text-lavender-1)" }}
+            >careers@moonbet.com</motion.p>
 
             <NeonButton
               onClick={() =>

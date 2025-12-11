@@ -201,6 +201,12 @@ const AmlKycPolicy = () => {
                     <li className="flex items-start gap-3">
                       <span className="text-[var(--cta-pink)] mt-1">•</span>
                       <span className="text-gray-300">
+                        Connect on Email : compliance@moonbet.com
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-[var(--cta-pink)] mt-1">•</span>
+                      <span className="text-gray-300">
                         Financial Action Task Force (FATF) recommendations
                       </span>
                     </li>
@@ -1985,6 +1991,30 @@ const AmlKycPolicy = () => {
                     Identity verification is a mandatory condition of using
                     Moonbet's Services. Failure to complete verification when
                     requested may result in account suspension or closure.
+                  </p>
+                </div>
+                <div
+                  className="mb-6 p-5 hover:bg-white/5 transition-all"
+                  style={{
+                    borderRadius: "8px",
+                    border: "1px solid rgba(255, 255, 255, 0.20)",
+                  }}
+                >
+                  <h3 className="font-bold text-lg mb-3 flex items-center gap-2 text-white">
+                    <span
+                      className="px-2 py-0.5 text-sm font-bold text-gray-300"
+                      style={{
+                        borderRadius: "4px",
+                        border: "1px solid rgba(255, 255, 255, 0.20)",
+                        background: "rgba(255, 255, 255, 0.05)",
+                      }}
+                    >
+                      14.4
+                    </span>
+                    Email Connect
+                  </h3>
+                  <p className="text-gray-300">
+                    compliance@moonbet.com
                   </p>
                 </div>
               </div>

@@ -411,6 +411,7 @@ const AccountPayoutsPolicyPage = () => {
               <ListItem>Freezing of your Account balance</ListItem>
               <ListItem>Account closure</ListItem>
               <ListItem>Forfeiture or confiscation of funds</ListItem>
+              <ListItem>For any complaints : complaints@moonbet.com</ListItem>
             </SubSection>
           </PolicySection>
         </div>

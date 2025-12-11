@@ -26,6 +26,7 @@ import {
   setGameCache, 
   setSessionCache 
 } from "../services/gamePrefetchService";
+import GameDescriptionCard from "../components/sections/GameDescriptionCard";
 
 // =============================================================================
 // LAZY LOAD BELOW-FOLD SECTIONS
@@ -788,6 +789,9 @@ const GamePage = () => {
 
       {/* BELOW-FOLD SECTIONS - Lazy loaded */}
       <div className="game-you-may-like">
+        <Suspense fallback={<SectionSkeleton/>}>
+          <GameDescriptionCard />
+        </Suspense>
         <Suspense fallback={<SectionSkeleton/>}>
           <GamesYouLike provider={gameData?.provider} excludeGame={gameData?.name}/>
         </Suspense>

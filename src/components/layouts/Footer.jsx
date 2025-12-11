@@ -38,8 +38,8 @@ const Footer = () => {
     ],
     support: [
       { label: "Careers", path: "/careers" },
-      { label: "Live Support", path: "/live-support" },
-      { label: "Gaming Helpline", path: "/gaming-helpline" },
+      { label: "Live Support", isLiveSupport: true },
+      { label: "Gaming Helpline", path: "/terms-and-condition" },
       { label: "Account Payouts Policy", path: "/account-payout-policy" },
       { label: "Modern Slavery", path: "/modern-slavery" },
       {
@@ -311,12 +311,29 @@ const Footer = () => {
                 <ul className="flex flex-col gap-2 md:gap-3">
                   {footerLinks.support.map((link) => (
                     <li key={link.label}>
-                      <Link
-                        to={link.path}
-                        className="text-xs sm:text-sm text-white/70 hover:text-[#e1e1e1] transition-all duration-300 inline-block hover:translate-x-1"
-                      >
-                        {link.label}
-                      </Link>
+                      {link.isLiveSupport ? (
+                        // ⭐ LIVE SUPPORT BUTTON (same as Sidebar)
+                        <button
+                          onClick={() => {
+                            if (window.tidioChatApi) {
+                              window.tidioChatApi.show();
+                              window.tidioChatApi.open();
+                            } else {
+                              console.warn("Tidio not ready");
+                            }
+                          }}
+                          className="text-xs sm:text-sm text-white/70 hover:text-[#e1e1e1] transition-all duration-300 inline-block hover:translate-x-1"
+                        >
+                          {link.label}
+                        </button>
+                      ) : (
+                        <Link
+                          to={link.path}
+                          className="text-xs sm:text-sm text-white/70 hover:text-[#e1e1e1] transition-all duration-300 inline-block hover:translate-x-1"
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -368,6 +385,14 @@ const Footer = () => {
                         className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
                       >
                         feedback@moonbet.games
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="mailto:feedback@moonbet.games"
+                        className="text-xs sm:text-sm text-white/80 hover:text-[#9292D2] transition-colors duration-300"
+                      >
+                        complaints@moonbet.com
                       </a>
                     </li>
                   </ul>
