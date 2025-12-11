@@ -370,8 +370,6 @@ const GamePage = () => {
           setIsIframeLoaded(false);
           setIframeUrl(""); // Clear old iframe immediately
           setSessionKey(prev => prev + 1); // This triggers the main useEffect
-          
-          toast.info(`Switching to ${newCrypto}...`, { autoClose: 2000 });
         }
       }, 300);
     };
