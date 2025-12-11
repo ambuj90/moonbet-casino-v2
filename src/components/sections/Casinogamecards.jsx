@@ -73,7 +73,7 @@ const CasinoGameCards = () => {
       desc: "Banker bets hit 50.68% of the time. The math is in your favor.",
       background: "rgba(132, 67, 160, 0.50)",
       hoverBg: "#8443A0",
-      link: "/casino/baccarat",
+      link: "/casino/roulette",
     },
   ];
 

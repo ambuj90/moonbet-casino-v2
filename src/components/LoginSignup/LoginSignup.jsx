@@ -8,6 +8,7 @@ import api from "../../api/axios";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import bs58 from "bs58";
+import TwoFactorLoginPopup from "../settings/TwoFactorLoginPopup";
 
 const validateUsername = (username = "") => {
   const uname = String(username).trim();
@@ -140,6 +141,8 @@ const LoginSignup = ({
   const [showPassword, setShowPassword] = useState(false);
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [twoFARequired, setTwoFARequired] = useState(false);
+const [twoFAUserId, setTwoFAUserId] = useState(null);
 
   // Form state
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -467,23 +470,42 @@ const LoginSignup = ({
     setLoginLoading(true);
 
     try {
-      const { data } = await axios.post(
-        "/auth-service/api/auth/login",
-        loginData
-      );
+  const { data } = await axios.post("/auth-service/api/auth/login", loginData);
 
-      if (data?.token) {
-        setLoginLoading(false);
-        localStorage.setItem("token", data.token);
-        toast.success("You have logged in successfully!");
-        if (onLoginSuccess) onLoginSuccess(data);
-        return;
-      }
+  setLoginLoading(false);
 
-      // 4️⃣ Backend returned error but with no token
-      setLoginLoading(false);
-      toast.error(data.message || "Unable to log in. Please try again.");
-    } catch (err) {
+  // CASE 1 → 2FA Enabled
+  if (data.requires2FA === true) {
+    console.log("2FA REQUIRED FOR USER:", data.userId);
+
+    setTwoFAUserId(data.userId);
+    setTwoFARequired(true);   // OPEN THE POPUP
+
+    toast.info("Enter the 6-digit code from your Authenticator App.");
+    return;
+  }
+
+  // CASE 2 → Normal login
+  if (data.token) {
+    localStorage.setItem("token", data.token);
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        id: data.user._id,
+        username: data.user.username,
+        email: data.user.email,
+        isTwoFactorEnabled: data.user.isTwoFactorEnabled || false,
+      })
+    );
+
+    toast.success("You have logged in successfully!");
+    if (onLoginSuccess) onLoginSuccess(data);
+    return;
+  }
+
+  toast.error(data.message || "Unable to log in.");
+} catch (err) {
       setLoginLoading(false);
 
       // FIX: check both message AND error fields
@@ -1750,6 +1772,33 @@ const LoginSignup = ({
           </p>
         </div>
       )}
+      <TwoFactorLoginPopup
+  isOpen={twoFARequired}
+  userId={twoFAUserId}
+  onClose={() => setTwoFARequired(false)}
+  onSuccess={(data) => {
+    // Close ONLY the popup
+    setTwoFARequired(false);
+
+    // Save token and user
+    localStorage.setItem("token", data?.token);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        id: data?.user?._id,
+        username: data?.user?.username,
+        email: data?.user?.email,
+        isTwoFactorEnabled: true,
+      })
+    );
+
+    toast.success("2FA Login Successful!");
+
+    // 🔥 Do NOT call onClose() here
+    // If you want to close the modal, let the parent close it AFTER finishing login flow
+    if (onLoginSuccess) onLoginSuccess(data);
+  }}
+/>
     </div>
   );
 };
