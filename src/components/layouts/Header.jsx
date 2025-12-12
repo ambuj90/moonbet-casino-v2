@@ -13,6 +13,7 @@ import WalletDropdownCenter from "../Navbar/WalletDropdownCenter";
 import MobileHeader from "../Navbar/MobileHeader";
 import SidebarHeader from "../Navbar/SidebarHeader";
 import TopHeader from "../Navbar/TopHeader";
+import GlobalSearchPopup from "../settings/GlobalSearchPopup";
 import { useLoadWalletCoins } from "../../hooks/useLoadWalletCoins";
 
 // 3D Rotating Coin Component
@@ -59,6 +60,7 @@ const Header = ({
   const [showCoinAnimation, setShowCoinAnimation] = useState(false);
   const location = useLocation();
   const walletDropdownRef = useRef(null);
+  const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
 
   const [hasToken, setHasToken] = useState(!!localStorage.getItem("token"));
   const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -609,6 +611,7 @@ const Header = ({
         handleCurrencySelect={handleCurrencySelect}
         walletDropdownOpen={walletDropdownOpen}
         setWalletDropdownOpen={setWalletDropdownOpen}
+        setGlobalSearchOpen={setGlobalSearchOpen}
       />
 
       {/* DESKTOP SIDEBAR - Collapsible */}
@@ -639,6 +642,10 @@ const Header = ({
         isOpen={walletModalOpen}
         onClose={() => setWalletModalOpen(false)}
       />
+      <GlobalSearchPopup
+  isOpen={globalSearchOpen}
+  onClose={() => setGlobalSearchOpen(false)}
+/>
 
       {/* Custom Scrollbar Styles */}
       <style jsx>{`

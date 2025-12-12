@@ -143,11 +143,11 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                         [game.uuid]: !prev[game.uuid],
                       }));
                     }}
-                    className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-10 ${
-                      favorite?.[game.uuid]
-                        ? ""
-                        : "hover:bg-[rgba(240,119,48,0.10)]"
-                    }`}
+                    className={`group/fav absolute top-0 right-0 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-10 ${
+                    favorite?.[game.uuid]
+                      ? "opacity-100"
+                      : ""
+                  }`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -165,20 +165,18 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                           x2="100%"
                           y2="0%"
                         >
-                          <stop offset="0%" stopColor="#a62a00" />
-                          <stop offset="100%" stopColor="#ffb8a1" />
+                          <stop offset="0%" stopColor="#D10000" />
+                          <stop offset="100%" stopColor="#D10000" />
                         </linearGradient>
                       </defs>
 
                       <g filter="url(#filter0_i_9169_775)">
                         <path
                           d="M12.5109 0C13.9778 8.11794e-05 15.3565 0.572116 16.3938 1.60938C18.535 3.75069 18.5351 7.23458 16.3938 9.37598L10.3723 15.3984C10.007 15.7637 9.51949 15.9648 9.00021 15.9648C8.48092 15.9648 7.99347 15.7636 7.62813 15.3984L1.60567 9.37598C-0.535331 7.23467 -0.535118 3.75066 1.60567 1.60938C2.64293 0.572082 4.02253 4.3329e-05 5.48946 0C6.78681 0 8.01594 0.44767 9.00021 1.26855C9.98454 0.44767 11.2135 0 12.5109 0Z"
-                          fill={
-                            favorite?.[game.uuid]
-                              ? "url(#favoriteGradient)" // Gradient for favorite games
-                              : "#16192DB2" // Solid color for non-favorite games
-                          }
-                          fillOpacity="0.7"
+                          fill={favorite?.[game.uuid] ? "url(#favoriteGradient)" : undefined}
+                          className={!favorite?.[game.uuid] ? "fill-[#16192DB2] group-hover/fav:fill-white  stroke-white transition-all duration-300" : ""}
+                          fillOpacity="1"
+                          strokeWidth="0.3"
                         />
                       </g>
 

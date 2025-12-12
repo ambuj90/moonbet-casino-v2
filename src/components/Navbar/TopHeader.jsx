@@ -82,7 +82,7 @@ const DesktopSearchBar = memo(({ searchTerm, setSearchTerm, onSubmit }) => {
 DesktopSearchBar.displayName = "DesktopSearchBar";
 
 // Animated Search Field (for logged in users)
-const AnimatedSearchField = memo(({ isOpen, searchTerm, setSearchTerm, onSubmit, onToggle }) => {
+const AnimatedSearchField = memo(({ isOpen, searchTerm, setSearchTerm, onSubmit, onToggle, setGlobalSearchOpen }) => {
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === "Enter") onSubmit();
@@ -131,16 +131,12 @@ const AnimatedSearchField = memo(({ isOpen, searchTerm, setSearchTerm, onSubmit,
 
       {/* Search toggle button */}
       <button
-        onClick={onToggle}
-        className="w-10 h-10 hidden md:flex items-center justify-center rounded-full transition-all hover:bg-white/10"
-      >
-        <img
-          src="/icons/search.svg"
-          alt="Search"
-          className="w-10 h-10 object-contain"
-          loading="lazy"
-        />
-      </button>
+  onClick={() => setGlobalSearchOpen(true)}
+  className="w-10 h-10 hidden md:flex items-center justify-center rounded-full hover:bg-white/10"
+>
+  <img src="/icons/search.svg" alt="Search" className="w-10 h-10 object-contain" loading="lazy" />
+</button>
+
     </div>
   );
 });
@@ -234,6 +230,7 @@ const TopHeader = ({
   setWalletModalOpen,
   setWalletSettingsOpen,
   handleCurrencySelect,
+  setGlobalSearchOpen,
   // New props from optimized Header.jsx
   isLoadingCurrencies = false,
   isUpdatingBalance = false,
@@ -338,6 +335,7 @@ const TopHeader = ({
                 setSearchTerm={setSearchTerm}
                 onSubmit={submitSearch}
                 onToggle={toggleSearch}
+                setGlobalSearchOpen={setGlobalSearchOpen}
               />
 
               {/* User Actions */}

@@ -171,7 +171,7 @@ const LeaderboardSection = () => {
 
 const GameBetsSection = () => {
   const { isLoggedIn, token } = useAuthStore();
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("leaderboard");
   const [bets, setBets] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const intervalRef = useRef(null);
