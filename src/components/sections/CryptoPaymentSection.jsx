@@ -49,7 +49,7 @@ const CryptoPaymentSection = () => {
             </span>
 
             <span className="text-[#7171B4] text-[20px] px-2">
-              Deposit Bonus or 50% Rakeback
+              Deposit Bonus
             </span>
           </p>
         </div>
