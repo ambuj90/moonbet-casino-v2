@@ -29,7 +29,12 @@ const GlobalSearchPopup = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-sm flex items-start justify-center pt-24"
+        className="fixed inset-0 z-[99999]  flex items-center justify-center "
+        style={{
+        backgroundColor: "rgba(13, 14, 54, 0.30)",
+        backdropFilter: "blur(25px)",
+        WebkitBackdropFilter: "blur(25px)",
+      }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -37,7 +42,11 @@ const GlobalSearchPopup = ({ isOpen, onClose }) => {
       >
         {/* Modal Box */}
         <motion.div
-          className="w-full max-w-3xl bg-[#101020] rounded-2xl p-6 mx-4"
+          className="w-full max-w-3xl rounded-2xl p-6 mx-4 max-h-[80vh] overflow-y-auto"
+          style={{
+              background:
+                "linear-gradient(137deg, rgb(201 201 201 / 26%) 1.57%, rgba(196, 196, 196, 0.1) 100%)",
+            }}
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
@@ -81,12 +90,14 @@ const GlobalSearchPopup = ({ isOpen, onClose }) => {
                 <p className="opacity-60 mt-1">Try another keyword</p>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {results.map((g) => (
-                  <div key={g.uuid} className="rounded-lg bg-[#1f1f3d] p-3">
-                    <img src={g.image} className="w-full rounded-lg" />
-                    <p className="text-white text-sm mt-2">{g.name}</p>
-                    <p className="text-gray-400 text-xs">{g.provider}</p>
+                  <div key={g.uuid} className="rounded-lg bg-[#1f1f3d] p-2">
+                    <a href={`/game/${g.uuid}`} className="block hover:opacity-80 transition-opacity">
+                      <img src={g.image} className="w-full rounded-lg" />
+                      <p className="text-white text-center text-sm mt-2">{g.name}</p>
+                      <p className="text-gray-400 text-center text-xs">{g.provider}</p>
+                    </a>
                   </div>
                 ))}
               </div>
