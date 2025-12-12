@@ -1,11 +1,13 @@
 // src/components/MobileBottomNav.jsx - Updated Mobile Bottom Navigation
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import GlobalSearchPopup from "../settings/GlobalSearchPopup";
 
 const MobileBottomNav = ({ onHamburgerClick }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedItem, setSelectedItem] = useState("home");
+  const [showSearchPopup, setShowSearchPopup] = useState(false);
 
   // SVG Icons as components
   const HamburgerIcon = () => (
@@ -90,7 +92,7 @@ const MobileBottomNav = ({ onHamburgerClick }) => {
     { id: "home", name: "Rewards", icon: HomeIcon, path: "#" },
     { id: "games", name: "Casino", icon: GamesIcon, path: "/casino" },
     { id: "promos", name: "Scores", icon: PromoIcon, path: "/leaderboard" },
-    { id: "chat", name: "Search", icon: ChatIcon, path: "/chat" },
+    { id: "chat", name: "Search", icon: ChatIcon, action: "search" },
   ];
 
   // Update selected state based on current path
@@ -108,14 +110,17 @@ const MobileBottomNav = ({ onHamburgerClick }) => {
   }, [location.pathname]);
 
   const handleMenuClick = (item) => {
-    if (item.action === "hamburger") {
-      // Call the parent component's hamburger handler
-      onHamburgerClick();
-    } else if (item.path) {
-      setSelectedItem(item.id);
-      navigate(item.path);
-    }
-  };
+  if (item.action === "hamburger") {
+    onHamburgerClick();
+  } 
+  else if (item.action === "search") {
+    setShowSearchPopup(true);
+  }
+  else if (item.path) {
+    setSelectedItem(item.id);
+    navigate(item.path);
+  }
+};
 
   return (
     <>
@@ -145,6 +150,10 @@ const MobileBottomNav = ({ onHamburgerClick }) => {
           })}
         </div>
       </div>
+      <GlobalSearchPopup 
+  isOpen={showSearchPopup} 
+  onClose={() => setShowSearchPopup(false)} 
+/>
 
       {/* Add padding to main content on mobile to prevent overlap */}
       <style jsx>{`
