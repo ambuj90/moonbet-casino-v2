@@ -210,7 +210,7 @@ const isLoggedIn = !!user?.id;
       : []),
     {
       path: "#",
-      label: "Rewards",
+      label: "Promotions",
       icon: "/icons/rewards.svg",
       activeIcon: "/active-menu/rewards-active.svg",
       comingSoon: true,

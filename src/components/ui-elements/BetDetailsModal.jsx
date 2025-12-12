@@ -301,20 +301,28 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
                 {/* Play Button */}
                 <motion.button
                   onClick={() => {
-  const slug = makeSlug(betData?.gameName);
-  const uuid = betData?.gameUuid || betData?.uuid;
+                    const generatedSlug = makeSlug(betData?.gameName);
+                    const slug = betData?.slug || generatedSlug;
 
-  if (!uuid) {
-    console.error("❌ Missing game UUID in betData:", betData);
-    return;
-  }
+                    // check for all possible uuid fields
+                    const uuid =
+                      betData?.gameUuid ||
+                      betData?.uuid ||
+                      betData?.game_uuid ||
+                      betData?.gameId;
 
-  handleClose();
+                    handleClose();
 
-  setTimeout(() => {
-    navigate(`/game/${uuid}/${slug}`);
-  }, 250);
-}}
+                    setTimeout(() => {
+                      if (uuid) {
+                        // If game has a UUID → use /game/:uuid/:slug
+                        navigate(`/game/${uuid}/${slug}`);
+                      } else {
+                        // If no UUID → use slug only → /game/:slug
+                        navigate(`/game/${slug}`);
+                      }
+                    }, 250);
+                  }}
                   className="w-full py-4 bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-[#000] font-[600] text-[16px] rounded-lg shadow-md transition-all duration-300 hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 flex items-center justify-center "
                   whileHover={{
                     scale: 1.02,

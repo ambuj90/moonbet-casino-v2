@@ -751,7 +751,7 @@ const GamePage = () => {
             size="small"
           />
           <div className="flex items-center gap-2">
-            <ReloadButton onClick={handleReloadGame} disabled={isLoading} size="small"/>
+            {/* <ReloadButton onClick={handleReloadGame} disabled={isLoading} size="small"/> */}
             <FullscreenButton onClick={toggleFullScreen} size="small"/>
           </div>
           <PlayModeToggle 
@@ -775,7 +775,7 @@ const GamePage = () => {
               isClaiming={isClaiming}
             />
             <div className="flex items-center gap-4">
-              <ReloadButton onClick={handleReloadGame} disabled={isLoading}/>
+              {/* <ReloadButton onClick={handleReloadGame} disabled={isLoading}/> */}
               <FullscreenButton onClick={toggleFullScreen}/>
               <PlayModeToggle 
                 isRealPlay={isRealPlay} 
@@ -789,9 +789,6 @@ const GamePage = () => {
 
       {/* BELOW-FOLD SECTIONS - Lazy loaded */}
       <div className="game-you-may-like">
-        <Suspense fallback={<SectionSkeleton/>}>
-          <GameDescriptionCard />
-        </Suspense>
         <Suspense fallback={<SectionSkeleton/>}>
           <GamesYouLike provider={gameData?.provider} excludeGame={gameData?.name}/>
         </Suspense>
