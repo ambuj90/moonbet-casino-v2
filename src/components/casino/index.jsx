@@ -7,27 +7,50 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
   const [games, setGames] = useState([]);
   const [visibleCount, setVisibleCount] = useState(48);
   const [loading, setLoading] = useState(true);
+
+  // ⭐ Map: { [gameUuid]: true | false }
   const [favorite, setFavorite] = useState({});
+
   const [isMobileDevice, setIsMobileDevice] = useState(false);
+  const [userId, setUserId] = useState(null);      // ⭐ keep userId
   const navigate = useNavigate();
 
+  // ─────────────────────────────────────────────
+  // 1) Detect device type
+  // ─────────────────────────────────────────────
   useEffect(() => {
     const checkDevice = () => {
-      setIsMobileDevice(window.innerWidth <= 768); // Mobile breakpoint
+      if (typeof window === "undefined") return;
+      setIsMobileDevice(window.innerWidth <= 768);
     };
 
-    checkDevice(); // run initially
+    checkDevice();
     window.addEventListener("resize", checkDevice);
-
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
+  // ─────────────────────────────────────────────
+  // 2) Get userId once from localStorage
+  // ─────────────────────────────────────────────
   useEffect(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      const id = user.id || "690b0290cb255ca66b14a529"; // your fallback
+      setUserId(id);
+    } catch (e) {
+      console.error("Failed to parse user from localStorage", e);
+    }
+  }, []);
+
+  // ─────────────────────────────────────────────
+  // 3) Fetch games when type/filter/search/user changes
+  // ─────────────────────────────────────────────
+  useEffect(() => {
+    if (!userId) return; // wait until we know userId
+
     const fetchGames = async () => {
       setLoading(true);
       try {
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        const userId = user.id || "690b0290cb255ca66b14a529";
         let apiUrl = "";
 
         // 1. Recent Games
@@ -54,26 +77,53 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
 
         const { data } = await axios.get(apiUrl);
 
-        if (data?.success) setGames(data.data || []);
-        else if (Array.isArray(data?.data)) setGames(data.data);
-        else setGames([]);
+        let list = [];
+        if (data?.success && Array.isArray(data.data)) list = data.data;
+        else if (Array.isArray(data?.data)) list = data.data;
+        else list = [];
+
+        setGames(list);
       } catch (err) {
         console.error("Error fetching games:", err);
         setGames([]);
+        setFavorite({});
       } finally {
         setLoading(false);
       }
     };
 
     fetchGames();
-  }, [type, filter, searchTerm]);
+  }, [type, filter, searchTerm, userId]);
 
+  // ⭐ Fetch backend favourite list on mount or when userId changes
+useEffect(() => {
+  if (!userId) return;
+
+  const fetchFavourites = async () => {
+    try {
+      const res = await axios.get(`/wallet-service/api/games/${userId}/favourite-game`);
+      const favGames = res.data?.games || [];
+
+      const map = {};
+      favGames.forEach(g => map[g.uuid] = true);
+
+      setFavorite(map);
+    } catch (err) {
+      console.error("Failed to fetch favourites:", err);
+    }
+  };
+
+  fetchFavourites();
+}, [userId]);
+
+  // ─────────────────────────────────────────────
+  // 4) Play now
+  // ─────────────────────────────────────────────
   const handlePlayNow = (game) => {
     if (!game.slug) {
       console.error("❌ No slug found for game:", game);
       return;
     }
-
     navigate(`/game/${game.slug}`);
   };
 
@@ -88,7 +138,47 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
     }),
   };
 
-  // Filter games based on device type (mobile/desktop)
+  // ─────────────────────────────────────────────
+  // 5) TOGGLE FAVORITE (with API)
+  // ─────────────────────────────────────────────
+  const handleToggleFavorite = async (e, game) => {
+  e.stopPropagation();
+  if (!userId || !game?.uuid) return;
+
+  const prevState = !!favorite[game.uuid];
+  const nextState = !prevState;
+
+  // Optimistic update
+  setFavorite((prev) => ({
+    ...prev,
+    [game.uuid]: nextState,
+  }));
+
+  try {
+    await axios.post(
+      `/wallet-service/api/games/${userId}/favourite`,
+      { uuid: game.uuid }
+    );
+
+    // If user un-favorites inside favourites page → remove from UI
+    if (type === "favorites" && !nextState) {
+      setGames((prev) => prev.filter((g) => g.uuid !== game.uuid));
+    }
+
+  } catch (err) {
+    console.error("Failed to toggle favourite:", err);
+
+    // rollback UI
+    setFavorite((prev) => ({
+      ...prev,
+      [game.uuid]: prevState,
+    }));
+  }
+};
+
+  // ─────────────────────────────────────────────
+  // 6) Filter by device (mobile/desktop)
+  // ─────────────────────────────────────────────
   const filteredGames = games.filter((game) => {
     const isMobileFlag =
       game.is_mobile === true ||
@@ -96,10 +186,8 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
       game.is_mobile === 1;
 
     if (isMobileDevice) {
-      // User is on mobile → show ONLY mobile games
       return isMobileFlag;
     } else {
-      // User on desktop → show desktop ones
       return (
         game.is_mobile === false ||
         game.is_mobile === "false" ||
@@ -109,6 +197,9 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
     }
   });
 
+  // ─────────────────────────────────────────────
+  // 7) RENDER
+  // ─────────────────────────────────────────────
   return (
     <section className="w-full py-10">
       <div className="max-w-7xl mx-auto px-4">
@@ -134,20 +225,12 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                   custom={i}
                   className="relative overflow-hidden cursor-pointer group transition-all"
                 >
-                  {/* Favorite Icon (Top Right) */}
+                  {/* ⭐ Favorite Icon (Top Right) */}
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // prevents PLAY NOW trigger
-                      setFavorite((prev) => ({
-                        ...prev,
-                        [game.uuid]: !prev[game.uuid],
-                      }));
-                    }}
+                    onClick={(e) => handleToggleFavorite(e, game)}
                     className={`group/fav absolute top-0 right-0 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-10 ${
-                    favorite?.[game.uuid]
-                      ? "opacity-100"
-                      : ""
-                  }`}
+                      favorite?.[game.uuid] ? "opacity-100" : ""
+                    }`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +240,6 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                       fill="none"
                     >
                       <defs>
-                        {/* Define the gradient used for the favorite state */}
                         <linearGradient
                           id="favoriteGradient"
                           x1="0%"
@@ -173,8 +255,16 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                       <g filter="url(#filter0_i_9169_775)">
                         <path
                           d="M12.5109 0C13.9778 8.11794e-05 15.3565 0.572116 16.3938 1.60938C18.535 3.75069 18.5351 7.23458 16.3938 9.37598L10.3723 15.3984C10.007 15.7637 9.51949 15.9648 9.00021 15.9648C8.48092 15.9648 7.99347 15.7636 7.62813 15.3984L1.60567 9.37598C-0.535331 7.23467 -0.535118 3.75066 1.60567 1.60938C2.64293 0.572082 4.02253 4.3329e-05 5.48946 0C6.78681 0 8.01594 0.44767 9.00021 1.26855C9.98454 0.44767 11.2135 0 12.5109 0Z"
-                          fill={favorite?.[game.uuid] ? "url(#favoriteGradient)" : undefined}
-                          className={!favorite?.[game.uuid] ? "fill-[#16192DB2] group-hover/fav:fill-white  stroke-white transition-all duration-300" : ""}
+                          fill={
+                            favorite?.[game.uuid]
+                              ? "url(#favoriteGradient)"
+                              : undefined
+                          }
+                          className={
+                            !favorite?.[game.uuid]
+                              ? "fill-[#16192DB2] group-hover/fav:fill-white  stroke-white transition-all duration-300"
+                              : ""
+                          }
                           fillOpacity="1"
                           strokeWidth="0.3"
                         />
@@ -228,6 +318,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                     </svg>
                   </button>
 
+                  {/* Thumbnail + Play overlay */}
                   <div className="relative aspect-[18/12] overflow-hidden rounded-xl">
                     <motion.img
                       src={game.image}
@@ -235,13 +326,13 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
 
-                    {/* Overlay with Play Now Button */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto bg-[var(--overlay-bg)] backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all">
                       <motion.button
                         onClick={() => handlePlayNow(game)}
                         className="px-4 py-2 rounded-full text-white font-semibold text-sm"
                         whileTap={{ scale: 0.9 }}
                       >
+                        {/* play icon */}
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="54"
@@ -263,10 +354,10 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                               width="53.0522"
                               height="59.0001"
                               filterUnits="userSpaceOnUse"
-                              color-interpolation-filters="sRGB"
+                              colorInterpolationFilters="sRGB"
                             >
                               <feFlood
-                                flood-opacity="0"
+                                floodOpacity="0"
                                 result="BackgroundImageFix"
                               />
                               <feColorMatrix
@@ -304,7 +395,9 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
                     <div className="text-sm font-semibold text-white truncate">
                       {game.name}
                     </div>
-                    <div className="text-xs text-gray-400">{game.provider}</div>
+                    <div className="text-xs text-gray-400">
+                      {game.provider}
+                    </div>
                   </div>
                 </motion.div>
               ))}
