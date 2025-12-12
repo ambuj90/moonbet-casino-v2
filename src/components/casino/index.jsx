@@ -204,7 +204,7 @@ useEffect(() => {
     <section className="w-full py-10">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="font-['Neuropolitical'] text-xl mb-6 uppercase">
-          {type === "all" ? "ALL" : type.toUpperCase()} GAMES
+          {type === "all" ? "ALL" : type.toUpperCase()}
         </h2>
 
         {loading ? (
