@@ -1,5 +1,5 @@
 // components/Navbar/WalletDropdownCenter.jsx - OPTIMIZED VERSION v2
-// 
+//
 // FIXES:
 // - Skeleton ONLY shows on initial load (when currencies array is empty)
 // - Currency change keeps list visible, only updates balance
@@ -11,7 +11,14 @@
 // - Memoized sub-components
 // - CSS animations instead of Framer Motion
 
-import React, { useState, useRef, useEffect, useCallback, useMemo, memo } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo,
+  memo,
+} from "react";
 import axios from "axios";
 
 // =============================================================================
@@ -56,10 +63,19 @@ const CurrencyListSkeleton = memo(() => (
       >
         <div className="w-9 h-9 rounded-full bg-white/20 animate-pulse" />
         <div className="flex-1 flex flex-col ml-2.5 gap-1.5">
-          <div className="w-20 h-4 rounded bg-white/20 animate-pulse" style={{ animationDelay: `${i * 100 + 50}ms` }} />
-          <div className="w-12 h-3 rounded bg-white/15 animate-pulse" style={{ animationDelay: `${i * 100 + 100}ms` }} />
+          <div
+            className="w-20 h-4 rounded bg-white/20 animate-pulse"
+            style={{ animationDelay: `${i * 100 + 50}ms` }}
+          />
+          <div
+            className="w-12 h-3 rounded bg-white/15 animate-pulse"
+            style={{ animationDelay: `${i * 100 + 100}ms` }}
+          />
         </div>
-        <div className="w-16 h-4 rounded bg-white/20 animate-pulse" style={{ animationDelay: `${i * 100 + 150}ms` }} />
+        <div
+          className="w-16 h-4 rounded bg-white/20 animate-pulse"
+          style={{ animationDelay: `${i * 100 + 150}ms` }}
+        />
       </div>
     ))}
   </div>
@@ -108,7 +124,11 @@ const RakebackSection = memo(({ rakeback, isClaiming, onClaim }) => (
       disabled={rakeback <= 0 || isClaiming}
       className={`
         claim-btn relative px-4 py-1.5 rounded-[4px] transition-all select-none
-        ${rakeback > 0 ? "text-white hover:brightness-110" : "cursor-not-allowed text-white/40"}
+        ${
+          rakeback > 0
+            ? "text-white hover:brightness-110"
+            : "cursor-not-allowed text-white/40"
+        }
       `}
       style={{
         background:
@@ -171,7 +191,9 @@ const CurrencyItem = memo(({ currency, isSelected, isUpdating, onClick }) => {
     <div
       onClick={onClick}
       className={`wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250 ${
-        isSelected ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]" : ""
+        isSelected
+          ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]"
+          : ""
       } ${isUpdating && isSelected ? "opacity-70" : ""}`}
     >
       {/* Hover Background Effect */}
@@ -203,7 +225,9 @@ const CurrencyItem = memo(({ currency, isSelected, isUpdating, onClick }) => {
 
       {/* Currency Info */}
       <div className="coin-info flex-1 flex flex-col ml-2.5 z-10">
-        <span className="coin-name text-white text-sm font-medium">{currency.name}</span>
+        <span className="coin-name text-white text-sm font-medium">
+          {currency.name}
+        </span>
         <span className="coin-symbol text-[#9292D2] text-xs group-hover:text-[#C8C8E1]">
           {currency.symbol}
         </span>
@@ -214,7 +238,9 @@ const CurrencyItem = memo(({ currency, isSelected, isUpdating, onClick }) => {
         {isUpdating && isSelected ? (
           <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
         ) : null}
-        <span className="coin-amount text-white text-[13px]">{currency.balance}</span>
+        <span className="coin-amount text-white text-[13px]">
+          {currency.balance}
+        </span>
       </div>
     </div>
   );
@@ -254,7 +280,9 @@ const WalletButton = memo(({ onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const currentSrc = isHovered ? "/active-menu/wallet_hover.svg" : "/active-menu/wallet_dec.svg";
+  const currentSrc = isHovered
+    ? "/active-menu/wallet_hover.svg"
+    : "/active-menu/wallet_dec.svg";
 
   return (
     <button
@@ -340,9 +368,18 @@ const WalletDropdownCenter = ({
   const [showClaimPopup, setShowClaimPopup] = useState(false);
   const [claimAmount, setClaimAmount] = useState(0);
   const [selectedIconLoaded, setSelectedIconLoaded] = useState(false);
-  
+
   // Track which currency is currently being updated
   const [updatingCurrencySymbol, setUpdatingCurrencySymbol] = useState(null);
+
+  useEffect(() => {
+  if (!selectedCurrency && currencies.length > 0) {
+    const preferred = localStorage.getItem("preferredCurrency") || "BTC";
+    const found = currencies.find((c) => c.symbol === preferred) || currencies[0];
+
+    setSelectedCurrency(found);
+  }
+}, [currencies, selectedCurrency]);
 
   // Reset icon loaded state when currency changes
   useEffect(() => {
@@ -393,7 +430,7 @@ const WalletDropdownCenter = ({
       );
 
       const pending = res.data?.pending || 0;
-      
+
       rakebackCache.data = pending;
       rakebackCache.timestamp = Date.now();
       rakebackCache.userId = userId;
@@ -457,7 +494,10 @@ const WalletDropdownCenter = ({
     if (!walletDropdownOpen) return;
 
     const handleClickOutside = (event) => {
-      if (walletDropdownRef.current && !walletDropdownRef.current.contains(event.target)) {
+      if (
+        walletDropdownRef.current &&
+        !walletDropdownRef.current.contains(event.target)
+      ) {
         setWalletDropdownOpen(false);
       }
     };
@@ -470,30 +510,24 @@ const WalletDropdownCenter = ({
   // CURRENCY SELECT HANDLER - Smooth transition, no skeleton
   // ==========================================================================
   const onCurrencyClick = useCallback(
-    (currency) => {
-      // Set which currency is updating (for spinner on that item)
-      setUpdatingCurrencySymbol(currency.symbol);
-      
-      // Optimistically update selected state
-      setSelectedCurrency(currency);
-      
-      // Call parent handler (does API call)
-      handleCurrencySelect(currency);
-      
-      // Update localStorage immediately
-      localStorage.setItem("preferredCurrency", currency.symbol);
-      
-      // Dispatch event for other components (like GamePage)
-      window.dispatchEvent(new Event("preferredCurrencyUpdated"));
-      
-      // Clear updating state after a short delay (API should complete by then)
-      setTimeout(() => {
-        setUpdatingCurrencySymbol(null);
-        setWalletDropdownOpen(false);
-      }, 500);
-    },
-    [setSelectedCurrency, handleCurrencySelect]
-  );
+  async (currency) => {
+    if (!currency) return;
+
+    setUpdatingCurrencySymbol(currency.symbol);
+
+    // 🔥 This now does:
+    // - setSelectedCurrency
+    // - localStorage updates
+    // - walletBalance update
+    // - preferredCurrencyUpdated event
+    // - backend POST to setPreferredCurrency
+    await handleCurrencySelect(currency);
+
+    setUpdatingCurrencySymbol(null);
+    setWalletDropdownOpen(false);
+  },
+  [handleCurrencySelect]
+);
 
   // ==========================================================================
   // OTHER HANDLERS
@@ -532,7 +566,10 @@ const WalletDropdownCenter = ({
       <ClaimPopup show={showClaimPopup} amount={claimAmount} />
 
       {/* Balance Display with Dropdown */}
-      <div className="relative flex justify-center sm:justify-start" ref={walletDropdownRef}>
+      <div
+        className="relative flex justify-center sm:justify-start"
+        ref={walletDropdownRef}
+      >
         {/* Wallet Button */}
         <button
           onClick={toggleDropdown}
@@ -553,7 +590,10 @@ const WalletDropdownCenter = ({
                   <div className="absolute inset-0 rounded-full bg-white/30 animate-pulse" />
                 )}
                 <img
-                  src={fixIconUrl(selectedCurrency?.iconPath) || "/icons/default-coin.svg"}
+                  src={
+                    fixIconUrl(selectedCurrency?.iconPath) ||
+                    "/icons/default-coin.svg"
+                  }
                   alt={selectedCurrency?.name || "Currency"}
                   className={`w-4 h-4 sm:w-5 sm:h-5 object-contain transition-opacity duration-200 ${
                     selectedIconLoaded ? "opacity-100" : "opacity-0"
@@ -576,7 +616,9 @@ const WalletDropdownCenter = ({
                     <span className="opacity-70">...</span>
                   </>
                 ) : (
-                  `${Number(selectedCurrency?.convertedValue || 0).toFixed(2)} ${gameCurrency || "USD"}`
+                  `${Number(selectedCurrency?.usdValue || 0).toFixed(2)} ${
+                    gameCurrency || "USD"
+                  }`
                 )}
               </span>
 
@@ -606,7 +648,8 @@ const WalletDropdownCenter = ({
             className="custom-header wallet-dropdown-card absolute left-[80%] sm:left-1/2 md:left-[65%] -translate-x-1/2 mt-12 w-[267px] rounded-[24px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] dropdown-animate-in"
             style={{
               padding: "0 12px",
-              border: "2px solid var(--drop-down-order, rgba(255,255,255,0.05))",
+              border:
+                "2px solid var(--drop-down-order, rgba(255,255,255,0.05))",
               background: "rgba(200,200,225,0.20)",
               backdropFilter: "blur(67.5px)",
               WebkitBackdropFilter: "blur(67.5px)",
@@ -653,7 +696,7 @@ const WalletDropdownCenter = ({
       <WalletButton onClick={openWalletModal} />
 
       {/* Styles */}
-      <style jsx>{`
+      <style>{`
         .dropdown-animate-in {
           animation: dropdownFadeIn 0.2s ease-out;
         }

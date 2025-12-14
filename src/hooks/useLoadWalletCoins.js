@@ -1,7 +1,7 @@
-// src/hooks/useLoadWalletCoins.js
 import { useEffect } from "react";
 import axios from "axios";
 import { useCurrencyStore } from "../store/useCurrencyStore";
+import { useBalanceStore } from "../store/useBalanceStore";
 
 const iconMap = {
   BTC: "bitcoin.svg",
@@ -23,70 +23,48 @@ const iconMap = {
 };
 
 export const useLoadWalletCoins = (userId, hasToken) => {
-  const { setCurrencies, setSelectedCurrency, setDisplayBalance } =
-    useCurrencyStore();
+  const { setWalletBalance } = useBalanceStore();
+  const { setCurrencies } = useCurrencyStore();
+
+  const loadCoins = async () => {
+    if (!userId || !hasToken) return;
+
+    const res = await axios.get(`/wallet-service/api/wallet/${userId}/balance`);
+
+    const dbBalances = res.data?.balances || [];
+    const totalUsd = res.data?.totalUsd || 0;
+
+    // 🔥 Create map for quick lookup
+    const balanceMap = {};
+    dbBalances.forEach((b) => {
+      balanceMap[b.currency.toUpperCase()] = b;
+    });
+
+    // ⭐ Build full currency list (ALL CURRENCIES)
+    const currencies = Object.keys(iconMap).map((key) => {
+      const entry = balanceMap[key] || { amount: 0, usdValue: 0 };
+
+      return {
+        name: key,
+        symbol: key,
+        balance: entry.amount,
+        usdValue: entry.usdValue,
+        convertedValue: entry.usdValue,
+        iconPath: `/wallet-icons/${iconMap[key]}`,
+      };
+    });
+
+    setCurrencies(currencies);
+    setWalletBalance(totalUsd);
+
+    // ⭐ Default currency if none selected → BTC
+    const saved = localStorage.getItem("preferredCurrency");
+    if (!saved) localStorage.setItem("preferredCurrency", "BTC");
+  };
 
   useEffect(() => {
-    console.log("🔥 useLoadWalletCoins mounted:", { userId, hasToken });
-    if (!hasToken || !userId) return;
+    loadCoins();
+  }, [userId, hasToken]);
 
-    const load = async () => {
-      try {
-        console.log("📌 Calling wallet APIs...");
-
-        const [coinsRes, balanceRes] = await Promise.all([
-          axios.get("/wallet-service/api/wallet/coins"),
-          axios.get(`/wallet-service/api/wallet/${userId}/balance`),
-        ]);
-
-        const coins = coinsRes.data || [];
-        const walletBalances = balanceRes.data?.balances || [];
-
-        const merged = coins.map((coin) => {
-          const symbol = coin.symbol.toUpperCase();
-
-          const balanceEntry = walletBalances.find(
-            (b) => b.currency.toUpperCase() === symbol
-          );
-
-          const balance = balanceEntry ? balanceEntry.amount : 0;
-
-          return {
-            ...coin,
-            balance,
-            convertedValue: balance, // show raw balance (not USD)
-            iconPath: `/wallet-icons/${iconMap[symbol] || "bitcoin.svg"}`,
-          };
-        });
-
-        setCurrencies(merged);
-
-        // Load preferred or default currency
-        const savedSymbol = localStorage.getItem("preferredCurrency");
-
-        const finalCurrency =
-          merged.find((c) => c.symbol === savedSymbol) ||
-          merged.find((c) => c.symbol === "BTC") ||
-          merged[0];
-
-        if (finalCurrency) {
-          setSelectedCurrency(finalCurrency);
-
-          let gameCurrency = localStorage.getItem("gameCurrency");
-          if (!gameCurrency) return;   // Wait until backend loads it
-
-          // Show raw balance (converted later in header)
-          setDisplayBalance(
-            `${finalCurrency.balance} ${finalCurrency.symbol}`
-          );
-        }
-
-        window.dispatchEvent(new Event("currencyLoaded"));
-      } catch (err) {
-        console.error("❌ Failed loading wallet:", err);
-      }
-    };
-
-    load();
-  }, [hasToken, userId]);
+  return { loadCoins };
 };

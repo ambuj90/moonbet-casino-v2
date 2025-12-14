@@ -291,7 +291,7 @@ const WalletSettingsModal = ({ isOpen, onClose }) => {
 
               <button
                 onClick={handleSave}
-                disabled={saving}
+                disabled={true}
                 className="w-[176px] h-[44px] 
                  text-white custom-btn
                  text-[#fff] font-[600] text-[16px] 

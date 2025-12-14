@@ -15,28 +15,9 @@ import SidebarHeader from "../Navbar/SidebarHeader";
 import TopHeader from "../Navbar/TopHeader";
 import GlobalSearchPopup from "../settings/GlobalSearchPopup";
 import { useLoadWalletCoins } from "../../hooks/useLoadWalletCoins";
-
-// 3D Rotating Coin Component
-const RotatingCoin = () => {
-  const meshRef = useRef();
-
-  return (
-    <Float speed={2} rotationIntensity={2} floatIntensity={0.5}>
-      <mesh ref={meshRef}>
-        <cylinderGeometry args={[0.8, 0.8, 0.15, 32]} />
-        <meshStandardMaterial
-          color="#FFD700"
-          metalness={0.9}
-          roughness={0.1}
-          emissive="#FFA500"
-          emissiveIntensity={0.3}
-        />
-      </mesh>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-    </Float>
-  );
-};
+import { useBalanceStore } from "../../store/useBalanceStore";
+import { useCurrencyStore } from "../../store/useCurrencyStore";
+import { useGameBalance } from "../../hooks/useGameBalance";
 
 const Header = ({
   onMobileSidebarToggle,
@@ -50,24 +31,24 @@ const Header = ({
     isDesktopSidebarCollapsed
   );
   const [activeSubmenu, setActiveSubmenu] = useState(null);
-  const [walletDropdownOpen, setWalletDropdownOpen] = useState(false);
   const [walletSettingsOpen, setWalletSettingsOpen] = useState(false);
   const [walletModalOpen, setWalletModalOpen] = useState(false);
-  const [currencies, setCurrencies] = useState([]);
-  const [selectedCurrency, setSelectedCurrency] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [walletBalance, setWalletBalance] = useState("0.00");
-  const [showCoinAnimation, setShowCoinAnimation] = useState(false);
+  const [walletDropdownOpen, setWalletDropdownOpen] = useState(false);
   const location = useLocation();
   const walletDropdownRef = useRef(null);
   const [globalSearchOpen, setGlobalSearchOpen] = useState(false);
+
+  const { walletBalance, setWalletBalance } = useBalanceStore();
+
+  const { currencies, setCurrencies, selectedCurrency, setSelectedCurrency } =
+    useCurrencyStore();
 
   const [hasToken, setHasToken] = useState(!!localStorage.getItem("token"));
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userId = user.id;
   const userName = user.username;
-  console.log("selectedCurrency are:", selectedCurrency);
   useLoadWalletCoins(userId, hasToken);
+  useGameBalance(userId, hasToken);
 
   useEffect(() => {
     const checkToken = () => {
@@ -87,212 +68,46 @@ const Header = ({
     };
   }, []);
 
-  useEffect(() => {
+  const handleCurrencySelect = async (currency) => {
+  if (!currency) return;
+
+  // 1️⃣ Update global/Zustand + localStorage
+  setSelectedCurrency(currency);
+
+  // For GamePage + header display
+  localStorage.setItem("preferredCurrency", currency.symbol);     // e.g. "SOL"
+  localStorage.setItem("currentCryptoUsd", currency.usdValue);    // e.g. 12305.10
+  localStorage.setItem("currentCryptoBalance", currency.balance); // raw coin balance
+
+  // Update header balance immediately
+  setWalletBalance(currency.usdValue);
+
+  // Notify GamePage / other listeners
+  window.dispatchEvent(new Event("preferredCurrencyUpdated"));
+
+  // 2️⃣ Sync with backend (wallet.preferredCurrency)
   if (!userId || !hasToken) return;
 
-  const loadUserCurrency = async () => {
-    try {
-      const res = await axios.get(
-        `/wallet-service/api/games/${userId}/check-currency`
-      );
-
-      if (res.data?.success) {
-        const currency = res.data.data.gameCurrency || "USD";
-
-        console.log("🔥 Restored gameCurrency from backend:", currency);
-
-        localStorage.setItem("gameCurrency", currency);
-
-        // Also apply to Zustand
-        useCurrencyStore.getState().setGameCurrency(currency);
+  try {
+    await axios.put(
+      // ⚠️ adjust path if your route is different
+      `/wallet-service/api/games/set-preferred-currency/:userId`,
+      { preferredCurrency: currency.symbol },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       }
-    } catch (e) {
-      console.error("❌ Failed to load saved currency:", e);
-    }
-  };
+    );
+    console.log("✅ preferredCurrency updated on backend:", currency.symbol);
+  } catch (err) {
+    console.error("❌ Failed to update preferred currency:", err);
+    toast.error("Could not sync currency with server. Using local only.", {
+      autoClose: 2500,
+    });
+  }
+};
 
-  loadUserCurrency();
-}, [userId, hasToken]);
-
-  useEffect(() => {
-    const fetchWalletBalance = async () => {
-      try {
-        // Replace with dynamic user ID if available in localStorage later
-        const response = await axios.get(
-          `/wallet-service/api/wallet/${userId}/balance`
-        );
-
-        if (response.data && response.data.totalUsd) {
-          setWalletBalance(response.data.totalUsd.toFixed(2));
-        } else {
-          setWalletBalance("0.00");
-        }
-      } catch (error) {
-        console.error("Failed to fetch wallet balance:", error);
-        setWalletBalance("0.00");
-      }
-    };
-
-    if (hasToken) {
-      fetchWalletBalance();
-    }
-  }, [hasToken]);
-
-  useEffect(() => {
-    const fetchWalletData = async () => {
-      try {
-        const [coinsRes, balanceRes] = await Promise.all([
-          axios.get("/wallet-service/api/wallet/coins"),
-          axios.get(`/wallet-service/api/wallet/${userId}/balance`),
-        ]);
-
-        const coins = coinsRes.data || [];
-        const walletBalances = balanceRes.data?.balances || [];
-
-        // 🪙 merge coins and balances
-        const colorMap = {
-          BTC: "bg-orange-400",
-          ETH: "bg-blue-500",
-          USDT: "bg-green-500",
-          SOL: "bg-purple-500",
-          BNB: "bg-yellow-400",
-          XRP: "bg-gray-500",
-          ADA: "bg-blue-400",
-          DOGE: "bg-yellow-500",
-          TRX: "bg-red-500",
-          LTC: "bg-blue-800",
-          DOT: "bg-pink-500",
-          MATIC: "bg-indigo-500",
-          AVAX: "bg-red-400",
-          XLM: "bg-cyan-400",
-          BCH: "bg-green-400",
-        };
-
-        const merged = coins.map((coin) => {
-          const match = walletBalances.find(
-            (b) => b.currency.toUpperCase() === coin.symbol.toUpperCase()
-          );
-          return {
-            ...coin,
-            color: colorMap[coin.symbol] || "bg-gray-700",
-            balance: match ? match.amount.toFixed(5) : "0.00000",
-            iconPath: `https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/svg/color/${coin.symbol.toLowerCase()}.svg`,
-          };
-        });
-
-        setCurrencies(merged);
-
-        // 🪙 Determine preferred or default currency
-        const preferred = localStorage.getItem("preferredCurrency");
-        let initialCurrency =
-          merged.find((c) => c.symbol === preferred) ||
-          merged.find((c) => c.symbol === "BTC") ||
-          merged[0];
-
-        setSelectedCurrency(initialCurrency);
-        localStorage.setItem("preferredCurrency", initialCurrency.symbol);
-
-        // 🧮 Show its balance directly (no USD conversion)
-        setWalletBalance(
-          `${initialCurrency.balance} ${initialCurrency.symbol}`
-        );
-      } catch (err) {
-        console.error("Error fetching wallet or coins:", err);
-        setWalletBalance("0.00000 BTC");
-      }
-    };
-
-    if (hasToken) fetchWalletData();
-    // window.addEventListener("currencyChanged", fetchWalletData);
-    // return () => window.removeEventListener("currencyChanged", fetchWalletData);
-  }, [hasToken]);
-
-  // 👇 whenever a currency is selected from dropdown
-  const handleCurrencySelect = async (currency) => {
-    try {
-      setSelectedCurrency(currency);
-      localStorage.setItem("preferredCurrency", currency.symbol);
-
-      let gameCurrency = localStorage.getItem("gameCurrency") || "USD";
-      localStorage.setItem("gameCurrency", gameCurrency);
-
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-      const userId = user.id;
-      if (!userId) {
-        console.error("❌ No user ID found in localStorage");
-        setWalletBalance("0.00");
-        return;
-      }
-
-      setWalletBalance("Updating...");
-
-      const res = await axios.put(
-        `/wallet-service/api/games/convert/${userId}`,
-        {
-          preferredCurrency: currency.symbol,
-          gameCurrency: gameCurrency,
-        }
-      );
-
-      if (res.data?.success && res.data.data) {
-        const { convertedAmount, rate, betCurrency, preferredCurrency } =
-          res.data.data;
-
-        const amount = Number(convertedAmount).toFixed(2);
-
-        // ⭐ Update Zustand selected currency
-        setSelectedCurrency((prev) => ({
-          ...prev,
-          convertedValue: amount,
-        }));
-
-        // ⭐ Update Zustand currencies array
-        setCurrencies((prev) =>
-          prev.map((c) =>
-            c.symbol === preferredCurrency
-              ? { ...c, convertedValue: amount }
-              : c
-          )
-        );
-
-        // ⭐ Update header balance
-        setWalletBalance(`${amount} ${betCurrency}`);
-
-        // Save LS
-        localStorage.setItem("convertedValue", amount);
-        localStorage.setItem("preferredCurrency", preferredCurrency);
-        localStorage.setItem("gameCurrency", betCurrency);
-        localStorage.setItem("conversionRate", rate);
-
-        // Notify GamePage
-        window.dispatchEvent(new Event("preferredCurrencyUpdated"));
-      } else {
-        console.warn("⚠️ Conversion API failed:", res.data?.message);
-        setWalletBalance("0.00");
-      }
-    } catch (err) {
-      console.error("❌ Currency conversion failed:", err.message);
-      setWalletBalance("0.00");
-    } finally {
-      setWalletDropdownOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    // Restore currency & converted value on reload
-    const preferred = localStorage.getItem("preferredCurrency");
-    const gameCurrency = localStorage.getItem("gameCurrency");
-    const convertedValue = localStorage.getItem("convertedValue");
-
-    if (preferred && gameCurrency && convertedValue) {
-      const currencyObj = currencies.find(
-        (c) => c.symbol.toUpperCase() === preferred.toUpperCase()
-      );
-      if (currencyObj) setSelectedCurrency(currencyObj);
-
-      setWalletBalance(`${convertedValue} ${gameCurrency}`);
-    }
-  }, [currencies]);
   // Helper function to get the correct menu icon - SIMPLIFIED VERSION
   const getMenuIcon = (
     item,
@@ -643,9 +458,9 @@ const Header = ({
         onClose={() => setWalletModalOpen(false)}
       />
       <GlobalSearchPopup
-  isOpen={globalSearchOpen}
-  onClose={() => setGlobalSearchOpen(false)}
-/>
+        isOpen={globalSearchOpen}
+        onClose={() => setGlobalSearchOpen(false)}
+      />
 
       {/* Custom Scrollbar Styles */}
       <style jsx>{`
