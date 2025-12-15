@@ -135,7 +135,7 @@ const HomeRewardsSection = () => {
                   y: -5,
                   transition: { duration: 0.2 },
                 }}
-                className="flex-shrink-0 lg:flex-shrink w-full lg:w-auto snap-center"
+                className="flex-shrink-0 lg:flex-shrink w-full md:w-[calc(50%-8px)] lg:w-auto snap-center"
               >
                 <Link to={reward.link}>
                   <div
@@ -263,20 +263,22 @@ const HomeRewardsSection = () => {
         /* Tablet layout fix */
         @media (min-width: 768px) and (max-width: 1024px) {
           .rewards-scroll-container {
-            overflow-x: visible;
-          }
-
-          .rewards-scroll-container > div {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            scroll-snap-type: none;
-          }
-
-          .reward_btn {
-            width: 100%;
-            height: 220px;
-          }
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .rewards-scroll-container > div {
+    display: flex;
+    gap: 16px;
+  }
+  .rewards-scroll-container > div > div {
+    min-width: calc(50% - 8px);
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+  .reward_btn {
+    width: 100%;
+    height: 220px;
+  }
         }
       `}</style>
     </section>
