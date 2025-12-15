@@ -104,7 +104,7 @@ const isLoggedIn = !!user?.id;
       label: "Trending",
       icon: "/icons/recommended.svg",
       activeIcon: "/active-menu/recommended-active.svg",
-      path: "/casino/trending",
+      path: "/casino",
     },
   ];
 
@@ -132,7 +132,7 @@ const isLoggedIn = !!user?.id;
           icon: "/icons/bacarrat.svg",
         },
         {
-          path: "/casino/gameshows",
+          path: "/casino/game%20show",
           label: "Game Shows",
           icon: "/icons/game-shows.svg",
         },
