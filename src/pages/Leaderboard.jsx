@@ -15,7 +15,7 @@ const Leaderboard = () => {
 
   const tabs = [
     { id: "daily", label: "Daily" },
-    { id: "weekly", label: "Weekly" },
+    // { id: "weekly", label: "Weekly" },
     { id: "monthly", label: "Monthly" },
     { id: "all-time", label: "All Time" },
   ];
@@ -297,7 +297,7 @@ const Leaderboard = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-8 pt-6 xs:pt-8 sm:pt-10 pb-16">
         {/* Tabs */}
-        {/* <div className="flex justify-center mb-6 xs:mb-8 sm:mb-10">
+        <div className="flex justify-center mb-6 xs:mb-8 sm:mb-10">
           <div className="trust_btn2 inline-flex gap-0.5 xs:gap-1 p-1 xs:p-1.5 sm:p-2 rounded-full">
             {tabs.map((tab) => (
               <button
@@ -318,7 +318,7 @@ const Leaderboard = () => {
               </button>
             ))}
           </div>
-        </div> */}
+        </div>
 
         {/* Podium area */}
         {loading ? (

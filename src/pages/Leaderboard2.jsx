@@ -8,7 +8,7 @@ const SOCKET_URL = "https://api.moonbet.games/wallet-service";
 
 const periodTabs = [
   { id: "daily", label: "Daily", prizeLabel: "$500" },
-  { id: "weekly", label: "Weekly", prizeLabel: "$3,000" },
+  // { id: "weekly", label: "Weekly", prizeLabel: "$3,000" },
   { id: "monthly", label: "Monthly", prizeLabel: "$10,000" },
   { id: "all-time", label: "All Time", prizeLabel: "—" },
 ];
@@ -22,14 +22,14 @@ function getPeriodEndDate(period) {
     end.setHours(0, 0, 0, 0);
     return end;
   }
-  if (period === "weekly") {
-    const end = new Date(now);
-    const day = end.getDay();
-    const daysToNextMonday = (8 - day) % 7 || 7;
-    end.setDate(end.getDate() + daysToNextMonday);
-    end.setHours(0, 0, 0, 0);
-    return end;
-  }
+  // if (period === "weekly") {
+  //   const end = new Date(now);
+  //   const day = end.getDay();
+  //   const daysToNextMonday = (8 - day) % 7 || 7;
+  //   end.setDate(end.getDate() + daysToNextMonday);
+  //   end.setHours(0, 0, 0, 0);
+  //   return end;
+  // }
   if (period === "monthly") {
     return new Date(now.getFullYear(), now.getMonth() + 1, 1);
   }
@@ -225,7 +225,7 @@ const Leaderboard2 = () => {
             <div>Place</div>
             <div>Player</div>
             <div className="text-right">Points</div>
-            <div className="text-right">Prize</div>
+            {/* <div className="text-right">Prize</div> */}
           </div>
 
           {/* BODY */}
@@ -266,7 +266,7 @@ const Leaderboard2 = () => {
                     {user.points.toLocaleString()}
                   </div>
 
-                  <div className="text-right">{user.prize}</div>
+                  {/* <div className="text-right">{user.prize}</div> */}
                 </div>
               );
             })

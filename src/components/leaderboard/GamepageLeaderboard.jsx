@@ -101,7 +101,7 @@ const LeaderboardSection = () => {
 
         {/* Internal Tabs */}
         <div className="flex items-center gap-1 bg-[#1C1D49] border border-white/10 p-2 rounded-full ml-auto">
-          {["Daily", "Weekly", "Monthly"].map((t) => (
+          {["Daily", "Monthly"].map((t) => (
             <button
               key={t}
               onClick={() => setActiveTab(t.toLowerCase())}
@@ -129,7 +129,7 @@ const LeaderboardSection = () => {
           <div>Rank</div>
           <div className="hidden md:block px-4">Username</div>
           <div className="hidden md:block text-center">Points</div>
-          <div className="text-right pr-12">Prize</div>
+          {/* <div className="text-right pr-12">Prize</div> */}
         </div>
 
         {/* Rows */}
@@ -161,7 +161,7 @@ const LeaderboardSection = () => {
               {p.points}
             </div>
 
-            <div className="text-right font-semibold text-white">{p.prize}</div>
+            {/* <div className="text-right font-semibold text-white">{p.prize}</div> */}
           </div>
         ))}
       </div>
