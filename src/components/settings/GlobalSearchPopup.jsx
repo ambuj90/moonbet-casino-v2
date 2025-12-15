@@ -93,7 +93,7 @@ const GlobalSearchPopup = ({ isOpen, onClose }) => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {results.map((g) => (
                   <div key={g.uuid} className="rounded-lg bg-[#1f1f3d] p-2">
-                    <a href={`/game/${g.uuid}`} className="block hover:opacity-80 transition-opacity">
+                    <a href={`/game/${g.slug}`} className="block hover:opacity-80 transition-opacity">
                       <img src={g.image} className="w-full rounded-lg" />
                       <p className="text-white text-center text-sm mt-2">{g.name}</p>
                       <p className="text-gray-400 text-center text-xs">{g.provider}</p>
