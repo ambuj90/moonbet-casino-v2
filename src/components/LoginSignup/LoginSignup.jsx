@@ -539,7 +539,7 @@ const [twoFAUserId, setTwoFAUserId] = useState(null);
       }
 
       // Fallback
-      toast.error("Unable to log in. Please try again.");
+      toast.error("Invalid Email or Password. Please try again.");
     }
   };
 
