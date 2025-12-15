@@ -217,12 +217,12 @@ const GameCard = memo(({ game, onPlay, isBlocked, geoVariant }) => {
       </div>
 
       {/* Game Title + Provider */}
-      <div className="mt-2 text-sm font-semibold truncate text-white">
+      {/* <div className="mt-2 text-sm font-semibold truncate text-white">
         {game.name || "Game"}
       </div>
       <div className="text-xs text-white/50 truncate">
         {game.provider || "Moonbet Originals"}
-      </div>
+      </div> */}
     </div>
   );
 });

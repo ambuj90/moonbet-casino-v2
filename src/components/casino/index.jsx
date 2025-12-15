@@ -391,14 +391,14 @@ useEffect(() => {
                     </div>
                   </div>
 
-                  <div className="mt-2">
+                  {/* <div className="mt-2">
                     <div className="text-sm font-semibold text-white truncate">
                       {game.name}
                     </div>
                     <div className="text-xs text-gray-400">
                       {game.provider}
                     </div>
-                  </div>
+                  </div> */}
                 </motion.div>
               ))}
             </motion.div>
