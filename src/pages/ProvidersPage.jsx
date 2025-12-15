@@ -20,7 +20,7 @@ const providers = [
   { id: 13, name: "Playson", logo: "/providers/Playson.svg" },
   { id: 14, name: "Red Tiger", logo: "/providers/red-tiger.svg" },
   { id: 15, name: "Relax Gaming", logo: "/providers/relax-gaming.svg" },
-  { id: 16, name: "Smart Bet", logo: "/providers/playtech.svg" },
+  { id: 16, name: "SmartBet", logo: "/providers/smartbet.svg" },
   { id: 17, name: "Zillion", logo: "/providers/Zillion.svg" },
   { id: 18, name: "Avatar UX", logo: "/providers/avatar ux.svg" },
 ];

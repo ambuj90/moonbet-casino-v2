@@ -3,6 +3,34 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 
+const canShowGameOnDevice = (game, isMobileDevice) => {
+  const nameHasMobile =
+    typeof game.name === "string" &&
+    game.name.toLowerCase().includes("mobile");
+
+  const isMobileFlag =
+    game.is_mobile === 1 ||
+    game.is_mobile === true ||
+    game.is_mobile === "true";
+
+  // RULE 1: Name contains "Mobile" → mobile only
+  if (nameHasMobile) {
+    return isMobileDevice;
+  }
+
+  // RULE 2: No "Mobile" in name + is_mobile = 0 → desktop only
+  if (!nameHasMobile && !isMobileFlag) {
+    return !isMobileDevice;
+  }
+
+  // RULE 3: No "Mobile" in name + is_mobile = 1 → all devices
+  if (!nameHasMobile && isMobileFlag) {
+    return true;
+  }
+
+  return false;
+};
+
 const GameGrid = ({
   type = "all",
   filter = "",
@@ -10,7 +38,7 @@ const GameGrid = ({
   provider = "",
 }) => {
   const [games, setGames] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(48);
+  const [visibleCount, setVisibleCount] = useState(21);
   const [loading, setLoading] = useState(true);
   const [favorite, setFavorite] = useState({});
   const [isMobileDevice, setIsMobileDevice] = useState(false);
@@ -70,37 +98,20 @@ const GameGrid = ({
     navigate(`/game/${game.slug}`);
   };
 
-  const handleLoadMore = () => setVisibleCount((prev) => prev + 48);
+  const handleLoadMore = () => setVisibleCount((prev) => prev + 21);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.02 },
+      transition: { duration: 0.2 },
     }),
   };
 
-  // Filter games for mobile/desktop
-  const filteredGames = games.filter((game) => {
-    const isMobileFlag =
-      game.is_mobile === true ||
-      game.is_mobile === "true" ||
-      game.is_mobile === 1;
-
-    if (isMobileDevice) {
-      // User on mobile → show mobile games only
-      return isMobileFlag;
-    } else {
-      // User on desktop → show desktop games only
-      return (
-        game.is_mobile === false ||
-        game.is_mobile === "false" ||
-        game.is_mobile === 0 ||
-        typeof game.is_mobile === "undefined"
-      );
-    }
-  });
+  const filteredGames = games.filter((game) =>
+  canShowGameOnDevice(game, isMobileDevice)
+);
 
   return (
     <section className="w-full py-10">
@@ -110,8 +121,15 @@ const GameGrid = ({
         </h2>
 
         {loading ? (
-          <p className="text-gray-400 text-center py-8">Loading games...</p>
-        ) : filteredGames.length === 0 ? (
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    {Array.from({ length: 12 }).map((_, i) => (
+      <div
+        key={i}
+        className="h-[140px] bg-white/10 rounded-xl animate-pulse"
+      />
+    ))}
+  </div>
+) : filteredGames.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
             {/* ICON */}
             <div className="mb-4 opacity-80">
@@ -253,7 +271,7 @@ const GameGrid = ({
               ))}
             </motion.div>
 
-            {visibleCount < games.length && (
+            {visibleCount < filteredGames.length && (
               <div className="flex justify-center mt-8">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
