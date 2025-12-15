@@ -171,21 +171,23 @@ GameLoader.displayName = "GameLoader";
 // PLAY MODE TOGGLE
 // =============================================================================
 const PlayModeToggle = memo(
-  ({ isRealPlay, onToggle, disabled, size = "default" }) => {
+  ({ isRealPlay, onToggle, disabled, disableFunPlay, size = "default" }) => {
     const isSmall = size === "small";
 
     return (
-      <div
-        className={`trust_btn2 flex items-center gap-0 p-1 rounded-full bg-[#282753] ${
-          disabled ? "opacity-50 pointer-events-none" : ""
-        }`}
-      >
+      <div className="trust_btn2 flex items-center gap-0 p-1 rounded-full bg-[#282753]">
+        {/* FUN PLAY */}
         <button
-          onClick={() => isRealPlay && onToggle()}
-          disabled={disabled}
-          className={`relative z-10 font-semibold rounded-full transition-all duration-300 ${
-            isSmall ? "px-4 py-1 text-xs" : "px-5 py-1.5 text-sm"
-          } ${!isRealPlay ? "text-white" : "text-gray-400"}`}
+          onClick={() => {
+            if (disabled || disableFunPlay) return;
+            if (isRealPlay) onToggle();
+          }}
+          disabled={disabled || disableFunPlay}
+          className={`relative z-10 font-semibold rounded-full transition-all duration-300
+            ${isSmall ? "px-4 py-1 text-xs" : "px-5 py-1.5 text-sm"}
+            ${!isRealPlay ? "text-white" : "text-gray-400"}
+            ${disableFunPlay ? "opacity-40 cursor-not-allowed" : ""}
+          `}
         >
           <span
             className={`absolute inset-0 rounded-full transition-all duration-300 ${
@@ -197,12 +199,18 @@ const PlayModeToggle = memo(
           />
           <span className="relative z-10">{isSmall ? "Fun" : "Fun Play"}</span>
         </button>
+
+        {/* REAL PLAY */}
         <button
-          onClick={() => !isRealPlay && onToggle()}
+          onClick={() => {
+            if (disabled) return;
+            if (!isRealPlay) onToggle();
+          }}
           disabled={disabled}
-          className={`relative z-10 font-semibold rounded-full transition-all duration-300 ${
-            isSmall ? "px-4 py-1 text-xs" : "px-5 py-1.5 text-sm"
-          } ${isRealPlay ? "text-white" : "text-gray-400"}`}
+          className={`relative z-10 font-semibold rounded-full transition-all duration-300
+            ${isSmall ? "px-4 py-1 text-xs" : "px-5 py-1.5 text-sm"}
+            ${isRealPlay ? "text-white" : "text-gray-400"}
+          `}
         >
           <span
             className={`absolute inset-0 rounded-full transition-all duration-300 ${
@@ -464,6 +472,8 @@ const GamePage = () => {
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
   const [sessionKey, setSessionKey] = useState(0); // Increment to force session refresh
   const [demoBlocked, setDemoBlocked] = useState(false);
+  const [isDemoAvailable, setIsDemoAvailable] = useState(true);
+  const isFunPlayDisabled = !isDemoAvailable;
 
   // Keep ref in sync with state
   isRealPlayRef.current = isRealPlay;
@@ -644,8 +654,12 @@ const GamePage = () => {
 
           game = data.data;
           setGameData(game);
-          // 🚫 Demo restriction check (Mobile + no demo)
-          if (!isRealPlay && shouldShowNoDemoPopup(game)) {
+          const demoNotAllowed = shouldShowNoDemoPopup(game);
+
+          // 🔒 single source of truth
+          setIsDemoAvailable(!demoNotAllowed);
+
+          if (!isRealPlay && demoNotAllowed) {
             setDemoBlocked(true);
             setIsLoading(false);
             setIframeUrl("");
@@ -829,8 +843,8 @@ const GamePage = () => {
   // PLAY MODE TOGGLE
   // ==========================================================================
   const handlePlayToggle = useCallback(() => {
-    // 🚫 User clicked Fun Play but demo is not allowed
-    if (isRealPlay && shouldShowNoDemoPopup(gameData)) {
+    // 🚫 Hard stop: demo not supported
+    if (isRealPlay && !isDemoAvailable) {
       setDemoBlocked(true);
       return;
     }
@@ -870,7 +884,7 @@ const GamePage = () => {
     setIsIframeLoaded(false);
     setIframeUrl("");
     setIsRealPlay(false);
-  }, [geoBlocked, isRealPlay, userData?.id, gameData?.name]);
+  }, [geoBlocked, isRealPlay, isDemoAvailable, userData?.id, gameData?.name]);
 
   // ==========================================================================
   // IFRAME LOAD HANDLER
@@ -1013,6 +1027,7 @@ const GamePage = () => {
             isRealPlay={isRealPlay}
             onToggle={handlePlayToggle}
             disabled={isLoading}
+            disableFunPlay={isFunPlayDisabled}
             size="small"
           />
         </div>
@@ -1040,6 +1055,7 @@ const GamePage = () => {
                 isRealPlay={isRealPlay}
                 onToggle={handlePlayToggle}
                 disabled={isLoading}
+                disableFunPlay={isFunPlayDisabled}
               />
             </div>
           </div>
