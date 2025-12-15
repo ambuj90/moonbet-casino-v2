@@ -37,6 +37,7 @@ import {
 } from "../services/gamePrefetchService";
 import GameDescriptionCard from "../components/sections/GameDescriptionCard";
 import { useCurrencyStore } from "../store/useCurrencyStore";
+import { shouldShowNoDemoPopup } from "../utils/gameDeviceUtils";
 
 // =============================================================================
 // LAZY LOAD BELOW-FOLD SECTIONS
@@ -462,6 +463,7 @@ const GamePage = () => {
   const [isLoading, setIsLoading] = useState(!getPrefetchedGame(slug));
   const [isIframeLoaded, setIsIframeLoaded] = useState(false);
   const [sessionKey, setSessionKey] = useState(0); // Increment to force session refresh
+  const [demoBlocked, setDemoBlocked] = useState(false);
 
   // Keep ref in sync with state
   isRealPlayRef.current = isRealPlay;
@@ -642,6 +644,16 @@ const GamePage = () => {
 
           game = data.data;
           setGameData(game);
+          // 🚫 Demo restriction check (Mobile + no demo)
+          if (!isRealPlay && shouldShowNoDemoPopup(game)) {
+            setDemoBlocked(true);
+            setIsLoading(false);
+            setIframeUrl("");
+            return;
+          } else {
+            setDemoBlocked(false);
+          }
+
           setGameCache(slug, game);
         }
 
@@ -817,6 +829,12 @@ const GamePage = () => {
   // PLAY MODE TOGGLE
   // ==========================================================================
   const handlePlayToggle = useCallback(() => {
+    // 🚫 User clicked Fun Play but demo is not allowed
+    if (isRealPlay && shouldShowNoDemoPopup(gameData)) {
+      setDemoBlocked(true);
+      return;
+    }
+
     if (geoBlocked.blocked) {
       toast.info(geoBlocked.message || "Not available in your region.");
       return;
@@ -839,6 +857,7 @@ const GamePage = () => {
         is_demo: false,
       });
 
+      setDemoBlocked(false);
       setIsLoading(true);
       setIsIframeLoaded(false);
       setIframeUrl("");
@@ -928,8 +947,42 @@ const GamePage = () => {
             </div>
           )}
 
+          {/* DEMO NOT AVAILABLE OVERLAY */}
+          {demoBlocked && (
+            <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#0D0E36]">
+              <div className="max-w-md w-full bg-[#181836] border border-[#3B3B70] rounded-2xl px-6 py-6 text-center shadow-lg mx-4">
+                <div className="mb-3 text-2xl">🎮</div>
+                <h2 className="text-lg md:text-xl font-semibold text-white mb-2">
+                  Demo Mode Not Available
+                </h2>
+                <p className="text-sm text-[#B4B4DE] mb-4">
+                  This game does not support demo play on mobile devices. Please
+                  play in real mode to continue.
+                </p>
+
+                <button
+                  onClick={() => {
+                    if (!localStorage.getItem("token")) {
+                      setShowLogin(true);
+                      return;
+                    }
+                    setDemoBlocked(false);
+                    setIsRealPlay(true);
+                  }}
+                  className="w-full px-4 py-2 rounded-xl text-sm font-semibold text-white"
+                  style={{
+                    background:
+                      "linear-gradient(90deg,#FFB8A1 0%,#A62A00 100%)",
+                  }}
+                >
+                  Play for Real
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* GAME IFRAME */}
-          {iframeUrl && !geoBlocked.blocked && (
+          {iframeUrl && !geoBlocked.blocked && !demoBlocked && (
             <iframe
               ref={iframeRef}
               src={iframeUrl}

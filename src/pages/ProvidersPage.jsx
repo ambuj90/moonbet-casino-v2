@@ -8,22 +8,21 @@ import GameGrid from "../components/providers/GameGrid";
 const providers = [
   { id: 1, name: "PragmaticPlay", logo: "/providers/vector1.svg" },
   { id: 2, name: "Evolution Gaming", logo: "/providers/evolution.svg" },
-  { id: 3, name: "BGaming", logo: "/providers/bgaming.svg" },
+  { id: 3, name: "Platiplus2", logo: "/providers/platipus.svg" },
   { id: 5, name: "Hacksaw Gaming", logo: "/providers/hacksaw.svg" },
   { id: 6, name: "Thunderkick", logo: "/providers/thunderkick.svg" },
   { id: 7, name: "Play'n GO", logo: "/providers/playngo.svg" },
   { id: 8, name: "Spribe", logo: "/providers/spribe.svg" },
   { id: 9, name: "Endorphina", logo: "/providers/endorphina.svg" },
-  { id: 10, name: "3 Oaks", logo: "/providers/3oaks.svg" },
+  { id: 10, name: "Playtech", logo: "/providers/playtech.svg" },
   { id: 11, name: "Nolimit City", logo: "/providers/nolimit.svg" },
   { id: 12, name: "NetEnt", logo: "/providers/netent.svg" },
   { id: 13, name: "Playson", logo: "/providers/Playson.svg" },
   { id: 14, name: "Red Tiger", logo: "/providers/red-tiger.svg" },
   { id: 15, name: "Relax Gaming", logo: "/providers/relax-gaming.svg" },
-  { id: 16, name: "SmartSoft Gaming", logo: "/providers/smartsoft-gaming.svg" },
-  { id: 17, name: "Evoplay", logo: "/providers/evoplay.svg" },
+  { id: 16, name: "Smart Bet", logo: "/providers/playtech.svg" },
+  { id: 17, name: "Zillion", logo: "/providers/Zillion.svg" },
   { id: 18, name: "Avatar UX", logo: "/providers/avatar ux.svg" },
-  { id: 19, name: "Zillion", logo: "/providers/Zillion.svg" },
 ];
 
 // Convert name <-> slug

@@ -79,13 +79,12 @@ const CasinoGameCards = () => {
 
   // Desktop Card Component (unchanged)
   const DesktopCard = ({ c }) => (
+    <Link to={c.link} className="block" style={{ width: c.w }}>
     <motion.div
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
       className="relative group"
-      style={{ width: c.w }}
     >
-      <Link to={c.link} className="absolute inset-0 z-40"></Link>
 
       {/* Floating Label */}
       <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[15px] text-white/80">
@@ -130,6 +129,7 @@ const CasinoGameCards = () => {
         </div>
       </motion.div>
     </motion.div>
+    </Link>
   );
 
   // Mobile Card Component with specific SVG clip-path
