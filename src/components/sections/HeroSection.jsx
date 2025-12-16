@@ -46,7 +46,7 @@ const WinCard = ({ win, index, onClick }) => {
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.2 }}
-      className="flex flex-col items-center cursor-pointer flex-shrink-0 bg-[#0d0e36] rounded-xl p-2"
+      className="flex flex-col items-center cursor-pointer flex-shrink-0 bg-[#0d0e36] rounded-xl p-1"
       style={{
         width: "135px",
         borderRadius: "12px",
@@ -55,8 +55,6 @@ const WinCard = ({ win, index, onClick }) => {
       {/* Game Image */}
       <div className="w-full h-[85px] rounded-lg overflow-hidden">
         <img
-          // {win.gameImage}
-          // src="/bg/herocard2.svg"
           src={win.gameImage}
           alt={win.gameName}
           className="w-full h-full object-cover"
@@ -112,7 +110,7 @@ const HeroSection = () => {
           const mapped = data.data.map((item, index) => ({
             id: `${item.user}-${index}`,
             gameImage: item.game_image || `/slots/img${(index % 9) + 1}.svg`,
-            amount: formatAmount(item.amount),
+            amount: item.amount || "$0.00",
             username: item.user || "Player***XXX",
             icon: `/moon/moon${(index % 3) + 1}.svg`,
             timeAgo: item.timeAgo,
@@ -318,7 +316,7 @@ const HeroSection = () => {
             </div>
 
             {/* Desktop View - Show all cards */}
-            <div className="hidden sm:flex gap-2 md:gap-2 lg:gap- py-2">
+            <div className="hidden sm:flex gap-2 md:gap-1 lg:gap-1 py-2">
               <AnimatePresence mode="popLayout">
                 {loading
                   ? [...Array(20)].map((_, i) => (
