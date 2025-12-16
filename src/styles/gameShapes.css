@@ -69,6 +69,52 @@
     height: auto;
     max-height: 130%;
   }
+
+  /* Tablet Large Card - for top row (2 columns) */
+.clip-tablet-large {
+          clip-path: polygon(65% 0, 82% 0, 100% 0, 100% 70%, 100% 100%, 50% 100%, 0 100%, 0% 70%, 0 21%, 24% 21%);
+}
+
+/* Tablet Small Card - for bottom row (3 columns) */
+.clip-tablet-small {
+  clip-path: polygon(73% 0, 82% 0, 100% 0, 100% 70%, 100% 100%, 50% 100%, 0 100%, 0% 70%, 0 20%, 55% 20%);
+
+}
+
+/* Tablet image positioning */
+.tablet-img-large {
+  right: 5%;
+  bottom: 0%;
+  width: 55%;
+  height: auto;
+  max-height: 130%;
+}
+
+.tablet-img-small {
+  right: 5%;
+  bottom: 0%;
+  width: 65%;
+  height: auto;
+  max-height: 100%;
+}
+
+/* Specific tablet image for Game Shows (CARDS_DATA[1]) */
+.tablet-img-gameshows {
+  right: -10%;
+  bottom: 0%;
+  width: 65%;
+  height: auto;
+  max-height: 90%;
+}
+
+/* Specific tablet image for Slots (CARDS_DATA[2]) */
+.tablet-img-slots {
+  right: 0%;
+  bottom: 0%;
+  width: 65%;
+  height: auto;
+  max-height: 74%;
+}
 }
 
 /* ===========================

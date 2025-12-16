@@ -522,7 +522,7 @@ const MobileHeader = ({
       </motion.div>
 
       {/* CSS for hover effects */}
-      <style jsx>{`
+      <style>{`
         .menu-item-hover {
           transition: transform 0.15s ease;
         }

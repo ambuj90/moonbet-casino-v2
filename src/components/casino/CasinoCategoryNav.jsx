@@ -1126,8 +1126,8 @@ const isLoggedIn = !!user?.id;
   }, []);
 
   return (
-    <section className="relative w-full mt-10 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 py-6 space-y-5">
+    <section className="relative w-full z-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 py-2 space-y-5">
         {/* --- Categories Row --- */}
         <div className="relative flex items-center w-full">
           {/* Left Arrow (Matches Filter Row Style) */}
@@ -1388,7 +1388,7 @@ const isLoggedIn = !!user?.id;
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }

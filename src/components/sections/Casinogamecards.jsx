@@ -5,10 +5,9 @@
 // 3. CSS animations replace Framer Motion
 // 4. Lazy loaded images
 // 5. GPU-accelerated transforms
-
 import React, { memo } from "react";
 import "../../styles/gameShapes.css";
-
+import { Link } from "react-router-dom";
 // ============================================================================
 // STATIC DATA - Defined outside component (never recreated)
 // ============================================================================
@@ -17,6 +16,7 @@ const CARDS_DATA = Object.freeze([
     id: 1,
     class: "clip-casino",
     mobileClass: "clip-casino-mobile",
+    tabletClass: "clip-tablet-large",
     w: "47%",
     h: "160px",
     title: "Casino",
@@ -25,11 +25,14 @@ const CARDS_DATA = Object.freeze([
     desc: "The full casino experience. Live, fair, and always on.",
     background: "rgba(132, 67, 160, 0.50)",
     hoverBg: "#8443A0",
+    link: "/casino",
   },
   {
     id: 2,
     class: "clip-gameshows",
     mobileClass: "clip-gameshows-mobile",
+    tabletClass: "clip-tablet-small",
+    tabletImgClass: "tablet-img-gameshows",
     w: "27%",
     h: "160px",
     title: "Game Shows",
@@ -37,12 +40,15 @@ const CARDS_DATA = Object.freeze([
     img: "/category/img10.png",
     desc: "Spinning wheels, pumping multipliers",
     background: "rgba(90, 55, 153, 0.50)",
-    hoverBg: "#a62a00",
+    hoverBg: "#A62A00",
+    link: "/casino/game%20show",
   },
   {
     id: 3,
     class: "clip-slots",
     mobileClass: "clip-slots-mobile",
+    tabletClass: "clip-tablet-small",
+    tabletImgClass: "tablet-img-slots",
     w: "26%",
     h: "160px",
     title: "Slots",
@@ -50,12 +56,14 @@ const CARDS_DATA = Object.freeze([
     img: "/category/img3.png",
     desc: "2K + titles, 98% + RTP, chase your next big win.",
     background: "rgba(85, 81, 169, 0.50)",
-    hoverBg: "#a62a00",
+    hoverBg: "#A62A00",
+    link: "/casino/slots",
   },
   {
     id: 4,
     class: "clip-blackjack",
     mobileClass: "clip-blackjack-mobile",
+    tabletClass: "clip-tablet-large",
     w: "50%",
     h: "160px",
     title: "Blackjack",
@@ -64,11 +72,13 @@ const CARDS_DATA = Object.freeze([
     desc: "The thinking player's game with almost no house edge.",
     background: "rgba(85, 81, 169, 0.50)",
     hoverBg: "#5551A9",
+    link: "/casino/blackjack",
   },
   {
     id: 5,
     class: "clip-baccarat",
     mobileClass: "clip-roulette-mobile",
+    tabletClass: "clip-tablet-small",
     w: "50%",
     h: "160px",
     title: "Roulette",
@@ -77,17 +87,18 @@ const CARDS_DATA = Object.freeze([
     desc: "Banker bets hit 50.68% of the time. The math is in your favor.",
     background: "rgba(132, 67, 160, 0.50)",
     hoverBg: "#8443A0",
+     link: "/casino/roulette",
   },
 ]);
-
 // ============================================================================
 // DESKTOP CARD COMPONENT - Memoized
 // ============================================================================
 const DesktopCard = memo(({ c }) => (
+   <Link to={c.link} className="block" style={{ width: c.w }}>
   <div
     className="casino-card relative group"
-    style={{ 
-      width: c.w,
+    style={{
+     
       "--card-bg": c.background,
       "--card-hover-bg": c.hoverBg,
     }}
@@ -97,7 +108,6 @@ const DesktopCard = memo(({ c }) => (
       <img src={c.icon} className="w-4 h-4" alt="" loading="lazy" />
       {c.title}
     </div>
-
     <div className="casino-card-wrapper p-[6px] rounded-xl">
       <div
         className={`relative overflow-hidden bg-[#0D0E36] ${c.class}`}
@@ -123,7 +133,6 @@ const DesktopCard = memo(({ c }) => (
             {c.desc}
           </p>
         </div>
-
         {/* Image */}
         <img
           src={c.img}
@@ -132,22 +141,22 @@ const DesktopCard = memo(({ c }) => (
           loading="lazy"
           decoding="async"
         />
-
         {/* Hover sweep - CSS only */}
         <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
       </div>
     </div>
   </div>
+  </Link>
 ));
 DesktopCard.displayName = "DesktopCard";
-
 // ============================================================================
 // MOBILE CARD COMPONENT - Memoized
 // ============================================================================
 const MobileCard = memo(({ c, isSmall = false }) => (
+   <Link to={c.link} className="block w-full">
   <div
     className="casino-card relative group w-full"
-    style={{ 
+    style={{
       "--card-bg": c.background,
       "--card-hover-bg": c.hoverBg,
     }}
@@ -170,7 +179,6 @@ const MobileCard = memo(({ c, isSmall = false }) => (
         {isSmall && c.title === "Game Shows" ? "Game Shows" : c.title}
       </span>
     </div>
-
     <div className="casino-card-wrapper p-[4px] sm:p-[5px] rounded-lg sm:rounded-xl">
       <div
         className={`relative overflow-hidden bg-[#0D0E36] ${c.mobileClass}`}
@@ -189,57 +197,54 @@ const MobileCard = memo(({ c, isSmall = false }) => (
           loading="lazy"
           decoding="async"
         />
-
         {/* Hover sweep - CSS only */}
         <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
       </div>
     </div>
   </div>
+  </Link>
 ));
 MobileCard.displayName = "MobileCard";
-
 // ============================================================================
 // TABLET CARD COMPONENT - Memoized
 // ============================================================================
-const TabletCard = memo(({ c }) => (
-  <div
-    className="casino-card relative group w-full"
-    style={{ 
-      "--card-bg": c.background,
-      "--card-hover-bg": c.hoverBg,
-    }}
-  >
-    {/* Floating Label */}
-    <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[14px] text-white/90">
-      <img src={c.icon} className="w-4 h-4" alt="" loading="lazy" />
-      {c.title}
-    </div>
-
-    <div className="casino-card-wrapper p-[5px] rounded-xl">
-      <div
-        className={`relative overflow-hidden bg-[#0D0E36] ${c.mobileClass}`}
-        style={{
-          width: "100%",
-          height: "140px",
-        }}
-      >
-        {/* Image */}
-        <img
-          src={c.img}
-          alt={c.title}
-          className="absolute z-10 pointer-events-none object-contain tablet-img"
-          loading="lazy"
-          decoding="async"
-        />
-
-        {/* Hover sweep - CSS only */}
-        <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
+const TabletCard = memo(({ c, isSmall = false }) => (
+  <Link to={c.link} className="block w-full">
+    <div
+      className="casino-card relative group w-full"
+      style={{
+        "--card-bg": c.background,
+        "--card-hover-bg": c.hoverBg,
+      }}
+    >
+      <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[14px] text-white/90">
+        <img src={c.icon} className="w-4 h-4" alt="" loading="lazy" />
+        {c.title}
+      </div>
+      <div className="casino-card-wrapper p-[5px] rounded-xl">
+        <div
+          className={`relative overflow-hidden bg-[#0D0E36] ${isSmall ? "clip-tablet-small" : "clip-tablet-large"}`}
+          style={{
+            width: "100%",
+            height: "140px",
+          }}
+        >
+          <img
+            src={c.img}
+            alt={c.title}
+            className={`absolute z-10 pointer-events-none object-contain ${
+              c.tabletImgClass || (isSmall ? "tablet-img-small" : "tablet-img-large")
+            }`}
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
+        </div>
       </div>
     </div>
-  </div>
+  </Link>
 ));
 TabletCard.displayName = "TabletCard";
-
 // ============================================================================
 // MAIN COMPONENT
 // ============================================================================
@@ -253,21 +258,24 @@ const CasinoGameCards = () => {
           <DesktopCard c={CARDS_DATA[1]} />
           <DesktopCard c={CARDS_DATA[2]} />
         </div>
-
         <div className="hidden xl:flex gap-3">
           <DesktopCard c={CARDS_DATA[3]} />
           <DesktopCard c={CARDS_DATA[4]} />
         </div>
-
         {/* Tablet Layout (md to xl) */}
-        <div className="hidden md:grid xl:hidden gap-3 grid-cols-2">
-          <TabletCard c={CARDS_DATA[0]} />
-          <TabletCard c={CARDS_DATA[3]} />
-          <TabletCard c={CARDS_DATA[2]} />
-          <TabletCard c={CARDS_DATA[1]} />
-          <TabletCard c={CARDS_DATA[4]} />
+        <div className="hidden md:block xl:hidden space-y-3">
+          {/* First Row: 2 columns - large cards */}
+          <div className="grid grid-cols-2 gap-3">
+            <TabletCard c={CARDS_DATA[0]} isSmall={false} />
+            <TabletCard c={CARDS_DATA[3]} isSmall={false} />
+          </div>
+          {/* Second Row: 3 columns - small cards */}
+          <div className="grid grid-cols-3 gap-2">
+            <TabletCard c={CARDS_DATA[2]} isSmall={true} />
+            <TabletCard c={CARDS_DATA[1]} isSmall={true} />
+            <TabletCard c={CARDS_DATA[4]} isSmall={true} />
+          </div>
         </div>
-
         {/* Mobile Layout */}
         <div className="md:hidden space-y-3">
           {/* First Row: Casino + Blackjack (2 columns, equal) */}
@@ -275,7 +283,6 @@ const CasinoGameCards = () => {
             <MobileCard c={CARDS_DATA[0]} />
             <MobileCard c={CARDS_DATA[3]} />
           </div>
-
           {/* Second Row: Slots + Game Shows + Roulette (3 columns, equal) */}
           <div className="grid grid-cols-3 gap-2">
             <MobileCard c={CARDS_DATA[2]} isSmall={true} />
@@ -284,7 +291,6 @@ const CasinoGameCards = () => {
           </div>
         </div>
       </div>
-
       {/* CSS Animations - GPU Accelerated */}
       <style jsx>{`
         /* Card hover scale - CSS only */
@@ -295,7 +301,6 @@ const CasinoGameCards = () => {
         .casino-card:hover {
           transform: scale(1.02);
         }
-
         /* Card wrapper background transition */
         .casino-card-wrapper {
           background: var(--card-bg);
@@ -304,7 +309,6 @@ const CasinoGameCards = () => {
         .casino-card:hover .casino-card-wrapper {
           background: var(--card-hover-bg);
         }
-
         /* Sweep effect - CSS only */
         .casino-card-sweep {
           background: rgba(255, 255, 255, 0.1);
@@ -316,7 +320,6 @@ const CasinoGameCards = () => {
           opacity: 1;
           animation: sweepRight 0.8s ease-out forwards;
         }
-
         @keyframes sweepRight {
           from {
             transform: translateX(-100%);
@@ -329,5 +332,4 @@ const CasinoGameCards = () => {
     </section>
   );
 };
-
 export default memo(CasinoGameCards);

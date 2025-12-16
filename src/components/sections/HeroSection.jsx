@@ -57,7 +57,7 @@ const WinCard = ({ win, index, onClick }) => {
         <img
           // {win.gameImage}
           // src="/bg/herocard2.svg"
-          src={index % 2 === 0 ? "/bg/herocard.svg" : "/bg/herocard2.svg"}
+          src={win.gameImage}
           alt={win.gameName}
           className="w-full h-full object-cover"
         />
@@ -111,7 +111,7 @@ const HeroSection = () => {
         if (data?.success && Array.isArray(data.data)) {
           const mapped = data.data.map((item, index) => ({
             id: `${item.user}-${index}`,
-            gameImage: `/slots/img${(index % 9) + 1}.svg`, // you can map real images later
+            gameImage: item.game_image || `/slots/img${(index % 9) + 1}.svg`,
             amount: formatAmount(item.amount),
             username: item.user || "Player***XXX",
             icon: `/moon/moon${(index % 3) + 1}.svg`,
@@ -348,7 +348,7 @@ const HeroSection = () => {
       />
 
       {/* Add custom scrollbar styles */}
-      <style jsx>{`
+      <style>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;

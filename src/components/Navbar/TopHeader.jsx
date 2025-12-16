@@ -346,7 +346,7 @@ const TopHeader = ({
       </div>
 
       {/* CSS for header animation */}
-      <style jsx>{`
+      <style>{`
         .header-animate-in {
           animation: slideDown 0.3s ease-out;
         }

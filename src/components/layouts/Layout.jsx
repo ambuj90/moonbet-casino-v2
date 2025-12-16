@@ -95,7 +95,7 @@ const Layout = () => {
       </div>
 
       {/* Global Styles for Neon Effects */}
-      <style jsx global>{`
+      <style>{`
         /* Neon Text Shadow */
         .neon-text {
           text-shadow: 0 0 10px rgba(139, 92, 246, 0.5),

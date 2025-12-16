@@ -201,7 +201,7 @@ useEffect(() => {
   // 7) RENDER
   // ─────────────────────────────────────────────
   return (
-    <section className="w-full py-10">
+    <section className="w-full py-2">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="font-['Neuropolitical'] text-xl mb-6 uppercase">
           {type === "all" ? "ALL" : type.toUpperCase()}

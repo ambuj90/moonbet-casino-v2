@@ -21,8 +21,8 @@ const MobileBottomNav = ({ onHamburgerClick }) => {
       <path
         d="M25 11H10M25 18H13M25 25H10"
         stroke="#9292D2"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
     </svg>
   );
@@ -156,7 +156,7 @@ const MobileBottomNav = ({ onHamburgerClick }) => {
 />
 
       {/* Add padding to main content on mobile to prevent overlap */}
-      <style jsx>{`
+      <style>{`
         @media (max-width: 1023px) {
           body {
             padding-bottom: 60px;
