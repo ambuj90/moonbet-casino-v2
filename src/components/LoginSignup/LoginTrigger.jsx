@@ -68,10 +68,11 @@ export const LoginTrigger = ({
 
   const handleSignupSuccess = (userData) => {
     const { token, user } = userData || {};
+
     if (token) {
-      localStorage.setItem("token", token);
-      window.dispatchEvent(new Event("tokenChanged"));
+      setToken(token); // ✅ THIS IS THE KEY FIX
     }
+
     if (user) {
       const { username, email, kycStatus, _id } = user;
       localStorage.setItem(
@@ -84,8 +85,9 @@ export const LoginTrigger = ({
         })
       );
     }
-    setIsLoggedIn(true);
+
     setIsModalOpen(false);
+
     if (onSignupSuccess) onSignupSuccess(userData);
   };
 
