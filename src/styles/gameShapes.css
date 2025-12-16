@@ -109,11 +109,11 @@
 
 /* Specific tablet image for Slots (CARDS_DATA[2]) */
 .tablet-img-slots {
-  right: 0%;
-  bottom: 0%;
-  width: 65%;
+  right: 2%;
+  bottom: 10%;
+  width: 50%;
   height: auto;
-  max-height: 74%;
+  max-height: 70%;
 }
 }
 

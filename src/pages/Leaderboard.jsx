@@ -27,23 +27,43 @@ const Leaderboard = () => {
       try {
         setLoading(true);
 
-        const response = await axios.get(
-          `/referral-service/api/leaderboard/top/all-time`
-        );
+        let endpoint = "";
+
+        if (activeTab === "daily") {
+          endpoint = "/wallet-service/api/games/leaderboard/daily?metric=wager";
+        } else if (activeTab === "monthly") {
+          endpoint =
+            "/wallet-service/api/games/leaderboard/monthly?metric=wager";
+        } else {
+          endpoint =
+            "/wallet-service/api/games/leaderboard/all-time?metric=wager";
+        }
+
+        const response = await axios.get(endpoint);
+        const prizepool = response.data?.totalPrizepool || 0;
+        const distribution = response.data?.distribution || [];
 
         let leaderboard = [];
         if (response.data?.success) {
           leaderboard = response.data.data || [];
         }
 
-        const enriched = leaderboard.map((item, index) => ({
-          ...item,
-          prize: "Prize",
-          avatar: `/leaderboard-assets/astro-profile${(index % 5) + 1}.svg`,
-          profileInner: `/leaderboard-assets/profile${(index % 5) + 1}.svg`,
-          icon: `/leaderboard-assets/group${(index % 5) + 1}.svg`,
-          earned: `${Math.floor(item.points / 4) || 50}+ points`,
-        }));
+        const enriched = leaderboard.map((item, index) => {
+          const rank = index + 1;
+          const prizeObj = distribution.find((p) => p.rank === rank);
+
+          return {
+            ...item,
+            rank,
+            username: item.username,
+            points: item.points || item.wager || 0,
+            avatar: `/leaderboard-assets/astro-profile${(index % 5) + 1}.svg`,
+            profileInner: `/leaderboard-assets/profile${(index % 5) + 1}.svg`,
+            icon: `/leaderboard-assets/group${(index % 5) + 1}.svg`,
+            earned: prizeObj ? prizeObj.prize : 0,
+            prize: prizeObj ? prizeObj.prize : 0,
+          };
+        });
 
         const topThree = enriched.slice(0, 3);
         const others = enriched.slice(3);

@@ -208,7 +208,7 @@ MobileCard.displayName = "MobileCard";
 // ============================================================================
 // TABLET CARD COMPONENT - Memoized
 // ============================================================================
-const TabletCard = memo(({ c, isSmall = false }) => (
+const TabletCard = memo(({ c, isSmall = false, clipClass  }) => (
   <Link to={c.link} className="block w-full">
     <div
       className="casino-card relative group w-full"
@@ -217,18 +217,34 @@ const TabletCard = memo(({ c, isSmall = false }) => (
         "--card-hover-bg": c.hoverBg,
       }}
     >
+      
       <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[14px] text-white/90">
         <img src={c.icon} className="w-4 h-4" alt="" loading="lazy" />
         {c.title}
       </div>
       <div className="casino-card-wrapper p-[5px] rounded-xl">
         <div
-          className={`relative overflow-hidden bg-[#0D0E36] ${isSmall ? "clip-tablet-small" : "clip-tablet-large"}`}
+          className={`relative overflow-hidden bg-[#0D0E36] ${clipClass || (isSmall ? "clip-tablet-small" : "clip-tablet-large")}`}
           style={{
             width: "100%",
             height: "140px",
           }}
         >
+           {/* Tablet description block */}
+            <div className="w-[50%] h-full flex flex-col justify-end p-4">
+              <p
+                className="mb-2"
+                style={{
+                  color: "rgba(225,225,225,0.30)",
+                  fontFamily: "Neue Plak",
+                  fontSize: "12px",
+                  fontWeight: "400",
+                  lineHeight: "16px",
+                }}
+              >
+                {c.desc}
+              </p>
+            </div>
           <img
             src={c.img}
             alt={c.title}
@@ -267,13 +283,14 @@ const CasinoGameCards = () => {
           {/* First Row: 2 columns - large cards */}
           <div className="grid grid-cols-2 gap-3">
             <TabletCard c={CARDS_DATA[0]} isSmall={false} />
-            <TabletCard c={CARDS_DATA[3]} isSmall={false} />
+            <TabletCard c={CARDS_DATA[4]}isSmall={false} clipClass={CARDS_DATA[3].class} />
           </div>
           {/* Second Row: 3 columns - small cards */}
           <div className="grid grid-cols-3 gap-2">
             <TabletCard c={CARDS_DATA[2]} isSmall={true} />
             <TabletCard c={CARDS_DATA[1]} isSmall={true} />
-            <TabletCard c={CARDS_DATA[4]} isSmall={true} />
+            <TabletCard c={CARDS_DATA[3]} isSmall={false} />
+            
           </div>
         </div>
         {/* Mobile Layout */}

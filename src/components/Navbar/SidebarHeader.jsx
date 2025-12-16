@@ -187,7 +187,6 @@ const isLoggedIn = !!user?.id;
       label: "Leaderboard",
       icon: "/icons/leaderboard-new.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
-      path: "/leaderboard",
     },
   ];
 

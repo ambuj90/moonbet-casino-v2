@@ -69,9 +69,8 @@ const GAMES_ITEMS = Object.freeze([
   {
     id: "leaderboard",
     label: "Leaderboard",
-    icon: "/icons/leaderboard.svg",
+    icon: "/icons/leaderboard-new.svg",
     activeIcon: "/active-menu/leaderboard-active-collasped.svg",
-    path: "/leaderboard",
   },
 ]);
 
