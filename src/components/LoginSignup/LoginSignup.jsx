@@ -47,7 +47,7 @@ const validateUsername = (username = "") => {
 };
 
 const validatePassword = (password) => {
-  const lengthCheck = password.length >= 12 && password.length <= 15;
+  const lengthCheck = password.length >= 8 && password.length <= 16;
   const upperCheck = /[A-Z]/.test(password);
   const lowerCheck = /[a-z]/.test(password);
   const numberCheck = /[0-9]/.test(password);
