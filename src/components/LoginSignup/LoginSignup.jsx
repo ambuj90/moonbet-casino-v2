@@ -1471,6 +1471,7 @@ const [twoFAUserId, setTwoFAUserId] = useState(null);
                           <a
                             href="/terms-and-condition"
                             className="text-[#E1E1E1] hover:underline"
+                            target="_blank"
                           >
                             Terms
                           </a>{" "}
