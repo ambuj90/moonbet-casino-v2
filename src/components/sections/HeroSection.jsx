@@ -23,7 +23,8 @@ const formatAmount = (amountStr) => {
     SOL: "◎",
   };
 
-  return `${symbols[currency] || ""}${amt.toFixed(2)}`;
+  // return `${symbols[currency] || ""}${amt.toFixed(2)}`;
+  return `$${amt.toFixed(2)}`;
 };
 
 const SkeletonCard = () => (
@@ -38,6 +39,52 @@ const SkeletonCard = () => (
     <div className="w-12 h-3 bg-[#3a3a6b] rounded"></div>
   </div>
 );
+
+const WinCard = ({ win, index, onClick }) => {
+  return (
+    <motion.div
+      onClick={onClick}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.2 }}
+      className="flex flex-col items-center cursor-pointer flex-shrink-0 bg-[#0d0e36] rounded-xl p-2"
+      style={{
+        width: "135px",
+        borderRadius: "12px",
+      }}
+    >
+      {/* Game Image */}
+      <div className="w-full h-[85px] rounded-lg overflow-hidden">
+        <img
+          // {win.gameImage}
+          // src="/bg/herocard2.svg"
+          src={index % 2 === 0 ? "/bg/herocard.svg" : "/bg/herocard2.svg"}
+          alt={win.gameName}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Username */}
+      <div className="flex items-center justify-center gap-1 mt-1">
+        <img
+          src={win.icon}
+          alt="icon"
+          className="w-3 h-3 opacity-80"
+        />
+
+        <span className="text-gray-300 text-[11px]">
+          {win.username.length > 10
+            ? `${win.username.slice(0, 2)}...${win.username.slice(-4)}`
+            : win.username}
+        </span>
+      </div>
+
+      {/* Amount */}
+      <span className="text-green-400 text-[14px] font-semibold mt-1">
+        {win.amount}
+      </span>
+    </motion.div>
+  );
+};
 
 const HeroSection = () => {
   // State for modal
@@ -266,53 +313,7 @@ const HeroSection = () => {
               {loading
                 ? [...Array(7)].map((_, i) => <SkeletonCard key={i} />)
                 : mobileWinsData.map((win, index) => (
-                    <motion.div
-                      key={win.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      whileHover={{ scale: 1.05, y: -3 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex flex-col items-center cursor-pointer flex-shrink-0"
-                      onClick={() => handleCardClick(win)}
-                    >
-                      {/* Game Card Image */}
-                      <div className="relative mb-2">
-                        <motion.div
-                          className="relative w-[48px] h-[64px] rounded-lg overflow-hidden"
-                          whileHover={{
-                            boxShadow: "0 8px 16px rgba(147, 51, 234, 0.3)",
-                          }}
-                        >
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <img
-                              src={win.gameImage}
-                              alt="Game"
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        </motion.div>
-                      </div>
-
-                      {/* Username with Icon - Equal spacing */}
-                      <div className="flex items-center gap-1 mb-1">
-                        <img
-                          src={`/moon/moon${(index % 3) + 1}.svg`}
-                          alt="icon"
-                          className="w-3 h-3"
-                        />
-                        <span className="text-gray-400 text-[9px]">
-                          {win.username}
-                        </span>
-                      </div>
-
-                      {/* Win Amount - Equal spacing */}
-                      <div className="win-amount">
-                        <span className="text-[#28C203] text-[11px] font-semibold">
-                          {win.amount}
-                        </span>
-                      </div>
-                    </motion.div>
+                    <WinCard key={win.id} win={win} index={index} onClick={() => handleCardClick(win)} />
                   ))}
             </div>
 
@@ -331,47 +332,7 @@ const HeroSection = () => {
                       </div>
                     ))
                   : recentWinsData.map((win, index) => (
-                      <motion.div
-                        key={win.id}
-                        layout
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        variants={cardVariants}
-                        transition={{
-                          x: { type: "spring", stiffness: 300, damping: 30 },
-                          opacity: { duration: 0.2 },
-                        }}
-                        whileHover={{ scale: 1.06, y: -3 }}
-                        className="flex flex-col items-center cursor-pointer "
-                        onClick={() => handleCardClick(win)}
-                      >
-                        {/* Card Image (scaled 3.5x smaller) */}
-                        <div className="relative rounded-lg overflow-hidden">
-                          <img
-                            src={win.gameImage}
-                            alt={win.gameName}
-                            className="w-full h-full object-cover rounded-lg"
-                          />
-                        </div>
-
-                        {/* Username + Icon */}
-                        <div className="flex items-center gap-1 mt-1">
-                          <img
-                            src={win.icon}
-                            alt="icon"
-                            className="w-3 h-3 opacity-80"
-                          />
-                          <span className="text-gray-300 text-[11px] leading-none">
-                            {win.username}
-                          </span>
-                        </div>
-
-                        {/* Amount in Green */}
-                        <span className="text-[#28C203] text-[12px] font-semibold leading-none mt-0.5">
-                          {win.amount}
-                        </span>
-                      </motion.div>
+                      <WinCard key={win.id} win={win} index={index} onClick={() => handleCardClick(win)} />
                     ))}
               </AnimatePresence>
             </div>
