@@ -103,7 +103,7 @@ const HeroSection = () => {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          "/wallet-service/api/games/recent-wins?limit=20"
+          "/wallet-service/api/games/recent-wins?limit=40"
         );
 
         if (data?.success && Array.isArray(data.data)) {

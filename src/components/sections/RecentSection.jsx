@@ -41,8 +41,8 @@ const RecentIcon = memo(() => (
         y2="-3.90783"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#a62a00" />
-        <stop offset="1" stop-color="#ffb8a1" />
+        <stop stopColor="#a62a00" />
+        <stop offset="1" stopColor="#ffb8a1" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_9169_861"
@@ -52,8 +52,8 @@ const RecentIcon = memo(() => (
         y2="-3.90783"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#a62a00" />
-        <stop offset="1" stop-color="#ffb8a1" />
+        <stop stopColor="#a62a00" />
+        <stop offset="1" stopColor="#ffb8a1" />
       </linearGradient>
       <linearGradient
         id="paint2_linear_9169_861"
@@ -63,8 +63,8 @@ const RecentIcon = memo(() => (
         y2="-3.90783"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#a62a00" />
-        <stop offset="1" stop-color="#ffb8a1" />
+        <stop stopColor="#a62a00" />
+        <stop offset="1" stopColor="#ffb8a1" />
       </linearGradient>
       <linearGradient
         id="paint3_linear_9169_861"
@@ -74,8 +74,8 @@ const RecentIcon = memo(() => (
         y2="-3.90783"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#a62a00" />
-        <stop offset="1" stop-color="#ffb8a1" />
+        <stop stopColor="#a62a00" />
+        <stop offset="1" stopColor="#ffb8a1" />
       </linearGradient>
     </defs>
   </svg>
