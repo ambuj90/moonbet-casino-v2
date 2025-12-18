@@ -368,9 +368,29 @@ const WalletDropdownCenter = ({
   const [showClaimPopup, setShowClaimPopup] = useState(false);
   const [claimAmount, setClaimAmount] = useState(0);
   const [selectedIconLoaded, setSelectedIconLoaded] = useState(false);
+  const [isInPlay, setIsInPlay] = useState(false);
 
   // Track which currency is currently being updated
   const [updatingCurrencySymbol, setUpdatingCurrencySymbol] = useState(null);
+
+  useEffect(() => {
+  const handlePlayStateChange = () => {
+    const state = window.__GAME_PLAY_STATE__;
+    setIsInPlay(Boolean(state?.isInPlay));
+  };
+
+  window.addEventListener("GAME_PLAY_STATE_UPDATED", handlePlayStateChange);
+
+  // read initial state
+  handlePlayStateChange();
+
+  return () => {
+    window.removeEventListener(
+      "GAME_PLAY_STATE_UPDATED",
+      handlePlayStateChange
+    );
+  };
+}, []);
 
   useEffect(() => {
   if (!selectedCurrency && currencies.length > 0) {
@@ -610,7 +630,12 @@ const WalletDropdownCenter = ({
 
               {/* Balance text - show updating indicator if needed */}
               <span className="text-white text-xs sm:text-sm font-semibold tracking-wide truncate flex items-center gap-1">
-                {isUpdatingBalance ? (
+                {isInPlay ? (
+  <span className="flex items-center gap-1 text-[#FFB8A1] font-semibold">
+    <span className="w-2 h-2 rounded-full bg-[#28C203] animate-pulse" />
+    In Play
+  </span>
+) : isUpdatingBalance ? (
                   <>
                     <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     <span className="opacity-70">...</span>

@@ -587,6 +587,14 @@ const GamePage = () => {
       setIsIframeLoaded(false);
       setIframeUrl("");
       setSessionKey((prev) => prev + 1);
+
+      window.__GAME_PLAY_STATE__ = {
+  isRealPlay: false,
+  isInPlay: false,
+};
+
+window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
+
     }
   }, [isLoggedIn, isRealPlay]);
 
@@ -712,6 +720,14 @@ const GamePage = () => {
             return_url: `${window.location.origin}/game-return/${game.uuid}`,
           };
         }
+
+        if (isRealPlay) {
+  window.__GAME_PLAY_STATE__ = {
+    isRealPlay: true,
+    isInPlay: true,
+  };
+  window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
+}
 
         // Make API call
         const initRes = await axios.post(initUrl, payload);
@@ -884,6 +900,14 @@ const GamePage = () => {
     setIsIframeLoaded(false);
     setIframeUrl("");
     setIsRealPlay(false);
+
+    window.__GAME_PLAY_STATE__ = {
+  isRealPlay: false,
+  isInPlay: false,
+};
+
+window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
+
   }, [geoBlocked, isRealPlay, isDemoAvailable, userData?.id, gameData?.name]);
 
   // ==========================================================================
@@ -900,6 +924,14 @@ const GamePage = () => {
         is_real_play: isRealPlay,
       });
     }
+    if (isRealPlay) {
+    window.__GAME_PLAY_STATE__ = {
+      isRealPlay: true,
+      isInPlay: true,
+    };
+
+    window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
+  }
   }, [gameData?.name, isRealPlay]);
 
   // ==========================================================================
