@@ -1,6 +1,9 @@
 // src/pages/Bets.jsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+import BonusProgressBar from "../components/bonus/BonusProgressBar";
+import { useAuthStore } from "../store/useAuthStore";
 
 const Bets = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,199 +12,58 @@ const Bets = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
-
-  // Sample bet data
-  const sampleBets = [
-    {
-      id: "E0v5b8772...",
-      game: "Keno",
-      amount: "$0.12",
-      multiplier: "0.00x",
-      date: "Oct 15, 10:14 AM",
-      payout: "$0.56",
-      status: "win",
-    },
-    {
-      id: "dY3pBga...",
-      game: "Keno",
-      amount: "$0.24",
-      multiplier: "0.00x",
-      date: "Oct 15, 10:42 AM",
-      payout: "$0.07",
-      status: "loss",
-    },
-    {
-      id: "0D0kY2...",
-      game: "Keno",
-      amount: "$0.01",
-      multiplier: "0.00x",
-      date: "Oct 15, 9:55 AM",
-      payout: "$0.01",
-      status: "loss",
-    },
-    {
-      id: "DrQWKG...",
-      game: "Keno",
-      amount: "$0.12",
-      multiplier: "1.00x",
-      date: "Oct 15, 6:33 AM",
-      payout: "$0.56",
-      status: "win",
-    },
-    {
-      id: "Zubb4abz1...",
-      game: "Limbo",
-      amount: "$0.20",
-      multiplier: "1.00x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.30",
-      status: "win",
-    },
-    {
-      id: "MkQv2t27...",
-      game: "Limbo",
-      amount: "$0.20",
-      multiplier: "1.00x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.30",
-      status: "win",
-    },
-    {
-      id: "NLcuzmsm...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "1.00x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.30",
-      status: "win",
-    },
-    {
-      id: "54G6xzmr...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "1.00x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.30",
-      status: "win",
-    },
-    {
-      id: "FNkKOvXq...",
-      game: "Limbo",
-      amount: "$0.20",
-      multiplier: "1.29x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.24",
-      status: "win",
-    },
-    {
-      id: "k1nKP27EJ...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "1.00x",
-      date: "Oct 15, 10:42 AM",
-      payout: "$0.10",
-      status: "loss",
-    },
-    {
-      id: "K18xV2Mk...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "1.27x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.16",
-      status: "loss",
-    },
-    {
-      id: "hL9E7...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "0.00x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.12",
-      status: "loss",
-    },
-    {
-      id: "kLPF9rFi...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "1.27x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.17",
-      status: "win",
-    },
-    {
-      id: "SLEPPER...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "0.00x",
-      date: "Oct 15, 10:24 AM",
-      payout: "$0.13",
-      status: "loss",
-    },
-    {
-      id: "MRMRE93...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "1.39x",
-      date: "Oct 15, 10:50 AM",
-      payout: "$0.12",
-      status: "win",
-    },
-    {
-      id: "O2QG8Pc...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "0.00x",
-      date: "Oct 14, 7:18 AM",
-      payout: "$0.10",
-      status: "loss",
-    },
-    {
-      id: "87Kf3r...",
-      game: "Limbo",
-      amount: "$0.10",
-      multiplier: "0.00x",
-      date: "Oct 14, 10:24 AM",
-      payout: "$0.05",
-      status: "loss",
-    },
-    {
-      id: "yEQS8f...",
-      game: "Dice",
-      amount: "$0.12",
-      multiplier: "1.45x",
-      date: "Oct 15, 4:10 AM",
-      payout: "$0.16",
-      status: "win",
-    },
-    {
-      id: "UqRla5AA...",
-      game: "Rainbet Automatic",
-      amount: "$0.10",
-      multiplier: "0.00x",
-      date: "Oct 15, 5:40 PM",
-      payout: "$0.07",
-      status: "loss",
-    },
-    {
-      id: "VRmLttt...",
-      game: "Rainbet Automatic",
-      amount: "$0.10",
-      multiplier: "0.00x",
-      date: "Oct 15, 10:44 AM",
-      payout: "$0.07",
-      status: "loss",
-    },
-  ];
+  const [bonus, setBonus] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const userId = user?.id;
 
   useEffect(() => {
-    const loadBets = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 700));
-      setBets(sampleBets);
+  if (!userId) {
+    console.log("⏳ Waiting for userId...");
+    return;
+  }
+  console.log("✅ Fetching bets for user:", userId);
+
+  const loadBets = async () => {
+    try {
+      setIsLoading(true);
+
+      const res = await axios.get(
+        `/wallet-service/api/games/bets/${userId}`
+      );
+
+      const apiBets = res.data.data.map((item, index) => ({
+        id: `${index}`,
+        game: item.game,
+        amount: item.amount,
+        multiplier: "-",
+        payout: item.payout,
+        status: item.type === "win" ? "win" : "loss",
+        date: item.createdAt,
+      }));
+
+      setBets(apiBets);
+
+      // BONUS DATA (example – replace later if backend provides it)
+      setBonus({
+        wagered: apiBets
+          .filter(b => b.status === "loss")
+          .reduce((sum, b) => {
+  const value = Number(b.amount.replace(/[^\d.]/g, ""));
+  return sum + (isNaN(value) ? 0 : value);
+}, 0),
+        pool: 2000000,
+        estimatedBonus: 0,
+      });
+
+    } catch (err) {
+      console.error("Failed to load bets", err);
+    } finally {
       setIsLoading(false);
-    };
-    loadBets();
-  }, []);
+    }
+  };
+
+  loadBets();
+}, [userId]);
 
   // FILTER
   const filteredBets = bets.filter((bet) => {
@@ -248,12 +110,19 @@ const Bets = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center text-gray-400">
-        Loading Bets...
-      </div>
-    );
-  }
+  return (
+    <div className="min-h-screen flex flex-col justify-center items-center gap-4 bg-[#0F102A]">
+      <img
+        src="/icons/moonlogo.gif"
+        alt="Loading bets"
+        className="w-20 h-20 md:w-36 md:h-36 object-contain"
+      />
+      <p className="text-sm md:text-base text-white/70 tracking-wide">
+        Loading your bets...
+      </p>
+    </div>
+  );
+}
 
   return (
     <div className="min-h-screen md:py-8 px-4 lg:px-8">
@@ -262,9 +131,12 @@ const Bets = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mb-8"
+          className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
         >
           <p className="text-3xl font-bold text-white">Bets</p>
+          <div className="w-full md:w-auto flex justify-end">
+    <BonusProgressBar bonus={bonus} />
+  </div>
         </motion.div>
 
         {/* ===== SEARCH ===== */}

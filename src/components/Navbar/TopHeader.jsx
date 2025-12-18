@@ -271,7 +271,7 @@ const TopHeader = ({
           {/* Sidebar Toggle Button */}
           <button
             onClick={toggleDesktopSidebar}
-            className="hidden md:flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200 hover:bg-white/10 active:scale-95"
+            className="hidden lg:flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-200 hover:bg-white/10 active:scale-95"
           >
             <HamburgerIcon isCollapsed={sidebarCollapsed} />
           </button>
