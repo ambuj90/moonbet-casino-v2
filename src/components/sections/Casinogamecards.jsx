@@ -87,65 +87,64 @@ const CARDS_DATA = Object.freeze([
     desc: "Banker bets hit 50.68% of the time. The math is in your favor.",
     background: "rgba(132, 67, 160, 0.50)",
     hoverBg: "#8443A0",
-     link: "/casino/roulette",
+    link: "/casino/roulette",
   },
 ]);
 // ============================================================================
 // DESKTOP CARD COMPONENT - Memoized
 // ============================================================================
 const DesktopCard = memo(({ c }) => (
-   <Link to={c.link} className="block" style={{ width: c.w }}>
-  <div
-    className="casino-card relative group"
-    style={{
-     
-      "--card-bg": c.background,
-      "--card-hover-bg": c.hoverBg,
-    }}
-  >
-    {/* Floating Label */}
-    <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[15px] text-white/80">
-      <img src={c.icon} className="w-4 h-4" alt="" loading="lazy" />
-      {c.title}
-    </div>
-    <div className="casino-card-wrapper p-[6px] rounded-xl">
-      <div
-        className={`relative overflow-hidden bg-[#0D0E36] ${c.class}`}
-        style={{
-          width: "100%",
-          height: c.h,
-          borderRadius: "20px",
-          padding: "16px 16px",
-        }}
-      >
-        {/* Desktop description */}
-        <div className="w-[50%] h-full flex flex-col justify-end">
-          <p
-            className="mb-2"
-            style={{
-              color: "rgba(225,225,225,0.30)",
-              fontFamily: "Neue Plak",
-              fontSize: "16px",
-              fontWeight: "400",
-              lineHeight: "18px",
-            }}
-          >
-            {c.desc}
-          </p>
+  <Link to={c.link} className="block" style={{ width: c.w }}>
+    <div
+      className="casino-card relative group"
+      style={{
+        "--card-bg": c.background,
+        "--card-hover-bg": c.hoverBg,
+      }}
+    >
+      {/* Floating Label */}
+      <div className="absolute top-4 left-5 flex items-center gap-2 text-[15px] text-white/80">
+        <img src={c.icon} className="w-4 h-4" alt="" loading="lazy" />
+        {c.title}
+      </div>
+      <div className="casino-card-wrapper p-[6px] rounded-xl">
+        <div
+          className={`relative overflow-hidden bg-[#0D0E36] ${c.class}`}
+          style={{
+            width: "100%",
+            height: c.h,
+            borderRadius: "20px",
+            padding: "16px 16px",
+          }}
+        >
+          {/* Desktop description */}
+          <div className="w-[50%] h-full flex flex-col justify-end">
+            <p
+              className="mb-2"
+              style={{
+                color: "rgba(225,225,225,0.30)",
+                fontFamily: "Neue Plak",
+                fontSize: "16px",
+                fontWeight: "400",
+                lineHeight: "18px",
+              }}
+            >
+              {c.desc}
+            </p>
+          </div>
+          {/* Image */}
+          <img
+            src={c.img}
+            alt={c.title}
+            className="absolute z-10 pointer-events-none object-contain desktop-img"
+            loading="lazy"
+            decoding="async"
+          />
+          {/* Hover sweep - CSS only */}
+          <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
         </div>
-        {/* Image */}
-        <img
-          src={c.img}
-          alt={c.title}
-          className="absolute z-10 pointer-events-none object-contain desktop-img"
-          loading="lazy"
-          decoding="async"
-        />
-        {/* Hover sweep - CSS only */}
-        <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
       </div>
     </div>
-  </div>
   </Link>
 ));
 DesktopCard.displayName = "DesktopCard";
@@ -153,62 +152,6 @@ DesktopCard.displayName = "DesktopCard";
 // MOBILE CARD COMPONENT - Memoized
 // ============================================================================
 const MobileCard = memo(({ c, isSmall = false }) => (
-   <Link to={c.link} className="block w-full">
-  <div
-    className="casino-card relative group w-full"
-    style={{
-      "--card-bg": c.background,
-      "--card-hover-bg": c.hoverBg,
-    }}
-  >
-    {/* Floating Label */}
-    <div
-      className={`absolute top-2 left-2 z-30 flex items-center gap-1.5 text-white/90 ${
-        isSmall ? "text-[11px] sm:text-[13px]" : "text-[13px] sm:text-[14px]"
-      }`}
-    >
-      <img
-        src={c.icon}
-        className={`${
-          isSmall ? "w-3 h-3 sm:w-3.5 sm:h-3.5" : "w-3.5 h-3.5 sm:w-4 sm:h-4"
-        }`}
-        alt=""
-        loading="lazy"
-      />
-      <span className={`${isSmall ? "leading-tight" : ""}`}>
-        {isSmall && c.title === "Game Shows" ? "Game Shows" : c.title}
-      </span>
-    </div>
-    <div className="casino-card-wrapper p-[4px] sm:p-[5px] rounded-lg sm:rounded-xl">
-      <div
-        className={`relative overflow-hidden bg-[#0D0E36] ${c.mobileClass}`}
-        style={{
-          width: "100%",
-          height: "107px",
-        }}
-      >
-        {/* Image */}
-        <img
-          src={c.img}
-          alt={c.title}
-          className={`absolute z-10 pointer-events-none object-contain ${
-            isSmall ? "mobile-img-small" : "mobile-img-large"
-          }`}
-          loading="lazy"
-          decoding="async"
-        />
-        {/* Hover sweep - CSS only */}
-        <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
-      </div>
-    </div>
-  </div>
-  </Link>
-));
-MobileCard.displayName = "MobileCard";
-// ============================================================================
-// TABLET CARD COMPONENT - Memoized
-// ============================================================================
-const TabletCard = memo(({ c, isSmall = false, clipClass  }) => (
   <Link to={c.link} className="block w-full">
     <div
       className="casino-card relative group w-full"
@@ -217,39 +160,97 @@ const TabletCard = memo(({ c, isSmall = false, clipClass  }) => (
         "--card-hover-bg": c.hoverBg,
       }}
     >
-      
+      {/* Floating Label */}
+      <div
+        className={`absolute top-2 left-2 z-30 flex items-center gap-1.5 text-white/90 ${
+          isSmall ? "text-[11px] sm:text-[13px]" : "text-[13px] sm:text-[14px]"
+        }`}
+      >
+        <img
+          src={c.icon}
+          className={`${
+            isSmall ? "w-3 h-3 sm:w-3.5 sm:h-3.5" : "w-3.5 h-3.5 sm:w-4 sm:h-4"
+          }`}
+          alt=""
+          loading="lazy"
+        />
+        <span className={`${isSmall ? "leading-tight" : ""}`}>
+          {isSmall && c.title === "Game Shows" ? "Game Shows" : c.title}
+        </span>
+      </div>
+      <div className="casino-card-wrapper p-[4px] sm:p-[5px] rounded-lg sm:rounded-xl">
+        <div
+          className={`relative overflow-hidden bg-[#0D0E36] ${c.mobileClass}`}
+          style={{
+            width: "100%",
+            height: "107px",
+          }}
+        >
+          {/* Image */}
+          <img
+            src={c.img}
+            alt={c.title}
+            className={`absolute z-10 pointer-events-none object-contain ${
+              isSmall ? "mobile-img-small" : "mobile-img-large"
+            }`}
+            loading="lazy"
+            decoding="async"
+          />
+          {/* Hover sweep - CSS only */}
+          <div className="casino-card-sweep absolute inset-0 pointer-events-none" />
+        </div>
+      </div>
+    </div>
+  </Link>
+));
+MobileCard.displayName = "MobileCard";
+// ============================================================================
+// TABLET CARD COMPONENT - Memoized
+// ============================================================================
+const TabletCard = memo(({ c, isSmall = false, clipClass }) => (
+  <Link to={c.link} className="block w-full">
+    <div
+      className="casino-card relative group w-full"
+      style={{
+        "--card-bg": c.background,
+        "--card-hover-bg": c.hoverBg,
+      }}
+    >
       <div className="absolute top-2 left-2 z-30 flex items-center gap-2 text-[14px] text-white/90">
         <img src={c.icon} className="w-4 h-4" alt="" loading="lazy" />
         {c.title}
       </div>
       <div className="casino-card-wrapper p-[5px] rounded-xl">
         <div
-          className={`relative overflow-hidden bg-[#0D0E36] ${clipClass || (isSmall ? "clip-tablet-small" : "clip-tablet-large")}`}
+          className={`relative overflow-hidden bg-[#0D0E36] ${
+            clipClass || (isSmall ? "clip-tablet-small" : "clip-tablet-large")
+          }`}
           style={{
             width: "100%",
             height: "140px",
           }}
         >
-           {/* Tablet description block */}
-            <div className="w-[50%] h-full flex flex-col justify-end p-4">
-              <p
-                className="mb-2"
-                style={{
-                  color: "rgba(225,225,225,0.30)",
-                  fontFamily: "Neue Plak",
-                  fontSize: "12px",
-                  fontWeight: "400",
-                  lineHeight: "16px",
-                }}
-              >
-                {c.desc}
-              </p>
-            </div>
+          {/* Tablet description block */}
+          <div className="w-[50%] h-full flex flex-col justify-end p-4">
+            <p
+              className="mb-2"
+              style={{
+                color: "rgba(225,225,225,0.30)",
+                fontFamily: "Neue Plak",
+                fontSize: "12px",
+                fontWeight: "400",
+                lineHeight: "16px",
+              }}
+            >
+              {c.desc}
+            </p>
+          </div>
           <img
             src={c.img}
             alt={c.title}
             className={`absolute z-10 pointer-events-none object-contain ${
-              c.tabletImgClass || (isSmall ? "tablet-img-small" : "tablet-img-large")
+              c.tabletImgClass ||
+              (isSmall ? "tablet-img-small" : "tablet-img-large")
             }`}
             loading="lazy"
             decoding="async"
@@ -283,14 +284,17 @@ const CasinoGameCards = () => {
           {/* First Row: 2 columns - large cards */}
           <div className="grid grid-cols-2 gap-3">
             <TabletCard c={CARDS_DATA[0]} isSmall={false} />
-            <TabletCard c={CARDS_DATA[4]}isSmall={false} clipClass={CARDS_DATA[3].class} />
+            <TabletCard
+              c={CARDS_DATA[4]}
+              isSmall={false}
+              clipClass={CARDS_DATA[3].class}
+            />
           </div>
           {/* Second Row: 3 columns - small cards */}
           <div className="grid grid-cols-3 gap-2">
             <TabletCard c={CARDS_DATA[2]} isSmall={true} />
             <TabletCard c={CARDS_DATA[1]} isSmall={true} />
             <TabletCard c={CARDS_DATA[3]} isSmall={false} />
-            
           </div>
         </div>
         {/* Mobile Layout */}

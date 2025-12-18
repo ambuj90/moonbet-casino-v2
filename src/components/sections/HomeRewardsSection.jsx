@@ -21,6 +21,7 @@ const HomeRewardsSection = () => {
         img: "/rewards/rewards7.png",
         bg: "/rewards/bg-reward.png",
         link: "/affiliate",
+        buttonText: "Claim Rewards",
       },
       {
         id: 2,
@@ -31,6 +32,7 @@ const HomeRewardsSection = () => {
         description2: "world.",
         img: "/rewards/rewards8.png",
         link: "/casino/live-casino",
+        buttonText: "Play Now",
       },
       {
         id: 3,
@@ -41,6 +43,7 @@ const HomeRewardsSection = () => {
         description2: "games out there.",
         img: "/rewards/rewards10.png",
         link: "/leaderboard",
+        buttonText: "View Now",
       },
     ],
     []
@@ -147,12 +150,12 @@ const HomeRewardsSection = () => {
                   >
                     {/* Content - Left Side */}
                     <div
-                      className="absolute left-0 md:top-0 top-2 bottom-0 z-10 flex flex-col justify-start gap-5 p-6"
+                      className="absolute left-0 md:top-0 top-2 bottom-0 z-10 flex flex-col justify-start gap-4 p-6"
                       style={{ width: "50%" }}
                     >
                       {/* Badge */}
                       <span
-                        className="inline-block w-fit px-2 md:px-3 py-0 rounded-full"
+                        className="inline-block w-fit px-2 md:px-1.5 py-0 rounded-full"
                         style={{
                           color: "var(--text-charcoal",
                           fontStyle: "normal",
@@ -168,13 +171,12 @@ const HomeRewardsSection = () => {
                       {/* Title & Description */}
                       <div>
                         <h3
-                          className="mb-2"
+                          className="text-[18px] md:text-[20px]"
                           style={{
                             color: "#E5EAF2",
-                            fontFamily: "Neue Plak, sans-serif",
-                            fontSize: "20px",
+                            fontFamily: "Neue Plak",
                             fontWeight: 400,
-                            lineHeight: "23px",
+                            lineHeight: "24px",
                           }}
                         >
                           {reward.titleLine1}
@@ -182,6 +184,21 @@ const HomeRewardsSection = () => {
                           {reward.titleLine2}
                         </h3>
                       </div>
+
+                      {/* Button */}
+                      <button
+                        className="px-3 inline-block w-fit py-1 rounded-md font-bold text-white border border-white/80"
+                        style={{
+                          color: "#E1E1E1",
+                          fontFamily: "Neue Plak",
+                          fontSize: "16px",
+                          fontStyle: "normal",
+                          fontWeight: 400,
+                          lineHeight: "24px",
+                        }}
+                      >
+                        {reward.buttonText}
+                      </button>
                     </div>
 
                     {/* Image - Right Side (Fixed Size) */}
@@ -263,22 +280,22 @@ const HomeRewardsSection = () => {
         /* Tablet layout fix */
         @media (min-width: 768px) and (max-width: 1024px) {
           .rewards-scroll-container {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-  }
-  .rewards-scroll-container > div {
-    display: flex;
-    gap: 16px;
-  }
-  .rewards-scroll-container > div > div {
-    min-width: calc(50% - 8px);
-    flex-shrink: 0;
-    scroll-snap-align: start;
-  }
-  .reward_btn {
-    width: 100%;
-    height: 220px;
-  }
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+          }
+          .rewards-scroll-container > div {
+            display: flex;
+            gap: 16px;
+          }
+          .rewards-scroll-container > div > div {
+            min-width: calc(50% - 8px);
+            flex-shrink: 0;
+            scroll-snap-align: start;
+          }
+          .reward_btn {
+            width: 100%;
+            height: 220px;
+          }
         }
       `}</style>
     </section>
