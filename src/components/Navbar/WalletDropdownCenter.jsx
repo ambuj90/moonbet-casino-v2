@@ -98,31 +98,42 @@ BalanceSkeleton.displayName = "BalanceSkeleton";
 // =============================================================================
 
 // Rakeback Section
-const RakebackSection = memo(({ rakeback, isClaiming, onClaim }) => (
-  <div className="mt-3 mb-2 px-3 py-2 flex items-center justify-between rounded-[15px] border border-[#555594] bg-[rgba(13,14,54,0.50)] backdrop-blur-[30px]">
-    <div className="flex flex-col leading-tight">
-      <span className="text-[12px] text-[#9292D2] tracking-wide">
-        Rakeback Available
-      </span>
-      <div className="flex items-center gap-2 mt-1">
-        <div className="w-5 h-5 bg-white/15 flex items-center justify-center">
-          <img
-            src="/icons/gift.svg"
-            className="w-3 h-3 opacity-90"
-            alt="dollar"
-            loading="lazy"
-          />
-        </div>
-        <span className="text-white text-[15px] font-semibold opacity-50">
-          ${Number(rakeback || 0).toFixed(2)}
+const RakebackSection = memo(
+  ({ rakeback, isClaiming, onClaim, selectedCurrency }) => (
+    <div className="mt-3 mb-2 px-3 py-2 flex items-center justify-between rounded-[15px] border border-[#555594] bg-[rgba(13,14,54,0.50)] backdrop-blur-[30px]">
+      <div className="flex flex-col leading-tight">
+        <span className="text-[12px] text-[#9292D2] tracking-wide">
+          Rakeback Available
         </span>
+        <div className="flex items-center gap-2 mt-1">
+          <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center overflow-hidden">
+            {selectedCurrency?.iconPath ? (
+              <img
+                src={fixIconUrl(selectedCurrency.iconPath)}
+                alt={selectedCurrency.symbol}
+                className="w-3.5 h-3.5 object-contain"
+                loading="lazy"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "/icons/default-coin.svg";
+                }}
+              />
+            ) : (
+              <span className="text-[10px] font-bold text-white/80">
+                {selectedCurrency?.symbol || "$"}
+              </span>
+            )}
+          </div>
+          <span className="text-white text-[15px] font-semibold opacity-50">
+            ${Number(rakeback || 0).toFixed(2)}
+          </span>
+        </div>
       </div>
-    </div>
 
-    <button
-      onClick={onClaim}
-      disabled={rakeback <= 0 || isClaiming}
-      className={`
+      <button
+        onClick={onClaim}
+        disabled={rakeback <= 0 || isClaiming}
+        className={`
         claim-btn relative px-4 py-1.5 rounded-[4px] transition-all select-none
         ${
           rakeback > 0
@@ -130,18 +141,19 @@ const RakebackSection = memo(({ rakeback, isClaiming, onClaim }) => (
             : "cursor-not-allowed text-white/40"
         }
       `}
-      style={{
-        background:
-          rakeback > 0
-            ? "linear-gradient(180deg, rgba(40,194,3,0.00) 0%, rgba(40,194,3,0.40) 100%)"
-            : "rgba(255,255,255,0.05)",
-        borderRadius: "4px",
-      }}
-    >
-      {isClaiming ? "Claiming..." : "Claim"}
-    </button>
-  </div>
-));
+        style={{
+          background:
+            rakeback > 0
+              ? "linear-gradient(180deg, rgba(40,194,3,0.00) 0%, rgba(40,194,3,0.40) 100%)"
+              : "rgba(255,255,255,0.05)",
+          borderRadius: "4px",
+        }}
+      >
+        {isClaiming ? "Claiming..." : "Claim"}
+      </button>
+    </div>
+  )
+);
 RakebackSection.displayName = "RakebackSection";
 
 // Search Box
@@ -374,32 +386,33 @@ const WalletDropdownCenter = ({
   const [updatingCurrencySymbol, setUpdatingCurrencySymbol] = useState(null);
 
   useEffect(() => {
-  const handlePlayStateChange = () => {
-    const state = window.__GAME_PLAY_STATE__;
-    setIsInPlay(Boolean(state?.isInPlay));
-  };
+    const handlePlayStateChange = () => {
+      const state = window.__GAME_PLAY_STATE__;
+      setIsInPlay(Boolean(state?.isInPlay));
+    };
 
-  window.addEventListener("GAME_PLAY_STATE_UPDATED", handlePlayStateChange);
+    window.addEventListener("GAME_PLAY_STATE_UPDATED", handlePlayStateChange);
 
-  // read initial state
-  handlePlayStateChange();
+    // read initial state
+    handlePlayStateChange();
 
-  return () => {
-    window.removeEventListener(
-      "GAME_PLAY_STATE_UPDATED",
-      handlePlayStateChange
-    );
-  };
-}, []);
+    return () => {
+      window.removeEventListener(
+        "GAME_PLAY_STATE_UPDATED",
+        handlePlayStateChange
+      );
+    };
+  }, []);
 
   useEffect(() => {
-  if (!selectedCurrency && currencies.length > 0) {
-    const preferred = localStorage.getItem("preferredCurrency") || "BTC";
-    const found = currencies.find((c) => c.symbol === preferred) || currencies[0];
+    if (!selectedCurrency && currencies.length > 0) {
+      const preferred = localStorage.getItem("preferredCurrency") || "BTC";
+      const found =
+        currencies.find((c) => c.symbol === preferred) || currencies[0];
 
-    setSelectedCurrency(found);
-  }
-}, [currencies, selectedCurrency]);
+      setSelectedCurrency(found);
+    }
+  }, [currencies, selectedCurrency]);
 
   // Reset icon loaded state when currency changes
   useEffect(() => {
@@ -530,24 +543,24 @@ const WalletDropdownCenter = ({
   // CURRENCY SELECT HANDLER - Smooth transition, no skeleton
   // ==========================================================================
   const onCurrencyClick = useCallback(
-  async (currency) => {
-    if (!currency) return;
+    async (currency) => {
+      if (!currency) return;
 
-    setUpdatingCurrencySymbol(currency.symbol);
+      setUpdatingCurrencySymbol(currency.symbol);
 
-    // 🔥 This now does:
-    // - setSelectedCurrency
-    // - localStorage updates
-    // - walletBalance update
-    // - preferredCurrencyUpdated event
-    // - backend POST to setPreferredCurrency
-    await handleCurrencySelect(currency);
+      // 🔥 This now does:
+      // - setSelectedCurrency
+      // - localStorage updates
+      // - walletBalance update
+      // - preferredCurrencyUpdated event
+      // - backend POST to setPreferredCurrency
+      await handleCurrencySelect(currency);
 
-    setUpdatingCurrencySymbol(null);
-    setWalletDropdownOpen(false);
-  },
-  [handleCurrencySelect]
-);
+      setUpdatingCurrencySymbol(null);
+      setWalletDropdownOpen(false);
+    },
+    [handleCurrencySelect]
+  );
 
   // ==========================================================================
   // OTHER HANDLERS
@@ -631,11 +644,11 @@ const WalletDropdownCenter = ({
               {/* Balance text - show updating indicator if needed */}
               <span className="text-white text-xs sm:text-sm font-semibold tracking-wide truncate flex items-center gap-1">
                 {isInPlay ? (
-  <span className="flex items-center gap-1 text-[#FFB8A1] font-semibold">
-    <span className="w-2 h-2 rounded-full bg-[#28C203] animate-pulse" />
-    In Play
-  </span>
-) : isUpdatingBalance ? (
+                  <span className="flex items-center gap-1 text-[#FFB8A1] font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-[#28C203] animate-pulse" />
+                    In Play
+                  </span>
+                ) : isUpdatingBalance ? (
                   <>
                     <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     <span className="opacity-70">...</span>
@@ -685,6 +698,7 @@ const WalletDropdownCenter = ({
               rakeback={rakeback}
               isClaiming={isClaiming}
               onClaim={claimRakeback}
+              selectedCurrency={selectedCurrency}
             />
 
             {/* Search Box */}

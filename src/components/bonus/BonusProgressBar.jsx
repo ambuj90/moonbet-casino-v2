@@ -1,13 +1,12 @@
 import React, { memo } from "react";
 
-const BonusProgressBar = ({ bonus }) => {
-  if (!bonus) return null;
+const BonusProgressBar = ({ bonus = {} }) => {
 
   const {
     wagered = 0,
     pool = 0,
     estimatedBonus = 0,
-  } = bonus;
+  } = bonus || {};
 
   const progress =
     pool > 0 ? Math.min((wagered / pool) * 100, 100) : 0;
@@ -28,6 +27,12 @@ const BonusProgressBar = ({ bonus }) => {
       }}
     >
       {/* HEADER */}
+      <div className="flex justify-between items-center text-[14px] text-white/90 mb-2">
+        <h3 className="uppercase tracking-wide font-medium">
+  {pool > 0 ? "200% Deposit Bonus" : "Bonus Not Active"}
+</h3>
+
+      </div>
       <div className="flex justify-between items-center text-[14px] text-white/90 mb-2">
         <span className="uppercase tracking-wide font-medium">
           Bonus Progress
@@ -75,7 +80,7 @@ const BonusProgressBar = ({ bonus }) => {
       {/* FOOTER */}
       <div className="flex justify-between items-center text-[13px] mt-2 text-white/80">
         <span>
-          ${wagered.toFixed(2)} / ${pool.toLocaleString()}
+          ${wagered.toFixed(2)} / ${pool > 0 ? pool.toLocaleString() : "0"}
         </span>
         <span className="font-medium">
           Est: ${estimatedBonus.toLocaleString()}

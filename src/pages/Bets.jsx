@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import BonusProgressBar from "../components/bonus/BonusProgressBar";
 import { useAuthStore } from "../store/useAuthStore";
+import { useUserBonus } from "../hooks/useUserBonus";
+
 
 const Bets = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,9 +14,9 @@ const Bets = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
-  const [bonus, setBonus] = useState(null);
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userId = user?.id;
+  const bonus = useUserBonus(userId, Boolean(userId));
 
   useEffect(() => {
   if (!userId) {
@@ -42,18 +44,6 @@ const Bets = () => {
       }));
 
       setBets(apiBets);
-
-      // BONUS DATA (example – replace later if backend provides it)
-      setBonus({
-        wagered: apiBets
-          .filter(b => b.status === "loss")
-          .reduce((sum, b) => {
-  const value = Number(b.amount.replace(/[^\d.]/g, ""));
-  return sum + (isNaN(value) ? 0 : value);
-}, 0),
-        pool: 2000000,
-        estimatedBonus: 0,
-      });
 
     } catch (err) {
       console.error("Failed to load bets", err);
