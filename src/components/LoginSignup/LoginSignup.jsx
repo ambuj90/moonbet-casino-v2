@@ -572,7 +572,7 @@ const [twoFAUserId, setTwoFAUserId] = useState(null);
 
     if (!pass.isValid) {
       toast.error(
-        "Password must be 8-16 characters and include uppercase, lowercase, number and special character."
+        "Password must be 8-16 characters and include uppercase, lowercase, number and special characters(_ . - )."
       );
       return;
     }

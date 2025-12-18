@@ -647,7 +647,7 @@ const WalletDropdownCenter = ({
           <div
             className="custom-header wallet-dropdown-card absolute left-[80%] sm:left-1/2 md:left-[65%] -translate-x-1/2 mt-12 w-[267px] rounded-[24px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] dropdown-animate-in"
             style={{
-              padding: "0 12px",
+              padding: "0 12px 10px",
               border:
                 "2px solid var(--drop-down-order, rgba(255,255,255,0.05))",
               background: "rgba(200,200,225,0.20)",
@@ -663,7 +663,7 @@ const WalletDropdownCenter = ({
             />
 
             {/* Search Box */}
-            <SearchBox value={searchQuery} onChange={handleSearchChange} />
+            {/* <SearchBox value={searchQuery} onChange={handleSearchChange} /> */}
 
             {/* Currency List - ⭐ KEY FIX: Skeleton ONLY when list is empty */}
             <div className="wallet-list flex-1 mt-2.5 max-h-[280px] overflow-y-auto pr-1.5 pb-2">
@@ -687,7 +687,7 @@ const WalletDropdownCenter = ({
             </div>
 
             {/* Bottom Settings Bar */}
-            <WalletSettingsButton onClick={openWalletSettings} />
+            {/* <WalletSettingsButton onClick={openWalletSettings} /> */}
           </div>
         )}
       </div>
