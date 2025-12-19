@@ -38,7 +38,7 @@ const Bets = () => {
         game: item.game,
         amount: item.amount,
         multiplier: "-",
-        payout: item.payout,
+        payout: item.amount,
         status: item.type === "win" ? "win" : "loss",
         date: item.createdAt,
       }));
@@ -230,7 +230,7 @@ const Bets = () => {
                       bet.status === "win" ? "text-[#28C203]" : "text-[#555594]"
                     }`}
                   >
-                    {bet.payout}
+                    +{bet.payout}
                   </div>
                 </motion.div>
               ))}

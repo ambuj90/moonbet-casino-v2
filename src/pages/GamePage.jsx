@@ -38,6 +38,7 @@ import {
 import GameDescriptionCard from "../components/sections/GameDescriptionCard";
 import { useCurrencyStore } from "../store/useCurrencyStore";
 import { shouldShowNoDemoPopup } from "../utils/gameDeviceUtils";
+import GameBetsSection from "../components/leaderboard/GamepageLeaderboard";
 
 // =============================================================================
 // LAZY LOAD BELOW-FOLD SECTIONS
@@ -474,6 +475,8 @@ const GamePage = () => {
   const [demoBlocked, setDemoBlocked] = useState(false);
   const [isDemoAvailable, setIsDemoAvailable] = useState(true);
   const isFunPlayDisabled = !isDemoAvailable;
+  const betsSectionRef = useRef(null);
+  const [betsTab, setBetsTab] = useState("all");
 
   // Keep ref in sync with state
   isRealPlayRef.current = isRealPlay;
@@ -589,12 +592,11 @@ const GamePage = () => {
       setSessionKey((prev) => prev + 1);
 
       window.__GAME_PLAY_STATE__ = {
-  isRealPlay: false,
-  isInPlay: false,
-};
+        isRealPlay: false,
+        isInPlay: false,
+      };
 
-window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
-
+      window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
     }
   }, [isLoggedIn, isRealPlay]);
 
@@ -722,12 +724,12 @@ window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
         }
 
         if (isRealPlay) {
-  window.__GAME_PLAY_STATE__ = {
-    isRealPlay: true,
-    isInPlay: true,
-  };
-  window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
-}
+          window.__GAME_PLAY_STATE__ = {
+            isRealPlay: true,
+            isInPlay: true,
+          };
+          window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
+        }
 
         // Make API call
         const initRes = await axios.post(initUrl, payload);
@@ -902,12 +904,11 @@ window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
     setIsRealPlay(false);
 
     window.__GAME_PLAY_STATE__ = {
-  isRealPlay: false,
-  isInPlay: false,
-};
+      isRealPlay: false,
+      isInPlay: false,
+    };
 
-window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
-
+    window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
   }, [geoBlocked, isRealPlay, isDemoAvailable, userData?.id, gameData?.name]);
 
   // ==========================================================================
@@ -925,14 +926,27 @@ window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
       });
     }
     if (isRealPlay) {
-    window.__GAME_PLAY_STATE__ = {
-      isRealPlay: true,
-      isInPlay: true,
-    };
+      window.__GAME_PLAY_STATE__ = {
+        isRealPlay: true,
+        isInPlay: true,
+      };
 
-    window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
-  }
+      window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
+    }
   }, [gameData?.name, isRealPlay]);
+
+  const navigateToLeaderboard = useCallback(() => {
+    // 1️⃣ Set leaderboard tab active
+    setBetsTab("leaderboard");
+
+    // 2️⃣ Smooth scroll to section
+    setTimeout(() => {
+      betsSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 50);
+  }, []);
 
   // ==========================================================================
   // NAVIGATION
@@ -1082,6 +1096,17 @@ window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
             />
             <div className="flex items-center gap-4">
               {/* <ReloadButton onClick={handleReloadGame} disabled={isLoading}/> */}
+              {/* <button
+                onClick={navigateToLeaderboard}
+                className="w-9 h-9 hidden md:flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-200"
+              >
+                <img
+                  src="/icons/leaderboard.svg"
+                  alt="Leaderboard"
+                  className="w-10 h-10 object-contain"
+                  loading="lazy"
+                />
+              </button> */}
               <FullscreenButton onClick={toggleFullScreen} />
               <PlayModeToggle
                 isRealPlay={isRealPlay}
@@ -1103,7 +1128,7 @@ window.dispatchEvent(new Event("GAME_PLAY_STATE_UPDATED"));
           />
         </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
-          <GamepageLeaderboard />
+          <GameBetsSection initialTab={betsTab} sectionRef={betsSectionRef} />
         </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
           <ProvidersSection />

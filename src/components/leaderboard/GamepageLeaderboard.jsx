@@ -54,130 +54,134 @@ const UserIcon = () => (
 );
 
 // ======================= LEADERBOARD SECTION =======================
-const LeaderboardSection = () => {
-  const [activeTab, setActiveTab] = useState("daily");
-  const [currentPage, setCurrentPage] = useState(1);
+// const LeaderboardSection = () => {
+//   const [activeTab, setActiveTab] = useState("daily");
+//   const [currentPage, setCurrentPage] = useState(1);
 
-  const leaderboardData = Array.from({ length: 10 }).map(() => ({
-    username: "Henrietta O’Connell",
-    points: "44,048.54",
-    prize: "$15,000.00",
-  }));
+//   const leaderboardData = Array.from({ length: 10 }).map(() => ({
+//     username: "Henrietta O’Connell",
+//     points: "44,048.54",
+//     prize: "$15,000.00",
+//   }));
 
-  return (
-    <section
-      className="w-full mx-auto py-4"
-      style={{
-        borderRadius: "12px",
-        border: "1px solid #35326B",
-        background: "#1C1D49",
-      }}
-    >
-      {/* TOP HEADER */}
-      <div className="w-full flex flex-wrap items-center justify-between gap-3 px-6 py-4 rounded-xl">
-        {/* Prize Pool */}
-        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 flex-1">
-          <div className="bj-action-btn flex items-center gap-2 bg-[#0D0E36] rounded-lg px-4 py-3">
-            <img src="/icons/prizepool.svg" className="w-5 h-5" />
-            <span className="text-[#9292D2] text-sm">Prize Pool</span>
-            <span className="text-white font-semibold pl-8 text-sm">$0.00</span>
-          </div>
+//   return (
+//     <section
+//       className="w-full mx-auto py-4"
+//       style={{
+//         borderRadius: "12px",
+//         border: "1px solid #35326B",
+//         background: "#1C1D49",
+//       }}
+//     >
+//       {/* TOP HEADER */}
+//       <div className="w-full flex flex-wrap items-center justify-between gap-3 px-6 py-4 rounded-xl">
+//         {/* Prize Pool */}
+//         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 flex-1">
+//           <div className="bj-action-btn flex items-center gap-2 bg-[#0D0E36] rounded-lg px-4 py-3">
+//             <img src="/icons/prizepool.svg" className="w-5 h-5" />
+//             <span className="text-[#9292D2] text-sm">Prize Pool</span>
+//             <span className="text-white font-semibold pl-8 text-sm">$0.00</span>
+//           </div>
 
-          {/* Your Position */}
-          <div className="bj-action-btn flex items-center gap-2 bg-[#0D0E36] rounded-lg px-4 py-3">
-            <img src="/icons/yourposition.svg" className="w-5 h-5" />
-            <span className="text-[#9292D2] text-sm">Your Position</span>
-            <span className="text-white font-semibold text-sm pl-8">-</span>
-          </div>
-          {/* Ends In */}
-          <div className="flex items-center gap-2 rounded-lg px-10 py-2">
-            <img src="/icons/timer.svg" className="w-4 h-4 opacity-60" />
-            <span className="text-[#9292D2] text-sm">Ends in</span>
-            <span className="text-white text-sm font-semibold">
-              10d 23h 59m
-            </span>
-          </div>
-        </div>
+//           {/* Your Position */}
+//           <div className="bj-action-btn flex items-center gap-2 bg-[#0D0E36] rounded-lg px-4 py-3">
+//             <img src="/icons/yourposition.svg" className="w-5 h-5" />
+//             <span className="text-[#9292D2] text-sm">Your Position</span>
+//             <span className="text-white font-semibold text-sm pl-8">-</span>
+//           </div>
+//           {/* Ends In */}
+//           <div className="flex items-center gap-2 rounded-lg px-10 py-2">
+//             <img src="/icons/timer.svg" className="w-4 h-4 opacity-60" />
+//             <span className="text-[#9292D2] text-sm">Ends in</span>
+//             <span className="text-white text-sm font-semibold">
+//               10d 23h 59m
+//             </span>
+//           </div>
+//         </div>
 
-        {/* Internal Tabs */}
-        <div className="flex items-center gap-1 bg-[#1C1D49] border border-white/10 p-2 rounded-full ml-auto">
-          {["Daily", "Monthly"].map((t) => (
-            <button
-              key={t}
-              onClick={() => setActiveTab(t.toLowerCase())}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold ${
-                activeTab === t.toLowerCase() ? "text-white" : "text-gray-300"
-              }`}
-              style={
-                activeTab === t.toLowerCase()
-                  ? {
-                      background:
-                        "linear-gradient(0deg,#A62A00 0%,#FFB8A1 100%)",
-                    }
-                  : {}
-              }
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-      </div>
+//         {/* Internal Tabs */}
+//         <div className="flex items-center gap-1 bg-[#1C1D49] border border-white/10 p-2 rounded-full ml-auto">
+//           {["Daily", "Monthly"].map((t) => (
+//             <button
+//               key={t}
+//               onClick={() => setActiveTab(t.toLowerCase())}
+//               className={`px-4 py-1.5 rounded-full text-xs font-semibold ${
+//                 activeTab === t.toLowerCase() ? "text-white" : "text-gray-300"
+//               }`}
+//               style={
+//                 activeTab === t.toLowerCase()
+//                   ? {
+//                       background:
+//                         "linear-gradient(0deg,#A62A00 0%,#FFB8A1 100%)",
+//                     }
+//                   : {}
+//               }
+//             >
+//               {t}
+//             </button>
+//           ))}
+//         </div>
+//       </div>
 
-      {/* TABLE */}
-      <div className="rounded-xl overflow-hidden">
-        <div className="grid grid-cols-2 md:grid-cols-4 px-6 py-3 text-[#555594] text-xs font-semibold uppercase">
-          <div>Rank</div>
-          <div className="hidden md:block px-4">Username</div>
-          <div className="hidden md:block text-center">Points</div>
-          {/* <div className="text-right pr-12">Prize</div> */}
-        </div>
+//       {/* TABLE */}
+//       <div className="rounded-xl overflow-hidden">
+//         <div className="grid grid-cols-2 md:grid-cols-4 px-6 py-3 text-[#555594] text-xs font-semibold uppercase">
+//           <div>Rank</div>
+//           <div className="hidden md:block px-4">Username</div>
+//           <div className="hidden md:block text-center">Points</div>
+//           {/* <div className="text-right pr-12">Prize</div> */}
+//         </div>
 
-        {/* Rows */}
-        {leaderboardData.map((p, i) => (
-          <div
-            key={i}
-            className={`grid grid-cols-2 md:grid-cols-4 px-6 py-3 rounded-[12px] mx-6 ${
-              i % 2 === 0 ? "bg-[#282753]" : ""
-            }`}
-          >
-            <div className="flex items-center gap-2 text-white font-medium">
-              {i + 1 <= 3 ? (
-                <img src="/icons/moon.svg" className="w-5 h-5" />
-              ) : (
-                <span className="w-5 h-5" />
-              )}
-              <span>{String(i + 1).padStart(2, "0")}</span>
-            </div>
+//         {/* Rows */}
+//         {leaderboardData.map((p, i) => (
+//           <div
+//             key={i}
+//             className={`grid grid-cols-2 md:grid-cols-4 px-6 py-3 rounded-[12px] mx-6 ${
+//               i % 2 === 0 ? "bg-[#282753]" : ""
+//             }`}
+//           >
+//             <div className="flex items-center gap-2 text-white font-medium">
+//               {i + 1 <= 3 ? (
+//                 <img src="/icons/moon.svg" className="w-5 h-5" />
+//               ) : (
+//                 <span className="w-5 h-5" />
+//               )}
+//               <span>{String(i + 1).padStart(2, "0")}</span>
+//             </div>
 
-            <div className=" hidden md:flex items-center gap-2 text-white">
-              <img
-                src="/leaderboard-assets/astro-profile1.svg"
-                className="w-6 h-6 rounded-full"
-              />
-              <span className="truncate">{p.username}</span>
-            </div>
+//             <div className=" hidden md:flex items-center gap-2 text-white">
+//               <img
+//                 src="/leaderboard-assets/astro-profile1.svg"
+//                 className="w-6 h-6 rounded-full"
+//               />
+//               <span className="truncate">{p.username}</span>
+//             </div>
 
-            <div className="hidden md:block text-center text-white">
-              {p.points}
-            </div>
+//             <div className="hidden md:block text-center text-white">
+//               {p.points}
+//             </div>
 
-            {/* <div className="text-right font-semibold text-white">{p.prize}</div> */}
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
+//             {/* <div className="text-right font-semibold text-white">{p.prize}</div> */}
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// };
 
-const GameBetsSection = () => {
+const GameBetsSection = ({ initialTab = "all", sectionRef }) => {
   const { isLoggedIn, token } = useAuthStore();
-  const [activeTab, setActiveTab] = useState("leaderboard");
+  const [activeTab, setActiveTab] = useState(initialTab);
   const [bets, setBets] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const intervalRef = useRef(null);
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const userId = user.id || "68f90703350b2308ed5e5be9";
+
+  useEffect(() => {
+    setActiveTab(initialTab);
+  }, [initialTab]);
 
   useEffect(() => {
     loadBets();
@@ -243,7 +247,7 @@ const GameBetsSection = () => {
   };
 
   return (
-    <section className="w-full py-6 sm:py-16 md:py-3">
+    <section ref={sectionRef} className="w-full py-6 sm:py-16 md:py-3">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
         {/* Tabs */}
         <div
@@ -252,7 +256,7 @@ const GameBetsSection = () => {
             background: "#282753",
           }}
         >
-          {["leaderboard", "all", "my"].map((tab) => (
+          {["all", "my"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -264,7 +268,7 @@ const GameBetsSection = () => {
             >
               {activeTab === tab && (
                 <motion.div
-                  layoutId="activeTab"
+                  layoutId="game-bets-active-tab"
                   className="absolute inset-0 rounded-full"
                   style={{
                     background:
@@ -283,9 +287,8 @@ const GameBetsSection = () => {
             </button>
           ))}
         </div>
-        {activeTab === "leaderboard" ? (
-          <LeaderboardSection />
-        ) : (
+        {
+        (
           <>
             {/* Bets Table */}
             <motion.div
