@@ -43,6 +43,42 @@ const GameGrid = ({
   const [favorite, setFavorite] = useState({});
   const [isMobileDevice, setIsMobileDevice] = useState(false);
   const navigate = useNavigate();
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const id = user.id || "690b0290cb255ca66b14a529"; // fallback
+    setUserId(id);
+  } catch (e) {
+    console.error("Failed to parse user", e);
+  }
+}, []);
+
+useEffect(() => {
+  if (!userId) return;
+
+  const fetchFavourites = async () => {
+    try {
+      const res = await axios.get(
+        `/wallet-service/api/games/${userId}/favourite-game`
+      );
+
+      const favGames = res.data?.games || [];
+      const map = {};
+
+      favGames.forEach((g) => {
+        map[g.uuid] = true;
+      });
+
+      setFavorite(map);
+    } catch (err) {
+      console.error("Failed to fetch favourites:", err);
+    }
+  };
+
+  fetchFavourites();
+}, [userId]);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -112,6 +148,40 @@ const GameGrid = ({
   const filteredGames = games.filter((game) =>
   canShowGameOnDevice(game, isMobileDevice)
 );
+
+const handleToggleFavorite = async (e, game) => {
+  e.stopPropagation();
+  if (!userId || !game?.uuid) return;
+
+  const prevState = !!favorite[game.uuid];
+  const nextState = !prevState;
+
+  // Optimistic UI
+  setFavorite((prev) => ({
+    ...prev,
+    [game.uuid]: nextState,
+  }));
+
+  try {
+    await axios.post(
+      `/wallet-service/api/games/${userId}/favourite`,
+      { uuid: game.uuid }
+    );
+
+    // If on favourites page and unfavourited → remove card
+    if (type === "favorites" && !nextState) {
+      setGames((prev) => prev.filter((g) => g.uuid !== game.uuid));
+    }
+  } catch (err) {
+    console.error("Failed to toggle favourite:", err);
+
+    // Rollback UI
+    setFavorite((prev) => ({
+      ...prev,
+      [game.uuid]: prevState,
+    }));
+  }
+};
 
   return (
     <section className="w-full py-10">
@@ -189,13 +259,7 @@ const GameGrid = ({
                 >
                   {/* Favorite Icon */}
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setFavorite((prev) => ({
-                        ...prev,
-                        [game.uuid]: !prev[game.uuid],
-                      }));
-                    }}
+                    onClick={(e) => handleToggleFavorite(e, game)}
                     className={`absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-10 ${
                       favorite?.[game.uuid]
                         ? ""
