@@ -1,5 +1,5 @@
 // src/components/sections/GameCarousel.jsx - OPTIMIZED WITH PREFETCH ON HOVER
-// 
+//
 // OPTIMIZATIONS:
 // 1. CSS animations replace Framer Motion (~15KB savings)
 // 2. Memoized components prevent re-renders
@@ -8,7 +8,14 @@
 // 5. ⭐ PREFETCH ON HOVER - Like Stake.com for instant game loading
 // 6. Responsive grid layout
 
-import React, { useRef, useState, useEffect, useCallback, useMemo, memo } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  memo,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useGeoStore } from "../../store/useGeoStore";
@@ -289,47 +296,53 @@ ScrollArrows.displayName = "ScrollArrows";
 // =============================================================================
 // SECTION HEADER - Memoized
 // =============================================================================
-const SectionHeader = memo(({ icon, title, viewAllPath, canScrollLeft, canScrollRight, onScroll, onViewAll }) => (
-  <div className="flex justify-between items-center mb-1">
-    <div className="flex items-center gap-3">
-      {icon && (
-        <span className="text-2xl section-icon-animate">
-          {icon}
-        </span>
-      )}
-      <h3 className="font-[400] text-[14px] md:text-[18px] leading-[44px] font-['Neuropolitical'] not-italic uppercase text-white">
-        {title}
-      </h3>
-    </div>
+const SectionHeader = memo(
+  ({
+    icon,
+    title,
+    viewAllPath,
+    canScrollLeft,
+    canScrollRight,
+    onScroll,
+    onViewAll,
+  }) => (
+    <div className="flex justify-between items-center mb-1">
+      <div className="flex items-center gap-3">
+        {icon && <span className="text-xl section-icon-animate">{icon}</span>}
+        <h3 className="font-[400] text-[14px] md:text-[18px] leading-[44px] font-['Neuropolitical'] not-italic uppercase text-[#e1e1e1]">
+          {title}
+        </h3>
+      </div>
 
-    <div className="flex items-center gap-2">
-      {/* View All Button */}
-      <button
-        onClick={onViewAll}
-        className="view_btn hover:text-white transition-all duration-300 hover:scale-105 active:scale-95"
-        style={{
-          fontFamily: "Neue Plak",
-          fontSize: "14px",
-          fontStyle: "normal",
-          fontWeight: 400,
-          lineHeight: "24px",
-          textTransform: "capitalize",
-          background: "#282753",
-          padding: "4px 10px",
-        }}
-      >
-        All
-      </button>
+      <div className="flex items-center gap-2">
+        {/* View All Button */}
+        <button
+          onClick={onViewAll}
+          className="view_btn hover:text-white transition-all duration-300 hover:scale-105 active:scale-95"
+          style={{
+            fontFamily: "Neue Plak",
+            fontSize: "14px",
+            fontStyle: "normal",
+            fontWeight: 400,
+            lineHeight: "24px",
+            textTransform: "capitalize",
+            background: "#282753",
+            padding: "4px 10px",
+          }}
+        >
+          All
+        </button>
 
-      {/* Arrow Buttons */}
-      <ScrollArrows
-        canScrollLeft={canScrollLeft}
-        canScrollRight={canScrollRight}
-        onScroll={onScroll}
-      />
+        {/* Arrow Buttons */}
+        <ScrollArrows
+          canScrollLeft={canScrollLeft}
+          canScrollRight={canScrollRight}
+          onScroll={onScroll}
+        />
+      </div>
     </div>
-  </div>
-));
+  )
+);
 
 SectionHeader.displayName = "SectionHeader";
 
@@ -381,7 +394,9 @@ const GameCarousel = ({
     const container = scrollContainerRef.current;
     if (!container || games.length === 0) return;
 
-    container.addEventListener("scroll", checkScrollPosition, { passive: true });
+    container.addEventListener("scroll", checkScrollPosition, {
+      passive: true,
+    });
     window.addEventListener("resize", checkScrollPosition);
 
     // Initial check after layout
@@ -395,34 +410,40 @@ const GameCarousel = ({
   }, [games, checkScrollPosition]);
 
   // Scroll handler
-  const handleScroll = useCallback((direction) => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
+  const handleScroll = useCallback(
+    (direction) => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
 
-    const isMobile = window.innerWidth < 640;
-    const scrollAmount = isMobile ? container.clientWidth : 300;
+      const isMobile = window.innerWidth < 640;
+      const scrollAmount = isMobile ? container.clientWidth : 300;
 
-    const targetScroll =
-      direction === "left"
-        ? container.scrollLeft - scrollAmount
-        : container.scrollLeft + scrollAmount;
+      const targetScroll =
+        direction === "left"
+          ? container.scrollLeft - scrollAmount
+          : container.scrollLeft + scrollAmount;
 
-    container.scrollTo({
-      left: targetScroll,
-      behavior: "smooth",
-    });
+      container.scrollTo({
+        left: targetScroll,
+        behavior: "smooth",
+      });
 
-    setTimeout(checkScrollPosition, 400);
-  }, [checkScrollPosition]);
+      setTimeout(checkScrollPosition, 400);
+    },
+    [checkScrollPosition]
+  );
 
   // Play handler
-  const handlePlayNow = useCallback((game) => {
-    if (!game.slug && !game.uuid) {
-      console.error("❌ No slug or uuid found for game:", game);
-      return;
-    }
-    navigate(`/game/${game.slug || game.uuid}`);
-  }, [navigate]);
+  const handlePlayNow = useCallback(
+    (game) => {
+      if (!game.slug && !game.uuid) {
+        console.error("❌ No slug or uuid found for game:", game);
+        return;
+      }
+      navigate(`/game/${game.slug || game.uuid}`);
+    },
+    [navigate]
+  );
 
   // View All handler
   const handleViewAll = useCallback(() => {
@@ -451,7 +472,10 @@ const GameCarousel = ({
   }, [games, isMobileDevice]);
 
   // Skeleton count for loading state
-  const skeletonCount = useMemo(() => (isMobileDevice ? 3 : 6), [isMobileDevice]);
+  const skeletonCount = useMemo(
+    () => (isMobileDevice ? 3 : 6),
+    [isMobileDevice]
+  );
 
   return (
     <section className="w-full relative section-fade-in">
@@ -477,27 +501,25 @@ const GameCarousel = ({
             {/* Games Grid */}
             <div
               ref={scrollContainerRef}
-              className="grid grid-flow-col auto-cols-[calc(100%/3-12px)] sm:auto-cols-[calc(100%/6-12px)] gap-3 overflow-x-auto overflow-y-hidden scrollbar-hide"
+              className="grid grid-flow-col auto-cols-[calc(100%/3-12px)] sm:auto-cols-[calc(100%/6-7px)] gap-2 overflow-x-auto overflow-y-hidden scrollbar-hide"
               style={{
                 WebkitOverflowScrolling: "touch",
                 overscrollBehaviorX: "contain",
               }}
             >
-              {filteredGames.length === 0 ? (
-                [...Array(skeletonCount)].map((_, i) => (
-                  <SkeletonCard key={`skeleton-${i}`} />
-                ))
-              ) : (
-                filteredGames.map((game) => (
-                  <GameCard
-                    key={game.uuid || game.slug || `game-${game.name}`}
-                    game={game}
-                    onPlay={handlePlayNow}
-                    isBlocked={isProviderBlocked(game.provider)}
-                    geoVariant={geoVariant}
-                  />
-                ))
-              )}
+              {filteredGames.length === 0
+                ? [...Array(skeletonCount)].map((_, i) => (
+                    <SkeletonCard key={`skeleton-${i}`} />
+                  ))
+                : filteredGames.map((game) => (
+                    <GameCard
+                      key={game.uuid || game.slug || `game-${game.name}`}
+                      game={game}
+                      onPlay={handlePlayNow}
+                      isBlocked={isProviderBlocked(game.provider)}
+                      geoVariant={geoVariant}
+                    />
+                  ))}
             </div>
           </div>
         )}
@@ -557,13 +579,27 @@ const GameCarousel = ({
         }
 
         /* Staggered animation for cards */
-        .game-card-wrapper:nth-child(1) { animation-delay: 0.1s; }
-        .game-card-wrapper:nth-child(2) { animation-delay: 0.15s; }
-        .game-card-wrapper:nth-child(3) { animation-delay: 0.2s; }
-        .game-card-wrapper:nth-child(4) { animation-delay: 0.25s; }
-        .game-card-wrapper:nth-child(5) { animation-delay: 0.3s; }
-        .game-card-wrapper:nth-child(6) { animation-delay: 0.35s; }
-        .game-card-wrapper:nth-child(n+7) { animation-delay: 0.4s; }
+        .game-card-wrapper:nth-child(1) {
+          animation-delay: 0.1s;
+        }
+        .game-card-wrapper:nth-child(2) {
+          animation-delay: 0.15s;
+        }
+        .game-card-wrapper:nth-child(3) {
+          animation-delay: 0.2s;
+        }
+        .game-card-wrapper:nth-child(4) {
+          animation-delay: 0.25s;
+        }
+        .game-card-wrapper:nth-child(5) {
+          animation-delay: 0.3s;
+        }
+        .game-card-wrapper:nth-child(6) {
+          animation-delay: 0.35s;
+        }
+        .game-card-wrapper:nth-child(n + 7) {
+          animation-delay: 0.4s;
+        }
 
         /* Card hover effect */
         .game-card-wrapper:hover {

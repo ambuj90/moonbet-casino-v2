@@ -68,7 +68,7 @@ const DesktopSearchBar = memo(({ searchTerm, setSearchTerm, onSubmit }) => {
 
         <button
           onClick={onSubmit}
-          className="px-2 py-1 mr-2 text-[10px] font-semibold text-white rounded-md 
+          className="px-2 py-1 mr-2 text-[10px] font-semibold text-white rounded-md
             bg-gradient-to-r from-[#a62a00] to-[#ffb8a1]
             hover:shadow-[0_0_6px_#ffb8a1] transition-all duration-300"
         >
@@ -82,64 +82,77 @@ const DesktopSearchBar = memo(({ searchTerm, setSearchTerm, onSubmit }) => {
 DesktopSearchBar.displayName = "DesktopSearchBar";
 
 // Animated Search Field (for logged in users)
-const AnimatedSearchField = memo(({ isOpen, searchTerm, setSearchTerm, onSubmit, onToggle, setGlobalSearchOpen }) => {
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (e.key === "Enter") onSubmit();
-    },
-    [onSubmit]
-  );
+const AnimatedSearchField = memo(
+  ({
+    isOpen,
+    searchTerm,
+    setSearchTerm,
+    onSubmit,
+    onToggle,
+    setGlobalSearchOpen,
+  }) => {
+    const handleKeyDown = useCallback(
+      (e) => {
+        if (e.key === "Enter") onSubmit();
+      },
+      [onSubmit]
+    );
 
-  const handleChange = useCallback(
-    (e) => setSearchTerm(e.target.value),
-    [setSearchTerm]
-  );
+    const handleChange = useCallback(
+      (e) => setSearchTerm(e.target.value),
+      [setSearchTerm]
+    );
 
-  return (
-    <div className="relative flex items-center mr-2">
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            key="search-wrapper"
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: 220, opacity: 1 }}
-            exit={{ width: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="flex items-center bg-[var(--bg-dark-purple-2)] border border-white/10 rounded-lg overflow-hidden"
-          >
-            <input
-              type="text"
-              placeholder="Search games..."
-              autoFocus
-              value={searchTerm}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              className="px-3 py-2 text-white text-sm bg-transparent outline-none w-full"
-            />
+    return (
+      <div className="relative flex items-center mr-2">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              key="search-wrapper"
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: 220, opacity: 1 }}
+              exit={{ width: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center bg-[var(--bg-dark-purple-2)] border border-white/10 rounded-lg overflow-hidden"
+            >
+              <input
+                type="text"
+                placeholder="Search games..."
+                autoFocus
+                value={searchTerm}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                className="px-3 py-2 text-white text-sm bg-transparent outline-none w-full"
+              />
 
-            <button
-              onClick={onSubmit}
-              className="px-2 py-1 mr-2 text-[10px] font-semibold text-white rounded-md 
+              <button
+                onClick={onSubmit}
+                className="px-2 py-1 mr-2 text-[10px] font-semibold text-white rounded-md
                 bg-gradient-to-r from-[#a62a00] to-[#ffb8a1]
                 hover:shadow-[0_0_6px_#ffb8a1] transition-all duration-300"
-            >
-              Ent.
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              >
+                Ent.
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Search toggle button */}
-      <button
-  onClick={() => setGlobalSearchOpen(true)}
-  className="w-10 h-10 hidden md:flex items-center justify-center rounded-full hover:bg-white/10"
->
-  <img src="/icons/search.svg" alt="Search" className="w-10 h-10 object-contain" loading="lazy" />
-</button>
-
-    </div>
-  );
-});
+        {/* Search toggle button */}
+        <button
+          onClick={() => setGlobalSearchOpen(true)}
+          className="w-10 h-10 hidden md:flex items-center justify-center rounded-full "
+        >
+          <img
+            src="/icons/search.svg"
+            alt="Search"
+            className="w-10 h-10 object-contain"
+            loading="lazy"
+          />
+        </button>
+      </div>
+    );
+  }
+);
 
 AnimatedSearchField.displayName = "AnimatedSearchField";
 
@@ -180,7 +193,7 @@ AuthButtons.displayName = "AuthButtons";
 const UserActions = memo(({ onNavigateLeaderboard }) => (
   <>
     {/* Leaderboard Button */}
-    <button
+    {/* <button
       onClick={onNavigateLeaderboard}
       className="w-10 h-10 hidden md:flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-200"
     >
@@ -190,7 +203,7 @@ const UserActions = memo(({ onNavigateLeaderboard }) => (
         className="w-10 h-10 object-contain"
         loading="lazy"
       />
-    </button>
+    </button> */}
 
     {/* Profile Button */}
     <LoginTrigger
@@ -238,7 +251,7 @@ const TopHeader = ({
 }) => {
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
-  
+
   // Use Zustand store selectors
   const searchTerm = useGameSearchStore((s) => s.searchTerm);
   const setSearchTerm = useGameSearchStore((s) => s.setSearchTerm);
@@ -262,9 +275,7 @@ const TopHeader = ({
   }, [navigate]);
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 h-16 bg-[#1C1D49] z-50 header-animate-in"
-    >
+    <header className="fixed top-0 left-0 right-0 h-16 bg-[#1C1D49] z-50 header-animate-in">
       <div className="h-full px-4 lg:px-4 flex items-center justify-between">
         {/* LEFT — Logo + Sidebar */}
         <div className="flex items-center gap-3">
@@ -350,7 +361,7 @@ const TopHeader = ({
         .header-animate-in {
           animation: slideDown 0.3s ease-out;
         }
-        
+       
         @keyframes slideDown {
           from {
             transform: translateY(-100%);

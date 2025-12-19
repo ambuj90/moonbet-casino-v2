@@ -54,6 +54,8 @@ import Leaderboard2 from "./pages/Leaderboard2.jsx";
 import GameReturn from "./pages/GameReturn.jsx";
 import { useAuthStore } from "./store/useAuthStore";
 import ReferralRegisterRedirect from "./pages/ReferralRegisterRedirect.jsx";
+import CasinoChallenges from "./pages/CasinoChallenges.jsx";
+import RackBack from "./pages/Rakeback.jsx";
 
 // Temporary pages
 
@@ -163,6 +165,8 @@ function App() {
 
             <Route path="product-data" element={<ProductShowcase />} />
             <Route path="leaderboard2" element={<Leaderboard2 />} />
+            <Route path="casinochallenges" element={<CasinoChallenges />} />
+            <Route path="promotions" element={<RackBack />} />
           </Route>
 
           {/* ---------------- PUBLIC ROUTES OUTSIDE LAYOUT ---------------- */}

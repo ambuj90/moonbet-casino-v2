@@ -15,9 +15,9 @@ const SidebarHeader = ({
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [tooltip, setTooltip] = useState({ show: false, text: '', top: 0 });
+  const [tooltip, setTooltip] = useState({ show: false, text: "", top: 0 });
   const user = JSON.parse(localStorage.getItem("user") || "null");
-const isLoggedIn = !!user?.id;
+  const isLoggedIn = !!user?.id;
 
   // Tooltip handlers
   const handleMouseEnter = (e, text) => {
@@ -28,7 +28,7 @@ const isLoggedIn = !!user?.id;
   };
 
   const handleMouseLeave = () => {
-    setTooltip({ show: false, text: '', top: 0 });
+    setTooltip({ show: false, text: "", top: 0 });
   };
 
   // Helper functions for menu icons and classes
@@ -91,19 +91,20 @@ const isLoggedIn = !!user?.id;
     },
     ...(isLoggedIn
       ? [
-    {
-      id: "favourites",
-      label: "Favorites",
-      icon: "/icons/favourites.svg",
-      activeIcon: "/active-menu/favourites-active.svg",
-      path: "/casino/favorites",
-    },
-  ]: []),
+          {
+            id: "favourites",
+            label: "Favorites",
+            icon: "/icons/favourites.svg",
+            activeIcon: "/active-menu/favourites-active.svg",
+            path: "/casino/favorites",
+          },
+        ]
+      : []),
     {
       id: "recommended",
       label: "Trending",
-      icon: "/icons/recommended.svg",
-      activeIcon: "/active-menu/recommended-active.svg",
+      icon: "/icons/trending.svg",
+      activeIcon: "/active-menu/trending.svg",
       path: "/casino",
     },
   ];
@@ -187,6 +188,7 @@ const isLoggedIn = !!user?.id;
       label: "Leaderboard",
       icon: "/icons/leaderboard-new.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
+      comingSoon: true,
     },
   ];
 
@@ -208,12 +210,26 @@ const isLoggedIn = !!user?.id;
         ]
       : []),
     {
-      path: "#",
-      label: "Promotions",
+      id: "promotions",
+      label: "Rewards",
       icon: "/icons/rewards.svg",
-      activeIcon: "/active-menu/rewards-active.svg",
-      comingSoon: true,
+      activeIcon: "/active-menu/originals-active.svg",
+      submenu: [
+        {
+          path: "casinochallenges",
+          label: "Challenges",
+          icon: "/icons/dices.svg",
+          comingSoon: false,
+        },
+        {
+          path: "promotions",
+          label: "Promotions",
+          icon: "/icons/rewards.svg",
+          comingSoon: false,
+        },
+      ],
     },
+
     {
       path: "",
       label: "Live Support",
@@ -249,7 +265,7 @@ const isLoggedIn = !!user?.id;
           <motion.button
             whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.01 }}
             onClick={() => toggleSubmenu(item.id)}
-             onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+            onMouseEnter={(e) => handleMouseEnter(e, item.label)}
             onMouseLeave={handleMouseLeave}
             className={`w-full flex items-center ${
               sidebarCollapsed ? "justify-center" : "justify-between"
@@ -902,68 +918,62 @@ const isLoggedIn = !!user?.id;
                           className={`flex items-center ${
                             sidebarCollapsed ? "justify-center" : "gap-3"
                           } px-3 py-2 rounded-[8px] transition-all duration-200 
-                              ${getMenuLinkClass(
-                                item,
-                                location.pathname,
-                                sidebarCollapsed
-                              )}`}
+      ${getMenuLinkClass(item, location.pathname, sidebarCollapsed)}`}
                           onClick={closeSidebar}
                           onMouseEnter={(e) => handleMouseEnter(e, item.label)}
                           onMouseLeave={handleMouseLeave}
                         >
                           <span className="text-lg flex items-center justify-center">
-                            {typeof item.icon === "string" &&
-                            item.icon.startsWith("/") ? (
-                              <img
-                                src={getMenuIcon(
-                                  item,
-                                  location.pathname,
-                                  sidebarCollapsed
-                                )}
-                                alt={item.label}
-                                className={getMenuIconClass(
-                                  item,
-                                  location.pathname,
-                                  sidebarCollapsed
-                                )}
-                                key={`${item.id}-${isActive}-${sidebarCollapsed}`}
-                              />
-                            ) : (
-                              item.icon
-                            )}
+                            <img
+                              src={getMenuIcon(
+                                item,
+                                location.pathname,
+                                sidebarCollapsed
+                              )}
+                              alt={item.label}
+                              className={getMenuIconClass(
+                                item,
+                                location.pathname,
+                                sidebarCollapsed
+                              )}
+                            />
                           </span>
 
-                          <AnimatePresence>
-                            {!sidebarCollapsed && (
-                              <motion.span
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6"
-                                style={{
-                                  textShadow:
-                                    "0 0 10px rgba(255, 255, 255, 0.25)",
-                                }}
-                              >
-                                {item.label}
-                              </motion.span>
-                            )}
-                          </AnimatePresence>
+                          {!sidebarCollapsed && (
+                            <motion.span
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -20 }}
+                              className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6"
+                              style={{
+                                textShadow:
+                                  "0 0 10px rgba(255, 255, 255, 0.25)",
+                              }}
+                            >
+                              {item.label}
+                            </motion.span>
+                          )}
 
-                          {/* Active indicator bar */}
+                          {/* ⭐ COMING SOON BADGE FOR LEADERBOARD */}
+                          {!sidebarCollapsed && item.comingSoon && (
+                            <span
+                              className="ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-[4px] whitespace-nowrap tracking-wide"
+                              style={{
+                                background:
+                                  "linear-gradient(180deg, rgba(40,194,3,0.00) 0%, rgba(40,194,3,0.40) 100%)",
+                                color: "#28C203",
+                              }}
+                            >
+                              coming soon
+                            </span>
+                          )}
+
                           {isActive && (
                             <motion.div
                               layoutId="activeIndicator"
                               className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6"
                             />
                           )}
-
-                          {/* Tooltip for collapsed state */}
-                          {/* {sidebarCollapsed && (
-                            <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                              {item.label}
-                            </div>
-                          )} */}
                         </Link>
                       </motion.div>
                     )}
@@ -977,156 +987,325 @@ const isLoggedIn = !!user?.id;
           <div className="py-2 mt-1 relative customborder">
             <div className="space-y-1">
               {accountItems.map((item) => {
-                const isActive = location.pathname === item.path;
-
+                // Check if any submenu item is active for this parent
+                const isSubmenuActive = item.submenu?.some(
+                  (subItem) => location.pathname === subItem.path
+                );
+                const isActive =
+                  location.pathname === item.path || isSubmenuActive;
                 const isLiveSupport = item.label === "Live Support";
 
                 return (
-                  <motion.div
-                    key={item.path || item.label}
-                    whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.01 }}
-                    className="relative group"
-                  >
-                    {/* ⭐ LIVE SUPPORT BUTTON (opens Tidio) */}
-                    {isLiveSupport ? (
-                      <button
-                        onClick={() => {
-                          closeSidebar();
-                          if (window.tidioChatApi) {
-                            window.tidioChatApi.show();
-                            window.tidioChatApi.open();
-                          } else {
-                            console.warn("Tidio not ready");
-                          }
-                        }}
-                        onMouseEnter={(e) => handleMouseEnter(e, item.label)}
-                        onMouseLeave={handleMouseLeave}
-                        className={`flex items-center ${
-                          sidebarCollapsed ? "justify-center" : "gap-3"
-                        } w-full px-3 py-2 rounded-[8px] transition-all duration-200
-                ${getMenuLinkClass(item, location.pathname, sidebarCollapsed)}
-              `}
-                      >
-                        <span className="text-lg flex items-center justify-center">
-                          <img
-                            src={getMenuIcon(
-                              item,
-                              location.pathname,
-                              sidebarCollapsed
-                            )}
-                            alt={item.label}
-                            className={getMenuIconClass(
-                              item,
-                              location.pathname,
-                              sidebarCollapsed
-                            )}
-                          />
-                        </span>
+                  <div key={item.id || item.path || item.label}>
+                    {/* ⭐ ITEM WITH SUBMENU (like Promotions) */}
+                    {item.submenu ? (
+                      <>
+                        <motion.button
+                          whileHover={{
+                            scale: sidebarCollapsed ? 1.05 : 1.01,
+                          }}
+                          onClick={() => toggleSubmenu(item.id)}
+                          onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                          onMouseLeave={handleMouseLeave}
+                          className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] ${
+                            sidebarCollapsed
+                              ? "justify-center"
+                              : "justify-between bg-[#282753] shadow-[2px_2px_4px_0_rgba(0,0,0,0.25)]"
+                          } px-3 py-2 transition-all duration-200 group relative 
+                    ${getMenuLinkClass(
+                      item,
+                      location.pathname,
+                      sidebarCollapsed,
+                      isSubmenuActive
+                    )}`}
+                        >
+                          <div
+                            className={`flex items-center ${
+                              sidebarCollapsed ? "" : "gap-3"
+                            } relative z-10`}
+                          >
+                            <span className="text-lg flex items-center justify-center">
+                              {typeof item.icon === "string" &&
+                              item.icon.startsWith("/") ? (
+                                <img
+                                  src={getMenuIcon(
+                                    item,
+                                    location.pathname,
+                                    sidebarCollapsed,
+                                    isSubmenuActive
+                                  )}
+                                  alt={item.label}
+                                  className={getMenuIconClass(
+                                    item,
+                                    location.pathname,
+                                    sidebarCollapsed,
+                                    isSubmenuActive
+                                  )}
+                                  key={`${item.id}-${isActive}-${sidebarCollapsed}`}
+                                />
+                              ) : (
+                                item.icon
+                              )}
+                            </span>
+                            <AnimatePresence>
+                              {!sidebarCollapsed && (
+                                <motion.span
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  exit={{ opacity: 0, x: -20 }}
+                                  className={`text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6 ${
+                                    isActive
+                                      ? "text-white"
+                                      : "text-[#A8A8A8] group-hover:text-white"
+                                  }`}
+                                  style={{
+                                    textShadow:
+                                      "0 0 10px rgba(255, 255, 255, 0.25)",
+                                  }}
+                                >
+                                  {item.label}
+                                </motion.span>
+                              )}
+                            </AnimatePresence>
+                          </div>
 
-                        {/* Label when expanded */}
-                        <AnimatePresence>
                           {!sidebarCollapsed && (
-                            <motion.span
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              exit={{ opacity: 0, x: -20 }}
-                              className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6 text-white"
+                            <motion.svg
+                              animate={{
+                                rotate: activeSubmenu === item.id ? 180 : 0,
+                              }}
+                              className={`w-4 h-4 ${
+                                isActive ? "text-white" : "text-[#A8A8A8]"
+                              }`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </motion.svg>
+                          )}
+                        </motion.button>
+
+                        {/* Submenu for Promotions */}
+                        <AnimatePresence>
+                          {activeSubmenu === item.id && !sidebarCollapsed && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="mt-0 overflow-hidden"
                               style={{
-                                textShadow: "0 0 10px rgba(255,255,255,0.25)",
+                                background: "#282753",
+                                borderEndEndRadius: "6px",
+                                borderEndStartRadius: "6px",
                               }}
                             >
-                              {item.label}
-                            </motion.span>
+                              <div className="space-y-1.5">
+                                {item.submenu.map((subItem) => (
+                                  <Link
+                                    key={subItem.path + subItem.label}
+                                    to={subItem.path}
+                                    className={`flex items-center gap-4 px-3 py-1.5 rounded-[8px] backdrop-blur-[2px] transition-all group
+                              ${
+                                location.pathname === subItem.path
+                                  ? "trust_btn view_moon_btn text-white bg-gradient-to-b backdrop-blur-[2px]"
+                                  : "text-[#E1E1E1] hover:bg-white/5"
+                              }`}
+                                    onClick={closeSidebar}
+                                  >
+                                    <span className="text-lg flex items-center justify-center">
+                                      {typeof subItem.icon === "string" &&
+                                      subItem.icon.startsWith("/") ? (
+                                        <img
+                                          src={subItem.icon}
+                                          alt={subItem.label}
+                                          className={`w-5 h-5 object-contain ${
+                                            location.pathname === subItem.path
+                                              ? "icon-active"
+                                              : "submenu-icon"
+                                          }`}
+                                        />
+                                      ) : (
+                                        subItem.icon
+                                      )}
+                                    </span>
+                                    <span
+                                      className={`text-sm font-['Neue_Plak'] ${
+                                        location.pathname === subItem.path
+                                          ? "text-white"
+                                          : "text-[#E1E1E1] group-hover:text-white"
+                                      }`}
+                                      style={{
+                                        textShadow:
+                                          "0 0 10px rgba(255, 255, 255, 0.25)",
+                                      }}
+                                    >
+                                      {subItem.label}
+                                    </span>
+                                    {/* ⭐ Coming Soon Badge for Promotions submenu */}
+                                    {subItem.comingSoon && (
+                                      <span
+                                        className="claim-btn ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-[4px] whitespace-nowrap tracking-wide"
+                                        style={{
+                                          background:
+                                            "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
+                                        }}
+                                      >
+                                        coming soon
+                                      </span>
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
                           )}
                         </AnimatePresence>
-
-                        {/* Tooltip */}
-                        {/* {sidebarCollapsed && (
-                          <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                            {item.label}
-                          </div>
-                        )} */}
-                      </button>
-                    ) : (
-                      /* ⭐ ALL OTHER NORMAL LINK ITEMS */
-                      <Link
-                        to={item.path}
-                        className={`flex items-center ${
-                          sidebarCollapsed ? "justify-center" : "gap-3"
-                        } px-3 py-2 rounded-[8px] transition-all duration-200 
-                ${getMenuLinkClass(item, location.pathname, sidebarCollapsed)}
-              `}
-                        onClick={closeSidebar}
-                        onMouseEnter={(e) => handleMouseEnter(e, item.label)}
-                        onMouseLeave={handleMouseLeave}
+                      </>
+                    ) : isLiveSupport ? (
+                      /* ⭐ LIVE SUPPORT BUTTON (opens Tidio) */
+                      <motion.div
+                        whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.01 }}
+                        className="relative group"
                       >
-                        <span className="text-lg flex items-center justify-center">
-                          <img
-                            src={getMenuIcon(
-                              item,
-                              location.pathname,
-                              sidebarCollapsed
-                            )}
-                            alt={item.label}
-                            className={getMenuIconClass(
-                              item,
-                              location.pathname,
-                              sidebarCollapsed
-                            )}
-                          />
-                        </span>
+                        <button
+                          onClick={() => {
+                            closeSidebar();
+                            if (window.tidioChatApi) {
+                              window.tidioChatApi.show();
+                              window.tidioChatApi.open();
+                            } else {
+                              console.warn("Tidio not ready");
+                            }
+                          }}
+                          onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                          onMouseLeave={handleMouseLeave}
+                          className={`flex items-center ${
+                            sidebarCollapsed ? "justify-center" : "gap-3"
+                          } w-full px-3 py-2 rounded-[8px] transition-all duration-200
+                  ${getMenuLinkClass(
+                    item,
+                    location.pathname,
+                    sidebarCollapsed
+                  )}`}
+                        >
+                          <span className="text-lg flex items-center justify-center">
+                            <img
+                              src={getMenuIcon(
+                                item,
+                                location.pathname,
+                                sidebarCollapsed
+                              )}
+                              alt={item.label}
+                              className={getMenuIconClass(
+                                item,
+                                location.pathname,
+                                sidebarCollapsed
+                              )}
+                            />
+                          </span>
 
-                        <AnimatePresence>
-                          {!sidebarCollapsed && (
-                            <motion.div
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              exit={{ opacity: 0, x: -20 }}
-                              className="flex items-center justify-between w-full"
-                            >
-                              {/* Label */}
-                              <span
+                          <AnimatePresence>
+                            {!sidebarCollapsed && (
+                              <motion.span
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
                                 className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6 text-white"
                                 style={{
                                   textShadow: "0 0 10px rgba(255,255,255,0.25)",
                                 }}
                               >
                                 {item.label}
-                              </span>
+                              </motion.span>
+                            )}
+                          </AnimatePresence>
+                        </button>
+                      </motion.div>
+                    ) : (
+                      /* ⭐ ALL OTHER NORMAL LINK ITEMS */
+                      <motion.div
+                        whileHover={{ scale: sidebarCollapsed ? 1.05 : 1.01 }}
+                        className="relative group"
+                      >
+                        <Link
+                          to={item.path}
+                          className={`flex items-center ${
+                            sidebarCollapsed ? "justify-center" : "gap-3"
+                          } px-3 py-2 rounded-[8px] transition-all duration-200 
+                  ${getMenuLinkClass(
+                    item,
+                    location.pathname,
+                    sidebarCollapsed
+                  )}`}
+                          onClick={closeSidebar}
+                          onMouseEnter={(e) => handleMouseEnter(e, item.label)}
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          <span className="text-lg flex items-center justify-center">
+                            <img
+                              src={getMenuIcon(
+                                item,
+                                location.pathname,
+                                sidebarCollapsed
+                              )}
+                              alt={item.label}
+                              className={getMenuIconClass(
+                                item,
+                                location.pathname,
+                                sidebarCollapsed
+                              )}
+                            />
+                          </span>
 
-                              {/* ⭐ coming soon Badge */}
-                              {item.comingSoon && (
+                          <AnimatePresence>
+                            {!sidebarCollapsed && (
+                              <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                className="flex items-center justify-between w-full"
+                              >
                                 <span
-                                  className="claim-btn ml-auto text-[10px] font-semibold px-2 py-0.5  rounded-[4px]  whitespace-nowrap tracking-wide"
+                                  className="text-[#e1e1e1] font-normal font-['Neue_Plak'] leading-6 text-white"
                                   style={{
-                                    background:
-                                      "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
+                                    textShadow:
+                                      "0 0 10px rgba(255,255,255,0.25)",
                                   }}
                                 >
-                                  coming soon
+                                  {item.label}
                                 </span>
-                              )}
-                            </motion.div>
+
+                                {item.comingSoon && (
+                                  <span
+                                    className="claim-btn ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-[4px] whitespace-nowrap tracking-wide"
+                                    style={{
+                                      background:
+                                        "linear-gradient(180deg, rgba(40, 194, 3, 0.00) 0%, rgba(40, 194, 3, 0.40) 100%)",
+                                    }}
+                                  >
+                                    coming soon
+                                  </span>
+                                )}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+
+                          {isActive && (
+                            <motion.div
+                              layoutId="activeIndicator"
+                              className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6 rounded-r"
+                            />
                           )}
-                        </AnimatePresence>
-
-                        {/* Active indicator bar */}
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeIndicator"
-                            className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6 rounded-r"
-                          />
-                        )}
-
-                        {/* Tooltip */}
-                        {/* {sidebarCollapsed && (
-                          <div className="absolute left-full ml-2 px-2 py-1 bg-[#1A1B23] border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                            {item.label}
-                          </div>
-                        )} */}
-                      </Link>
+                        </Link>
+                      </motion.div>
                     )}
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -1383,15 +1562,22 @@ const isLoggedIn = !!user?.id;
         </div>
 
         {/* Portal Tooltip - Renders to body, bypasses all stacking contexts */}
-        {sidebarCollapsed && tooltip.show && createPortal(
-          <div
-            className="fixed left-[70px] px-2 py-1  border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap pointer-events-none"
-            style={{ top: tooltip.top, transform: 'translateY(-50%)', zIndex: 9999, backgroundColor: 'var(--bg-dark-purple-2)' }}
-          >
-            {tooltip.text}
-          </div>,
-          document.body
-        )}
+        {sidebarCollapsed &&
+          tooltip.show &&
+          createPortal(
+            <div
+              className="fixed left-[70px] px-2 py-1  border border-gray-800 rounded text-xs text-[#A8A8A8] whitespace-nowrap pointer-events-none"
+              style={{
+                top: tooltip.top,
+                transform: "translateY(-50%)",
+                zIndex: 9999,
+                backgroundColor: "var(--bg-dark-purple-2)",
+              }}
+            >
+              {tooltip.text}
+            </div>,
+            document.body
+          )}
       </motion.aside>
     </div>
   );

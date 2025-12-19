@@ -100,9 +100,9 @@ BalanceSkeleton.displayName = "BalanceSkeleton";
 // Rakeback Section
 const RakebackSection = memo(
   ({ rakeback, isClaiming, onClaim, selectedCurrency }) => (
-    <div className="mt-3 mb-2 px-3 py-2 flex items-center justify-between rounded-[15px] border border-[#555594] bg-[rgba(13,14,54,0.50)] backdrop-blur-[30px]">
+    <div className="mt-3 mb-2 px-3 py-2 flex items-center justify-between rounded-[15px]  bg-[rgba(85,85,148,0%)] backdrop-blur-[30px]">
       <div className="flex flex-col leading-tight">
-        <span className="text-[12px] text-[#9292D2] tracking-wide">
+        <span className="text-[12px] text-[#ffff] tracking-wide">
           Rakeback Available
         </span>
         <div className="flex items-center gap-2 mt-1">
@@ -111,7 +111,7 @@ const RakebackSection = memo(
               <img
                 src={fixIconUrl(selectedCurrency.iconPath)}
                 alt={selectedCurrency.symbol}
-                className="w-3.5 h-3.5 object-contain"
+                className="w-4.5 h-4.5 object-contain"
                 loading="lazy"
                 onError={(e) => {
                   e.target.onerror = null;
@@ -135,11 +135,10 @@ const RakebackSection = memo(
         disabled={rakeback <= 0 || isClaiming}
         className={`
         claim-btn relative px-4 py-1.5 rounded-[4px] transition-all select-none
-        ${
-          rakeback > 0
+        ${rakeback > 0
             ? "text-white hover:brightness-110"
             : "cursor-not-allowed text-white/40"
-        }
+          }
       `}
         style={{
           background:
@@ -152,8 +151,7 @@ const RakebackSection = memo(
         {isClaiming ? "Claiming..." : "Claim"}
       </button>
     </div>
-  )
-);
+  ));
 RakebackSection.displayName = "RakebackSection";
 
 // Search Box
@@ -202,20 +200,18 @@ const CurrencyItem = memo(({ currency, isSelected, isUpdating, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className={`wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250 ${
-        isSelected
+      className={`wallet-item group flex items-center pr-3 my-2.5 rounded-full relative cursor-pointer transition-all duration-250 ${isSelected
           ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]"
           : ""
-      } ${isUpdating && isSelected ? "opacity-70" : ""}`}
+        } ${isUpdating && isSelected ? "opacity-70" : ""}`}
     >
       {/* Hover Background Effect */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
 
       {/* Icon Wrapper */}
       <div
-        className={`icon-wrap w-9 h-9 rounded-full flex items-center justify-center transition-all duration-250 relative z-10 group-hover:bg-white/55 ${
-          isSelected ? "bg-white/30" : ""
-        }`}
+        className={`icon-wrap w-9 h-9 rounded-full flex items-center justify-center transition-all duration-250 relative z-10 group-hover:bg-white/55 ${isSelected ? "bg-white/30" : ""
+          }`}
       >
         {/* Skeleton while image loads */}
         {!imageLoaded && (
@@ -226,9 +222,8 @@ const CurrencyItem = memo(({ currency, isSelected, isUpdating, onClick }) => {
         <img
           src={currency.iconPath}
           alt={currency.name}
-          className={`w-[26px] h-[26px] object-contain transition-opacity duration-200 ${
-            imageLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          className={`w-[26px] h-[26px] object-contain transition-opacity duration-200 ${imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
           loading="lazy"
           onLoad={handleImageLoad}
           onError={handleImageError}
@@ -240,7 +235,7 @@ const CurrencyItem = memo(({ currency, isSelected, isUpdating, onClick }) => {
         <span className="coin-name text-white text-sm font-medium">
           {currency.name}
         </span>
-        <span className="coin-symbol text-[#9292D2] text-xs group-hover:text-[#C8C8E1]">
+        <span className="coin-symbol text-[#fff] text-xs group-hover:text-[#C8C8E1] opacity[40%]">
           {currency.symbol}
         </span>
       </div>
@@ -312,9 +307,8 @@ const WalletButton = memo(({ onClick }) => {
           alt="Wallet"
           width={40}
           height={40}
-          className={`w-[40px] h-[40px] transition-opacity duration-200 ${
-            imageLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          className={`w-[40px] h-[40px] transition-opacity duration-200 ${imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
           loading="eager"
           onLoad={() => setImageLoaded(true)}
         />
@@ -407,8 +401,7 @@ const WalletDropdownCenter = ({
   useEffect(() => {
     if (!selectedCurrency && currencies.length > 0) {
       const preferred = localStorage.getItem("preferredCurrency") || "BTC";
-      const found =
-        currencies.find((c) => c.symbol === preferred) || currencies[0];
+      const found = currencies.find((c) => c.symbol === preferred) || currencies[0];
 
       setSelectedCurrency(found);
     }
@@ -628,9 +621,8 @@ const WalletDropdownCenter = ({
                     "/icons/default-coin.svg"
                   }
                   alt={selectedCurrency?.name || "Currency"}
-                  className={`w-4 h-4 sm:w-5 sm:h-5 object-contain transition-opacity duration-200 ${
-                    selectedIconLoaded ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`w-4 h-4 sm:w-5 sm:h-5 object-contain transition-opacity duration-200 ${selectedIconLoaded ? "opacity-100" : "opacity-0"
+                    }`}
                   loading="eager"
                   onLoad={() => setSelectedIconLoaded(true)}
                   onError={(e) => {
@@ -654,17 +646,15 @@ const WalletDropdownCenter = ({
                     <span className="opacity-70">...</span>
                   </>
                 ) : (
-                  `${Number(selectedCurrency?.usdValue || 0).toFixed(2)} ${
-                    gameCurrency || "USD"
+                  `${Number(selectedCurrency?.usdValue || 0).toFixed(2)} ${gameCurrency || "USD"
                   }`
                 )}
               </span>
 
               {/* Dropdown arrow */}
               <svg
-                className={`w-3 sm:w-4 h-3 sm:h-4 text-white/70 transition-transform duration-200 ${
-                  walletDropdownOpen ? "rotate-180" : ""
-                }`}
+                className={`w-3 sm:w-4 h-3 sm:h-4 text-white/70 transition-transform duration-200 ${walletDropdownOpen ? "rotate-180" : ""
+                  }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -687,10 +677,10 @@ const WalletDropdownCenter = ({
             style={{
               padding: "0 12px 10px",
               border:
-                "2px solid var(--drop-down-order, rgba(255,255,255,0.05))",
-              background: "rgba(200,200,225,0.20)",
+                "2px solid var(--drop-down-order, rgba(255, 255, 255, 0.05))",
+              background: "rgb(200 200 225 / 37%)",
               backdropFilter: "blur(67.5px)",
-              WebkitBackdropFilter: "blur(67.5px)",
+              WebkitBackdropFilter: "blur(174.5px)",
             }}
           >
             {/* Rakeback Section */}
