@@ -267,7 +267,7 @@ const GameBetsSection = () => {
                           : "text-[#555594]"
                       }`}
                     >
-                      {bet.payout}
+                      {bet.betAmount}
                     </div>
                   </motion.div>
                 ))
