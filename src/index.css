@@ -992,7 +992,10 @@
 .trust_btn {
   position: relative;
   border-radius: 8px;
-  background-color: #282753;
+  background-color: linear-gradient(109deg, rgba(255, 255, 255, 0.15) 1.57%, rgba(255, 255, 255, 0.03) 100%);
+}
+.trust_btn:hover{
+  background: linear-gradient(109deg, rgba(255, 255, 255, 0.15) 1.57%, rgba(255, 255, 255, 0.03) 100%);
 }
 .trust_btn:before {
   content: "";

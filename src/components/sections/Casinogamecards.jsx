@@ -40,7 +40,7 @@ const CARDS_DATA = Object.freeze([
     img: "/category/img10.png",
     desc: "Spinning wheels, pumping multipliers",
     background: "rgba(90, 55, 153, 0.50)",
-    hoverBg: "#A62A00",
+    hoverBg: "#5A3799",
     link: "/casino/game%20show",
   },
   {
@@ -56,7 +56,7 @@ const CARDS_DATA = Object.freeze([
     img: "/category/img3.png",
     desc: "2K + titles, 98% + RTP, chase your next big win.",
     background: "rgba(85, 81, 169, 0.50)",
-    hoverBg: "#A62A00",
+    hoverBg: "#5551A9",
     link: "/casino/slots",
   },
   {

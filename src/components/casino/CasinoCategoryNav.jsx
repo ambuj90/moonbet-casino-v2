@@ -241,7 +241,8 @@ const ICON_PATH = {
   favorites:
     "M12.5109 0C13.9778 7.87092e-05 15.3565 0.572114 16.3938 1.60938C18.535 3.75068 18.5351 7.23458 16.3938 9.37598L10.3723 15.3984C10.0069 15.7637 9.51949 15.9648 9.0002 15.9648C8.48091 15.9648 7.99346 15.7636 7.62813 15.3984L1.60567 9.37598C-0.53533 7.23467 -0.535116 3.75066 1.60567 1.60938C2.64293 0.572084 4.02253 4.57993e-05 5.48946 0C6.78681 0 8.01593 0.44767 9.0002 1.26855C9.98454 0.44767 11.2135 0 12.5109 0Z",
 
-  "live dealer": "M5.1625 6.35217C5.9572 6.35217 6.65718 6.1262 7.23521 5.83784C6.64837 6.98803 6.29675 8.31944 6.22697 9.69248C3.88055 9.95487 2.04062 12.0054 2.04062 14.5182C2.04062 17.208 4.14125 19.4323 6.72344 19.4323C7.51895 19.4323 8.28099 19.1988 8.96444 18.8083C7.90417 17.7255 7.24375 16.1834 7.24375 14.5182C7.24375 12.853 7.90417 11.347 8.96444 10.2643C8.43817 9.96348 7.86474 9.75896 7.26597 9.6795C7.49225 5.84857 10.2697 2.68864 13.8508 2.11207C12.9387 3.44588 12.4469 5.03742 12.4469 6.70842V9.69502C10.1118 9.9687 8.28438 12.0139 8.28438 14.5182C8.28438 17.208 10.385 19.4323 12.9672 19.4323C15.5494 19.4323 17.65 17.208 17.65 14.5182C17.65 12.0139 15.8225 9.9687 13.4875 9.69502V6.70842C13.4875 4.87595 14.1724 3.15315 15.4163 1.85745L16.3045 0.932251H15.0484C12.6046 0.932251 10.3897 1.97036 8.78721 3.64489C8.36649 3.22414 7.01747 2.01624 5.1625 2.01624C2.96743 2.01624 1.46544 3.71998 1.39281 3.79253L1 4.1842L1.39281 4.57588C1.46544 4.64843 2.96743 6.35217 5.1625 6.35217Z",
+  "live dealer":
+    "M5.1625 6.35217C5.9572 6.35217 6.65718 6.1262 7.23521 5.83784C6.64837 6.98803 6.29675 8.31944 6.22697 9.69248C3.88055 9.95487 2.04062 12.0054 2.04062 14.5182C2.04062 17.208 4.14125 19.4323 6.72344 19.4323C7.51895 19.4323 8.28099 19.1988 8.96444 18.8083C7.90417 17.7255 7.24375 16.1834 7.24375 14.5182C7.24375 12.853 7.90417 11.347 8.96444 10.2643C8.43817 9.96348 7.86474 9.75896 7.26597 9.6795C7.49225 5.84857 10.2697 2.68864 13.8508 2.11207C12.9387 3.44588 12.4469 5.03742 12.4469 6.70842V9.69502C10.1118 9.9687 8.28438 12.0139 8.28438 14.5182C8.28438 17.208 10.385 19.4323 12.9672 19.4323C15.5494 19.4323 17.65 17.208 17.65 14.5182C17.65 12.0139 15.8225 9.9687 13.4875 9.69502V6.70842C13.4875 4.87595 14.1724 3.15315 15.4163 1.85745L16.3045 0.932251H15.0484C12.6046 0.932251 10.3897 1.97036 8.78721 3.64489C8.36649 3.22414 7.01747 2.01624 5.1625 2.01624C2.96743 2.01624 1.46544 3.71998 1.39281 3.79253L1 4.1842L1.39281 4.57588C1.46544 4.64843 2.96743 6.35217 5.1625 6.35217Z",
 
   crash:
     "M19.534 9.88032L17.4173 7.76153C16.5468 6.89018 17.0787 5.97042 18.0274 5.91456C19.5899 5.81774 20.4678 4.14952 19.1918 2.76057C17.8042 1.48706 16.145 2.36213 16.0483 3.92237C15.9887 4.87192 15.0624 5.40814 14.1956 4.54051L12.1235 2.4664C11.5022 1.84453 10.4941 1.84453 9.87279 2.4664L7.77462 4.56657C6.9041 5.43792 5.9815 4.89799 5.92198 3.94844C5.82526 2.38447 4.15118 1.49451 2.76356 2.77174C1.48383 4.16441 2.37295 5.84009 3.93541 5.9369C4.88405 5.99648 5.42348 6.92369 4.55668 7.79504L2.46595 9.88405C1.84468 10.5059 1.84468 11.515 2.46595 12.1369L4.53808 14.211C5.4086 15.0786 4.89149 15.9835 3.94285 16.0431C2.38039 16.1399 1.50615 17.8044 2.78216 19.1933C4.16978 20.4706 5.82526 19.5992 5.92198 18.0353C5.9815 17.0857 6.88922 16.5644 7.75974 17.432L9.85047 19.5248C10.4829 20.1578 11.5171 20.1578 12.1495 19.5285L14.244 17.432C15.0661 16.5718 14.5342 15.667 13.5967 15.6074C12.0342 15.5106 11.1488 13.8349 12.4248 12.446C13.8124 11.1687 15.4865 12.0587 15.5832 13.6227C15.6428 14.561 16.543 15.0898 17.4024 14.2669L19.5043 12.163C19.508 12.1592 19.508 12.1592 19.5117 12.1555L19.534 12.1332C20.1553 11.5113 20.1553 10.5022 19.534 9.88032Z",
@@ -320,6 +321,16 @@ const DynamicIcon = ({ id, active }) => {
   );
 };
 
+const PROVIDER_LIST = [
+  { id: "pragmatic play", label: "Pragmatic Play" },
+  { id: "evolution gaming", label: "Evolution Gaming" },
+  { id: "playngo", label: "Play’n GO" },
+  { id: "netent", label: "NetEnt" },
+  { id: "hacksaw gaming", label: "Hacksaw Gaming" },
+  { id: "ezugi", label: "Ezugi" },
+  { id: "bgaming", label: "BGaming" },
+];
+
 const CasinoCategoryNav = ({
   selectedCategory,
   setSelectedCategory,
@@ -343,7 +354,22 @@ const CasinoCategoryNav = ({
   // const [searchTerm, setSearchTerm] = useState("");
   const { category } = useParams();
   const user = JSON.parse(localStorage.getItem("user") || "null");
-const isLoggedIn = !!user?.id;
+  const isLoggedIn = !!user?.id;
+  const [studioOpen, setStudioOpen] = useState(false);
+  const studioRef = useRef(null);
+  const [selectedStudio, setSelectedStudio] = useState("all");
+  const [availableStudios, setAvailableStudios] = useState([]);
+
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (studioRef.current && !studioRef.current.contains(e.target)) {
+        setStudioOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // when URL changes (e.g. /casino/slots)
   useEffect(() => {
@@ -355,54 +381,83 @@ const isLoggedIn = !!user?.id;
   }, [category]);
 
   useEffect(() => {
-  const fetchGames = async () => {
-    setLoading(true);
-    try {
-      let res;
+    const fetchGames = async () => {
+      setLoading(true);
+      try {
+        let res;
 
-      // ⭐ If category is "favorites", fetch ONLY favourite games
-      if (selectedCategory === "favorites") {
-        const user = JSON.parse(localStorage.getItem("user") || "{}");
-        const userId = user.id;
+        // ⭐ If category is "favorites", fetch ONLY favourite games
+        if (selectedCategory === "favorites") {
+          const user = JSON.parse(localStorage.getItem("user") || "{}");
+          const userId = user.id;
 
-        res = await fetch(`/wallet-service/api/games/${userId}/favourite-game`);
-      } 
-      else {
-        // ⭐ Normal categories fetch
-        const params = new URLSearchParams();
-        const activeCategory = category || selectedCategory;
+          res = await fetch(
+            `/wallet-service/api/games/${userId}/favourite-game`
+          );
+        } else {
+          // ⭐ Normal categories fetch
+          const params = new URLSearchParams();
+          const activeCategory = category || selectedCategory;
 
-        if (activeCategory && activeCategory !== "all") {
-          params.append("type", activeCategory);
+          if (activeCategory && activeCategory !== "all") {
+            params.append("type", activeCategory);
+          }
+
+          if (selectedFilter) {
+            params.append("sortBy", selectedFilter);
+          }
+
+          if (searchTerm) {
+            params.append("name", searchTerm);
+          }
+
+          const query = params.toString() ? `?${params.toString()}` : "";
+
+          res = await fetch(`/wallet-service/api/games${query}`);
         }
 
-        if (selectedFilter) {
-          params.append("sortBy", selectedFilter);
+        const data = await res.json();
+        if (data.success) {
+          let fetchedGames = data.data || [];
+
+          if (selectedStudio !== "all") {
+            fetchedGames = fetchedGames.filter((game) => {
+              const provider =
+                game.provider ||
+                game.provider_name ||
+                game.studio ||
+                game.vendor ||
+                "";
+
+              return provider.toLowerCase().includes(selectedStudio);
+            });
+          }
+
+          setGames(fetchedGames);
+        } else {
+          setGames([]);
         }
-
-        if (searchTerm) {
-          params.append("name", searchTerm);
-        }
-
-        const query = params.toString() ? `?${params.toString()}` : "";
-
-        res = await fetch(`/wallet-service/api/games${query}`);
+      } catch (err) {
+        console.error("Error fetching games:", err);
+        setGames([]);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      const data = await res.json();
-      if (data.success) setGames(data.data || []);
-      else setGames([]);
+    fetchGames();
+  }, [category, selectedFilter, searchTerm, selectedCategory, selectedStudio]);
 
-    } catch (err) {
-      console.error("Error fetching games:", err);
-      setGames([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+  setAvailableStudios([
+    { id: "all", label: "All Studios" },
+    ...PROVIDER_LIST,
+  ]);
+}, []);
 
-  fetchGames();
-}, [category, selectedFilter, searchTerm, selectedCategory]);
+  useEffect(() => {
+    setSelectedStudio("all");
+  }, [selectedCategory, category]);
 
   // --- SVG Icon Components ---
   const ChevronLeft = ({ className }) => (
@@ -641,26 +696,26 @@ const isLoggedIn = !!user?.id;
     },
     ...(isLoggedIn
       ? [
-    {
-      id: "favorites",
-      label: "Favorites",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="16"
-          viewBox="0 0 18 16"
-          fill="none"
-        >
-          <path
-            d="M12.5109 0C13.9778 7.87092e-05 15.3565 0.572114 16.3938 1.60938C18.535 3.75068 18.5351 7.23458 16.3938 9.37598L10.3723 15.3984C10.0069 15.7637 9.51949 15.9648 9.0002 15.9648C8.48091 15.9648 7.99346 15.7636 7.62813 15.3984L1.60567 9.37598C-0.53533 7.23467 -0.535116 3.75066 1.60567 1.60938C2.64293 0.572084 4.02253 4.57993e-05 5.48946 0C6.78681 0 8.01593 0.44767 9.0002 1.26855C9.98454 0.44767 11.2135 0 12.5109 0Z"
-            fill="#7D7D7D"
-          />
-        </svg>
-      ),
-    },
-    ]
-  : []),
+          {
+            id: "favorites",
+            label: "Favorites",
+            icon: (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="16"
+                viewBox="0 0 18 16"
+                fill="none"
+              >
+                <path
+                  d="M12.5109 0C13.9778 7.87092e-05 15.3565 0.572114 16.3938 1.60938C18.535 3.75068 18.5351 7.23458 16.3938 9.37598L10.3723 15.3984C10.0069 15.7637 9.51949 15.9648 9.0002 15.9648C8.48091 15.9648 7.99346 15.7636 7.62813 15.3984L1.60567 9.37598C-0.53533 7.23467 -0.535116 3.75066 1.60567 1.60938C2.64293 0.572084 4.02253 4.57993e-05 5.48946 0C6.78681 0 8.01593 0.44767 9.0002 1.26855C9.98454 0.44767 11.2135 0 12.5109 0Z"
+                  fill="#7D7D7D"
+                />
+              </svg>
+            ),
+          },
+        ]
+      : []),
     {
       id: "live dealer",
       label: "Live Dealer",
@@ -1251,10 +1306,50 @@ const isLoggedIn = !!user?.id;
             </div>
 
             {/* Studios - Hide on mobile */}
-            <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36] sm:flex">
-              <span className="text-sm cryptp-para">Studios</span>
-              <ChevronRight className="w-4 h-4 rotate-90 text-[#7171B4]" />
-            </button>
+            <div ref={studioRef} className="relative">
+              <button
+                onClick={() => setStudioOpen((p) => !p)}
+                className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all rounded-[60px] bg-[#0D0E36]"
+              >
+                <span className="text-sm cryptp-para">Studios</span>
+                <ChevronRight
+                  className={`w-4 h-4 text-[#7171B4] transition-transform ${
+                    studioOpen ? "rotate-[-90deg]" : "rotate-90"
+                  }`}
+                />
+              </button>
+
+              <AnimatePresence>
+                {studioOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    className="absolute top-[110%] left-0 z-50 min-w-[220px]
+                   rounded-xl border border-white/10
+                   bg-[#0D0E36] backdrop-blur-xl shadow-xl p-2"
+                  >
+                    {availableStudios.map((studio) => (
+                      <button
+                        key={studio.id}
+                        onClick={() => {
+                          setSelectedStudio(studio.id);
+                          setStudioOpen(false);
+                        }}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all
+      ${
+        selectedStudio === studio.id
+          ? "bg-white/10 text-[#F07730]"
+          : "text-[#CFCFFF] hover:bg-white/10"
+      }`}
+                      >
+                        {studio.label}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* Filters - Hide on mobile */}
             <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36]  sm:flex">
