@@ -82,7 +82,7 @@ const TidioChatButton = () => {
         <picture>
           {/* Desktop image */}
           <source
-            srcSet="/active-menu/desktop-bot.png"
+            srcSet="/active-menu/chat-final.png"
             media="(min-width: 768px)"
           />
 

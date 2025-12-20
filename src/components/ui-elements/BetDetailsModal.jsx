@@ -1,339 +1,265 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
-const randomBetId = () => {
-  return Math.floor(Math.random() * 1000) + 1;
-};
+import { useNavigate } from "react-router-dom";
 
 const BetDetailsModal = ({ isOpen, onClose, betData }) => {
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
-  console.log("betData is:", betData);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
-      setIsVisible(true);
+      setVisible(true);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [isOpen]);
 
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose();
-    }, 200);
+  const closeModal = () => {
+    setVisible(false);
+    setTimeout(() => onClose(), 180);
   };
 
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
-  };
+  const copyText = (text) => navigator.clipboard.writeText(text);
 
-  // Copy to clipboard function
-  const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text);
-    // You can add a toast notification here
-  };
-
-  if (!isOpen && !isVisible) return null;
-  const makeSlug = (name) =>
-    encodeURIComponent(name?.toLowerCase().replace(/\s+/g, "-"));
+  if (!isOpen && !visible) return null;
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {visible && (
         <motion.div
           className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          onClick={handleBackdropClick}
+          onClick={(e) => e.target === e.currentTarget && closeModal()}
         >
-          {/* Backdrop with blur */}
-          <div className="absolute inset-0  /60 backdrop-blur-sm" />
+          {/* BACKDROP */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
 
-          {/* Modal Content */}
+          {/* CARD */}
           <motion.div
-            className="relative w-full max-w-lg"
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ duration: 0.22 }}
+            className="relative w-full max-w-md px-6 py-6 rounded-3xl"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04))",
+              border: "1px solid rgba(255,255,255,0.18)",
+              backdropFilter: "blur(20px)",
+            }}
           >
-            {/* Glass Card Container */}
-            <div
-              className="relative rounded-2xl overflow-hidden"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(255, 255, 255, 0.18)",
-                boxShadow:
-                  "0 20px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(240, 119, 48, 0.1)",
-              }}
+            {/* CLOSE BUTTON */}
+            <button
+              onClick={closeModal}
+              className="absolute right-4 top-4 w-8 h-8 rounded-lg flex items-center justify-center"
             >
-              {/* Gradient Overlay for extra depth */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#F07730]/5 via-transparent to-purple-600/5 pointer-events-none" />
-
-              {/* Header */}
-              <div className="relative px-6 py-4 border-b border-white/10">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-white">Bet</h2>
-                  <button
-                    onClick={handleClose}
-                    className="p-2 rounded-lg hover:bg-white/10 transition-colors group"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="31"
+                viewBox="0 0 32 31"
+                fill="none"
+              >
+                <rect
+                  x="1"
+                  y="1"
+                  width="28.1644"
+                  height="30"
+                  rx="7"
+                  transform="matrix(-4.10515e-08 1 1 4.62187e-08 -4.62187e-08 1.35958e-06)"
+                  fill="#0D0E36"
+                  fillOpacity="0.4"
+                  stroke="url(#paint0_linear_9409_645)"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M10 10.6182C10 10.7821 10.0754 10.9397 10.21 11.0557L15.4512 15.5664L10.21 20.0791C10.0832 20.1963 10.0143 20.3516 10.0176 20.5117C10.021 20.6717 10.0962 20.8243 10.2275 20.9375C10.3592 21.0508 10.5374 21.1163 10.7236 21.1191C10.9096 21.1219 11.0894 21.0622 11.2256 20.9531L16.4678 16.4414L21.71 20.9531C21.7758 21.0139 21.8552 21.0629 21.9434 21.0967C22.0315 21.1305 22.1271 21.1479 22.2236 21.1494C22.32 21.1508 22.4155 21.1355 22.5049 21.1045C22.5943 21.0734 22.6759 21.0274 22.7441 20.9688C22.8124 20.91 22.8662 20.8397 22.9023 20.7627C22.9384 20.6858 22.9567 20.6035 22.9551 20.5205C22.9534 20.4374 22.9319 20.3552 22.8926 20.2793C22.8533 20.2035 22.7962 20.1357 22.7256 20.0791L17.4834 15.5664L22.7256 11.0557C22.8602 10.9397 22.9365 10.7821 22.9365 10.6182C22.9365 10.4542 22.8602 10.2967 22.7256 10.1807C22.5909 10.065 22.4081 10 22.2178 10C22.0274 10.0001 21.8447 10.0649 21.71 10.1807L16.4678 14.6924L11.2256 10.1807C11.0909 10.065 10.9081 10 10.7178 10C10.5274 10.0001 10.3446 10.0649 10.21 10.1807C10.0754 10.2967 10 10.4542 10 10.6182Z"
+                  fill="white"
+                  fillOpacity="0.9"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_9409_645"
+                    x1="2.11317"
+                    y1="0"
+                    x2="17.9712"
+                    y2="34.4136"
+                    gradientUnits="userSpaceOnUse"
                   >
-                    <svg
-                      className="w-5 h-5 text-white/70 group-hover:text-white transition-colors"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
+                    <stop stopColor="white" stopOpacity="0.4" />
+                    <stop offset="0.4" stopColor="white" stopOpacity="0.01" />
+                    <stop offset="0.57" stopColor="white" stopOpacity="0.01" />
+                    <stop offset="1" stopColor="white" stopOpacity="0.1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </button>
+
+            {/* GAME TITLE */}
+            <h1 className="text-center text-xl font-bold text-white mb-4 tracking-wide">
+              {betData?.gameName || "100 JOKER STAXX"}
+            </h1>
+
+            {/* BET ID INPUT */}
+            <div className="flex items-center bg-white/10 rounded-xl px-4 py-2 border border-white/20 mb-4">
+              <input
+                defaultValue={betData?.betId || "jhdsbdbhfcjnmd xcj"}
+                className="flex-1 bg-transparent text-white placeholder-white/40 outline-none"
+              />
+              <button onClick={() => copyText(betData?.betId)}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    d="M4.21875 3.51465H10.9336C12.1163 3.51465 13.0791 4.47749 13.0791 5.66016V15.1875C13.0791 16.3702 12.1163 17.333 10.9336 17.333H4.21875C3.03608 17.333 2.07324 16.3702 2.07324 15.1875V5.66016C2.07324 4.47749 3.03608 3.51465 4.21875 3.51465ZM4.21875 3.58691C3.0752 3.58691 2.14551 4.51661 2.14551 5.66016V15.1875C2.14551 16.331 3.0752 17.2607 4.21875 17.2607H10.9336C12.0771 17.2607 13.0068 16.331 13.0068 15.1875V5.66016C13.0068 4.51661 12.0771 3.58691 10.9336 3.58691H4.21875ZM5.94141 0.666992H13.7461C14.9288 0.666992 15.8916 1.62983 15.8916 2.8125V13.4297C15.8916 13.4499 15.8756 13.4658 15.8555 13.4658C15.8353 13.4658 15.8193 13.4499 15.8193 13.4297V2.8125C15.8193 1.66895 14.8896 0.739258 13.7461 0.739258H5.94141C5.92123 0.739258 5.90527 0.723302 5.90527 0.703125C5.90527 0.682948 5.92123 0.666992 5.94141 0.666992Z"
+                    stroke="white"
+                    stroke-width="1.33333"
+                  />
+                </svg>
+              </button>
+              <button className="ml-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    d="M10.9813 7.01595C10.7681 6.80147 10.5317 6.61134 10.2765 6.44906C9.60047 6.01618 8.81459 5.78616 8.01187 5.78616C6.89772 5.78409 5.82884 6.22677 5.0424 7.01595L1.22709 10.8343C0.441976 11.6209 0.000703868 12.6867 8.69406e-07 13.798C-0.00147543 16.1172 1.87736 17.9985 4.19655 18C5.30898 18.0038 6.37687 17.5633 7.16303 16.7762L10.3125 13.6267C10.3697 13.57 10.4016 13.4926 10.4012 13.412C10.4002 13.2464 10.2652 13.1129 10.0995 13.1138H9.97952C9.32152 13.1162 8.66938 12.9898 8.05988 12.7419C7.94758 12.6957 7.81851 12.7218 7.73295 12.8079L5.46835 15.0755C4.76514 15.7787 3.62501 15.7787 2.9218 15.0755C2.21859 14.3723 2.21859 13.2321 2.9218 12.5289L6.75213 8.70164C7.45478 7.99987 8.59304 7.99987 9.29568 8.70164C9.76922 9.1473 10.5079 9.1473 10.9814 8.70164C11.1851 8.49773 11.3086 8.22729 11.3293 7.93976C11.3512 7.59617 11.2245 7.25968 10.9813 7.01595Z"
+                    fill="white"
+                  />
+                  <path
+                    d="M16.7673 1.22999C15.1273 -0.409998 12.4684 -0.409998 10.8284 1.22999L7.68191 4.37342C7.59551 4.46024 7.57059 4.59082 7.61893 4.70337C7.66669 4.81624 7.77833 4.88868 7.90086 4.88632H8.01183C8.66906 4.88513 9.32015 5.01248 9.92849 5.26127C10.0408 5.30749 10.1699 5.28141 10.2554 5.19529L12.514 2.93969C13.2172 2.23648 14.3573 2.23648 15.0606 2.93969C15.7638 3.6429 15.7638 4.78302 15.0606 5.48623L12.247 8.29671L12.223 8.32371L11.2392 9.30154C10.5366 10.0033 9.39832 10.0033 8.69567 9.30154C8.22213 8.85588 7.48349 8.85588 7.00999 9.30154C6.80496 9.50699 6.68134 9.77979 6.66204 10.0694C6.6401 10.413 6.76682 10.7495 7.00999 10.9932C7.35716 11.3419 7.76336 11.6262 8.20976 11.8331C8.27275 11.8631 8.33574 11.8871 8.39873 11.9141C8.46171 11.9411 8.52769 11.962 8.59068 11.986C8.65367 12.0101 8.71965 12.031 8.78263 12.049L8.95961 12.097C9.07958 12.127 9.19958 12.151 9.32254 12.172C9.47066 12.194 9.61983 12.208 9.76947 12.214H9.99742L10.1774 12.193C10.2434 12.19 10.3124 12.175 10.3904 12.175H10.4923L10.6993 12.145L10.7953 12.127L10.9692 12.091H11.0022C11.739 11.906 12.4118 11.5245 12.9489 10.9872L16.7672 7.16893C18.4073 5.52894 18.4073 2.86998 16.7673 1.22999Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* GAME IMAGE */}
+            <div className="flex justify-center mb-4">
+              <img
+                src={betData?.gameImage}
+                className="w-40 h-40 rounded-xl object-cover border border-white/10 shadow-lg"
+                alt=""
+              />
+            </div>
+            {/* PAYOUT */}
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-white/60 text-sm">Payout</span>
+
+              <img
+                src="/wallet-icons/bitcoin.svg"
+                className="w-5 h-5 object-contain"
+                alt="btc"
+              />
+
+              <span className="text-green-400 text-2xl font-bold">
+                {betData?.payout || "$4,00,000"}
+              </span>
+            </div>
+
+            {/* MOONBET DIVIDER */}
+            <div className="flex items-center justify-center my-6 opacity-60">
+              {/* Left Line */}
+              <div className="flex-1 h-px bg-white/20"></div>
+
+              {/* Logo */}
+              <div className="mx-4 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="107"
+                  height="11"
+                  viewBox="0 0 107 11"
+                  fill="none"
+                  className="opacity-40"
+                >
+                  <path
+                    d="M33.6171 4.25573C34.0528 0.499523 38.7436 -1.19493 41.8951 1.12973C48.1713 5.76022 40.8223 13.804 35.3914 9.58809C32.6522 7.46117 30.0406 0.317317 25.5152 2.57397C21.277 4.68811 23.9873 10.4733 28.4963 8.98055C29.6693 8.59217 30.4954 7.64787 31.5286 7.03679L31.53 7.0362C30.4022 10.9699 25.2534 12.4425 22.2091 9.29208C17.5056 4.42405 24.2573 -2.39469 29.503 1.47706C32.2358 3.49415 35.4345 11.6385 39.9351 8.42613C43.9128 5.58586 39.7711 0.198335 35.7383 2.494C34.945 2.9456 34.3401 3.72406 33.6171 4.25573Z"
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M68.3526 0C73.87 2.22759e-07 75.7878 0.810975 75.7879 3.08304C75.7879 4.1639 75.4767 4.90156 74.6344 5.38009C75.5414 5.83439 76.0584 6.62086 76.0584 7.61628C76.0583 9.93739 74.0765 10.7482 68.4558 10.7483C66.7463 10.7483 64.0388 10.5148 62.523 10.2941C62.3669 10.2699 62.2894 10.1838 62.2894 10.0243L62.2901 0.762105C62.2901 0.61471 62.3675 0.528178 62.5237 0.491161C64.026 0.257621 66.6814 0 68.3526 0ZM72.6532 5.93272C71.7208 6.08011 70.5158 6.14159 68.9618 6.1416H64.3505V8.85701C65.5555 9.00438 67.2522 9.07783 68.1846 9.07783C72.7827 9.07782 73.8837 8.74612 73.8839 7.39487C73.8839 6.59666 73.521 6.14137 72.6532 5.93272ZM68.0678 1.68355C66.9283 1.68357 65.3873 1.78182 64.3505 1.90497V4.75406H68.69C72.6922 4.75404 73.612 4.4842 73.612 3.23104C73.6119 1.97802 72.5618 1.68355 68.0678 1.68355Z"
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                  <path
+                    d="M86.1251 0C87.8091 1.80439e-07 89.0652 0.13547 90.063 0.319881C90.2055 0.344132 90.2828 0.43011 90.3218 0.553228L90.6073 1.79336C90.6591 1.97774 90.5817 2.05115 90.3874 2.01418C89.0796 1.79344 87.1622 1.70744 86.0998 1.70743C81.8902 1.70743 80.4004 2.49358 80.1151 4.55771H90.2576C90.4128 4.55781 90.5033 4.64392 90.5035 4.79106V5.85992C90.5035 6.01934 90.4128 6.09378 90.2576 6.09386H80.0898C80.3745 8.19424 81.8513 8.99249 86.0998 8.99249C87.1622 8.99247 89.0789 8.89436 90.3874 8.68573C90.5817 8.63666 90.659 8.72252 90.6073 8.89401L90.3218 10.1347C90.2962 10.2698 90.2183 10.343 90.0766 10.38C89.0788 10.5644 87.8091 10.7118 86.1251 10.7118C80.0767 10.7118 77.8486 8.91818 77.8614 5.34369C77.8487 1.80568 80.0769 0 86.1251 0Z"
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                  <path
+                    d="M49.0388 0C50.9165 0 51.992 0.798087 52.8599 2.89922C52.9373 3.157 53.5202 4.53383 54.4136 6.8309C55.0607 8.47683 55.4498 8.919 56.3047 8.91908C57.0818 8.91908 57.4316 8.31672 57.4316 6.91684V0.380754C57.4316 0.221432 57.5092 0.147464 57.6645 0.147408H59.2578C59.4131 0.147408 59.5036 0.220699 59.5036 0.380754V7.78816C59.5036 9.48348 58.2864 10.6998 56.5116 10.6999C54.6332 10.6999 53.5714 9.90149 52.7035 7.78816C52.6259 7.52982 52.0033 6.04304 51.1491 3.86901C50.514 2.22302 50.1122 1.78083 49.245 1.78083C48.4682 1.78101 48.1182 2.39484 48.1182 3.78307L48.1318 10.3186C48.1318 10.4779 48.0546 10.5524 47.886 10.5525H46.2926C46.1373 10.5525 46.0598 10.4792 46.0598 10.3192V2.89922C46.0599 1.19187 47.2776 3.49441e-05 49.0388 0Z"
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                  <path
+                    d="M4.47012 0C5.81691 5.45017e-05 6.71104 0.65153 7.30641 2.07624C7.95361 3.59932 8.10927 5.6026 8.58899 6.68349C8.79619 7.16252 9.06794 7.45753 9.48229 7.45753H9.79303C10.2074 7.45752 10.4921 7.16257 10.7 6.68349C11.179 5.6026 11.3345 3.6 11.9689 2.07624C12.5785 0.65153 13.4725 3.19987e-05 14.8066 0H15.312C17.1514 5.62658e-06 18.2393 1.00773 18.4337 2.76435L19.2758 10.3317L19.2751 10.3311C19.2879 10.4785 19.2235 10.5644 19.0682 10.5644H17.4619C17.2939 10.5643 17.2021 10.4784 17.1901 10.3311L16.4778 3.5742C16.3479 2.28488 15.9461 1.7689 15.2081 1.7689H14.8332C14.2889 1.7689 13.9008 2.10084 13.6162 2.87416C13.189 4.06612 13.0194 5.99436 12.3978 7.39487C11.9061 8.53744 11.1548 9.24961 9.95079 9.2497H9.32863C8.13734 9.24959 7.38568 8.53684 6.89322 7.39487C6.27161 5.99435 6.10319 4.06612 5.66255 2.87416C5.39075 2.10017 5.00212 1.7689 4.45782 1.7689H4.06991C3.33122 1.7689 2.94297 2.28489 2.8003 3.5742L2.10028 10.3311C2.0875 10.4785 1.98387 10.5644 1.82846 10.5644H0.221479C0.0532927 10.5644 -0.0112046 10.4785 0.0015691 10.3311L0.842964 2.76435C1.03741 1.00772 2.13881 0 3.96473 0H4.47012Z"
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                  <path
+                    d="M106.489 0.148005C106.632 0.14807 106.709 0.221663 106.748 0.356883L106.995 1.62208C107.02 1.79426 106.956 1.87985 106.762 1.8799H100.57V10.3066C100.57 10.4661 100.492 10.5406 100.324 10.5406H98.7433C98.5872 10.5406 98.4967 10.4668 98.4967 10.3066V1.8799H92.3051C92.1116 1.87981 92.0466 1.7936 92.0729 1.62208L92.3187 0.356883C92.3443 0.221697 92.4358 0.148108 92.5776 0.148005H106.489Z"
+                    fill="white"
+                    fillOpacity="0.3"
+                  />
+                </svg>
+              </div>
+
+              {/* Right Line */}
+              <div className="flex-1 h-px bg-white/20"></div>
+            </div>
+
+            {/* STATS */}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="text-center">
+                <p className="text-white/60 text-sm mb-1">Bet Amount</p>
+                <div className="bg-white/5 border border-white/10 py-2 rounded-lg">
+                  <p className="text-white">{betData?.amount || "$1.20"}</p>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="relative p-6 space-y-6">
-                {/* Game Info Section */}
-                <div className="flex items-start gap-4">
-                  {/* Game Thumbnail */}
-                  <div className="relative flex-shrink-0">
-                    <div
-                      className="w-24 h-24 rounded-xl overflow-hidden"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(240, 119, 48, 0.1) 0%, rgba(240, 119, 48, 0.05) 100%)",
-                        border: "1px solid rgba(240, 119, 48, 0.2)",
-                      }}
-                    >
-                      <img
-                        src={betData?.gameImage || "/games/golden.svg"}
-                        alt={betData?.gameName || "Game"}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    {/* Live indicator if game is live */}
-                    {betData?.isLive && (
-                      <div className="absolute -top-1 -right-1">
-                        <span className="flex h-3 w-3">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Game Details */}
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white">
-                      {betData?.gameName || "Speed Baccarat"}
-                    </h3>
-                    <p className="text-sm text-white/60 mt-1">
-                      {betData?.provider || "Pragmatic Play"}
-                    </p>
-                  </div>
+              <div className="text-center">
+                <p className="text-white/60 text-sm mb-1">Multiplier</p>
+                <div className="bg-white/5 border border-white/10 py-2 rounded-lg">
+                  <p className="text-white">{betData?.multiplier || "x9.4"}</p>
                 </div>
+              </div>
 
-                {/* Bet ID Section */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-white/60">Bet ID:</span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-white/80 font-mono">
-                        {betData?.betId || "e0b1a8dc-c888-47b..."}
-                      </span>
-                      <button
-                        onClick={() =>
-                          copyToClipboard(betData?.betId || "e0b1a8dc-c888-47b")
-                        }
-                        className="p-1 hover:bg-white/10 rounded transition-colors"
-                      >
-                        <svg
-                          className="w-4 h-4 text-white/60"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </button>
-                      <button className="p-1 hover:bg-white/10 rounded transition-colors">
-                        <svg
-                          className="w-4 h-4 text-white/60"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Player Info */}
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="text-white/60">Placed by</span>
-                    <div className="flex items-center gap-1">
-                      <img
-                        src="/icons/moon.svg"
-                        alt="coin"
-                        className="w-4 h-4"
-                      />
-                      <span className="text-[#F07730] font-semibold">
-                        {betData?.username || "kiri..."}
-                      </span>
-                    </div>
-                    <span className="text-white/60">on</span>
-                    <span className="text-white/80">
-                      {betData?.date || "Nov 1, 2025"}
-                    </span>
-                    <span className="text-white/60">at</span>
-                    <span className="text-white/80">
-                      {betData?.time || "12:39:46"}
-                    </span>
-                  </div>
+              <div className="text-center">
+                <p className="text-white/60 text-sm mb-1">Placed By</p>
+                <div className="bg-white/5 border border-white/10 py-2 rounded-lg">
+                  <p className="text-white">{betData?.username || "SCBVBDS"}</p>
                 </div>
-
-                {/* Result Label */}
-                <div className="flex justify-center">
-                  <span className="text-2xl font-bold bg-gradient-to-r from-[#F07730] to-[#D66920] bg-clip-text text-transparent">
-                    Moonbet
-                  </span>
-                </div>
-
-                {/* Bet Stats */}
-                <div className="grid grid-cols-3 gap-4">
-                  {/* Amount */}
-                  <div className="text-center">
-                    <p className="text-sm text-white/60 mb-2">Amount</p>
-                    <div
-                      className="py-3 px-2 rounded-xl"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
-                      }}
-                    >
-                      <p className="text-xl font-bold text-white">
-                        {betData?.amount || "$147.83"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Multiplier */}
-                  <div className="text-center">
-                    <p className="text-sm text-white/60 mb-2">Multiplier</p>
-                    <div
-                      className="py-3 px-2 rounded-xl"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
-                      }}
-                    >
-                      <p className="text-xl font-bold text-white">
-                        {betData?.multiplier || "2.00x"}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Payout */}
-                  <div className="text-center">
-                    <p className="text-sm text-white/60 mb-2">Payout</p>
-                    <div
-                      className="py-3 px-2 rounded-xl"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%)",
-                        border: "1px solid rgba(34, 197, 94, 0.2)",
-                      }}
-                    >
-                      <p className="text-xl font-bold text-green-500">
-                        {betData?.payout || "$295.67"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Currency Notice */}
-                <div
-                  className="p-4 rounded-xl"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(240, 119, 48, 0.1) 0%, rgba(240, 119, 48, 0.05) 100%)",
-                    border: "1px solid rgba(240, 119, 48, 0.2)",
-                  }}
-                >
-                  <p className="text-sm text-[#F07730]">
-                    This bet was originally placed as{" "}
-                    {betData?.originalCurrency || "C$207.00"} but is showing the
-                    approximate value in your display currency.
-                  </p>
-                </div>
-
-                {/* Play Button */}
-                <motion.button
-                  onClick={() => {
-                    const generatedSlug = makeSlug(betData?.gameName);
-                    const slug = betData?.slug || generatedSlug;
-
-                    // check for all possible uuid fields
-                    const uuid =
-                      betData?.gameUuid ||
-                      betData?.uuid ||
-                      betData?.game_uuid ||
-                      betData?.gameId;
-
-                    handleClose();
-
-                    setTimeout(() => {
-                      if (uuid) {
-                        // If game has a UUID → use /game/:uuid/:slug
-                        navigate(`/game/${uuid}/${slug}`);
-                      } else {
-                        // If no UUID → use slug only → /game/:slug
-                        navigate(`/game/${slug}`);
-                      }
-                    }, 250);
-                  }}
-                  className="w-full py-4 bg-gradient-to-r from-[#F07730] to-[#EFD28E] text-[#000] font-[600] text-[16px] rounded-lg shadow-md transition-all duration-300 hover:from-[#F07730]/90 hover:to-[#EFD28E]/90 flex items-center justify-center "
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 6px 30px rgba(30, 144, 255, 0.4)",
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Play {betData?.gameName || "Speed Baccarat"}
-                </motion.button>
               </div>
             </div>
+
+            {/* PLAY BUTTON */}
+            <button
+              onClick={closeModal}
+              className="w-full py-3 rounded-xl text-white font-semibold tracking-wide"
+              style={{
+                background: "linear-gradient(180deg,#FFB8A1 0%, #A62A00 100%)",
+              }}
+            >
+              Play {betData?.gameName || "100 Joker Staxx"}
+            </button>
+
+            {/* FOOTER */}
+            <p className="text-center text-xs text-white/40 mt-4">
+              Placed on Moonbet on 20 Dec 2025, 1:30
+            </p>
           </motion.div>
         </motion.div>
       )}

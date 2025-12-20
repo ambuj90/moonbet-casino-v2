@@ -39,6 +39,7 @@ import GameDescriptionCard from "../components/sections/GameDescriptionCard";
 import { useCurrencyStore } from "../store/useCurrencyStore";
 import { shouldShowNoDemoPopup } from "../utils/gameDeviceUtils";
 import GameBetsSection from "../components/leaderboard/GamepageLeaderboard";
+import StarGameBackground from "../components/leaderboard/starGameBackground";
 
 // =============================================================================
 // LAZY LOAD BELOW-FOLD SECTIONS
@@ -986,7 +987,13 @@ const GamePage = () => {
           {geoBlocked.blocked && (
             <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#0D0E36]">
               <div className="max-w-md w-full bg-[#181836] border border-[#3B3B70] rounded-2xl px-6 py-6 text-center shadow-lg mx-4">
-                <div className="mb-3 text-2xl">🚫</div>
+                <div className="mb-3">
+                  <img
+                    src="/bg/demo-mode.png"
+                    alt="Demo Mode"
+                    className="w-10 h-10 object-contain"
+                  />
+                </div>
                 <h2 className="text-lg md:text-xl font-semibold text-white mb-2">
                   Game not available in your region
                 </h2>
@@ -1009,34 +1016,48 @@ const GamePage = () => {
 
           {/* DEMO NOT AVAILABLE OVERLAY */}
           {demoBlocked && (
-            <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#0D0E36]">
-              <div className="max-w-md w-full bg-[#181836] border border-[#3B3B70] rounded-2xl px-6 py-6 text-center shadow-lg mx-4">
-                <div className="mb-3 text-2xl">🎮</div>
-                <h2 className="text-lg md:text-xl font-semibold text-white mb-2">
-                  Demo Mode Not Available
-                </h2>
-                <p className="text-sm text-[#B4B4DE] mb-4">
-                  This game does not support demo play on mobile devices. Please
-                  play in real mode to continue.
-                </p>
+            <div className="absolute inset-0 z-30 flex justify-center bg-[#0D0E36] px-4">
+              <StarGameBackground />
+              <div className="relative w-full max-w-sm flex flex-col items-center mt-[280px]">
+                {/* Astronaut Image Positioned on Top */}
+                <img
+                  src="/bg/demo-mode.png"
+                  alt="Demo Mode"
+                  className="w-48 md:w-52 object-contain absolute -top-36 z-20"
+                />
 
-                <button
-                  onClick={() => {
-                    if (!localStorage.getItem("token")) {
-                      setShowLogin(true);
-                      return;
-                    }
-                    setDemoBlocked(false);
-                    setIsRealPlay(true);
-                  }}
-                  className="w-full px-4 py-2 rounded-xl text-sm font-semibold text-white"
-                  style={{
-                    background:
-                      "linear-gradient(90deg,#FFB8A1 0%,#A62A00 100%)",
-                  }}
-                >
-                  Play for Real
-                </button>
+                {/* Card */}
+                <div className="trust_btn w-full bg-[#1C1D49] rounded-2xl px-6 pt-24 pb-6 text-center shadow-lg relative z-10">
+                  <p className="text-lg md:text-xl font-semibold mb-2">
+                    Demo Mode Not Available
+                  </p>
+
+                  <p className="text-sm text-[#B4B4DE] mb-4">
+                    This game can only be played in real mode with full stakes.
+                  </p>
+
+                  <button
+                    onClick={() => {
+                      if (!localStorage.getItem("token")) {
+                        setShowLogin(true);
+                        return;
+                      }
+                      setDemoBlocked(false);
+                      setIsRealPlay(true);
+                    }}
+                    className="w-full px-4 py-2 rounded-xl text-sm font-semibold text-white"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, #FFB8A1 0%, #A62A00 100%)",
+                    }}
+                  >
+                    Go to Real Play
+                  </button>
+
+                  <p className="text-xs text-[#9C9CCB] mt-4">
+                    Demo mode depends on provider policies.
+                  </p>
+                </div>
               </div>
             </div>
           )}
