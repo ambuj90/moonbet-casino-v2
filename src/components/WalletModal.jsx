@@ -420,9 +420,9 @@ const WalletModal = ({ isOpen, onClose }) => {
           transition={{ duration: 0.18 }}
           className="absolute left-0 right-0 top-full mt-2 z-[300] rounded-xl overflow-hidden"
           style={{
-            background: "rgb(200 200 225/97%)",
-            backdropFilter: "blur(67.5px)",
-            WebkitBackdropFilter: "blur(174.5px)",
+            background: "rgba(13,14,54,0.92)",
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
             border: "1px solid rgba(255,255,255,0.12)",
             boxShadow: "0 10px 40px rgba(0,0,0,0.5)",
             maxHeight: "260px",
@@ -447,7 +447,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                   <div className="flex items-center gap-3 flex-1 relative z-10 p-2">
                     <CryptoIcon symbol={coin.symbol} size="w-10 h-10" />
                     <div className="flex flex-col items-start">
-                      <span className="text-sm text-black font-medium">
+                      <span className="text-sm text-white font-medium">
                         {coin.symbol}
                       </span>
                       <span className="text-[10px] text-gray-500">

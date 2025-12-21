@@ -104,7 +104,7 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
             </h1>
 
             {/* BET ID INPUT */}
-            <div className="flex items-center bg-white/10 rounded-xl px-4 py-2 border border-white/20 mb-4">
+            <div className="flex items-center max-w-[260px] mx-auto bg-white/10 rounded-xl px-4 py-2 border border-white/20 mb-4">
               <input
                 defaultValue={betData?.betId || "jhdsbdbhfcjnmd xcj"}
                 className="flex-1 bg-transparent text-white placeholder-white/40 outline-none"
