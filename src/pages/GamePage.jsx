@@ -76,7 +76,7 @@ const preconnectToProvider = (url) => {
 };
 
 const pushGTMEvent = (data) => {
-  window.dataLayer = window.dataLayer || [];
+  if (!window || !Array.isArray(window.dataLayer)) return;
   window.dataLayer.push(data);
 };
 
@@ -1050,8 +1050,8 @@ const GamePage = () => {
               className={`absolute inset-0 w-full h-full border-none transition-opacity duration-300 ${
                 isIframeLoaded ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
               allowFullScreen
-              allow="autoplay; fullscreen"
               onLoad={handleIframeLoad}
             />
           )}
@@ -1156,7 +1156,7 @@ const GamePage = () => {
       )}
 
       {/* ANIMATIONS */}
-      <style jsx>{`
+      <style>{`
         @keyframes loading-bar {
           0% {
             width: 0%;
