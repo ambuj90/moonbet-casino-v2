@@ -5,8 +5,7 @@ import axios from "axios";
 
 const canShowGameOnDevice = (game, isMobileDevice) => {
   const nameHasMobile =
-    typeof game.name === "string" &&
-    game.name.toLowerCase().includes("mobile");
+    typeof game.name === "string" && game.name.toLowerCase().includes("mobile");
 
   const isMobileFlag =
     game.is_mobile === 1 ||
@@ -46,39 +45,39 @@ const GameGrid = ({
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-  try {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const id = user.id || "690b0290cb255ca66b14a529"; // fallback
-    setUserId(id);
-  } catch (e) {
-    console.error("Failed to parse user", e);
-  }
-}, []);
-
-useEffect(() => {
-  if (!userId) return;
-
-  const fetchFavourites = async () => {
     try {
-      const res = await axios.get(
-        `/wallet-service/api/games/${userId}/favourite-game`
-      );
-
-      const favGames = res.data?.games || [];
-      const map = {};
-
-      favGames.forEach((g) => {
-        map[g.uuid] = true;
-      });
-
-      setFavorite(map);
-    } catch (err) {
-      console.error("Failed to fetch favourites:", err);
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      const id = user.id || "690b0290cb255ca66b14a529"; // fallback
+      setUserId(id);
+    } catch (e) {
+      console.error("Failed to parse user", e);
     }
-  };
+  }, []);
 
-  fetchFavourites();
-}, [userId]);
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchFavourites = async () => {
+      try {
+        const res = await axios.get(
+          `/wallet-service/api/games/${userId}/favourite-game`
+        );
+
+        const favGames = res.data?.games || [];
+        const map = {};
+
+        favGames.forEach((g) => {
+          map[g.uuid] = true;
+        });
+
+        setFavorite(map);
+      } catch (err) {
+        console.error("Failed to fetch favourites:", err);
+      }
+    };
+
+    fetchFavourites();
+  }, [userId]);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -146,60 +145,59 @@ useEffect(() => {
   };
 
   const filteredGames = games.filter((game) =>
-  canShowGameOnDevice(game, isMobileDevice)
-);
+    canShowGameOnDevice(game, isMobileDevice)
+  );
 
-const handleToggleFavorite = async (e, game) => {
-  e.stopPropagation();
-  if (!userId || !game?.uuid) return;
+  const handleToggleFavorite = async (e, game) => {
+    e.stopPropagation();
+    if (!userId || !game?.uuid) return;
 
-  const prevState = !!favorite[game.uuid];
-  const nextState = !prevState;
+    const prevState = !!favorite[game.uuid];
+    const nextState = !prevState;
 
-  // Optimistic UI
-  setFavorite((prev) => ({
-    ...prev,
-    [game.uuid]: nextState,
-  }));
-
-  try {
-    await axios.post(
-      `/wallet-service/api/games/${userId}/favourite`,
-      { uuid: game.uuid }
-    );
-
-    // If on favourites page and unfavourited → remove card
-    if (type === "favorites" && !nextState) {
-      setGames((prev) => prev.filter((g) => g.uuid !== game.uuid));
-    }
-  } catch (err) {
-    console.error("Failed to toggle favourite:", err);
-
-    // Rollback UI
+    // Optimistic UI
     setFavorite((prev) => ({
       ...prev,
-      [game.uuid]: prevState,
+      [game.uuid]: nextState,
     }));
-  }
-};
+
+    try {
+      await axios.post(`/wallet-service/api/games/${userId}/favourite`, {
+        uuid: game.uuid,
+      });
+
+      // If on favourites page and unfavourited → remove card
+      if (type === "favorites" && !nextState) {
+        setGames((prev) => prev.filter((g) => g.uuid !== game.uuid));
+      }
+    } catch (err) {
+      console.error("Failed to toggle favourite:", err);
+
+      // Rollback UI
+      setFavorite((prev) => ({
+        ...prev,
+        [game.uuid]: prevState,
+      }));
+    }
+  };
 
   return (
-    <section className="w-full py-10">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="w-full py-6">
+      <div className="max-w-7xl mx-auto px-2">
         <h2 className="font-['Neuropolitical'] text-xl mb-6 uppercase">
           {`${provider}`.toUpperCase()} GAMES
         </h2>
 
         {loading ? (
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-    {Array.from({ length: 12 }).map((_, i) => (
-      <div
-        key={i}
-        className="h-[140px] bg-white/10 rounded-xl animate-pulse"
-      />
-    ))}
-  </div>
-) : filteredGames.length === 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-[140px] bg-white/10 rounded-xl animate-pulse"
+              />
+            ))}
+          </div>
+        ) : filteredGames.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
             {/* ICON */}
             <div className="mb-4 opacity-80">
@@ -246,7 +244,7 @@ const handleToggleFavorite = async (e, game) => {
         ) : (
           <>
             <motion.div
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4"
+              className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-2"
               initial="hidden"
               animate="visible"
             >
