@@ -47,10 +47,36 @@ const WalletModal = ({ isOpen, onClose }) => {
   const networkRef = useRef(null);
   const withdrawCurrencyRef = useRef(null);
   const withdrawNetworkRef = useRef(null);
+  const modalRef = useRef(null);
+
+  // Close modal on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      // Don't close if processing popup or success popup is open
+      if (showProcessingPopup || showSuccessPopup) return;
+
+      // Close modal if click is outside the modal content
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      // Add a small delay to prevent immediate closing when opening
+      const timer = setTimeout(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }
+  }, [isOpen, onClose, showProcessingPopup, showSuccessPopup]);
 
   // Close dropdowns on outside click
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleDropdownClickOutside = (e) => {
       if (
         depositCurrencyRef.current &&
         !depositCurrencyRef.current.contains(e.target)
@@ -74,10 +100,30 @@ const WalletModal = ({ isOpen, onClose }) => {
       }
     };
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("mousedown", handleDropdownClickOutside);
     }
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleDropdownClickOutside);
   }, [isOpen]);
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEscapeKey = (e) => {
+      if (
+        e.key === "Escape" &&
+        isOpen &&
+        !showProcessingPopup &&
+        !showSuccessPopup
+      ) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscapeKey);
+    }
+    return () => document.removeEventListener("keydown", handleEscapeKey);
+  }, [isOpen, onClose, showProcessingPopup, showSuccessPopup]);
 
   // Socket rooms
   useEffect(() => {
@@ -1080,7 +1126,6 @@ const WalletModal = ({ isOpen, onClose }) => {
             animate="visible"
             exit="exit"
             className="fixed inset-0 z-[100]"
-            onClick={onClose}
             style={{
               background: "rgba(0, 0, 0, 0.5)",
               backdropFilter: "blur(12px)",
@@ -1088,7 +1133,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             }}
           />
 
-          {/* Modal */}
+          {/* Modal Container */}
           <motion.div
             variants={modalVariants}
             initial="hidden"
@@ -1096,12 +1141,12 @@ const WalletModal = ({ isOpen, onClose }) => {
             exit="exit"
             className="fixed inset-0 flex items-center justify-center z-[101] p-4"
           >
-            {/* Glassmorphism Card */}
+            {/* Glassmorphism Card - with ref for click outside detection */}
             <div
+              ref={modalRef}
               className="w-full max-w-xl rounded-2xl relative overflow-visible"
               style={{
                 background: "rgba(255,255,255,0.15)",
-                // backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
                 borderRadius: "20px",
               }}
@@ -1111,15 +1156,7 @@ const WalletModal = ({ isOpen, onClose }) => {
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#EFD28E]/20 rounded-full blur-3xl pointer-events-none" />
 
               {/* Header */}
-              <div
-                className="flex flex-row
-justify-between
-px-3 sm:px-5
-py-3 sm:py-4
-relative z-20
-    display: flex;
-    align-items: center;"
-              >
+              <div className="flex flex-row justify-between px-3 sm:px-5 py-3 sm:py-4 relative z-20 items-center">
                 {/* LEFT — Deposit / Withdraw Tabs */}
                 <div
                   className="trust_btn2 flex items-center gap-1 rounded-full p-1"
