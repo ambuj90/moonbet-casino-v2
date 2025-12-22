@@ -56,6 +56,7 @@ import { useAuthStore } from "./store/useAuthStore";
 import ReferralRegisterRedirect from "./pages/ReferralRegisterRedirect.jsx";
 import CasinoChallenges from "./pages/CasinoChallenges.jsx";
 import RackBack from "./pages/Rakeback.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 
 // Temporary pages
 
@@ -64,7 +65,6 @@ const CoinflipPage = () => <SimplePage title="Coinflip Game" />;
 const PumpDumpPage = () => <SimplePage title="PumpDump Game" />;
 const FuturesPage = () => <SimplePage title="Futures Game" />;
 const ChatPage = () => <SimplePage title="Chat" />;
-
 
 // 🔐 PRIVATE ROUTE
 const PrivateRoute = ({ children }) => {
@@ -75,7 +75,6 @@ const PrivateRoute = ({ children }) => {
   }
   return children;
 };
-
 
 // 🔓 Auth Modal Wrapper
 const AuthModalHandler = ({ children }) => {
@@ -238,6 +237,7 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="profile" element={<ProfilePage />} />
             <Route
               path="transactions"
               element={

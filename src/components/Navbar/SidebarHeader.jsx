@@ -73,7 +73,7 @@ const SidebarHeader = ({
       return "trust_btn view_moon_btn relative flex items-center gap-2 px-3 py-1.5 rounded-[8px] transition-all text-white";
     } else {
       if (isCollapsed) {
-        return "justify-center hover:bg-white/5";
+        return "justify-center hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
       } else {
         return "gap-3 rounded-lg hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]";
       }
@@ -351,7 +351,7 @@ const SidebarHeader = ({
                         ${
                           location.pathname === subItem.path
                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                            : "text-[#A8A8A8] hover:bg-white/5"
+                            : "text-[#A8A8A8] hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]"
                         }`}
                       onClick={closeSidebar}
                     >
@@ -615,7 +615,7 @@ const SidebarHeader = ({
                                         ${
                                           location.pathname === subItem.path
                                             ? "text-white bg-gradient-to-b from-white/30 via-white/5 to-white/30 shadow-[2px_2px_4px_rgba(0,0,0,0.25)] backdrop-blur-[2px]"
-                                            : "text-[#A8A8A8] hover:bg-white/5"
+                                            : "text-[#A8A8A8] hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]"
                                         }`}
                                     onClick={closeSidebar}
                                   >
@@ -855,7 +855,7 @@ const SidebarHeader = ({
                                         ${
                                           location.pathname === subItem.path
                                             ? "trust_btn view_moon_btn text-white bg-gradient-to-b backdrop-blur-[2px]"
-                                            : "text-[#E1E1E1] hover:bg-white/5"
+                                            : "text-[#E1E1E1] hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]"
                                         }`}
                                     onClick={closeSidebar}
                                   >
@@ -1115,7 +1115,7 @@ const SidebarHeader = ({
                               ${
                                 location.pathname === subItem.path
                                   ? "trust_btn view_moon_btn text-white bg-gradient-to-b backdrop-blur-[2px]"
-                                  : "text-[#E1E1E1] hover:bg-white/5"
+                                  : "text-[#E1E1E1] hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]"
                               }`}
                                     onClick={closeSidebar}
                                   >
