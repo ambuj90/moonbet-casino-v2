@@ -150,7 +150,7 @@ const HomeRewardsSection = () => {
                   >
                     {/* Content - Left Side */}
                     <div
-                      className="absolute left-0 md:top-0 top-2 bottom-0 z-10 flex flex-col justify-start gap-4 p-6"
+                      className="absolute left-0 md:top-0 top-2 bottom-0 z-10 flex flex-col justify-start gap-4 md:p-6 p-4"
                       style={{ width: "50%" }}
                     >
                       {/* Badge */}
