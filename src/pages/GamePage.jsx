@@ -75,10 +75,10 @@ const preconnectToProvider = (url) => {
   } catch (e) {}
 };
 
-const pushGTMEvent = (data) => {
-  if (!window || !Array.isArray(window.dataLayer)) return;
-  window.dataLayer.push(data);
-};
+// const pushGTMEvent = (data) => {
+//   if (!window || !Array.isArray(window.dataLayer)) return;
+//   window.dataLayer.push(data);
+// };
 
 // =============================================================================
 // GAME LOADER COMPONENT
@@ -880,14 +880,14 @@ const GamePage = () => {
         return;
       }
 
-      pushGTMEvent({
-        event: "bet_placed",
-        user_id: userData?.id,
-        game_name: gameData?.name?.toLowerCase(),
-        currency: localStorage.getItem("gameCurrency") || "USD",
-        crypto: localStorage.getItem("preferredCurrency") || "BTC",
-        is_demo: false,
-      });
+      // pushGTMEvent({
+      //   event: "bet_placed",
+      //   user_id: userData?.id,
+      //   game_name: gameData?.name?.toLowerCase(),
+      //   currency: localStorage.getItem("gameCurrency") || "USD",
+      //   crypto: localStorage.getItem("preferredCurrency") || "BTC",
+      //   is_demo: false,
+      // });
 
       setDemoBlocked(false);
       setIsLoading(true);
@@ -918,13 +918,13 @@ const GamePage = () => {
     console.log(`✅ Iframe loaded`);
     setIsIframeLoaded(true);
 
-    if (gameData?.name) {
-      pushGTMEvent({
-        event: "game_opened",
-        game_name: gameData.name.toLowerCase(),
-        is_real_play: isRealPlay,
-      });
-    }
+    // if (gameData?.name) {
+    //   pushGTMEvent({
+    //     event: "game_opened",
+    //     game_name: gameData.name.toLowerCase(),
+    //     is_real_play: isRealPlay,
+    //   });
+    // }
     if (isRealPlay) {
       window.__GAME_PLAY_STATE__ = {
         isRealPlay: true,
