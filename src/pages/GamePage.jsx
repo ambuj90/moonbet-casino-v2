@@ -970,7 +970,7 @@ const GamePage = () => {
         <div
           className="game-container relative mt-5 rounded-lg overflow-hidden"
           style={{
-            height: "calc(80vh - 20px)",
+            height: "calc(81vh - 20px)",
             minHeight: "400px",
             maxHeight: "800px",
             backgroundColor: "#0D0E36",
@@ -1079,7 +1079,7 @@ const GamePage = () => {
         </div>
 
         {/* MOBILE CONTROL BAR */}
-        <div className="sm:hidden w-full px-3 py-2 flex items-center justify-between bg-[#1C1D49] mt-2 gap-2">
+        <div className="sm:hidden w-full px-3 py-2 flex items-center justify-between bg-[#1C1D49] md:mt-2 mt-6 gap-2">
           <RakebackBox
             rakeback={rakeback}
             onClaim={claimRakeback}

@@ -185,7 +185,7 @@ const GameGrid = ({
     <section className="w-full py-6">
       <div className="max-w-7xl mx-auto px-2">
         <h2 className="font-['Neuropolitical'] text-xl mb-6 uppercase">
-          {`${provider}`.toUpperCase()} GAMES
+          {`${provider}`.toUpperCase()}
         </h2>
 
         {loading ? (
@@ -344,7 +344,7 @@ const GameGrid = ({
                     background: "var(--cta-pink-gradient)",
                   }}
                 >
-                  LOAD MORE
+                  Load More
                 </motion.button>
               </div>
             )}

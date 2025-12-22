@@ -300,7 +300,7 @@ const WalletModal = ({ isOpen, onClose }) => {
   );
 
   const walletTotalUsd = walletBalance?.totalUsd
-    ? walletBalance.totalUsd.toFixed(8)
+    ? walletBalance.totalUsd.toFixed(2)
     : "0.00000000";
 
   const getNetworkLabel = () =>
@@ -413,56 +413,62 @@ const WalletModal = ({ isOpen, onClose }) => {
   const CurrencyDropdown = ({ isOpen, items, onSelect, selectedItem }) => (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.18 }}
-          className="absolute left-0 right-0 top-full mt-2 z-[300] rounded-xl overflow-hidden"
+        <div
           style={{
-            background: "rgba(13,14,54,0.92)",
-            backdropFilter: "blur(24px)",
-            WebkitBackdropFilter: "blur(24px)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            boxShadow: "0 10px 40px rgba(0,0,0,0.5)",
-            maxHeight: "260px",
+            background: "rgba(200, 200, 225, 0.20)",
           }}
         >
-          <div className="py-1.5 overflow-y-auto max-h-[260px] pr-1">
-            {items.map((coin) => {
-              const isSelected =
-                selectedItem?.symbol === coin.symbol &&
-                selectedItem?.network === coin.network;
-              return (
-                <button
-                  key={coin.symbol + coin.network}
-                  onClick={() => onSelect(coin)}
-                  className={`wallet-item group flex items-center w-full pr-3 my-1 rounded-full relative cursor-pointer transition-all duration-250 ${
-                    isSelected
-                      ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]"
-                      : ""
-                  }`}
-                >
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
-                  <div className="flex items-center gap-3 flex-1 relative z-10 p-2">
-                    <CryptoIcon symbol={coin.symbol} size="w-10 h-10" />
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm text-white font-medium">
-                        {coin.symbol}
-                      </span>
-                      <span className="text-[10px] text-gray-500">
-                        {coin.network || coin.symbol}
-                      </span>
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18 }}
+            className="absolute left-0 right-0 top-full mt-5 z-[300] rounded-xl overflow-hidden"
+            style={{
+              background: "rgba(200, 200, 225, 0.20)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              boxShadow: "0 10px 40px rgba(0,0,0,0.5)",
+              maxHeight: "260px",
+            }}
+          >
+            <div className="py-1.5 overflow-y-auto max-h-[260px] pr-1">
+              {items.map((coin) => {
+                const isSelected =
+                  selectedItem?.symbol === coin.symbol &&
+                  selectedItem?.network === coin.network;
+                return (
+                  <button
+                    key={coin.symbol + coin.network}
+                    onClick={() => onSelect(coin)}
+                    className={`wallet-item group flex items-center w-full pr-3 my-1 rounded-full relative cursor-pointer transition-all duration-250 ${
+                      isSelected
+                        ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]"
+                        : ""
+                    }`}
+                  >
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
+                    <div className="flex items-center gap-3 flex-1 relative z-10 p-2">
+                      <CryptoIcon symbol={coin.symbol} size="w-10 h-10" />
+                      <div className="flex flex-col items-start">
+                        <span className="text-sm text-white font-medium">
+                          {coin.symbol}
+                        </span>
+                        <span className="text-[10px]">
+                          {coin.network || coin.symbol}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                  <span className="text-white/80 text-sm font-medium relative z-10">
-                    {getCoinBalance(coin.symbol)}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
+                    <span className="text-white/80 text-sm font-medium relative z-10">
+                      {getCoinBalance(coin.symbol)}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
@@ -1095,7 +1101,7 @@ const WalletModal = ({ isOpen, onClose }) => {
               className="w-full max-w-xl rounded-2xl relative overflow-visible"
               style={{
                 background: "rgba(255,255,255,0.15)",
-                backdropFilter: "blur(20px)",
+                // backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
                 borderRadius: "20px",
               }}
@@ -1105,7 +1111,15 @@ const WalletModal = ({ isOpen, onClose }) => {
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#EFD28E]/20 rounded-full blur-3xl pointer-events-none" />
 
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-4 relative z-20">
+              <div
+                className="flex flex-row
+justify-between
+px-3 sm:px-5
+py-3 sm:py-4
+relative z-20
+    display: flex;
+    align-items: center;"
+              >
                 {/* LEFT — Deposit / Withdraw Tabs */}
                 <div
                   className="trust_btn2 flex items-center gap-1 rounded-full p-1"

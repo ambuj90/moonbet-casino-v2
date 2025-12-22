@@ -212,6 +212,7 @@ export const LoginTrigger = ({
             {/* BETS */}
             <Link
               to="/bets"
+              onClick={() => setDropdownOpen(false)}
               className="header-item flex items-center gap-3 w-full"
             >
               <div className="header-icon-wrap">
@@ -225,6 +226,7 @@ export const LoginTrigger = ({
             {/* TRANSACTIONS */}
             <Link
               to="/transactions"
+              onClick={() => setDropdownOpen(false)}
               className="header-item flex items-center gap-3 w-full"
             >
               <div className="header-icon-wrap">
@@ -238,6 +240,7 @@ export const LoginTrigger = ({
             {/* SETTINGS */}
             <Link
               to="/settings"
+              onClick={() => setDropdownOpen(false)}
               className="header-item flex items-center gap-3 w-full"
             >
               <div className="header-icon-wrap">
