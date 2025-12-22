@@ -1,7 +1,7 @@
 // src/pages/Casino.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { HelmetProvider } from "react-helmet-async";
 
 import HeroSection from "../components/sections/HeroSection";
 import HomeRewardsSection from "../components/sections/HomeRewardsSection";
@@ -25,7 +25,7 @@ const Casino = () => {
   return (
     <>
       {/* ✅ SEO Meta Tags */}
-      <Helmet>
+      <HelmetProvider>
         <title>Moonbet Casino – Play Provably Fair Crypto Games</title>
         <meta
           name="description"
@@ -46,7 +46,7 @@ const Casino = () => {
         <meta property="og:image" content="/home-assets/share-image.png" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://moonbet.games/casino" />
-      </Helmet>
+      </HelmetProvider>
       <div className="min-h-screen">
         <HeroSection />
 
