@@ -35,8 +35,10 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
           onClick={(e) => e.target === e.currentTarget && closeModal()}
         >
           {/* BACKDROP */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
-
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-md"
+            onClick={closeModal}
+          />
           {/* CARD */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
