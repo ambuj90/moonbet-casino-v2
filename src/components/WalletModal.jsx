@@ -47,36 +47,10 @@ const WalletModal = ({ isOpen, onClose }) => {
   const networkRef = useRef(null);
   const withdrawCurrencyRef = useRef(null);
   const withdrawNetworkRef = useRef(null);
-  const modalRef = useRef(null);
-
-  // Close modal on outside click
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      // Don't close if processing popup or success popup is open
-      if (showProcessingPopup || showSuccessPopup) return;
-
-      // Close modal if click is outside the modal content
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      // Add a small delay to prevent immediate closing when opening
-      const timer = setTimeout(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-      }, 100);
-
-      return () => {
-        clearTimeout(timer);
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }
-  }, [isOpen, onClose, showProcessingPopup, showSuccessPopup]);
 
   // Close dropdowns on outside click
   useEffect(() => {
-    const handleDropdownClickOutside = (e) => {
+    const handleClickOutside = (e) => {
       if (
         depositCurrencyRef.current &&
         !depositCurrencyRef.current.contains(e.target)
@@ -100,30 +74,10 @@ const WalletModal = ({ isOpen, onClose }) => {
       }
     };
     if (isOpen) {
-      document.addEventListener("mousedown", handleDropdownClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
-    return () =>
-      document.removeEventListener("mousedown", handleDropdownClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
-
-  // Close modal on Escape key
-  useEffect(() => {
-    const handleEscapeKey = (e) => {
-      if (
-        e.key === "Escape" &&
-        isOpen &&
-        !showProcessingPopup &&
-        !showSuccessPopup
-      ) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscapeKey);
-    }
-    return () => document.removeEventListener("keydown", handleEscapeKey);
-  }, [isOpen, onClose, showProcessingPopup, showSuccessPopup]);
 
   // Socket rooms
   useEffect(() => {
@@ -459,11 +413,12 @@ const WalletModal = ({ isOpen, onClose }) => {
   const CurrencyDropdown = ({ isOpen, items, onSelect, selectedItem }) => (
     <AnimatePresence>
       {isOpen && (
-        <div
-          style={{
-            background: "rgba(200, 200, 225, 0.20)",
-          }}
-        >
+        <div style={{
+          background: "rgba(200, 200, 225, 0.20)"
+        }}>
+
+
+
           <motion.div
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
@@ -488,15 +443,20 @@ const WalletModal = ({ isOpen, onClose }) => {
                   <button
                     key={coin.symbol + coin.network}
                     onClick={() => onSelect(coin)}
-                    className={`wallet-item group flex items-center w-full pr-3 my-1 rounded-full relative cursor-pointer transition-all duration-250 ${
-                      isSelected
+                    className={`wallet-item group flex items-center w-full pr-3 my-1 rounded-full relative cursor-pointer transition-all duration-250 ${isSelected
                         ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]"
                         : ""
-                    }`}
+                      }`}
                   >
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
-                    <div className="flex items-center gap-3 flex-1 relative z-10">
-                      <CryptoIcon symbol={coin.symbol} size="w-10 h-10" />
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none onhober" />
+                    <div className={`flex items-center gap-3 flex-1 relative z-10 transition-all duration-250 ${isSelected ? "p-0" : "p-1 group-hover:p-0"
+                      }`}>
+                      <div className={`rounded-full transition-all duration-250 ${isSelected
+                          ? "p-1 bg-[rgba(200,200,225,0.4)]"
+                          : "p-0 group-hover:p-1 group-hover:bg-[rgba(200,200,225,0.4)]"
+                        }`}>
+                        <CryptoIcon symbol={coin.symbol} size="w-10 h-10" />
+                      </div>
                       <div className="flex flex-col items-start">
                         <span className="text-sm text-white font-medium">
                           {coin.symbol}
@@ -513,8 +473,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                 );
               })}
             </div>
-          </motion.div>
-        </div>
+          </motion.div></div>
       )}
     </AnimatePresence>
   );
@@ -528,9 +487,9 @@ const WalletModal = ({ isOpen, onClose }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.18 }}
-          className="absolute left-0 right-0 top-full mt-2 z-[300] rounded-xl overflow-hidden"
+          className="absolute left-0 right-0 top-full mt-2 px-2 z-[300] rounded-xl overflow-hidden"
           style={{
-            background: "rgba(13,14,54,0.95)",
+            background: "rgba(200, 200, 225, 0.2)",
             backdropFilter: "blur(22px)",
             WebkitBackdropFilter: "blur(22px)",
             border: "1px solid rgba(255,255,255,0.12)",
@@ -545,11 +504,10 @@ const WalletModal = ({ isOpen, onClose }) => {
                 <button
                   key={net}
                   onClick={() => onSelect(net)}
-                  className={`wallet-item group flex items-center w-full px-3 py-2.5 my-1 rounded-full relative cursor-pointer transition-all duration-250 ${
-                    isSelected
+                  className={`wallet-item group flex items-center w-full px-3 py-2.5 my-1 rounded-full relative cursor-pointer transition-all duration-250 ${isSelected
                       ? "bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)]"
                       : ""
-                  }`}
+                    }`}
                 >
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/35 to-[rgba(90,55,153,0.10)] opacity-0 scale-[0.98] group-hover:opacity-100 group-hover:scale-100 transition-all duration-250 pointer-events-none" />
                   <span className="relative z-10 text-white text-sm font-medium">
@@ -574,7 +532,7 @@ const WalletModal = ({ isOpen, onClose }) => {
       </div>
 
       {/* Form content */}
-      <div className="flex-1 space-y-4">
+      <div className="flex-1 space-y-4  overflow-auto">
         {/* Step 1: Select Currency */}
         <div ref={depositCurrencyRef} className="relative z-[50]">
           <label className="block text-[11px] text-gray-400 mb-1.5 font-medium">
@@ -599,16 +557,14 @@ const WalletModal = ({ isOpen, onClose }) => {
               )}
               <span className="text-white/90 text-sm">
                 {selectedDepositCoin
-                  ? `${selectedDepositCoin.symbol} ${
-                      selectedDepositCoin.name || ""
-                    }`
+                  ? `${selectedDepositCoin.symbol} ${selectedDepositCoin.name || ""
+                  }`
                   : "Select Crypto"}
               </span>
             </div>
             <svg
-              className={`w-4 h-4 text-gray-500 transition-transform ${
-                showDepositDropdown ? "rotate-180" : ""
-              }`}
+              className={`w-4 h-4 text-gray-500 transition-transform ${showDepositDropdown ? "rotate-180" : ""
+                }`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -648,9 +604,8 @@ const WalletModal = ({ isOpen, onClose }) => {
           >
             <span className="text-white/90 text-sm">{getNetworkLabel()}</span>
             <svg
-              className={`w-4 h-4 text-gray-500 transition-transform ${
-                showNetworkDropdown ? "rotate-180" : ""
-              }`}
+              className={`w-4 h-4 text-gray-500 transition-transform ${showNetworkDropdown ? "rotate-180" : ""
+                }`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -694,9 +649,8 @@ const WalletModal = ({ isOpen, onClose }) => {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={copyToClipboard}
-              className={`p-1 rounded transition-all ${
-                copied ? "text-green-400" : "text-gray-500 hover:text-gray-300"
-              }`}
+              className={`p-1 rounded transition-all ${copied ? "text-green-400" : "text-gray-500 hover:text-gray-300"
+                }`}
             >
               {copied ? (
                 <svg
@@ -741,7 +695,7 @@ const WalletModal = ({ isOpen, onClose }) => {
                 className="w-full h-full"
               />
             ) : (
-              <div className="w-full h-full bg-gray-100 rounded flex items-center justify-center">
+              <div className="w-full h-full bg-gray-100 rounded flex items-center justify-center ">
                 <svg
                   className="w-8 h-8 text-gray-400"
                   fill="none"
@@ -890,16 +844,14 @@ const WalletModal = ({ isOpen, onClose }) => {
               )}
               <span className="text-white/90 text-sm">
                 {selectedWithdrawCoin
-                  ? `${selectedWithdrawCoin.symbol} ${
-                      selectedWithdrawCoin.name || ""
-                    }`
+                  ? `${selectedWithdrawCoin.symbol} ${selectedWithdrawCoin.name || ""
+                  }`
                   : "Select Crypto"}
               </span>
             </div>
             <svg
-              className={`w-4 h-4 text-gray-500 transition-transform ${
-                showWithdrawDropdown ? "rotate-180" : ""
-              }`}
+              className={`w-4 h-4 text-gray-500 transition-transform ${showWithdrawDropdown ? "rotate-180" : ""
+                }`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -945,9 +897,8 @@ const WalletModal = ({ isOpen, onClose }) => {
               {getWithdrawNetworkLabel()}
             </span>
             <svg
-              className={`w-4 h-4 text-gray-500 transition-transform ${
-                showWithdrawNetworkDropdown ? "rotate-180" : ""
-              }`}
+              className={`w-4 h-4 text-gray-500 transition-transform ${showWithdrawNetworkDropdown ? "rotate-180" : ""
+                }`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -1126,6 +1077,7 @@ const WalletModal = ({ isOpen, onClose }) => {
             animate="visible"
             exit="exit"
             className="fixed inset-0 z-[100]"
+            onClick={onClose}
             style={{
               background: "rgba(0, 0, 0, 0.5)",
               backdropFilter: "blur(12px)",
@@ -1133,20 +1085,22 @@ const WalletModal = ({ isOpen, onClose }) => {
             }}
           />
 
-          {/* Modal Container */}
+          {/* Modal */}
           <motion.div
             variants={modalVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
             className="fixed inset-0 flex items-center justify-center z-[101] p-4"
+            onClick={onClose}
           >
-            {/* Glassmorphism Card - with ref for click outside detection */}
+            {/* Glassmorphism Card */}
             <div
-              ref={modalRef}
               className="w-full max-w-xl rounded-2xl relative overflow-visible"
+              onClick={(e) => e.stopPropagation()}  // ⭐ IMPORTANT
               style={{
                 background: "rgba(255,255,255,0.15)",
+                // backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
                 borderRadius: "20px",
               }}
@@ -1156,7 +1110,13 @@ const WalletModal = ({ isOpen, onClose }) => {
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#EFD28E]/20 rounded-full blur-3xl pointer-events-none" />
 
               {/* Header */}
-              <div className="flex flex-row justify-between px-3 sm:px-5 py-3 sm:py-4 relative z-20 items-center">
+              <div className="flex flex-row
+justify-between
+px-3 sm:px-5
+py-3 sm:py-4
+relative z-20
+    display: flex;
+    align-items: center;">
                 {/* LEFT — Deposit / Withdraw Tabs */}
                 <div
                   className="trust_btn2 flex items-center gap-1 rounded-full p-1"
@@ -1170,18 +1130,17 @@ const WalletModal = ({ isOpen, onClose }) => {
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`relative px-5 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
-                        activeTab === tab
+                      className={`relative px-5 py-2 text-sm font-medium rounded-full transition-all duration-200 ${activeTab === tab
                           ? "text-white"
                           : "text-gray-400 hover:text-gray-200"
-                      }`}
+                        }`}
                       style={
                         activeTab === tab
                           ? {
-                              background:
-                                "linear-gradient(180deg, #FFB8A1 0%, #A62A00 100%)",
-                              boxShadow: "0 2px 10px rgba(240, 119, 48, 0.3)",
-                            }
+                            background:
+                              "linear-gradient(180deg, #FFB8A1 0%, #A62A00 100%)",
+                            boxShadow: "0 2px 10px rgba(240, 119, 48, 0.3)",
+                          }
                           : {}
                       }
                     >
@@ -1189,6 +1148,91 @@ const WalletModal = ({ isOpen, onClose }) => {
                     </button>
                   ))}
                 </div>
+
+                {/* CENTER — Balance */}
+                {/* <div
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #9292D2 0%, #7171B4 100%)",
+                    borderRadius: "10px",
+                    border: "1px solid rgba(255,255,255,0.25)",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                      fill="url(#paint0_linear_bal)"
+                    />
+                    <path
+                      d="M8.304 14.2632C8.33658 14.2293 8.37574 14.2025 8.41908 14.1843C8.46242 14.1662 8.50901 14.1571 8.556 14.1576H17.316C17.3404 14.1588 17.3643 14.1649 17.3863 14.1754C17.4084 14.1859 17.4281 14.2007 17.4444 14.2189C17.4607 14.2371 17.4732 14.2583 17.4812 14.2814C17.4893 14.3044 17.4927 14.3288 17.4912 14.3532C17.4892 14.3977 17.4718 14.4401 17.442 14.4732L15.7116 16.2C15.6447 16.2669 15.5542 16.3049 15.4596 16.3056H6.6996C6.66141 16.3087 6.62323 16.2995 6.59069 16.2792C6.55815 16.259 6.53297 16.2289 6.51885 16.1933C6.50474 16.1576 6.50244 16.1184 6.5123 16.0814C6.52215 16.0444 6.54364 16.0115 6.5736 15.9876L8.304 14.2632Z"
+                      fill="url(#paint1_linear_bal)"
+                    />
+                    <path
+                      d="M8.304 7.8C8.37066 7.73261 8.46122 7.69424 8.556 7.6932H17.316C17.3512 7.6937 17.3855 7.70452 17.4147 7.72433C17.4438 7.74414 17.4665 7.77207 17.4799 7.80465C17.4933 7.83723 17.4969 7.87303 17.4901 7.90761C17.4834 7.9422 17.4667 7.97404 17.442 7.9992L15.7116 9.7368C15.6447 9.80375 15.5542 9.84168 15.4596 9.8424H6.6996C6.65046 9.83961 6.60443 9.81746 6.57159 9.7808C6.53875 9.74413 6.52178 9.69595 6.5244 9.6468C6.52638 9.6023 6.54378 9.55988 6.5736 9.5268L8.304 7.8Z"
+                      fill="url(#paint2_linear_bal)"
+                    />
+                    <path
+                      d="M15.7116 11.0112C15.6789 10.9774 15.6398 10.9505 15.5965 10.9322C15.5532 10.9138 15.5066 10.9044 15.4596 10.9044H6.6996C6.65046 10.9072 6.60443 10.9293 6.57159 10.966C6.53875 11.0027 6.52178 11.0509 6.5244 11.1C6.52618 11.1445 6.5436 11.187 6.5736 11.22L8.304 12.942C8.33669 12.9758 8.37585 13.0027 8.41914 13.021C8.46243 13.0394 8.50898 13.0488 8.556 13.0488H17.316C17.3512 13.0483 17.3855 13.0375 17.4147 13.0177C17.4438 12.9979 17.4665 12.9699 17.4799 12.9374C17.4933 12.9048 17.4969 12.869 17.4901 12.8344C17.4834 12.7998 17.4667 12.768 17.442 12.7428L15.7116 11.0112Z"
+                      fill="url(#paint3_linear_bal)"
+                    />
+                    <defs>
+                      <linearGradient
+                        id="paint0_linear_bal"
+                        x1="12"
+                        y1="24"
+                        x2="12"
+                        y2="0"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#170E2B" />
+                        <stop offset="1" stopColor="#210066" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint1_linear_bal"
+                        x1="21.7813"
+                        y1="-83.748"
+                        x2="-32.4596"
+                        y2="-63.4324"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#00FFA3" />
+                        <stop offset="1" stopColor="#DC1FFF" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint2_linear_bal"
+                        x1="15.982"
+                        y1="-26.9883"
+                        x2="-38.3394"
+                        y2="-6.58516"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#00FFA3" />
+                        <stop offset="1" stopColor="#DC1FFF" />
+                      </linearGradient>
+                      <linearGradient
+                        id="paint3_linear_bal"
+                        x1="15.1488"
+                        y1="5.96642"
+                        x2="9.0816"
+                        y2="17.5824"
+                        gradientUnits="userSpaceOnUse"
+                      >
+                        <stop stopColor="#00FFA3" />
+                        <stop offset="1" stopColor="#DC1FFF" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <span className="text-white text-sm font-semibold tracking-wide">
+                    {walletTotalUsd}
+                  </span>
+                </div> */}
 
                 {/* RIGHT — Close Button */}
                 <motion.button

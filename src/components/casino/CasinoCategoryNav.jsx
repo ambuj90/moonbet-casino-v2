@@ -675,11 +675,12 @@ const CasinoCategoryNav = ({
                           setSelectedStudio(studio.id);
                           setStudioOpen(false);
                         }}
-                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all ${
-                          selectedStudio === studio.id
-                            ? "bg-white/10 text-[#F07730]"
-                            : "text-[#CFCFFF] hover:bg-white/10"
-                        }`}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all text-white
+      ${
+        selectedStudio === studio.id
+          ? "bg-[linear-gradient(180deg,#ffb8a1_0%,#a62a00_100%)] text-white"
+          : "text-[#CFCFFF] hover:bg-[linear-gradient(0deg,#35326B_0%,rgba(53,50,107,0)_100%)]"
+      }`}
                       >
                         {studio.label}
                       </button>
