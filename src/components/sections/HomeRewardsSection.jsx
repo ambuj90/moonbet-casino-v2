@@ -20,7 +20,7 @@ const HomeRewardsSection = () => {
         description2: "Awards",
         img: "/rewards/rewards7.png",
         bg: "/rewards/bg-reward.png",
-        link: "/affiliate",
+        link: "/promotions",
         buttonText: "Claim Rewards",
       },
       {

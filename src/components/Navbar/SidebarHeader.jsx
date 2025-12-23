@@ -1369,11 +1369,11 @@ const SidebarHeader = ({
                   </div>
 
                   {/* Social Links */}
-                  <div className="flex items-center px-1">
+                  <div className="flex items-center justify-center gap-2">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
+                      className="flex items-center justify-center p-1 transition-all duration-200"
                       onClick={() =>
                         window.open(
                           "https://www.instagram.com/moonbet.games/",
@@ -1449,7 +1449,7 @@ const SidebarHeader = ({
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
+                      className="flex items-center justify-center p-1 transition-all duration-200"
                       onClick={() =>
                         window.open("https://x.com/moonbetgames ", "_blank")
                       }
@@ -1514,7 +1514,7 @@ const SidebarHeader = ({
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2 py-3 transition-all duration-200"
+                      className="flex items-center justify-center p-1 transition-all duration-200"
                       onClick={() =>
                         window.open(
                           "https://www.telegram.com/moonbet.games/",
