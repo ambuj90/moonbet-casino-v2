@@ -105,7 +105,7 @@ const SidebarHeader = ({
       id: "recommended",
       label: "Trending",
       icon: "/icons/trending.svg",
-      activeIcon: "/active-menu/trending.svg",
+      activeIcon: "/icons/trending.svg",
       path: "/casino",
     },
   ];

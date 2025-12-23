@@ -578,7 +578,7 @@ const CasinoCategoryNav = ({
                   }`}
                 >
                   {/* SVG ICON from JSON */}
-                  <span className="flex items-center justify-center w-5 h-5 transition-all duration-200">
+                  <span className="flex items-center justify-center w-5 md:mt-1 h-5 transition-all duration-200">
                     <DynamicIcon
                       id={cat.id}
                       active={selectedCategory === cat.id}

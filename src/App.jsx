@@ -57,6 +57,7 @@ import ReferralRegisterRedirect from "./pages/ReferralRegisterRedirect.jsx";
 import CasinoChallenges from "./pages/CasinoChallenges.jsx";
 import RackBack from "./pages/Rakeback.jsx";
 import ProfilePage from "./pages/ProfilePage";
+import LeaderboardComingSoon from "./pages/LeaderboardComingSoon.jsx";
 
 // Temporary pages
 
@@ -167,6 +168,10 @@ function App() {
             <Route path="casinochallenges" element={<CasinoChallenges />} />
             <Route path="promotions" element={<RackBack />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/leaderboardComingSoon"
+              element={<LeaderboardComingSoon />}
+            />
           </Route>
 
           {/* ---------------- PUBLIC ROUTES OUTSIDE LAYOUT ---------------- */}

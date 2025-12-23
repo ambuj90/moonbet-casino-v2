@@ -63,11 +63,7 @@ const WinCard = ({ win, index, onClick }) => {
 
       {/* Username */}
       <div className="flex items-center justify-center gap-1 mt-1">
-        <img
-          src={win.icon}
-          alt="icon"
-          className="w-3 h-3 opacity-80"
-        />
+        <img src={win.icon} alt="icon" className="w-3 h-3 opacity-80" />
 
         <span className="text-gray-300 text-[11px]">
           {win.username.length > 10
@@ -77,7 +73,7 @@ const WinCard = ({ win, index, onClick }) => {
       </div>
 
       {/* Amount */}
-      <span className="text-green-400 text-[14px] font-semibold mt-1">
+      <span className="text-green-400 text-[14px] font-semibold">
         {win.amount}
       </span>
     </motion.div>
@@ -311,7 +307,12 @@ const HeroSection = () => {
               {loading
                 ? [...Array(7)].map((_, i) => <SkeletonCard key={i} />)
                 : mobileWinsData.map((win, index) => (
-                    <WinCard key={win.id} win={win} index={index} onClick={() => handleCardClick(win)} />
+                    <WinCard
+                      key={win.id}
+                      win={win}
+                      index={index}
+                      onClick={() => handleCardClick(win)}
+                    />
                   ))}
             </div>
 
@@ -330,7 +331,12 @@ const HeroSection = () => {
                       </div>
                     ))
                   : recentWinsData.map((win, index) => (
-                      <WinCard key={win.id} win={win} index={index} onClick={() => handleCardClick(win)} />
+                      <WinCard
+                        key={win.id}
+                        win={win}
+                        index={index}
+                        onClick={() => handleCardClick(win)}
+                      />
                     ))}
               </AnimatePresence>
             </div>
