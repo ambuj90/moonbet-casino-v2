@@ -1027,7 +1027,7 @@ const GamePage = () => {
                 />
 
                 {/* Card */}
-                <div className="trust_btn w-full bg-[#1C1D49] rounded-2xl px-6 pt-24 pb-6 text-center shadow-lg relative z-10">
+                <div className="trust_btn w-full bg-[#1C1D49] rounded-2xl px-6 pt-10 pb-6 text-center shadow-lg relative z-10">
                   <p className="text-lg md:text-xl font-semibold mb-2">
                     Demo Mode Not Available
                   </p>
@@ -1045,7 +1045,7 @@ const GamePage = () => {
                       setDemoBlocked(false);
                       setIsRealPlay(true);
                     }}
-                    className="w-full px-4 py-2 rounded-xl text-sm font-semibold text-white"
+                    className="w-3/4 px-4 py-2 rounded-xl text-sm font-semibold text-white"
                     style={{
                       background:
                         "linear-gradient(180deg, #FFB8A1 0%, #A62A00 100%)",
