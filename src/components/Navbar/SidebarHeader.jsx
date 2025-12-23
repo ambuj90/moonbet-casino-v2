@@ -1,6 +1,6 @@
 // components/Navbar/SidebarHeader.jsx
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import { createPortal } from "react-dom";
@@ -18,6 +18,7 @@ const SidebarHeader = ({
   const [tooltip, setTooltip] = useState({ show: false, text: "", top: 0 });
   const user = JSON.parse(localStorage.getItem("user") || "null");
   const isLoggedIn = !!user?.id;
+  const navigate = useNavigate();
 
   // Tooltip handlers
   const handleMouseEnter = (e, text) => {
@@ -143,6 +144,7 @@ const SidebarHeader = ({
           icon: "/icons/live-casino.svg",
         },
       ],
+      path: "/casino/slots",
     },
     {
       id: "originals",
@@ -228,6 +230,7 @@ const SidebarHeader = ({
           comingSoon: false,
         },
       ],
+      path: "/casinochallenges",
     },
 
     {
@@ -737,7 +740,18 @@ const SidebarHeader = ({
                           whileHover={{
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
-                          onClick={() => toggleSubmenu(item.id)}
+                          onClick={() => {
+                            // If sidebar is collapsed → go directly to slots
+                            if (sidebarCollapsed) {
+                              navigate(item.path || "/casino/slots");
+                              closeSidebar();
+                              return;
+                            }
+
+                            // If expanded → navigate + open submenu
+                            // navigate(item.path || "/casino/slots");
+                            setActiveSubmenu(item.id);
+                          }}
                           onMouseEnter={(e) => handleMouseEnter(e, item.label)}
                           onMouseLeave={handleMouseLeave}
                           className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] ${
@@ -1004,7 +1018,18 @@ const SidebarHeader = ({
                           whileHover={{
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
-                          onClick={() => toggleSubmenu(item.id)}
+                          onClick={() => {
+                            // Collapsed: go directly to default page
+                            if (sidebarCollapsed) {
+                              navigate(item.path || "/casinochallenges");
+                              closeSidebar();
+                              return;
+                            }
+
+                            // Expanded: navigate + open submenu
+                            // navigate(item.path);
+                            setActiveSubmenu(item.id);
+                          }}
                           onMouseEnter={(e) => handleMouseEnter(e, item.label)}
                           onMouseLeave={handleMouseLeave}
                           className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] ${
