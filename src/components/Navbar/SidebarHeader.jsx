@@ -189,6 +189,7 @@ const SidebarHeader = ({
       icon: "/icons/leaderboard-new.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
       comingSoon: true,
+      path: "/coming-soon",
     },
   ];
 
