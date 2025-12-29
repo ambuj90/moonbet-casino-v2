@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import FiltersPanel from "./FiltersPanel";
 
 // Import the JSON icon data
 import categoryIconsData from "./casinoIcons.json";
@@ -126,6 +127,7 @@ const CasinoCategoryNav = ({
   const studioRef = useRef(null);
   const [selectedStudio, setSelectedStudio] = useState("all");
   const [availableStudios, setAvailableStudios] = useState([]);
+  const [showFiltersPanel, setShowFiltersPanel] = useState(false);
 
   // Close on outside click
   useEffect(() => {
@@ -691,7 +693,9 @@ const CasinoCategoryNav = ({
             </div>
 
             {/* Filters Button */}
-            <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36] sm:flex">
+            <button 
+            onClick={() => setShowFiltersPanel(true)}
+            className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36] sm:flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -826,6 +830,10 @@ const CasinoCategoryNav = ({
           scrollbar-width: none;
         }
       `}</style>
+      <FiltersPanel
+  open={showFiltersPanel}
+  onClose={() => setShowFiltersPanel(false)}
+/>
     </section>
   );
 };
