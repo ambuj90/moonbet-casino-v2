@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
+import StarGameBackground from "../leaderboard/starGameBackground";
 
 const canShowGameOnDevice = (game, isMobileDevice) => {
   const nameHasMobile =
@@ -183,9 +184,9 @@ const GameGrid = ({
 
   return (
     <section className="w-full py-6">
-      <div className="max-w-7xl mx-auto px-2">
+      <div className="relative max-w-7xl mx-auto px-2 min-h-[calc(80vh-100px)]">
         <h2 className="font-['Neuropolitical'] text-xl mb-6 uppercase">
-          {`${provider}`.toUpperCase() || "Game"}
+          {`${provider}`.toUpperCase()}
         </h2>
 
         {loading ? (
@@ -198,48 +199,92 @@ const GameGrid = ({
             ))}
           </div>
         ) : filteredGames.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            {/* ICON */}
-            <div className="mb-4 opacity-80">
-              <svg width="64" height="64" viewBox="0 0 56 56">
-                <circle
-                  cx="28"
-                  cy="28"
-                  r="24"
-                  stroke="#E57373"
-                  strokeWidth="3"
-                />
-                <line
-                  x1="14"
-                  y1="42"
-                  x2="42"
-                  y2="14"
-                  stroke="#E57373"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-              </svg>
+          <div
+            className="relative flex flex-col items-center justify-center w-full px-4 mt-24 md:mt-40  top-16
+        sm:top-32
+        md:top-20"
+          >
+            <div className="relative flex flex-col items-center">
+              {/* Astronaut */}
+              <img
+                src="/leaderboard-assets/leaderboard-astro.png"
+                alt="No Games Astronaut"
+                className="
+        absolute
+        -top-28
+        sm:-top-32
+        md:-top-52
+        w-40
+        sm:w-48
+        md:w-56
+        lg:w-60
+        object-contain
+        z-20
+        pointer-events-none
+      "
+              />
+
+              {/* Glass Card */}
+              <div
+                className="
+        trust_btn
+        relative
+        z-10
+        w-full
+        max-w-sm
+        sm:max-w-md
+        rounded-2xl
+        px-6
+        sm:px-8
+        pt-16
+        pb-6
+        text-center
+      "
+                style={{
+                  background: "rgba(28,29,73,0.92)",
+                  backdropFilter: "blur(14px)",
+                  WebkitBackdropFilter: "blur(14px)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                }}
+              >
+                <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">
+                  No Games Available
+                </h3>
+
+                <p className="text-sm text-[#B4B4DE] mb-5 leading-snug">
+                  No games found for{" "}
+                  <span className="text-white font-semibold">{provider}</span>.
+                  Try exploring other providers.
+                </p>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate("/providers")}
+                  className="
+          w-full
+          sm:w-3/4
+          mx-auto
+          px-4
+          py-2.5
+          rounded-xl
+          text-sm
+          font-semibold
+          text-white
+        "
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #FFB8A1 0%, #A62A00 100%)",
+                  }}
+                >
+                  Browse Providers
+                </motion.button>
+
+                <p className="text-xs text-[#9C9CCB] mt-4">
+                  Check back later as new games are added.
+                </p>
+              </div>
             </div>
-
-            <h3 className="text-white text-2xl font-bold mb-2 tracking-wide font-['Neuropolitical']">
-              No Games Available
-            </h3>
-
-            <p className="text-gray-400 max-w-md text-[15px] mb-6 leading-relaxed font-['Neue Plak']">
-              No games found for{" "}
-              <span className="text-white font-semibold">{provider}</span>. Try
-              exploring other providers.
-            </p>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate("/providers")}
-              className="trust_btn view_moon_btn px-6 py-3 rounded-full font-semibold text-white"
-              style={{ background: "var(--cta-pink-gradient)" }}
-            >
-              Browse Providers
-            </motion.button>
           </div>
         ) : (
           <>
