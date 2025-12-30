@@ -79,7 +79,7 @@ const ProviderBtn = ({ text, active }) => (
 );
 
 /* ================= PANEL ================= */
-const FiltersPanel = ({ open, onClose }) => {
+const ProviderFilter = ({ open, onClose }) => {
   const [volatility, setVolatility] = React.useState(50);
   const sliderRef = React.useRef(null);
   return (
@@ -108,7 +108,7 @@ const FiltersPanel = ({ open, onClose }) => {
             }}
           >
             {/* HEADER */}
-            <div className=" mt-16 h-[64px] px-5 flex items-center justify-between border-b border-white/20">
+            <div className="h-[64px] px-5 flex items-center justify-between border-b border-white/20">
               <div className="flex items-center gap-2 text-white font-semibold text-sm">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -301,4 +301,4 @@ const FiltersPanel = ({ open, onClose }) => {
   );
 };
 
-export default FiltersPanel;
+export default ProviderFilter;

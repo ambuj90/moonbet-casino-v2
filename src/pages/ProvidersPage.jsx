@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
 import GameGrid from "../components/providers/GameGrid";
 import GameBetsSection from "../components/sections/GameBetsSection";
+import ProviderFilter from "../components/providers/ProviderFilter";
 
 const providers = [
   { id: 1, name: "PragmaticPlay", logo: "/providers/vector1.svg" },
@@ -41,6 +42,8 @@ const ProvidersPage = () => {
   const handleProviderClick = (name) => {
     navigate(`/providers/${nameToSlug(name)}`);
   };
+
+  const [filterOpen, setFilterOpen] = React.useState(false);
 
   return (
     <>
@@ -119,12 +122,12 @@ const ProvidersPage = () => {
 
                   {/* Filters icon pill */}
                   <button
+                  onClick={() => setFilterOpen(true)}
                     className="crypto_btn
                       w-[44px] h-[44px]
                       flex items-center justify-center
                       rounded-full
                       bg-[#0D0E36]
-                    
                     "
                   >
                     <svg
@@ -199,6 +202,10 @@ const ProvidersPage = () => {
           {/* ================= GAMES GRID ================= */}
           {selectedProvider && <GameGrid provider={selectedProvider} />}
         </div>
+        <ProviderFilter
+        open={filterOpen}
+        onClose={() => setFilterOpen(false)}
+      />
       </section>
 
       <GameBetsSection />
