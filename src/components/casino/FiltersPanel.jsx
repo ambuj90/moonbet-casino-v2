@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 
 /* ================= GLASS STYLES ================= */
 const glassBase =
@@ -15,8 +15,6 @@ const TagChip = ({ iconSrc, text }) => (
     <span className="ml-1 opacity-70">×</span>
   </div>
 );
-const [volatility, setVolatility] = React.useState(50);
-const sliderRef = React.useRef(null);
 
 
 /* ================= QUICK PICK ================= */
@@ -58,6 +56,8 @@ const ProviderBtn = ({ text, active }) => (
 
 /* ================= PANEL ================= */
 const FiltersPanel = ({ open, onClose }) => {
+    const [volatility, setVolatility] = React.useState(50);
+const sliderRef = React.useRef(null);
   return (
     <AnimatePresence>
       {open && (
