@@ -1,6 +1,6 @@
 // components/Navbar/SidebarHeader.jsx
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import { createPortal } from "react-dom";
@@ -18,6 +18,7 @@ const SidebarHeader = ({
   const [tooltip, setTooltip] = useState({ show: false, text: "", top: 0 });
   const user = JSON.parse(localStorage.getItem("user") || "null");
   const isLoggedIn = !!user?.id;
+  const navigate = useNavigate();
 
   // Tooltip handlers
   const handleMouseEnter = (e, text) => {
@@ -143,6 +144,7 @@ const SidebarHeader = ({
           icon: "/icons/live-casino.svg",
         },
       ],
+      path: "/casino/slots",
     },
     {
       id: "originals",
@@ -189,7 +191,6 @@ const SidebarHeader = ({
       icon: "/icons/leaderboard-new.svg",
       activeIcon: "/active-menu/leaderboard-active-collasped.svg",
       comingSoon: true,
-      path: "/coming-soon",
     },
   ];
 
@@ -229,6 +230,7 @@ const SidebarHeader = ({
           comingSoon: false,
         },
       ],
+      path: "/casinochallenges",
     },
 
     {
@@ -738,7 +740,18 @@ const SidebarHeader = ({
                           whileHover={{
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
-                          onClick={() => toggleSubmenu(item.id)}
+                          onClick={() => {
+                            // If sidebar is collapsed → go directly to slots
+                            if (sidebarCollapsed) {
+                              navigate(item.path || "/casino/slots");
+                              closeSidebar();
+                              return;
+                            }
+
+                            // If expanded → navigate + open submenu
+                            // navigate(item.path || "/casino/slots");
+                            setActiveSubmenu(item.id);
+                          }}
                           onMouseEnter={(e) => handleMouseEnter(e, item.label)}
                           onMouseLeave={handleMouseLeave}
                           className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] ${
@@ -1005,7 +1018,18 @@ const SidebarHeader = ({
                           whileHover={{
                             scale: sidebarCollapsed ? 1.05 : 1.01,
                           }}
-                          onClick={() => toggleSubmenu(item.id)}
+                          onClick={() => {
+                            // Collapsed: go directly to default page
+                            if (sidebarCollapsed) {
+                              navigate(item.path || "/casinochallenges");
+                              closeSidebar();
+                              return;
+                            }
+
+                            // Expanded: navigate + open submenu
+                            // navigate(item.path);
+                            setActiveSubmenu(item.id);
+                          }}
                           onMouseEnter={(e) => handleMouseEnter(e, item.label)}
                           onMouseLeave={handleMouseLeave}
                           className={`w-full flex items-center rounded-[8px] backdrop-blur-[2px] ${
@@ -1345,11 +1369,11 @@ const SidebarHeader = ({
                   </div>
 
                   {/* Social Links */}
-                  <div className="flex items-center px-1">
+                  <div className="flex items-center justify-center gap-2">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
+                      className="flex items-center justify-center p-1 transition-all duration-200"
                       onClick={() =>
                         window.open(
                           "https://www.instagram.com/moonbet.games/",
@@ -1425,7 +1449,7 @@ const SidebarHeader = ({
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2  py-3 transition-all duration-200"
+                      className="flex items-center justify-center p-1 transition-all duration-200"
                       onClick={() =>
                         window.open("https://x.com/moonbetgames ", "_blank")
                       }
@@ -1490,7 +1514,7 @@ const SidebarHeader = ({
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex-1 flex items-center justify-center gap-2 py-3 transition-all duration-200"
+                      className="flex items-center justify-center p-1 transition-all duration-200"
                       onClick={() =>
                         window.open(
                           "https://www.telegram.com/moonbet.games/",
