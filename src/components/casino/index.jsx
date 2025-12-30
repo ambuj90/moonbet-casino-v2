@@ -3,16 +3,32 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
-  const [games, setGames] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(48);
+// ⭐ Skeleton Loader Component
+const GameSkeleton = () => (
+  <div className="relative overflow-hidden rounded-xl">
+    <div className="aspect-[18/12] bg-[#1a1b4b] animate-pulse">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#2a2b5b] to-transparent skeleton-shimmer" />
+    </div>
+  </div>
+);
+
+// ⭐ Configuration
+const GAMES_PER_PAGE = 48;      // How many to show at once
+const API_BATCH_SIZE = 200;     // How many to fetch per API call
+
+const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all" }) => {
+  const [games, setGames] = useState([]);           // All cached games
+  const [visibleCount, setVisibleCount] = useState(GAMES_PER_PAGE);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);     // Are there more games in DB?
 
   // ⭐ Map: { [gameUuid]: true | false }
   const [favorite, setFavorite] = useState({});
 
   const [isMobileDevice, setIsMobileDevice] = useState(false);
-  const [userId, setUserId] = useState(null);      // ⭐ keep userId
+  const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
 
   // ─────────────────────────────────────────────
@@ -35,149 +51,113 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "" }) => {
   useEffect(() => {
     try {
       const user = JSON.parse(localStorage.getItem("user") || "{}");
-      const id = user.id || "690b0290cb255ca66b14a529"; // your fallback
-      setUserId(id);
+      setUserId(user.id || null);
     } catch (e) {
       console.error("Failed to parse user from localStorage", e);
     }
   }, []);
 
   // ─────────────────────────────────────────────
-  // 3) Fetch games when type/filter/search/user changes
+  // 3) Build API URL helper
+  // ─────────────────────────────────────────────
+  const buildApiUrl = (page = 1) => {
+    // Recent Games
+    if (type === "recent") {
+      return `/wallet-service/api/games?sortBy=recent&userId=${userId}&limit=${API_BATCH_SIZE}&page=${page}`;
+    }
+    // Favourite Games
+    if (type === "favorites") {
+      return `/wallet-service/api/games?sortBy=favourite&userId=${userId}&limit=${API_BATCH_SIZE}&page=${page}`;
+    }
+    // All other categories
+    const params = new URLSearchParams();
+    if (type && type !== "all") params.append("type", type);
+    if (filter) params.append("sortBy", filter);
+    if (searchTerm) params.append("name", searchTerm);
+    if (provider && provider !== "all") params.append("provider", provider);
+    params.append("limit", API_BATCH_SIZE);
+    params.append("page", page);
+    
+    return `/wallet-service/api/games?${params.toString()}`;
+  };
+
+  // ─────────────────────────────────────────────
+  // 4) Initial fetch when filters change
   // ─────────────────────────────────────────────
   useEffect(() => {
-    if (!userId) return; // wait until we know userId
+    // Only require userId for recent/favorites
+    if ((type === "recent" || type === "favorites") && !userId) {
+      setGames([]);
+      setLoading(false);
+      return;
+    }
 
+    let isCancelled = false;
+    
     const fetchGames = async () => {
       setLoading(true);
+      setCurrentPage(1);
+      setVisibleCount(GAMES_PER_PAGE);
+      
       try {
-        let apiUrl = "";
-
-        // 1. Recent Games
-        if (type === "recent") {
-          apiUrl = `/wallet-service/api/games?sortBy=recent&userId=${userId}`;
-        }
-
-        // 2. Favourite Games
-        else if (type === "favorites") {
-          apiUrl = `/wallet-service/api/games?sortBy=favourite&userId=${userId}`;
-        }
-
-        // 3. All other categories
-        else {
-          const params = new URLSearchParams();
-
-          if (type && type !== "all") params.append("type", type);
-          if (filter) params.append("sortBy", filter);
-          if (searchTerm) params.append("name", searchTerm);
-
-          const query = params.toString() ? `?${params.toString()}` : "";
-          apiUrl = `/wallet-service/api/games${query}`;
-        }
-
+        const apiUrl = buildApiUrl(1);
         const { data } = await axios.get(apiUrl);
+
+        if (isCancelled) return;
 
         let list = [];
         if (data?.success && Array.isArray(data.data)) list = data.data;
         else if (Array.isArray(data?.data)) list = data.data;
-        else list = [];
 
         setGames(list);
+        
+        // Check if there are more pages
+        const total = data?.total || list.length;
+        setHasMore(list.length >= API_BATCH_SIZE || total > list.length);
+        
       } catch (err) {
         console.error("Error fetching games:", err);
-        setGames([]);
-        setFavorite({});
+        if (!isCancelled) {
+          setGames([]);
+          setHasMore(false);
+        }
       } finally {
-        setLoading(false);
+        if (!isCancelled) {
+          setLoading(false);
+        }
       }
     };
 
     fetchGames();
-  }, [type, filter, searchTerm, userId]);
 
-  // ⭐ Fetch backend favourite list on mount or when userId changes
-useEffect(() => {
-  if (!userId) return;
-
-  const fetchFavourites = async () => {
-    try {
-      const res = await axios.get(`/wallet-service/api/games/${userId}/favourite-game`);
-      const favGames = res.data?.games || [];
-
-      const map = {};
-      favGames.forEach(g => map[g.uuid] = true);
-
-      setFavorite(map);
-    } catch (err) {
-      console.error("Failed to fetch favourites:", err);
-    }
-  };
-
-  fetchFavourites();
-}, [userId]);
+    return () => {
+      isCancelled = true;
+    };
+  }, [type, filter, searchTerm, provider, userId]);
 
   // ─────────────────────────────────────────────
-  // 4) Play now
+  // 5) Fetch favourites for heart icons
   // ─────────────────────────────────────────────
-  const handlePlayNow = (game) => {
-    if (!game.slug) {
-      console.error("❌ No slug found for game:", game);
-      return;
-    }
-    navigate(`/game/${game.slug}`);
-  };
+  useEffect(() => {
+    if (!userId) return;
 
-  const handleLoadMore = () => setVisibleCount((prev) => prev + 48);
+    const fetchFavourites = async () => {
+      try {
+        const res = await axios.get(`/wallet-service/api/games/${userId}/favourite-game`);
+        const favGames = res.data?.games || [];
+        const map = {};
+        favGames.forEach((g) => (map[g.uuid] = true));
+        setFavorite(map);
+      } catch (err) {
+        console.error("Failed to fetch favourites:", err);
+      }
+    };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.02 },
-    }),
-  };
-
-  // ─────────────────────────────────────────────
-  // 5) TOGGLE FAVORITE (with API)
-  // ─────────────────────────────────────────────
-  const handleToggleFavorite = async (e, game) => {
-  e.stopPropagation();
-  if (!userId || !game?.uuid) return;
-
-  const prevState = !!favorite[game.uuid];
-  const nextState = !prevState;
-
-  // Optimistic update
-  setFavorite((prev) => ({
-    ...prev,
-    [game.uuid]: nextState,
-  }));
-
-  try {
-    await axios.post(
-      `/wallet-service/api/games/${userId}/favourite`,
-      { uuid: game.uuid }
-    );
-
-    // If user un-favorites inside favourites page → remove from UI
-    if (type === "favorites" && !nextState) {
-      setGames((prev) => prev.filter((g) => g.uuid !== game.uuid));
-    }
-
-  } catch (err) {
-    console.error("Failed to toggle favourite:", err);
-
-    // rollback UI
-    setFavorite((prev) => ({
-      ...prev,
-      [game.uuid]: prevState,
-    }));
-  }
-};
+    fetchFavourites();
+  }, [userId]);
 
   // ─────────────────────────────────────────────
-  // 6) Filter by device (mobile/desktop)
+  // 6) Filter by device (mobile/desktop) - ORIGINAL LOGIC
   // ─────────────────────────────────────────────
   const filteredGames = games.filter((game) => {
     const isMobileFlag =
@@ -198,7 +178,110 @@ useEffect(() => {
   });
 
   // ─────────────────────────────────────────────
-  // 7) RENDER
+  // 7) Load More handler - HYBRID APPROACH
+  // ─────────────────────────────────────────────
+  const handleLoadMore = async () => {
+    const nextVisibleCount = visibleCount + GAMES_PER_PAGE;
+    
+    // ⚡ Case 1: We have cached games - just show more (instant!)
+    if (nextVisibleCount <= filteredGames.length) {
+      setVisibleCount(nextVisibleCount);
+      return;
+    }
+    
+    // ⚡ Case 2: Need to fetch more from API
+    if (!hasMore || loadingMore) return;
+    
+    setLoadingMore(true);
+    const nextPage = currentPage + 1;
+    
+    try {
+      const apiUrl = buildApiUrl(nextPage);
+      const { data } = await axios.get(apiUrl);
+      
+      let newGames = [];
+      if (data?.success && Array.isArray(data.data)) newGames = data.data;
+      else if (Array.isArray(data?.data)) newGames = data.data;
+      
+      if (newGames.length > 0) {
+        // Append new games to cache (avoid duplicates)
+        setGames(prev => {
+          const existingIds = new Set(prev.map(g => g.uuid));
+          const uniqueNew = newGames.filter(g => !existingIds.has(g.uuid));
+          return [...prev, ...uniqueNew];
+        });
+        setCurrentPage(nextPage);
+        setVisibleCount(nextVisibleCount);
+      }
+      
+      // Check if more pages exist
+      setHasMore(newGames.length >= API_BATCH_SIZE);
+      
+    } catch (err) {
+      console.error("Error loading more games:", err);
+    } finally {
+      setLoadingMore(false);
+    }
+  };
+
+  // ─────────────────────────────────────────────
+  // 8) Play now handler
+  // ─────────────────────────────────────────────
+  const handlePlayNow = (game) => {
+    if (!game.slug) {
+      console.error("❌ No slug found for game:", game);
+      return;
+    }
+    navigate(`/game/${game.slug}`);
+  };
+
+  // ─────────────────────────────────────────────
+  // 9) Toggle favorite handler
+  // ─────────────────────────────────────────────
+  const handleToggleFavorite = async (e, game) => {
+    e.stopPropagation();
+    if (!userId || !game?.uuid) return;
+
+    const prevState = !!favorite[game.uuid];
+    const nextState = !prevState;
+
+    // Optimistic update
+    setFavorite((prev) => ({
+      ...prev,
+      [game.uuid]: nextState,
+    }));
+
+    try {
+      await axios.post(`/wallet-service/api/games/${userId}/favourite`, {
+        uuid: game.uuid,
+      });
+
+      // If user un-favorites inside favourites page → remove from UI
+      if (type === "favorites" && !nextState) {
+        setGames((prev) => prev.filter((g) => g.uuid !== game.uuid));
+      }
+    } catch (err) {
+      console.error("Failed to toggle favourite:", err);
+      // Rollback
+      setFavorite((prev) => ({
+        ...prev,
+        [game.uuid]: prevState,
+      }));
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
+
+  // ─────────────────────────────────────────────
+  // 10) Check if Load More should show
+  // ─────────────────────────────────────────────
+  const showLoadMore = visibleCount < filteredGames.length || hasMore;
+
+  // ─────────────────────────────────────────────
+  // 11) RENDER
   // ─────────────────────────────────────────────
   return (
     <section className="w-full py-2">
@@ -207,22 +290,26 @@ useEffect(() => {
           {type === "all" ? "ALL" : type.toUpperCase()}
         </h2>
 
+        {/* ⭐ Skeleton Loading */}
         {loading ? (
-          <p className="text-gray-400 text-center py-8">Loading games...</p>
-        ) : games.length === 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+            {[...Array(21)].map((_, i) => (
+              <GameSkeleton key={i} />
+            ))}
+          </div>
+        ) : filteredGames.length === 0 ? (
           <p className="text-gray-400 text-center py-8">No games found.</p>
         ) : (
           <>
             <motion.div
               className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4"
-              initial="hidden"
-              animate="visible"
             >
               {filteredGames.slice(0, visibleCount).map((game, i) => (
                 <motion.div
                   key={game.uuid || i}
                   variants={cardVariants}
-                  custom={i}
+                  initial="hidden"
+                  animate="visible"
                   className="relative overflow-hidden cursor-pointer group transition-all"
                 >
                   {/* ⭐ Favorite Icon (Top Right) */}
@@ -262,7 +349,7 @@ useEffect(() => {
                           }
                           className={
                             !favorite?.[game.uuid]
-                              ? "fill-[#16192DB2] group-hover/fav:fill-white  stroke-white transition-all duration-300"
+                              ? "fill-[#16192DB2] group-hover/fav:fill-white stroke-white transition-all duration-300"
                               : ""
                           }
                           fillOpacity="1"
@@ -319,11 +406,16 @@ useEffect(() => {
                   </button>
 
                   {/* Thumbnail + Play overlay */}
-                  <div className="relative aspect-[18/12] overflow-hidden rounded-xl">
-                    <motion.img
-                      src={game.image}
-                      alt={game.name}
+                  <div className="relative aspect-[18/12] overflow-hidden rounded-xl bg-[#1a1b4b]">
+                    <img
+                      src={game.image || "/images/game-placeholder.png"}
+                      alt={game.name || "Game"}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect fill='%231a1b4b' width='200' height='150'/%3E%3Ctext fill='%23666' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3EGame%3C/text%3E%3C/svg%3E";
+                      }}
                     />
 
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto bg-[var(--overlay-bg)] backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all">
@@ -390,37 +482,70 @@ useEffect(() => {
                       </motion.button>
                     </div>
                   </div>
-
-                  {/* <div className="mt-2">
-                    <div className="text-sm font-semibold text-white truncate">
-                      {game.name}
-                    </div>
-                    <div className="text-xs text-gray-400">
-                      {game.provider}
-                    </div>
-                  </div> */}
                 </motion.div>
               ))}
             </motion.div>
 
-            {visibleCount < games.length && (
+            {/* ⭐ Load More Button - Shows when more games available */}
+            {showLoadMore && (
               <div className="flex justify-center mt-8">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: loadingMore ? 1 : 1.05 }}
+                  whileTap={{ scale: loadingMore ? 1 : 0.95 }}
                   onClick={handleLoadMore}
-                  className="px-6 py-2 rounded-full text-white font-semibold text-sm shadow-md"
+                  disabled={loadingMore}
+                  className={`px-8 py-3 rounded-full text-white font-semibold text-sm shadow-md flex items-center gap-2 ${
+                    loadingMore ? "opacity-70 cursor-wait" : ""
+                  }`}
                   style={{
-                    background: "var(--cta-pink-gradient )",
+                    background: "var(--cta-pink-gradient)",
                   }}
                 >
-                  LOAD MORE
+                  {loadingMore ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                          fill="none"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
+                      </svg>
+                      LOADING...
+                    </>
+                  ) : (
+                    <>
+                      LOAD MORE
+                      <span className="text-xs opacity-70">
+                        ({filteredGames.length} loaded)
+                      </span>
+                    </>
+                  )}
                 </motion.button>
               </div>
             )}
           </>
         )}
       </div>
+
+      {/* ⭐ Skeleton shimmer animation */}
+      <style>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .skeleton-shimmer {
+          animation: shimmer 1.5s infinite;
+        }
+      `}</style>
     </section>
   );
 };

@@ -58,6 +58,7 @@ import CasinoChallenges from "./pages/CasinoChallenges.jsx";
 import RackBack from "./pages/Rakeback.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import LeaderboardComingSoon from "./pages/LeaderboardComingSoon.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 // Temporary pages
 
@@ -139,6 +140,7 @@ function App() {
   return (
     <AuthModalHandler>
       <>
+      <ScrollToTop />
         {loading && <GlobalLoader />}
 
         <Routes>

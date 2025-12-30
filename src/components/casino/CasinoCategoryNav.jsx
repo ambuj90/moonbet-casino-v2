@@ -1,238 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
-const ICON_MAP = {
-  recent: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-    >
-      <path
-        d="M9 18C13.9693 18 18 13.9693 18 9C18 4.0307 13.9693 0 9 0C4.0307 0 0 4.0307 0 9C0 13.9693 4.0307 18 9 18ZM8.35712 3.85715C8.35712 3.50357 8.64641 3.21427 9 3.21427C9.35358 3.21427 9.64288 3.50357 9.64288 3.85715V8.69144L12.6161 11.07C12.8925 11.2918 12.9375 11.6968 12.7157 11.9732C12.5903 12.1307 12.4039 12.2143 12.2143 12.2143C12.0728 12.2143 11.9314 12.1693 11.8125 12.0728L8.59824 9.50144C8.44717 9.37928 8.35718 9.19609 8.35718 9L8.35712 3.85715Z"
-        fill="#9292D2"
-      />
-    </svg>
-  ),
-
-  favorites: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="16"
-      viewBox="0 0 18 16"
-      fill="none"
-    >
-      <path
-        d="M12.5109 0C13.9778 7.87092e-05 15.3565 0.572114 16.3938 1.60938C18.535 3.75068 18.5351 7.23458 16.3938 9.37598L10.3723 15.3984C10.0069 15.7637 9.51949 15.9648 9.0002 15.9648C8.48091 15.9648 7.99346 15.7636 7.62813 15.3984L1.60567 9.37598C-0.53533 7.23467 -0.535116 3.75066 1.60567 1.60938C2.64293 0.572084 4.02253 4.57993e-05 5.48946 0C6.78681 0 8.01593 0.44767 9.0002 1.26855C9.98454 0.44767 11.2135 0 12.5109 0Z"
-        fill="#7D7D7D"
-      />
-    </svg>
-  ),
-
-  live: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="19"
-      height="21"
-      viewBox="0 0 19 21"
-      fill="none"
-    >
-      <path
-        d="M5.1625 6.35217C5.9572 6.35217 6.65718 6.1262 7.23521 5.83784C6.64837 6.98803 6.29675 8.31944 6.22697 9.69248C3.88055 9.95487 2.04062 12.0054 2.04062 14.5182C2.04062 17.208 4.14125 19.4323 6.72344 19.4323C7.51895 19.4323 8.28099 19.1988 8.96444 18.8083C7.90417 17.7255 7.24375 16.1834 7.24375 14.5182C7.24375 12.853 7.90417 11.347 8.96444 10.2643C8.43817 9.96348 7.86474 9.75896 7.26597 9.6795C7.49225 5.84857 10.2697 2.68864 13.8508 2.11207C12.9387 3.44588 12.4469 5.03742 12.4469 6.70842V9.69502C10.1118 9.9687 8.28438 12.0139 8.28438 14.5182C8.28438 17.208 10.385 19.4323 12.9672 19.4323C15.5494 19.4323 17.65 17.208 17.65 14.5182C17.65 12.0139 15.8225 9.9687 13.4875 9.69502V6.70842C13.4875 4.87595 14.1724 3.15315 15.4163 1.85745L16.3045 0.932251H15.0484C12.6046 0.932251 10.3897 1.97036 8.78721 3.64489C8.36649 3.22414 7.01747 2.01624 5.1625 2.01624C2.96743 2.01624 1.46544 3.71998 1.39281 3.79253L1 4.1842L1.39281 4.57588C1.46544 4.64843 2.96743 6.35217 5.1625 6.35217ZM12.9672 12.8922C12.1065 12.8922 11.4062 13.6216 11.4062 14.5182H10.3656C10.3656 13.024 11.5328 11.8082 12.9672 11.8082V12.8922ZM6.72344 12.8922C5.86275 12.8922 5.1625 13.6216 5.1625 14.5182H4.12188C4.12188 13.024 5.28906 11.8082 6.72344 11.8082V12.8922Z"
-        fill="#A7A7A7"
-      />
-    </svg>
-  ),
-  crash: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="21"
-      height="21"
-      viewBox="0 0 21 21"
-      fill="none"
-    >
-      <path
-        d="M19.534 9.88032L17.4173 7.76153C16.5468 6.89018 17.0787 5.97042 18.0274 5.91456C19.5899 5.81774 20.4678 4.14952 19.1918 2.76057C17.8042 1.48706 16.145 2.36213 16.0483 3.92237C15.9887 4.87192 15.0624 5.40814 14.1956 4.54051L12.1235 2.4664C11.5022 1.84453 10.4941 1.84453 9.87279 2.4664L7.77462 4.56657C6.9041 5.43792 5.9815 4.89799 5.92198 3.94844C5.82526 2.38447 4.15118 1.49451 2.76356 2.77174C1.48383 4.16441 2.37295 5.84009 3.93541 5.9369C4.88405 5.99648 5.42348 6.92369 4.55668 7.79504L2.46595 9.88405C1.84468 10.5059 1.84468 11.515 2.46595 12.1369L4.53808 14.211C5.4086 15.0786 4.89149 15.9835 3.94285 16.0431C2.38039 16.1399 1.50615 17.8044 2.78216 19.1933C4.16978 20.4706 5.82526 19.5992 5.92198 18.0353C5.9815 17.0857 6.88922 16.5644 7.75974 17.432L9.85047 19.5248C10.4829 20.1578 11.5171 20.1578 12.1495 19.5285L14.244 17.432C15.0661 16.5718 14.5342 15.667 13.5967 15.6074C12.0342 15.5106 11.1488 13.8349 12.4248 12.446C13.8124 11.1687 15.4865 12.0587 15.5832 13.6227C15.6428 14.561 16.543 15.0898 17.4024 14.2669L19.5043 12.163C19.508 12.1592 19.508 12.1592 19.5117 12.1555L19.534 12.1332C20.1553 11.5113 20.1553 10.5022 19.534 9.88032Z"
-        fill="#7D7D7D"
-      />
-    </svg>
-  ),
-  slots: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="17"
-      viewBox="0 0 18 17"
-      fill="none"
-    >
-      <path
-        d="M13.5879 17C14.3773 17 15.022 16.3562 15.022 15.5679V13.9838C15.022 13.1954 14.3773 12.5516 13.5879 12.5516H1.43409C0.64472 12.5516 0 13.1954 0 13.9838V15.5679C0 16.3562 0.64472 17 1.43409 17H13.5879Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M17.2757 2.65097H15.465C15.0646 2.65097 14.7407 2.97483 14.7407 3.37428C14.7407 3.77373 15.0646 4.09759 15.465 4.09759H15.646V7.02828L13.7165 7.49095V1.91675C13.7165 0.860744 12.8544 0 11.7898 0H3.22131C2.16387 0 1.302 0.860743 1.302 1.91675V11.016H13.7165V8.97836L16.5394 8.30149C16.8648 8.22344 17.0946 7.93277 17.0946 7.59831V4.09759H17.2757C17.6761 4.09759 18 3.77373 18 3.37428C18 2.97483 17.6761 2.65097 17.2757 2.65097ZM8.64148 4.5207V9.12096H6.37948V4.5207H8.64148ZM2.75784 8.65079V4.99083C2.75784 4.73045 2.96791 4.5207 3.22131 4.5207H4.9309V9.12096H3.22131C2.96791 9.12096 2.75784 8.91121 2.75784 8.65079ZM12.2679 8.65079C12.2679 8.91121 12.0578 9.12096 11.797 9.12096H10.0901V4.5207H11.797C12.0578 4.5207 12.2679 4.73045 12.2679 4.99083V8.65079Z"
-        fill="#A7A7A7"
-      />
-    </svg>
-  ),
-
-  roulette: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="21"
-      height="21"
-      viewBox="0 0 21 21"
-      fill="none"
-    >
-      <path
-        d="M4.65812 11.5151H2C2.11714 13.548 2.90643 15.4535 4.26104 16.9737L6.1428 15.092C5.31062 14.1094 4.77063 12.8721 4.65812 11.5151Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M6.1428 6.87759L4.26104 4.99582C2.90643 6.51611 2.11714 8.42157 2 10.4545H4.65812C4.77063 9.09751 5.31062 7.86018 6.1428 6.87759Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M17.3418 10.4545H20C19.8828 8.42164 19.0935 6.51611 17.7389 4.99582L15.8572 6.87763C16.6893 7.86018 17.2294 9.09751 17.3418 10.4545Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M11 10.4545C10.7076 10.4545 10.4696 10.6924 10.4696 10.9848C10.4963 11.6874 11.5038 11.6872 11.5303 10.9848C11.5303 10.6923 11.2925 10.4545 11 10.4545Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M16.3034 10.9848C16.3034 8.06048 13.9243 5.68135 11 5.68135C3.97391 5.94797 3.97582 16.0227 11.0001 16.2883C13.9243 16.2883 16.3034 13.9091 16.3034 10.9848ZM14.1821 11.5151H12.4998C12.3397 11.9664 11.9816 12.3246 11.5303 12.4846V14.1669H10.4696V12.4846C10.0184 12.3246 9.66023 11.9664 9.50017 11.5151H7.81792V10.4545H9.50017C9.66023 10.0032 10.0184 9.64504 10.4696 9.48498V7.80273H11.5303V9.48498C11.9816 9.64504 12.3397 10.0032 12.4998 10.4545H14.1821V11.5151Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M10.4696 4.64289V1.9848C8.43683 2.10194 6.53134 2.8912 5.01105 4.24581L6.89282 6.12761C7.87541 5.2954 9.1127 4.7554 10.4696 4.64289Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M16.9889 4.24584C15.4687 2.89123 13.5632 2.10194 11.5303 1.9848V4.64293C12.8872 4.75543 14.1245 5.29543 15.1071 6.12761L16.9889 4.24584Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M11.5303 17.3267V19.9848C13.5631 19.8676 15.4687 19.0784 16.9889 17.7238L15.1071 15.842C14.1245 16.6742 12.8872 17.2142 11.5303 17.3267Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M5.01105 17.7237C6.53134 19.0783 8.43683 19.8676 10.4696 19.9848V17.3266C9.1127 17.2141 7.87541 16.6741 6.89282 15.842L5.01105 17.7237Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M15.8572 15.092L17.7389 16.9737C19.0936 15.4535 19.8828 13.548 20 11.5151H17.3418C17.2294 12.8721 16.6893 14.1094 15.8572 15.092Z"
-        fill="#A7A7A7"
-      />
-    </svg>
-  ),
-
-  blackjack: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="21"
-      height="21"
-      viewBox="0 0 21 21"
-      fill="none"
-    >
-      <path
-        d="M17.9788 7.5512C15.1686 5.35747 12.5904 2.53287 11.5213 1.31125C11.2457 0.996347 10.7544 0.996347 10.4788 1.31125C9.40962 2.53283 6.83146 5.35743 4.02123 7.5512C2.74619 8.54654 2 10.0432 2 11.629C2 14.4434 4.35655 16.725 7.26348 16.725C8.24662 16.725 9.14091 16.3572 9.80804 15.7562V16.7499C9.80804 17.9597 8.93673 18.1097 8.26066 18.6746C8.09805 18.8104 8.1979 19.0751 8.41021 19.0751H13.572C13.7835 19.0751 13.8835 18.8123 13.7227 18.6755C13.0535 18.1064 12.192 17.9794 12.192 16.7589V15.7561C12.8591 16.3572 13.7534 16.725 14.7365 16.725C17.6435 16.725 20 14.4434 20 11.6289C20 10.0432 19.2538 8.54654 17.9788 7.5512Z"
-        fill="#A7A7A7"
-      />
-    </svg>
-  ),
-
-  baccarat: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="21"
-      height="21"
-      viewBox="0 0 21 21"
-      fill="none"
-    >
-      <path
-        d="M18.8399 2.31287L12.0523 1.11604C11.2889 0.981428 10.5609 1.49119 10.4263 2.25461L10.3621 2.61894C11.3437 2.73987 12.173 3.44701 12.4341 4.42136L12.8489 5.96947C13.0685 5.87423 13.3175 5.83991 13.5709 5.8846C14.0517 5.96939 14.4206 6.31544 14.558 6.75092C14.8361 6.3887 15.3011 6.18968 15.782 6.27448C16.4702 6.39584 16.9297 7.0521 16.8083 7.74028C16.5446 9.23562 14.94 10.4375 14.1785 10.9318L15.3411 15.2709C15.4035 15.5035 15.4295 15.7373 15.4237 15.9667L16.4019 16.1391C17.1653 16.2738 17.8933 15.764 18.028 15.0006L19.9784 3.93898C20.1131 3.17549 19.6033 2.44748 18.8399 2.31287Z"
-        fill="#A7A7A7"
-      />
-      <path
-        d="M11.4172 4.69386C11.2492 4.06674 10.6821 3.65313 10.0623 3.65316C9.94206 3.65316 9.81978 3.66874 9.69811 3.70133L3.04071 5.48515C2.29191 5.68579 1.84754 6.45547 2.04817 7.20426L4.95528 18.0538C5.12333 18.6809 5.69043 19.0945 6.3102 19.0945C6.43044 19.0945 6.55271 19.0789 6.67435 19.0463L13.3318 17.2625C14.0805 17.0618 14.5249 16.2921 14.3243 15.5434L11.4172 4.69386ZM6.23669 12.1101C6.12381 12.0108 6.08165 11.8534 6.12975 11.711L7.14773 8.69675C7.23288 8.4446 7.54725 8.36037 7.74708 8.53615L10.1358 10.6376C10.2487 10.7369 10.2908 10.8943 10.2427 11.0367L9.22476 14.0509C9.13962 14.3031 8.82525 14.3873 8.62542 14.2115L6.23669 12.1101Z"
-        fill="#A7A7A7"
-      />
-    </svg>
-  ),
-
-  gameshows: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-    >
-      <path
-        d="M14.1543 7.43848C14.6107 7.41715 15 7.84535 15 8.29102V10.0781C15 10.3788 14.9806 10.6712 14.9404 10.9697C14.8728 11.46 14.7043 11.9356 14.4678 12.3662C14.2417 12.7799 13.9388 13.1664 13.5859 13.4756C13.1656 13.8464 12.7092 14.1151 12.1875 14.3154C11.6318 14.5287 11.0397 14.5645 10.4502 14.5645H9.85254V16.292H12.6797C13.153 16.292 13.5043 16.6828 13.5254 17.1455C13.5463 17.6059 13.1212 17.998 12.6797 17.998H5.33887C4.86582 17.9979 4.51545 17.608 4.49414 17.1455C4.47302 16.685 4.89734 16.2922 5.33887 16.292H8.16211V14.5645H7.32324C6.54355 14.5644 5.78065 14.3831 5.10449 13.9844C4.20879 13.4556 3.54285 12.6053 3.20899 11.6182C2.99772 10.9956 3 10.3513 3 9.70312V8.29492C3.00022 7.81746 3.3873 7.4637 3.8457 7.44238C4.30177 7.42139 4.69019 7.84954 4.69043 8.29492V10.2715C4.69224 10.3911 4.69806 10.5107 4.70899 10.6299C4.74639 10.8511 4.80482 11.067 4.88281 11.2773C4.97802 11.4863 5.09345 11.6837 5.22656 11.8691C5.36403 12.0355 5.51631 12.1872 5.68067 12.3252C5.86525 12.4603 6.06158 12.5755 6.26953 12.6709C6.47517 12.7487 6.68627 12.805 6.90234 12.8418C7.11971 12.862 7.33589 12.8613 7.55371 12.8613H8.97559C8.98616 12.8605 8.99716 12.8589 9.00781 12.8584C9.03877 12.857 9.06938 12.8588 9.09961 12.8613H10.5391C10.7259 12.8613 10.9115 12.8592 11.0967 12.8428C11.3179 12.8054 11.5339 12.7471 11.7441 12.668C11.9532 12.5713 12.1506 12.454 12.3359 12.3184C12.4963 12.1833 12.6436 12.0349 12.7773 11.874C12.9143 11.6854 13.0306 11.4845 13.127 11.2715C13.2025 11.0691 13.2591 10.8619 13.2959 10.6494C13.3106 10.4988 13.3184 10.3472 13.3184 10.1953V8.29492C13.3186 7.81764 13.7046 7.4643 14.1543 7.43848Z"
-        fill="#9292D2"
-      />
-      <path
-        d="M10.582 0C10.8988 5.54667e-05 11.2072 0.0637874 11.4648 0.259766C11.8177 0.528458 12.0272 0.927977 12.0293 1.37793V10.1182C12.0293 10.276 12.0229 10.4345 11.9785 10.5859C11.8115 11.1701 11.2746 11.5705 10.6768 11.5791H10.3496C9.34591 11.5791 8.34159 11.594 7.33789 11.5791C6.74421 11.5705 6.22662 11.1826 6.04492 10.6133C5.99422 10.4555 5.98535 10.2892 5.98535 10.125V1.37793C5.98747 0.979156 6.15732 0.582069 6.46582 0.326172C6.74676 0.096058 7.0677 1.42902e-05 7.42676 0H10.582Z"
-        fill="#9292D2"
-      />
-    </svg>
-  ),
-
-  all: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-    >
-      <g clip-path="url(#clip0_8519_1769)">
-        <path
-          d="M17.5147 7.82913C17.5143 7.82872 17.5139 7.82831 17.5135 7.8279L10.1709 0.485596C9.85791 0.172485 9.4418 0 8.99919 0C8.55658 0 8.14047 0.172348 7.82736 0.485458L0.488635 7.82405C0.486163 7.82652 0.483692 7.82913 0.48122 7.8316C-0.161481 8.47801 -0.160382 9.52679 0.484378 10.1716C0.778949 10.4663 1.168 10.637 1.58397 10.6548C1.60086 10.6565 1.61789 10.6573 1.63506 10.6573H1.92771V16.0608C1.92771 17.13 2.79769 18 3.86721 18H6.73986C7.03099 18 7.2672 17.7639 7.2672 17.4727V13.2363C7.2672 12.7484 7.66408 12.3515 8.15201 12.3515H9.84638C10.3343 12.3515 10.7312 12.7484 10.7312 13.2363V17.4727C10.7312 17.7639 10.9673 18 11.2585 18H14.1312C15.2007 18 16.0707 17.13 16.0707 16.0608V10.6573H16.342C16.7845 10.6573 17.2006 10.4849 17.5139 10.1718C18.1593 9.52597 18.1596 8.4754 17.5147 7.82913Z"
-          fill="#7D7D7D"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_8519_1769">
-          <rect width="18" height="18" fill="white" />
-        </clipPath>
-      </defs>
-    </svg>
-  ),
-  Arcade: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-    >
-      <path
-        d="M8.26907 2.92681C8.40903 2.89433 8.51567 2.9333 8.58232 3.0567C8.69563 3.25804 8.78894 3.84257 8.88891 4.12834C9.58208 6.07029 11.6149 8.03822 13.5344 8.85007C13.9743 9.03842 14.4542 9.12285 14.8808 9.31769L14.9008 9.57749L9.91533 14.4746C9.40212 14.8772 8.64231 14.598 8.10244 14.3706C7.92249 14.2927 6.76277 13.6562 6.73611 13.5588L8.34905 8.47986C8.38904 8.14213 7.83584 7.78492 7.52925 7.86286L3.34362 10.0776C2.70377 8.81759 2.41718 7.10946 3.29696 5.88844L8.26907 2.9333V2.92681ZM11.295 0.952385C10.8218 1.31609 10.2153 1.67331 9.77536 2.06949C9.44878 2.36176 9.4821 2.5566 9.55542 2.97227C9.93532 5.27792 12.4347 7.71348 14.6875 8.36296C14.9874 8.44739 15.6872 8.63574 15.9205 8.38244L17.0069 6.52493L18 1.42651L17.98 1.27712C17.7534 1.0628 17.5668 0.78352 17.3468 0.569191C17.2802 0.497748 16.7736 0.0431121 16.7336 0.0236277C16.6537 -0.0153412 16.6137 0.00414319 16.5404 0.010638C14.8408 0.173008 13.0012 0.744551 11.2883 0.952385H11.295ZM3.01703 11.487L0.877557 14.7798C0.717596 15.189 1.14416 15.5072 1.51073 15.2604L5.81634 13.0327L7.40928 9.07089C7.44927 8.94749 7.29597 8.78512 7.176 8.8046L3.0037 11.4805L3.01703 11.487ZM10.9884 17.7479L12.4414 13.4029C11.9082 13.8446 11.5016 14.4161 11.0151 14.9097C10.5618 15.3708 10.3885 15.5332 9.72871 15.7086C9.64873 15.7281 9.57541 15.7346 9.49543 15.7281L10.3486 17.9038C10.5818 18.0662 10.8751 18.0272 10.9884 17.7544V17.7479ZM3.48358 4.32968C2.54381 4.37515 1.41076 4.34917 0.497651 4.47257C-0.0355512 4.54401 -0.168852 4.92071 0.237715 5.26493L2.05727 6.33658C2.11059 5.90142 2.27721 5.45328 2.55048 5.10256L4.35003 4.28422L3.48358 4.32968Z"
-        fill="#A7A7A7"
-      />
-    </svg>
-  ),
-
-  default: (
-    <svg width="20" height="20">
-      <rect
-        x="2"
-        y="2"
-        width="16"
-        height="16"
-        stroke="#CED5E3"
-        strokeWidth="2"
-      />
-    </svg>
-  ),
-};
+import FiltersPanel from "./FiltersPanel";
 
 const ICON_PATH = {
   recent:
@@ -322,13 +91,24 @@ const DynamicIcon = ({ id, active }) => {
 };
 
 const PROVIDER_LIST = [
-  { id: "pragmatic play", label: "Pragmatic Play" },
-  { id: "evolution gaming", label: "Evolution Gaming" },
-  { id: "playngo", label: "Play’n GO" },
-  { id: "netent", label: "NetEnt" },
-  { id: "hacksaw gaming", label: "Hacksaw Gaming" },
-  { id: "ezugi", label: "Ezugi" },
-  { id: "bgaming", label: "BGaming" },
+  { id: "PragmaticPlay", label: "Pragmatic Play" },
+  { id: "PragmaticPlayLive", label: "Pragmatic Play Live" },
+  { id: "Evolution Gaming", label: "Evolution Gaming" },
+  { id: "Platiplus2", label: "Platiplus2" },
+  { id: "Hacksaw Gaming", label: "Hacksaw Gaming" },
+  { id: "Thunderkick", label: "Thunderkick" },
+  { id: "Play'n GO", label: "Play'n GO" },
+  { id: "Spribe", label: "Spribe" },
+  { id: "Endorphina", label: "Endorphina" },
+  { id: "Playtech", label: "Playtech" },
+  { id: "Nolimit City", label: "Nolimit City" },
+  { id: "NetEnt", label: "NetEnt" },
+  { id: "Playson", label: "Playson" },
+  { id: "Red Tiger", label: "Red Tiger" },
+  { id: "Relax Gaming", label: "Relax Gaming" },
+  { id: "SmartBet", label: "SmartBet" },
+  { id: "Zillion", label: "Zillion" },
+  { id: "Avatar UX", label: "Avatar UX" },
 ];
 
 const CasinoCategoryNav = ({
@@ -338,6 +118,8 @@ const CasinoCategoryNav = ({
   setSelectedFilter,
   searchTerm,
   setSearchTerm,
+  selectedStudio,
+  setSelectedStudio,
 }) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
@@ -349,16 +131,14 @@ const CasinoCategoryNav = ({
 
   // const [selectedCategory, setSelectedCategory] = useState("all");
   // const [selectedFilter, setSelectedFilter] = useState("trending");
-  const [games, setGames] = useState([]);
-  const [loading, setLoading] = useState(false);
   // const [searchTerm, setSearchTerm] = useState("");
   const { category } = useParams();
   const user = JSON.parse(localStorage.getItem("user") || "null");
   const isLoggedIn = !!user?.id;
   const [studioOpen, setStudioOpen] = useState(false);
   const studioRef = useRef(null);
-  const [selectedStudio, setSelectedStudio] = useState("all");
   const [availableStudios, setAvailableStudios] = useState([]);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   // Close on outside click
   useEffect(() => {
@@ -371,93 +151,15 @@ const CasinoCategoryNav = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // when URL changes (e.g. /casino/slots)
-  useEffect(() => {
-    if (category) {
-      setSelectedCategory(category);
-    } else {
-      setSelectedCategory("all");
-    }
-  }, [category]);
+  // ⭐ NOTE: Category state is managed by parent (Casino.jsx) via URL
+  // No need for useEffect here - selectedCategory comes from props
 
   useEffect(() => {
-    const fetchGames = async () => {
-      setLoading(true);
-      try {
-        let res;
-
-        // ⭐ If category is "favorites", fetch ONLY favourite games
-        if (selectedCategory === "favorites") {
-          const user = JSON.parse(localStorage.getItem("user") || "{}");
-          const userId = user.id;
-
-          res = await fetch(
-            `/wallet-service/api/games/${userId}/favourite-game`
-          );
-        } else {
-          // ⭐ Normal categories fetch
-          const params = new URLSearchParams();
-          const activeCategory = category || selectedCategory;
-
-          if (activeCategory && activeCategory !== "all") {
-            params.append("type", activeCategory);
-          }
-
-          if (selectedFilter) {
-            params.append("sortBy", selectedFilter);
-          }
-
-          if (searchTerm) {
-            params.append("name", searchTerm);
-          }
-
-          const query = params.toString() ? `?${params.toString()}` : "";
-
-          res = await fetch(`/wallet-service/api/games${query}`);
-        }
-
-        const data = await res.json();
-        if (data.success) {
-          let fetchedGames = data.data || [];
-
-          if (selectedStudio !== "all") {
-            fetchedGames = fetchedGames.filter((game) => {
-              const provider =
-                game.provider ||
-                game.provider_name ||
-                game.studio ||
-                game.vendor ||
-                "";
-
-              return provider.toLowerCase().includes(selectedStudio);
-            });
-          }
-
-          setGames(fetchedGames);
-        } else {
-          setGames([]);
-        }
-      } catch (err) {
-        console.error("Error fetching games:", err);
-        setGames([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchGames();
-  }, [category, selectedFilter, searchTerm, selectedCategory, selectedStudio]);
-
-  useEffect(() => {
-  setAvailableStudios([
-    { id: "all", label: "All Studios" },
-    ...PROVIDER_LIST,
-  ]);
-}, []);
-
-  useEffect(() => {
-    setSelectedStudio("all");
-  }, [selectedCategory, category]);
+    setAvailableStudios([
+      { id: "all", label: "All Studios" },
+      ...PROVIDER_LIST,
+    ]);
+  }, []);
 
   // --- SVG Icon Components ---
   const ChevronLeft = ({ className }) => (
@@ -488,162 +190,6 @@ const CasinoCategoryNav = ({
         strokeLinejoin="round"
         strokeWidth={2}
         d="M9 5l7 7-7 7"
-      />
-    </svg>
-  );
-
-  const TrendingUpIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-      />
-    </svg>
-  );
-
-  const FilterIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-      />
-    </svg>
-  );
-
-  const TrophyIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-      />
-    </svg>
-  );
-
-  const ZapIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M13 10V3L4 14h7v7l9-11h-7z"
-      />
-    </svg>
-  );
-
-  const SparklesIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-      />
-    </svg>
-  );
-
-  const FlameIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"
-      />
-    </svg>
-  );
-
-  const SnowflakeIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 2v20m8-10H4m14.14-6.14L5.86 18.14M18.14 18.14L5.86 5.86"
-      />
-    </svg>
-  );
-
-  const ClockIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-  );
-
-  const PlayIcon = ({ className }) => (
-    <svg
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
       />
     </svg>
   );
@@ -1215,14 +761,14 @@ const CasinoCategoryNav = ({
             ></div>
             <div
               ref={categoriesRef}
-              className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide scroll-smooth w-full pr-8" // ✅ padding-right keeps arrow clear
+              className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide scroll-smooth w-full pr-8" // âœ… padding-right keeps arrow clear
             >
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    setSelectedCategory(category.id);
+                    setSelectedStudio("all"); // ⭐ Reset studio when changing category
                     navigate(
                       `/casino/${category.id === "all" ? "" : category.id}`
                     );
@@ -1352,7 +898,11 @@ const CasinoCategoryNav = ({
             </div>
 
             {/* Filters - Hide on mobile */}
-            <button className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36]  sm:flex">
+            <button
+            type="button"
+              onClick={() => setFiltersOpen(true)}
+              className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36]  sm:flex"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -1482,6 +1032,12 @@ const CasinoCategoryNav = ({
           </div>
         </div>
       </div>
+      <FiltersPanel
+        open={filtersOpen}
+        onClose={() => setFiltersOpen(false)}
+        selectedFilter={selectedFilter}
+        setSelectedFilter={setSelectedFilter}
+      />
 
       <style>{`
         .scrollbar-hide::-webkit-scrollbar {

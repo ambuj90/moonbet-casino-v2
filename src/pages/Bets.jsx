@@ -1,118 +1,143 @@
 // src/pages/Bets.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import axios from "axios";
 import BonusProgressBar from "../components/bonus/BonusProgressBar";
-import { useAuthStore } from "../store/useAuthStore";
 import { useUserBonus } from "../hooks/useUserBonus";
+import gameService from "../services/gameService";
 
+// ⚡ Memoized Game Icon Component
+const GameIcon = React.memo(({ gameName }) => {
+  const g = (gameName || "").toLowerCase();
+  
+  if (g.includes("keno"))
+    return (
+      <div className="w-6 h-6 bg-blue-500/20 rounded flex-center">
+        <span className="text-blue-400">🎯</span>
+      </div>
+    );
+  if (g.includes("limbo"))
+    return (
+      <div className="w-6 h-6 bg-red-500/20 rounded flex-center">
+        <span className="text-red-400">🔥</span>
+      </div>
+    );
+  if (g.includes("dice"))
+    return (
+      <div className="w-6 h-6 bg-purple-500/20 rounded flex-center">
+        <span className="text-purple-400">🎲</span>
+      </div>
+    );
+  return (
+    <div className="w-6 h-6 bg-orange-500/20 rounded flex-center">
+      <span className="text-orange-400">🎰</span>
+    </div>
+  );
+});
 
 const Bets = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("casino");
   const [bets, setBets] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  // ⚡ Memoize user parsing - only run once
+  const user = useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user") || "{}");
+    } catch {
+      return {};
+    }
+  }, []);
+
   const userId = user?.id;
   const bonus = useUserBonus(userId, Boolean(userId));
 
+  // ─────────────────────────────────────────────
+  // ⚡ FETCH BETS - Using gameService
+  // ─────────────────────────────────────────────
   useEffect(() => {
-  if (!userId) {
-    console.log("⏳ Waiting for userId...");
-    return;
-  }
-  console.log("✅ Fetching bets for user:", userId);
-
-  const loadBets = async () => {
-    try {
-      setIsLoading(true);
-
-      const res = await axios.get(
-        `/wallet-service/api/games/bets/${userId}`
-      );
-
-      const apiBets = res.data.data.map((item, index) => ({
-        id: `${index}`,
-        game: item.game,
-        amount: item.amount,
-        multiplier: "-",
-        payout: item.amount,
-        status: item.type === "win" ? "win" : "loss",
-        date: item.createdAt,
-      }));
-
-      setBets(apiBets);
-
-    } catch (err) {
-      console.error("Failed to load bets", err);
-    } finally {
+    if (!userId) {
+      console.log("⏳ Waiting for userId...");
       setIsLoading(false);
+      return;
     }
-  };
 
-  loadBets();
-}, [userId]);
+    console.log("✅ Fetching bets for user:", userId);
 
-  // FILTER
-  const filteredBets = bets.filter((bet) => {
+    const loadBets = async () => {
+      try {
+        setIsLoading(true);
+
+        // ⚡ Use gameService for consistent API calls
+        const response = await gameService.getUserBets(userId, 200);
+
+        console.log("🎲 Bets API Response:", response);
+
+        // Handle response structure: {success: true, count: 102, data: Array(102)}
+        const betsData = response?.data || [];
+
+        const apiBets = (Array.isArray(betsData) ? betsData : []).map((item, index) => ({
+          id: `${index}`,
+          game: item.game || "Unknown Game",
+          amount: item.amount || "0.00 USD",
+          multiplier: item.multiplier || "-",
+          payout: item.payout || item.amount || "0.00 USD",
+          status: item.type === "win" ? "win" : "loss",
+          date: item.createdAt,
+        }));
+
+        console.log("🎲 Loaded", apiBets.length, "bets successfully!");
+        
+        // ⚡ Always update state with successful data (no isCancelled check)
+        setBets(apiBets);
+        setIsLoading(false);
+      } catch (err) {
+        console.error("❌ Failed to load bets:", err.message);
+        // ⚡ DON'T clear existing bets on error
+        setIsLoading(false);
+      }
+    };
+
+    loadBets();
+    
+    // ⚡ No cleanup - we WANT successful responses to always update state
+  }, [userId]);
+
+  // ⚡ Memoized filtering - only recalculate when bets or search changes
+  const filteredBets = useMemo(() => {
     const q = searchQuery.toLowerCase();
-    return (
-      bet.id.toLowerCase().includes(q) || bet.game.toLowerCase().includes(q)
+    return bets.filter(
+      (bet) =>
+        bet.id.toLowerCase().includes(q) || bet.game.toLowerCase().includes(q)
     );
-  });
+  }, [bets, searchQuery]);
 
-  // PAGINATION
+  // ⚡ Memoized pagination
   const totalPages = Math.ceil(filteredBets.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedBets = filteredBets.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  
+  const paginatedBets = useMemo(() => {
+    return filteredBets.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredBets, startIndex, itemsPerPage]);
 
-  // GAME ICON LOGIC (kept same)
-  const getGameIcon = (game) => {
-    const g = game.toLowerCase();
-    if (g.includes("keno"))
-      return (
-        <div className="w-6 h-6 bg-blue-500/20 rounded flex-center">
-          <span className="text-blue-400">🎯</span>
-        </div>
-      );
-    if (g.includes("limbo"))
-      return (
-        <div className="w-6 h-6 bg-red-500/20 rounded flex-center">
-          <span className="text-red-400">🔥</span>
-        </div>
-      );
-    if (g.includes("dice"))
-      return (
-        <div className="w-6 h-6 bg-purple-500/20 rounded flex-center">
-          <span className="text-purple-400">🎲</span>
-        </div>
-      );
+  // ─────────────────────────────────────────────
+  // 🔄 LOADING STATE (Original Design)
+  // ─────────────────────────────────────────────
+  if (isLoading) {
     return (
-      <div className="w-6 h-6 bg-orange-500/20 rounded flex-center">
-        <span className="text-orange-400">🎰</span>
+      <div className="min-h-screen flex flex-col justify-center items-center gap-4 bg-[#0F102A]">
+        <img
+          src="/icons/moonlogo.gif"
+          alt="Loading bets"
+          className="w-20 h-20 md:w-36 md:h-36 object-contain"
+        />
+        <p className="text-sm md:text-base text-white/70 tracking-wide">
+          Loading your bets...
+        </p>
       </div>
     );
-  };
-
-  if (isLoading) {
-  return (
-    <div className="min-h-screen flex flex-col justify-center items-center gap-4 bg-[#0F102A]">
-      <img
-        src="/icons/moonlogo.gif"
-        alt="Loading bets"
-        className="w-20 h-20 md:w-36 md:h-36 object-contain"
-      />
-      <p className="text-sm md:text-base text-white/70 tracking-wide">
-        Loading your bets...
-      </p>
-    </div>
-  );
-}
+  }
 
   return (
     <div className="min-h-screen md:py-8 px-4 lg:px-8">
@@ -125,8 +150,8 @@ const Bets = () => {
         >
           <p className="text-3xl font-bold text-white">Bets</p>
           <div className="w-full md:w-auto flex justify-end">
-    <BonusProgressBar bonus={bonus} />
-  </div>
+            <BonusProgressBar bonus={bonus} />
+          </div>
         </motion.div>
 
         {/* ===== SEARCH ===== */}
@@ -163,9 +188,7 @@ const Bets = () => {
           </div>
         </motion.div>
 
-        {/* ========================================================
-           🟣 NEW BET TABLE — EXACT SAME LAYOUT REQUESTED
-        ========================================================= */}
+        {/* ===== BET TABLE (Original Design) ===== */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -192,49 +215,60 @@ const Bets = () => {
 
           {/* TABLE BODY */}
           <div>
-            <AnimatePresence>
-              {paginatedBets.map((bet, index) => (
-                <motion.div
-                  key={bet.id}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className={`grid grid-cols-2 md:grid-cols-5 px-4 md:px-6 py-3 items-center mx-4 ${
-                    index % 2 === 0 ? "bg-[#282753] rounded-xl" : ""
-                  }`}
-                >
-                  {/* Game Column */}
-                  <div className="flex items-center text-white text-sm font-medium">
-                    {getGameIcon(bet.game)}
-                    <span className="ml-2">{bet.game}</span>
-                  </div>
-
-                  {/* ID */}
-                  <div className="hidden md:block text-gray-300 text-sm">
-                    {bet.id}
-                  </div>
-
-                  {/* Amount */}
-                  <div className="hidden md:block text-white text-sm text-center">
-                    {bet.amount}
-                  </div>
-
-                  {/* Multiplier */}
-                  <div className="hidden md:block text-sm text-center text-gray-400">
-                    {bet.multiplier}
-                  </div>
-
-                  {/* Payout */}
-                  <div
-                    className={`text-right text-sm font-semibold ${
-                      bet.status === "win" ? "text-[#28C203]" : "text-[#555594]"
+            {paginatedBets.length === 0 ? (
+              /* Empty State */
+              <div className="flex flex-col items-center justify-center py-16 px-4">
+                <div className="text-5xl mb-4">🎲</div>
+                <p className="text-white text-lg font-medium mb-2">No bets yet</p>
+                <p className="text-gray-400 text-sm text-center max-w-md">
+                  Start playing games to see your betting history here!
+                </p>
+              </div>
+            ) : (
+              <AnimatePresence>
+                {paginatedBets.map((bet, index) => (
+                  <motion.div
+                    key={bet.id}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className={`grid grid-cols-2 md:grid-cols-5 px-4 md:px-6 py-3 items-center mx-4 ${
+                      index % 2 === 0 ? "bg-[#282753] rounded-xl" : ""
                     }`}
                   >
-                    +{bet.payout}
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                    {/* Game Column */}
+                    <div className="flex items-center text-white text-sm font-medium">
+                      <GameIcon gameName={bet.game} />
+                      <span className="ml-2">{bet.game}</span>
+                    </div>
+
+                    {/* ID */}
+                    <div className="hidden md:block text-gray-300 text-sm">
+                      {bet.id}
+                    </div>
+
+                    {/* Amount */}
+                    <div className="hidden md:block text-white text-sm text-center">
+                      {bet.amount}
+                    </div>
+
+                    {/* Multiplier */}
+                    <div className="hidden md:block text-sm text-center text-gray-400">
+                      {bet.multiplier}
+                    </div>
+
+                    {/* Payout */}
+                    <div
+                      className={`text-right text-sm font-semibold ${
+                        parseFloat(bet.payout) > 0 ? "text-[#28C203]" : "text-[#555594]"
+                      }`}
+                    >
+                      {parseFloat(bet.payout) > 0 ? "" : ""}{bet.payout}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            )}
           </div>
         </motion.div>
 
@@ -258,29 +292,41 @@ const Bets = () => {
                 Prev
               </button>
 
-              {[...Array(totalPages)].map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`w-8 h-8 flex items-center justify-center rounded-lg ${
-                    currentPage === i + 1
-                      ? "text-white"
-                      : "text-gray-400 bg-white/5"
-                  }`}
-                  style={
-                    currentPage === i + 1
-                      ? { background: "linear-gradient(0deg,#a62a00,#FFB8A1)" }
-                      : {}
-                  }
-                >
-                  {i + 1}
-                </button>
-              ))}
+              {[...Array(Math.min(totalPages, 5))].map((_, i) => {
+                // Show pages around current page
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = currentPage - 2 + i;
+                }
+                
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`w-8 h-8 flex items-center justify-center rounded-lg ${
+                      currentPage === pageNum
+                        ? "text-white"
+                        : "text-gray-400 bg-white/5"
+                    }`}
+                    style={
+                      currentPage === pageNum
+                        ? { background: "linear-gradient(0deg,#a62a00,#FFB8A1)" }
+                        : {}
+                    }
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
 
               <button
-                onClick={() =>
-                  setCurrentPage((p) => Math.min(p + 1, totalPages))
-                }
+                onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                 disabled={currentPage === totalPages}
                 className="px-3 py-1 bg-white/5 rounded-lg disabled:opacity-40 text-white"
               >
