@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 
-// ⭐ Skeleton Loader Component
+// â­ Skeleton Loader Component
 const GameSkeleton = () => (
   <div className="relative overflow-hidden rounded-xl">
     <div className="aspect-[18/12] bg-[#1a1b4b] animate-pulse">
@@ -12,11 +12,11 @@ const GameSkeleton = () => (
   </div>
 );
 
-// ⭐ Configuration
+// â­ Configuration
 const GAMES_PER_PAGE = 48;      // How many to show at once
 const API_BATCH_SIZE = 200;     // How many to fetch per API call
 
-const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all" }) => {
+const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all", advancedFilters = null }) => {
   const [games, setGames] = useState([]);           // All cached games
   const [visibleCount, setVisibleCount] = useState(GAMES_PER_PAGE);
   const [loading, setLoading] = useState(true);
@@ -24,16 +24,16 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);     // Are there more games in DB?
 
-  // ⭐ Map: { [gameUuid]: true | false }
+  // â­ Map: { [gameUuid]: true | false }
   const [favorite, setFavorite] = useState({});
 
   const [isMobileDevice, setIsMobileDevice] = useState(false);
   const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 1) Detect device type
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     const checkDevice = () => {
       if (typeof window === "undefined") return;
@@ -45,9 +45,9 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 2) Get userId once from localStorage
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     try {
       const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -57,9 +57,9 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     }
   }, []);
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 3) Build API URL helper
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const buildApiUrl = (page = 1) => {
     // Recent Games
     if (type === "recent") {
@@ -75,15 +75,35 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     if (filter) params.append("sortBy", filter);
     if (searchTerm) params.append("name", searchTerm);
     if (provider && provider !== "all") params.append("provider", provider);
+    
+    // ⭐ Advanced filters from FiltersPanel
+    if (advancedFilters) {
+      if (advancedFilters.quickPicks && advancedFilters.quickPicks.length > 0) {
+        params.append("quickPicks", advancedFilters.quickPicks.join(","));
+      }
+      if (advancedFilters.gameTypes && advancedFilters.gameTypes.length > 0) {
+        params.append("gameTypes", advancedFilters.gameTypes.join(","));
+      }
+      if (advancedFilters.themes && advancedFilters.themes.length > 0) {
+        params.append("themes", advancedFilters.themes.join(","));
+      }
+      if (advancedFilters.providers && advancedFilters.providers.length > 0) {
+        params.append("providers", advancedFilters.providers.join(","));
+      }
+      if (advancedFilters.volatility !== undefined && advancedFilters.volatility !== 50) {
+        params.append("volatility", advancedFilters.volatility);
+      }
+    }
+    
     params.append("limit", API_BATCH_SIZE);
     params.append("page", page);
     
     return `/wallet-service/api/games?${params.toString()}`;
   };
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 4) Initial fetch when filters change
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     // Only require userId for recent/favorites
     if ((type === "recent" || type === "favorites") && !userId) {
@@ -133,11 +153,11 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     return () => {
       isCancelled = true;
     };
-  }, [type, filter, searchTerm, provider, userId]);
+  }, [type, filter, searchTerm, provider, userId, advancedFilters]);
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 5) Fetch favourites for heart icons
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     if (!userId) return;
 
@@ -156,9 +176,9 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     fetchFavourites();
   }, [userId]);
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 6) Filter by device (mobile/desktop) - ORIGINAL LOGIC
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const filteredGames = games.filter((game) => {
     const isMobileFlag =
       game.is_mobile === true ||
@@ -177,19 +197,19 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     }
   });
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 7) Load More handler - HYBRID APPROACH
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleLoadMore = async () => {
     const nextVisibleCount = visibleCount + GAMES_PER_PAGE;
     
-    // ⚡ Case 1: We have cached games - just show more (instant!)
+    // âš¡ Case 1: We have cached games - just show more (instant!)
     if (nextVisibleCount <= filteredGames.length) {
       setVisibleCount(nextVisibleCount);
       return;
     }
     
-    // ⚡ Case 2: Need to fetch more from API
+    // âš¡ Case 2: Need to fetch more from API
     if (!hasMore || loadingMore) return;
     
     setLoadingMore(true);
@@ -224,20 +244,20 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     }
   };
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 8) Play now handler
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handlePlayNow = (game) => {
     if (!game.slug) {
-      console.error("❌ No slug found for game:", game);
+      console.error("âŒ No slug found for game:", game);
       return;
     }
     navigate(`/game/${game.slug}`);
   };
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 9) Toggle favorite handler
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleToggleFavorite = async (e, game) => {
     e.stopPropagation();
     if (!userId || !game?.uuid) return;
@@ -256,7 +276,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
         uuid: game.uuid,
       });
 
-      // If user un-favorites inside favourites page → remove from UI
+      // If user un-favorites inside favourites page â†’ remove from UI
       if (type === "favorites" && !nextState) {
         setGames((prev) => prev.filter((g) => g.uuid !== game.uuid));
       }
@@ -275,14 +295,14 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 10) Check if Load More should show
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const showLoadMore = visibleCount < filteredGames.length || hasMore;
 
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   // 11) RENDER
-  // ─────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   return (
     <section className="w-full py-2">
       <div className="max-w-7xl mx-auto px-4">
@@ -290,7 +310,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
           {type === "all" ? "ALL" : type.toUpperCase()}
         </h2>
 
-        {/* ⭐ Skeleton Loading */}
+        {/* â­ Skeleton Loading */}
         {loading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4">
             {[...Array(21)].map((_, i) => (
@@ -312,7 +332,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
                   animate="visible"
                   className="relative overflow-hidden cursor-pointer group transition-all"
                 >
-                  {/* ⭐ Favorite Icon (Top Right) */}
+                  {/* â­ Favorite Icon (Top Right) */}
                   <button
                     onClick={(e) => handleToggleFavorite(e, game)}
                     className={`group/fav absolute top-0 right-0 w-8 h-8 flex items-center justify-center rounded-[8px] transition-all duration-300 z-10 ${
@@ -486,7 +506,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
               ))}
             </motion.div>
 
-            {/* ⭐ Load More Button - Shows when more games available */}
+            {/* â­ Load More Button - Shows when more games available */}
             {showLoadMore && (
               <div className="flex justify-center mt-8">
                 <motion.button
@@ -536,7 +556,7 @@ const GameGrid = ({ type = "all", filter = "", searchTerm = "", provider = "all"
         )}
       </div>
 
-      {/* ⭐ Skeleton shimmer animation */}
+      {/* â­ Skeleton shimmer animation */}
       <style>{`
         @keyframes shimmer {
           0% { transform: translateX(-100%); }

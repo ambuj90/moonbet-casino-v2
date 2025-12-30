@@ -120,11 +120,13 @@ const CasinoCategoryNav = ({
   setSearchTerm,
   selectedStudio,
   setSelectedStudio,
+  onApplyFilters, // ⭐ NEW: callback for filter panel
 }) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const [showFilterLeftArrow, setShowFilterLeftArrow] = useState(false);
   const [showFilterRightArrow, setShowFilterRightArrow] = useState(true);
+  const [filterPanelOpen, setFilterPanelOpen] = useState(false); // ⭐ NEW
   const categoriesRef = useRef(null);
   const filtersRef = useRef(null);
   const navigate = useNavigate();
@@ -898,9 +900,8 @@ const CasinoCategoryNav = ({
             </div>
 
             {/* Filters - Hide on mobile */}
-            <button
-            type="button"
-              onClick={() => setFiltersOpen(true)}
+            <button 
+              onClick={() => setFilterPanelOpen(true)} // ⭐ ADD onClick
               className="crypto_btn flex items-center justify-center gap-2 px-4 py-2.5 transition-all w-full sm:w-auto rounded-[60px] bg-[#0D0E36]  sm:flex"
             >
               <svg
@@ -1032,11 +1033,15 @@ const CasinoCategoryNav = ({
           </div>
         </div>
       </div>
-      <FiltersPanel
-        open={filtersOpen}
-        onClose={() => setFiltersOpen(false)}
-        selectedFilter={selectedFilter}
-        setSelectedFilter={setSelectedFilter}
+      <FiltersPanel 
+        open={filterPanelOpen} 
+        onClose={() => setFilterPanelOpen(false)}
+        onApplyFilters={(filters) => {
+          if (onApplyFilters) {
+            onApplyFilters(filters);
+          }
+          setFilterPanelOpen(false);
+        }}
       />
 
       <style>{`
