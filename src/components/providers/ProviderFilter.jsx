@@ -201,7 +201,6 @@ const ProviderFilter = ({ open, onClose }) => {
                   />
 
                   {/* THUMB */}
-                  {/* THUMB */}
                   <div
                     className="absolute mt-6 top-1/2 -translate-y-1/2 cursor-pointer"
                     style={{ left: `calc(${volatility}% - 70px)` }}
