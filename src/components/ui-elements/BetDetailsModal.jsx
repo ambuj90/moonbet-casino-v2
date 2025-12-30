@@ -25,6 +25,24 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
 
   if (!isOpen && !visible) return null;
 
+  const handlePlay = () => {
+
+  // PRIORITY 2 — if slug exists
+  if (betData?.slug) {
+    navigate(`/game/${betData.slug}`);
+    return;
+  }
+
+  // PRIORITY 3 — if game uuid/id exists
+  if (betData?.game_uuid) {
+    navigate(`/game/${betData.game_uuid}`);
+    return;
+  }
+
+  // fallback to casino page
+  navigate("/casino");
+};
+
   return (
     <AnimatePresence>
       {visible && (
@@ -125,7 +143,7 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
                   />
                 </svg>
               </button>
-              <button className="ml-2">
+              {/* <button className="ml-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -142,7 +160,7 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
                     fill="white"
                   />
                 </svg>
-              </button>
+              </button> */}
             </div>
 
             {/* GAME IMAGE */}
@@ -248,7 +266,7 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
 
             {/* PLAY BUTTON */}
             <button
-              onClick={closeModal}
+              onClick={handlePlay}
               className="w-full py-3 rounded-xl text-white font-semibold tracking-wide"
               style={{
                 background: "linear-gradient(180deg,#FFB8A1 0%, #A62A00 100%)",
@@ -259,7 +277,7 @@ const BetDetailsModal = ({ isOpen, onClose, betData }) => {
 
             {/* FOOTER */}
             <p className="text-center text-xs text-white/40 mt-4">
-              Placed on Moonbet on 20 Dec 2025, 1:30
+              Placed on Moonbet on {betData.date} ({betData.timeAgo})
             </p>
           </motion.div>
         </motion.div>

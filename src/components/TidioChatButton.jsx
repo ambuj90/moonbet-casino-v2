@@ -87,7 +87,7 @@ const TidioChatButton = () => {
           />
 
           {/* Mobile image */}
-          <img
+          {/* <img
             src="/active-menu/chat-final.png"
             alt="Chat Icon"
             style={{
@@ -98,7 +98,7 @@ const TidioChatButton = () => {
               right: "-6px",
               zIndex: 10,
             }}
-          />
+          /> */}
         </picture>
       </div>
     </button>

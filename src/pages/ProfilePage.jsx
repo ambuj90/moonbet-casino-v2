@@ -280,16 +280,30 @@ const ProfilePage = () => {
           </div>
 
           {/* SEARCH (desktop / tablet) */}
-          <div className="ml-auto w-40 sm:w-56 md:w-72 relative">
+          {/* 🔎 NEW BIG SEARCH BAR */}
+          <div className="trust_btn3 w-[34%] flex left-44 gap-3 bg-[#1E1F4B]/70 border border-white/10 rounded-full px-5 py-3">
+            {/* icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 16 16"
+              className="opacity-60"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M4.91938 1.89852C7.45073 -0.632855 11.5701 -0.632826 14.1015 1.89852C16.6328 4.42991 16.6329 8.54917 14.1015 11.0806C11.9541 13.2277 8.76039 13.5528 6.26647 12.0571C6.26647 12.0571 6.0863 11.9497 5.93426 12.1014C5.10789 12.9277 2.62776 15.4073 2.62776 15.4073C1.96853 16.0662 1.04706 16.2224 0.46251 15.6377L0.362195 15.5375C-0.222361 14.9528 -0.0661856 14.0314 0.59279 13.3722C0.59279 13.3722 3.07764 10.8879 3.9058 10.0598C4.04794 9.91772 3.94781 9.74149 3.94358 9.73424C2.44747 7.24024 2.7721 4.04606 4.91938 1.89852ZM12.9029 3.09771C11.0325 1.22729 7.98972 1.2274 6.11926 3.09771C4.24892 4.96802 4.24787 8.0109 6.11795 9.88137C7.98846 11.7517 11.0325 11.7517 12.9029 9.88137C14.7732 8.01101 14.7731 4.96809 12.9029 3.09771Z"
+                fill="#555594"
+              />
+            </svg>
+
             <input
-              placeholder={
-                activeTab === "transactions"
-                  ? "Search Transaction ID or Type"
-                  : "Search bet ID or game"
-              }
+              autoFocus
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-[#1A1B3E] border border-[#2B2C55] rounded-full text-white text-sm"
+              placeholder="Search  bet ID or game"
+              className="w-full bg-transparent text-white text-sm placeholder-[#6F6FA8] outline-none"
             />
           </div>
         </div>
@@ -417,7 +431,7 @@ const ProfilePage = () => {
               {/* AVATAR */}
               <div className="flex justify-center">
                 <div className="relative">
-                  <img src="./leaderboard-assets/astro-profile1.svg" />
+                  <img src="./icons/profile_robot.svg" />
                   <span className="text-[#989ACD] cursor-pointer"></span>
                   <button className="absolute top-1 right-0 text-xs px-2 py-1 rounded-full text-white">
                     <img src="./icons/frame.svg" />
